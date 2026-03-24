@@ -13,8 +13,8 @@ window.scriptPools = {
   getPoolText
 };
 
-// =======================
-// DAILY LESSONS
+// =======================f
+// DAILY LESSONSf
 // =======================
 export const LessonsByIndex = {
 
@@ -10645,9 +10645,9 @@ export const extralessonsData = {
   },
   {
     title: {
-      en: "Oceans as Carbon Sinks",
-      es: "Océanos como sumideros de carbono",
-      hu: "Óceánok, mint szénelnyelők"
+      en: "Oceans as Carbon Sinks 2",
+      es: "Océanos como sumideros de carbono 2",
+      hu: "Óceánok, mint szénelnyelők 2"
     },
     content: {
       en: "Oceans absorb about 30% of human CO₂ emissions. Declining biodiversity reduces this capacity, accelerating climate change and weakening marine ecosystem health.",
