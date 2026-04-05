@@ -201,6 +201,36 @@ checkinBtn?.addEventListener('click', async () => {
   showSection('checkin');
 });
 
+// Start Daily Check-in (same behavior as your existing button)
+document.getElementById("startCheckinBtn")?.addEventListener("click", async () => {
+  const canProceed = await checkAndHandleStreak();
+  if (!canProceed) return;
+
+  // Hide homepage content
+  const first = document.getElementById("homepageContentfirst");
+  const second = document.getElementById("homepageContentsecond");
+
+  if (first && second) {
+    first.style.display = "none";
+    second.style.display = "block";
+  }
+
+  // Proceed with daily check-in
+  initDailyCheckin();
+  showSection('checkin');
+});
+
+// Skip Daily Check-in
+document.getElementById("skipCheckinBtn")?.addEventListener("click", () => {
+  const first = document.getElementById("homepageContentfirst");
+  const second = document.getElementById("homepageContentsecond");
+
+  if (first && second) {
+    first.style.display = "none";
+    second.style.display = "block";
+  }
+});
+
 const lessonPathBtn = document.getElementById("lessonPathBtn");
 lessonPathBtn?.addEventListener('click', () => {
   showSection('learn');

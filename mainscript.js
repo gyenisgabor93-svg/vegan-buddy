@@ -5,6 +5,10 @@ const translations = {
     //Loading
     loadingapp: "Loading...",
     //HomPage
+
+  startCheck: "Start Daily Check-in",
+  skipCheck: "Skip Daily Check-in",
+
     xpLabel: "XP to next level",
     mealArtBtn: "Meal-Art Contest",
     checkinBtn: "Daily Check-in",
@@ -382,6 +386,10 @@ deleteProfileBtn: "🗑️ Delete profile",
     //Loading
     loadingapp: "Cargando...",
     //HomPage
+
+  startCheck: "Start Daily Check-in",
+  skipCheck: "Skip Daily Check-in",
+
     xpLabel: "XP para el siguiente nivel",
     mealArtBtn: "Concurso de Meal-Art",
     checkinBtn: "Registro diario",
@@ -760,6 +768,10 @@ animalsSentence: "¡Has salvado 0 animales hasta ahora!",
     //Loading
     loadingapp: "Betöltés...",
     //HomPage
+
+  startCheck: "Napi bejelentkezés indítása",
+  skipCheck: "Napi bejelentkezés kihagyása",
+
     xpLabel: "XP a következő szinthez",
     mealArtBtn: "Meal-Art Verseny",
     checkinBtn: "Napi bejegyzés",
@@ -1141,6 +1153,9 @@ async function updateLanguageUI(lang) {
   //OnLoad
   document.getElementById("loadingText").textContent = t.loadingapp;
     //HomPage
+  document.getElementById("startCheckinBtn").textContent = t.startCheck;
+  document.getElementById("skipCheckinBtn").textContent = t.skipCheck;
+
   // Top bar
   document.getElementById("xpLabel").textContent = t.xpLabel;
 
@@ -1633,7 +1648,14 @@ const initTranslations = {
     noRecipe: "No recipe",
     repeatedLesson: "Repeated lesson",
     spoilerlabel: ({ spoilerDay, nextLesson }) =>
-  `${spoilerDay}'s lesson: ${nextLesson}`
+  `${spoilerDay}'s lesson: ${nextLesson}`,
+
+  greetingMorning: "Good morning",
+  greetingAfternoon: "Good afternoon",
+  greetingEvening: "Good evening",
+  lessonLine: ({ lessonTitle }) =>
+    `Start by doing your daily check-in, today's lesson: ${lessonTitle}`,
+
   },
   es: {
     startStreak: "¡Comienza tu racha hoy!",
@@ -1646,7 +1668,13 @@ const initTranslations = {
     noRecipe: "Sin receta",
     repeatedLesson: "Lección repetida",
     spoilerlabel: ({ spoilerDay, nextLesson }) =>
-  `Lección de ${spoilerDay}: ${nextLesson}`
+  `Lección de ${spoilerDay}: ${nextLesson}`,
+  greetingMorning: "Buenos días",
+  greetingAfternoon: "Buenas tardes",
+  greetingEvening: "Buenas tardes",
+  lessonLine: ({ lessonTitle }) =>
+    `Empieza con tu check-in diario, lección de hoy: ${lessonTitle}`,
+
   },
   hu: {
     startStreak: "Kezdd el a sorozatot ma!",
@@ -1659,7 +1687,13 @@ const initTranslations = {
     noRecipe: "Nincs recept",
     repeatedLesson: "Ismételt lecke",
     spoilerlabel: ({ spoilerDay, nextLesson }) =>
-  `${spoilerDay} lecke: ${nextLesson}`
+  `${spoilerDay} lecke: ${nextLesson}`,
+  greetingMorning: "Jó reggelt",
+  greetingAfternoon: "Jó napot",
+  greetingEvening: "Jó estét",
+  lessonLine: ({ lessonTitle }) =>
+    `Kezdd a napi bejelentkezéssel, a mai leckéd: ${lessonTitle}`,
+
   }
 };
 
@@ -1835,6 +1869,7 @@ async function renderProfile() {
 
   // Name & Diet
   document.getElementById("profileName").textContent = profile.name || "-";
+  document.getElementById("profileNamehp").textContent = profile.name || "-";
   document.getElementById("profileNameInput").value = profile.name || "-";
   document.getElementById("diet").textContent = profile.diet_preference || "-";
   document.getElementById("profileDietSelect").value = profile.diet_preference || "-";
@@ -2057,7 +2092,54 @@ if (myCodeDiv && currentProfile?.friend_code) {
   myCodeDiv.textContent = currentProfile.friend_code;
 }
 
+  renderHomepageFirst(profile, todayStr);
+
   return profile;
+}
+
+function setGreeting() {
+  const greetingEl = document.getElementById("greetingTime");
+  if (!greetingEl) return;
+
+  const hour = new Date().getHours();
+
+  let greetingKey;
+
+  if (hour < 12) {
+    greetingKey = "greetingMorning";
+  } else if (hour < 18) {
+    greetingKey = "greetingAfternoon";
+  } else {
+    greetingKey = "greetingEvening";
+  }
+
+  greetingEl.textContent = initT(greetingKey);
+}
+
+setGreeting();
+
+function renderHomepageFirst(profile) {
+  const textEl = document.getElementById("dailyCheckinText");
+  const nameEl = document.getElementById("profileNamehp");
+
+  if (!textEl || !nameEl) return;
+
+  // Name
+  nameEl.textContent = profile.name || "";
+
+  // Get lesson
+  const { lesson, usedFallback } = getNextLessonFromPool(profile);
+
+  let lessonTitle = "Your next learning step 🌱";
+
+  if (!usedFallback && lesson) {
+    lessonTitle = getLessonTitle(lesson);
+  }
+
+  // 🔥 Use translation like spoilerlabel
+  textEl.textContent = initT("lessonLine", {
+    lessonTitle
+  });
 }
 
 // --------------------------
@@ -2536,15 +2618,33 @@ if (level > previousLevel) {
 
 function showLoading(isLoading) {
   const loader = document.getElementById("loading");
-  const content = document.getElementById("homepageContent");
-  if (!loader || !content) return;
+  const contentFirst = document.getElementById("homepageContentfirst");
+  const contentSecond = document.getElementById("homepageContentsecond");
+  
+  if (!loader || !contentFirst || !contentSecond) return;
+
+  const todayUTC = new Date();
+  const todayStr = getUTCDateString(todayUTC);
+
+  // Safely check if profile exists
+  const hasCheckedInToday = currentProfile?.last_checkin_date === todayStr;
 
   if (isLoading) {
     loader.style.display = "flex";
-    content.style.visibility = "hidden";   // changed
+    contentFirst.style.display = "none";
+    contentSecond.style.display = "none";
   } else {
     loader.style.display = "none";
-    content.style.visibility = "visible";  // changed
+
+    if (hasCheckedInToday) {
+      // Already checked in → show second page
+      contentFirst.style.display = "none";
+      contentSecond.style.display = "block";
+    } else {
+      // Not checked in → show first page
+      contentFirst.style.display = "block";
+      contentSecond.style.display = "none";
+    }
   }
 }
 
@@ -3855,6 +3955,9 @@ const { error: updateError } = await supabase
   await fetchAllLeaderboards();
   await displayAchievementsPage();
   await loadDailyXpChallenge(currentProfile.id);
+
+  document.getElementById("homepageContentfirst").style.visibility = "hidden";
+  document.getElementById("homepageContentsecond").style.visibility = "visible";
 
   showSection("home");
 
