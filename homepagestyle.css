@@ -44,7 +44,8 @@ html, body {
   margin-left: 15%;
 }
 
-/* Main content (60% down) */
+/* Main content (60% down) 
+*/
 #dailyCheckinText,
 #homepageActions {
   position: absolute;
@@ -54,6 +55,10 @@ html, body {
 }
 
 #dailyCheckinText {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  z-index: 1;
   top: 52%;
   font-size: 18px;
   line-height: 1.4;
@@ -62,7 +67,11 @@ html, body {
 
 /* Buttons container */
 #homepageActions {
-  top: calc(52% + 80px);
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  z-index: 1;
+  top: 60%;
   display: flex;
   flex-direction: column;
   gap: 12px;
