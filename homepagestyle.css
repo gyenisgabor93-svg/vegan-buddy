@@ -23,13 +23,13 @@ html, body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Dark overlay (makes text readable on image) */
+/* Dark overlay (makes text readable on image) 
 #homepageContentfirst::before {
   content: "";
   position: absolute;
   inset: 0;
 }
-
+*/
 /* Greeting (top) */
 #greetingText {
   position: absolute;
