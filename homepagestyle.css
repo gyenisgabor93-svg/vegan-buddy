@@ -19,9 +19,7 @@ html, body {
   /* Background image */
   background: url("../designphotos/bckgnd1.png") no-repeat center center/cover;
 
-  /* Optional overlay for readability */
-  color: white;
-  font-family: system-ui, -apple-system, sans-serif;
+
 }
 
 /* Dark overlay (makes text readable on image) 
