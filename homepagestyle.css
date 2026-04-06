@@ -17,7 +17,7 @@ html, body {
   position: relative;
 
   /* Background image */
-  background: url("/designphotos/bckgnd1.png") no-repeat center center/cover;
+  background: url("../designphotos/bckgnd1.png") no-repeat center center/cover;
 
   /* Optional overlay for readability */
   color: white;
