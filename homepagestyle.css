@@ -12,7 +12,7 @@ html, body {
 /* Container */
 #homepageContentfirst {
   display: block;            /* visible for layout calculation */
-  min-height: 100vh;         /* full viewport height */
+  min-height: 100%;         /* full viewport height */
   width: 100%;
   position: relative;
 
