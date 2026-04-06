@@ -17,9 +17,12 @@ html, body {
   position: relative;
 
   /* Background image */
-  background: url("../designphotos/bckgnd1.png") no-repeat center center/cover;
-
-
+  background: url("../designphotos/bckgnd1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* DEBUG border */
+  border: 5px solid yellow;
 }
 
 /* Dark overlay (makes text readable on image) 
