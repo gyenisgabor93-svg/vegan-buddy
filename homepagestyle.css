@@ -20,9 +20,7 @@ html, body {
   background: url("../designphotos/bckgnd1.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  /* DEBUG border */
-  border: 5px solid yellow;
+  background-size: contain;
 }
 
 /* Dark overlay (makes text readable on image) 
