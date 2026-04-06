@@ -17,7 +17,7 @@ html, body {
   position: relative;
 
   /* Background image */
-  background: url("https://vegan-buddy.vercel.app/designphotos/bckgnd1.png");
+  background: url("designphotos/bckgnd1.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
