@@ -21,12 +21,12 @@
 
   <!-- Login Section -->
 <div id="loginSection">
-  <h1 id="loginTitle">Welcome to Elunify!</h1>
+ <!-- <h1 id="loginTitle">Welcome to Elunify!</h1>-->
   <input type="email" id="signEmail" placeholder="Enter your email" />
   <input type="password" id="signPassword" placeholder="Enter your password" />
   <button id="signInBtn">Sign In</button>
 
-  <div id="forgotPassword" style="margin-bottom: 0.5rem;">
+  <div id="forgotPassword" >
       <a href="#" id="forgotPasswordLink">Forgot your password?</a>
       <div id="forgotMsg" style="color: green; margin-top: 5px;"></div>
   </div>
@@ -57,16 +57,6 @@
 </div>
 
 <p id="statusMsg" style="display: none"></p>
-
-<!-- Intro Texts under login -->
-  <div id="introTexts">
-    <p id="intro1">🎮 Play, Learn, Grow</p>
-    <p id="intro2">🤝 Connect with like-minded people</p>
-    <p id="intro3">🌱 See how your acts shape the world</p>
-  </div>
-
-
-
 
 
 
@@ -158,9 +148,6 @@ const languages = {
     backToLoginBtn: "Do you have a profile already?",
     verifyTitle: "Enter Verification Code",
     verifyCodeBtn: "Verify",
-    intro1: "🎮 Play, Learn, Grow",
-    intro2: "🤝 Connect with like-minded people",
-    intro3: "🌱 See how your acts shape the world",
     statusMsgs: {
       fillAllFields: "Please fill in all fields",
       passwordMismatch: "Passwords don't match",
@@ -195,9 +182,6 @@ const languages = {
     backToLoginBtn: "¿Ya tienes un perfil?",
     verifyTitle: "Introduce el código de verificación",
     verifyCodeBtn: "Verificar",
-    intro1: "🎮 Juega, Aprende, Crece",
-    intro2: "🤝 Conéctate con personas afines",
-    intro3: "🌱 Ve cómo tus acciones moldean el mundo",
     statusMsgs: {
       fillAllFields: "Por favor completa todos los campos",
       passwordMismatch: "Las contraseñas no coinciden",
@@ -232,9 +216,6 @@ const languages = {
     backToLoginBtn: "Már van profilod?",
     verifyTitle: "Add meg az ellenőrző kódot",
     verifyCodeBtn: "Ellenőrzés",
-    intro1: "🎮 Játssz, Tanulj, Növekedj",
-    intro2: "🤝 Kapcsolódj hasonló gondolkodású emberekkel",
-    intro3: "🌱 Lásd, hogyan formálják tetteid a világot",
     statusMsgs: {
       fillAllFields: "Kérlek tölts ki minden mezőt",
       passwordMismatch: "A jelszavak nem egyeznek",
@@ -543,7 +524,7 @@ function updateLanguageUI(lang) {
   document.getElementById("Spanish").textContent = data.spanish;
   document.getElementById("Hungarian").textContent = data.hungarian;
 
-  document.getElementById("loginTitle").textContent = data.loginTitle;
+ // document.getElementById("loginTitle").textContent = data.loginTitle;
   document.getElementById("signEmail").placeholder = data.signInPlaceholder;
   document.getElementById("signPassword").placeholder = data.passwordPlaceholder;
   document.getElementById("signInBtn").textContent = data.signInBtn;
@@ -558,10 +539,6 @@ function updateLanguageUI(lang) {
 
   document.getElementById("verifyTitle").textContent = data.verifyTitle;
   document.getElementById("verifyCodeBtn").textContent = data.verifyCodeBtn;
-
-  document.getElementById("intro1").textContent = data.intro1;
-  document.getElementById("intro2").textContent = data.intro2;
-  document.getElementById("intro3").textContent = data.intro3;
 }
 
 // Usage example for status messages:
@@ -588,28 +565,34 @@ function clearStatus() {
 <style>
 /* ===== Reset & Body ===== */
 html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9f9f9;
+  background: url('/designphotos/backgroundloginsection.jpeg') center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100%;         /* use height instead of min-height */
-  margin: 0;             /* remove default margin */
-  padding: 2rem 1rem;    /* you can keep padding if you like */
+  min-height: 100%;
   color: #2d6a4f;
-  overflow:scroll;      /* THIS stops all scrolling */
 }
 
 /* ===== Cards ===== */
 #loginSection, #newProfileStep1, #verifyCodeSection {
-  background-color: #ffffff;
+  position: fixed;
+  bottom: 20px;          /* space from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: rgba(139, 94, 60, 0.3);
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  padding: 2rem;
+  padding: 1rem;
   max-width: 400px;
   width: 80%;
-  margin: 1rem 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -617,31 +600,19 @@ html, body {
 #newProfileStep1 h2,
 #verifyCodeSection h3 {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #3bb341;
   font-size: 1.5rem;
 }
 
-/* ===== Intro texts ===== */
-#introTexts {
-  margin-top: 1rem;
-  text-align: center;
-  max-width: 350px;
-}
-
-#introTexts p {
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
-  color: #2d6a4f;
-}
 /* ===== Inputs ===== */
 input[type="email"], input[type="password"], input[type="text"] {
   width: 90%;
-  padding: 0.9rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 0.5rem;
   border-radius: 12px;
   border: 1px solid #b7e4c7;
-  font-size: 1rem;
+  font-size: 0.8rem;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
   outline: none;
   transition: border-color 0.2s;
@@ -656,8 +627,7 @@ input[type="text"]:focus {
 /* ===== Buttons ===== */
 button {
   width: 100%;
-  padding: 0.9rem 1rem;
-  margin-bottom: 0.8rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 12px;
   border: none;
   font-size: 1.1rem;
@@ -677,6 +647,7 @@ button:hover {
 }
 
 #showProfileBtn, #newProfileBtn {
+  margin-top: 0.8rem;
   background-color: #f0b429;
   color: #fff;
 }
@@ -704,9 +675,11 @@ button:hover {
 
 /* ===== Status messages ===== */
 #statusMsg, #emailStatus, #forgotMsg {
+  position: fixed;
+  bottom: 15px;          /* space from bottom */
   font-size: 0.9rem;
   min-height: 20px;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
 }
 
 /* ===== Labels ===== */

@@ -90,7 +90,7 @@ document.body.addEventListener('click', e => {
 // ----- Define Dropdown Buttons -----
 
 // 1️⃣ Profile dropdown: Profile, Friends, Messages
-const profileDropdown = ['profile', 'friends', 'messages'];
+const profileDropdown = ['profile', 'local', 'friends', 'messages'];
 profileDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
@@ -118,13 +118,12 @@ if (homeBtn) homeBtn.addEventListener('click', () => {
   closeDropdowns();
 });
 
-// 3️⃣ Community dropdown: Local Community, Anonymous Forum, Mentorship
-const communityDropdown = ['local', 'forum', 'mentorship'];
-communityDropdown.forEach(id => {
+// 3️⃣ Learn dropdown: Learn Paths, Nutrition, Discover meals
+const learnDropdown = ['learn', 'nutritiontable', 'recipes', 'mealart'];
+learnDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
     showSection(id);
-    clearSectionNotifications(id);
     closeDropdowns();
   });
 });
@@ -231,13 +230,13 @@ document.getElementById("skipCheckinBtn")?.addEventListener("click", () => {
   }
 });
 
-const lessonPathBtn = document.getElementById("lessonPathBtn");
-lessonPathBtn?.addEventListener('click', () => {
-  showSection('learn');
-});
+//const lessonPathBtn = document.getElementById("lessonPathBtn");
+//lessonPathBtn?.addEventListener('click', () => {
+//  showSection('learn');
+//});
 
 // ----- Trending Recipes -----
-document.getElementById('recipesBtn')?.addEventListener('click', () => showSection('recipes'));
+//  document.getElementById('recipesBtn')?.addEventListener('click', () => showSection('recipes'));
 
 // =======================
 // 3️⃣ POPUPS

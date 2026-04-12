@@ -36,6 +36,7 @@ const translations = {
     profileBtn: "Profile",
     friendsBtn: "Friends",
     messagesBtn: "Messages",
+    nutritiontable: "Nutrition Table",
     localBtn: "Local Community",
     forumBtn: "Anonymous Forum",
     mentorshipBtn: "Mentorship",
@@ -418,6 +419,7 @@ deleteProfileBtn: "🗑️ Delete profile",
     friendsBtn: "Amigos",
     messagesBtn: "Mensajes",
     localBtn: "Comunidad Local",
+    nutritiontable: "Tabla nutricional",
     forumBtn: "Foro Anónimo",
     mentorshipBtn: "Mentoría",
     leaderboardsBtn: "Clasificaciones",
@@ -802,6 +804,7 @@ animalsSentence: "¡Has salvado 0 animales hasta ahora!",
     localBtn: "Helyi Közösség",
     forumBtn: "Anonim Fórum",
     mentorshipBtn: "Mentorprogram",
+    nutritiontable: "Tápértéktáblázat",
     leaderboardsBtn: "Ranglisták",
     achievementsPageBtn: "Eredmények",
     shopBtn: "Bolt",
@@ -1195,13 +1198,14 @@ async function updateLanguageUI(lang) {
   document.getElementById("friendsBtn").querySelector(".btn-label").firstChild.textContent = t.friendsBtn;
   document.getElementById("messagesBtn").querySelector(".btn-label").firstChild.textContent = t.messagesBtn;
   document.getElementById("localBtn").querySelector(".btn-label").firstChild.textContent = t.localBtn;
-  document.getElementById("forumBtn").querySelector(".btn-label").firstChild.textContent = t.forumBtn;
-  document.getElementById("mentorshipBtn").innerText = t.mentorshipBtn;
+  document.getElementById("nutritionBtn").innerText = t.nutritiontable;
+ // document.getElementById("forumBtn").querySelector(".btn-label").firstChild.textContent = t.forumBtn;
+ // document.getElementById("mentorshipBtn").innerText = t.mentorshipBtn;
   document.getElementById("leaderboardsBtn").innerText = t.leaderboardsBtn;
   document.getElementById("achievementsPageBtn").innerText = t.achievementsPageBtn;
   document.getElementById("shopBtn").innerText = t.shopBtn;
   document.getElementById("challengesBtn").querySelector(".btn-label").firstChild.textContent = t.challengesBtn;
-  document.getElementById("recommendationsBtn").innerText = t.recommendationsBtn;
+ // document.getElementById("recommendationsBtn").innerText = t.recommendationsBtn;
   document.getElementById("sourcesBtn").innerText = t.sourcesBtn;
   document.getElementById("aboutUsBtn").innerText = t.aboutUsBtn;
   document.getElementById("contactUsBtn").innerText = t.contactUsBtn;
@@ -1549,8 +1553,8 @@ document.getElementById("deleteProfileBtn").innerText = t.deleteProfileBtn;
 
   // Profile Card
   document.querySelector(".profile-name").innerText = t.profileName;
-  document.querySelector(".dietprofilecard").innerText = t.dietprofilecard;
-  document.querySelector(".goalsprofilecard").innerText = t.goalsprofilecard;
+  //document.querySelector(".dietprofilecard").innerText = t.dietprofilecard;
+  //document.querySelector(".goalsprofilecard").innerText = t.goalsprofilecard;
   document.querySelector(".levelprofilecard").innerText = t.levelprofilecard;
   document.querySelector(".streakprofilecard").innerText = t.streakprofilecard;
   document.getElementById("achievements-heading").innerText =t.achievementsHeading;
@@ -1775,6 +1779,84 @@ const healthTranslations = {
   }
 };
 
+const dietTranslations = {
+  Vegan: {
+    en: "Vegan",
+    es: "Vegano",
+    hu: "Vegán"
+  },
+  Vegetarian: {
+    en: "Vegetarian",
+    es: "Vegetariano",
+    hu: "Vegetáriánus"
+  },
+  Pescatarian: {
+    en: "Pescatarian",
+    es: "Pescetariano",
+    hu: "Peszkatáriánus"
+  },
+  Omnivore: {
+    en: "Omnivore",
+    es: "Omnívoro",
+    hu: "Mindenevő"
+  },
+  Flexitarian: {
+    en: "Flexitarian",
+    es: "Flexitariano",
+    hu: "Flexitáriánus"
+  },
+  InTransition: {
+    en: "In Transition",
+    es: "En Transición",
+    hu: "Átmenetben"
+  }
+};
+
+function translateFromPool(pool, value, lang) {
+  if (!value) return "";
+
+  if (Array.isArray(value)) {
+    return value.map(v => pool[v]?.[lang] || v);
+  }
+
+  return pool[value]?.[lang] || value;
+}
+
+function applyProfileTranslations(popup, data) {
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+
+  // 🌿 DIET
+  const translatedDiet = dietTranslations[data.diet]?.[lang] || data.diet;
+  popup.querySelector(".dietprofilecard").textContent = `🌿 ${translatedDiet}`;
+
+  // 🎯 GOALS
+  const goalsContainer = popup.querySelector(".goalsprofilecard");
+  const translatedGoals = translateFromPool(goalTranslations, data.goals, lang);
+
+  goalsContainer.innerHTML = `🎯 ${initT("goalsLabel") || "Goals"}<br>`;
+
+  if (Array.isArray(translatedGoals)) {
+    translatedGoals.forEach(goal => {
+      goalsContainer.innerHTML += `• ${goal}<br>`;
+    });
+  } else if (translatedGoals) {
+    goalsContainer.innerHTML += `• ${translatedGoals}`;
+  }
+
+  // 🌍 LEVEL + 🔥 STREAK (static labels optional)
+  popup.querySelector(".levelprofilecard").textContent = `🌍 ${data.level}`;
+  popup.querySelector(".streakprofilecard").textContent = `🔥 ${data.streak}`;
+
+  // 🏆 ACHIEVEMENTS TITLE
+  document.getElementById("achievements-heading").innerText =
+    initT("achievementsHeading") || "Achievements";
+}
+
+function translateDiet(value) {
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+  return translateFromPool(dietTranslations, value, lang);
+}
+
 // Helper function to get translation
 function initT(key, variables = {}) {
   const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
@@ -1871,7 +1953,7 @@ async function renderProfile() {
   document.getElementById("profileName").textContent = profile.name || "-";
   document.getElementById("profileNamehp").textContent = profile.name || "-";
   document.getElementById("profileNameInput").value = profile.name || "-";
-  document.getElementById("diet").textContent = profile.diet_preference || "-";
+  document.getElementById("diet").textContent = translateDiet(profile.diet_preference) || "-";
   document.getElementById("profileDietSelect").value = profile.diet_preference || "-";
 
   // Streak, Level, Badge
@@ -2867,7 +2949,7 @@ attachCharCounter('recipeInstructions', 'recipeInstructionsCounter', 1000);
 // --- Messages & Comments ---
 attachCharCounter('messageInput', 'messageCharCount', 1000);
 attachCharCounter('blockContent', 'blockContentCounter', 1000);
-attachCharCounter('AFnewCommentInput', 'AFnewCommentCounter', 1000);
+// attachCharCounter('AFnewCommentInput', 'AFnewCommentCounter', 1000);
 attachCharCounter('communityMessageInput', 'communityMessageCounter', 1000);
 
 // --- Event description ---
@@ -3227,7 +3309,7 @@ function getMealStoragePath(publicUrl) {
   }
 }
 
-function renderMeals(meals) {
+async function renderMeals(meals) {
   const today = new Date().getDay();
   const galleries = [
     document.getElementById("home-chef-gallery"),
@@ -3239,6 +3321,8 @@ function renderMeals(meals) {
   galleries.forEach(el => el.innerHTML = "");
 
   meals.forEach(meal => renderMealItem(meal, today));
+  const mealIds = meals.map(m => m.id);
+  await refreshMealVotes(mealIds);
 }
 
 
@@ -3370,6 +3454,23 @@ form.addEventListener("submit", async e => {
 
 
 // MONDAY VOTING
+async function refreshMealVotes(mealIds) {
+  const { data } = await supabase
+    .from("meals")
+    .select("id, votes")
+    .in("id", mealIds);
+
+  const map = new Map(data?.map(m => [m.id, m.votes || 0]) || []);
+
+  document.querySelectorAll(".meal-item").forEach(el => {
+    const id = el.dataset.id;
+    const span = el.querySelector(".votes-span");
+    if (!span) return;
+
+    span.textContent = `Votes: ${map.get(id) || 0}`;
+  });
+}
+
 async function setupMondayVoting(userId) {  
  const todayUTC = new Date().getUTCDay(); // 0 = Sunday, 1 = Monday, etc.
   if (todayUTC !== 1) return; // Only run on Monday (UTC)
@@ -3421,31 +3522,38 @@ async function addVotingToGallery(gallery, isPro, userId) {
 
   const alreadyVoted = !!existingVote;
 
+  gallery.querySelectorAll("input[type='radio']").forEach(el => el.remove());
+  gallery.querySelectorAll("button.vote-submit").forEach(el => el.remove());
+
+  submitBtn.classList.add("vote-submit");
+
   for (const mealDiv of gallery.querySelectorAll(".meal-item")) {
-    const radio = document.createElement("input");
-    radio.type = "radio";
-    radio.name = `${isPro}-vote`;
-    radio.value = mealDiv.dataset.id;
-    radio.disabled = alreadyVoted; // ✅ disable if already voted
-    radio.style.marginRight = "5px";
 
-    let votesSpan = mealDiv.querySelector(".votes-span");
-    if (!votesSpan) {
-      votesSpan = document.createElement("span");
-      votesSpan.classList.add("votes-span");
-      votesSpan.style.marginLeft = "10px";
-      mealDiv.appendChild(votesSpan);
-    }
+  const radio = document.createElement("input");
+  radio.type = "radio";
+  radio.name = `${isPro}-vote`;
+  radio.value = mealDiv.dataset.id;
+  radio.disabled = alreadyVoted;
+  radio.style.marginRight = "5px";
 
-    const { data: mealData } = await supabase
-      .from("meals")
-      .select("votes")
-      .eq("id", mealDiv.dataset.id)
-      .single();
-    votesSpan.textContent = `Votes: ${mealData?.votes || 0}`;
+  radio.addEventListener("change", () => {
+  gallery.querySelectorAll(".meal-item").forEach(m => {
+    m.classList.remove("selected");
+  });
+  mealDiv.classList.add("selected");
+});
 
-    mealDiv.appendChild(radio);
-  }
+  let span = mealDiv.querySelector(".votes-span");
+
+if (!span) {
+  span = document.createElement("span");
+  span.className = "votes-span";
+  span.style.marginLeft = "10px";
+  mealDiv.appendChild(span);
+}
+
+  mealDiv.appendChild(radio);
+}
 
   const submitBtn = document.createElement("button");
   submitBtn.textContent = mealartT("submitvote");
@@ -3458,6 +3566,8 @@ async function addVotingToGallery(gallery, isPro, userId) {
   }
 
   submitBtn.addEventListener("click", async () => {
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
     const selected = gallery.querySelector(`input[name='${isPro}-vote']:checked`);
     if (!selected) return alert(mealartT("votePlease"));
     const mealId = selected.value;
@@ -3466,17 +3576,23 @@ async function addVotingToGallery(gallery, isPro, userId) {
       { user_id: userId, meal_id: mealId, category: isPro, week_start_date: weekStr }
     ]);
 
-    const votesSpan = selected.parentElement.querySelector(".votes-span");
-    let currentVotes = parseInt(votesSpan.textContent.replace(mealartT("votes"), "")) || 0;
-    currentVotes += 1;
-    votesSpan.textContent = mealartT("votes"),`${currentVotes}`;
+    await refreshMealVotes(
+  [...gallery.querySelectorAll(".meal-item")].map(el => el.dataset.id)
+);
 
     gallery.querySelectorAll("input").forEach(r => (r.disabled = true));
-    submitBtn.disabled = true;
     submitBtn.textContent = mealartT("voteSubmitted")
+
+    gallery.querySelectorAll(".meal-item").forEach(m => {
+  m.classList.remove("selected");
+});
   });
 
   gallery.parentElement.appendChild(submitBtn);
+
+  await refreshMealVotes(
+  [...gallery.querySelectorAll(".meal-item")].map(el => el.dataset.id)
+);
 }
 
 function updateMealArtNotes(today) {
@@ -5791,18 +5907,31 @@ async function openChatWindow(chatId, friend) {
   const chatListEl = document.getElementById("chatListView");
   const chatViewEl = document.getElementById("chatView");
 
-  // Add/remove hidden class instead of changing style.display
-  // Add/remove hidden class safely
   if (friendsEl) friendsEl.classList.add("hidden");
   if (messagesEl) messagesEl.classList.remove("hidden");
   if (chatListEl) chatListEl.classList.add("hidden");
   if (chatViewEl) chatViewEl.classList.remove("hidden");
 
-  document.getElementById("chatHeader").textContent = friend.name;
+  const avatar = document.getElementById("chatHeaderAvatar");
+  const name = document.getElementById("chatHeaderName");
+
+  if (avatar) avatar.src = friend.photo || "";
+  if (name) name.textContent = friend.name;
+
+  // 🔥 REUSE YOUR EXISTING PROFILE FUNCTION
+  if (avatar) {
+    avatar.onclick = async () => {
+      const fakeEl = document.createElement("div");
+      fakeEl.dataset.userid = friend.id;
+
+      await openProfile(fakeEl);
+    };
+  }
 
   if (chatId) loadMessages(chatId, friend);
   else document.getElementById("chatMessages").innerHTML = "";
 }
+
 // Back arrow
 document.getElementById("backToList").addEventListener("click", () => {
   document.getElementById("chatListView").classList.remove("hidden");
@@ -6202,7 +6331,11 @@ async function blockUser() {
   });
 
   // Send message button
-document.getElementById("sendMessageBtn")?.addEventListener("click", async () => {
+const sendBtn = document.getElementById("sendMessageBtn");
+
+sendBtn?.addEventListener("click", async () => {
+  if (sendBtn.disabled) return; // extra protection
+
   const messageInput = document.getElementById("messageInput");
   const text = messageInput.value.trim();
   if (!text) return;
@@ -6210,8 +6343,10 @@ document.getElementById("sendMessageBtn")?.addEventListener("click", async () =>
   const friend = window.currentChatFriend;
   if (!friend?.id) return console.error(messagesT("noValidFriend"));
 
+  // 🔒 Disable immediately
+  sendBtn.disabled = true;
+
   try {
-    // Get current user's profile info
     const { data: profile } = await supabase
       .from('profiles')
       .select("name, profile_photo")
@@ -6220,49 +6355,56 @@ document.getElementById("sendMessageBtn")?.addEventListener("click", async () =>
 
     let chatId = window.currentChatId;
 
-    // Create a preview message for last_message column
-    const previewMessage = makePreview(text, 20); // adjust 200 to your column limit
+    const previewMessage = makePreview(text, 20);
 
-    // Create chat if it doesn't exist
     if (!chatId) {
-      const { data: newChat } = await supabase.from('chats').insert([{
-        user1_id: currentUser.id,
-        user1_name: profile?.name,
-        user1_profile_photo: profile?.profile_photo || "",
-        user2_id: friend.id,
-        user2_name: friend.name,
-        user2_profile_photo: friend.photo || "",
-        last_message: previewMessage,
-        last_message_at: new Date().toISOString()
-      }]).select().single();
+      const { data: newChat } = await supabase
+        .from('chats')
+        .insert([{
+          user1_id: currentUser.id,
+          user1_name: profile?.name,
+          user1_profile_photo: profile?.profile_photo || "",
+          user2_id: friend.id,
+          user2_name: friend.name,
+          user2_profile_photo: friend.photo || "",
+          last_message: previewMessage,
+          last_message_at: new Date().toISOString()
+        }])
+        .select()
+        .single();
 
       chatId = newChat.id;
       window.currentChatId = chatId;
     } else {
-      // Update existing chat
       await supabase.from('chats').update({
         last_message: previewMessage,
         last_message_at: new Date().toISOString()
       }).eq('id', chatId);
     }
 
-    // Insert full message into messages table
-    await supabase.from('messages').insert([{
-      chat_id: chatId,
-      sender_id: currentUser.id,
-      receiver_id: friend.id,
-      content: text
-    }]);
+    // ✅ Insert message (critical step)
+    const { error: messageError } = await supabase
+      .from('messages')
+      .insert([{
+        chat_id: chatId,
+        sender_id: currentUser.id,
+        receiver_id: friend.id,
+        content: text
+      }]);
 
-    // Clear input and reset counter
+    if (messageError) throw messageError;
+
+    // ✅ Only now consider it "successful"
     messageInput.value = '';
     if (messageInput.resetCounter) messageInput.resetCounter();
 
-    // Reload messages
     loadMessages(chatId, friend);
 
   } catch (err) {
     console.error(err);
+  } finally {
+    // 🔓 Always re-enable (even if error happens)
+    sendBtn.disabled = false;
   }
 });
 
@@ -6795,58 +6937,75 @@ async function openProfile(imgElement) {
   const userId = imgElement.dataset.userid;
   if (!userId) return;
 
-  // Fetch public profile data from Supabase
-  const { data, error } = await supabase
-    .from('profilecards')
-    .select('id, user_id, username, avatar_url, diet, goals, level, streak, achievements, title, frame, animals_saved, water_saved, forest_saved, co2_saved, profile_photo')
-    .eq('user_id', userId)
-    .single();
+  try {
+    // 🌍 Get language
+    const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
 
-  if (error || !data) {
-    console.error('Error fetching profile:', error);
-    return;
+    // Fetch profile
+    const { data, error } = await supabase
+      .from('profilecards')
+      .select('id, user_id, username, avatar_url, diet, goals, level, streak, achievements, title, frame, animals_saved, water_saved, forest_saved, co2_saved, profile_photo')
+      .eq('user_id', userId)
+      .single();
+
+    if (error || !data) {
+      console.error('Error fetching profile:', error);
+      return;
+    }
+
+    const popup = document.getElementById("ProfileCard");
+    const avatarDiv = popup.querySelector(".ProfileAvatarLarge");
+
+    // 🖼️ Avatar + frame
+    if (data.frame && data.frame.trim() !== "") {
+      avatarDiv.style.backgroundImage = `url('${data.frame}'), url('${data.avatar_url}')`;
+      avatarDiv.style.backgroundSize = "contain, cover";
+      avatarDiv.style.backgroundPosition = "center, center";
+      avatarDiv.style.backgroundRepeat = "no-repeat, no-repeat";
+    } else {
+      avatarDiv.style.backgroundImage = `url('${data.avatar_url}')`;
+      avatarDiv.style.backgroundSize = "cover";
+      avatarDiv.style.backgroundPosition = "center";
+      avatarDiv.style.backgroundRepeat = "no-repeat";
+    }
+
+    // 👤 Name
+    popup.querySelector(".profile-name").textContent = data.title
+      ? `${data.username}, ${data.title}`
+      : data.username;
+
+    // 🌿 DIET (translated)
+    const translatedDiet = dietTranslations[data.diet]?.[lang] || data.diet;
+    popup.querySelector(".dietprofilecard").textContent = `🌿 ${translatedDiet}`;
+
+    // 🎯 GOALS (translated)
+    const goalsContainer = popup.querySelector(".goalsprofilecard");
+    const translatedGoals = translateFromPool(goalTranslations, data.goals, lang);
+
+    goalsContainer.innerHTML = `🎯 ${tCommunity("goalsLabel")} <br>`;
+
+    if (Array.isArray(translatedGoals)) {
+      translatedGoals.forEach(goal => {
+        goalsContainer.innerHTML += `• ${goal}<br>`;
+      });
+    } else if (translatedGoals) {
+      goalsContainer.innerHTML += `• ${translatedGoals}`;
+    }
+
+    // 🌍 Level & 🔥 Streak
+    popup.querySelector(".levelprofilecard").textContent = `🌍 ${data.level}`;
+    popup.querySelector(".streakprofilecard").textContent = `🔥 ${data.streak}`;
+
+    // 🏆 Achievements
+    const achievementsList = popup.querySelector(".achievements-list");
+    populateAchievements(achievementsList, data.achievements);
+
+    // Show popup
+    popup.classList.add("active");
+
+  } catch (err) {
+    console.error("openProfile error:", err);
   }
-
-  // Fill the popup with user data
-  const popup = document.getElementById("ProfileCard");
-  popup.querySelector(".ProfileAvatarLarge").style.backgroundImage = `url('${data.avatar_url}')`;
-
-  const avatarDiv = popup.querySelector(".ProfileAvatarLarge");
-
-if (data.frame && data.frame.trim() !== "") {
-  avatarDiv.style.backgroundImage = `url('${data.frame}'), url('${data.avatar_url}')`;
-  avatarDiv.style.backgroundSize = "contain, cover";
-  avatarDiv.style.backgroundPosition = "center, center";
-  avatarDiv.style.backgroundRepeat = "no-repeat, no-repeat";
-} else {
-  avatarDiv.style.backgroundImage = `url('${data.avatar_url}')`;
-  avatarDiv.style.backgroundSize = "cover";
-  avatarDiv.style.backgroundPosition = "center";
-  avatarDiv.style.backgroundRepeat = "no-repeat";
-}
-
-  popup.querySelector(".profile-name").textContent = data.title
-  ? `${data.username}, ${data.title}`
-  : data.username;
-  popup.querySelector(".dietprofilecard").textContent = `🌿 ${data.diet}`;
-  // Goals (multiple)
-const goalsContainer = popup.querySelector(".goalsprofilecard");
-goalsContainer.innerHTML = `🎯 ${tCommunity("goalsLabel")}<br>`; // header
-if (Array.isArray(data.goals)) {
-  data.goals.forEach(goal => {
-    goalsContainer.innerHTML += `• ${goal}<br>`;
-  });
-} else if (data.goals) {
-  goalsContainer.innerHTML += `• ${data.goals}`;
-}
-  popup.querySelector(".levelprofilecard").textContent = `🌍 ${data.level}`;
-  popup.querySelector(".streakprofilecard").textContent = `🔥 ${data.streak}`;
-
-  const achievementsList = popup.querySelector(".achievements-list");
-  populateAchievements(achievementsList, data.achievements);
-
-  // Show popup
-  popup.classList.add("active");
 }
 
 // Close ProfileCard popup
@@ -7276,206 +7435,208 @@ sendContactBtn.addEventListener("click", async () => {
 //#endregion
 
 //#region ANONYMOUS FORUM
-const forumTranslations = {
-  en: {
-    asker: "Asker",
-    anonymous: "Anonymous"
-  },
+//const forumTranslations = {
+//  en: {
+//    asker: "Asker",
+//    anonymous: "Anonymous"
+//  },
 
-  es: {
-    asker: "Autor",
-    anonymous: "Anónimo"
-  },
+//  es: {
+//    asker: "Autor",
+//    anonymous: "Anónimo"
+//  },
 
-  hu: {
-    asker: "Kérdező",
-    anonymous: "Névtelen"
-  }
-};
+//  hu: {
+//    asker: "Kérdező",
+//    anonymous: "Névtelen"
+//  }
+//};
 
-function tForum(key) {
-  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
-  return forumTranslations[lang]?.[key] || forumTranslations.en[key] || key;
-}
+//function tForum(key) {
+//  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+//  return forumTranslations[lang]?.[key] || forumTranslations.en[key] || key;
+//}
 
 // ----------------------------
 // ANONYMOUS FORUM
 // ----------------------------
-async function loadForumBlocks() {  
-  const forumMessages = document.getElementById('forumMessages');
-  if (!forumMessages) return;
+//async function loadForumBlocks() {  
+//  const forumMessages = document.getElementById('forumMessages');
+//  if (!forumMessages) return;
 
-  forumMessages.innerHTML = '';
-  const { data: blocks, error } = await supabase
-    .from('forum_blocks')
-    .select('id, content, user_id')
-    .order('created_at', { ascending: false });
+//  forumMessages.innerHTML = '';
+//  const { data: blocks, error } = await supabase
+//    .from('forum_blocks')
+//    .select('id, content, user_id')
+//    .order('created_at', { ascending: false });
 
-  if (error) return console.error(error);
+//  if (error) return console.error(error);
 
-  blocks.forEach(block => { 
-    const li = document.createElement('li');
-    li.className = 'forum-block';
+//  blocks.forEach(block => { 
+//    const li = document.createElement('li');
+//    li.className = 'forum-block';
 
-    const textSpan = document.createElement('span');
-    textSpan.className = 'block-text';
-    textSpan.textContent = block.content;
-    li.appendChild(textSpan);
+//    const textSpan = document.createElement('span');
+//    textSpan.className = 'block-text';
+//    textSpan.textContent = block.content;
+//    li.appendChild(textSpan);
 
     // Add a clickable hint
-  const hintSpan = document.createElement('span');
-  hintSpan.className = 'block-hint';
-  hintSpan.textContent = '💬';
-  li.appendChild(hintSpan);
+//  const hintSpan = document.createElement('span');
+//  hintSpan.className = 'block-hint';
+//  hintSpan.textContent = '💬';
+//  li.appendChild(hintSpan);
 
-    li.addEventListener('click', () => AFopenCommentPopup(block));
+//    li.addEventListener('click', () => AFopenCommentPopup(block));
 
-    if (block.user_id === currentUser.id) {
-      const delBtn = document.createElement('deletebutton');
-      delBtn.textContent = '❌';
-      delBtn.className = 'block-delete-btn';
-      delBtn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        await supabase.from('forum_blocks').delete().eq('id', block.id);
-        loadForumBlocks();
-      });
-      li.appendChild(delBtn);
-    }
+//    if (block.user_id === currentUser.id) {
+//      const delBtn = document.createElement('deletebutton');
+//      delBtn.textContent = '❌';
+//      delBtn.className = 'block-delete-btn';
+//      delBtn.addEventListener('click', async (e) => {
+//        e.stopPropagation();
+//        await supabase.from('forum_blocks').delete().eq('id', block.id);
+//        loadForumBlocks();
+//      });
+//      li.appendChild(delBtn);
+//    }
 
-    forumMessages.appendChild(li);
-  });
-}
+//    forumMessages.appendChild(li);
+//  });
+//}
 
 // ---- Anonymous Forum & Chat Initialization ----
     // Forum collapse toggle
-    document.querySelectorAll(".AFsection h2").forEach(header => {
-      header.addEventListener("click", () => {
-        const content = header.nextElementSibling;
-        content.style.display = content.style.display === "block" ? "none" : "block";
-      });
-    });
+//    document.querySelectorAll(".AFsection h2").forEach(header => {
+//      header.addEventListener("click", () => {
+//        const content = header.nextElementSibling;
+//        content.style.display = content.style.display === "block" ? "none" : "block";
+//      });
+//    });
 
     // Close comment popup
-const closePopup = document.getElementById('AFclosePopup');
-const commentPopup = document.getElementById('AFcommentPopup');
+//const closePopup = document.getElementById('AFclosePopup');
+//const commentPopup = document.getElementById('AFcommentPopup');
 
-if (closePopup && commentPopup) {
+//if (closePopup && commentPopup) {
   // Close on X button
-  closePopup.addEventListener('click', () => {
-    commentPopup.classList.remove('active');
-  });
+//  closePopup.addEventListener('click', () => {
+//    commentPopup.classList.remove('active');
+ // });
 
   // Close when clicking outside the popup content
-  commentPopup.addEventListener('click', (event) => {
+ // commentPopup.addEventListener('click', (event) => {
     // Check if click target is the overlay itself, not inner content
-    if (event.target === commentPopup) {
-      commentPopup.classList.remove('active');
-    }
-  });
-}
+ //   if (event.target === commentPopup) {
+ //     commentPopup.classList.remove('active');
+ //   }
+ // });
+//}
 
     // Submit block
-    const submitBlockBtn = document.getElementById('submitBlockBtn');
-    const blockContent = document.getElementById('blockContent');
-    if (submitBlockBtn && blockContent) {
-      submitBlockBtn.addEventListener('click', async () => {
-        const content = blockContent.value.trim();
-        if (!content) return;
-        await supabase.from('forum_blocks').insert([{ user_id: currentUser.id, content }]);
-        blockContent.value = '';
-        await addXP(2);
-        if (blockContent.resetCounter) blockContent.resetCounter();
-        loadForumBlocks();
-      });
-    }
+ //   const submitBlockBtn = document.getElementById('submitBlockBtn');
+ //   const blockContent = document.getElementById('blockContent');
+ //   if (submitBlockBtn && blockContent) {
+ //     submitBlockBtn.addEventListener('click', async () => {
+ //       const content = blockContent.value.trim();
+ //       if (!content) return;
+  //     await supabase.from('forum_blocks').insert([{ user_id: currentUser.id, content }]);
+ //       blockContent.value = '';
+ //       await addXP(2);
+ //       if (blockContent.resetCounter) blockContent.resetCounter();
+ //       loadForumBlocks();
+ //     });
+ //   }
 
     // Submit comment
-    const submitCommentBtn = document.getElementById('AFsubmitCommentBtn');
-    const newCommentInput = document.getElementById('AFnewCommentInput');
-    if (submitCommentBtn && newCommentInput) {
-      submitCommentBtn.addEventListener('click', async () => {
-        await submitNewComment(newCommentInput.value.trim(), newCommentInput);
-      });
-    }
+ //   const submitCommentBtn = document.getElementById('AFsubmitCommentBtn');
+ //   const newCommentInput = document.getElementById('AFnewCommentInput');
+ //   if (submitCommentBtn && newCommentInput) {
+ //     submitCommentBtn.addEventListener('click', async () => {
+ //       await submitNewComment(newCommentInput.value.trim(), newCommentInput);
+  //    });
+ //   }
 
-async function AFopenCommentPopup(block) {
-  activeBlockId = block.id;
+//async function AFopenCommentPopup(block) {
+//  activeBlockId = block.id;
 
-  const popupBlockContent = document.getElementById('AFpopupBlockContent');
-  const popupCommentsList = document.getElementById('AFpopupCommentsList');
-  const commentPopup = document.getElementById('AFcommentPopup');
-  if (!popupBlockContent || !popupCommentsList || !commentPopup) return;
+//  const popupBlockContent = document.getElementById('AFpopupBlockContent');
+//  const popupCommentsList = document.getElementById('AFpopupCommentsList');
+//  const commentPopup = document.getElementById('AFcommentPopup');
+//  if (!popupBlockContent || !popupCommentsList || !commentPopup) return;
 
-  popupBlockContent.textContent = block.content;
+//  popupBlockContent.textContent = block.content;
 
-  const { data: comments, error } = await supabase
-    .from('forum_comments')
-    .select('id, commenter_id, content, commenter_name, block_id')
-    .eq('block_id', block.id)
-    .order('created_at', { ascending: true });
+ // const { data: comments, error } = await supabase
+ //   .from('forum_comments')
+ //   .select('id, commenter_id, content, commenter_name, block_id')
+ //   .eq('block_id', block.id)
+//    .order('created_at', { ascending: true });
 
-  if (error) return console.error(error);
+//  if (error) return console.error(error);
 
-  popupCommentsList.innerHTML = '';
-  comments.forEach(c => {
-    const li = document.createElement('li');
-    const isAsker = c.commenter_id === block.user_id;
-    const displayName = isAsker ? tForum("asker") : c.commenter_name;
-    const textSpan = document.createElement('span');
-    textSpan.innerHTML = `<strong>${displayName}:</strong> ${c.content}`;
-    li.appendChild(textSpan);
+ // popupCommentsList.innerHTML = '';
+ // comments.forEach(c => {
+ //   const li = document.createElement('li');
+ //   const isAsker = c.commenter_id === block.user_id;
+//    const displayName = isAsker ? tForum("asker") : c.commenter_name;
+//    const textSpan = document.createElement('span');
+ //   textSpan.innerHTML = `<strong>${displayName}:</strong> ${c.content}`;
+ //   li.appendChild(textSpan);
 
-    if (c.commenter_id === currentUser.id) {
-      const delBtn = document.createElement('delbutton');
-      delBtn.textContent = '❌';
-      delBtn.className = 'block-delete-btn';
-      delBtn.addEventListener('click', async () => {
-        await supabase.from('forum_comments').delete().eq('id', c.id);
-        AFopenCommentPopup(block);
-      });
-      li.appendChild(delBtn);
-    }
+ //   if (c.commenter_id === currentUser.id) {
+ //     const delBtn = document.createElement('delbutton');
+ //     delBtn.textContent = '❌';
+ //     delBtn.className = 'block-delete-btn';
+  
+//    delBtn.addEventListener('click', async () => {
+  //      await supabase.from('forum_comments').delete().eq('id', c.id);
+ //       AFopenCommentPopup(block);
+ //     });
+ //     li.appendChild(delBtn);
+ //   }
 
-    popupCommentsList.appendChild(li);
-  });
+ //   popupCommentsList.appendChild(li);
+//  });
 
-  commentPopup.classList.add('active');
-}
+//  commentPopup.classList.add('active');
+//}
 
-async function submitNewComment(content, inputElement) {
-  if (!content || !activeBlockId) return;
+//async function submitNewComment(content, inputElement) {
+//  if (!content || !activeBlockId) return;
 
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('id, name')
-    .eq('id', currentUser.id)
-    .single();
+//  const { data: profile } = await supabase
+//    .from('profiles')
+ //   .select('id, name')
+ //   .eq('id', currentUser.id)
+ //   .single();
 
-  const commenterName = profile?.name || tForum("anonymous");
+ // const commenterName = profile?.name || tForum("anonymous");
 
-  await supabase.from('forum_comments').insert([{
-    block_id: activeBlockId,
-    commenter_id: currentUser.id,
-    commenter_name: commenterName,
-    content
-  }]);
+//  await supabase.from('forum_comments').insert([{
+//    block_id: activeBlockId,
+//    commenter_id: currentUser.id,
+//    commenter_name: commenterName,
+//    content
+//  }]);
 
-  inputElement.value = '';
-  inputElement.resetCounter();
-  await addXP(1);
+//  inputElement.value = '';
+//  inputElement.resetCounter();
+//  await addXP(1);
 
-  const { data: fullBlock } = await supabase
-    .from('forum_blocks')
-    .select('id, user_id, content')
-    .eq('id', activeBlockId)
-    .single();
+//  const { data: fullBlock } = await supabase
+ //   .from('forum_blocks')
+//    .select('id, user_id, content')
+ //   .eq('id', activeBlockId)
+ //   .single();
 
-  AFopenCommentPopup(fullBlock);
-}
+ // AFopenCommentPopup(fullBlock);
+//}
 
 //#endregion
 
 //#region MENTORSHIP
+/*  
 const mentorshipTranslations = {
   en: {
     loadingMentors: "Loading mentors...",
@@ -7763,6 +7924,7 @@ async function startChatWithMentor(mentor) {
   openChatWindow(chatId, chatFriend);
 }
 //#endregion
+*/
 
 //#region LEADERBOARD
 const leaderboardTranslations = {
@@ -9543,26 +9705,26 @@ submitAndSupportBtn.addEventListener('click', async () => {
 const notificationState = {
   messages: false,
   friendRequests: false,
-  forumComments: false,
+ // forumComments: false,
   localEvents: false,
   playground: false,
   challenges: false,
 
   lastSeenMessages: null, // ← added
   lastSeenFriends: null,   
-  lastSeenForum: null,
+ // lastSeenForum: null,
   lastSeenLocal: null,
 };
 
 // -------------- DOM ELEMENTS --------------
 const dots = {
   profile: document.getElementById("profileDot"),
+  communityLocal: document.getElementById("LocalDot"),
   messages: document.getElementById("messagesDot"),
   friends: document.getElementById("friendRequestsDot"),
 
-  communityMain: document.getElementById("communityDot"),
-  communityLocal: document.getElementById("LocalDot"),
-  communityForum: document.getElementById("ForumDot"),
+ // communityMain: document.getElementById("communityDot"),
+ // communityForum: document.getElementById("ForumDot"),
   
   playground: document.getElementById("playgroundDot"),
   challenges: document.getElementById("challengesDot"),
@@ -9594,23 +9756,23 @@ function updateDots() {
   // Friend Requests
   dots.friends.style.display = notificationState.friendRequests ? "inline-block" : "none";
 
+// Local Events
+  dots.communityLocal.style.display = notificationState.localEvents ? "inline-block" : "none";
+
   // Profile = messages OR friendRequests
   dots.profile.style.display =
-    notificationState.messages || notificationState.friendRequests
+    notificationState.messages || notificationState.friendRequests|| notificationState.localEvents
       ? "inline-block"
       : "none";
 
   // Forum Comments
-  dots.communityForum.style.display = notificationState.forumComments ? "inline-block" : "none";
-
-  // Local Events
-  dots.communityLocal.style.display = notificationState.localEvents ? "inline-block" : "none";
+  //dots.communityForum.style.display = notificationState.forumComments ? "inline-block" : "none";
 
   // Main Community Dot = any community alert
-  dots.communityMain.style.display =
-    notificationState.forumComments || notificationState.localEvents
-      ? "inline-block"
-      : "none";
+  //dots.communityMain.style.display =
+   // notificationState.forumComments 
+   //   ? "inline-block"
+   //   : "none";
 
   // Playground
   if (dots.playground) dots.playground.style.display = notificationState.playground ? "inline-block" : "none";
@@ -9722,10 +9884,10 @@ window.clearSectionNotifications = function (section) {
     clearNotification("friendRequests");
   }
 
-  if (section === "forum") {
-    notificationState.lastSeenForum = now;
-    clearNotification("forumComments");
-  }
+  //if (section === "forum") {
+   // notificationState.lastSeenForum = now;
+   // clearNotification("forumComments");
+  //}
 
   if (section === "local") {
     notificationState.lastSeenLocal = now;
@@ -9828,29 +9990,29 @@ async function checkFriendRequests(supabase, currentFriendCode) {
 }
 
 // -------------- FORUM COMMENTS ON LOAD --------------
-async function checkForumComments(supabase, currentUserId) {
-  const lastSeen = notificationState.lastSeenForum;
+//async function checkForumComments(supabase, currentUserId) {
+ // const lastSeen = notificationState.lastSeenForum;
 
-  const blocksRes = await supabase
-    .from("forum_blocks")
-    .select("id")
-    .eq("user_id", currentUserId);
+ // const blocksRes = await supabase
+ //   .from("forum_blocks")
+ //   .select("id")
+ //   .eq("user_id", currentUserId);
 
-  const blockIds = blocksRes.data?.map((b) => b.id) || [];
-  if (!blockIds.length) return;
+ // const blockIds = blocksRes.data?.map((b) => b.id) || [];
+ // if (!blockIds.length) return;
 
-  let query = supabase
-    .from("forum_comments")
-    .select("created_at")
-    .in("block_id", blockIds)
-    .order("created_at", { ascending: false })
-    .limit(5);
+ // let query = supabase
+ //   .from("forum_comments")
+ //   .select("created_at")
+ //   .in("block_id", blockIds)
+ //   .order("created_at", { ascending: false })
+ //   .limit(5);
 
-  if (lastSeen) query = query.gt("created_at", lastSeen);
+ // if (lastSeen) query = query.gt("created_at", lastSeen);
 
-  const { data } = await query;
-  if (data && data.length > 0) notify("forumComments");
-}
+ // const { data } = await query;
+ // if (data && data.length > 0) notify("forumComments");
+//}
 
 // -------------- LOCAL EVENTS ON LOAD --------------
 async function checkLocalEvents(supabase, locationId) {
@@ -9882,7 +10044,7 @@ async function initNotifications(supabase, currentUserId, friendcode, locationId
   // fetch-on-load:
   checkMessages(supabase, currentUserId); 
   checkFriendRequests(supabase, friendcode);
-  checkForumComments(supabase, currentUserId);
+ // checkForumComments(supabase, currentUserId);
   checkLocalEvents(supabase, locationId);
   
   // NEW: Playground & Challenges
@@ -10044,21 +10206,21 @@ document.addEventListener("DOMContentLoaded", async () => {
        ========================= */
     await Promise.all([
       initCommunityModule(),
-      loadForumBlocks(),
+     // loadForumBlocks(),
       loadChatList()
     ]);
 
 
     /* =========================
        PHASE 8 — MENTORSHIP
-       ========================= */
+       ========================= 
     await Promise.all([
       setupMentorshipUI(),
       setupCard(),
       loadMentors(),
       checkAndToggleMentorUI()
     ]);
-
+*/
 
     /* =========================
        PHASE 9 — LEADERBOARDS
@@ -10123,7 +10285,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       
     /* =========================
        PHASE 14 — BACKGROUND TASKS
-       ========================= */
+       ========================= 
     requestIdleCallback(async () => {
       await checkAchievementSuggestions();
       await sendTokenToAndroid();
@@ -10136,7 +10298,31 @@ document.addEventListener("DOMContentLoaded", async () => {
           last_seen: new Date().toISOString()
         }, { onConflict: ['user_id'] });
     });
+*/
+const requestIdle = window.requestIdleCallback || function (cb) {
+  return setTimeout(() => cb({
+    didTimeout: false,
+    timeRemaining: () => 0
+  }), 1);
+};
 
+requestIdle(async () => {
+  try {
+    await checkAchievementSuggestions();
+    await sendTokenToAndroid();
+
+    await supabase
+      .from("user_status")
+      .upsert({
+        user_id: currentUser.id,
+        app_open: true,
+        last_seen: new Date().toISOString()
+      }, { onConflict: ['user_id'] });
+
+  } catch (err) {
+    console.error("Error in idle task:", err);
+  }
+});
 
     /* =========================
        PHASE 15 — FINAL UI CLEANUP

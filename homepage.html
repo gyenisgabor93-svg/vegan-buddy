@@ -71,14 +71,14 @@
   <div class="top-buttons-wrapper">
     <button id="NextLessonSpoiler"><!-- Today's lesson: ".." or "Tomorrow's lesson: ".." --></button>
   
-  <div class="ArtBtnrecipesBtn">
-    <!-- Learn Path -->
+<!--  <div class="ArtBtnrecipesBtn">
+    Learn Path 
     <button id="lessonPathBtn" class="button button-circle small-circle">Learn Path</button> 
-    <!-- Left: Meal-Art -->
+     Left: Meal-Art 
     <button id="mealArtBtn" class="button button-circle small-circle">Meal-Art Contest</button>
-    <!-- Right: Recipes -->
+    Right: Recipes 
     <button id="recipesBtn" class="button button-circle small-circle">Trending Recipes</button>
-  </div>
+  </div>-->
   </div>
 
 
@@ -224,6 +224,14 @@
     </button>
     <div class="dropdown-content">
       <button id="profileBtn" onclick="showSection('profile')">Profile</button>
+
+<button id="localBtn" onclick="showSection('local')">
+  <span class="btn-label">
+    Community
+    <span class="red-dot" id="LocalDot"></span>
+  </span>
+</button>
+
       <button id="friendsBtn" onclick="showSection('friends')">
   <span class="btn-label">
     Friends
@@ -231,12 +239,14 @@
   </span>
 </button>
 
+
 <button id="messagesBtn" onclick="showSection('messages')">
   <span class="btn-label">
     Messages
     <span class="red-dot" id="messagesDot"></span>
   </span>
 </button>
+
     </div>
   </div>
 
@@ -244,8 +254,30 @@
   <div class="dropdown">
     <button onclick="showSection('home')">🏠</button>
   </div>
+<!--  <div class="ArtBtnrecipesBtn">
+    Learn Path 
+    <button id="lessonPathBtn" class="button button-circle small-circle">Learn Path</button> 
+     Left: Meal-Art 
+    <button id="mealArtBtn" class="button button-circle small-circle">Meal-Art Contest</button>
+    Right: Recipes 
+    <button id="recipesBtn" class="button button-circle small-circle">Trending Recipes</button>
+  </div>-->
+  <!-- 🌐 Community-->
+  <div class="dropdown">
+    <button>📚</button>
+    <div class="dropdown-content">
+      
+<button id="lessonPathBtn" onclick="showSection('learn')">Learn Path</button> 
 
-  <!-- 🌐 Community -->
+<button id="nutritionBtn" onclick="showSection('nutritiontable')">Nutrition Table</button>
+
+<button id="recipesBtn" onclick="showSection('recipes')">Recipes</button>
+
+<button id="mealArtBtn" onclick="showSection('mealart')">Meal Art</button>
+    </div>
+  </div>
+  
+  <!-- 🌐 Community
   <div class="dropdown">
     <button>🌐 <span class="red-dot" id="communityDot"></span> </button>
     <div class="dropdown-content">
@@ -254,9 +286,9 @@
     Local Community
     <span class="red-dot" id="LocalDot"></span>
   </span>
-</button>
+</button> -->
 
-<button id="forumBtn" onclick="showSection('forum')">
+<!--<button id="forumBtn" onclick="showSection('forum')">
   <span class="btn-label">
     Anonymous Forum
     <span class="red-dot" id="ForumDot"></span>
@@ -264,7 +296,7 @@
 </button>
       <button id="mentorshipBtn" onclick="showSection('mentorship')">Mentorship</button>
     </div>
-  </div>
+  </div>-->
 
   <!-- 🧸 Achievements -->
   <div class="dropdown">
@@ -285,7 +317,7 @@
   <div class="dropdown">
     <button>☰</button>
     <div class="dropdown-content">
-      <button id="recommendationsBtn" onclick="showSection('recommendations')">Recommendations</button>
+<!--  <button id="recommendationsBtn" onclick="showSection('recommendations')">Recommendations</button> -->
 <!--  <button id="subscriptionsBtn" onclick="showSection('subscriptions')">Subscriptions</button>     -->
       <button id="sourcesBtn" onclick="showSection('sources')">Sources</button>
       <button id="aboutUsBtn" onclick="showSection('aboutus')">About Us</button>
@@ -714,6 +746,7 @@
     <div id="chatView" class="hidden">
       <div class="chat-header">
         <span id="backToList" class="back-arrow">⬅️</span>
+        <img id="chatHeaderAvatar" class="chat-avatar" />
         <span id="chatHeader">Chat</span>
 
         <!-- Single action button -->
