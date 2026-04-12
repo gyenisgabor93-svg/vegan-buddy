@@ -1,11 +1,11 @@
 html, body {
-    height: 100%;               /* avoid 100vh issues */
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    background: #f9f9f9;
-    color: #333;
-    overflow: visible;          /* let children handle scrolling */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "Poppins", sans-serif;
+  background: #f9f9f9;
+  color: #333;
 }
 
 
@@ -22,7 +22,18 @@ html, body {
   color: white;
   font-family: "Poppins", sans-serif;
 }
-
+#bg {
+  position: fixed;
+  inset: 0;
+  background: url('/designphotos/bckgnd1.png') center/cover no-repeat;
+  z-index: 0;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+#app {
+  position: relative;
+  z-index: 1;
+}
 /* Dark overlay (makes text readable on image) 
 #homepageContentfirst::before {
   content: "";
