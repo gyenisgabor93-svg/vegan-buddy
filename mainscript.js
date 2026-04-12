@@ -1154,7 +1154,7 @@ async function updateLanguageUI(lang) {
   const t = translations[lang]; // Select the language dictionary
 
   //OnLoad
-  document.getElementById("loadingText").textContent = t.loadingapp;
+  //document.getElementById("loadingText").textContent = t.loadingapp;
     //HomPage
   document.getElementById("startCheckinBtn").textContent = t.startCheck;
   document.getElementById("skipCheckinBtn").textContent = t.skipCheck;
@@ -2441,6 +2441,17 @@ function loadWinnersFromData() {
 
 //#region HELPERS
 
+function hideGlobalLoader() {
+  const loader = document.getElementById("globalLoader");
+  if (!loader) return;
+
+  loader.classList.add("hidden");
+
+  setTimeout(() => {
+    loader.style.display = "none";
+  }, 400);
+}
+
 function calculateBadgeCost(profile, todayStr) {
   if (!profile?.last_checkin_date) return 0; // no last check-in, no cost
 
@@ -2699,7 +2710,7 @@ if (level > previousLevel) {
 }
 
 function showLoading(isLoading) {
-  const loader = document.getElementById("loading");
+  const loader = document.getElementById("globalLoader");
   const contentFirst = document.getElementById("homepageContentfirst");
   const contentSecond = document.getElementById("homepageContentsecond");
   
@@ -2716,7 +2727,7 @@ function showLoading(isLoading) {
     contentFirst.style.display = "none";
     contentSecond.style.display = "none";
   } else {
-    loader.style.display = "none";
+    hideGlobalLoader();
 
     if (hasCheckedInToday) {
       // Already checked in → show second page
