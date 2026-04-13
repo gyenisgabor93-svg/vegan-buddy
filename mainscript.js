@@ -3467,11 +3467,14 @@ form.addEventListener("submit", async e => {
 // MONDAY VOTING
 async function refreshMealVotes(mealIds) {
   const { data } = await supabase
-    .from("meals")
-    .select("id, votes")
-    .in("id", mealIds);
+    .from("votes")
+    .select("meal_id");
 
-  const map = new Map(data?.map(m => [m.id, m.votes || 0]) || []);
+  const map = new Map();
+
+  data.forEach(v => {
+    map.set(v.meal_id, (map.get(v.meal_id) || 0) + 1);
+  });
 
   document.querySelectorAll(".meal-item").forEach(el => {
     const id = el.dataset.id;
@@ -3532,7 +3535,7 @@ async function addVotingToGallery(gallery, isPro, userId) {
   if (error) console.error("Vote fetch error:", error);
 
   const alreadyVoted = !!existingVote;
-  
+
   const submitBtn = document.createElement("button");
   submitBtn.textContent = mealartT("submitvote");
   submitBtn.classList.add("button");
