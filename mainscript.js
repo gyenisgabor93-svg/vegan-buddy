@@ -3532,6 +3532,13 @@ async function addVotingToGallery(gallery, isPro, userId) {
   if (error) console.error("Vote fetch error:", error);
 
   const alreadyVoted = !!existingVote;
+  
+  const submitBtn = document.createElement("button");
+  submitBtn.textContent = mealartT("submitvote");
+  submitBtn.classList.add("button");
+  submitBtn.style.marginTop = "10px";
+  submitBtn.disabled = alreadyVoted;
+  
 
   gallery.querySelectorAll("input[type='radio']").forEach(el => el.remove());
   gallery.querySelectorAll("button.vote-submit").forEach(el => el.remove());
@@ -3566,11 +3573,6 @@ if (!span) {
   mealDiv.appendChild(radio);
 }
 
-  const submitBtn = document.createElement("button");
-  submitBtn.textContent = mealartT("submitvote");
-  submitBtn.classList.add("button");
-  submitBtn.style.marginTop = "10px";
-  submitBtn.disabled = alreadyVoted;
 
   if (alreadyVoted) {
     submitBtn.textContent = mealartT("voteSubmitted");
