@@ -41,11 +41,11 @@
       <div class="top-bar-row">
         <!-- Level + Streak -->
         <div class="center-counters">
-          <span class="counter">🌍 <span id="currentLevel">0</span></span>
+          <span class="counter" id="currentLevelSpan">🌍 <span id="currentLevel">0</span></span>
           
 
     <!-- XP Progress -->
-    <div class="level-bar">
+    <div class="level-bar" id="levelBar">
       <div class="progress">
         <div id="levelProgress" class="progress-fill"></div>
         <small id="xpToNext"><span id="xpRemaining">0</span> <span id="xpLabel">XP to next level</span></small>
@@ -64,7 +64,7 @@
     <!-- End Top Tabs -->
   <div class="top-buttons-wrapper">
     <button id="NextLessonSpoiler"><!-- Today's lesson: ".." or "Tomorrow's lesson: ".." --></button>
-  
+    <button id="finishDCIBtn" class="button hidden">Finish Check-in</button>
 <!--  <div class="ArtBtnrecipesBtn">
     Learn Path 
     <button id="lessonPathBtn" class="button button-circle small-circle">Learn Path</button> 
@@ -177,7 +177,7 @@
     </div>
   </div>
 -->
-  <!-- Pet -->
+  <!-- Pet 
   <div class="profile-wrapper" id="petWrapper">
     <div class="avatar" id="petAvatar"></div>
     <div class="thought-toggle">💭</div>
@@ -186,9 +186,9 @@
       <div id="petTip" class="lesson-box"></div>
       <span class="close-thought">×</span>
     </div>
-  </div>
+  </div>-->
 
-  <!-- Celebrity -->
+  <!-- Celebrity 
 <div class="profile-wrapper" id="celebrityWrapper">
   <img class="avatar" id="celebrityAvatar" src="" alt="Celebrity Avatar">
   <div class="thought-toggle">💭</div>
@@ -196,7 +196,7 @@
     <div id="celebrityQuote" class="lesson-box"></div>
     <span class="close-thought">×</span>
   </div>
-</div>
+</div>-->
 
 </div>
 
@@ -293,7 +293,7 @@
   </div>-->
 
   <!-- 🧸 Achievements -->
-  <div class="dropdown">
+  <div class="dropdown" id="playgroundDropdown">
     <button>🧸 <span class="red-dot" id="playgroundDot"></span> </button>
     <div class="dropdown-content">
       <button id="leaderboardsBtn" onclick="showSection('leaderboards')">Leaderboards</button>
@@ -312,8 +312,8 @@
     <button>☰</button>
     <div class="dropdown-content">
 <!--  <button id="recommendationsBtn" onclick="showSection('recommendations')">Recommendations</button> -->
-<!--  <button id="subscriptionsBtn" onclick="showSection('subscriptions')">Subscriptions</button>     -->
-      <button id="sourcesBtn" onclick="showSection('sources')">Sources</button>
+<!--  <button id="sourcesBtn" onclick="showSection('sources')">Sources</button>  -->
+      <button id="subscriptionsBtn" onclick="showSection('subscriptions')">Subscriptions</button>     
       <button id="aboutUsBtn" onclick="showSection('aboutus')">About Us</button>
       <button id="contactUsBtn" onclick="showSection('contactus')">Contact Us</button>
       <button id="settingsBtn" onclick="showSection('systemsettings')">Settings</button>
@@ -459,29 +459,54 @@
    <!-- LEARN -->
 
   <div id="checkin" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
-  <!-- DAILY CHECK-IN -->
-    <div id="quizDCI" class="boxDCI"></div>
+  <!-- DAILY CHECK-IN  -->
+    <div id="quizDCI" class="boxDCI step step-1"> 
+    </div>
+      <button class="button nextBtnDCI" id="nextDCI1">Next</button>
 
-    <div id="lessonsectionDCI" class="boxDCI">
+    <div id="lessonsectionDCI" class="boxDCI step step-2">
       <label class="bigLabelDCI" id="todayLessonLabel">Your lesson for today:</label>
       <div id="dailyLessonDCI" class="lesson-boxDCI"></div>
+      <button class="button nextBtnDCI" id="nextDCI2">Next</button>
     </div>
 
-    <div id="mealsectionDCI" class="boxDCI">
+    <div id="mealsectionDCI" class="boxDCI step step-3">
       <label class="bigLabelDCI" id="mealsQuestion">How many fully plant-powered meals did you enjoy yesterday?</label>
 
       <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="1"> <span id="mealOption1">Oops! My plate betrayed me 😅 </span></label>
       <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="2"> <span id="mealOption2">Some plant magic in my meals ✨</span></label>
       <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="3"> <span id="mealOption3">Plant-powered most of the day! 🌿</span></label>
       <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="4"> <span id="mealOption4">I was fully powered by plants! 🌱</span></label>
+      <button class="button nextBtnDCI" id="nextDCI3">Next</button>
     </div>
 
-    <button class="button" id="submitAndSupportBtnDCI">
-    ▶️ Submit & Support +2🏅
-</button>
-    <button class="button" id="submitBtnDCI">Submit</button>
-</div>
+    <div id="streakSectionDCI" class="boxDCI step step-3-5">
+      <label class="bigLabelDCI" id="streakQuestion"></label>
 
+        <div id="streakButtons">
+          
+        </div>
+    </div>
+
+   
+
+    <div id="petDCI" class="boxDCI step step-4">
+ 
+  <div id="petMessageCard" class="lesson-boxDCI">
+    <div class="petHeader">
+      <img id="petStepAvatar" class="avatarSmall" src="" alt="avatar" />
+  </div>
+
+    <div id="petStepMessage" class="petMessage">
+
+  <div id="petMessageWrapper" class="pet-wrapper"></div>
+  <div id="petMessageBox" class="pet-box"></div>
+</div>
+</div>
+    <button class="button" id="submitAndSupportBtnDCI"> ▶️ Submit & Support +2🏅 </button>
+    <button class="button" id="submitBtnDCI">Submit</button>
+  </div>
+</div>
   <!-- LESSON PATH  -->
 <div id="learn" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
     <div class="learning-path-head">
@@ -1703,6 +1728,5 @@
 <script type="module" src="mainscript.js"></script>
 <script type="module" src="scriptpools.js"></script>
 <script src="scriptbuttons.js"></script>
-
 </body>
 </html>

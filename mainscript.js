@@ -276,6 +276,7 @@ earthGuardianBenefit2: "VIP badge & profile highlight",
 
     //Sources
 sourcesContentText: "...Sources content...",
+subscriptionsBtn: "Memberships",
 
     //Aboutus
 aboutGreeting: "Hi there 👋",
@@ -659,6 +660,7 @@ earthGuardianBenefit2: "Insignia VIP y perfil destacado",
 
     //Sources
 sourcesContentText: "...Contenido de fuentes...",
+subscriptionsBtn: "Membresías",
 
     //Aboutus
 aboutGreeting: "Hola 👋",
@@ -1041,6 +1043,7 @@ earthGuardianBenefit2: "VIP jelvény és kiemelt profil",
 
     //Sources
 sourcesContentText: "...Források tartalma...",
+subscriptionsBtn: "Tagságok",
 
     //Aboutus
 aboutGreeting: "Szia 👋",
@@ -1191,7 +1194,7 @@ async function updateLanguageUI(lang) {
   document.getElementById("recipebadgePRO").innerText = t.recipePRO;
 
   // Pet
-  document.getElementById("petSays").innerText = t.petSays;
+  //document.getElementById("petSays").innerText = t.petSays;
 
   // Bottom nav
   document.getElementById("profileBtn").innerText = t.profileBtn;
@@ -1206,7 +1209,8 @@ async function updateLanguageUI(lang) {
   document.getElementById("shopBtn").innerText = t.shopBtn;
   document.getElementById("challengesBtn").querySelector(".btn-label").firstChild.textContent = t.challengesBtn;
  // document.getElementById("recommendationsBtn").innerText = t.recommendationsBtn;
-  document.getElementById("sourcesBtn").innerText = t.sourcesBtn;
+ // document.getElementById("sourcesBtn").innerText = t.sourcesBtn;
+  document.getElementById("subscriptionsBtn").innerText = t.subscriptionsBtn;
   document.getElementById("aboutUsBtn").innerText = t.aboutUsBtn;
   document.getElementById("contactUsBtn").innerText = t.contactUsBtn;
   document.getElementById("settingsBtn").innerText = t.settingsBtn;
@@ -1881,7 +1885,7 @@ async function fetchAllData() {
       last_checkin_date, goals, health_issues, badge, day_counter, goal_progress,
       is_pro, diet_preference, last_lesson, health_progress, extra_lesson,
       completed_health_issues, lesson_progress, achievements, title,
-      bought_items, xp_today, friend_code, survey_completed, name, completed_lessons`)
+      bought_items, xp_today, friend_code, survey_completed, name, completed_lessons, pending_streak_action`)
     .eq("id", user.id)
     .single();
   if (profileError) return console.error("Error fetching profile:", profileError);
@@ -1996,13 +2000,14 @@ document.querySelectorAll('input[name="goal"]').forEach(cb => {
   toggleHealthIssues();
 
   // Pet
-  ["petPhotoprofile", "petPhotoPreview"].forEach(id => {
+  ["petPhotoprofile", "petPhotoPreview", "petStepAvatar"].forEach(id => {
     const el = document.getElementById(id);
     if (el && profile.pet_photo) el.src = profile.pet_photo;
   });
-  document.getElementById("petName").textContent = profile.pet_name || "-";
+ // document.getElementById("petName").textContent = profile.pet_name || "-";
   document.getElementById("petNameprofile").textContent = profile.pet_name || "-";
   document.getElementById("petNameInput").value = profile.pet_name || "-";
+  //document.getElementById("petStepName").value = profile.pet_name || "-";
 
   // Hide empty lists titles
   document.querySelectorAll(".details-list").forEach(list => {
@@ -2173,7 +2178,7 @@ const myCodeDiv = document.getElementById("myfriendcode");
 if (myCodeDiv && currentProfile?.friend_code) {
   myCodeDiv.textContent = currentProfile.friend_code;
 }
-
+  updateFinishButtonState();
   renderHomepageFirst(profile, todayStr);
 
   return profile;
@@ -2441,6 +2446,25 @@ function loadWinnersFromData() {
 
 //#region HELPERS
 
+async function handleEarlyUserUI(currentProfile) {
+  const shouldHide = currentProfile.day_counter < 4;
+
+  const elementsToToggle = [
+    "currentLevel",
+    "currentLevelSpan",
+    "levelBar",
+    "playgroundDropdown",
+    "subscriptionsBtn"
+  ];
+
+  elementsToToggle.forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.style.display = shouldHide ? "none" : "";
+  });
+}
+
 function hideGlobalLoader() {
   const loader = document.getElementById("globalLoader");
   if (!loader) return;
@@ -2546,6 +2570,39 @@ function getLang() {
 //--------------------------
 // HELPERS
 //--------------------------
+
+function isPendingStreak() {
+  const pendingDate = currentProfile?.pending_streak_action;
+  if (!pendingDate) return false;
+
+  const todayStr = getUTCDateString(new Date());
+
+  return pendingDate === todayStr;
+}
+function updateFinishButtonState() {
+  const finishBtn = document.getElementById("finishDCIBtn");
+  if (!finishBtn) return;
+
+  // 🔥 Only run if pending streak is active today
+  if (!isPendingStreak()) return;
+
+
+  const badgeCost = calculateBadgeCost(
+    currentProfile,
+    getUTCDateString(new Date())
+  );
+
+  const userBadges = currentProfile.badge ?? 0;
+
+  if (userBadges >= badgeCost) {
+    finishBtn.disabled = false;
+    finishBtn.classList.remove("hidden");
+  } else {
+    finishBtn.classList.remove("hidden");
+    finishBtn.disabled = true;
+  }
+}
+/*
 window.checkAndHandleStreak = async function() {
   const user = currentUser;
   const profile = currentProfile;
@@ -2619,7 +2676,7 @@ window.checkAndHandleStreak = async function() {
     return false; // ❌ do NOT proceed to check-in
   }
 };
-
+*/
 
 function sanitizeFileName(filename) {
   return filename
@@ -2721,6 +2778,7 @@ function showLoading(isLoading) {
 
   // Safely check if profile exists
   const hasCheckedInToday = currentProfile?.last_checkin_date === todayStr;
+  const hasPendingStreak = isPendingStreak();
 
   if (isLoading) {
     loader.style.display = "flex";
@@ -2729,8 +2787,8 @@ function showLoading(isLoading) {
   } else {
     hideGlobalLoader();
 
-    if (hasCheckedInToday) {
-      // Already checked in → show second page
+    if (hasCheckedInToday || hasPendingStreak) {
+      // Already checked in OR pending streak → show second page
       contentFirst.style.display = "none";
       contentSecond.style.display = "block";
     } else {
@@ -2837,6 +2895,8 @@ async function addBadges(userId, amount) {
 
   // 4️⃣ Optional: refresh leaderboard
   await fetchLeaderboard('badge', 'overall-badge');
+
+  updateFinishButtonState(); // Update finish button state in case badges were added for streak saving
 }
 
 const toastQueue = [];
@@ -2844,7 +2904,7 @@ let toastShowing = false;
 
 function showProgressSuggestion(message, petPhotoUrl) {
   if (!message) return; // ← ignore empty messages
-
+  if (currentProfile.day_counter < 5) return; // ← only show after day 5 to avoid overwhelming new users
   // Push new toast into queue
   toastQueue.push({ message, petPhotoUrl });
 
@@ -3746,6 +3806,346 @@ function dailyCheckinT(key, variables = {}) {
 }
 
 
+let checkinStep = 1;
+
+function updateCheckinStep(step) {
+  checkinStep = step;
+
+  document.querySelectorAll(".step").forEach(el => {
+    el.style.display = "none";
+  });
+
+  document.querySelectorAll(`.step-${String(step).replace(".", "-")}`).forEach(el => {
+    el.style.display = "block";
+  });
+
+  updateCheckinButtons(); // OK here (correct place)
+}
+function shouldSkipQuizStep() {
+  return currentProfile.day_counter === 0 || yesterdayQuiz.length === 0;
+}
+function initCheckinNavigation() {
+  document.querySelectorAll(".nextBtnDCI").forEach(btn => {
+    btn.onclick = async () => {
+
+      if (checkinStep === 1) {
+        if (shouldSkipQuizStep()) {
+          updateCheckinStep(2);
+          return;
+        }
+
+        if (!validateQuiz()) return;
+        updateCheckinStep(2);
+        return;
+      }
+
+      if (checkinStep === 2) {
+        updateCheckinStep(3);
+        return;
+      }
+
+      if (checkinStep === 3) {
+        if (!validateMeal()) return;
+
+        await handleStreakStep();   // ⭐ NEW
+        return;
+      }
+    };
+  });
+}
+async function handleStreakStep() {
+  const profile = currentProfile;
+
+  const todayStr = getUTCDateString(new Date());
+  const badgeCost = calculateBadgeCost(profile, todayStr);
+  const userBadges = profile.badge ?? 0;
+
+  // CASE 1: no penalty
+  if (badgeCost === 0) {
+    updateCheckinStep(4);
+    return;
+  }
+
+
+  const yesterdayUTC = new Date();
+  yesterdayUTC.setUTCDate(yesterdayUTC.getUTCDate() - 1);
+  const yesterdayStr = getUTCDateString(yesterdayUTC);
+
+  // SHOW STEP 3.5
+  updateCheckinStep("3.5");
+
+  const container = document.getElementById("streakSectionDCI");
+  const label = document.getElementById("streakQuestion");
+  const buttons = document.getElementById("streakButtons");
+
+  buttons.innerHTML = "";
+
+  // CASE A: enough badges
+  if (userBadges >= badgeCost) {
+    label.textContent = helperT("confirmSaveStreak", { badgeCost });
+
+    const yes = document.createElement("button");
+    yes.className = "button";
+    yes.textContent = "Yes, save";
+
+    const no = document.createElement("button");
+    no.className = "button";
+    no.textContent = "No, reset";
+
+    yes.onclick = async () => {
+      await supabase
+        .from("profiles")
+        .update({
+          badge: userBadges - badgeCost,
+          last_checkin_date: yesterdayStr
+        })
+        .eq("id", currentUser.id);
+
+      currentProfile.badge -= badgeCost;
+
+      updateCheckinStep(4);
+    };
+
+    no.onclick = async () => {
+      await supabase
+        .from("profiles")
+        .update({
+          streak: 0,
+          last_checkin_date: yesterdayStr
+        })
+        .eq("id", currentUser.id);
+
+      currentProfile.streak = 0;
+
+      updateCheckinStep(4);
+    };
+
+    buttons.appendChild(yes);
+    buttons.appendChild(no);
+  }
+
+  // CASE B: not enough badges
+  else {
+    const missing = badgeCost - userBadges;
+
+    label.textContent = helperT("notEnoughBadges", { badgeCost, missing });
+
+    const reset = document.createElement("button");
+    reset.className = "button";
+    reset.textContent = "Reset streak";
+
+    const collect = document.createElement("button");
+    collect.className = "button";
+    collect.textContent = "Collect badges first";
+
+    reset.onclick = async () => {
+      await supabase
+        .from("profiles")
+        .update({
+          streak: 0,
+          last_checkin_date: yesterdayStr
+        })
+        .eq("id", currentUser.id);
+
+      currentProfile.streak = 0;
+
+      updateCheckinStep(4);
+    };
+
+  collect.onclick = async () => {
+  const finishBtn = document.getElementById("finishDCIBtn");
+
+  if (finishBtn) {
+    finishBtn.classList.remove("hidden");
+    finishBtn.disabled = true;
+  }
+
+  // 👉 get selected meal FROM DOM at the moment of leaving
+  const mealAnswer = document.querySelector('input[name="mealsDCI"]:checked');
+  const mealValue = mealAnswer ? parseInt(mealAnswer.value) : null;
+
+  // 🔥 SAVE BOTH
+  await supabase
+    .from("profiles")
+    .update({
+      pending_streak_action: todayStr,
+      pending_meal: mealValue
+    })
+    .eq("id", currentUser.id);
+
+  currentProfile.pending_streak_action = todayStr;
+  currentProfile.pending_meal = mealValue;
+
+  // navigate
+  document.getElementById("checkin").classList.add("hidden");
+  showSection("home");
+};
+
+    buttons.appendChild(reset);
+    buttons.appendChild(collect);
+  }
+}
+
+document.getElementById("finishDCIBtn").onclick = async (e) => {
+  const btn = e.currentTarget;
+
+  // 🚫 prevent double clicks immediately
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.classList.add("disabled");
+
+
+  const result = getTodaysLessonFromProfile(currentProfile);
+
+  todayGoal = result.todayGoal;
+  todayLessonIndex = result.todayLessonId;
+  todayLesson = result.todayLesson;
+
+  renderTodaysLesson();
+  renderYesterdaysQuiz(currentProfile);
+
+  
+
+  try {
+    // 🔥 Fetch ONLY when user clicks
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("pending_meal, pending_streak_action")
+      .eq("id", currentUser.id)
+      .single();
+
+    if (error || !data) {
+      console.error("Failed to fetch pending data:", error);
+      alert("Something went wrong. Please try again.");
+      return;
+    }
+
+    const mealValue = data.pending_meal;
+
+    if (!mealValue) {
+      alert("Missing meal selection");
+      return;
+    }
+
+    // 👉 Call submit with fetched value
+    const success = await handleSubmit(mealValue);
+
+    if (success) {
+      await supabase
+        .from("profiles")
+        .update({
+          pending_streak_action: null,
+          pending_meal: null
+        })
+        .eq("id", currentUser.id);
+
+      currentProfile.pending_streak_action = null;
+      currentProfile.pending_meal = null;
+
+      // 🔥 HIDE BUTTON AFTER SUCCESS
+  const finishBtn = document.getElementById("finishDCIBtn");
+  if (finishBtn) {
+    finishBtn.classList.add("hidden");
+  }
+    }
+    
+  } finally {
+    // ♻️ always re-enable (success or error)
+    btn.disabled = false;
+    btn.classList.remove("disabled");
+  }
+};
+
+function validateQuiz() {
+  if (currentProfile.day_counter > 0) {
+    let allAnswered = true;
+    let allCorrect = true;
+
+    yesterdayQuiz.forEach((q, i) => {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+
+      if (!selected) allAnswered = false;
+      else if (parseInt(selected.value, 10) !== q.answer) {
+        allCorrect = false;
+      }
+    });
+
+    if (!allAnswered) {
+      alert(dailyCheckinT("answerAllQuiz"));
+      return false;
+    }
+
+    if (!allCorrect) {
+      alert(dailyCheckinT("incorrectQuiz"));
+      return false;
+    }
+  }
+
+  return true;
+}
+function validateMeal() {
+  const mealAnswer = document.querySelector('input[name="mealsDCI"]:checked');
+
+  if (!mealAnswer) {
+    alert(dailyCheckinT("selectMeal"));
+    return false;
+  }
+
+  return true;
+}
+function updateCheckinButtons() {
+  const submitBtn = document.getElementById("submitBtnDCI");
+  const finalBtn = document.getElementById("submitAndSupportBtnDCI");
+
+  const btn1 = document.getElementById("nextDCI1");
+  const btn2 = document.getElementById("nextDCI2");
+  const btn3 = document.getElementById("nextDCI3");
+
+  // hide everything safely
+  [btn1, btn2, btn3].forEach(b => {
+    if (b) b.style.display = "none";
+  });
+
+  if (submitBtn) submitBtn.style.display = "none";
+  if (finalBtn) finalBtn.style.display = "none";
+
+  // show correct step button
+  if (checkinStep === 1 && btn1) btn1.style.display = "block";
+  if (checkinStep === 2 && btn2) btn2.style.display = "block";
+  if (checkinStep === 3 && btn3) btn3.style.display = "block";
+  if (checkinStep === 3.5) {
+  // hide all navigation buttons
+  [btn1, btn2, btn3].forEach(b => {
+    if (b) b.style.display = "none";
+  });
+
+  if (submitBtn) submitBtn.style.display = "none";
+  if (finalBtn) finalBtn.style.display = "none";
+
+  return;
+}
+  if (checkinStep === 4) {
+    renderStep4();
+    if (submitBtn) submitBtn.style.display = "block";
+    if (finalBtn) finalBtn.style.display = "block";
+  }
+}
+
+function renderStep4() {
+  
+  if(currentProfile.day_counter === 0) {
+      impactIntro();
+      return;
+  }
+  else if (currentProfile.day_counter === 4) {
+    gamesectionintro();
+    return;
+  } 
+  else {
+    pickrandommessage();
+  }
+}
+
 // Global variables
 let yesterdayQuiz = [];
 let todayGoal = null;
@@ -3889,14 +4289,26 @@ function getTodaysLessonFromProfile(profile) {
 // 2️⃣ Initialize Daily Check-in
 // ------------------
 window.initDailyCheckin = function() {
+
   const result = getTodaysLessonFromProfile(currentProfile);
+
   todayGoal = result.todayGoal;
   todayLessonIndex = result.todayLessonId;
   todayLesson = result.todayLesson;
 
   renderTodaysLesson();
   renderYesterdaysQuiz(currentProfile);
-}
+
+  initCheckinNavigation();   // 👈 FIRST attach listeners
+  updateCheckinButtons();    // 👈 THEN set visibility
+
+  // THEN decide step
+  if (shouldSkipQuizStep()) {
+    updateCheckinStep(2);
+  } else {
+    updateCheckinStep(1);
+  }
+};
 
 // ------------------
 // 3️⃣ Render today's lesson
@@ -3990,41 +4402,27 @@ submitBtn.addEventListener('click', async () => {
   await handleSubmit();
 });
 
-async function handleSubmit() {
+async function handleSubmit(externalMealValue = null) {
 
   const todayLessonId = todayLessonIndex;
 
 if (!todayLesson) { alert(dailyCheckinT("noLessonToday")); return false; }
 
-  // Quiz validation
-  if (currentProfile.day_counter > 0) {
-  let allAnswered = true, allCorrect = true;
+  let mealValue;
 
-  yesterdayQuiz.forEach((q, i) => {
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    if (!selected) allAnswered = false;
-    else if (parseInt(selected.value, 10) !== q.answer) {
-      allCorrect = false;
-    }
-  });
-
-  if (!allAnswered) {
-    alert(dailyCheckinT("answerAllQuiz"));
-    enableDailyCheckinButtons(); // ✅ re-enable
-    return false;
-  }
-
-  if (!allCorrect) {
-    alert(dailyCheckinT("incorrectQuiz"));
-    enableDailyCheckinButtons(); // ✅ re-enable
-    return false;
-  }
-}
-
-  // Meal selection
+// 1. external (from finish button)
+if (externalMealValue !== null) {
+  mealValue = externalMealValue;
+} 
+// 2. DOM (normal flow)
+else {
   const mealAnswer = document.querySelector('input[name="mealsDCI"]:checked');
-  if (!mealAnswer) { alert(dailyCheckinT("selectMeal")); return false; }
-  const mealValue = parseInt(mealAnswer.value);
+  if (!mealAnswer) {
+    alert(dailyCheckinT("selectMeal"));
+    return false;
+  }
+  mealValue = parseInt(mealAnswer.value);
+}
   const impactIncrement = calculateImpact(mealValue);
   const badgeIncrement = mealValue === 4 ? 5 : 0;
 
@@ -4093,23 +4491,6 @@ const { error: updateError } = await supabase
 
   showSection("home");
 
-  
-if (currentProfile.day_counter === 1 ) {
-  showProgressSuggestion(
-    dailyCheckinT("wellDoneLearnPath"),
-    currentProfile.pet_photo
-  );
-  } else if (currentProfile.day_counter === 2) {
-  showProgressSuggestion(
-    dailyCheckinT("wellDoneMealArt"),
-    currentProfile.pet_photo
-  );
-  } else if (currentProfile.day_counter === 3) {
-  showProgressSuggestion(
-    dailyCheckinT("wellDoneCommunity"),
-    currentProfile.pet_photo
-  );
-  } 
   return true;
 }
 //#endregion
@@ -10154,6 +10535,7 @@ document.addEventListener("DOMContentLoaded", async () => {
        ========================= */
     await fetchAllData();            // sets currentUser + currentProfile
     await renderProfile();           // user must see something ASAP
+    await handleEarlyUserUI(currentProfile); // shows/hides elements based on login state
     await initSystemSettings();
 
 
@@ -10357,7 +10739,635 @@ requestIdle(async () => {
 
 //#endregion
 
+//#region Pet Guide
 
+
+const characterTips = {
+
+  pet: {
+    en: [
+      "Be kind to every kind — and don’t forget to be kind to yourself too!",
+      "Love grows when shared 💚",
+      "Every small act of care shapes who you are.",
+      "Happiness multiplies when you give it away.",
+      "Patience is love in action.",
+      "A gentle word can change someone’s entire day.",
+      "Sharing love is never wasted — it always returns.",
+      "Small acts of care create big ripples in the world.",
+      "Compassion starts with noticing someone’s needs.",
+      "Your warmth makes others feel safe and valued.",
+      "Encouragement can blossom where criticism would wither.",
+      "Every smile you share brightens someone’s path.",
+      "Kindness costs nothing but creates priceless moments.",
+      "You are wiser when you seek understanding before judgment.",
+      "Helping others grow is a reflection of your own strength.",
+      "Love yourself as fiercely as you love others.",
+      "Quiet support is often more powerful than loud words.",
+      "Your patience today teaches others how to be gentle tomorrow.",
+      "Sharing your knowledge softly guides hearts, not forces them.",
+      "Happiness blooms when you care without expecting in return.",
+      "Every gentle touch leaves a mark of love.",
+      "Encouragement turns mistakes into lessons, not failures.",
+      "You are strongest when you act with empathy.",
+      "A kind action can be louder than a thousand words.",
+      "Your warmth has the power to heal invisible wounds.",
+      "Sharing joy multiplies it for everyone involved. 🌟",
+      "Teach by example — hearts learn faster than ears.",
+      "Every act of love is a building block for a better world.",
+
+    `Replacing meat with <span class="ingredient-link" onclick="openIngredient('tofu')">Tofu</span> saves massive water resources.`,
+    `<span class="ingredient-link" onclick="openIngredient('seitan')">Seitan</span> uses only a fraction of the land needed for beef.`,
+    `A meal with <span class="ingredient-link" onclick="openIngredient('lentils')">Lentils</span> has a much lower carbon footprint.`,
+    `<span class="ingredient-link" onclick="openIngredient('beans')">Beans</span> nourish the soil instead of depleting it.`,
+    `<span class="ingredient-link" onclick="openIngredient('tempeh')">Tempeh</span> promotes gut biodiversity.`,
+    `<span class="ingredient-link" onclick="openIngredient('chickpeas')">Chickpeas</span> naturally enrich farmland.`,
+    `<span class="ingredient-link" onclick="openIngredient('peaProtein')">Pea Protein</span> has a lower CO₂ impact than whey.`,
+    `<span class="ingredient-link" onclick="openIngredient('soyMilk')">Soy Milk</span> requires far less land and water than dairy.`,
+    `<span class="ingredient-link" onclick="openIngredient('texturizedSoy')">Texturized Soy</span> avoids the emissions of chicken farming.`,
+    `Swap some meat for <span class="ingredient-link" onclick="openIngredient('broccoli')">Broccoli</span> — nutrient-rich and eco-friendly! 🌱`
+  
+      ],
+    es: [
+      "Sé amable con todos los seres — y no olvides ser amable contigo también.",
+      "El amor crece cuando se comparte 💚",
+      "Cada pequeño acto de cuidado moldea quién eres.",
+      "La felicidad se multiplica cuando la compartes.",
+      "La paciencia es amor en acción.",
+      "Una palabra amable puede cambiar todo el día de alguien.",
+      "Compartir amor nunca se desperdicia — siempre vuelve.",
+      "Los pequeños actos de cuidado crean grandes ondas en el mundo.",
+      "La compasión empieza al notar las necesidades de los demás.",
+      "Tu calidez hace que otros se sientan seguros y valorados.",
+      "El ánimo florece donde la crítica se marchita.",
+      "Cada sonrisa que compartes ilumina el camino de alguien.",
+      "La bondad no cuesta nada y crea momentos invaluables.",
+      "Eres más sabio cuando buscas comprender antes de juzgar.",
+      "Ayudar a otros a crecer refleja tu propia fuerza.",
+      "Ámate con la misma intensidad con la que amas a otros.",
+      "El apoyo silencioso suele ser más poderoso que las palabras fuertes.",
+      "Tu paciencia hoy enseña gentileza mañana.",
+      "Compartir conocimiento suavemente guía corazones.",
+      "La felicidad florece cuando das sin esperar nada.",
+      "Cada gesto suave deja una huella de amor.",
+      "El ánimo convierte errores en lecciones.",
+      "Eres más fuerte cuando actúas con empatía.",
+      "Un acto amable puede hablar más que mil palabras.",
+      "Tu calidez puede sanar heridas invisibles.",
+      "Compartir alegría la multiplica para todos. 🌟",
+      "Enseña con el ejemplo — el corazón aprende más rápido.",
+      "Cada acto de amor construye un mundo mejor.",
+
+      `Sustituir la carne por <span class="ingredient-link" onclick="openIngredient('tofu')">tofu</span> ahorra enormes recursos de agua.`,
+      `<span class="ingredient-link" onclick="openIngredient('seitan')">Seitan</span> usa solo una fracción de la tierra necesaria para la carne.`,
+      `Una comida con <span class="ingredient-link" onclick="openIngredient('lentils')">lentejas</span> tiene una huella de carbono mucho menor.`,
+      `<span class="ingredient-link" onclick="openIngredient('beans')">Las legumbres</span> nutren el suelo.`,
+      `<span class="ingredient-link" onclick="openIngredient('tempeh')">Tempeh</span> favorece la biodiversidad intestinal.`,
+      `<span class="ingredient-link" onclick="openIngredient('chickpeas')">Garbanzos</span> enriquecen naturalmente la tierra.`,
+      `<span class="ingredient-link" onclick="openIngredient('peaProtein')">Proteína de guisante</span> tiene menor impacto de CO₂.`,
+      `<span class="ingredient-link" onclick="openIngredient('soyMilk')">Leche de soja</span> requiere menos tierra y agua.`,
+      `<span class="ingredient-link" onclick="openIngredient('texturizedSoy')">Soja texturizada</span> evita emisiones de la ganadería.`,
+      `Cambia algo de carne por <span class="ingredient-link" onclick="openIngredient('broccoli')">brócoli</span> 🌱`
+    ],
+
+    hu: [
+      "Légy kedves minden lényhez — és magadhoz se felejts el az lenni.",
+      "A szeretet akkor nő, ha megosztják 💚",
+      "Minden apró gondoskodás formálja azt, aki vagy.",
+      "A boldogság megsokszorozódik, ha továbbadod.",
+      "A türelem a szeretet cselekvésben.",
+      "Egy kedves szó megváltoztathatja valaki egész napját.",
+      "A megosztott szeretet sosem vész el — mindig visszatér.",
+      "Az apró törődés nagy hullámokat kelt.",
+      "Az együttérzés a figyelemmel kezdődik.",
+      "A melegség biztonságot és értéket ad másoknak.",
+      "A bátorítás ott virágzik, ahol a kritika elsorvad.",
+      "Minden mosoly fényt ad valaki útjára.",
+      "A kedvesség semmibe sem kerül, mégis felbecsülhetetlen.",
+      "Bölcsebb vagy, ha megértést keresel ítélkezés előtt.",
+      "Mások segítése a saját erőd tükre.",
+      "Szeresd magad olyan erősen, ahogy másokat.",
+      "A csendes támogatás gyakran a legerősebb.",
+      "A mai türelmed holnap gyengédséget tanít.",
+      "A tudás finom megosztása szíveket vezet.",
+      "A boldogság akkor virágzik, ha nem vársz viszonzást.",
+      "Minden gyengéd érintés nyomot hagy.",
+      "A bátorítás tanulsággá alakítja a hibákat.",
+      "Az empátia az igazi erő.",
+      "Egy kedves tett hangosabb ezer szónál.",
+      "A melegség láthatatlan sebeket gyógyít.",
+      "Az öröm megosztva megsokszorozódik. 🌟",
+      "Mutass példát — a szív gyorsabban tanul.",
+      "Minden szeretetteljes tett egy jobb világ alapja.",
+
+      `A hús helyettesítése <span class="ingredient-link" onclick="openIngredient('tofu')">tofúval</span> rengeteg vizet takarít meg.`,
+      `<span class="ingredient-link" onclick="openIngredient('seitan')">A szejtán</span> töredéknyi földet igényel.`,
+      `A <span class="ingredient-link" onclick="openIngredient('lentils')">lencsével</span> készült étel kisebb karbonlábnyomú.`,
+      `<span class="ingredient-link" onclick="openIngredient('beans')">A bab</span> táplálja a talajt.`,
+      `<span class="ingredient-link" onclick="openIngredient('tempeh')">A tempeh</span> támogatja a bélflórát.`,
+      `<span class="ingredient-link" onclick="openIngredient('chickpeas')">A csicseriborsó</span> gazdagítja a földet.`,
+      `<span class="ingredient-link" onclick="openIngredient('peaProtein')">Borsófehérje</span> kevesebb CO₂-t termel.`,
+      `<span class="ingredient-link" onclick="openIngredient('soyMilk')">Szójatej</span> kevesebb földet és vizet igényel.`,
+      `<span class="ingredient-link" onclick="openIngredient('texturizedSoy')">Texturált szója</span> csökkenti a kibocsátást.`,
+      `Cserélj le egy kis húst <span class="ingredient-link" onclick="openIngredient('broccoli')">brokkolira</span> 🌱`
+    ]
+  },
+celebrity: [
+  {
+    name: {
+      en: "Natalie Portman",
+      es: "Natalie Portman",
+      hu: "Natalie Portman"
+    },
+    title: {
+      en: "Actress & Activist",
+      es: "Actriz y activista",
+      hu: "Színésznő és aktivista"
+    },
+    quote: {
+      en: "Three times a day, I remind myself that I value life and do not want to cause pain to or kill other living beings. That is why I eat the way I do.",
+      es: "Tres veces al día me recuerdo que valoro la vida y que no quiero causar dolor ni matar a otros seres vivos. Por eso como como lo hago.",
+      hu: "Naponta háromszor emlékeztetem magam arra, hogy értékelem az életet, és nem akarok fájdalmat okozni vagy megölni más élőlényeket. Ezért eszem így."
+    },
+    avatar: "images/natalie.jpg"
+  },
+
+  {
+    name: {
+      en: "Albert Einstein",
+      es: "Albert Einstein",
+      hu: " Albert Einstein"
+    },
+    title: {
+      en: "Theoretical Physicist",
+      es: "Físico teórico",
+      hu: "Elméleti fizikus"
+    },
+    quote: {
+      en: "Nothing will benefit health or increase chances of survival on Earth as much as the evolution to a vegetarian diet.",
+      es: "Nada beneficiará tanto la salud ni aumentará las posibilidades de supervivencia en la Tierra como la evolución hacia una dieta vegetariana.",
+      hu: "Semmi sem szolgálja jobban az egészséget vagy növeli a túlélés esélyét a Földön, mint a vegetáriánus étrend felé való fejlődés."
+    },
+    avatar: "images/einstein.jpg"
+  },
+
+  {
+    name: {
+      en: "Patrik Baboumian",
+      es: "Patrik Baboumian",
+      hu: "Patrik Baboumian"
+    },
+    title: {
+      en: "Strongman & Vegan Activist",
+      es: "Strongman y activista vegano",
+      hu: "Erősember és vegán aktivista"
+    },
+    quote: {
+      en: "Someone once asked me, 'How can you get as strong as an ox without eating any meat?' My answer was, 'Have you ever seen an ox eating meat?'",
+      es: "Alguien me preguntó una vez: «¿Cómo puedes ser tan fuerte como un buey sin comer carne?» Mi respuesta fue: «¿Has visto alguna vez a un buey comiendo carne?»",
+      hu: "Egyszer megkérdezték tőlem: „Hogyan lehetsz olyan erős, mint egy ökör hús nélkül?” A válaszom az volt: „Láttál már ökröt húst enni?”"
+    },
+    avatar: "images/patrik.jpg"
+  },
+
+  {
+    name: {
+      en: "Abraham Lincoln",
+      es: "Abraham Lincoln",
+      hu: "Abraham Lincoln"
+    },
+    title: {
+      en: "16th U.S. President",
+      es: "16.º presidente de los Estados Unidos",
+      hu: "Az Egyesült Államok 16. elnöke"
+    },
+    quote: {
+      en: "I am in favor of animal rights as well as human rights. That is the way of a whole human being.",
+      es: "Estoy a favor de los derechos de los animales así como de los derechos humanos. Ese es el camino de un ser humano completo.",
+      hu: "Az állatok jogai mellett ugyanúgy kiállok, mint az emberi jogok mellett. Ez a teljes ember útja."
+    },
+    avatar: "images/lincoln.jpg"
+  },
+
+  {
+    name: {
+      en: "Leonardo da Vinci",
+      es: "Leonardo da Vinci",
+      hu: "Leonardo da Vinci"
+    },
+    title: {
+      en: "Renaissance Polymath",
+      es: "Polímata del Renacimiento",
+      hu: "Reneszánsz polihisztor"
+    },
+    quote: {
+      en: "I have from an early age abjured the use of meat.",
+      es: "Desde muy joven he rechazado el consumo de carne.",
+      hu: "Fiatal koromtól kezdve elutasítottam a hús fogyasztását."
+    },
+    avatar: "images/davinci.jpg"
+  },
+
+  {
+    name: {
+      en: "Pythagoras",
+      es: "Pitágoras",
+      hu: "Püthagorasz"
+    },
+    title: {
+      en: "Philosopher & Mathematician",
+      es: "Filósofo y matemático",
+      hu: "Filozófus és matematikus"
+    },
+    quote: {
+      en: "As long as man continues to be the ruthless destroyer of lower living beings, he will never know health or peace.",
+      es: "Mientras el hombre siga siendo el destructor despiadado de los seres vivos inferiores, nunca conocerá la salud ni la paz.",
+      hu: "Amíg az ember könyörtelen pusztítója marad az alacsonyabb rendű élőlényeknek, soha nem fogja megismerni az egészséget vagy a békét."
+    },
+    avatar: "images/pythagoras.jpg"
+  },
+
+  {
+    name: {
+      en: "Lewis Hamilton",
+      es: "Lewis Hamilton",
+      hu: "Lewis Hamilton"
+    },
+    title: {
+      en: "Formula 1 World Champion",
+      es: "Campeón del mundo de Fórmula 1",
+      hu: "Forma–1 világbajnok"
+    },
+    quote: {
+      en: "We all have choices to make. I choose to love, to be conscious of what I’m supporting and I refuse to support the companies killing and torturing animals.",
+      es: "Todos tenemos elecciones que hacer. Yo elijo amar, ser consciente de lo que apoyo y me niego a apoyar a empresas que matan y torturan animales.",
+      hu: "Mindannyiunknak vannak döntései. Én a szeretetet választom, tudatos vagyok abban, mit támogatok, és nem támogatom az állatokat megölő és kínzó vállalatokat."
+    },
+    avatar: "images/hamilton.jpg"
+  },
+
+  {
+    name: {
+      en: "Mahatma Gandhi",
+      es: "Mahatma Gandhi",
+      hu: "Mahatma Gandhi"
+    },
+    title: {
+      en: "Indian Leader & Activist",
+      es: "Líder y activista indio",
+      hu: "Indiai vezető és aktivista"
+    },
+    quote: {
+      en: "The greatness of a nation can be judged by the way its animals are treated.",
+      es: "La grandeza de una nación se puede juzgar por la forma en que trata a sus animales.",
+      hu: "Egy nemzet nagysága megítélhető abból, ahogyan az állataival bánik."
+    },
+    avatar: "images/gandhi.jpg"
+  },
+
+  {
+    name: {
+      en: "Leo Tolstoy",
+      es: "León Tolstói",
+      hu: "Lev Tolsztoj"
+    },
+    title: {
+      en: "Author & Philosopher",
+      es: "Escritor y filósofo",
+      hu: "Író és filozófus"
+    },
+    quote: {
+      en: "As long as there are slaughterhouses, there will be battlefields.",
+      es: "Mientras existan los mataderos, habrá campos de batalla.",
+      hu: "Amíg léteznek vágóhidak, addig lesznek csataterek."
+    },
+    avatar: "images/tolstoy.jpg"
+  },
+
+  {
+    name: {
+      en: "John Stuart Mill",
+      es: "John Stuart Mill",
+      hu: "John Stuart Mill"
+    },
+    title: {
+      en: "Philosopher & Economist",
+      es: "Filósofo y economista",
+      hu: "Filozófus és közgazdász"
+    },
+    quote: {
+      en: "The worth of a civilization is measured by the compassion it shows toward those who cannot defend themselves.",
+      es: "El valor de una civilización se mide por la compasión que muestra hacia quienes no pueden defenderse.",
+      hu: "Egy civilizáció értékét az mutatja meg, mennyi együttérzést tanúsít azokkal szemben, akik nem tudják megvédeni magukat."
+    },
+    avatar: "images/stuart.jpg"
+  },
+
+  {
+    name: {
+      en: "Buddha",
+      es: "Buda",
+      hu: "Buddha"
+    },
+    title: {
+      en: "Spiritual Leader",
+      es: "Líder espiritual",
+      hu: "Spirituális tanító"
+    },
+    quote: {
+      en: "All beings tremble before violence. All fear death. When a man considers this, he does not kill or cause to kill.",
+      es: "Todos los seres tiemblan ante la violencia. Todos temen la muerte. Cuando alguien reflexiona sobre esto, no mata ni hace que otros maten.",
+      hu: "Minden lény retteg az erőszaktól. Mindenki fél a haláltól. Aki ezt megérti, nem öl, és nem is késztet másokat ölésre."
+    },
+    avatar: "images/buddha.jpg"
+  },
+
+  {
+  name: {
+    en: "Plato",
+    es: "Platón",
+    hu: "Platón"
+  },
+  title: {
+    en: "Philosopher",
+    es: "Filósofo",
+    hu: "Filozófus"
+  },
+  quote: {
+    en: "All living beings are ensouled, and the soul is not bound by species, but by its condition.",
+    es: "Todos los seres vivos están animados por un alma, y el alma no está ligada a la especie, sino a su condición.",
+    hu: "Minden élőlénynek van lelke, és a lélek nem a fajhoz, hanem az állapotához kötődik."
+  },
+  avatar: "images/plato.jpg"
+}
+]
+};
+
+
+function impactIntro() {
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+
+  const messages = {
+    en: `
+      <p>Hey! 💚</p>
+
+      <p>Did you know? By choosing plant-based meals, you can make a huge impact 🌱</p>
+
+      <p>I’ll track this impact for you and update it every day after your check-in, accordding to your meal answer.</p>
+
+      <p>Based on your meal answers, I estimate what you save compared to an average diet:</p>
+
+      <ul>
+        <li>🐾 ~21 animals</li>
+        <li>🌳 ~15 m² forest</li>
+        <li>💧 ~1,980 liters of water</li>
+        <li>🌍 ~120 kg CO₂</li>
+      </ul>
+
+      <p>Every choice you log adds to this 🌟</p>
+      <p>Let’s see how much good you can create 💚</p>
+
+      <p>These estimates are based on scientific averages from environmental research 
+      (using mid-range values from published data).</p>
+
+      <p style="font-size:12px; opacity:0.7;">
+        Source:
+        <a href="https://ourworldindata.org/environmental-impacts-of-food"
+           target="_blank"
+           rel="noopener noreferrer">
+           Our World in Data (Oxford research)
+        </a>
+      </p>
+    `,
+
+    es: `
+  <p>¡Hey! 💚</p>
+
+  <p>¿Sabías que al elegir comidas vegetales puedes generar un gran impacto 🌱</p>
+
+  <p>Voy a seguir este impacto por ti y actualizarlo cada día después de tu registro, según tu respuesta de comida.</p>
+
+  <p>En comparación con una dieta promedio, estimo que ahorras:</p>
+
+  <ul>
+    <li>🐾 ~21 animales</li>
+    <li>🌳 ~15 m² de bosque</li>
+    <li>💧 ~1.980 litros de agua</li>
+    <li>🌍 ~120 kg de CO₂</li>
+  </ul>
+
+  <p>Cada decisión cuenta 🌟</p>
+  <p>Veamos cuánto bien puedes crear 💚</p>
+
+  <p>Estos datos se basan en promedios científicos de investigación ambiental (valores medios publicados).</p>
+
+  <p style="font-size:12px; opacity:0.7;">
+    Source:
+    <a href="https://ourworldindata.org/environmental-impacts-of-food"
+       target="_blank"
+       rel="noopener noreferrer">
+       Our World in Data (Oxford research)
+    </a>
+  </p>
+`,
+
+    hu: `
+  <p>Hé! 💚</p>
+
+  <p>Tudtad, hogy a növényi étkezéssel nagy hatást érhetsz el 🌱</p>
+
+  <p>Én követem ezt a hatást, és minden nap frissítem a bejelentkezésed után, az ételválaszod alapján.</p>
+
+  <p>Egy átlagos étrendhez képest becsülten ennyit takarítasz meg:</p>
+
+  <ul>
+    <li>🐾 ~21 állat</li>
+    <li>🌳 ~15 m² erdő</li>
+    <li>💧 ~1980 liter víz</li>
+    <li>🌍 ~120 kg CO₂</li>
+  </ul>
+
+  <p>Minden döntés számít 🌟</p>
+  <p>Nézzük meg, mennyi jót hozol létre 💚</p>
+
+  <p>Az adatok tudományos környezeti kutatások átlagain alapulnak (publikált középértékek).</p>
+
+  <p style="font-size:12px; opacity:0.7;">
+    Source:
+    <a href="https://ourworldindata.org/environmental-impacts-of-food"
+       target="_blank"
+       rel="noopener noreferrer">
+       Our World in Data (Oxford research)
+    </a>
+  </p>
+`,
+  };
+
+  showPetMessage(messages[lang] || messages.en);
+}
+
+function gamesectionintro() {
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+
+  const messages = {
+    en: `
+      <p>Hey 👀</p>
+
+<p>I’ve prepared something new for you… a game that tracks your progress on a deeper level 🎮✨</p>
+
+<p>From now on, you’ll see a <strong>Game section</strong> on your dashboard.</p>
+
+<p>This is where your journey turns into progression.</p>
+
+<p>Every activity you do earns you:</p>
+
+<ul>
+  <li>📈 <strong>Discovery Points</strong> → level up your profile</li>
+  <li>🏅 <strong>Honor Points</strong> → spend them in the shop for virtual items</li>
+</ul>
+
+<p>The more you explore, the more you unlock:</p>
+
+<ul>
+  <li>🎯 Challenges</li>
+  <li>🏆 Titles</li>
+  <li>🖼️ Profile Frames</li>
+  <li>🥇 Achievements & Leaderboards</li>
+</ul>
+
+<p>Everything appears on your profile — showing your progress, status, and what you value 🌱</p>
+
+<p><strong>Go explore it now!</strong> 🚀</p>
+    `,
+    es: `
+      <p>Hey 👀</p>
+
+<p>He preparado algo nuevo para ti… un juego que sigue tu progreso en un nivel más profundo 🎮✨</p>
+
+<p>A partir de ahora verás una <strong>sección de juego</strong> en tu panel.</p>
+
+<p>Aquí es donde tu camino se convierte en progreso real.</p>
+
+<p>Cada actividad que hagas te dará:</p>
+
+<ul>
+  <li>📈 <strong>Puntos de Descubrimiento</strong> → sube de nivel tu perfil</li>
+  <li>🏅 <strong>Puntos de Honor</strong> → úsalos en la tienda para objetos virtuales</li>
+</ul>
+
+<p>Cuanto más explores, más desbloquearás:</p>
+
+<ul>
+  <li>🎯 Desafíos</li>
+  <li>🏆 Títulos</li>
+  <li>🖼️ Marcos de perfil</li>
+  <li>🥇 Logros y rankings</li>
+</ul>
+
+<p>Todo aparecerá en tu perfil — mostrando tu progreso, tu estatus y lo que valoras 🌱</p>
+
+<p><strong>¡Ve a explorarlo ahora!</strong> 🚀</p>
+    `,
+    hu: `
+      <p>Hé 👀</p>
+
+<p>Készítettem neked valami újat… egy játékot, ami mélyebben követi a fejlődésed 🎮✨</p>
+
+<p>Mostantól látni fogsz egy <strong>Játék szekciót</strong> a dashboardodon.</p>
+
+<p>Itt válik az utad valódi fejlődéssé.</p>
+
+<p>Minden tevékenységedért kapsz:</p>
+
+<ul>
+  <li>📈 <strong>Felfedezési Pontokat</strong> → ezekkel szintet lépsz</li>
+  <li>🏅 <strong>Becsületpontokat</strong> → ezeket a boltban költheted el virtuális tárgyakra</li>
+</ul>
+
+<p>Minél többet fedezel fel, annál többet oldasz fel:</p>
+
+<ul>
+  <li>🎯 Kihívások</li>
+  <li>🏆 Címek</li>
+  <li>🖼️ Profilkeretek</li>
+  <li>🥇 Teljesítmények és ranglisták</li>
+</ul>
+
+<p>Minden megjelenik a profilodon — mutatva a fejlődésed, a szinted és azt, amit képviselsz 🌱</p>
+
+<p><strong>Fedezd fel most!</strong> 🚀</p>
+    `
+  };
+
+  showPetMessage(messages[lang] || messages.en);
+}
+function pickrandommessage() {
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+
+  // 1️⃣ Get pet tip
+  const tips = characterTips.pet[lang] || characterTips.pet.en;
+  let randomTip = tips[Math.floor(Math.random() * tips.length)];
+
+  // 2️⃣ Replace ingredient links with inline content
+  randomTip = randomTip.replace(
+    /<span class="ingredient-link" onclick="openIngredient\('(\w+)'\)">(.*?)<\/span>/g,
+    (match, key, label) => {
+      const item = ingredientInfo[key];
+      if (!item) return label;
+
+      return `
+        <div class="ingredient-inline">
+          <strong>${item.name[lang] || item.name.en}</strong>
+          <p>${item.description[lang] || item.description.en}</p>
+          <small>${item.nutrition[lang] || item.nutrition.en}</small>
+        </div>
+      `;
+    }
+  );
+
+  // 3️⃣ Base message (pet)
+  let html = `
+    <div class="pet-message">
+      ${randomTip}
+    </div>
+  `;
+
+  // 4️⃣ 50% chance to add celebrity BELOW
+  if (Math.random() < 0.5) {
+    const celeb =
+      characterTips.celebrity[
+        Math.floor(Math.random() * characterTips.celebrity.length)
+      ];
+
+    html += `
+      <div class="celeb-inline">
+        <p><strong>💬 ${lang === "es" ? "Cita de" : lang === "hu" ? "Idézet tőle:" : "A quote from"} ${celeb.name[lang] || celeb.name.en}:</strong></p>
+        <p class="quote">“${celeb.quote[lang] || celeb.quote.en}”</p>
+        <p><em>${celeb.title[lang] || celeb.title.en}</em></p>
+      </div>
+    `;
+  }
+
+  // 5️⃣ Render
+  showPetMessage(html);
+}
+
+function showPetMessage(html) {
+  const wrapper = document.getElementById("petMessageWrapper");
+  const box = document.getElementById("petMessageBox");
+
+  if (!wrapper || !box) return;
+
+  // Insert content
+  box.innerHTML = html;
+
+  // Show with animation
+  wrapper.classList.add("visible");
+
+  // Optional: reset scroll if long content
+  box.scrollTop = 0;
+}
+
+//#endregion
 
 
 

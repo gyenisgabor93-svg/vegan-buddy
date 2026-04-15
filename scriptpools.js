@@ -12006,7 +12006,7 @@ export const extralessonsData = {
 }
 ]
 };
-
+/*
 // ---------------------------
 // TIPS
 // ---------------------------
@@ -12369,7 +12369,7 @@ celebrity: [
 }
 ]
 };
-
+*/
 //#region Functions
 /*
 Ariana Grande – Singer and Actress
@@ -12441,7 +12441,7 @@ St. Francis of Assisi
 
 Albert Schweitzer – Theologian & Philosopher
 “The ethical treatment of animals is the most humane and noble test of civilization.”
-*/
+
 //--------------------------
 // Ingredient Modal
 //--------------------------
@@ -12482,16 +12482,16 @@ function getRandomPositionForChar(char, wrapperWidth, wrapperHeight) {
   let minX, maxX;
 
   switch (char) {
-    /* fill viewport height 
-    case "eluna":
-      minX = leftEdge;
-      maxX = 0.4 * vw - wrapperWidth; // left side
-      break;
-    case "elune":
-      minX = 0.3 * vw;
-      maxX = 0.7 * vw - wrapperWidth; // middle
-      break;
-     */ 
+    // fill viewport height 
+    //case "eluna":
+    //  minX = leftEdge;
+    //  maxX = 0.4 * vw - wrapperWidth; // left side
+    //  break;
+    //case "elune":
+    //  minX = 0.3 * vw;
+    //  maxX = 0.7 * vw - wrapperWidth; // middle
+    //  break;
+     // 
     case "pet":
       minX = 0.6 * vw;
       maxX = rightEdge; // right side
@@ -12525,10 +12525,10 @@ function showRandomAvatar() {
   // 🎯 Weighted probability setup
   const weightedChars = [
     { char: "celebrity", weight: 50 },
-    /* 
-    { char: "elune", weight: 25 },
-    { char: "eluna", weight: 25 },
-    */
+    
+   // { char: "elune", weight: 25 },
+   // { char: "eluna", weight: 25 },
+    
     { char: "pet", weight: 50 }
   ];
 
@@ -12640,7 +12640,7 @@ window.addEventListener("load", () => setTimeout(showRandomAvatar, 8000)); // fi
 window.addEventListener("load", () => {
   setTimeout(() => showRandomAvatar(), 8000);
 });
-
+*/
 //#endregion 
 
 

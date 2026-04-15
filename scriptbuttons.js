@@ -6,7 +6,7 @@ let tabHistory = [];
 let currentTab = "home";
 
 // Show a section/page
-function showSection(sectionId) {
+function showSection(sectionId) { 
   if (currentTab !== sectionId) {
     if (tabHistory[tabHistory.length - 1] !== currentTab) {
       tabHistory.push(currentTab); // save previous tab
@@ -88,7 +88,7 @@ document.body.addEventListener('click', e => {
 });
 
 // ----- Define Dropdown Buttons -----
-
+/*
 // 1️⃣ Profile dropdown: Profile, Friends, Messages
 const profileDropdown = ['profile', 'local', 'friends', 'messages'];
 profileDropdown.forEach(id => {
@@ -139,7 +139,13 @@ playgroundDropdown.forEach(id => {
 });
 
 // 5️⃣ ETC dropdown: Leaderboards, Recommendations, About us, Sources
-const etcDropdown = ['recommendations', 'subscriptions', 'sources', 'aboutus', 'contactus', 'systemsettings'];
+const etcDropdown = [
+ // 'recommendations', 
+  'subscriptions', 
+ // 'sources', 
+  'aboutus', 
+  'contactus', 
+  'systemsettings'];
 etcDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
@@ -147,7 +153,7 @@ etcDropdown.forEach(id => {
     closeDropdowns();
   });
 });
-
+*/
 // =======================
 // 2️⃣ BUTTON CLICK HANDLERS
 // =======================
@@ -192,18 +198,12 @@ document.getElementById("uploadBtn")?.addEventListener('click', openMealArtUploa
 // ----- Daily Check-in / Learn Path -----
 const checkinBtn = document.getElementById('NextLessonSpoiler');
 checkinBtn?.addEventListener('click', async () => {
-  const canProceed = await checkAndHandleStreak();
-
-  if (!canProceed) return; // Stop here if streak not saved / user cancelled
-
   initDailyCheckin();
   showSection('checkin');
 });
 
 // Start Daily Check-in (same behavior as your existing button)
 document.getElementById("startCheckinBtn")?.addEventListener("click", async () => {
-  const canProceed = await checkAndHandleStreak();
-  if (!canProceed) return;
 
   // Hide homepage content
   const first = document.getElementById("homepageContentfirst");
