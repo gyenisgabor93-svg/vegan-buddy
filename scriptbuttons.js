@@ -88,13 +88,13 @@ document.body.addEventListener('click', e => {
 });
 
 // ----- Define Dropdown Buttons -----
-/*
+
 // 1️⃣ Profile dropdown: Profile, Friends, Messages
 const profileDropdown = ['profile', 'local', 'friends', 'messages'];
 profileDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
-    showSection(id);
+  //  showSection(id);
     closeDropdowns();
     clearSectionNotifications(id); 
   });
@@ -114,7 +114,7 @@ document.addEventListener('visibilitychange', () => {
 // 2️⃣ Home button (no dropdown)
 const homeBtn = document.querySelector(`button[onclick="showSection('home')"]`);
 if (homeBtn) homeBtn.addEventListener('click', () => {
-  showSection('home');
+ // showSection('home');
   closeDropdowns();
 });
 
@@ -123,7 +123,7 @@ const learnDropdown = ['learn', 'nutritiontable', 'recipes', 'mealart'];
 learnDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
-    showSection(id);
+  //  showSection(id);
     closeDropdowns();
   });
 });
@@ -133,7 +133,7 @@ const playgroundDropdown = ['leaderboards', 'achievements', 'shop', 'challenges'
 playgroundDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
-    showSection(id);
+   // showSection(id);
     closeDropdowns();
   });
 });
@@ -149,11 +149,11 @@ const etcDropdown = [
 etcDropdown.forEach(id => {
   const btn = document.querySelector(`button[onclick="showSection('${id}')"]`);
   if (btn) btn.addEventListener('click', () => {
-    showSection(id);
+  //  showSection(id);
     closeDropdowns();
   });
 });
-*/
+
 // =======================
 // 2️⃣ BUTTON CLICK HANDLERS
 // =======================
