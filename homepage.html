@@ -124,8 +124,23 @@
  </div>
 </div>
 
+<div class="impact-box">
+
+     <!--Content - new friendrequests, recommendations, new achievements, new and events in community, meal art winners - set dynamically. One of them is showed on every load/refresh
+      -->
+      <!-- Pet Onboarding -->
+<div class="pet-onboarding hidden" id="petOnboardingBox">
+  <div class="pet-onboarding-header">
+    <img id="petOnboardingPhoto" src="" alt="Pet" />
+  </div>
+
+  <div class="pet-onboarding-content" id="petOnboardingText">
+    Your pet is learning how to help you...
+  </div>
+</div>
+
       <!-- Meal-Art Contest -->
-      <div class="meal-art-winners">
+      <div class="meal-art-winners hidden" id="mealArtWinnersBox">
         <h3 id="mealArtTitle">🍽️ Meal-Art Winners This Week:</h3>
         <div class="meal-art-categories">
 
@@ -150,7 +165,7 @@
           </div>
         </div>
       </div>
-
+</div>
 <!-- Characters -->
  <!-- Characters -->
   <!-- Characters -->
@@ -177,9 +192,10 @@
     </div>
   </div>
 -->
+
   <!-- Pet 
   <div class="profile-wrapper" id="petWrapper">
-    <div class="avatar" id="petAvatar"></div>
+    <div class="avatar hidden" id="petAvatar"></div>
     <div class="thought-toggle">💭</div>
     <div id="petThought" class="thought-bubble">
       <span id="petName">Pet</span> <span id="petSays">says...</span>
@@ -187,7 +203,6 @@
       <span class="close-thought">×</span>
     </div>
   </div>-->
-
   <!-- Celebrity 
 <div class="profile-wrapper" id="celebrityWrapper">
   <img class="avatar" id="celebrityAvatar" src="" alt="Celebrity Avatar">
@@ -505,8 +520,47 @@
 </div>
     <button class="button" id="submitAndSupportBtnDCI"> ▶️ Submit & Support +2🏅 </button>
     <button class="button" id="submitBtnDCI">Submit</button>
+    <button class="button" onclick="starterSubmit()" style="display: none;" id="startSubmitBtnDCI">Submit</button>
   </div>
 </div>
+
+<div id="starterGuide" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
+
+  <div class="starter-container">
+    <h2 class="starter-title">How do you want to continue?</h2>
+
+    <div class="starter-options">
+
+      <button class="starter-btn" onclick="showSection('learn')">
+        📘 Start learning
+      </button>
+
+      <button class="starter-btn" onclick="showSection('local')">
+        👥 Check out my local community
+      </button>
+
+      <!-- Group (NOT clickable) -->
+      <div class="starter-group">
+        <div class="starter-group-title">
+          🍽️ See meals
+        </div>
+
+        <div class="starter-sub-options">
+          <button class="starter-sub-btn" onclick="showSection('recipes')">
+            📖 Recipes
+          </button>
+
+          <button class="starter-sub-btn" onclick="showSection('mealart')">
+            🎨 Meal-art contest
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
   <!-- LESSON PATH  -->
 <div id="learn" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
     <div class="learning-path-head">
@@ -1524,33 +1578,33 @@
     <span class="close-btn">&times;</span>
     <h2 id="uploadNewRecipe">Upload a New Recipe</h2>
     <form id="recipeForm">
-      <label>
+      <label id="RecipeImageuploadform">
         Recipe Image:
-        <input type="file" id="recipeImage" accept="image/*" required>
       </label>
+        <input type="file" id="recipeImage" accept="image/*" required>
       <div id="imagePreview" style="width:150px; height:150px; border:1px solid #ccc; display:none; align-items:center; justify-content:center; overflow:hidden; border-radius:10px; margin:auto; margin-bottom: 0.5rem;">
   <img id="previewImg" style="display:block;width:100%; height:100%; object-fit:cover; margin-bottom: 0.5rem;">
 </div>
       <label id="RecipeTitleuploadform">
         Title:
-        <input type="text" id="recipeTitle" required>
       </label>
+        <input type="text" id="recipeTitle" required>
       <label id="RecipePrepTimeuploadform">
         Preparation Time:
-        <input type="text" id="recipePrepTime" placeholder="e.g., 30 mins" required>
       </label> 
+        <input type="text" id="recipePrepTime" placeholder="e.g., 30 mins" required>
       <!-- Ingredients -->
       <label id="RecipeIngredientsuploadform">
         Ingredients:
-        <textarea id="recipeIngredients" placeholder="List ingredients..." maxlength="1000" required></textarea>
       </label> 
+        <textarea id="recipeIngredients" placeholder="List ingredients..." maxlength="1000" required></textarea>
       <small id="recipeIngredientsCounter">0/1000</small>
 
       <!-- Instructions -->
-      <label>
+      <label id="RecipeInstructionsuploadform">
         Instructions:
-        <textarea id="recipeInstructions" placeholder="Step by step instructions..." maxlength="1000" required></textarea>
       </label>
+        <textarea id="recipeInstructions" placeholder="Step by step instructions..." maxlength="1000" required></textarea>
       <small id="recipeInstructionsCounter">0/1000</small>
 
       <button id="UploadRecipeButton" type="submit">Upload Recipe</button>

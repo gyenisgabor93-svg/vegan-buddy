@@ -97,6 +97,7 @@ profileDropdown.forEach(id => {
   //  showSection(id);
     closeDropdowns();
     clearSectionNotifications(id); 
+    trackActivity(id); // ✅ Track which section was opened
   });
 });
 // Handle user leaving page
@@ -125,6 +126,7 @@ learnDropdown.forEach(id => {
   if (btn) btn.addEventListener('click', () => {
   //  showSection(id);
     closeDropdowns();
+    trackActivity(id); // ✅ Track which section was opened
   });
 });
 

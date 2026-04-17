@@ -343,9 +343,11 @@ deleteProfileBtn: "🗑️ Delete profile",
   mealArtIngredient: "Ingredients:",
   mealArtInstructions: "Instructions:",
   uploadNewRecipe: "Upload a New Recipe",
+  RecipeImguploadform: "Recipe Image:",
   RecipeTitleuploadform: "Title:",
   RecipePrepTimeuploadform: "Preparation Time:",
   RecipeIngredientsuploadform: "Ingredients:",
+  Recipeinstructionsuploadform: "Instructions:",
   UploadRecipeButton: "Upload Recipe",
   RecipeModalPrepTime: "Preparation time:",
   RecipeModalIngredients: "Ingredients:",
@@ -727,9 +729,11 @@ animalsSentence: "¡Has salvado 0 animales hasta ahora!",
   mealArtIngredient: "Ingredientes:",
   mealArtInstructions: "Instrucciones:",
   uploadNewRecipe: "Subir una nueva receta",
+  RecipeImguploadform: "Imagen:",
   RecipeTitleuploadform: "Título:",
   RecipePrepTimeuploadform: "Tiempo de preparación:",
   RecipeIngredientsuploadform: "Ingredientes:",
+  RecipeInstructionsuploadform: "Instrucciones:",
   UploadRecipeButton: "Subir receta",
   RecipeModalPrepTime: "Tiempo de preparación:",
   RecipeModalIngredients: "Ingredientes:",
@@ -1110,9 +1114,11 @@ deleteProfileBtn: "🗑️ Profil törlése",
   mealArtIngredient: "Hozzávalók:",
   mealArtInstructions: "Elkészítés:",
   uploadNewRecipe: "Új recept feltöltése",
+  RecipeImguploadform: "Kép:",
   RecipeTitleuploadform: "Cím:",
   RecipePrepTimeuploadform: "Elkészítési idő:",
   RecipeIngredientsuploadform: "Hozzávalók:",
+  RecipeInstructionsuploadform: "Elkészítés:",
   UploadRecipeButton: "Recept feltöltése",
   RecipeModalPrepTime: "Elkészítési idő:",
   RecipeModalIngredients: "Hozzávalók:",
@@ -1545,9 +1551,11 @@ document.getElementById("deleteProfileBtn").innerText = t.deleteProfileBtn;
 
   // Upload Recipe
   document.getElementById("uploadNewRecipe").innerText = t.uploadNewRecipe;
+  document.getElementById("RecipeImageuploadform").innerText = t.RecipeImguploadform;
   document.getElementById("RecipeTitleuploadform").innerText = t.RecipeTitleuploadform;
   document.getElementById("RecipePrepTimeuploadform").innerText = t.RecipePrepTimeuploadform;
   document.getElementById("RecipeIngredientsuploadform").innerText = t.RecipeIngredientsuploadform;
+  document.getElementById("RecipeInstructionsuploadform").innerText = t.RecipeInstructionsuploadform;
   document.getElementById("UploadRecipeButton").innerText = t.UploadRecipeButton;
 
   // Recipe Modal
@@ -2397,12 +2405,128 @@ function getNextLessonFromPool(profile) {
 
   return { lesson: nextLesson, usedFallback: false };
 }
+async function setNewsBox() {
 
+  const steps = [
+    onBoardRecommendation,
+    loadWinnersFromData
+  ];
+
+for (const step of steps) {
+    const result = await step();
+
+    // STOP the whole flow if a step says so
+    if (result === "STOP") return;
+
+    // optional: skip remaining steps but continue default logic
+    if (result === "SKIP_REST") break;
+  }
+
+  // fallback (always runs if not stopped earlier)
+  defaultCase(context);
+}
+
+async function onBoardRecommendation(ctx) {console.log("Running onboarding recommendation check...");
+
+  const day = currentProfile.day_counter;
+
+  if (day <= 1 || day >= 5) {
+    return; // not applicable, continue flow
+  }
+
+  const undiscovered = getUndiscoveredSections();
+  const visitDate = localStorage.getItem("visitDate");
+  const today = new Date().toISOString().split("T")[0];
+
+  // already shown today → stop full flow
+  if (visitDate === today) {
+    return;
+  }
+
+  let didRecommend = false;
+
+  if (undiscovered.length > 0 && !visitDate) {
+
+    const priority = ["learn", "local", "mealart"];
+
+    const sectionToRecommend = priority.find(section =>
+      undiscovered.includes(section)
+    );
+
+    if (sectionToRecommend) {
+      recommendSection(sectionToRecommend);
+      didRecommend = true;
+    }
+  }
+
+  const box = document.getElementById("petOnboardingBox");
+  if (box) box.classList.remove("hidden");
+
+  // if onboarding successfully ran → stop everything else
+  if (didRecommend || box) {
+    return "STOP";
+  }
+}
+async function loadWinnersFromData(ctx) {console.log("Checking for meal art winners...");
+
+  if (!currentMeals || currentMeals.length === 0) return;
+
+  function getLatestWinner(isPro) {
+    return currentMeals
+      .filter(meal => meal.is_winner && meal.is_pro === isPro)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0] || null;
+  }
+
+  const amateurWinner = getLatestWinner(false);
+  const proWinner = getLatestWinner(true);
+
+  let didRender = false;
+
+  if (amateurWinner) {
+    document.getElementById("amateurName").textContent = amateurWinner.uploader_name;
+    document.getElementById("amateurImage").src = amateurWinner.image_url;
+    document.getElementById("amateurImagePopup").src = amateurWinner.image_url;
+
+    setupMealArtImage(
+      "amateurImage",
+      ".recipe-badge",
+      amateurWinner,
+      "popupAmateur"
+    );
+
+    didRender = true;
+  }
+
+  if (proWinner) {
+    document.getElementById("proName").textContent = proWinner.uploader_name;
+    document.getElementById("proImage").src = proWinner.image_url;
+    document.getElementById("proImagePopup").src = proWinner.image_url;
+
+    setupMealArtImage(
+      "proImage",
+      ".recipe-badge",
+      proWinner,
+      "popupProfessional"
+    );
+
+    didRender = true;
+  }
+
+  const el = document.querySelector(".meal-art-winners");
+  if (el) el.classList.remove("hidden");
+
+  // if winners were shown → stop flow
+  if (didRender) {
+    return "STOP";
+  }
+}
 //--------------------------
 // WINNERS (from currentMeals)
 //--------------------------
+/*
 function loadWinnersFromData() {
   if (!currentMeals || currentMeals.length === 0) return;
+
 
   // Helper to find latest winner by type
   function getLatestWinner(isPro) {
@@ -2440,30 +2564,14 @@ function loadWinnersFromData() {
   "popupProfessional"
 );
 }
-}
+const el = document.querySelector(".meal-art-winners");
 
+  if (el) el.classList.remove("hidden");
+}
+*/
 //#endregion
 
 //#region HELPERS
-
-async function handleEarlyUserUI(currentProfile) {
-  const shouldHide = currentProfile.day_counter < 4;
-
-  const elementsToToggle = [
-    "currentLevel",
-    "currentLevelSpan",
-    "levelBar",
-    "playgroundDropdown",
-    "subscriptionsBtn"
-  ];
-
-  elementsToToggle.forEach((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    el.style.display = shouldHide ? "none" : "";
-  });
-}
 
 function hideGlobalLoader() {
   const loader = document.getElementById("globalLoader");
@@ -3034,14 +3142,17 @@ function makePreview(text, maxLength = 20) {
 
 const submitBtn = document.getElementById("submitBtnDCI");
 const submitSupportBtn = document.getElementById("submitAndSupportBtnDCI");
+const starterSubmitBtn = document.getElementById("startSubmitBtnDCI");
 
 function disableDailyCheckinButtons() {
     submitBtn.disabled = true;
     submitSupportBtn.disabled = true;
+    starterSubmitBtn.disabled = true;
 }
 function enableDailyCheckinButtons() {
     submitBtn.disabled = false;
     submitSupportBtn.disabled = false;
+    starterSubmitBtn.disabled = false;
 }
 
 async function monitorDailyXP() {
@@ -4096,6 +4207,7 @@ function validateMeal() {
 function updateCheckinButtons() {
   const submitBtn = document.getElementById("submitBtnDCI");
   const finalBtn = document.getElementById("submitAndSupportBtnDCI");
+  const startBtn = document.getElementById("startSubmitBtnDCI");
 
   const btn1 = document.getElementById("nextDCI1");
   const btn2 = document.getElementById("nextDCI2");
@@ -4124,11 +4236,14 @@ function updateCheckinButtons() {
 
   return;
 }
-  if (checkinStep === 4) {
+  if (checkinStep === 4 && currentProfile.day_counter > 0) {
     renderStep4();
     if (submitBtn) submitBtn.style.display = "block";
     if (finalBtn) finalBtn.style.display = "block";
-  }
+  } else if (checkinStep === 4 && currentProfile.day_counter === 0) {
+    renderStep4();
+    if (startBtn) startBtn.style.display = "block";
+}
 }
 
 function renderStep4() {
@@ -5249,12 +5364,15 @@ async function loadRecipes() {
   const { data: userData } = await supabase.auth.getUser();
   const userId = userData?.user?.id;
 
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+
   if (!userId) return; // user not logged in
 
   // 1️⃣ Fetch full recipes table
   const { data: recipes, error: recipesError } = await supabase
     .from("recipes")
-    .select("id, user_id, title, description, image_url, created_at, ingredients, prep_time");
+    .select("id, user_id, title, description, image_url, created_at, ingredients, prep_time")
+    .eq("lang", lang);;
 
   if (recipesError) return console.error("Error fetching recipes:", recipesError);
 
@@ -5507,6 +5625,9 @@ function setupRecipeUploadForm() {
       .from("recipes")
       .getPublicUrl(filePath);
 
+
+  const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
+
     const { error: insertError } = await supabase
       .from("recipes")
       .insert({
@@ -5515,7 +5636,8 @@ function setupRecipeUploadForm() {
         prep_time: prepTime,
         ingredients,
         description: instructions,
-        image_url: data.publicUrl
+        image_url: data.publicUrl,
+        lang: lang
       });
 
     if (insertError) throw insertError;
@@ -10544,7 +10666,8 @@ document.addEventListener("DOMContentLoaded", async () => {
        ========================= */
     await Promise.all([
       initExtraLessons(),
-      loadWinnersFromData(),
+    //  loadWinnersFromData(),
+      setNewsBox(),
       initHealthPaths(),
       loadRecipes(),
       loadFriendsTab()
@@ -10739,7 +10862,7 @@ requestIdle(async () => {
 
 //#endregion
 
-//#region Pet Guide
+//#region OnBoarding
 
 
 const characterTips = {
@@ -11365,6 +11488,206 @@ function showPetMessage(html) {
 
   // Optional: reset scroll if long content
   box.scrollTop = 0;
+}
+
+window.starterSubmit = async function starterSubmit() {
+
+  showSection("starterGuide");
+
+  const todayLessonId = todayLessonIndex;
+
+if (!todayLesson) { alert(dailyCheckinT("noLessonToday")); return false; }
+
+let mealValue = 0;
+
+// 1.
+  const mealAnswer = document.querySelector('input[name="mealsDCI"]:checked');
+  if (!mealAnswer) {
+    alert(dailyCheckinT("selectMeal"));
+    return false;
+  }
+  mealValue = parseInt(mealAnswer.value);
+
+  const impactIncrement = calculateImpact(mealValue);
+  const badgeIncrement = mealValue === 4 ? 5 : 0;
+
+  // Update currentProfile
+  currentProfile.day_counter += 1;
+  currentProfile.streak = (currentProfile.streak || 0) + 1;
+  await addXP(20);
+  await addBadges(currentUser.id,badgeIncrement);
+
+  // Store progress using lesson index from LessonsByIndex
+  if (!currentProfile.lesson_progress) currentProfile.lesson_progress = [];
+  if (!currentProfile.completed_lessons) currentProfile.completed_lessons = [];
+
+  if (!currentProfile.completed_lessons.includes(todayLessonId)) {
+  currentProfile.completed_lessons.push(todayLessonId);
+  currentProfile.lesson_progress.push(todayLessonId);
+}
+
+// Save last lesson using the lesson ID
+currentProfile.last_lesson = { goal: todayGoal, lessonId: todayLessonId };
+
+  currentProfile.animals_saved = (currentProfile.animals_saved || 0) + impactIncrement.animals_saved;
+  currentProfile.forest_saved = (currentProfile.forest_saved || 0) + impactIncrement.forest_saved;
+  currentProfile.water_saved = (currentProfile.water_saved || 0) + impactIncrement.water_saved;
+  currentProfile.co2_saved = (currentProfile.co2_saved || 0) + impactIncrement.co2_saved;
+  currentProfile.last_checkin_date = new Date().toISOString().split("T")[0];
+
+  // Update Supabase
+  // Destructure XP-related fields OUT of the update payload
+const {
+  total_xp,
+  xp_today,
+  xp_fraction,
+  current_level,
+  ...profileWithoutXp
+} = currentProfile;
+
+// Update profile WITHOUT XP fields
+const { error: updateError } = await supabase
+  .from("profiles")
+  .update(profileWithoutXp)
+  .eq("id", currentProfile.id);
+
+  if (updateError) {
+  console.error("Profile update failed:", updateError);
+  enableDailyCheckinButtons(); // ✅ Re-enable buttons so user can retry
+  return false;                 // stop further execution
+}
+
+document.getElementById("streak-counter").textContent = 1;
+document.getElementById("streak-counterprofile").textContent = 1;
+
+const streakFire = document.querySelector("#streak .fire");
+streakFire.classList.remove("inactive");
+streakFire.textContent = "🔥"; // normal fire emoji
+streakFire.setAttribute("title", initT("streakActive"));
+/*
+  // Refresh homepage
+  const { profile, globalImpact: fetchedImpact } = await fetchAllData();
+  await renderProfile();
+  await injectComparisonSentences(profile);
+
+  // Hide Daily Check-in, show home
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("topBar").classList.remove("hidden");
+  document.getElementById("dailycheck-in")?.classList.add("hidden");
+  document.getElementById("learn")?.classList.add("hidden");
+
+
+  document.getElementById("homepageContentfirst").style.visibility = "hidden";
+  document.getElementById("homepageContentsecond").style.visibility = "visible";
+  */
+  return true;
+}
+
+
+async function handleEarlyUserUI(currentProfile) {
+
+  if (currentProfile.day_counter > 4) return;
+
+  const shouldHide = currentProfile.day_counter < 4;
+
+  const elementsToToggle = [
+    "currentLevel",
+    "currentLevelSpan",
+    "levelBar",
+    "playgroundDropdown",
+    "subscriptionsBtn"
+  ];
+
+  elementsToToggle.forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.style.display = shouldHide ? "none" : "";
+  });
+
+}
+
+  window.trackActivity = function (sectionId) {
+  // 🛑 Stop tracking after day 4
+  if (currentProfile.day_counter > 4) return;
+
+  const onboardingSections = ["learn", "local", "mealart"];
+
+  // 📦 Get visited sections
+  let visited = JSON.parse(localStorage.getItem("visitedSections")) || [];
+
+  const isNewVisit = !visited.includes(sectionId);
+
+  // ✅ Add section if new
+  if (isNewVisit) {
+    visited.push(sectionId);
+    localStorage.setItem("visitedSections", JSON.stringify(visited));
+  }
+
+  // 🎯 ONLY set visitDate if:
+  // - it's onboarding section
+  // - AND it's the first time visiting it
+  if (onboardingSections.includes(sectionId) && isNewVisit) {
+    localStorage.setItem(
+      "visitDate",
+      new Date().toISOString().split("T")[0]
+    );
+  }
+
+  // 🔄 trigger flow
+  setNewsBox();
+
+  const box = document.getElementById("petOnboardingBox");
+  if (box) box.classList.add("hidden");
+};
+
+function getUndiscoveredSections() {
+  const allSections = ["learn", "local", "mealart"];
+
+  const visited = JSON.parse(localStorage.getItem("visitedSections")) || [];
+
+  return allSections.filter(section => !visited.includes(section));
+}
+
+function recommendSection(sectionId) {
+
+  const visitDate = localStorage.getItem("visitDate"); // Optional: can be used to show "You visited X yesterday, how about Y today?"
+  const today = new Date().toISOString().split("T")[0];
+
+  if (visitDate === today) return;
+
+  const message = generateRecommendationMessage(sectionId);
+
+  updatePetOnboarding(message);
+}
+
+function generateRecommendationMessage(section) {
+  const messages = {
+    learn: "Want to discover something new today? Your learning adventure awaits! 📚",
+    local: "Your community is waiting for you 🐾",
+    mealart: "Try creating something beautiful with food! See the Meal Art section for inspiration 🍽️",
+  };
+
+  return messages[section] || "Explore something new today!";
+}
+
+function updatePetOnboarding(message) {
+ // const box = document.getElementById("petOnboardingBox");
+  const text = document.getElementById("petOnboardingText");
+  const photo = document.getElementById("petOnboardingPhoto");
+
+  if (  // !box || 
+    !text || !photo) return;
+
+  // 💬 message
+  text.innerHTML = message;
+
+  // 🐾 pet image
+  photo.src = currentProfile.pet_photo || "default-pet.jpg";
+
+  // show box
+ // box.classList.remove("hidden");
+
 }
 
 //#endregion
