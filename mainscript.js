@@ -1893,7 +1893,8 @@ async function fetchAllData() {
       last_checkin_date, goals, health_issues, badge, day_counter, goal_progress,
       is_pro, diet_preference, last_lesson, health_progress, extra_lesson,
       completed_health_issues, lesson_progress, achievements, title,
-      bought_items, xp_today, friend_code, survey_completed, name, completed_lessons, pending_streak_action`)
+      bought_items, xp_today, friend_code, survey_completed, name, completed_lessons, 
+      pending_streak_action, vegan_days`)
     .eq("id", user.id)
     .single();
   if (profileError) return console.error("Error fetching profile:", profileError);
@@ -2405,10 +2406,12 @@ function getNextLessonFromPool(profile) {
 
   return { lesson: nextLesson, usedFallback: false };
 }
+
 async function setNewsBox() {
 
   const steps = [
     onBoardRecommendation,
+    upcomingevent,
     loadWinnersFromData
   ];
 
@@ -2417,16 +2420,13 @@ for (const step of steps) {
 
     // STOP the whole flow if a step says so
     if (result === "STOP") return;
-
-    // optional: skip remaining steps but continue default logic
-    if (result === "SKIP_REST") break;
   }
 
   // fallback (always runs if not stopped earlier)
-  defaultCase(context);
+  defaultCase();
 }
 
-async function onBoardRecommendation(ctx) {console.log("Running onboarding recommendation check...");
+async function onBoardRecommendation(ctx) {
 
   const day = currentProfile.day_counter;
 
@@ -2467,7 +2467,90 @@ async function onBoardRecommendation(ctx) {console.log("Running onboarding recom
     return "STOP";
   }
 }
-async function loadWinnersFromData(ctx) {console.log("Checking for meal art winners...");
+
+async function upcomingevent() {
+
+  let locationId = window.currentCommunityLocationId;
+
+  // If not available yet → fetch it here
+  if (!locationId) {
+
+    const { data: participant, error } = await supabase
+      .from("community_participants")
+      .select("location_id")
+      .eq("user_id", currentUser.id)
+      .maybeSingle();
+
+    if (error || !participant) {
+      return;
+    }
+
+    locationId = participant.location_id;
+    window.currentCommunityLocationId = locationId;
+
+  }
+  let events = window.communityEventsGlobal;
+
+if (!events) {
+
+  const locationId = window.currentCommunityLocationId;
+  if (!locationId) return;
+
+  const { data, error } = await supabase
+    .from("community_events")
+    .select("id, location_id, place, description, event_date, user_id, username")
+    .eq("location_id", locationId)
+    .order("event_date", { ascending: true });
+
+  if (error || !data) {
+    return;
+  }
+
+  events = data;
+  window.communityEventsGlobal = data;
+}
+
+  const now = new Date();
+  const today = now.toISOString().split("T")[0];
+
+  const tomorrowDate = new Date(now);
+  tomorrowDate.setDate(now.getDate() + 1);
+  const tomorrow = tomorrowDate.toISOString().split("T")[0];
+
+  const event =
+    events.find(e => e.event_date.startsWith(today)) ||
+    events.find(e => e.event_date.startsWith(tomorrow));
+
+  if (!event) {
+    return;
+  }
+
+  const box = document.getElementById("petOnboardingBox");
+  const textEl = document.getElementById("petOnboardingText");
+  const photoEl = document.getElementById("petOnboardingPhoto");
+
+  if (!box || !textEl || !photoEl) {
+    return;
+  }
+
+  box.classList.remove("hidden");
+
+  photoEl.src = currentProfile.pet_photo || "default-pet.jpg";
+
+  const when = event.event_date.startsWith(today)
+    ? "today"
+    : "tomorrow";
+
+  const message = `📍 Community event ${when}: ${event.place} — ${event.description}`;
+
+  textEl.textContent = message;
+
+  return "STOP";
+}
+
+async function loadWinnersFromData(ctx) {
+  const todayUTC = new Date().getUTCDay(); // 0 = Sunday, 1 = Monday, etc.
+  if (todayUTC !== 1 && todayUTC !== 2 && todayUTC !== 3) return; // only run on tuesday and wednesday
 
   if (!currentMeals || currentMeals.length === 0) return;
 
@@ -2520,6 +2603,350 @@ async function loadWinnersFromData(ctx) {console.log("Checking for meal art winn
     return "STOP";
   }
 }
+
+
+
+//--------------------------
+// DEFAULT CASE - RANDOM STAT OR WINNER
+//--------------------------
+function defaultCase(ctx) {
+  const box = document.getElementById("petOnboardingBox");
+  const textEl = document.getElementById("petOnboardingText");
+  const photoEl = document.getElementById("petOnboardingPhoto");
+
+  if (!box || !textEl || !photoEl) return;
+
+  // Show the box
+  box.classList.remove("hidden");
+
+  // Optional: set a pet image (fallback if none)
+  photoEl.src = currentProfile.pet_photo || "default-pet.jpg";
+
+  // --- Pick random stat ---
+  const stats = [
+    {
+      key: "animals_saved",
+      label: "animals",
+      value: currentProfile.animals_saved,
+      message: (v) => `That’s like protecting ${v} lives 🐾`
+    },
+    {
+      key: "co2_saved",
+      label: "CO₂",
+      value: currentProfile.co2_saved,
+      message: (v) => `That’s like driving ${Math.round(v / 0.2)} km less 🚗`
+    },
+    {
+      key: "water_saved",
+      label: "water",
+      value: currentProfile.water_saved,
+      message: (v) => `That’s like saving ${Math.round(v / 100)} showers 🚿`
+    },
+    {
+      key: "forest_saved",
+      label: "forest",
+      value: currentProfile.forest_saved,
+      message: (v) => `That’s like protecting ${Math.round(v * 10)} m² of forest 🌳`
+    },
+    {
+  key: "consistency",
+  value: currentProfile.vegan_days,
+  message: () => {
+    const total = currentProfile.day_counter;
+    const vegan = currentProfile.vegan_days;
+
+    if (!total || total < 5) return null; // avoid early noise
+
+    const percentage = Math.round((vegan / total) * 100);
+
+    if (percentage >= 90) {
+      return `${vegan} days fully plant-based out of ${total}? You’re absolutely crushing it 🔥`;
+    } else if (percentage >= 70) {
+      return `${vegan} out of ${total} days fully plant-based — that’s strong consistency 💪`;
+    } else if (percentage >= 40) {
+      return `${vegan} plant-based days so far — you’re building something real 🌱`;
+    } else {
+      return `${vegan} plant-based days — every step counts, keep going 🌿`;
+    }
+  }
+},
+{
+  key: "meal_winners",
+  value: (currentMeals || []).length, // just to pass validation
+  message: () => {
+    const getLatestWinner = (isPro) => {
+      return (currentMeals || [])
+        .filter(m => m.is_winner && m.is_pro === isPro)
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0] || null;
+    };
+
+    const amateur = getLatestWinner(false);
+    const pro = getLatestWinner(true);
+
+    if (!amateur && !pro) return null;
+
+    const winner = Math.random() > 0.5 ? pro : amateur;
+
+    if (!winner) return null;
+
+    return `🍽️ Latest Meal-Art winner: ${winner.uploader_name} created something amazing!`;
+  }
+}
+  ];
+
+  const randomStat = stats[Math.floor(Math.random() * stats.length)];
+
+  // Avoid showing empty stats
+  if (!randomStat.value || randomStat.value <= 0) {
+    textEl.textContent = "Your journey is just starting… 🌱";
+    return;
+  }
+
+  // --- Build message ---
+  const comparison = randomStat.message?.(randomStat.value) || null;
+
+// If message returns null → fallback safely
+if (!comparison) {
+  textEl.textContent = "Your journey is just starting… 🌱";
+  return;
+}
+
+// Special case for winners (no "So far you have saved..." prefix)
+if (randomStat.key === "meal_winners") {
+  textEl.textContent = `${comparison} Check out the Meal-Art box 🍽️`;
+  return;
+}
+// Consistency special case 
+if (randomStat.key === "consistency") {
+  textEl.textContent = `${comparison} 🐾`;
+  return;
+}
+
+const main = `So far you have saved ${randomStat.value} ${randomStat.label}.`;
+textEl.textContent = `${main} ${comparison} Keep it up! 🐶`;
+}
+//--------------------------
+// SUGGGESTIONS & ACHIEVEMENTS TOASTS
+//--------------------------
+const toastQueue = [];
+let toastShowing = false;
+
+function showProgressSuggestion(message, petPhotoUrl) {
+  if (!message) return; // ← ignore empty messages
+  if (currentProfile.day_counter < 5) return; // ← only show after day 5 to avoid overwhelming new users
+  // Push new toast into queue
+  toastQueue.push({ message, petPhotoUrl });
+
+  // Try to show the next toast
+  showNextToast();
+}
+
+function showNextToast() {
+  if (toastShowing) return; // Already showing a toast
+  if (toastQueue.length === 0) return; // Nothing to show
+
+  const { message, petPhotoUrl } = toastQueue.shift();
+  toastShowing = true;
+
+  const banner = document.createElement("div");
+  banner.className = "toast-suggestion";
+
+  // Pet image
+  const petImg = document.createElement("img");
+  petImg.src = petPhotoUrl || "default-pet.jpg";
+  petImg.alt = "Pet";
+  petImg.className = "toast-pet";
+
+  // Message
+  const textSpan = document.createElement("span");
+  textSpan.textContent = message;
+
+  const impactBox = document.querySelector(".newsBox");
+if (!impactBox) return;
+
+  banner.appendChild(petImg);
+  banner.appendChild(textSpan);
+  impactBox.appendChild(banner);
+
+  // Slide-in
+  requestAnimationFrame(() => {
+    banner.classList.add("show");
+  });
+
+  // Auto-hide after 6 seconds
+  setTimeout(() => {
+    banner.classList.remove("show");
+    banner.classList.add("fade-out");
+    setTimeout(() => {
+      banner.remove();
+      toastShowing = false;
+
+      // Small 0.5s gap before showing the next toast
+      setTimeout(() => {
+        showNextToast();
+      }, 500);
+
+    }, 600); // match your fade-out duration
+  }, 6000);
+}
+
+async function checkAchievementSuggestions() {
+  if (!currentProfile?.id) return;
+
+  // Fetch achievements data
+  const { data, error } = await supabase
+    .from("achievements_data")
+    .select("animals_saved, events_organized, meal_art_wins, animal_path, earth_path, health_path")
+    .eq("user_id", currentProfile.id)
+    .single();
+
+  if (error) {
+    console.error("Error fetching achievements_data:", error);
+    return;
+  }
+
+  const achievementsList = currentProfile.achievements || [];
+
+  // ---- ANIMAL SAVER ACHIEVEMENT ----
+if (data.animals_saved >= 100 && !achievementsList.includes("Animal Saver")) {
+  showProgressSuggestion(
+    achievementT("animalSaverDone"),
+    currentProfile.pet_photo
+  );
+}
+
+  // ---- EVENT ORGANISER ACHIEVEMENT ----
+  if (data.events_organized >= 1 && !achievementsList.includes("Local Patriot")) {
+    showProgressSuggestion(
+      achievementT("firstEvent"),
+      currentProfile.pet_photo
+    );
+  }
+
+  // ---- MEAL ART WIN ACHIEVEMENT ----
+  if (data.meal_art_wins >= 1 && !achievementsList.includes("Expert Vegan Chef")) {
+    showProgressSuggestion(
+      achievementT("mealArtWin"),
+      currentProfile.pet_photo
+    );
+  }
+
+  // ---- ANIMAL PATH ----
+  if (data.animal_path === 1 && !achievementsList.includes("Voice for the Voiceless")) {
+    showProgressSuggestion(
+      achievementT("animalPathDone"),
+      currentProfile.pet_photo
+    );
+  }
+
+  // ---- EARTH PATH ----
+  if (data.earth_path === 1 && !achievementsList.includes("Planet Protector")) {
+    showProgressSuggestion(
+      achievementT("earthPathDone"),
+      currentProfile.pet_photo
+    );
+  }
+
+  // ---- HEALTH PATH ----
+  if (data.health_path === 1 && !achievementsList.includes("Strong From Plants")) {
+    showProgressSuggestion(
+      achievementT("healthPathDone"),
+      currentProfile.pet_photo
+    );
+  }
+
+  // ---- ALL PATHS ----
+  if (
+    data.animal_path === 1 &&
+    data.earth_path === 1 &&
+    data.health_path === 1 &&
+    !achievementsList.includes("Enlightened One")
+  ) {
+    showProgressSuggestion(
+      achievementT("allPathsDone"),
+      currentProfile.pet_photo
+    );
+  } 
+}
+
+
+async function monitorDailyXP() {
+  if (!currentUser?.id) return;
+  const petPhotoUrl = currentProfile.pet_photo || "default-pet.jpg";
+
+  const { data: xpData, error: xpError } = await supabase
+    .from("profiles")
+    .select("xp_today")
+    .eq("id", currentUser.id)
+    .single();
+
+  if (xpError || !xpData) return;
+
+  const xpToday = xpData.xp_today || 0;
+  const xpGoal = 50;
+  const claimed = await isClaimed(currentUser.id, "daily_xp");
+
+  if (claimed) return; // ✅ Don't show if reward claimed
+
+  const lastShownKey = `dailyXPLastShown_${currentUser.id}`;
+  const lastShown = parseInt(localStorage.getItem(lastShownKey)) || 0;
+  const now = Date.now();
+
+  let message = "";
+
+  if (xpToday >= xpGoal && now - lastShown > 10_000) {
+    message = helperT("dailyXPComplete"); // always show complete
+  } else if (xpToday >= 20 && now - lastShown > 180_000) {
+    const remaining = xpGoal - xpToday;
+    message = helperT("dailyXPProgress", { xpToday, xpGoal, remaining });
+
+    // Update last shown for progress throttling
+    localStorage.setItem(lastShownKey, now.toString());
+  }
+
+  if (message) showProgressSuggestion(message, petPhotoUrl);
+}
+
+async function monitorDailyLesson() {
+  if (!currentUser?.id) return;
+  const petPhotoUrl = currentProfile.pet_photo || "default-pet.jpg";
+
+  const { data: learnData, error: learnError } = await supabase
+    .from("lessons_daily")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .eq("date", todayUTC())
+    .maybeSingle();
+
+  if (learnError || !learnData) return;
+
+  const lessons = ["animal", "earth", "health"];
+  const doneCount = lessons.filter(l => learnData[l]).length;
+  const total = lessons.length;
+  const claimed = await isClaimed(currentUser.id, "learn");
+
+  if (claimed) return; // ✅ Don't show if reward claimed
+
+  const lastShownKey = `dailyLessonsLastShown_${currentUser.id}`;
+  const lastShown = parseInt(localStorage.getItem(lastShownKey)) || 0;
+  const now = Date.now();
+
+  let message = "";
+
+  if (doneCount === total && now - lastShown > 10_000) {
+    message = helperT("lessonsComplete"); // always show complete
+  } else if (now - lastShown > 120_000) {
+    const remaining = total - doneCount;
+    message = helperT("lessonsProgress", { doneCount, total, remaining });
+
+    // Update last shown for progress throttling
+    localStorage.setItem(lastShownKey, now.toString());
+  }
+
+  if (message) showProgressSuggestion(message, petPhotoUrl);
+}
+
+
 //--------------------------
 // WINNERS (from currentMeals)
 //--------------------------
@@ -3007,65 +3434,6 @@ async function addBadges(userId, amount) {
   updateFinishButtonState(); // Update finish button state in case badges were added for streak saving
 }
 
-const toastQueue = [];
-let toastShowing = false;
-
-function showProgressSuggestion(message, petPhotoUrl) {
-  if (!message) return; // ← ignore empty messages
-  if (currentProfile.day_counter < 5) return; // ← only show after day 5 to avoid overwhelming new users
-  // Push new toast into queue
-  toastQueue.push({ message, petPhotoUrl });
-
-  // Try to show the next toast
-  showNextToast();
-}
-
-function showNextToast() {
-  if (toastShowing) return; // Already showing a toast
-  if (toastQueue.length === 0) return; // Nothing to show
-
-  const { message, petPhotoUrl } = toastQueue.shift();
-  toastShowing = true;
-
-  const banner = document.createElement("div");
-  banner.className = "toast-suggestion";
-
-  // Pet image
-  const petImg = document.createElement("img");
-  petImg.src = petPhotoUrl || "default-pet.jpg";
-  petImg.alt = "Pet";
-  petImg.className = "toast-pet";
-
-  // Message
-  const textSpan = document.createElement("span");
-  textSpan.textContent = message;
-
-  banner.appendChild(petImg);
-  banner.appendChild(textSpan);
-  document.body.appendChild(banner);
-
-  // Slide-in
-  requestAnimationFrame(() => {
-    banner.classList.add("show");
-  });
-
-  // Auto-hide after 6 seconds
-  setTimeout(() => {
-    banner.classList.remove("show");
-    banner.classList.add("fade-out");
-    setTimeout(() => {
-      banner.remove();
-      toastShowing = false;
-
-      // Small 0.5s gap before showing the next toast
-      setTimeout(() => {
-        showNextToast();
-      }, 500);
-
-    }, 600); // match your fade-out duration
-  }, 6000);
-}
-
 
 // Helper function to attach a live character counter
 function attachCharCounter(inputId, counterId, maxLength, warningThreshold = 0.9, showThreshold = 0.7) {
@@ -3153,82 +3521,6 @@ function enableDailyCheckinButtons() {
     submitBtn.disabled = false;
     submitSupportBtn.disabled = false;
     starterSubmitBtn.disabled = false;
-}
-
-async function monitorDailyXP() {
-  if (!currentUser?.id) return;
-  const petPhotoUrl = currentProfile.pet_photo || "default-pet.jpg";
-
-  const { data: xpData, error: xpError } = await supabase
-    .from("profiles")
-    .select("xp_today")
-    .eq("id", currentUser.id)
-    .single();
-
-  if (xpError || !xpData) return;
-
-  const xpToday = xpData.xp_today || 0;
-  const xpGoal = 50;
-  const claimed = await isClaimed(currentUser.id, "daily_xp");
-
-  if (claimed) return; // ✅ Don't show if reward claimed
-
-  const lastShownKey = `dailyXPLastShown_${currentUser.id}`;
-  const lastShown = parseInt(localStorage.getItem(lastShownKey)) || 0;
-  const now = Date.now();
-
-  let message = "";
-
-  if (xpToday >= xpGoal && now - lastShown > 10_000) {
-    message = helperT("dailyXPComplete"); // always show complete
-  } else if (xpToday >= 20 && now - lastShown > 180_000) {
-    const remaining = xpGoal - xpToday;
-    message = helperT("dailyXPProgress", { xpToday, xpGoal, remaining });
-
-    // Update last shown for progress throttling
-    localStorage.setItem(lastShownKey, now.toString());
-  }
-
-  if (message) showProgressSuggestion(message, petPhotoUrl);
-}
-
-async function monitorDailyLesson() {
-  if (!currentUser?.id) return;
-  const petPhotoUrl = currentProfile.pet_photo || "default-pet.jpg";
-
-  const { data: learnData, error: learnError } = await supabase
-    .from("lessons_daily")
-    .select("*")
-    .eq("user_id", currentUser.id)
-    .eq("date", todayUTC())
-    .maybeSingle();
-
-  if (learnError || !learnData) return;
-
-  const lessons = ["animal", "earth", "health"];
-  const doneCount = lessons.filter(l => learnData[l]).length;
-  const total = lessons.length;
-  const claimed = await isClaimed(currentUser.id, "learn");
-
-  if (claimed) return; // ✅ Don't show if reward claimed
-
-  const lastShownKey = `dailyLessonsLastShown_${currentUser.id}`;
-  const lastShown = parseInt(localStorage.getItem(lastShownKey)) || 0;
-  const now = Date.now();
-
-  let message = "";
-
-  if (doneCount === total && now - lastShown > 10_000) {
-    message = helperT("lessonsComplete"); // always show complete
-  } else if (now - lastShown > 120_000) {
-    const remaining = total - doneCount;
-    message = helperT("lessonsProgress", { doneCount, total, remaining });
-
-    // Update last shown for progress throttling
-    localStorage.setItem(lastShownKey, now.toString());
-  }
-
-  if (message) showProgressSuggestion(message, petPhotoUrl);
 }
 
 //#endregion
@@ -4544,6 +4836,9 @@ else {
   // Update currentProfile
   currentProfile.day_counter += 1;
   currentProfile.streak = (currentProfile.streak || 0) + 1;
+  if (mealValue === 4) {
+  currentProfile.vegan_days = (currentProfile.vegan_days || 0) + 1;
+}
   await addXP(20);
   await addBadges(currentUser.id,badgeIncrement);
 
@@ -5205,9 +5500,9 @@ async function saveExtraLessonProgress() {
 
   await addXP(5);
 
-  if ((currentProfile.xp_today || 0) === 50) {
-    showProgressSuggestion(learnPathT("xpChallengeDone"), currentProfile.pet_photo);
-  }
+ // if ((currentProfile.xp_today || 0) === 50) {
+ //   showProgressSuggestion(learnPathT("xpChallengeDone"), currentProfile.pet_photo);
+ // }
 
   await fetchLeaderboard("xp", "overall-level");
   await loadDailyXpChallenge(currentUser.id);
@@ -7177,19 +7472,13 @@ async function loadLocations() {
 async function loadUserCommunity(currentUser) {
   if (!currentUser) return;
 
-  const { data: participant, error } = await supabase
-    .from("community_participants")
-    .select("id, location_id")
-    .eq("user_id", currentUser.id)
-    .maybeSingle();
-
-  if (error) return console.error(error);
-
-  if (participant) {
+  const locationId = window.currentCommunityLocationId;
+  if (!locationId) return;
+  
     const { data: location, error: locationError } = await supabase
       .from("locations")
       .select("country, city")
-      .eq("id", participant.location_id)
+      .eq("id", locationId)
       .single();
 
     if (locationError) return console.error(locationError);
@@ -7199,9 +7488,9 @@ async function loadUserCommunity(currentUser) {
     document.getElementById("leaveCommunityBtn").style.display = "inline-block";
     document.getElementById("joinCommunityBtn").style.display = "none";
 
-    await showCommunityDashboard(participant.location_id, locationName);
+    await showCommunityDashboard(locationId, locationName);
   }
-}
+
 
 // ----------------------------
 // Show community dashboard
@@ -7588,17 +7877,29 @@ document.getElementById("leaveCommunityDashboardBtn").addEventListener("click", 
 // Community events
 // ----------------------------
 async function loadCommunityEvents(locationId) {
-  // 1️⃣ Fetch all events
-  const { data: events, error: eventsError } = await supabase
+  let events;
+
+if (window.communityEventsGlobal && window.currentCommunityLocationId === locationId) {
+
+  events = window.communityEventsGlobal;
+
+} else {
+
+  const { data, error: eventsError } = await supabase
     .from("community_events")
     .select("id, location_id, place, description, event_date, user_id, username")
     .eq("location_id", locationId)
     .order("event_date", { ascending: true });
 
   if (eventsError) {
-    console.error("Error loading community events:", eventsError);
     return;
   }
+
+  events = data;
+
+  window.communityEventsGlobal = events;
+  window.currentCommunityLocationId = locationId;
+}
 
   // 2️⃣ Fetch all participants for events at once
   const { data: allParticipants, error: participantsError } = await supabase
@@ -7609,6 +7910,7 @@ async function loadCommunityEvents(locationId) {
   if (participantsError) {
     console.error("Error loading participants:", participantsError);
   }
+
 
   // 3️⃣ Map participants by event_id for fast lookup
   const participantsByEvent = {};
@@ -8864,84 +9166,6 @@ async function addAchievementToProfile(userId, newAchievement) {
   }
 }
 
-async function checkAchievementSuggestions() {
-  if (!currentProfile?.id) return;
-
-  // Fetch achievements data
-  const { data, error } = await supabase
-    .from("achievements_data")
-    .select("animals_saved, events_organized, meal_art_wins, animal_path, earth_path, health_path")
-    .eq("user_id", currentProfile.id)
-    .single();
-
-  if (error) {
-    console.error("Error fetching achievements_data:", error);
-    return;
-  }
-
-  const achievementsList = currentProfile.achievements || [];
-
-  // ---- ANIMAL SAVER ACHIEVEMENT ----
-if (data.animals_saved >= 100 && !achievementsList.includes("Animal Saver")) {
-  showProgressSuggestion(
-    achievementT("animalSaverDone"),
-    currentProfile.pet_photo
-  );
-}
-
-  // ---- EVENT ORGANISER ACHIEVEMENT ----
-  if (data.events_organized >= 1 && !achievementsList.includes("Local Patriot")) {
-    showProgressSuggestion(
-      achievementT("firstEvent"),
-      currentProfile.pet_photo
-    );
-  }
-
-  // ---- MEAL ART WIN ACHIEVEMENT ----
-  if (data.meal_art_wins >= 1 && !achievementsList.includes("Expert Vegan Chef")) {
-    showProgressSuggestion(
-      achievementT("mealArtWin"),
-      currentProfile.pet_photo
-    );
-  }
-
-  // ---- ANIMAL PATH ----
-  if (data.animal_path === 1 && !achievementsList.includes("Voice for the Voiceless")) {
-    showProgressSuggestion(
-      achievementT("animalPathDone"),
-      currentProfile.pet_photo
-    );
-  }
-
-  // ---- EARTH PATH ----
-  if (data.earth_path === 1 && !achievementsList.includes("Planet Protector")) {
-    showProgressSuggestion(
-      achievementT("earthPathDone"),
-      currentProfile.pet_photo
-    );
-  }
-
-  // ---- HEALTH PATH ----
-  if (data.health_path === 1 && !achievementsList.includes("Strong From Plants")) {
-    showProgressSuggestion(
-      achievementT("healthPathDone"),
-      currentProfile.pet_photo
-    );
-  }
-
-  // ---- ALL PATHS ----
-  if (
-    data.animal_path === 1 &&
-    data.earth_path === 1 &&
-    data.health_path === 1 &&
-    !achievementsList.includes("Enlightened One")
-  ) {
-    showProgressSuggestion(
-      achievementT("allPathsDone"),
-      currentProfile.pet_photo
-    );
-  }
-}
 //#endregion
 
 //#region SHOP
@@ -11514,6 +11738,9 @@ let mealValue = 0;
   // Update currentProfile
   currentProfile.day_counter += 1;
   currentProfile.streak = (currentProfile.streak || 0) + 1;
+  if (mealValue === 4) {
+  currentProfile.vegan_days = (currentProfile.vegan_days || 0) + 1;
+}
   await addXP(20);
   await addBadges(currentUser.id,badgeIncrement);
 
