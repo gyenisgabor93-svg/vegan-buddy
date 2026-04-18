@@ -5557,3 +5557,78 @@ button.button.danger:hover {
   color: #333;
   line-height: 1.4;
 }
+
+.shiny {
+  animation: shinyPulse 1.2s infinite;
+}
+
+@keyframes shinyPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 215, 0, 0);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 215, 0, 0);
+  }
+}
+
+#amateurName, #proName, .winner-name {
+  cursor: pointer;
+  font-weight: 600;
+  color: blue;
+  text-decoration: underline;
+  display: inline-block;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+#amateurName:hover, #proName:hover, .winner-name:hover {
+  transform: translateY(-1px);
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
+.meal-winner-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.meal-winner-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.meal-winner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meal-winner-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meal-winner-image-wrapper {
+  position: relative;
+}
+
+.meal-winner-image {
+  width: 65px;
+  height: 65px;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}

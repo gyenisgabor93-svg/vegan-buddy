@@ -2510,38 +2510,63 @@ if (!events) {
   window.communityEventsGlobal = data;
 }
 
-  const now = new Date();
-  const today = now.toISOString().split("T")[0];
+const now = new Date();
 
-  const tomorrowDate = new Date(now);
+const event = events.find(e => {
+  const eventDate = new Date(e.event_date);
+  const oneHourAfterStart = new Date(eventDate.getTime() + 60 * 60 * 1000);
+
+  // Ignore events more than 1 hour in the past
+  if (now > oneHourAfterStart) return false;
+
+  return true;
+});
+
+if (!event) return;
+
+// Determine status
+const eventDate = new Date(event.event_date);
+const oneHourAfterStart = new Date(eventDate.getTime() + 60 * 60 * 1000);
+
+let when;
+
+if (now >= eventDate && now <= oneHourAfterStart) {
+  when = "ongoing";
+} else {
+  const today = new Date().toDateString();
+  const tomorrowDate = new Date();
   tomorrowDate.setDate(now.getDate() + 1);
-  const tomorrow = tomorrowDate.toISOString().split("T")[0];
+  const tomorrow = tomorrowDate.toDateString();
 
-  const event =
-    events.find(e => e.event_date.startsWith(today)) ||
-    events.find(e => e.event_date.startsWith(tomorrow));
-
-  if (!event) {
+  if (eventDate.toDateString() === today) {
+    when = "today";
+  } else if (eventDate.toDateString() === tomorrow) {
+    when = "tomorrow";
+  } else {
     return;
   }
+}
 
-  const box = document.getElementById("petOnboardingBox");
-  const textEl = document.getElementById("petOnboardingText");
-  const photoEl = document.getElementById("petOnboardingPhoto");
+const box = document.getElementById("petOnboardingBox");
+const textEl = document.getElementById("petOnboardingText");
+const photoEl = document.getElementById("petOnboardingPhoto");
 
-  if (!box || !textEl || !photoEl) {
-    return;
-  }
+if (!box || !textEl || !photoEl) {
+  return;
+}
 
-  box.classList.remove("hidden");
+const time = new Date(event.event_date).toLocaleTimeString([], {
+  hour: "2-digit",
+  minute: "2-digit"
+});
 
-  photoEl.src = currentProfile.pet_photo || "default-pet.jpg";
+box.classList.remove("hidden");
+photoEl.src = currentProfile.pet_photo || "default-pet.jpg";
 
-  const when = event.event_date.startsWith(today)
-    ? "today"
-    : "tomorrow";
-
-  const message = `📍 Community event ${when}: ${event.place} — ${event.description}`;
+  const message =
+  when === "ongoing"
+    ? `🔥 Ongoing event: ${event.place} — ${event.description}`
+    : `📍 Community event ${when} at ${time}: ${event.place} — ${event.description}`;
 
   textEl.textContent = message;
 
@@ -2566,7 +2591,14 @@ async function loadWinnersFromData(ctx) {
   let didRender = false;
 
   if (amateurWinner) {
-    document.getElementById("amateurName").textContent = amateurWinner.uploader_name;
+    const amateurNameEl = document.getElementById("amateurName");
+      amateurNameEl.textContent = amateurWinner.uploader_name;
+      amateurNameEl.dataset.userid = amateurWinner.user_id;
+
+      amateurNameEl.style.cursor = "pointer";
+
+      amateurNameEl.onclick = () => openProfile(amateurNameEl);
+
     document.getElementById("amateurImage").src = amateurWinner.image_url;
     document.getElementById("amateurImagePopup").src = amateurWinner.image_url;
 
@@ -2581,7 +2613,14 @@ async function loadWinnersFromData(ctx) {
   }
 
   if (proWinner) {
-    document.getElementById("proName").textContent = proWinner.uploader_name;
+    const proNameEl = document.getElementById("proName");
+      proNameEl.textContent = proWinner.uploader_name;
+      proNameEl.dataset.userid = proWinner.user_id;
+
+      proNameEl.style.cursor = "pointer";
+
+      proNameEl.onclick = () => openProfile(proNameEl);
+
     document.getElementById("proImage").src = proWinner.image_url;
     document.getElementById("proImagePopup").src = proWinner.image_url;
 
@@ -2689,7 +2728,31 @@ function defaultCase(ctx) {
 
     if (!winner) return null;
 
-    return `🍽️ Latest Meal-Art winner: ${winner.uploader_name} created something amazing!`;
+    // ✅ ADD THIS LINE HERE
+window.__latestMealWinner = winner;
+
+   return `
+<div class="meal-winner-card">
+  <div class="meal-winner-image-wrapper">
+    <img 
+      id="winnerMealImage"
+      class="meal-winner-image" 
+      src="${winner.image_url}" 
+      alt="Winning meal" 
+    />
+
+    <div id="winnerMealBadge" class="recipe-badge">RECIPE</div>
+  </div>
+
+  <div class="meal-winner-text">
+    🍽️ Latest Meal-Art winner: 
+    <span class="winner-name" data-userid="${winner.user_id}">
+      ${winner.uploader_name}
+    </span>
+    created something amazing!
+  </div>
+</div>
+`;
   }
 }
   ];
@@ -2713,7 +2776,26 @@ if (!comparison) {
 
 // Special case for winners (no "So far you have saved..." prefix)
 if (randomStat.key === "meal_winners") {
-  textEl.textContent = `${comparison} Check out the Meal-Art box 🍽️`;
+  textEl.innerHTML = `${comparison}`;
+
+  const winner = window.__latestMealWinner;
+
+  const winnerNameEl = textEl.querySelector(".winner-name");
+  const imgEl = textEl.querySelector("#winnerMealImage");
+  const badgeEl = textEl.querySelector("#winnerMealBadge");
+
+  // Name click → profile
+  if (winnerNameEl) {
+    winnerNameEl.style.cursor = "pointer";
+    winnerNameEl.style.fontWeight = "600";
+    winnerNameEl.onclick = () => openProfile(winnerNameEl);
+  }
+
+  // Image + badge click → meal popup
+  if (imgEl && winner) {
+    setupMealArtCardImage(imgEl, badgeEl, winner);
+  }
+
   return;
 }
 // Consistency special case 
@@ -3721,8 +3803,8 @@ function setupMealArtCardImage(imgEl, badgeEl, meal) {
 
   const openPopupHandler = () => openMealArtPopup(meal, hasRecipe);
 
-  // Image click
-  imgEl.addEventListener("click", openPopupHandler);
+  // Prevent duplicate listeners (important in dynamic UI)
+  imgEl.onclick = openPopupHandler;
 
   // Badge click (if exists)
   if (badgeEl) {
@@ -11861,6 +11943,9 @@ async function handleEarlyUserUI(currentProfile) {
     );
   }
 
+// ✨ REMOVE highlight when user clicks
+  removeHighlights();
+
   // 🔄 trigger flow
   setNewsBox();
 
@@ -11886,6 +11971,9 @@ function recommendSection(sectionId) {
   const message = generateRecommendationMessage(sectionId);
 
   updatePetOnboarding(message);
+
+  // ✨ highlight buttons
+  highlightRecommendedSection(sectionId);
 }
 
 function generateRecommendationMessage(section) {
@@ -11915,6 +12003,34 @@ function updatePetOnboarding(message) {
   // show box
  // box.classList.remove("hidden");
 
+}
+
+function highlightRecommendedSection(section) {
+
+  // Remove old highlights first
+  document.querySelectorAll(".shiny").forEach(el => {
+    el.classList.remove("shiny");
+  });
+
+  const mapping = {
+    learn: ["lessonPathBtn" , "discoverdropdownbtn"],
+    local: ["localBtn" , "profiledropdownBtn"],
+    mealart: ["mealArtBtn" , "discoverdropdownbtn"]
+  };
+
+  const buttonIds = mapping[section] || [];
+
+  buttonIds.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      btn.classList.add("shiny");
+    }
+  });
+}
+function removeHighlights() {
+  document.querySelectorAll(".shiny").forEach(el => {
+    el.classList.remove("shiny");
+  });
 }
 
 //#endregion
