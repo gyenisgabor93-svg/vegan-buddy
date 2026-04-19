@@ -276,7 +276,7 @@ document.querySelectorAll('.popup').forEach(popup => {
     }
   });
 });
-
+/*
 // Impact card popups
 const impactMap = {
   'youAnimals': 'popupAnimals',
@@ -298,7 +298,7 @@ document.querySelectorAll('.openCalculator').forEach(link => {
     openPopup('impactcalculator');
   });
 });
-
+*/
 // Search popup (converted to active system)
 const searchPopup = document.getElementById("searchPopup");
 

@@ -1671,7 +1671,44 @@ const initTranslations = {
   greetingEvening: "Good evening",
   lessonLine: ({ lessonTitle }) =>
     `Start by doing your daily check-in, today's lesson: ${lessonTitle}`,
+ongoingEvent: ({ place, description }) =>
+  `🔥 Ongoing event: ${place} — ${description}`,
 
+eventToday: ({ time, place, description }) =>
+  `📍 Community event today at ${time}: ${place} — ${description}`,
+
+eventTomorrow: ({ time, place, description }) =>
+  `📍 Community event tomorrow at ${time}: ${place} — ${description}`,
+
+journeyStart: "Your journey is just starting… 🌱",
+
+statAnimals: ({ v }) => `That’s like protecting ${v} lives 🐾`,
+statCO2: ({ km }) => `That’s like driving ${km} km less 🚗`,
+statWater: ({ showers }) => `That’s like saving ${showers} showers 🚿`,
+statForest: ({ area }) => `That’s like protecting ${area} m² of forest 🌳`,
+
+consistency90: ({ vegan, total }) =>
+  `${vegan} days fully plant-based out of ${total}? You’re absolutely crushing it 🔥`,
+consistency70: ({ vegan, total }) =>
+  `${vegan} out of ${total} days fully plant-based — that’s strong consistency 💪`,
+consistency40: ({ vegan }) =>
+  `${vegan} plant-based days so far — you’re building something real 🌱`,
+consistencyLow: ({ vegan }) =>
+  `${vegan} plant-based days — every step counts, keep going 🌿`,
+
+mealWinnerTitle: "🍽️ Latest Meal-Art winner:",
+mealWinnerText: "created something amazing!",
+labelAnimals: " are safe — imagine them as happy friends roaming, swimming, and enjoying life freely!",
+labelCO2: "CO₂",
+labelWater: "liters of water",
+labelForest: "m² of forest",
+statsPrefix: ({ value, label }) =>
+  `Because of you ${value} ${label}.`,
+keepGoing: "Keep it up! 🐶",
+recommendLearn: "Want to discover something new today? Your learning adventure awaits! 📚",
+recommendLocal: "Your community is waiting for you 🐾",
+recommendMealart: "Try creating something beautiful with food! See the Meal Art section for inspiration 🍽️",
+recommendDefault: "Explore something new today!",
   },
   es: {
     startStreak: "¡Comienza tu racha hoy!",
@@ -1690,7 +1727,44 @@ const initTranslations = {
   greetingEvening: "Buenas tardes",
   lessonLine: ({ lessonTitle }) =>
     `Empieza con tu check-in diario, lección de hoy: ${lessonTitle}`,
+ongoingEvent: ({ place, description }) =>
+  `🔥 Evento en curso: ${place} — ${description}`,
 
+eventToday: ({ time, place, description }) =>
+  `📍 Evento comunitario hoy a las ${time}: ${place} — ${description}`,
+
+eventTomorrow: ({ time, place, description }) =>
+  `📍 Evento comunitario mañana a las ${time}: ${place} — ${description}`,
+
+journeyStart: "Tu viaje acaba de comenzar… 🌱",
+
+statAnimals: ({ v }) => `Es como proteger ${v} vidas 🐾`,
+statCO2: ({ km }) => `Es como conducir ${km} km menos 🚗`,
+statWater: ({ showers }) => `Es como ahorrar ${showers} duchas 🚿`,
+statForest: ({ area }) => `Es como proteger ${area} m² de bosque 🌳`,
+
+consistency90: ({ vegan, total }) =>
+  `${vegan} días totalmente plant-based de ${total}? Lo estás haciendo increíble 🔥`,
+consistency70: ({ vegan, total }) =>
+  `${vegan} de ${total} días plant-based — muy buena constancia 💪`,
+consistency40: ({ vegan }) =>
+  `${vegan} días plant-based — estás construyendo algo real 🌱`,
+consistencyLow: ({ vegan }) =>
+  `${vegan} días plant-based — cada paso cuenta 🌿`,
+
+mealWinnerTitle: "🍽️ Último ganador de Meal-Art:",
+mealWinnerText: "¡ha creado algo increíble!",
+labelAnimals: "animales",
+labelCO2: "CO₂",
+labelWater: "litros de agua",
+labelForest: "m² de bosque",
+statsPrefix: ({ value, label }) =>
+  `Hasta ahora has salvado ${value} ${label}.`,
+keepGoing: "¡Sigue así! 🐶",
+recommendLearn: "¿Quieres descubrir algo nuevo hoy? ¡Tu aventura de aprendizaje te espera! 📚",
+recommendLocal: "Tu comunidad te está esperando 🐾",
+recommendMealart: "¡Intenta crear algo bonito con comida! Inspírate en la sección Meal Art 🍽️",
+recommendDefault: "¡Explora algo nuevo hoy!",
   },
   hu: {
     startStreak: "Kezdd el a sorozatot ma!",
@@ -1709,7 +1783,44 @@ const initTranslations = {
   greetingEvening: "Jó estét",
   lessonLine: ({ lessonTitle }) =>
     `Kezdd a napi bejelentkezéssel, a mai leckéd: ${lessonTitle}`,
+ongoingEvent: ({ place, description }) =>
+  `🔥 Folyamatban lévő esemény: ${place} — ${description}`,
 
+eventToday: ({ time, place, description }) =>
+  `📍 Közösségi esemény ma ${time}-kor: ${place} — ${description}`,
+
+eventTomorrow: ({ time, place, description }) =>
+  `📍 Közösségi esemény holnap ${time}-kor: ${place} — ${description}`,
+
+journeyStart: "Az utad most kezdődik… 🌱",
+
+statAnimals: ({ v }) => ``,
+statCO2: ({ km }) => `Ez ${km} km-rel kevesebb autózás 🚗`,
+statWater: ({ showers }) => `Ez ${showers} zuhany megtakarítása 🚿`,
+statForest: ({ area }) => `Ez ${area} m² erdő megvédése 🌳`,
+
+consistency90: ({ vegan, total }) =>
+  `${vegan} nap teljesen növényi alapú ${total}-ból? Elképesztő 🔥`,
+consistency70: ({ vegan, total }) =>
+  `${vegan} / ${total} nap növényi alapú — nagyon jó 💪`,
+consistency40: ({ vegan }) =>
+  `${vegan} növényi nap — valami komoly épül 🌱`,
+consistencyLow: ({ vegan }) =>
+  `${vegan} nap — minden lépés számít 🌿`,
+
+mealWinnerTitle: "🍽️ Legutóbbi Meal-Art nyertes:",
+mealWinnerText: "valami elképesztőt alkotott!",
+labelAnimals: "állatot",
+labelCO2: "CO₂-t",
+labelWater: "liter vizet",
+labelForest: "m² erdőt",
+statsPrefix: ({ value, label }) =>
+  `Eddig ${value} ${label} mentettél meg.`,
+keepGoing: "Csak így tovább! 🐶",
+recommendLearn: "Szeretnél ma valami újat felfedezni? A tanulási kaland vár rád! 📚",
+recommendLocal: "A közösséged vár rád 🐾",
+recommendMealart: "Próbálj valami szépet alkotni étellel! Nézd meg a Meal Art részt inspirációért 🍽️",
+recommendDefault: "Fedezz fel ma valami újat!",
   }
 };
 
@@ -1833,6 +1944,100 @@ function translateFromPool(pool, value, lang) {
 
   return pool[value]?.[lang] || value;
 }
+
+const encouragements = {
+    en: [
+      "Be kind to every kind — and don’t forget to be kind to yourself too!",
+      "Love grows when shared 💚",
+      "Every small act of care shapes who you are.",
+      "Happiness multiplies when you give it away.",
+      "Patience is love in action.",
+      "A gentle word can change someone’s entire day.",
+      "Sharing love is never wasted — it always returns.",
+      "Small acts of care create big ripples in the world.",
+      "Compassion starts with noticing someone’s needs.",
+      "Your warmth makes others feel safe and valued.",
+      "Encouragement can blossom where criticism would wither.",
+      "Every smile you share brightens someone’s path.",
+      "Kindness costs nothing but creates priceless moments.",
+      "You are wiser when you seek understanding before judgment.",
+      "Helping others grow is a reflection of your own strength.",
+      "Love yourself as fiercely as you love others.",
+      "Quiet support is often more powerful than loud words.",
+      "Your patience today teaches others how to be gentle tomorrow.",
+      "Sharing your knowledge softly guides hearts, not forces them.",
+      "Happiness blooms when you care without expecting in return.",
+      "Every gentle touch leaves a mark of love.",
+      "Encouragement turns mistakes into lessons, not failures.",
+      "You are strongest when you act with empathy.",
+      "A kind action can be louder than a thousand words.",
+      "Your warmth has the power to heal invisible wounds.",
+      "Sharing joy multiplies it for everyone involved. 🌟",
+      "Teach by example — hearts learn faster than ears.",
+      "Every act of love is a building block for a better world.",
+      ],
+    es: [
+      "Sé amable con todos los seres — y no olvides ser amable contigo también.",
+      "El amor crece cuando se comparte 💚",
+      "Cada pequeño acto de cuidado moldea quién eres.",
+      "La felicidad se multiplica cuando la compartes.",
+      "La paciencia es amor en acción.",
+      "Una palabra amable puede cambiar todo el día de alguien.",
+      "Compartir amor nunca se desperdicia — siempre vuelve.",
+      "Los pequeños actos de cuidado crean grandes ondas en el mundo.",
+      "La compasión empieza al notar las necesidades de los demás.",
+      "Tu calidez hace que otros se sientan seguros y valorados.",
+      "El ánimo florece donde la crítica se marchita.",
+      "Cada sonrisa que compartes ilumina el camino de alguien.",
+      "La bondad no cuesta nada y crea momentos invaluables.",
+      "Eres más sabio cuando buscas comprender antes de juzgar.",
+      "Ayudar a otros a crecer refleja tu propia fuerza.",
+      "Ámate con la misma intensidad con la que amas a otros.",
+      "El apoyo silencioso suele ser más poderoso que las palabras fuertes.",
+      "Tu paciencia hoy enseña gentileza mañana.",
+      "Compartir conocimiento suavemente guía corazones.",
+      "La felicidad florece cuando das sin esperar nada.",
+      "Cada gesto suave deja una huella de amor.",
+      "El ánimo convierte errores en lecciones.",
+      "Eres más fuerte cuando actúas con empatía.",
+      "Un acto amable puede hablar más que mil palabras.",
+      "Tu calidez puede sanar heridas invisibles.",
+      "Compartir alegría la multiplica para todos. 🌟",
+      "Enseña con el ejemplo — el corazón aprende más rápido.",
+      "Cada acto de amor construye un mundo mejor.",
+],
+
+    hu: [
+      "Légy kedves minden lényhez — és magadhoz se felejts el az lenni.",
+      "A szeretet akkor nő, ha megosztják 💚",
+      "Minden apró gondoskodás formálja azt, aki vagy.",
+      "A boldogság megsokszorozódik, ha továbbadod.",
+      "A türelem a szeretet cselekvésben.",
+      "Egy kedves szó megváltoztathatja valaki egész napját.",
+      "A megosztott szeretet sosem vész el — mindig visszatér.",
+      "Az apró törődés nagy hullámokat kelt.",
+      "Az együttérzés a figyelemmel kezdődik.",
+      "A melegség biztonságot és értéket ad másoknak.",
+      "A bátorítás ott virágzik, ahol a kritika elsorvad.",
+      "Minden mosoly fényt ad valaki útjára.",
+      "A kedvesség semmibe sem kerül, mégis felbecsülhetetlen.",
+      "Bölcsebb vagy, ha megértést keresel ítélkezés előtt.",
+      "Mások segítése a saját erőd tükre.",
+      "Szeresd magad olyan erősen, ahogy másokat.",
+      "A csendes támogatás gyakran a legerősebb.",
+      "A mai türelmed holnap gyengédséget tanít.",
+      "A tudás finom megosztása szíveket vezet.",
+      "A boldogság akkor virágzik, ha nem vársz viszonzást.",
+      "Minden gyengéd érintés nyomot hagy.",
+      "A bátorítás tanulsággá alakítja a hibákat.",
+      "Az empátia az igazi erő.",
+      "Egy kedves tett hangosabb ezer szónál.",
+      "A melegség láthatatlan sebeket gyógyít.",
+      "Az öröm megosztva megsokszorozódik. 🌟",
+      "Mutass példát — a szív gyorsabban tanul.",
+      "Minden szeretetteljes tett egy jobb világ alapja.",
+    ]
+  };
 
 function applyProfileTranslations(popup, data) {
   const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
@@ -2563,10 +2768,26 @@ const time = new Date(event.event_date).toLocaleTimeString([], {
 box.classList.remove("hidden");
 photoEl.src = currentProfile.pet_photo || "default-pet.jpg";
 
-  const message =
-  when === "ongoing"
-    ? `🔥 Ongoing event: ${event.place} — ${event.description}`
-    : `📍 Community event ${when} at ${time}: ${event.place} — ${event.description}`;
+  let message;
+
+if (when === "ongoing") {
+  message = initT("ongoingEvent", {
+    place: event.place,
+    description: event.description
+  });
+} else if (when === "today") {
+  message = initT("eventToday", {
+    time,
+    place: event.place,
+    description: event.description
+  });
+} else {
+  message = initT("eventTomorrow", {
+    time,
+    place: event.place,
+    description: event.description
+  });
+}
 
   textEl.textContent = message;
 
@@ -2663,30 +2884,54 @@ function defaultCase(ctx) {
 
   // --- Pick random stat ---
   const stats = [
-    {
-      key: "animals_saved",
-      label: "animals",
-      value: currentProfile.animals_saved,
-      message: (v) => `That’s like protecting ${v} lives 🐾`
-    },
-    {
-      key: "co2_saved",
-      label: "CO₂",
-      value: currentProfile.co2_saved,
-      message: (v) => `That’s like driving ${Math.round(v / 0.2)} km less 🚗`
-    },
-    {
-      key: "water_saved",
-      label: "water",
-      value: currentProfile.water_saved,
-      message: (v) => `That’s like saving ${Math.round(v / 100)} showers 🚿`
-    },
-    {
-      key: "forest_saved",
-      label: "forest",
-      value: currentProfile.forest_saved,
-      message: (v) => `That’s like protecting ${Math.round(v * 10)} m² of forest 🌳`
-    },
+{
+  key: "encouragement",
+  value: 1, // always valid so it can be picked
+  message: () => {
+    const lang = currentLang || "en"; // however you store language
+    const messages = encouragements[lang] || encouragements.en;
+
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+    return randomMessage;
+  }
+},
+{
+  key: "animals_saved",
+  value: currentProfile.animals_saved,
+  message: () => {
+    const animals = Math.round(currentProfile.animals_saved || 0);
+    return comparisonT("animalsSentence", { animals });
+  }
+},
+{
+  key: "co2_saved",
+  value: currentProfile.co2_saved,
+  message: () => {
+    const co2 = Math.round(currentProfile.co2_saved || 0);
+    const carHours = (co2 / 10);
+    return comparisonT("co2Sentence", { co2, carHours });
+  }
+},
+{
+  key: "water_saved",
+  value: currentProfile.water_saved,
+  message: () => {
+    const water = Math.round(currentProfile.water_saved || 0);
+    const showers = Math.round(water / 65);
+    return comparisonT("waterSentence", { water, showers });
+  }
+},
+{
+  key: "forest_saved",
+  value: currentProfile.forest_saved,
+  message: () => {
+    const forest = Math.round(currentProfile.forest_saved || 0);
+    const trees = forest / 10;
+    const paper = Math.round(trees * 8000);
+    return comparisonT("forestSentence", { forest, paper });
+  }
+},
     {
   key: "consistency",
   value: currentProfile.vegan_days,
@@ -2699,13 +2944,13 @@ function defaultCase(ctx) {
     const percentage = Math.round((vegan / total) * 100);
 
     if (percentage >= 90) {
-      return `${vegan} days fully plant-based out of ${total}? You’re absolutely crushing it 🔥`;
+      return initT("consistency90", { vegan, total });
     } else if (percentage >= 70) {
-      return `${vegan} out of ${total} days fully plant-based — that’s strong consistency 💪`;
+      return initT("consistency70", { vegan, total });
     } else if (percentage >= 40) {
-      return `${vegan} plant-based days so far — you’re building something real 🌱`;
+      return initT("consistency40", { vegan, total });
     } else {
-      return `${vegan} plant-based days — every step counts, keep going 🌿`;
+      return initT("consistencyDefault", { vegan, total });
     }
   }
 },
@@ -2741,15 +2986,15 @@ window.__latestMealWinner = winner;
       alt="Winning meal" 
     />
 
-    <div id="winnerMealBadge" class="recipe-badge">RECIPE</div>
+    <div id="winnerMealBadge" class="recipe-badge">${initT("recipe")}</div>
   </div>
 
   <div class="meal-winner-text">
-    🍽️ Latest Meal-Art winner: 
+    ${initT("mealWinnerTitle")} 
     <span class="winner-name" data-userid="${winner.user_id}">
       ${winner.uploader_name}
     </span>
-    created something amazing!
+    ${initT("mealWinnerText")}
   </div>
 </div>
 `;
@@ -2757,11 +3002,11 @@ window.__latestMealWinner = winner;
 }
   ];
 
-  const randomStat = stats[Math.floor(Math.random() * stats.length)];
+  const randomStat = pickWeightedStat(stats);
 
   // Avoid showing empty stats
   if (!randomStat.value || randomStat.value <= 0) {
-    textEl.textContent = "Your journey is just starting… 🌱";
+    textEl.textContent = initT("journeyStart");
     return;
   }
 
@@ -2770,7 +3015,13 @@ window.__latestMealWinner = winner;
 
 // If message returns null → fallback safely
 if (!comparison) {
-  textEl.textContent = "Your journey is just starting… 🌱";
+  textEl.textContent = initT("journeyStart");
+  return;
+}
+
+// Special case for encouragement (just show the message, no prefix)
+if (randomStat.key === "encouragement") {
+  textEl.textContent = comparison;
   return;
 }
 
@@ -2804,8 +3055,42 @@ if (randomStat.key === "consistency") {
   return;
 }
 
-const main = `So far you have saved ${randomStat.value} ${randomStat.label}.`;
-textEl.textContent = `${main} ${comparison} Keep it up! 🐶`;
+const main = initT("statsPrefix", {
+  value: Math.round(randomStat.value),
+  label: initT(randomStat.labelKey)
+});
+
+textEl.innerHTML = comparison;
+}
+
+function pickWeightedStat(stats) {
+  // Define weights per key
+  const weights = {
+    encouragement: 0.15,   // 15% chance
+    meal_winners: 0.25,   // 25%
+    consistency: 0.10,    // 10%
+    animals_saved: 0.125, // 12.5%
+    co2_saved: 0.125,     // 12.5%
+    water_saved: 0.125,   // 12.5%
+    forest_saved: 0.125   // 12.5%
+  };
+
+  // Build weighted pool
+  const pool = [];
+
+  stats.forEach(stat => {
+    const weight = weights[stat.key] ?? 0.1;
+
+    // Convert weight → number of entries (scale = 100)
+    const count = Math.round(weight * 100);
+
+    for (let i = 0; i < count; i++) {
+      pool.push(stat);
+    }
+  });
+
+  // Pick random
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 //--------------------------
 // SUGGGESTIONS & ACHIEVEMENTS TOASTS
@@ -4249,7 +4534,11 @@ const dailyCheckinTranslations = {
     wellDoneLearnPath: "Well done! You can keep learning in the Learn Path or get extra rewards in Daily Challenges!",
     wellDoneMealArt: "Well done! Have you checked out our meal-art contest and trending recipes already?",
     wellDoneCommunity: "Well done! Are you already a member of your local community? 🤩",
-    lastquiz: "Last lesson's quiz:"
+    lastquiz: "Last lesson's quiz:",
+  confirmSave: "Yes, save",
+  confirmReset: "No, reset",
+  resetStreak: "Reset streak",
+  collectBadgesFirst: "Collect badges first"
   },
   es: {
     lessonNotFound: "Lección no encontrada. Por favor revisa tu perfil.",
@@ -4260,7 +4549,11 @@ const dailyCheckinTranslations = {
     wellDoneLearnPath: "¡Bien hecho! Puedes seguir aprendiendo en el Camino de Aprendizaje o conseguir recompensas extra en Desafíos Diarios!",
     wellDoneMealArt: "¡Bien hecho! ¿Ya has visto nuestro concurso de meal-art y las recetas más populares?",
     wellDoneCommunity: "¡Bien hecho! ¿Ya eres miembro de tu comunidad local? 🤩",
-    lastquiz: "Cuestionario de la última lección:"
+    lastquiz: "Cuestionario de la última lección:",
+  confirmSave: "Sí, guardar",
+  confirmReset: "No, reiniciar",
+  resetStreak: "Reiniciar racha",
+  collectBadgesFirst: "Recoger insignias primero"
   },
   hu: {
     lessonNotFound: "Az óra nem található. Kérlek, ellenőrizd a profilodat.",
@@ -4271,7 +4564,11 @@ const dailyCheckinTranslations = {
     wellDoneLearnPath: "Szép munka! Folytathatod a tanulást az Útvonal tanulásban, vagy extra jutalmakat szerezhetsz a Napi kihívásokban!",
     wellDoneMealArt: "Szép munka! Megnézted már a meal-art versenyt és a népszerű recepteket?",
     wellDoneCommunity: "Szép munka! Már tagja vagy a helyi közösségednek? 🤩",
-    lastquiz: "Az utolsó leckéhez tartozó kvíz:"
+    lastquiz: "Az utolsó leckéhez tartozó kvíz:",
+  confirmSave: "Igen, mentés",
+  confirmReset: "Nem, nullázás",
+  resetStreak: "Sorozat nullázása",
+  collectBadgesFirst: "Előbb gyűjts jelvényeket"
   }
 };
 
@@ -4371,11 +4668,11 @@ async function handleStreakStep() {
 
     const yes = document.createElement("button");
     yes.className = "button";
-    yes.textContent = "Yes, save";
+    yes.textContent = dailyCheckinT("confirmSave");
 
     const no = document.createElement("button");
     no.className = "button";
-    no.textContent = "No, reset";
+    no.textContent = dailyCheckinT("confirmReset");
 
     yes.onclick = async () => {
       await supabase
@@ -4417,11 +4714,11 @@ async function handleStreakStep() {
 
     const reset = document.createElement("button");
     reset.className = "button";
-    reset.textContent = "Reset streak";
+    reset.textContent = dailyCheckinT("resetStreak");
 
     const collect = document.createElement("button");
     collect.className = "button";
-    collect.textContent = "Collect badges first";
+    collect.textContent = dailyCheckinT("collectBadgesFirst");
 
     reset.onclick = async () => {
       await supabase
@@ -4967,7 +5264,7 @@ const { error: updateError } = await supabase
   // Refresh homepage
   const { profile, globalImpact: fetchedImpact } = await fetchAllData();
   await renderProfile();
-  await injectComparisonSentences(profile);
+ // await injectComparisonSentences(profile);
 
   // Hide Daily Check-in, show home
   document.getElementById("home").classList.remove("hidden");
@@ -6074,80 +6371,135 @@ uploadModal?.addEventListener("click", e => {
 
 const comparisonTranslations = {
   en: {
-    animalsSentence:
-      "Because of you, <span class=\"highlight\">{animals}</span> animals are safe — imagine them as happy friends roaming, swimming, and enjoying life freely!",
-
-    forestSentence:
-      "With your choices, you’ve protected <span class=\"highlight\">{forest}</span> m² of forest — that’s like saving <span class=\"highlight\">{paper}</span> sheets of paper from ever being used!",
-
-    waterSentence:
-      "By choosing plant-based meals, you’ve saved <span class=\"highlight\">{water}</span> liters of water — enough for <span class=\"highlight\">{showers}</span> refreshing showers!",
-
-    co2Sentence:
-      "Your actions cut down <span class=\"highlight\">{co2}</span> kg of CO₂ emissions — the same as avoiding <span class=\"highlight\">{carHours}</span> hours of car travel!",
-
+    animalsSentence: [
+  "Because of you, <span class=\"highlight\">{animals}</span> animals are safe — imagine them as happy friends roaming freely!",
+  "You’ve given <span class=\"highlight\">{animals}</span> animals a second chance at life 💚",
+  "<span class=\"highlight\">{animals}</span> lives spared — they are sentient beings living peacefully because of you.",
+  "Every choice matters — and yours protected <span class=\"highlight\">{animals}</span> animals 🐾"
+],
+    forestSentence:[
+  "You’ve protected <span class=\"highlight\">{forest}</span> m² of forest so far🌳",
+  "<span class=\"highlight\">{forest}</span> m² of nature still alive thanks to you.",
+  "Your actions preserved a forest area equal to <span class=\"highlight\">{forest}</span> m².",
+  "Nature thanks you — <span class=\"highlight\">{forest}</span> m² untouched and thriving."
+],
+    waterSentence:[
+  "You’ve saved <span class=\"highlight\">{water}</span> liters of water 💧",
+  "The water you saved is enough for <span class=\"highlight\">{showers}</span> showers — all saved by your choices!",
+  "<span class=\"highlight\">{water}</span> liters kept in nature instead of wasted.",
+  "Every drop of water counts — and you saved <span class=\"highlight\">{water}</span> liters of them."
+],
+    co2Sentence:[
+  "You reduced <span class=\"highlight\">{co2}</span> kg of CO₂ 🌍, it's like avoiding <span class=\"highlight\">{carHours}</span> hours of driving 🚗",
+  "The air is cleaner thanks to you — <span class=\"highlight\">{co2}</span> kg CO₂ avoided.",
+  "Your impact matters — <span class=\"highlight\">{co2}</span> kg less CO₂ in the atmosphere."
+],
+/*
     calcComparison:
-      `Every animal you spared has a heartbeat, a breath, and a story ❤️.
+`Every animal you spared has a heartbeat, a breath, and a story ❤️.
 The forest you’ve protected provides enough oxygen for <span class="highlight">{oxygen}</span> people for a whole year 🌬️.
 You’ve also saved enough water to fill <span class="highlight">{bathtubs}</span> bathtubs — a small but meaningful gift to our planet 🛁.
 And all your choices together prevented as much CO₂ as <span class="highlight">{trees}</span> trees absorb in a year 🌳.`
-  },
+*/
+
+},
 
   es: {
-    animalsSentence:
-      "Gracias a ti, <span class=\"highlight\">{animals}</span> animales están a salvo — imagínalos como amigos felices disfrutando de la vida libremente.",
+animalsSentence: [
+  "Gracias a ti, <span class=\"highlight\">{animals}</span> animales están a salvo — imagínalos como amigos felices viviendo libremente 🐾",
+  "Has dado a <span class=\"highlight\">{animals}</span> animales una segunda oportunidad de vida 💚",
+  "<span class=\"highlight\">{animals}</span> vidas salvadas — son seres sentientes viviendo en paz gracias a ti.",
+  "Cada decisión cuenta — y la tuya protegió a <span class=\"highlight\">{animals}</span> animales 🐾"
+],
 
-    forestSentence:
-      "Con tus decisiones has protegido <span class=\"highlight\">{forest}</span> m² de bosque — ¡equivale a salvar <span class=\"highlight\">{paper}</span> hojas de papel!",
+forestSentence: [
+  "Has protegido <span class=\"highlight\">{forest}</span> m² de bosque por ahora🌳",
+  "<span class=\"highlight\">{forest}</span> m² de naturaleza que siguen vivos gracias a ti.",
+  "Tus acciones han preservado un área de bosque equivalente a <span class=\"highlight\">{forest}</span> m².",
+  "La naturaleza te lo agradece — <span class=\"highlight\">{forest}</span> m² intactos y llenos de vida."
+],
 
-    waterSentence:
-      "Al elegir comidas vegetales, has ahorrado <span class=\"highlight\">{water}</span> litros de agua — suficiente para <span class=\"highlight\">{showers}</span> duchas refrescantes.",
+waterSentence: [
+  "Has ahorrado <span class=\"highlight\">{water}</span> litros de agua 💧",
+  "El agua que has ahorrado es suficiente para <span class=\"highlight\">{showers}</span> duchas — todo gracias a tus decisiones.",
+  "<span class=\"highlight\">{water}</span> litros que siguen en la naturaleza en lugar de desperdiciarse.",
+  "Cada gota de agua cuenta — y tú has ahorrado <span class=\"highlight\">{water}</span> litros 💧"
+],
 
-    co2Sentence:
-      "Tus acciones redujeron <span class=\"highlight\">{co2}</span> kg de CO₂ — lo mismo que evitar <span class=\"highlight\">{carHours}</span> horas de coche.",
-
+co2Sentence: [
+  "Has reducido <span class=\"highlight\">{co2}</span> kg de CO₂ 🌍, es como evitar <span class=\"highlight\">{carHours}</span> horas de coche 🚗",
+  "Aire más limpio gracias a ti — <span class=\"highlight\">{co2}</span> kg de CO₂ evitados.",
+  "Tu impacto importa — <span class=\"highlight\">{co2}</span> kg menos CO₂ en la atmósfera 🌍"
+]
+/*
     calcComparison:
-      `Cada animal que salvaste tiene un latido y una historia ❤️.
+`Cada animal que salvaste tiene un latido y una historia ❤️.
 El bosque que protegiste produce oxígeno para <span class="highlight">{oxygen}</span> personas durante un año 🌬️.
 También ahorraste agua suficiente para llenar <span class="highlight">{bathtubs}</span> bañeras 🛁.
 Y tus decisiones evitaron tanto CO₂ como el que absorben <span class="highlight">{trees}</span> árboles al año 🌳.`
-  },
+*/
+
+},
 
   hu: {
-    animalsSentence:
-      "Neked köszönhetően <span class=\"highlight\">{animals}</span> állat biztonságban van — képzeld el őket boldogan, szabadon élve!",
+animalsSentence: [
+  "Neked köszönhetően <span class=\"highlight\">{animals}</span> állat biztonságban van — képzeld el őket boldog, szabad életben 🐾",
+  "<span class=\"highlight\">{animals}</span> állatnak adtál egy második esélyt az életre 💚",
+  "<span class=\"highlight\">{animals}</span> megmentett élet — érző lények élnek békében miattad.",
+  "Minden döntés számít — és a tiéd <span class=\"highlight\">{animals}</span> állatot védett meg 🐾"
+],
 
-    forestSentence:
-      "A döntéseiddel <span class=\"highlight\">{forest}</span> m² erdőt védtél meg — ez <span class=\"highlight\">{paper}</span> papírlap megmentésével egyenértékű!",
+forestSentence: [
+  "Eddig <span class=\"highlight\">{forest}</span> m² erdőt védtél meg 🌳",
+  "<span class=\"highlight\">{forest}</span> m² természet, ami tovább él miattad.",
+  "A döntéseid egy <span class=\"highlight\">{forest}</span> m²-es erdőterületet őriztek meg.",
+  "A természet hálás neked — <span class=\"highlight\">{forest}</span> m² erdő érintetlen és élő."
+],
 
-    waterSentence:
-      "A növényi alapú étkezéssel <span class=\"highlight\">{water}</span> liter vizet spóroltál meg — ez <span class=\"highlight\">{showers}</span> frissítő zuhany!",
+waterSentence: [
+  "<span class=\"highlight\">{water}</span> liter vizet spóroltál meg 💧",
+  "Az általad megspórolt víz elég <span class=\"highlight\">{showers}</span> zuhanyhoz — mindez a döntéseid miatt.",
+  "<span class=\"highlight\">{water}</span> liter vizet takarítottál meg a természetnek.",
+  "Minden csepp víz számít — és te <span class=\"highlight\">{water}</span> litert mentettél meg 💧"
+],
 
-    co2Sentence:
-      "A tetteid <span class=\"highlight\">{co2}</span> kg CO₂-kibocsátást előztek meg — mintha <span class=\"highlight\">{carHours}</span> órát nem autóztál volna!",
-
+co2Sentence: [
+  "<span class=\"highlight\">{co2}</span> kg CO₂ kibocsátást csökkentettél 🌍, ez olyan, mintha <span class=\"highlight\">{carHours}</span> órát nem autóztál volna 🚗",
+  "Tisztább levegő miattad — <span class=\"highlight\">{co2}</span> kg CO₂ kibocsátás csökkent.",
+  "A hatásod számít — <span class=\"highlight\">{co2}</span> kg-mal kevesebb CO₂ a légkörben 🌍"
+]
+/*
     calcComparison:
-      `Minden megmentett állatnak van szívdobbanása és története ❤️.
+`Minden megmentett állatnak van szívdobbanása és története ❤️.
 Az általad védett erdő <span class="highlight">{oxygen}</span> ember számára termel oxigént egy évig 🌬️.
 Annyi vizet spóroltál meg, amivel <span class="highlight">{bathtubs}</span> kádat lehetne megtölteni 🛁.
 A döntéseid pedig annyi CO₂-t előztek meg, amennyit <span class="highlight">{trees}</span> fa köt meg egy év alatt 🌳.`
-  }
+ */ 
+
+}
 };
 
 function comparisonT(key, vars = {}) {
   const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
-  let str =
+
+  let entry =
     comparisonTranslations[lang]?.[key] ||
     comparisonTranslations.en[key] ||
     key;
 
+  // 👉 NEW: handle array (pool)
+  let str = Array.isArray(entry)
+    ? entry[Math.floor(Math.random() * entry.length)]
+    : entry;
+
+  // Replace variables
   for (const [k, v] of Object.entries(vars)) {
     str = str.replaceAll(`{${k}}`, v);
   }
 
   return str;
 }
-
+/*
 // Constants for comparisons
 const sheetsPerTree = 8000;
 const forestAreaPerTree = 10; // m²
@@ -6164,7 +6516,7 @@ function injectComparisonSentences(profile) {
   const treesSaved = forest / forestAreaPerTree;
   const paperEquivalent = Math.round(treesSaved * sheetsPerTree);
   const showerEquivalent = Math.round(water / showerWaterUse);
-  const carTimeEquivalent = (co2 / co2PerCarHour).toFixed(1);
+  const carTimeEquivalent = Math.round(co2 / co2PerCarHour);
 
   // Inject into separate blocks with highlighted values
 document.getElementById("animalsSentence").innerHTML =
@@ -6222,6 +6574,7 @@ comparisonT("calcComparison", {
 
   document.getElementById('impactResults').classList.remove('hidden');
 });
+*/
 //#endregion
 
 //#region PROFILE
@@ -11006,13 +11359,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* =========================
        PHASE 5 — COMPARISON
-       ========================= */
+       ========================= 
     if (currentProfile) {
       injectComparisonSentences(currentProfile);
     } else {
       console.warn("currentProfile not available — comparison skipped.");
     }
-
+*/
     /* =========================
        PHASE 6 — MEAL ART
        ========================= */
@@ -11175,35 +11528,6 @@ const characterTips = {
 
   pet: {
     en: [
-      "Be kind to every kind — and don’t forget to be kind to yourself too!",
-      "Love grows when shared 💚",
-      "Every small act of care shapes who you are.",
-      "Happiness multiplies when you give it away.",
-      "Patience is love in action.",
-      "A gentle word can change someone’s entire day.",
-      "Sharing love is never wasted — it always returns.",
-      "Small acts of care create big ripples in the world.",
-      "Compassion starts with noticing someone’s needs.",
-      "Your warmth makes others feel safe and valued.",
-      "Encouragement can blossom where criticism would wither.",
-      "Every smile you share brightens someone’s path.",
-      "Kindness costs nothing but creates priceless moments.",
-      "You are wiser when you seek understanding before judgment.",
-      "Helping others grow is a reflection of your own strength.",
-      "Love yourself as fiercely as you love others.",
-      "Quiet support is often more powerful than loud words.",
-      "Your patience today teaches others how to be gentle tomorrow.",
-      "Sharing your knowledge softly guides hearts, not forces them.",
-      "Happiness blooms when you care without expecting in return.",
-      "Every gentle touch leaves a mark of love.",
-      "Encouragement turns mistakes into lessons, not failures.",
-      "You are strongest when you act with empathy.",
-      "A kind action can be louder than a thousand words.",
-      "Your warmth has the power to heal invisible wounds.",
-      "Sharing joy multiplies it for everyone involved. 🌟",
-      "Teach by example — hearts learn faster than ears.",
-      "Every act of love is a building block for a better world.",
-
     `Replacing meat with <span class="ingredient-link" onclick="openIngredient('tofu')">Tofu</span> saves massive water resources.`,
     `<span class="ingredient-link" onclick="openIngredient('seitan')">Seitan</span> uses only a fraction of the land needed for beef.`,
     `A meal with <span class="ingredient-link" onclick="openIngredient('lentils')">Lentils</span> has a much lower carbon footprint.`,
@@ -11217,35 +11541,6 @@ const characterTips = {
   
       ],
     es: [
-      "Sé amable con todos los seres — y no olvides ser amable contigo también.",
-      "El amor crece cuando se comparte 💚",
-      "Cada pequeño acto de cuidado moldea quién eres.",
-      "La felicidad se multiplica cuando la compartes.",
-      "La paciencia es amor en acción.",
-      "Una palabra amable puede cambiar todo el día de alguien.",
-      "Compartir amor nunca se desperdicia — siempre vuelve.",
-      "Los pequeños actos de cuidado crean grandes ondas en el mundo.",
-      "La compasión empieza al notar las necesidades de los demás.",
-      "Tu calidez hace que otros se sientan seguros y valorados.",
-      "El ánimo florece donde la crítica se marchita.",
-      "Cada sonrisa que compartes ilumina el camino de alguien.",
-      "La bondad no cuesta nada y crea momentos invaluables.",
-      "Eres más sabio cuando buscas comprender antes de juzgar.",
-      "Ayudar a otros a crecer refleja tu propia fuerza.",
-      "Ámate con la misma intensidad con la que amas a otros.",
-      "El apoyo silencioso suele ser más poderoso que las palabras fuertes.",
-      "Tu paciencia hoy enseña gentileza mañana.",
-      "Compartir conocimiento suavemente guía corazones.",
-      "La felicidad florece cuando das sin esperar nada.",
-      "Cada gesto suave deja una huella de amor.",
-      "El ánimo convierte errores en lecciones.",
-      "Eres más fuerte cuando actúas con empatía.",
-      "Un acto amable puede hablar más que mil palabras.",
-      "Tu calidez puede sanar heridas invisibles.",
-      "Compartir alegría la multiplica para todos. 🌟",
-      "Enseña con el ejemplo — el corazón aprende más rápido.",
-      "Cada acto de amor construye un mundo mejor.",
-
       `Sustituir la carne por <span class="ingredient-link" onclick="openIngredient('tofu')">tofu</span> ahorra enormes recursos de agua.`,
       `<span class="ingredient-link" onclick="openIngredient('seitan')">Seitan</span> usa solo una fracción de la tierra necesaria para la carne.`,
       `Una comida con <span class="ingredient-link" onclick="openIngredient('lentils')">lentejas</span> tiene una huella de carbono mucho menor.`,
@@ -11259,35 +11554,6 @@ const characterTips = {
     ],
 
     hu: [
-      "Légy kedves minden lényhez — és magadhoz se felejts el az lenni.",
-      "A szeretet akkor nő, ha megosztják 💚",
-      "Minden apró gondoskodás formálja azt, aki vagy.",
-      "A boldogság megsokszorozódik, ha továbbadod.",
-      "A türelem a szeretet cselekvésben.",
-      "Egy kedves szó megváltoztathatja valaki egész napját.",
-      "A megosztott szeretet sosem vész el — mindig visszatér.",
-      "Az apró törődés nagy hullámokat kelt.",
-      "Az együttérzés a figyelemmel kezdődik.",
-      "A melegség biztonságot és értéket ad másoknak.",
-      "A bátorítás ott virágzik, ahol a kritika elsorvad.",
-      "Minden mosoly fényt ad valaki útjára.",
-      "A kedvesség semmibe sem kerül, mégis felbecsülhetetlen.",
-      "Bölcsebb vagy, ha megértést keresel ítélkezés előtt.",
-      "Mások segítése a saját erőd tükre.",
-      "Szeresd magad olyan erősen, ahogy másokat.",
-      "A csendes támogatás gyakran a legerősebb.",
-      "A mai türelmed holnap gyengédséget tanít.",
-      "A tudás finom megosztása szíveket vezet.",
-      "A boldogság akkor virágzik, ha nem vársz viszonzást.",
-      "Minden gyengéd érintés nyomot hagy.",
-      "A bátorítás tanulsággá alakítja a hibákat.",
-      "Az empátia az igazi erő.",
-      "Egy kedves tett hangosabb ezer szónál.",
-      "A melegség láthatatlan sebeket gyógyít.",
-      "Az öröm megosztva megsokszorozódik. 🌟",
-      "Mutass példát — a szív gyorsabban tanul.",
-      "Minden szeretetteljes tett egy jobb világ alapja.",
-
       `A hús helyettesítése <span class="ingredient-link" onclick="openIngredient('tofu')">tofúval</span> rengeteg vizet takarít meg.`,
       `<span class="ingredient-link" onclick="openIngredient('seitan')">A szejtán</span> töredéknyi földet igényel.`,
       `A <span class="ingredient-link" onclick="openIngredient('lentils')">lencsével</span> készült étel kisebb karbonlábnyomú.`,
@@ -11528,6 +11794,49 @@ celebrity: [
   },
   avatar: "images/plato.jpg"
 }
+],
+success: [
+  {
+    title: {
+      en: "Olympic champion mindset",
+      es: "Mentalidad de campeón olímpico",
+      hu: "Olimpiai bajnok mentalitás"
+    },
+    story: {
+      en: "Novak Djokovic, one of the greatest tennis players of all time, has spoken about the importance of plant-based nutrition in supporting his performance and recovery, helping him sustain success at the highest level.",
+      es: "Novak Djokovic, uno de los mejores tenistas de todos los tiempos, ha hablado sobre la importancia de la alimentación vegetal para su rendimiento y recuperación.",
+      hu: "Novak Djokovic, minden idők egyik legjobb teniszezője, beszélt a növényi alapú táplálkozás szerepéről a teljesítményében."
+    },
+    image: "images/success/djokovic.jpg"
+  },
+
+  {
+    title: {
+      en: "Ultramarathon endurance",
+      es: "Resistencia en ultramaratones",
+      hu: "Ultramaratoni állóképesség"
+    },
+    story: {
+      en: "Scott Jurek is one of the most famous ultrarunners in the world and follows a plant-based lifestyle, showing what the human body can achieve with consistent training and nutrition.",
+      es: "Scott Jurek es uno de los ultracorredores más famosos del mundo y sigue una alimentación vegetal.",
+      hu: "Scott Jurek a világ egyik legismertebb ultrafutója, növényi étrendet követ."
+    },
+    image: "images/success/jurek.jpg"
+  },
+
+  {
+    title: {
+      en: "Pushing limits at any age",
+      es: "Superar límites a cualquier edad",
+      hu: "Határok áttörése bármely életkorban"
+    },
+    story: {
+      en: "Fauja Singh became known for completing marathons past the age of 100, becoming a global symbol of endurance, discipline, and lifelong movement.",
+      es: "Fauja Singh se hizo conocido por completar maratones con más de 100 años.",
+      hu: "Fauja Singh 100 éves kora felett is maratont teljesített."
+    },
+    image: "images/success/fauja.jpg"
+  }
 ]
 };
 
@@ -11729,52 +12038,83 @@ function gamesectionintro() {
 
   showPetMessage(messages[lang] || messages.en);
 }
+
 function pickrandommessage() {
   const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
 
-  // 1️⃣ Get pet tip
-  const tips = characterTips.pet[lang] || characterTips.pet.en;
-  let randomTip = tips[Math.floor(Math.random() * tips.length)];
+  // 1️⃣ Decide section type (pet / celebrity / success)
+  const roll = Math.random();
 
-  // 2️⃣ Replace ingredient links with inline content
-  randomTip = randomTip.replace(
-    /<span class="ingredient-link" onclick="openIngredient\('(\w+)'\)">(.*?)<\/span>/g,
-    (match, key, label) => {
-      const item = ingredientInfo[key];
-      if (!item) return label;
+  let sectionType;
+  if (roll < 0.33) {
+    sectionType = "pet";
+  } else if (roll < 0.66) {
+    sectionType = "celebrity";
+  } else {
+    sectionType = "success";
+  }
 
-      return `
-        <div class="ingredient-inline">
-          <strong>${item.name[lang] || item.name.en}</strong>
-          <p>${item.description[lang] || item.description.en}</p>
-          <small>${item.nutrition[lang] || item.nutrition.en}</small>
-        </div>
-      `;
-    }
-  );
+  let html = "";
 
-  // 3️⃣ Base message (pet)
-  let html = `
-    <div class="pet-message">
-      ${randomTip}
-    </div>
-  `;
+  // 2️⃣ PET SECTION
+  if (sectionType === "pet") {
+    const tips = characterTips.pet[lang] || characterTips.pet.en;
+    let randomTip = tips[Math.floor(Math.random() * tips.length)];
 
-  // 4️⃣ 50% chance to add celebrity BELOW
-  if (Math.random() < 0.5) {
+    randomTip = randomTip.replace(
+      /<span class="ingredient-link" onclick="openIngredient\('(\w+)'\)">(.*?)<\/span>/g,
+      (match, key, label) => {
+        const item = ingredientInfo[key];
+        if (!item) return label;
+
+        return `
+          <div class="ingredient-inline">
+            <strong>${item.name[lang] || item.name.en}</strong>
+            <p>${item.description[lang] || item.description.en}</p>
+            <small>${item.nutrition[lang] || item.nutrition.en}</small>
+          </div>
+        `;
+      }
+    );
+
+    html = `<div class="pet-message">${randomTip}</div>`;
+  }
+
+  // 3️⃣ CELEBRITY SECTION
+  else if (sectionType === "celebrity") {
     const celeb =
       characterTips.celebrity[
         Math.floor(Math.random() * characterTips.celebrity.length)
       ];
 
-    html += `
+    html = `
       <div class="celeb-inline">
-        <p><strong>💬 ${lang === "es" ? "Cita de" : lang === "hu" ? "Idézet tőle:" : "A quote from"} ${celeb.name[lang] || celeb.name.en}:</strong></p>
+        <p><strong>💬 ${
+          lang === "es" ? "Cita de" : lang === "hu" ? "Idézet tőle:" : "A quote from"
+        } ${celeb.name[lang] || celeb.name.en}:</strong></p>
         <p class="quote">“${celeb.quote[lang] || celeb.quote.en}”</p>
         <p><em>${celeb.title[lang] || celeb.title.en}</em></p>
       </div>
     `;
   }
+
+  // 4️⃣ SUCCESS STORIES SECTION (NEW)
+  else if (sectionType === "success") {
+    const stories = characterTips.success || [];
+    const story = stories[Math.floor(Math.random() * stories.length)];
+
+    html = `
+  <div class="success-story">
+    <img src="${story.image}" class="success-image" />
+
+    <h3>${story.title[lang] || story.title.en}</h3>
+
+    <p>${story.story[lang] || story.story.en}</p>
+  </div>
+`;
+    } else {
+      html = `<div class="success-story">No story available.</div>`;
+    }
 
   // 5️⃣ Render
   showPetMessage(html);
@@ -11977,13 +12317,13 @@ function recommendSection(sectionId) {
 }
 
 function generateRecommendationMessage(section) {
-  const messages = {
-    learn: "Want to discover something new today? Your learning adventure awaits! 📚",
-    local: "Your community is waiting for you 🐾",
-    mealart: "Try creating something beautiful with food! See the Meal Art section for inspiration 🍽️",
+  const keyMap = {
+    learn: "recommendLearn",
+    local: "recommendLocal",
+    mealart: "recommendMealart",
   };
 
-  return messages[section] || "Explore something new today!";
+  return initT(keyMap[section] || "recommendDefault");
 }
 
 function updatePetOnboarding(message) {

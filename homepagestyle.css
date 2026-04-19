@@ -458,10 +458,6 @@ h3 {
   padding: 0.4rem;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-}
 
 /* Align emoji at the top */
 .card::first-line {
@@ -478,7 +474,7 @@ h3 {
 .lastPincards {
   margin: 0.4rem 0;
   line-height: 1.15;
-  margin-bottom: 1.2rem !important;
+ margin-bottom: 0.3rem !important;
 }
 
 .card strong {
@@ -5631,4 +5627,11 @@ button.button.danger:hover {
   object-fit: cover;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.success-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  object-fit: cover;
 }
