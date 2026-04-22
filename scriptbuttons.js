@@ -12,6 +12,9 @@ function showSection(sectionId) {
       tabHistory.push(currentTab); // save previous tab
     }
     currentTab = sectionId;
+    if (currentTab==="home") {
+    setWinnersOpenedTrue();
+    }
   }
 
    // Set messages tab state
@@ -225,7 +228,7 @@ document.getElementById("startCheckinBtn")?.addEventListener("click", async () =
 document.getElementById("skipCheckinBtn")?.addEventListener("click", () => {
   const first = document.getElementById("homepageContentfirst");
   const second = document.getElementById("homepageContentsecond");
-
+setWinnersOpenedTrue(); // ✅ Mark winners as opened when skipping check-in
   if (first && second) {
     first.style.display = "none";
     second.style.display = "block";

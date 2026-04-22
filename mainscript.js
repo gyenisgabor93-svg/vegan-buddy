@@ -1159,6 +1159,8 @@ deleteProfileBtn: "🗑️ Profil törlése",
 };
 
 
+
+
 async function updateLanguageUI(lang) {
   const t = translations[lang]; // Select the language dictionary
 
@@ -2263,10 +2265,10 @@ document.querySelectorAll('input[name="goal"]').forEach(cb => {
   }
 
  // --- Daily check-in logic ---
-const checkinBtn = document.getElementById("checkinBtn");
-const lessonPathBtn = document.getElementById("lessonPathBtn"); // <-- new
-const dailyCheckInSection = document.getElementById("dailycheck-in");
-const lessonPathSection = document.getElementById("lesson-path");
+//const checkinBtn = document.getElementById("checkinBtn");
+//const lessonPathBtn = document.getElementById("lessonPathBtn"); // <-- new
+//const dailyCheckInSection = document.getElementById("dailycheck-in");
+//const lessonPathSection = document.getElementById("lesson-path");
 
 // Helper to format date in UTC as YYYY-MM-DD
 function getUTCDateString(date) {
@@ -2795,9 +2797,23 @@ if (when === "ongoing") {
 }
 
 async function loadWinnersFromData(ctx) {
-  const todayUTC = new Date().getUTCDay(); // 0 = Sunday, 1 = Monday, etc.
-  if (todayUTC !== 1 && todayUTC !== 2 && todayUTC !== 3) return; // only run on tuesday and wednesday
 
+const now = new Date();
+const year = now.getUTCFullYear();
+const week = getWeekNumber(now);
+
+const storageKey = `meal_winners_${year}_W${week}`;
+
+const stored = localStorage.getItem(storageKey);
+
+if (stored) {
+  const data = JSON.parse(stored);
+
+  // already shown this week → block execution
+  if (data.week === `${year}-W${week}` && data.shown === true) {
+    return;
+  }
+}
   if (!currentMeals || currentMeals.length === 0) return;
 
   function getLatestWinner(isPro) {
@@ -2860,11 +2876,44 @@ async function loadWinnersFromData(ctx) {
 
   // if winners were shown → stop flow
   if (didRender) {
-    return "STOP";
-  }
+  const now = new Date();
+
+  // ISO week-based key (simple stable weekly identifier)
+  const year = now.getUTCFullYear();
+  const week = getWeekNumber(now); // helper function below
+
+  const storageKey = `meal_winners_${year}_W${week}`;
+
+  const data = {
+    week: `${year}-W${week}`,
+    shown: false
+  };
+
+  localStorage.setItem(storageKey, JSON.stringify(data));
+  return "STOP";
+}
 }
 
+function getWeekNumber(date) {
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
 
+window.setWinnersOpenedTrue = function() {
+  const now = new Date();
+  const year = now.getUTCFullYear();
+  const week = getWeekNumber(now);
+  const storageKey = `meal_winners_${year}_W${week}`; 
+  const stored = localStorage.getItem(storageKey);
+  if (stored) {
+  const data = JSON.parse(stored);
+  data.shown = true;
+  localStorage.setItem(storageKey, JSON.stringify(data));
+  }
+}
 
 //--------------------------
 // DEFAULT CASE - RANDOM STAT OR WINNER
@@ -3263,7 +3312,7 @@ async function monitorDailyXP() {
 
   if (xpToday >= xpGoal && now - lastShown > 10_000) {
     message = helperT("dailyXPComplete"); // always show complete
-  } else if (xpToday >= 20 && now - lastShown > 180_000) {
+  } else if (xpToday >= 35 && now - lastShown > 180_000) {
     const remaining = xpGoal - xpToday;
     message = helperT("dailyXPProgress", { xpToday, xpGoal, remaining });
 
@@ -3693,6 +3742,7 @@ function showLoading(isLoading) {
       // Already checked in OR pending streak → show second page
       contentFirst.style.display = "none";
       contentSecond.style.display = "block";
+      setWinnersOpenedTrue();
     } else {
       // Not checked in → show first page
       contentFirst.style.display = "block";
@@ -4740,6 +4790,7 @@ async function handleStreakStep() {
   if (finishBtn) {
     finishBtn.classList.remove("hidden");
     finishBtn.disabled = true;
+    setWinnersOpenedTrue();
   }
 
   // 👉 get selected meal FROM DOM at the moment of leaving
@@ -12088,14 +12139,27 @@ function pickrandommessage() {
       ];
 
     html = `
-      <div class="celeb-inline">
-        <p><strong>💬 ${
-          lang === "es" ? "Cita de" : lang === "hu" ? "Idézet tőle:" : "A quote from"
-        } ${celeb.name[lang] || celeb.name.en}:</strong></p>
-        <p class="quote">“${celeb.quote[lang] || celeb.quote.en}”</p>
+  <div class="celeb-inline">
+    
+    <div class="celeb-header">
+      <img src="${celeb.avatar}" class="celeb-avatar" />
+      
+      <div class="celeb-info">
+        <strong>💬 ${
+          lang === "es"
+            ? "Cita de"
+            : lang === "hu"
+            ? "Idézet tőle:"
+            : "A quote from"
+        } ${celeb.name[lang] || celeb.name.en}</strong>
+        
         <p><em>${celeb.title[lang] || celeb.title.en}</em></p>
       </div>
-    `;
+    </div>
+
+    <p class="quote">“${celeb.quote[lang] || celeb.quote.en}”</p>
+  </div>
+`;
   }
 
   // 4️⃣ SUCCESS STORIES SECTION (NEW)

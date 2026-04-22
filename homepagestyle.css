@@ -5635,3 +5635,29 @@ button.button.danger:hover {
   margin-bottom: 10px;
   object-fit: cover;
 }
+.celeb-inline {
+  padding: 12px;
+}
+
+.celeb-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.celeb-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.celeb-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.quote {
+  margin-top: 10px;
+  font-style: italic;
+}

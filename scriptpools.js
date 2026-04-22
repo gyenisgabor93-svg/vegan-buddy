@@ -14441,7 +14441,7 @@ Prevention is powerful, and your daily choices truly matter. Let’s make each m
 // =======================
 // INGREDIENTS
 // =======================
-const ingredientInfo = {
+window.ingredientInfo = {
   tofu: {
     name: {
       en: "Tofu",
