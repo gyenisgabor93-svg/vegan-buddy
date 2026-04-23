@@ -1209,7 +1209,7 @@ async function updateLanguageUI(lang) {
   document.getElementById("friendsBtn").querySelector(".btn-label").firstChild.textContent = t.friendsBtn;
   document.getElementById("messagesBtn").querySelector(".btn-label").firstChild.textContent = t.messagesBtn;
   document.getElementById("localBtn").querySelector(".btn-label").firstChild.textContent = t.localBtn;
-  document.getElementById("nutritionBtn").innerText = t.nutritiontable;
+ // document.getElementById("nutritionBtn").innerText = t.nutritiontable;
  // document.getElementById("forumBtn").querySelector(".btn-label").firstChild.textContent = t.forumBtn;
  // document.getElementById("mentorshipBtn").innerText = t.mentorshipBtn;
   document.getElementById("leaderboardsBtn").innerText = t.leaderboardsBtn;
@@ -1949,95 +1949,61 @@ function translateFromPool(pool, value, lang) {
 
 const encouragements = {
     en: [
-      "Be kind to every kind — and don’t forget to be kind to yourself too!",
-      "Love grows when shared 💚",
-      "Every small act of care shapes who you are.",
-      "Happiness multiplies when you give it away.",
-      "Patience is love in action.",
-      "A gentle word can change someone’s entire day.",
-      "Sharing love is never wasted — it always returns.",
-      "Small acts of care create big ripples in the world.",
-      "Compassion starts with noticing someone’s needs.",
-      "Your warmth makes others feel safe and valued.",
-      "Encouragement can blossom where criticism would wither.",
-      "Every smile you share brightens someone’s path.",
-      "Kindness costs nothing but creates priceless moments.",
-      "You are wiser when you seek understanding before judgment.",
-      "Helping others grow is a reflection of your own strength.",
-      "Love yourself as fiercely as you love others.",
-      "Quiet support is often more powerful than loud words.",
-      "Your patience today teaches others how to be gentle tomorrow.",
-      "Sharing your knowledge softly guides hearts, not forces them.",
-      "Happiness blooms when you care without expecting in return.",
-      "Every gentle touch leaves a mark of love.",
-      "Encouragement turns mistakes into lessons, not failures.",
-      "You are strongest when you act with empathy.",
-      "A kind action can be louder than a thousand words.",
-      "Your warmth has the power to heal invisible wounds.",
-      "Sharing joy multiplies it for everyone involved. 🌟",
-      "Teach by example — hearts learn faster than ears.",
-      "Every act of love is a building block for a better world.",
+      "Be kind to every kind 💚",
+      "Strong people protect the weak, brave people protect the vulnerable, and compassionate people protect all beings.",
+      "In every way that matters, we are all the same — we all want to be happy and avoid suffering.",
+      "If a kind word can change someone's day, imagine what a kind world can do.",
+      "The more love you give, the more love you have to give.",
+      "Compassion starts when you notice the needs of others.",
+      "If a person longs for a righteous world, their first act is to abstain from harming others.",
+      "Every animal is someone, not something.",
+      "The true measure of any society can be found in how it treats its most vulnerable members.",
+      "The best way to find yourself is to lose yourself in the service of others.",
+      "Their silence doesn’t mean they don’t feel — it means we must listen more carefully.",
+      "The world is full of kind people. If you can’t find one, be one.",
+      "A peaceful world begins with the choices we make when no one is watching.",
+      "Gentleness is strength when it protects those who cannot protect themselves.",
+      "Love becomes meaningful when it extends beyond our own kind.",
+      "We share this world; we don’t own it",
+      "The way we treat the vulnerable defines the world we live in."
       ],
     es: [
-      "Sé amable con todos los seres — y no olvides ser amable contigo también.",
-      "El amor crece cuando se comparte 💚",
-      "Cada pequeño acto de cuidado moldea quién eres.",
-      "La felicidad se multiplica cuando la compartes.",
-      "La paciencia es amor en acción.",
-      "Una palabra amable puede cambiar todo el día de alguien.",
-      "Compartir amor nunca se desperdicia — siempre vuelve.",
-      "Los pequeños actos de cuidado crean grandes ondas en el mundo.",
-      "La compasión empieza al notar las necesidades de los demás.",
-      "Tu calidez hace que otros se sientan seguros y valorados.",
-      "El ánimo florece donde la crítica se marchita.",
-      "Cada sonrisa que compartes ilumina el camino de alguien.",
-      "La bondad no cuesta nada y crea momentos invaluables.",
-      "Eres más sabio cuando buscas comprender antes de juzgar.",
-      "Ayudar a otros a crecer refleja tu propia fuerza.",
-      "Ámate con la misma intensidad con la que amas a otros.",
-      "El apoyo silencioso suele ser más poderoso que las palabras fuertes.",
-      "Tu paciencia hoy enseña gentileza mañana.",
-      "Compartir conocimiento suavemente guía corazones.",
-      "La felicidad florece cuando das sin esperar nada.",
-      "Cada gesto suave deja una huella de amor.",
-      "El ánimo convierte errores en lecciones.",
-      "Eres más fuerte cuando actúas con empatía.",
-      "Un acto amable puede hablar más que mil palabras.",
-      "Tu calidez puede sanar heridas invisibles.",
-      "Compartir alegría la multiplica para todos. 🌟",
-      "Enseña con el ejemplo — el corazón aprende más rápido.",
-      "Cada acto de amor construye un mundo mejor.",
+    "Sé amable con todos los seres 💚",
+    "Las personas fuertes protegen a los débiles, las valientes protegen a los vulnerables, y las compasivas protegen a todos los seres.",
+    "En todo lo que realmente importa, somos iguales — todos queremos ser felices y evitar el sufrimiento.",
+    "Si una palabra amable puede cambiar el día de alguien, imagina lo que puede hacer un mundo amable.",
+    "Cuanto más amor das, más amor tienes para dar.",
+    "La compasión comienza cuando notas las necesidades de los demás.",
+    "Si una persona anhela un mundo justo, su primer acto es abstenerse de dañar a otros.",
+    "Cada animal es alguien, no algo.",
+    "La verdadera medida de cualquier sociedad es cómo trata a sus miembros más vulnerables.",
+    "La mejor manera de encontrarte a ti mismo es perderte en el servicio a los demás.",
+    "Su silencio no significa que no sientan — significa que debemos escuchar con más atención.",
+    "El mundo está lleno de personas amables. Si no encuentras una, sé tú esa persona.",
+    "Un mundo pacífico comienza con las decisiones que tomamos cuando nadie nos está mirando.",
+    "La gentileza es fuerza cuando protege a quienes no pueden protegerse a sí mismos.",
+    "El amor se vuelve significativo cuando se extiende más allá de nuestra propia especie.",
+    "Compartimos este mundo; no nos pertenece.",
+    "La forma en que tratamos a los vulnerables define el mundo en el que vivimos."
 ],
-
     hu: [
-      "Légy kedves minden lényhez — és magadhoz se felejts el az lenni.",
-      "A szeretet akkor nő, ha megosztják 💚",
-      "Minden apró gondoskodás formálja azt, aki vagy.",
-      "A boldogság megsokszorozódik, ha továbbadod.",
-      "A türelem a szeretet cselekvésben.",
-      "Egy kedves szó megváltoztathatja valaki egész napját.",
-      "A megosztott szeretet sosem vész el — mindig visszatér.",
-      "Az apró törődés nagy hullámokat kelt.",
-      "Az együttérzés a figyelemmel kezdődik.",
-      "A melegség biztonságot és értéket ad másoknak.",
-      "A bátorítás ott virágzik, ahol a kritika elsorvad.",
-      "Minden mosoly fényt ad valaki útjára.",
-      "A kedvesség semmibe sem kerül, mégis felbecsülhetetlen.",
-      "Bölcsebb vagy, ha megértést keresel ítélkezés előtt.",
-      "Mások segítése a saját erőd tükre.",
-      "Szeresd magad olyan erősen, ahogy másokat.",
-      "A csendes támogatás gyakran a legerősebb.",
-      "A mai türelmed holnap gyengédséget tanít.",
-      "A tudás finom megosztása szíveket vezet.",
-      "A boldogság akkor virágzik, ha nem vársz viszonzást.",
-      "Minden gyengéd érintés nyomot hagy.",
-      "A bátorítás tanulsággá alakítja a hibákat.",
-      "Az empátia az igazi erő.",
-      "Egy kedves tett hangosabb ezer szónál.",
-      "A melegség láthatatlan sebeket gyógyít.",
-      "Az öröm megosztva megsokszorozódik. 🌟",
-      "Mutass példát — a szív gyorsabban tanul.",
-      "Minden szeretetteljes tett egy jobb világ alapja.",
+    "Légy kedves minden élőlénnyel 💚",
+    "Az erős emberek védik a gyengéket, a bátrak védik a kiszolgáltatottakat, és az együttérzők minden élőlényt védenek.",
+    "Minden fontos szempontból egyformák vagyunk — mindannyian boldogok szeretnénk lenni és elkerülni a szenvedést.",
+    "Ha egy kedves szó megváltoztathatja valakinek a napját, képzeld el, mire képes egy kedves világ.",
+    "Minél több szeretetet adsz, annál több szereteted lesz adni.",
+    "Az együttérzés ott kezdődik, amikor észreveszed mások szükségleteit.",
+    "Ha valaki egy igazságos világra vágyik, az első lépése az, hogy tartózkodik attól, hogy másoknak ártson.",
+    "Minden állat valaki, nem valami.",
+    "Egy társadalom igazi mércéje az, ahogyan a legkiszolgáltatottabb tagjaival bánik.",
+    "Az önmagad megtalálásának legjobb módja, ha elveszel mások szolgálatában.",
+    "A hallgatásuk nem jelenti azt, hogy nem éreznek — azt jelenti, hogy figyelmesebben kell hallgatnunk.",
+    "A világ tele van kedves emberekkel. Ha nem találsz egyet, légy te az.",
+    "Egy békés világ azokkal a döntésekkel kezdődik, amelyeket akkor hozunk, amikor senki sem figyel.",
+    "A gyengédség erő, amikor azokat védi, akik nem tudják megvédeni magukat.",
+    "A szeretet akkor válik igazán jelentőssé, amikor túlmutat a saját fajunkon.",
+    "A világunkon osztozunk; nem uraljuk.",
+    "Az, ahogyan a kiszolgáltatottakkal bánunk, meghatározza a világot, amelyben élünk."
     ]
   };
 
@@ -2677,6 +2643,21 @@ async function onBoardRecommendation(ctx) {
 
 async function upcomingevent() {
 
+  const now = new Date();
+  const dayKey = now.toISOString().split("T")[0];
+  const storageKey = `event_tomorrow_${dayKey}`;
+
+  const stored = localStorage.getItem(storageKey);
+
+  // BLOCK EARLY IF ALREADY SHOWN TODAY
+  if (stored) {
+    const data = JSON.parse(stored);
+
+    if (data.day === dayKey && data.shown === true) {
+      return; // stop everything immediately
+    }
+  }
+
   let locationId = window.currentCommunityLocationId;
 
   // If not available yet → fetch it here
@@ -2716,8 +2697,6 @@ if (!events) {
   events = data;
   window.communityEventsGlobal = data;
 }
-
-const now = new Date();
 
 const event = events.find(e => {
   const eventDate = new Date(e.event_date);
@@ -2784,10 +2763,34 @@ if (when === "ongoing") {
     description: event.description
   });
 } else {
+const now = new Date();
+
+// YYYY-MM-DD in UTC (stable across timezones)
+const dayKey = now.toISOString().split("T")[0];
+
+const storageKey = `event_tomorrow_${dayKey}`;
+
+const stored = localStorage.getItem(storageKey);
+
+if (stored) {
+  const data = JSON.parse(stored);
+
+  if (data.shown === true) {
+    return;
+  }
+}
+
+// allow showing + reset for today
+localStorage.setItem(storageKey, JSON.stringify({
+  day: dayKey,
+  shown: false
+}));
   message = initT("eventTomorrow", {
     time,
     place: event.place,
     description: event.description
+
+
   });
 }
 
@@ -2904,16 +2907,34 @@ function getWeekNumber(date) {
 
 window.setWinnersOpenedTrue = function() {
   const now = new Date();
+
+  // ------------------------
+  // 1. WEEK WINNERS
+  // ------------------------
   const year = now.getUTCFullYear();
   const week = getWeekNumber(now);
-  const storageKey = `meal_winners_${year}_W${week}`; 
-  const stored = localStorage.getItem(storageKey);
-  if (stored) {
-  const data = JSON.parse(stored);
-  data.shown = true;
-  localStorage.setItem(storageKey, JSON.stringify(data));
+  const weekKey = `meal_winners_${year}_W${week}`;
+
+  const weekStored = localStorage.getItem(weekKey);
+  if (weekStored) {
+    const data = JSON.parse(weekStored);
+    data.shown = true;
+    localStorage.setItem(weekKey, JSON.stringify(data));
   }
-}
+
+  // ------------------------
+  // 2. EVENT TOMORROW (DAILY KEY)
+  // ------------------------
+  const dayKey = now.toISOString().split("T")[0];
+  const eventKey = `event_tomorrow_${dayKey}`;
+
+  const eventStored = localStorage.getItem(eventKey);
+  if (eventStored) {
+    const data = JSON.parse(eventStored);
+    data.shown = true;
+    localStorage.setItem(eventKey, JSON.stringify(data));
+  }
+};
 
 //--------------------------
 // DEFAULT CASE - RANDOM STAT OR WINNER
@@ -2922,6 +2943,7 @@ function defaultCase(ctx) {
   const box = document.getElementById("petOnboardingBox");
   const textEl = document.getElementById("petOnboardingText");
   const photoEl = document.getElementById("petOnboardingPhoto");
+  const currentLang = window.appState?.lang || localStorage.getItem("lang") || "en";
 
   if (!box || !textEl || !photoEl) return;
 
@@ -2945,42 +2967,103 @@ function defaultCase(ctx) {
     return randomMessage;
   }
 },
+
 {
   key: "animals_saved",
   value: currentProfile.animals_saved,
   message: () => {
     const animals = Math.round(currentProfile.animals_saved || 0);
-    return comparisonT("animalsSentence", { animals });
+
+    const sentences = comparisonTranslations[currentLang || "en"].animalsSentence;
+
+    const item = sentences[Math.floor(Math.random() * sentences.length)];
+
+    return {
+      text: replaceValues(item.text, { animals }),
+      info: item.info
+    };
   }
 },
+
 {
   key: "co2_saved",
   value: currentProfile.co2_saved,
   message: () => {
-    const co2 = Math.round(currentProfile.co2_saved || 0);
-    const carHours = (co2 / 10);
-    return comparisonT("co2Sentence", { co2, carHours });
-  }
+  const co2 = Math.round(currentProfile.co2_saved || 0);
+  const carHours = Math.round(co2 / 10);
+  const trees = Math.round(co2 / 20);
+  const kWh = co2 / 0.3;
+  const householdsPerMonth = Math.round((kWh / 300) * 10) / 10;
+
+  const sentences = comparisonTranslations[currentLang || "en"].co2Sentence;
+  const item = sentences[Math.floor(Math.random() * sentences.length)];
+
+  return {
+    text: replaceValues(item.text, {
+      co2,
+      carHours,
+      trees,
+      householdsPerMonth
+    }),
+    info: item.info
+  };
+}
 },
+
 {
   key: "water_saved",
   value: currentProfile.water_saved,
   message: () => {
-    const water = Math.round(currentProfile.water_saved || 0);
-    const showers = Math.round(water / 65);
-    return comparisonT("waterSentence", { water, showers });
-  }
+  const water = Math.round(currentProfile.water_saved || 0);
+
+  const showers = Math.round(water / 65);
+  const people = Math.round(water / 50);
+  const drinkingDays = Math.round(water / 2);
+  const pools = Math.round(water / 2000);
+
+  const sentences = comparisonTranslations[currentLang || "en"].waterSentence;
+  const item = sentences[Math.floor(Math.random() * sentences.length)];
+
+  return {
+    text: replaceValues(item.text, {
+      water,
+      showers,
+      people,
+      drinkingDays,
+      pools
+    }),
+    info: item.info
+  };
+}
 },
+
 {
   key: "forest_saved",
   value: currentProfile.forest_saved,
   message: () => {
-    const forest = Math.round(currentProfile.forest_saved || 0);
-    const trees = forest / 10;
-    const paper = Math.round(trees * 8000);
-    return comparisonT("forestSentence", { forest, paper });
-  }
+  const forest = Math.round(currentProfile.forest_saved || 0);
+
+  const trees = Math.round(forest / 10);
+  const paper = Math.round(trees * 8000);
+  const birds = Math.round(trees * 2);
+  const co2Absorbed = Math.round(trees * 10);
+
+  const sentences = comparisonTranslations[currentLang || "en"].forestSentence;
+  const item = sentences[Math.floor(Math.random() * sentences.length)];
+
+  return {
+    text: replaceValues(item.text, {
+      forest,
+      trees,
+      paper,
+      birds,
+      co2Absorbed
+    }),
+    info: item.info
+  };
+}
 },
+
     {
   key: "consistency",
   value: currentProfile.vegan_days,
@@ -3003,6 +3086,7 @@ function defaultCase(ctx) {
     }
   }
 },
+
 {
   key: "meal_winners",
   value: (currentMeals || []).length, // just to pass validation
@@ -3109,7 +3193,28 @@ const main = initT("statsPrefix", {
   label: initT(randomStat.labelKey)
 });
 
-textEl.innerHTML = comparison;
+textEl.innerHTML = `
+  <div class="comparison-wrapper">
+    <span>${comparison.text}</span>
+    <button class="info-btn">ℹ️</button>
+    <div class="info-box hidden">${comparison.info}</div>
+  </div>
+`;
+
+const infoBtn = textEl.querySelector(".info-btn");
+const infoBox = textEl.querySelector(".info-box");
+
+if (infoBtn && infoBox) {
+  infoBtn.onclick = () => {
+    infoBox.classList.toggle("hidden");
+  };
+}
+}
+
+function replaceValues(text, values) {
+  return Object.keys(values).reduce((acc, key) => {
+    return acc.replaceAll(`{${key}}`, values[key]);
+  }, text);
 }
 
 function pickWeightedStat(stats) {
@@ -6423,113 +6528,240 @@ uploadModal?.addEventListener("click", e => {
 const comparisonTranslations = {
   en: {
     animalsSentence: [
-  "Because of you, <span class=\"highlight\">{animals}</span> animals are safe — imagine them as happy friends roaming freely!",
-  "You’ve given <span class=\"highlight\">{animals}</span> animals a second chance at life 💚",
-  "<span class=\"highlight\">{animals}</span> lives spared — they are sentient beings living peacefully because of you.",
-  "Every choice matters — and yours protected <span class=\"highlight\">{animals}</span> animals 🐾"
-],
-    forestSentence:[
-  "You’ve protected <span class=\"highlight\">{forest}</span> m² of forest so far🌳",
-  "<span class=\"highlight\">{forest}</span> m² of nature still alive thanks to you.",
-  "Your actions preserved a forest area equal to <span class=\"highlight\">{forest}</span> m².",
-  "Nature thanks you — <span class=\"highlight\">{forest}</span> m² untouched and thriving."
-],
-    waterSentence:[
-  "You’ve saved <span class=\"highlight\">{water}</span> liters of water 💧",
-  "The water you saved is enough for <span class=\"highlight\">{showers}</span> showers — all saved by your choices!",
-  "<span class=\"highlight\">{water}</span> liters kept in nature instead of wasted.",
-  "Every drop of water counts — and you saved <span class=\"highlight\">{water}</span> liters of them."
-],
-    co2Sentence:[
-  "You reduced <span class=\"highlight\">{co2}</span> kg of CO₂ 🌍, it's like avoiding <span class=\"highlight\">{carHours}</span> hours of driving 🚗",
-  "The air is cleaner thanks to you — <span class=\"highlight\">{co2}</span> kg CO₂ avoided.",
-  "Your impact matters — <span class=\"highlight\">{co2}</span> kg less CO₂ in the atmosphere."
-],
-/*
-    calcComparison:
-`Every animal you spared has a heartbeat, a breath, and a story ❤️.
-The forest you’ve protected provides enough oxygen for <span class="highlight">{oxygen}</span> people for a whole year 🌬️.
-You’ve also saved enough water to fill <span class="highlight">{bathtubs}</span> bathtubs — a small but meaningful gift to our planet 🛁.
-And all your choices together prevented as much CO₂ as <span class="highlight">{trees}</span> trees absorb in a year 🌳.`
-*/
+      {
+        text: "Because of you, <span class=\"highlight\">{animals}</span> animals are safe — imagine them as happy friends roaming freely!",
+        info: "Estimated using an average model of ~0.7 animal lives avoided per day on a vegan diet compared to a standard omnivorous diet. This is a simplified statistical approximation, not a fixed biological value."
+      },
+      {
+        text: "You’ve given <span class=\"highlight\">{animals}</span> animals a second chance at life",
+        info: "Estimated using an average model of ~0.7 animal lives avoided per day on a vegan diet compared to a standard omnivorous diet. This is a simplified statistical approximation, not a fixed biological value."
+      },
+      {
+        text: "<span class=\"highlight\">{animals}</span> lives spared — they are sentient beings living peacefully because of you.",
+        info: "Estimated using an average model of ~0.7 animal lives avoided per day on a vegan diet compared to a standard omnivorous diet. This is a simplified statistical approximation, not a fixed biological value."
+      },
+      {
+        text: "Every choice matters — and yours protected <span class=\"highlight\">{animals}</span> animals",
+        info: "Estimated using an average model of ~0.7 animal lives avoided per day on a vegan diet compared to a standard omnivorous diet. This is a simplified statistical approximation, not a fixed biological value."
+      }
+    ],
 
+    forestSentence: [
+      {
+        text: "The forest you saved absorbs about <span class=\"highlight\">{co2Absorbed}</span> kg of CO₂ per year — like removing emissions from everyday life ",
+        info: "Estimated using average carbon absorption rates of forests. A typical mature tree absorbs ~10–25 kg of CO₂ per year, and forest areas are scaled using average tree density per square meter depending on biome type."
+      },
+      {
+        text: "The forest area you saved helps filter the air and cool the planet — like a natural climate system",
+        info: "Forests regulate climate through evapotranspiration, carbon storage, and heat absorption. These processes help stabilize temperature, humidity, and air quality at local and global scales."
+      },
+      {
+        text: "Saving this forest area is like saving around <span class=\"highlight\">{paper}</span> sheets of paper",
+        info: "This is based on the common estimate that 1 mature tree can yield approximately 7,500–10,000 sheets of paper.. We use an average value of ~8,000 sheets per tree."
+      },
+      {
+        text: "The forest you saved provides a home for around <span class=\"highlight\">{birds}</span> birds",
+        info: "Bird population estimates are based on average species density (2 birds/tree, 1 tree/10m² forest) in temperate and mixed forests, where multiple bird species occupy overlapping territories depending on canopy structure and habitat diversity."
+      }
+    ],
+
+    waterSentence: [
+      {
+        text: "The water you saved is enough for <span class=\"highlight\">{showers}</span> showers — all saved by your choices!",
+        info: "Estimated using average household shower consumption, typically 60–70 liters per 5–10 minute shower depending on flow rate and region."
+      },
+      {
+        text: "The water you saved is enough to cover the daily needs of about <span class=\"highlight\">{people}</span> people",
+        info: "Based on WHO basic water needs guideline of approximately 50 liters per person per day, covering drinking, cooking, and basic hygiene."
+      },
+      {
+        text: "The amount of water you saved could keep <span class=\"highlight\">{drinkingDays}</span> people hydrated for a day",
+        info: "Based on minimum survival drinking water requirement of ~2 liters per person per day as a physiological baseline."
+      },
+      {
+        text: "The water you saved is enough to fill <span class=\"highlight\">{pools}</span> small backyard pools",
+        info: "Based on an estimated small backyard pool volume of approximately 2,000 liters, which can vary depending on size and depth."
+      }
+    ],
+
+    co2Sentence: [
+      {
+        text: "You reduced <span class=\"highlight\">{co2}</span> kg of CO₂, it's like avoiding <span class=\"highlight\">{carHours}</span> hours of driving",
+        info: "Based on average passenger car emissions per kilometer and typical driving speeds, resulting in an estimated CO₂ output per hour of driving."
+      },
+      {
+        text: "The amount of CO₂ you reduced is roughly what <span class=\"highlight\">{trees}</span> trees absorb in a year",
+        info: "Based on scientific estimates that a mature tree absorbs approximately 10–25 kg of CO₂ per year, depending on species, age, and climate conditions."
+      },
+      {
+        text: "Your impact helps slow climate change — one conscious choice at a time!",
+        info: "General climate impact statement reflecting cumulative emissions reductions from individual behavioral changes over time."
+      },
+      {
+       text: "You prevented as much CO₂ as the monthly electricity use of <span class=\"highlight\">{householdsPerMonth}</span> households!",
+       info: "Based on average household electricity consumption (~300 kWh/month) and regional grid carbon intensity (~0.3 kg CO₂ per kWh), converted from total CO₂ savings."
+      }
+    ]
 },
 
   es: {
-animalsSentence: [
-  "Gracias a ti, <span class=\"highlight\">{animals}</span> animales están a salvo — imagínalos como amigos felices viviendo libremente 🐾",
-  "Has dado a <span class=\"highlight\">{animals}</span> animales una segunda oportunidad de vida 💚",
-  "<span class=\"highlight\">{animals}</span> vidas salvadas — son seres sentientes viviendo en paz gracias a ti.",
-  "Cada decisión cuenta — y la tuya protegió a <span class=\"highlight\">{animals}</span> animales 🐾"
-],
+  animalsSentence: [
+    {
+      text: "Gracias a ti, <span class=\"highlight\">{animals}</span> animales están a salvo — imagínalos como amigos felices viviendo libremente",
+      info: "Estimated using an average model of ~0.7 animal lives avoided per day on a vegan diet compared to a standard omnivorous diet. This is a simplified statistical approximation, not a fixed biological value."
+    },
+    {
+      text: "Has dado a <span class=\"highlight\">{animals}</span> animales una segunda oportunidad de vida",
+      info: "Estimado utilizando un modelo promedio de ~0,7 vidas de animales evitadas por día con una dieta vegana en comparación con una dieta omnívora estándar. Esta es una aproximación estadística simplificada, no un valor biológico fijo."
+    },
+    {
+      text: "<span class=\"highlight\">{animals}</span> vidas salvadas — son seres sentientes viviendo en paz, gracias a ti!",
+      info: "Estimado utilizando un modelo promedio de ~0,7 vidas de animales evitadas por día con una dieta vegana en comparación con una dieta omnívora estándar. Esta es una aproximación estadística simplificada, no un valor biológico fijo."
+    },
+    {
+      text: "Cada decisión cuenta — y la tuya protegió a <span class=\"highlight\">{animals}</span> animales",
+      info: "Estimado utilizando un modelo promedio de ~0,7 vidas de animales evitadas por día con una dieta vegana en comparación con una dieta omnívora estándar. Esta es una aproximación estadística simplificada, no un valor biológico fijo."
+    }
+  ],
 
-forestSentence: [
-  "Has protegido <span class=\"highlight\">{forest}</span> m² de bosque por ahora🌳",
-  "<span class=\"highlight\">{forest}</span> m² de naturaleza que siguen vivos gracias a ti.",
-  "Tus acciones han preservado un área de bosque equivalente a <span class=\"highlight\">{forest}</span> m².",
-  "La naturaleza te lo agradece — <span class=\"highlight\">{forest}</span> m² intactos y llenos de vida."
-],
+  forestSentence: [
+    {
+      text: "El bosque que has salvado absorbe alrededor de <span class=\"highlight\">{co2Absorbed}</span> kg de CO₂ al año — como eliminar emisiones de la vida cotidiana",
+      info: "Estimación basada en las tasas medias de absorción de carbono de los bosques. Un árbol maduro absorbe aproximadamente entre 10 y 25 kg de CO₂ al año, y las áreas forestales se escalan usando la densidad media de árboles por metro cuadrado según el bioma."
+    },
+    {
+      text: "El área de bosque que has salvado ayuda a filtrar el aire y enfriar el planeta — como un sistema climático natural",
+      info: "Los bosques regulan el clima mediante la evapotranspiración, el almacenamiento de carbono y la absorción de calor. Estos procesos ayudan a estabilizar la temperatura, la humedad y la calidad del aire a escala local y global."
+    },
+    {
+      text: "Salvar este bosque es como salvar alrededor de <span class=\"highlight\">{paper}</span> hojas de papel",
+      info: "Basado en la estimación común de que un árbol maduro puede producir aproximadamente entre 7.500 y 10.000 hojas de papel. Usamos un valor medio de ~8.000 hojas por árbol."
+    },
+    {
+      text: "El bosque que has salvado da hogar a unas <span class=\"highlight\">{birds}</span> aves",
+      info: "Las estimaciones de población de aves se basan en la densidad media de especies (2 aves por árbol, 1 árbol por cada 10 m² de bosque) en bosques templados y mixtos, donde múltiples especies ocupan territorios superpuestos según la estructura del dosel y la biodiversidad del hábitat."
+    }
+  ],
 
-waterSentence: [
-  "Has ahorrado <span class=\"highlight\">{water}</span> litros de agua 💧",
-  "El agua que has ahorrado es suficiente para <span class=\"highlight\">{showers}</span> duchas — todo gracias a tus decisiones.",
-  "<span class=\"highlight\">{water}</span> litros que siguen en la naturaleza en lugar de desperdiciarse.",
-  "Cada gota de agua cuenta — y tú has ahorrado <span class=\"highlight\">{water}</span> litros 💧"
-],
+  waterSentence: [
+    {
+      text: "El agua que has ahorrado es suficiente para <span class=\"highlight\">{showers}</span> duchas — todo gracias a tus decisiones",
+      info: "Estimado utilizando el consumo medio de agua en duchas domésticas, normalmente 60–70 litros por ducha de 5–10 minutos, dependiendo del caudal y la región."
+    },
+    {
+      text: "El agua que has ahorrado cubre las necesidades diarias de unas <span class=\"highlight\">{people}</span> personas",
+      info: "Basado en la guía de necesidades básicas de agua de la OMS de aproximadamente 50 litros por persona al día, que cubre bebida, cocina e higiene básica."
+    },
+    {
+      text: "La cantidad de agua que has ahorrado podría mantener hidratadas a <span class=\"highlight\">{drinkingDays}</span> personas durante un día",
+      info: "Basado en el requisito mínimo de supervivencia de agua potable de ~2 litros por persona al día como referencia fisiológica básica."
+    },
+    {
+      text: "Suficiente agua para llenar <span class=\"highlight\">{pools}</span> pequeñas piscinas",
+      info: "Basado en un volumen estimado de una pequeña piscina doméstica de aproximadamente 2.000 litros, que puede variar según el tamaño y la profundidad."
+    }
+  ],
 
-co2Sentence: [
-  "Has reducido <span class=\"highlight\">{co2}</span> kg de CO₂ 🌍, es como evitar <span class=\"highlight\">{carHours}</span> horas de coche 🚗",
-  "Aire más limpio gracias a ti — <span class=\"highlight\">{co2}</span> kg de CO₂ evitados.",
-  "Tu impacto importa — <span class=\"highlight\">{co2}</span> kg menos CO₂ en la atmósfera 🌍"
-]
-/*
-    calcComparison:
-`Cada animal que salvaste tiene un latido y una historia ❤️.
-El bosque que protegiste produce oxígeno para <span class="highlight">{oxygen}</span> personas durante un año 🌬️.
-También ahorraste agua suficiente para llenar <span class="highlight">{bathtubs}</span> bañeras 🛁.
-Y tus decisiones evitaron tanto CO₂ como el que absorben <span class="highlight">{trees}</span> árboles al año 🌳.`
-*/
-
+  co2Sentence: [
+    {
+      text: "Has reducido <span class=\"highlight\">{co2}</span> kg de CO₂, es como evitar <span class=\"highlight\">{carHours}</span> horas de coche",
+      info: "Basado en las emisiones medias de un coche por kilómetro y velocidades típicas de conducción, lo que resulta en una estimación de CO₂ emitido por hora de conducción."
+    },
+    {
+      text: "La cantidad de CO₂ que has reducido es aproximadamente lo que absorben <span class=\"highlight\">{trees}</span> árboles en un año",
+      info: "Basado en estimaciones científicas de que un árbol maduro absorbe aproximadamente entre 10 y 25 kg de CO₂ al año, dependiendo de la especie, la edad y las condiciones climáticas."
+    },
+    {
+      text: "Tu impacto ayuda a frenar el cambio climático — una decisión consciente a la vez",
+      info: "Declaración general del impacto climático que refleja la reducción acumulada de emisiones derivada de cambios de comportamiento individuales a lo largo del tiempo."
+    },
+    {
+      text: "Has evitado tanto CO₂ como el consumo eléctrico mensual de <span class=\"highlight\">{householdsPerMonth}</span> hogares!",
+      info: "Basado en el consumo medio de electricidad de un hogar (~300 kWh/mes) y la intensidad media de carbono de la red eléctrica (~0,3 kg CO₂ por kWh), convertido a partir del total de CO₂ ahorrado."
+    }
+  ]
 },
 
-  hu: {
-animalsSentence: [
-  "Neked köszönhetően <span class=\"highlight\">{animals}</span> állat biztonságban van — képzeld el őket boldog, szabad életben 🐾",
-  "<span class=\"highlight\">{animals}</span> állatnak adtál egy második esélyt az életre 💚",
-  "<span class=\"highlight\">{animals}</span> megmentett élet — érző lények élnek békében miattad.",
-  "Minden döntés számít — és a tiéd <span class=\"highlight\">{animals}</span> állatot védett meg 🐾"
-],
+hu: {
+  animalsSentence: [
+    {
+      text: "Neked köszönhetően <span class=\"highlight\">{animals}</span> állat biztonságban van — képzeld el őket boldog, szabad életben",
+      info: "Estimado utilizando un modelo promedio de ~0,7 vidas de animales evitadas por día con una dieta vegana en comparación con una dieta omnívora estándar. Esta es una aproximación estadística simplificada, no un valor biológico fijo."
+    },
+    {
+      text: "<span class=\"highlight\">{animals}</span> állatnak adtál egy második esélyt az életre",
+      info: "Becslés egy átlagos modellen alapul, amely szerint a vegán étrend napi ~0,7 állati életet takarít meg egy hagyományos mindenevő étrendhez képest. Ez egy egyszerűsített statisztikai közelítés, nem egy rögzített biológiai érték."
+    },
+    {
+      text: "<span class=\"highlight\">{animals}</span> megmentett élet — érző lények élnek békében miattad.",
+      info: "Becslés egy átlagos modellen alapul, amely szerint a vegán étrend napi ~0,7 állati életet takarít meg egy hagyományos mindenevő étrendhez képest. Ez egy egyszerűsített statisztikai közelítés, nem egy rögzített biológiai érték."
+    },
+    {
+      text: "Minden döntés számít — és a tiéd <span class=\"highlight\">{animals}</span> állatot védett meg",
+      info: "Becslés egy átlagos modellen alapul, amely szerint a vegán étrend napi ~0,7 állati életet takarít meg egy hagyományos mindenevő étrendhez képest. Ez egy egyszerűsített statisztikai közelítés, nem egy rögzített biológiai érték."
+    }
+  ],
 
-forestSentence: [
-  "Eddig <span class=\"highlight\">{forest}</span> m² erdőt védtél meg 🌳",
-  "<span class=\"highlight\">{forest}</span> m² természet, ami tovább él miattad.",
-  "A döntéseid egy <span class=\"highlight\">{forest}</span> m²-es erdőterületet őriztek meg.",
-  "A természet hálás neked — <span class=\"highlight\">{forest}</span> m² erdő érintetlen és élő."
-],
+  forestSentence: [
+    {
+      text: "Az általad megmentett erdő évente körülbelül <span class=\"highlight\">{co2Absorbed}</span> kg CO₂-t nyel el — mintha eltüntetnénk a mindennapi élet kibocsátásait",
+      info: "Becslés az erdők átlagos szén-dioxid-megkötési rátája alapján. Egy kifejlett fa évente körülbelül 10–25 kg CO₂-t nyel el, az erdőterületeket pedig a biómától függő átlagos fa/m² sűrűséggel számítjuk."
+    },
+    {
+      text: "Az általad megmentett erdő segít tisztítani a levegőt és hűteni a bolygót — mint egy természetes klímarendszer",
+      info: "Az erdők a párologtatás, a szénmegkötés és a hőelnyelés révén szabályozzák az éghajlatot. Ezek a folyamatok segítenek stabilizálni a hőmérsékletet, a páratartalmat és a levegő minőségét helyi és globális szinten."
+    },
+    {
+      text: "Ekkora erdőt <span class=\"highlight\">{paper}</span> papírlap megspórolásával mentettél volna meg",
+      info: "Az általános becslés szerint egy kifejlett fa körülbelül 7 500–10 000 papírlap előállítására alkalmas. Itt átlagosan ~8 000 lapot használunk fánként."
+    },
+    {
+      text: "Az erdő amit eddig megmentettél körülbelül <span class=\"highlight\">{birds}</span> madár otthona",
+      info: "A madárpopuláció becslése átlagos faj-sűrűségen alapul (2 madár/fánként, 1 fa/10 m² erdő), mérsékelt és vegyes erdőkben, ahol több faj átfedő territóriumokban él a lombkorona szerkezetétől és az élőhely biodiverzitásától függően."
+    }
+  ],
 
-waterSentence: [
-  "<span class=\"highlight\">{water}</span> liter vizet spóroltál meg 💧",
-  "Az általad megspórolt víz elég <span class=\"highlight\">{showers}</span> zuhanyhoz — mindez a döntéseid miatt.",
-  "<span class=\"highlight\">{water}</span> liter vizet takarítottál meg a természetnek.",
-  "Minden csepp víz számít — és te <span class=\"highlight\">{water}</span> litert mentettél meg 💧"
-],
+  waterSentence: [
+    {
+      text: "Az általad megspórolt víz elég <span class=\"highlight\">{showers}</span> zuhanyhoz",
+      info: "Becslés a háztartási zuhanyok átlagos vízfogyasztása alapján, amely jellemzően 60–70 liter egy 5–10 perces zuhany esetén, a vízáramlástól és a régiótól függően."
+    },
+    {
+      text: "Az általad megspórolt víz körülbelül <span class=\"highlight\">{people}</span> ember napi szükségleteit fedezi",
+      info: "Az Egészségügyi Világszervezet (WHO) alapvető vízigényre vonatkozó ajánlásán alapul, amely körülbelül 50 liter/fő/nap, beleértve az ivást, főzést és alapvető higiénét."
+    },
+    {
+      text: "Az általad megspórolt víz <span class=\"highlight\">{drinkingDays}</span> ember hidratálására lenne elég egy napig",
+      info: "Az alapvető fiziológiai túlélési vízigényen alapul, amely körülbelül ~2 liter/fő/nap ivóvíz."
+    },
+    {
+      text: "Az általad megspórolt víz elég <span class=\"highlight\">{pools}</span> kis kerti medence megtöltéséhez",
+      info: "Egy kis kerti medence becsült térfogatán alapul, amely körülbelül 2000 liter, és a mérettől és mélységtől függően változhat."
+    }
+  ],
 
-co2Sentence: [
-  "<span class=\"highlight\">{co2}</span> kg CO₂ kibocsátást csökkentettél 🌍, ez olyan, mintha <span class=\"highlight\">{carHours}</span> órát nem autóztál volna 🚗",
-  "Tisztább levegő miattad — <span class=\"highlight\">{co2}</span> kg CO₂ kibocsátás csökkent.",
-  "A hatásod számít — <span class=\"highlight\">{co2}</span> kg-mal kevesebb CO₂ a légkörben 🌍"
-]
-/*
-    calcComparison:
-`Minden megmentett állatnak van szívdobbanása és története ❤️.
-Az általad védett erdő <span class="highlight">{oxygen}</span> ember számára termel oxigént egy évig 🌬️.
-Annyi vizet spóroltál meg, amivel <span class="highlight">{bathtubs}</span> kádat lehetne megtölteni 🛁.
-A döntéseid pedig annyi CO₂-t előztek meg, amennyit <span class="highlight">{trees}</span> fa köt meg egy év alatt 🌳.`
- */ 
-
+  co2Sentence: [
+    {
+      text: "<span class=\"highlight\">{co2}</span> kg CO₂ kibocsátást csökkentettél, ez olyan, mintha <span class=\"highlight\">{carHours}</span> órát nem autóztál volna",
+      info: "Az autók átlagos kilométerenkénti kibocsátásán és a tipikus vezetési sebességeken alapul, amely óránkénti CO₂-kibocsátási becslést eredményez."
+    },
+    {
+      text: "Az általad csökkentett CO₂ mennyiségét nagyjából <span class=\"highlight\">{trees}</span> fa nyeli el egy év alatt",
+      info: "Tudományos becsléseken alapul, amelyek szerint egy kifejlett fa évente körülbelül 10–25 kg CO₂-t köt meg, a fajtól, kortól és éghajlati viszonyoktól függően."
+    },
+    {
+      text: "A hatásod segít lassítani a klímaváltozást — egy tudatos döntés egyszerre",
+      info: "Általános klímahatás-megállapítás, amely az egyéni viselkedésváltozásokból származó kumulatív kibocsátáscsökkentést tükrözi."
+    },
+    {
+      text: "Eddig <span class=\"highlight\">{householdsPerMonth}</span> háztartás havi villamosenergia-fogyasztása által megtermelt CO₂-t spóroltál meg!",
+      info: "Az átlagos háztartási villamosenergia-fogyasztás (~300 kWh/hó) és a villamosenergia-hálózat átlagos szénintenzitása (~0,3 kg CO₂/kWh) alapján számítva, a teljes CO₂-megtakarításból levezetve."
+    }
+  ]
 }
 };
 
+/*
 function comparisonT(key, vars = {}) {
   const lang = window.appState?.lang || localStorage.getItem("lang") || "en";
 
@@ -6550,7 +6782,6 @@ function comparisonT(key, vars = {}) {
 
   return str;
 }
-/*
 // Constants for comparisons
 const sheetsPerTree = 8000;
 const forestAreaPerTree = 10; // m²
