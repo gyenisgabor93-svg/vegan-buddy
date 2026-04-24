@@ -1689,17 +1689,110 @@ statCO2: ({ km }) => `That’s like driving ${km} km less 🚗`,
 statWater: ({ showers }) => `That’s like saving ${showers} showers 🚿`,
 statForest: ({ area }) => `That’s like protecting ${area} m² of forest 🌳`,
 
-consistency90: ({ vegan, total }) =>
+consistency90: ({ vegan, total, percentage }) => [
   `${vegan} days fully plant-based out of ${total}? You’re absolutely crushing it 🔥`,
-consistency70: ({ vegan, total }) =>
-  `${vegan} out of ${total} days fully plant-based — that’s strong consistency 💪`,
-consistency40: ({ vegan }) =>
-  `${vegan} plant-based days so far — you’re building something real 🌱`,
-consistencyLow: ({ vegan }) =>
-  `${vegan} plant-based days — every step counts, keep going 🌿`,
+  `${vegan}/${total} days fully plant-based — that’s elite consistency 🌟`,
+  `${vegan} plant-based days out of ${total}. This is next-level commitment 💯`,
+  `${vegan} fully plant-based days out of ${total}? You’ve built a powerful habit ⚡`,
+  `${vegan}/${total} days fully plant-based — seriously impressive consistency 👏`,
+  `${vegan} days fully plant-based… this is who you are now 🌱`,
+  `${vegan} out of ${total} days fully plant-based — you're setting the standard 🔥`,
+  `${percentage}% of your days have been fully plant-based — that’s impressive!`
+],
 
-mealWinnerTitle: "🍽️ Latest Meal-Art winner:",
-mealWinnerText: "created something amazing!",
+consistency70: ({ vegan, total, percentage }) => [
+  `${vegan} out of ${total} days fully plant-based — that’s strong consistency 💪`,
+  `${vegan}/${total} days fully plant-based — you’re doing really well, keep it going 🌱`,
+  `${vegan} plant-based days out of ${total}. You’re on a great path 🚀`,
+  `${vegan}/${total} days fully plant-based — solid progress, you’re getting there ⚡`,
+  `${vegan} days fully plant-based — your consistency is building 🌿`,
+  `${vegan} out of ${total} days fully plant-based? You’re closer than you think 👏`,
+  `${vegan}/${total} days fully plant-based — keep this momentum going 🔥`,
+  `${percentage}% of your days have been fully plant-based — great progress!`
+],
+
+consistency40: ({ vegan, total, percentage }) => [
+  `${vegan} plant-based days so far — you’re building something real 🌱`,
+  `${vegan}/${total} days fully plant-based — every step is progress 💚`,
+  `${vegan} days fully plant-based — that’s a strong start 🌿`,
+  `${vegan}/${total} days fully plant-based — you're moving in the right direction ⚡`,
+  `${vegan} plant-based days — habits take time, you're on it 🌱`,
+  `${vegan}/${total} days fully plant-based — progress, not perfection 👣`,
+  `${vegan} days so far — keep going, it adds up 💪`,
+  `${percentage}% of your days have been fully plant-based — you're getting there!`
+],
+
+consistencyLow: ({ vegan, total, percentage }) => [
+  `${vegan} plant-based days — every step counts 🌿 keep going`,
+  `${vegan}/${total} days fully plant-based — you're starting something meaningful 🌱`,
+  `${vegan} days so far — small steps lead to real change 💚`,
+  `${vegan}/${total} days fully plant-based — just getting started, and that’s okay 👣`,
+  `${vegan} plant-based days — keep exploring, no pressure 🌿`,
+  `${vegan}/${total} days fully plant-based — every choice matters 🌱`,
+  `${vegan} days fully plant-based — you’re already making progress 💚`,
+  `${percentage}% of your days have been fully plant-based — that’s a start!`
+],
+
+mealWinnerAmateur: ({ name }) => [
+  `${name}'s meal looks incredible and just won the MealArt contest… but does it taste as good as it looks? Will you try recreating it at home?`,
+  `${name} just took the MealArt crown — stunning presentation, but we’re wondering… can the flavor match the looks? Would you cook it yourself?`,
+  `Winner alert!🏆 ${name}'s dish impressed everyone visually… now the real question is: how good is the taste? Ready to recreate it in your kitchen?`,
+  `${name} wins MealArt with a gorgeous creation — but is it just as delicious as it is beautiful? Could you pull this off at home?`,
+  `${name} made a showstopper dish that won the contest… but the debate starts now: looks vs taste — would you try making it?`,
+  `${name}'s meal just won the MealArt contest — a beautiful home-cooked creation loved by everyone`,
+  `Community favorite! ${name} impressed with a warm, delicious-looking homemade dish`,
+  `Big win for ${name}🏆! A heartfelt home meal that stood out for its creativity and charm`,
+  `${name} takes the crown with a cozy, comforting dish that everyone enjoyed`,
+  `${name} created something special — a true celebration of home cooking talent`
+],
+
+mealWinnerPro: ({ name }) => [
+  `${name} just won the MealArt Pro category with a restaurant-level masterpiece… but does it taste as elite as it looks? Would you recreate it at home?`,
+  `Professional win for ${name} — flawless presentation and technique… but here’s the real test: is the flavor just as impressive?`,
+  `${name} dominates the MealArt Pro contest with a chef-level dish… but would you dare recreate this at home?`,
+  `${name} delivers a culinary masterpiece worthy of a fine dining menu… but the question remains: how does it taste?`,
+  `${name} takes the crown with pro-level execution… but can this restaurant-quality dish be recreated in your own kitchen?`,
+  `${name} wins the MealArt Pro category with a stunning restaurant-quality dish`,
+  `A flawless creation by ${name} — refined, elegant, and expertly crafted`,
+  `Professional victory for ${name} 🏆 — a dish that showcases true culinary skill`,
+  `${name} delivers excellence on every level — technique, presentation, and creativity`,
+  `${name} takes the win with a beautifully executed pro-level masterpiece`
+],
+
+communityImpactHeadline: "Impact of our unity",
+
+communityAnimals: ({ values = {} }) => {
+  const animals = values.animals ?? 0;
+
+  return[
+  `Together, our choices have saved ${animals} animals. Every individual decision added up to this change.`,
+  `${animals} animals have been spared because we chose differently — your choices are part of this impact.`
+]
+},
+communityForest: ({ values = {} }) => {
+  const forest = values.forest ?? 0;
+
+  return[
+  `We’ve preserved ${forest} m² of forest together. Each personal choice helped protect something larger than ourselves.`,
+  `${forest} m² of forest remain standing because individual actions aligned into collective change.`
+]},
+
+communityWater: ({ values = {} }) => {
+  const water = values.water ?? 0;
+
+  return[
+  `Together, we’ve saved ${water} liters of water. Every personal choice helped reduce the pressure on this essential resource.`,
+  `${water} liters of water have been saved through individual decisions that, combined, created real impact.`
+]},
+
+communityCO2: ({ values = {} }) => {
+  const co2 = values.co2 ?? 0;
+
+  return[
+  `Together, we’ve avoided ${co2} kg of CO₂. Each personal choice reduced the weight we put on the planet.`,
+  `${co2} kg of CO₂ have been saved through individual decisions coming together into real climate impact.`
+]},
+
 labelAnimals: " are safe — imagine them as happy friends roaming, swimming, and enjoying life freely!",
 labelCO2: "CO₂",
 labelWater: "liters of water",
@@ -1711,6 +1804,16 @@ recommendLearn: "Want to discover something new today? Your learning adventure a
 recommendLocal: "Your community is waiting for you 🐾",
 recommendMealart: "Try creating something beautiful with food! See the Meal Art section for inspiration 🍽️",
 recommendDefault: "Explore something new today!",
+
+otherGrainText: "So far, you've saved enough grain to make {bread} loaves of bread 🥖",
+otherGrainInfo: "Animals are very inefficient at converting calories into food. A large share of global crops is fed to livestock instead of people. (Source: <a href='https://ourworldindata.org/global-land-for-agriculture' target='_blank'>Our World in Data</a>)",
+
+otherCaloriesText: "So far, you've saved about {calories} kcal — enough to feed {peopleFed} people for a day 🍽",
+otherCaloriesInfo: "Animals are very inefficient at converting calories into food. A large share of global crops is fed to livestock instead of people. We calculated with 7000 calories/fully plant-based day. (Source: <a href='https://ourworldindata.org/global-land-for-agriculture' target='_blank'>Our World in Data</a>)",
+
+otherAntibioticsText: "So far, you've helped avoid antibiotic use equal to {treatments} treatments 💊",
+otherAntibioticsInfo: "Most antibiotics are used in animal agriculture, contributing to resistance. Reducing demand helps protect their effectiveness. (Source: <a href='https://ourworldindata.org/antibiotics-livestock' target='_blank'>Our World in Data</a>)",
+
   },
   es: {
     startStreak: "¡Comienza tu racha hoy!",
@@ -1745,17 +1848,110 @@ statCO2: ({ km }) => `Es como conducir ${km} km menos 🚗`,
 statWater: ({ showers }) => `Es como ahorrar ${showers} duchas 🚿`,
 statForest: ({ area }) => `Es como proteger ${area} m² de bosque 🌳`,
 
-consistency90: ({ vegan, total }) =>
-  `${vegan} días totalmente plant-based de ${total}? Lo estás haciendo increíble 🔥`,
-consistency70: ({ vegan, total }) =>
-  `${vegan} de ${total} días plant-based — muy buena constancia 💪`,
-consistency40: ({ vegan }) =>
-  `${vegan} días plant-based — estás construyendo algo real 🌱`,
-consistencyLow: ({ vegan }) =>
-  `${vegan} días plant-based — cada paso cuenta 🌿`,
+consistency90: ({ vegan, total, percentage }) => [
+  `${vegan} días completamente plant-based de ${total}? Estás arrasando 🔥`,
+  `${vegan}/${total} días completamente plant-based — consistencia élite 🌟`,
+  `${vegan} días plant-based de ${total}. Compromiso de otro nivel 💯`,
+  `${vegan} días completamente plant-based de ${total}? Has creado un hábito muy fuerte ⚡`,
+  `${vegan}/${total} días completamente plant-based — consistencia impresionante 👏`,
+  `${vegan} días completamente plant-based… así eres ahora 🌱`,
+  `${vegan} de ${total} días completamente plant-based — estás marcando el estándar 🔥`,
+  `${percentage}% de tus días han sido completamente plant-based — ¡impresionante!`
+],
 
-mealWinnerTitle: "🍽️ Último ganador de Meal-Art:",
-mealWinnerText: "¡ha creado algo increíble!",
+consistency70: ({ vegan, total, percentage }) => [
+  `${vegan} de ${total} días completamente plant-based — buena consistencia 💪`,
+  `${vegan}/${total} días completamente plant-based — lo estás haciendo muy bien 🌱 sigue así`,
+  `${vegan} días plant-based de ${total}. Vas por un gran camino 🚀`,
+  `${vegan}/${total} días completamente plant-based — buen progreso, ya casi estás ⚡`,
+  `${vegan} días completamente plant-based — tu constancia está creciendo 🌿`,
+  `${vegan} de ${total} días completamente plant-based? Estás más cerca de lo que crees 👏`,
+  `${vegan}/${total} días completamente plant-based — mantén este ritmo 🔥`,
+  `${percentage}% de tus días han sido completamente plant-based — ¡gran progreso!`
+],
+
+consistency40: ({ vegan, total, percentage }) => [
+  `${vegan} días plant-based hasta ahora — estás construyendo algo real 🌱`,
+  `${vegan}/${total} días completamente plant-based — cada paso cuenta 💚`,
+  `${vegan} días completamente plant-based — buen comienzo 🌿`,
+  `${vegan}/${total} días completamente plant-based — vas en la dirección correcta ⚡`,
+  `${vegan} días plant-based — los hábitos llevan tiempo 🌱`,
+  `${vegan}/${total} días completamente plant-based — progreso, no perfección 👣`,
+  `${vegan} días hasta ahora — sigue así 💪`,
+  `${percentage}% de tus días han sido completamente plant-based — vas mejorando 🌱`
+],
+
+consistencyLow: ({ vegan, total, percentage }) => [
+  `${vegan} días plant-based — cada paso cuenta 🌿 sigue adelante`,
+  `${vegan}/${total} días completamente plant-based — estás empezando algo importante 🌱`,
+  `${vegan} días hasta ahora — los pequeños pasos importan 💚`,
+  `${vegan}/${total} días completamente plant-based — acabas de empezar, y está bien 👣`,
+  `${vegan} días plant-based — sin presión 🌿`,
+  `${vegan}/${total} días completamente plant-based — cada decisión cuenta 🌱`,
+  `${vegan} días completamente plant-based — ya estás avanzando 💚`,
+  `${percentage}% de tus días han sido completamente plant-based — es un comienzo 🌱`
+],
+
+mealWinnerAmateur: ({ name }) => [
+  `${name} acaba de ganar el concurso MealArt… pero, ¿sabe tan bien como parece? ¿Te animas a recrearlo en casa?`,
+  `${name} acaba de ganar la corona de MealArt — una presentación impresionante, pero nos preguntamos… ¿el sabor estará a la altura? ¿Lo cocinarías tú?`,
+  `🏆 ¡Ganador/a! El plato de ${name} impresionó visualmente a todos… ahora la gran pregunta es: ¿qué tal sabe? ¿Te animas a recrearlo en tu cocina?`,
+  `${name} gana MealArt con una creación espectacular — pero, ¿será tan deliciosa como bonita? ¿Podrías hacerlo en casa?`,
+  `${name} creó un plato que se llevó el concurso… pero empieza el debate: apariencia vs sabor — ¿lo intentarías hacer?`,
+  `${name} acaba de ganar el concurso MealArt — una creación casera preciosa y muy apreciada por todos`,
+  `¡Favorito de la comunidad! ${name} impresionó con un plato casero cálido y delicioso`,
+  `🏆 ¡Gran victoria para ${name}! Un plato casero lleno de creatividad y encanto`,
+  `${name} se lleva la corona con un plato acogedor que todos disfrutaron`,
+  `${name} creó algo especial — una verdadera celebración de la cocina casera`
+],
+
+mealWinnerPro: ({ name }) => [
+  `${name} acaba de ganar la categoría Pro de MealArt con una obra maestra de nivel restaurante… pero, ¿sabrá tan bien como parece? ¿Te atreverías a recrearlo?`,
+  `Victoria profesional para ${name} — presentación y técnica impecables… pero la gran pregunta es: ¿el sabor es igual de impresionante?`,
+  `${name} domina el concurso Pro de MealArt con un plato de nivel chef… ¿te atreverías a recrearlo en casa?`,
+  `${name} entrega una obra culinaria digna de alta cocina… pero la duda sigue: ¿cómo sabrá realmente?`,
+  `${name} gana con una ejecución de nivel profesional… pero, ¿se puede recrear esto en tu cocina?`,
+  `${name} gana la categoría Pro de MealArt con un plato espectacular de nivel restaurante`,
+  `Una creación impecable de ${name} — refinada, elegante y perfectamente ejecutada`,
+  `🏆 Victoria profesional para ${name} — una muestra clara de habilidad culinaria`,
+  `${name} demuestra excelencia en todos los niveles — técnica, presentación y creatividad`,
+  `${name} se lleva la victoria con una obra maestra de nivel chef`
+],
+
+communityImpactHeadline: "El impacto de nuestra unión",
+
+communityAnimals: ({ values = {} }) => {
+  const water = values.water ?? 0;
+
+  return[
+  `Juntos, nuestras decisiones han salvado ${animals} animales. Cada elección individual ha contribuido a este cambio.`,
+  `${animals} animales han sido salvados porque eligimos de forma diferente — tus decisiones forman parte de este impacto.`
+]},
+
+communityForest: ({ values = {} }) => {
+  const forest = values.forest ?? 0;
+
+  return[
+  `Hemos preservado ${forest} m² de bosque juntos. Cada elección personal ayudó a proteger algo más grande que nosotros mismos.`,
+  `${forest} m² de bosque siguen en pie porque las acciones individuales se unieron en un cambio colectivo.`
+]},
+
+communityWater: ({ values = {} }) => {
+  const water = values.water ?? 0;
+
+  return[
+  `Juntos, hemos ahorrado ${water} litros de agua. Cada decisión personal ha reducido la presión sobre este recurso esencial.`,
+  `${water} litros de agua han sido ahorrados gracias a decisiones individuales que, juntas, han creado un impacto real.`
+]},
+
+communityCO2: ({ values = {} }) => {
+  const co2 = values.co2 ?? 0;
+
+  return[
+  `Juntos, hemos evitado ${co2} kg de CO₂. Cada decisión personal ha reducido la carga que ponemos en el planeta.`,
+  `${co2} kg de CO₂ han sido evitados gracias a decisiones individuales que, unidas, generan un impacto climático real.`
+]},
+
 labelAnimals: "animales",
 labelCO2: "CO₂",
 labelWater: "litros de agua",
@@ -1767,6 +1963,15 @@ recommendLearn: "¿Quieres descubrir algo nuevo hoy? ¡Tu aventura de aprendizaj
 recommendLocal: "Tu comunidad te está esperando 🐾",
 recommendMealart: "¡Intenta crear algo bonito con comida! Inspírate en la sección Meal Art 🍽️",
 recommendDefault: "¡Explora algo nuevo hoy!",
+
+otherGrainText: "Hasta ahora, has ahorrado suficiente grano como para hacer {bread} barras de pan 🥖",
+otherGrainInfo: "Los animales son muy ineficientes al convertir calorías en alimento. Una gran parte de los cultivos globales se destina a alimentar al ganado en lugar de a las personas. (Fuente: <a href='https://ourworldindata.org/global-land-for-agriculture' target='_blank' rel='noopener noreferrer'>Our World in Data</a>)",
+
+otherCaloriesText: "Hasta ahora, has ahorrado aproximadamente {calories} kcal — suficiente para alimentar a {peopleFed} personas durante un día 🍽",
+otherCaloriesInfo: "Los animales son muy ineficientes al convertir calorías en alimento. Una gran parte de los cultivos globales se destina a alimentar al ganado en lugar de a las personas. Calculamos usando 7000 calorías por día completamente vegetal. (Fuente: <a href='https://ourworldindata.org/global-land-for-agriculture' target='_blank' rel='noopener noreferrer'>Our World in Data</a>)",
+
+otherAntibioticsText: "Hasta ahora, has ayudado a evitar el uso de antibióticos equivalente a {treatments} tratamientos 💊",
+otherAntibioticsInfo: "La mayoría de los antibióticos se utilizan en la ganadería, lo que contribuye a la resistencia antimicrobiana. Reducir la demanda ayuda a preservar su eficacia. (Fuente: <a href='https://ourworldindata.org/antibiotics-livestock' target='_blank' rel='noopener noreferrer'>Our World in Data</a>)",
   },
   hu: {
     startStreak: "Kezdd el a sorozatot ma!",
@@ -1801,17 +2006,111 @@ statCO2: ({ km }) => `Ez ${km} km-rel kevesebb autózás 🚗`,
 statWater: ({ showers }) => `Ez ${showers} zuhany megtakarítása 🚿`,
 statForest: ({ area }) => `Ez ${area} m² erdő megvédése 🌳`,
 
-consistency90: ({ vegan, total }) =>
-  `${vegan} nap teljesen növényi alapú ${total}-ból? Elképesztő 🔥`,
-consistency70: ({ vegan, total }) =>
-  `${vegan} / ${total} nap növényi alapú — nagyon jó 💪`,
-consistency40: ({ vegan }) =>
-  `${vegan} növényi nap — valami komoly épül 🌱`,
-consistencyLow: ({ vegan }) =>
-  `${vegan} nap — minden lépés számít 🌿`,
+consistency90: ({ vegan, total, percentage }) => [
+  `${vegan}/${total} nap teljesen növényi étrenden? Egyszerűen lenyűgöző 🔥`,
+  `${vegan}/${total} nap teljesen növényi étrenden? — elit szintű folytonosság 🌟`,
+  `${vegan}/${total} nap teljesen növényi étrenden! Ez már következő szint 💯`,
+  `${vegan}/${total} nap teljesen növényi étrenden! Nagyon erős szokást építettél ⚡`,
+  `${vegan}/${total} nap teljesen növényi étrenden — elképesztő következetesség 👏`,
+  `${vegan}/${total} nap teljesen növényi étrenden… ez már te vagy 🌱`,
+  `${vegan}/${total} nap teljesen növényi étrenden… — te állítod a mércét 🔥`,
+  `A napjaid ${percentage}%-a teljesen növényi étrendű — lenyűgöző!`
+],
 
-mealWinnerTitle: "🍽️ Legutóbbi Meal-Art nyertes:",
-mealWinnerText: "valami elképesztőt alkotott!",
+consistency70: ({ vegan, total, percentage }) => [
+  `${vegan}/${total} nap teljesen növényi étrenden? — erős következetesség 💪`,
+  `${vegan}/${total} nap teljesen növényi étrenden — nagyon jól csinálod 🌱 csak így tovább`,
+  `${vegan}/${total} teljesen növényi étrenden! Jó úton haladsz 🚀`,
+  `${vegan}/${total} nap teljesen növényi étrenden — szép fejlődés, már közel vagy ⚡`,
+  `${vegan}/${total} nap teljesen növényi étrenden — szépen épül a szokás 🌿`,
+  `${vegan}/${total} nap teljesen növényi étrenden? Közelebb vagy, mint gondolnád 👏`,
+  `${vegan}/${total} nap teljesen növényi étrenden! — tartsd ezt a lendületet 🔥`,
+  `A napjaid ${percentage}%-a teljesen növényi étrendű — szép eredmény!`
+],
+
+consistency40: ({ vegan, total, percentage }) => [
+  `${vegan}/${total} nap teljesen növényi étrenden — valami valósat építesz 🌱`,
+  `${vegan}/${total} nap teljesen növényi étrenden! Minden lépés számít 💚`,
+  `${vegan}/${total} nap teljesen növényi étrenden! — jó kezdet!`,
+  `${vegan}/${total} nap teljesen növényi étrenden — jó irányba haladsz ⚡`,
+  `${vegan}/${total} nap teljesen növényi étrenden — a szokások időt igényelnek 🌱`,
+  `${vegan}/${total} nap teljesen növényi étrenden — fejlődés, nem tökéletesség 👣`,
+  `${vegan}/${total} nap teljesen növényi étrenden — csak így tovább 💪`,
+  `A napjaid ${percentage}%-a teljesen növényi étrendű — haladsz előre 🌱`
+],
+
+consistencyLow: ({ vegan, total, percentage }) => [
+  `${vegan}/${total} nap teljesen növényi étrenden — minden lépés számít 🌿 csak folytasd`,
+  `${vegan}/${total} nap teljesen növényi étrenden — valami fontosba kezdtél 🌱`,
+  `Eddig${vegan}/${total} nap teljesen növényi étrenden — a kis lépések is számítanak 💚`,
+  `${vegan}/${total} nap teljesen növényi étrenden — most kezded, és ez rendben van 👣`,
+  `${vegan}/${total} nap teljesen növényi étrenden — lesz ez több is?`,
+  `${vegan}/${total} nap teljesen növényi étrenden — minden döntés számít 🌱`,
+  `${vegan}/${total} nap teljesen növényi étrenden — már most is haladsz 💚`,
+  `A napjaid ${percentage}%-a növényi étrendű — ez egy kezdet 🌱`
+],
+
+mealWinnerAmateur: ({ name }) => [
+  `${name} étele lenyűgözőnek tűnik, és megnyerte a MealArt versenyt… de vajon olyan jó az íze is, mint a látványa? Megpróbálnád otthon elkészíteni?`,
+  `${name} megnyerte a MealArt versenyt — lenyűgöző tálalás, de vajon… az íz is olyan jó? Megfőznéd otthon?`,
+  `🏆 Győztes! ${name} étele mindenkit lenyűgözött látványra… de a nagy kérdés: milyen az íze? Megpróbálnád otthon elkészíteni?`,
+  `${name} megnyerte a MealArt-ot egy gyönyörű fogással — de vajon olyan finom is, mint amilyen szép? Megcsinálnád otthon?`,
+  `${name} olyan ételt készített, ami megnyerte a versenyt… de indul a vita: kinézet vs íz — megpróbálnád elkészíteni?`,
+  `${name} megnyerte a MealArt versenyt — egy gyönyörű házi készítésű étel, amit mindenki imádott`,
+  `Közönségkedvenc! ${name} egy meleg, otthonos és finomnak tűnő étellel nyűgözött le mindenkit`,
+  `🏆 Nagy győzelem ${name} számára! Egy kreatív és szívmelengető házi fogás`,
+  `${name} viszi a koronát egy igazán otthonos, mindenki által szeretett étellel`,
+  `${name} valami igazán különlegeset alkotott — a házi főzés ünnepe`
+],
+
+mealWinnerPro: ({ name }) => [
+  `${name} megnyerte a MealArt Pro kategóriát egy éttermi szintű mesterművel… de vajon az íze is olyan kifinomult? Újra elkészítenéd?`,
+  `Profi győzelem ${name} számára — hibátlan tálalás és technika… de a kérdés: az íz is ilyen jó?`,
+  `${name} dominálta a MealArt Pro versenyt egy séf szintű fogással… megpróbálnád otthon elkészíteni?`,
+  `${name} egy fine dining szintű kulináris alkotást hozott… de vajon milyen az íze?`,
+  `${name} profi szintű kivitelezéssel nyert… de otthon is meg tudnád csinálni?`,
+  `${name} megnyerte a Pro kategóriát egy lenyűgöző éttermi fogással`,
+  `${name} tökéletes alkotása — kifinomult, elegáns és precízen elkészített`,
+  `🏆 Professzionális győzelem ${name} számára — valódi szakmai tudás`,
+  `${name} minden szinten kiemelkedőt nyújtott — technika, tálalás és kreativitás`,
+  `${name} egy igazi séf szintű mesterművel nyerte meg a versenyt`
+],
+
+communityImpactHeadline: "Az egységünk hatása",
+
+communityAnimals: ({ values = {} }) => {
+  const animals = values.animals ?? 0;
+
+  return [
+  `Együtt ${animals} állat életét mentettük meg. Minden egyéni döntés hozzájárult ehhez a változáshoz.`,
+  `${animals} állat menekült meg, mert mi másképp döntöttünk — a te döntéseid is részei ennek a hatásnak.`
+]},
+
+communityForest: ({ values = {} }) => {
+  const forest = values.forest ?? 0;
+
+  return [
+  `Együtt ${forest} m² erdőt őriztünk meg. Minden személyes döntés segített megvédeni valamit, ami nagyobb nálunk.`,
+  `${forest} m² erdő maradt meg, mert az egyéni tettek közös változássá álltak össze.`
+]},
+
+communityWater: ({ values = {} }) => {
+  const water = values.water ?? 0;
+
+  return [
+    `Együtt ${water} liter vizet spóroltunk meg. Minden személyes döntés csökkentette a terhelést ezen az alapvető erőforráson.`,
+    `${water} liter vizet sikerült megtakarítani olyan egyéni döntésekből, amelyek együtt valódi hatást hoztak.`
+  ];
+},
+
+communityCO2: ({ values = {} }) => {
+  const co2 = values.co2 ?? 0;
+
+  return [
+  `Együtt ${co2} kg CO₂ kibocsátást kerültünk el. Minden személyes döntés csökkentette a bolygóra nehezedő terhet.`,
+  `${co2} kg CO₂ került elkerülésre egyéni döntésekből, amelyek együtt valódi klímahatást hoztak.`
+]},
+
 labelAnimals: "állatot",
 labelCO2: "CO₂-t",
 labelWater: "liter vizet",
@@ -1823,6 +2122,15 @@ recommendLearn: "Szeretnél ma valami újat felfedezni? A tanulási kaland vár 
 recommendLocal: "A közösséged vár rád 🐾",
 recommendMealart: "Próbálj valami szépet alkotni étellel! Nézd meg a Meal Art részt inspirációért 🍽️",
 recommendDefault: "Fedezz fel ma valami újat!",
+
+otherGrainText: "Eddig elegendő gabonát takarítottál meg ahhoz, hogy {bread} kenyér készüljön belőle 🥖",
+otherGrainInfo: "Az állatok nagyon hatékonytalanul alakítják át a kalóriákat élelmiszerré. A világ terményeinek jelentős részét inkább állatok takarmányozására használják, nem pedig emberek táplálására. (Forrás: <a href='https://ourworldindata.org/global-land-for-agriculture' target='_blank' rel='noopener noreferrer'>Our World in Data</a>)",
+
+otherCaloriesText: "Eddig körülbelül {calories} kcal-t takarítottál meg — ez elegendő {peopleFed} ember egy napi ellátására 🍽",
+otherCaloriesInfo: "Az állatok nagyon hatékonytalanul alakítják át a kalóriákat élelmiszerré. A világ terményeinek jelentős részét inkább állatok takarmányozására használják, nem pedig emberek táplálására. A számítás alapja napi 7000 kalória egy teljesen növényi étrend esetén. (Forrás: <a href='https://ourworldindata.org/global-land-for-agriculture' target='_blank' rel='noopener noreferrer'>Our World in Data</a>)",
+
+otherAntibioticsText: "Eddig annyi antibiotikum-használatot segítettél elkerülni, ami {treatments} kezelésre elég 💊",
+otherAntibioticsInfo: "Az antibiotikumok nagy részét az állattenyésztésben használják, ami hozzájárul az antibiotikum-rezisztencia kialakulásához. A kereslet csökkentése segít megőrizni a hatékonyságukat. (Forrás: <a href='https://ourworldindata.org/antibiotics-livestock' target='_blank' rel='noopener noreferrer'>Our World in Data</a>)",
   }
 };
 
@@ -2936,6 +3244,13 @@ window.setWinnersOpenedTrue = function() {
   }
 };
 
+function injectClickableName(message, winner) {
+  return message.replace(
+    winner.name,
+    `<span class="winner-name" data-userid="${winner.user_id}">${winner.uploader_name}</span>`
+  );
+}
+
 //--------------------------
 // DEFAULT CASE - RANDOM STAT OR WINNER
 //--------------------------
@@ -3064,6 +3379,70 @@ function defaultCase(ctx) {
 }
 },
 
+{
+  key: "other_impacts",
+  value: 1, // always valid so it can be picked
+  message: () => {
+//    const lang = currentLang || "en";
+
+    const animals = Math.round(currentProfile.animals_saved || 0);
+
+// Your rule
+    const veganDays = animals * (10 / 7);
+
+    const grains = Math.round(veganDays * 4);
+    const calories = Math.round(veganDays * 7000);
+    const antibiotics = Math.round(veganDays * 0.2 * 10); 
+    
+
+    // --- Derived values ---
+    const bread = Math.round(grains / 0.5);
+    const mealsFromGrain = Math.round(grains / 0.2);
+
+    const mealsFromCalories = Math.round(calories / 600);
+    const peopleFed = Math.round(calories / 2300);
+
+    const treatments = Math.round(antibiotics / 10);
+
+    // --- Build pool dynamically (only include valid ones) ---
+    const pool = [];
+
+    if (grains > 0) {
+      pool.push({
+        text: replaceValues(
+          initT("otherGrainText"),
+          { grains, bread, mealsFromGrain }
+        ),
+        info: initT("otherGrainInfo")
+      });
+    }
+
+    if (calories > 0) {
+      pool.push({
+        text: replaceValues(
+          initT("otherCaloriesText"),
+          { calories, mealsFromCalories, peopleFed }
+        ),
+        info: initT("otherCaloriesInfo")
+      });
+    }
+
+    if (antibiotics > 0) {
+      pool.push({
+        text: replaceValues(
+          initT("otherAntibioticsText"),
+          { antibiotics, treatments }
+        ),
+        info: initT("otherAntibioticsInfo")
+      });
+    }
+
+    if (pool.length === 0) return null;
+
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+},
+
     {
   key: "consistency",
   value: currentProfile.vegan_days,
@@ -3075,15 +3454,17 @@ function defaultCase(ctx) {
 
     const percentage = Math.round((vegan / total) * 100);
 
-    if (percentage >= 90) {
-      return initT("consistency90", { vegan, total });
-    } else if (percentage >= 70) {
-      return initT("consistency70", { vegan, total });
-    } else if (percentage >= 40) {
-      return initT("consistency40", { vegan, total });
-    } else {
-      return initT("consistencyDefault", { vegan, total });
-    }
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+if (percentage >= 90) {
+  return pick(initT("consistency90", { vegan, total, percentage }));
+} else if (percentage >= 70) {
+  return pick(initT("consistency70", { vegan, total, percentage }));
+} else if (percentage >= 40) {
+  return pick(initT("consistency40", { vegan, total, percentage }));
+} else {
+  return pick(initT("consistencyLow", { vegan, total, percentage }));
+}
   }
 },
 
@@ -3109,7 +3490,23 @@ function defaultCase(ctx) {
     // ✅ ADD THIS LINE HERE
 window.__latestMealWinner = winner;
 
-   return `
+const isProWinner = winner.is_pro;
+
+const pool = isProWinner
+  ? initT("mealWinnerPro")
+  : initT("mealWinnerAmateur");
+
+const template =
+  pool[Math.floor(Math.random() * pool.length)];
+
+const rawMessage =
+  typeof template === "function"
+    ? template({ name: winner.uploader_name })
+    : template;
+
+const randomMessage = injectClickableName(rawMessage, winner);
+
+return `
 <div class="meal-winner-card">
   <div class="meal-winner-image-wrapper">
     <img 
@@ -3119,18 +3516,56 @@ window.__latestMealWinner = winner;
       alt="Winning meal" 
     />
 
-    <div id="winnerMealBadge" class="recipe-badge">${initT("recipe")}</div>
+    <div id="winnerMealBadge" class="recipe-badge">
+      ${initT("recipe")}
+    </div>
   </div>
 
   <div class="meal-winner-text">
-    ${initT("mealWinnerTitle")} 
-    <span class="winner-name" data-userid="${winner.user_id}">
-      ${winner.uploader_name}
+
+    <span class="winner-message">
+      ${randomMessage}
     </span>
-    ${initT("mealWinnerText")}
+
   </div>
 </div>
 `;
+  }
+},
+
+{
+  key: "community_impact",
+  value: 1,
+  message: () => {
+    const animals = Math.round(currentGlobalImpact?.animals_saved || 0);
+    const forest = Math.round(currentGlobalImpact?.forest_saved || 0);
+    const water = Math.round(currentGlobalImpact?.water_saved || 0);
+    const co2 = Math.round(currentGlobalImpact?.co2_saved || 0);
+
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    const section = Math.floor(Math.random() * 4);
+
+    let body;
+
+    if (section === 0) {
+      body = pick(initT("communityAnimals", { values: { animals } }));
+    } else if (section === 1) {
+      body = pick(initT("communityForest", { values: { forest } }));
+    } else if (section === 2) {
+      body = pick(initT("communityWater", { values: { water } }));
+    } else {
+      body = pick(initT("communityCO2", { values: { co2 } }));
+    }
+
+    const headline = initT("communityImpactHeadline");
+
+    return `
+      <div class="community-impact">
+        <div class="community-impact-title">${headline}</div>
+        <div class="community-impact-body">${body}</div>
+      </div>
+    `;
   }
 }
   ];
@@ -3138,10 +3573,10 @@ window.__latestMealWinner = winner;
   const randomStat = pickWeightedStat(stats);
 
   // Avoid showing empty stats
-  if (!randomStat.value || randomStat.value <= 0) {
-    textEl.textContent = initT("journeyStart");
-    return;
-  }
+  if (!randomStat || randomStat.value == null || randomStat.value <= 0) {
+  textEl.textContent = initT("journeyStart");
+  return;
+}
 
   // --- Build message ---
   const comparison = randomStat.message?.(randomStat.value) || null;
@@ -3188,6 +3623,12 @@ if (randomStat.key === "consistency") {
   return;
 }
 
+// Community impact special case 
+if (randomStat.key === "community_impact") {
+  textEl.innerHTML = comparison;
+  return;
+}
+
 const main = initT("statsPrefix", {
   value: Math.round(randomStat.value),
   label: initT(randomStat.labelKey)
@@ -3211,6 +3652,7 @@ if (infoBtn && infoBox) {
 }
 }
 
+
 function replaceValues(text, values) {
   return Object.keys(values).reduce((acc, key) => {
     return acc.replaceAll(`{${key}}`, values[key]);
@@ -3220,14 +3662,16 @@ function replaceValues(text, values) {
 function pickWeightedStat(stats) {
   // Define weights per key
   const weights = {
-    encouragement: 0.15,   // 15% chance
-    meal_winners: 0.25,   // 25%
-    consistency: 0.10,    // 10%
-    animals_saved: 0.125, // 12.5%
-    co2_saved: 0.125,     // 12.5%
-    water_saved: 0.125,   // 12.5%
-    forest_saved: 0.125   // 12.5%
-  };
+  meal_winners: 0.2,
+  animals_saved: 0.125,
+  forest_saved: 0.125,
+  co2_saved: 0.125,
+  water_saved: 0.125,
+  other_impacts: 0.1,
+  community_impact: 0.1,
+  consistency: 0.05,
+  encouragement: 0.05
+};
 
   // Build weighted pool
   const pool = [];
@@ -6754,7 +7198,7 @@ hu: {
       info: "Általános klímahatás-megállapítás, amely az egyéni viselkedésváltozásokból származó kumulatív kibocsátáscsökkentést tükrözi."
     },
     {
-      text: "Eddig <span class=\"highlight\">{householdsPerMonth}</span> háztartás havi villamosenergia-fogyasztása által megtermelt CO₂-t spóroltál meg!",
+      text: "Eddig <span class=\"highlight\">{householdsPerMonth}</span> háztartás havi villamosenergia-fogyasztása által előállított CO₂-t spóroltál meg!",
       info: "Az átlagos háztartási villamosenergia-fogyasztás (~300 kWh/hó) és a villamosenergia-hálózat átlagos szénintenzitása (~0,3 kg CO₂/kWh) alapján számítva, a teljes CO₂-megtakarításból levezetve."
     }
   ]

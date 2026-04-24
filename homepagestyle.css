@@ -5678,3 +5678,33 @@ button.button.danger:hover {
   border: none;
   cursor: pointer;
 }
+
+.community-impact {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e8fdf3, #f4fff9);
+  border: 1px solid rgba(0, 150, 100, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.community-impact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.community-impact-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1b7f5b;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.community-impact-body {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #2a2a2a;
+}
