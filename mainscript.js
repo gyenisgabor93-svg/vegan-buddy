@@ -49,6 +49,11 @@ const translations = {
     aboutUsBtn: "About Us",
     contactUsBtn: "Contact Us",
     settingsBtn: "Settings",
+    userimpactsofar: "Your impact so far:",
+    useranimals: "Animals saved",
+    userforest: "Forest preserved",
+    userwater: "Water saved",
+    userco2: "kg of CO₂ reduced",
 
     //Mealart
 mealArtHeaderTitle: "Meal Art Contest",
@@ -434,6 +439,11 @@ deleteProfileBtn: "🗑️ Delete profile",
     aboutUsBtn: "Sobre Nosotros",
     contactUsBtn: "Contáctanos",
     settingsBtn: "Configuración",
+    userimpactsofar: "Tu impacto hasta ahora:",
+    useranimals: "Animales salvados",
+    userforest: "Bosque salvado",
+    userwater: "Agua ahorrada",
+    userco2: "kg de CO₂ reducido",
 
     //Mealart
 mealArtHeaderTitle: "Concurso de Arte Culinario",
@@ -820,6 +830,11 @@ animalsSentence: "¡Has salvado 0 animales hasta ahora!",
     aboutUsBtn: "Rólunk",
     contactUsBtn: "Kapcsolat",
     settingsBtn: "Beállítások",
+    userimpactsofar: "A te hatásod eddig:",
+    useranimals: "Megmentett állat",
+    userforest: "Megóvott erdő",
+    userwater: "Megtakarított víz",
+    userco2: "kg CO₂ csökkentett",
 
     //Mealart
 mealArtHeaderTitle: "Meal-Art Verseny",
@@ -1171,27 +1186,36 @@ async function updateLanguageUI(lang) {
   document.getElementById("skipCheckinBtn").textContent = t.skipCheck;
 
   // Top bar
-  document.getElementById("xpLabel").textContent = t.xpLabel;
+ // document.getElementById("xpLabel").textContent = t.xpLabel;
 
   // Buttons
   document.getElementById("mealArtBtn").innerText = t.mealArtBtn;
   document.getElementById("lessonPathBtn").innerText = t.lessonPathBtn;
   document.getElementById("recipesBtn").innerText = t.recipesBtn;
 
+    // 🌱 Impact section
+  document.getElementById("impactsofar").textContent = t.userimpactsofar;
+
+  document.getElementById("animalsLabel").textContent = t.useranimals;
+  document.getElementById("forestLabel").textContent = t.userforest;
+  document.getElementById("waterLabel").textContent = t.userwater;
+  document.getElementById("co2Label").textContent = t.userco2;
+
+
   // Impact labels
-  document.getElementById("youLabel").innerText = t.youLabel + ", ";
-  document.getElementById("andour").innerText = t.andour;
-  document.getElementById("communityLabel").innerText = t.communityLabel;
+ // document.getElementById("youLabel").innerText = t.youLabel + ", ";
+ // document.getElementById("andour").innerText = t.andour;
+ // document.getElementById("communityLabel").innerText = t.communityLabel;
 
-  document.querySelector("#animalsSave").firstChild.textContent = t.animalsSavedLabel;
-  document.querySelector("#forestSave").firstChild.textContent  = t.forestSavedLabel;
-  document.querySelector("#waterSave").firstChild.textContent   = t.waterSavedLabel;
-  document.querySelector("#co2save").firstChild.textContent     = t.co2SavedLabel;
+ // document.querySelector("#animalsSave").firstChild.textContent = t.animalsSavedLabel;
+ // document.querySelector("#forestSave").firstChild.textContent  = t.forestSavedLabel;
+ // document.querySelector("#waterSave").firstChild.textContent   = t.waterSavedLabel;
+ // document.querySelector("#co2save").firstChild.textContent     = t.co2SavedLabel;
 
-  document.getElementById("animalsLabel").innerText = t.animalsLabel;
-  document.getElementById("forestLabel").innerText = t.forestLabel;
-  document.getElementById("waterLabel").innerText = t.waterLabel;
-  document.getElementById("co2Label").innerText = t.co2Label;
+ // document.getElementById("animalsLabel").innerText = t.animalsLabel;
+ // document.getElementById("forestLabel").innerText = t.forestLabel;
+ // document.getElementById("waterLabel").innerText = t.waterLabel;
+ // document.getElementById("co2Label").innerText = t.co2Label;
 
   // Meal-Art section
   document.getElementById("mealArtTitle").innerText = t.mealArtTitle;
@@ -2409,35 +2433,44 @@ async function renderProfile() {
   
   if (!profile) return;
 
-  ["profilePhoto", "profilePhotoprofile", "profilePhotoPreview"].forEach(id => {
+  ["profilePhoto","profilePhotoTop","profilePhotoprofile","profilePhotoPreview"].forEach(id => {
   const el = document.getElementById(id);
   if (!el) return;
 
   const hasFrame = profile.frame && profile.frame.trim() !== "";
 
+  // If it's still an IMG → convert it to DIV (so frame works)
   if (el.tagName === "IMG") {
-    if (id === "profilePhoto" && hasFrame) {
-      // Replace dropdown photo with div if frame exists
-      const parent = el.parentElement;
-      const div = document.createElement("div");
-      div.className = "profile-photo";
-      div.style.backgroundImage = `url('${profile.frame}'), url('${profile.profile_photo || 'default.jpg'}')`;
-      div.style.backgroundSize = "contain, cover";
-      div.style.backgroundPosition = "center";
-      div.style.backgroundRepeat = "no-repeat";
-      div.style.width = el.offsetWidth + "px";
-      div.style.height = el.offsetHeight + "px";
-      div.dataset.profilePhotoDiv = "true";
-      parent.replaceChild(div, el);
-    } else {
-      // Normal <img>, just update src
-      el.src = profile.profile_photo || "default.jpg";
-    }
+    const parent = el.parentElement;
+
+    const div = document.createElement("div");
+    div.className = el.className; // keep styles
+    div.dataset.profilePhotoDiv = "true";
+
+    // safer sizing fallback
+    const size = el.offsetWidth || 70;
+    div.style.width = size + "px";
+    div.style.height = size + "px";
+    div.style.borderRadius = "50%";
+
+    // Apply image + optional frame
+    div.style.backgroundImage = hasFrame
+      ? `url('${profile.frame}'), url('${profile.profile_photo || 'default.jpg'}')`
+      : `url('${profile.profile_photo || 'default.jpg'}')`;
+
+    div.style.backgroundSize = hasFrame ? "100% 100%, cover" : "cover";
+    div.style.backgroundPosition = "center";
+    div.style.backgroundRepeat = "no-repeat";
+
+    parent.replaceChild(div, el);
+
   } else if (el.dataset.profilePhotoDiv === "true") {
-    // Update existing div's background
+    // Already a DIV → just update
     el.style.backgroundImage = hasFrame
       ? `url('${profile.frame}'), url('${profile.profile_photo || 'default.jpg'}')`
       : `url('${profile.profile_photo || 'default.jpg'}')`;
+
+    el.style.backgroundSize = hasFrame ? "100% 100%, cover" : "cover";
   }
 });
 
@@ -2445,6 +2478,13 @@ async function renderProfile() {
 
   // Name & Diet
   document.getElementById("profileName").textContent = profile.name || "-";
+  const nameHomeEl = document.getElementById("profileNameHome");
+
+if (nameHomeEl) {
+  nameHomeEl.textContent = profile.title
+    ? `${profile.name || "-"}, ${profile.title}`
+    : profile.name || "-";
+}
   document.getElementById("profileNamehp").textContent = profile.name || "-";
   document.getElementById("profileNameInput").value = profile.name || "-";
   document.getElementById("diet").textContent = translateDiet(profile.diet_preference) || "-";
@@ -2624,10 +2664,10 @@ if (!profile.last_checkin_date) {
 
   // Community impact from fetched variable
   if (globalImpact) {
-    document.getElementById('communityAnimals').textContent = formatNumber(globalImpact.animals_saved ?? 0);
-    document.getElementById('communityForest').textContent  = formatNumber(globalImpact.forest_saved ?? 0);
-    document.getElementById('communityWater').textContent   = formatNumber(globalImpact.water_saved ?? 0);
-    document.getElementById('communityCO2').textContent     = formatNumber(globalImpact.co2_saved ?? 0);
+  //  document.getElementById('communityAnimals').textContent = formatNumber(globalImpact.animals_saved ?? 0);
+  //  document.getElementById('communityForest').textContent  = formatNumber(globalImpact.forest_saved ?? 0);
+  //  document.getElementById('communityWater').textContent   = formatNumber(globalImpact.water_saved ?? 0);
+  //  document.getElementById('communityCO2').textContent     = formatNumber(globalImpact.co2_saved ?? 0);
   }
 
   // ===== XP to next level =====

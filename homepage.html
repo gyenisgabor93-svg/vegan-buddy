@@ -37,14 +37,14 @@
 <div id="homepageContentsecond" style="display:none;">
   <!-- All homepage content here -->
 <div id="main-container">
-  <div id="topBar" class="top-bar">
+<!--  <div id="topBar" class="top-bar">
       <div class="top-bar-row">
-        <!-- Level + Streak -->
+         Level + Streak 
         <div class="center-counters">
           <span class="counter" id="currentLevelSpan">🌍 <span id="currentLevel">0</span></span>
           
 
-    <!-- XP Progress -->
+    
     <div class="level-bar" id="levelBar">
       <div class="progress">
         <div id="levelProgress" class="progress-fill"></div>
@@ -56,12 +56,82 @@
         </span>
         </div>
       </div>
-    </div>
+    </div>-->
     <!-- 🏠 Home Content -->
   <div id="home" class="page">  <!-- 🔝 Top Tabs -->
 
-    
-    <!-- End Top Tabs -->
+  <!-- 🔝 Combined Profile + Progress + Impact -->
+<div class="top-combined-box" id="topCombinedBox">
+
+  <!-- Top Row: Profile + Info -->
+  <div class="top-profile-row">
+
+    <!-- Profile Picture -->
+    <div class="profile-photo-wrapper">
+      <img 
+        id="profilePhotoTop" 
+        src="https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg"
+        class="profile-photo large"
+      />
+    </div>
+
+    <!-- Right Side Info -->
+    <div class="profile-info">
+
+      <!-- Row 1: Name + Streak -->
+      <div class="row row1">
+        <span id="profileNameHome" class="profile-nameHome">Name</span>
+        <span id="streak" class="counter">
+        <span class="fire">🔥</span> <span id="streak-counter">0</span>
+        </span>
+      </div>
+
+      <!-- Row 2: Level -->
+      <div class="row row2">
+      <span id="Levelword">Level</span> <span id="currentLevel"> 0</span>
+      </div>
+
+      <!-- Row 3: Progress Bar -->
+      <div class="row row3">
+        <div class="level-bar" id="levelBar">
+          <div class="progress">
+            <div id="levelProgress" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🔽 Personal Impact -->
+  <div class="impact-personal">
+
+    <p class="impact-title" id="impactsofar">Your impact so far:</p>
+
+    <div class="impact-list">
+
+      <div class="impact-item">
+        🐾 <span id="youAnimals">0</span> <span id="animalsLabel">animals</span>
+      </div>
+
+      <div class="impact-item">
+        🌲 <span id="youForest">0</span> <span id="forestLabel">m² forest</span>
+      </div>
+
+      <div class="impact-item">
+        💧 <span id="youWater">0</span> <span id="waterLabel">L water</span>
+      </div>
+
+      <div class="impact-item">
+        🌬️ <span id="youCO2">0</span> <span id="co2Label">kg CO₂</span>
+      </div>
+
+    </div>
+  </div>
+
+<div class="divider"></div>
+
+ <!-- End Top Tabs -->
   <div class="top-buttons-wrapper">
     <button id="NextLessonSpoiler"><!-- Today's lesson: ".." or "Tomorrow's lesson: ".." --></button>
     <button id="finishDCIBtn" class="button hidden">Finish Check-in</button>
@@ -75,52 +145,9 @@
   </div>-->
   </div>
 
+  <div class="divider"></div>
 
-
-<div class = impact-box>
-  <p><span id="youLabel" class="you">You, </span><span id="andour"> and our </span></span><span id="communityLabel" class="community">Community</span> <br>
-  
-<div class="impact-cards">
-  
-  <!-- Animals -->
-  <div class="card">
-    🐾
-    <p id="animalsSave"> saved <br>
-       <strong id="youAnimals">12</strong> 
-       <strong id="communityAnimals">3560</strong> </p>
-    <p id="animalsLabel" class = "lastPincards">animals</p>
-  </div>
-
-  <!-- Forest -->
-  <div class="card">
-    🌲
-    <p id="forestSave"> saved <br>
-       <strong id="youForest">12</strong> 
-       <strong id="communityForest">3560</strong> </p>
-    <p id="forestLabel" class = "lastPincards"> m² of forests</p>
-  </div>
-
-  <!-- Water -->
-  <div class="card">
-    💧
-    <p id="waterSave"> saved <br>
-       <strong id="youWater">12</strong> 
-       <strong id="communityWater">3560</strong> </p>
-    <p id="waterLabel" class = "lastPincards">L of water</p>
-  </div>
-
-  <!-- CO₂ -->
-  <div class="card">
-    🌬️
-    <p id="co2save"> reduced <br>
-       <strong id="youCO2">12</strong> 
-       <strong id="communityCO2">3560</strong> </p>
-    <p id="co2Label" class = "lastPincards">kg of CO₂</p>
-  </div>
- </div>
-</div>
-
-<div class="newsBox">
+<div class="newsBox1">
 
       <!-- Pet Onboarding -->
 <div class="pet-onboarding hidden" id="petOnboardingBox">
@@ -160,6 +187,55 @@
         </div>
       </div>
 </div>
+
+</div>  
+   
+
+
+<!-- 
+<div class = impact-box>
+  <p><span id="youLabel" class="you">You, </span><span id="andour"> and our </span></span><span id="communityLabel" class="community">Community</span> <br>
+  
+<div class="impact-cards">
+  
+  
+  <div class="card">
+    🐾
+    <p id="animalsSave"> saved <br>
+       <strong id="youAnimals">12</strong> 
+       <strong id="communityAnimals">3560</strong> </p>
+    <p id="animalsLabel" class = "lastPincards">animals</p>
+  </div>
+
+  
+  <div class="card">
+    🌲
+    <p id="forestSave"> saved <br>
+       <strong id="youForest">12</strong> 
+       <strong id="communityForest">3560</strong> </p>
+    <p id="forestLabel" class = "lastPincards"> m² of forests</p>
+  </div>
+
+  
+  <div class="card">
+    💧
+    <p id="waterSave"> saved <br>
+       <strong id="youWater">12</strong> 
+       <strong id="communityWater">3560</strong> </p>
+    <p id="waterLabel" class = "lastPincards">L of water</p>
+  </div>
+
+  
+  <div class="card">
+    🌬️
+    <p id="co2save"> reduced <br>
+       <strong id="youCO2">12</strong> 
+       <strong id="communityCO2">3560</strong> </p>
+    <p id="co2Label" class = "lastPincards">kg of CO₂</p>
+  </div>
+ </div>
+</div>
+-->
 
 
 <!-- Characters -->
@@ -219,12 +295,7 @@
    <!-- 👤 Profile -->
   <div class="dropdown">
     <button class="profile-wrapper" id="profiledropdownBtn">
-      <img 
-        id="profilePhoto" 
-        src="https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg"
-        alt="Profile Photo"
-        class="profile-photo"
-      /> 
+      <span class="profile-icon">👤</span>
       <span class="red-dot" id="profileDot"></span>
     </button>
     <div class="dropdown-content">
