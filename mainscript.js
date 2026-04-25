@@ -49,6 +49,7 @@ const translations = {
     aboutUsBtn: "About Us",
     contactUsBtn: "Contact Us",
     settingsBtn: "Settings",
+    userLevel: "🌍 Level:",
     userimpactsofar: "Your impact so far:",
     useranimals: "Animals saved",
     userforest: "Forest preserved",
@@ -439,6 +440,7 @@ deleteProfileBtn: "🗑️ Delete profile",
     aboutUsBtn: "Sobre Nosotros",
     contactUsBtn: "Contáctanos",
     settingsBtn: "Configuración",
+    userLevel: "🌍 Nivel:",
     userimpactsofar: "Tu impacto hasta ahora:",
     useranimals: "Animales salvados",
     userforest: "Bosque salvado",
@@ -830,6 +832,7 @@ animalsSentence: "¡Has salvado 0 animales hasta ahora!",
     aboutUsBtn: "Rólunk",
     contactUsBtn: "Kapcsolat",
     settingsBtn: "Beállítások",
+    userLevel: "🌍 Szint:",
     userimpactsofar: "A te hatásod eddig:",
     useranimals: "Megmentett állat",
     userforest: "Megóvott erdő",
@@ -1193,7 +1196,7 @@ async function updateLanguageUI(lang) {
   document.getElementById("lessonPathBtn").innerText = t.lessonPathBtn;
   document.getElementById("recipesBtn").innerText = t.recipesBtn;
 
-    // 🌱 Impact section
+  document.getElementById("Levelword").textContent = t.userLevel;
   document.getElementById("impactsofar").textContent = t.userimpactsofar;
 
   document.getElementById("animalsLabel").textContent = t.useranimals;
