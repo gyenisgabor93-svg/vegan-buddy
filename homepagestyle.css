@@ -5750,23 +5750,27 @@ button.button.danger:hover {
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .profile-nameHome {
-  flex: 1;              /* takes available space */
-  min-width: 70%;         /* allows shrinking */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+
+  white-space: normal;   /* allows wrapping */
+  overflow: visible;     /* no cutting */
+  text-overflow: unset;  /* removes "..." */
+
+  word-break: break-word; /* ensures long names break nicely */
 }
 
 #streak {
-  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
   gap: 2px;
   flex-shrink: 0; /* prevents shrinking */
-  transform: translateX(20%);
+  transform: translateX(25%); 
 }
 
 .row2 {
