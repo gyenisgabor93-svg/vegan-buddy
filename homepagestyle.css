@@ -5755,7 +5755,7 @@ button.button.danger:hover {
 
 .profile-nameHome {
   flex: 1;
-  min-width: 0;
+  max-width: 1000%;
 
   white-space: normal;   /* allows wrapping */
   overflow: visible;     /* no cutting */

@@ -2962,6 +2962,10 @@ async function onBoardRecommendation(ctx) {
   const visitDate = localStorage.getItem("visitDate");
   const today = new Date().toISOString().split("T")[0];
 
+  if (!undiscovered || undiscovered.length === 0) {
+  return; // or "NO_UNDISCOVERED"
+}
+  
   // already shown today → stop full flow
   if (visitDate === today) {
     return;
@@ -13022,6 +13026,7 @@ async function handleEarlyUserUI(currentProfile) {
   const shouldHide = currentProfile.day_counter < 4;
 
   const elementsToToggle = [
+    "Levelword",
     "currentLevel",
     "currentLevelSpan",
     "levelBar",
@@ -13077,13 +13082,15 @@ async function handleEarlyUserUI(currentProfile) {
 
 function getUndiscoveredSections() {
   const allSections = ["learn", "local", "mealart"];
-
   const visited = JSON.parse(localStorage.getItem("visitedSections")) || [];
 
-  return allSections.filter(section => !visited.includes(section));
+  const remaining = allSections.filter(section => !visited.includes(section));
+
+  return remaining; // may be []
 }
 
 function recommendSection(sectionId) {
+  if (!sectionId) return; // 🔥 prevents crash
 
   const visitDate = localStorage.getItem("visitDate"); // Optional: can be used to show "You visited X yesterday, how about Y today?"
   const today = new Date().toISOString().split("T")[0];
