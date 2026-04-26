@@ -2973,8 +2973,6 @@ async function onBoardRecommendation(ctx) {
 
   let didRecommend = false;
 
-  if (undiscovered.length > 0 && !visitDate) {
-
     const priority = ["learn", "local", "mealart"];
 
     const sectionToRecommend = priority.find(section =>
@@ -2985,7 +2983,7 @@ async function onBoardRecommendation(ctx) {
       recommendSection(sectionToRecommend);
       didRecommend = true;
     }
-  }
+  
 
   const box = document.getElementById("petOnboardingBox");
   if (box) box.classList.remove("hidden");
@@ -4295,13 +4293,13 @@ if (level > previousLevel) {
       }
     }
 
-    // ✅ XP remaining to next level
+    /*/ ✅ XP remaining to next level
     const xpRemaining =
       xpNeededForNextLevel - xpTowardsNextLevel;
 
     document.getElementById("xpToNext").textContent =
       `${xpRemaining} XP ${helperT("toNextLevel")}`;
-
+*/
       // ✅ **CALL THE MONITOR HERE**
     monitorDailyXP(); // <-- call after XP updated
     
@@ -5289,7 +5287,7 @@ async function handleStreakStep() {
   const userBadges = profile.badge ?? 0;
 
   // CASE 1: no penalty
-  if (badgeCost === 0) {
+  if (badgeCost === 0 || profile.streak === 0) {
     updateCheckinStep(4);
     return;
   }
@@ -5915,7 +5913,7 @@ const { error: updateError } = await supabase
 
   // Hide Daily Check-in, show home
   document.getElementById("home").classList.remove("hidden");
-  document.getElementById("topBar").classList.remove("hidden");
+ // document.getElementById("topBar").classList.remove("hidden");
   document.getElementById("dailycheck-in")?.classList.add("hidden");
   document.getElementById("learn")?.classList.add("hidden");
   await fetchAllLeaderboards();
@@ -12356,27 +12354,67 @@ celebrity: [
       es: "Tres veces al día me recuerdo que valoro la vida y que no quiero causar dolor ni matar a otros seres vivos. Por eso como como lo hago.",
       hu: "Naponta háromszor emlékeztetem magam arra, hogy értékelem az életet, és nem akarok fájdalmat okozni vagy megölni más élőlényeket. Ezért eszem így."
     },
-    avatar: "images/natalie.jpg"
+    avatar: "images/natalie.jpg",
+  sources: [
+    {
+      type: "wikipedia",
+      label: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Natalie_Portman"
+    },
+    {
+      type: "video",
+      label: "Natalie Portman on veganism",
+      url: "https://www.instagram.com/reel/DJXyfTzRDtD/"
+    }
+  ],
+credibilityLevel: "verified_primary_source",
+
+credibilityLabel: {
+  en: "Verified primary source",
+  es: "Fuente primaria verificada",
+  hu: "Hiteles elsődleges forrás"
+},
+
+credibilityColor: "green"
   },
 
   {
-    name: {
-      en: "Albert Einstein",
-      es: "Albert Einstein",
-      hu: " Albert Einstein"
-    },
-    title: {
-      en: "Theoretical Physicist",
-      es: "Físico teórico",
-      hu: "Elméleti fizikus"
-    },
-    quote: {
-      en: "Nothing will benefit health or increase chances of survival on Earth as much as the evolution to a vegetarian diet.",
-      es: "Nada beneficiará tanto la salud ni aumentará las posibilidades de supervivencia en la Tierra como la evolución hacia una dieta vegetariana.",
-      hu: "Semmi sem szolgálja jobban az egészséget vagy növeli a túlélés esélyét a Földön, mint a vegetáriánus étrend felé való fejlődés."
-    },
-    avatar: "images/einstein.jpg"
+  name: {
+    en: "Albert Einstein",
+    es: "Albert Einstein",
+    hu: "Albert Einstein"
   },
+  title: {
+    en: "Theoretical Physicist",
+    es: "Físico teórico",
+    hu: "Elméleti fizikus"
+  },
+  quote: {
+    en: "It is my view that the vegetarian manner of living, by its purely physical effect on the human temperament, would most beneficially influence mankind.",
+    es: "Creo que la forma de vida vegetariana, por su efecto puramente físico en el temperamento humano, influiría muy beneficiosamente en la humanidad.",
+    hu: "Úgy vélem, hogy a vegetáriánus életmód, pusztán fizikai hatása révén az emberi természetre, nagyon kedvezően befolyásolná az emberiséget."
+  },
+  avatar: "images/einstein.jpg",
+  sources: [
+  {
+    type: "letter",
+    label: "Letter to Hans Mühsam (1954)",
+    url: "https://www.ivu.org/history/northam20a/einstein.html"
+  },
+  {
+    type: "wikipedia",
+    label: "Wikipedia",
+    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
+  }
+],
+credibilityLevel: "verified_primary_source",
+credibilityLabel: {
+  en: "Verified primary source",
+  es: "Fuente primaria verificada",
+  hu: "Hiteles elsődleges forrás"
+},
+credibilityColor: "green"
+},
 
   {
     name: {
@@ -12394,26 +12432,26 @@ celebrity: [
       es: "Alguien me preguntó una vez: «¿Cómo puedes ser tan fuerte como un buey sin comer carne?» Mi respuesta fue: «¿Has visto alguna vez a un buey comiendo carne?»",
       hu: "Egyszer megkérdezték tőlem: „Hogyan lehetsz olyan erős, mint egy ökör hús nélkül?” A válaszom az volt: „Láttál már ökröt húst enni?”"
     },
-    avatar: "images/patrik.jpg"
-  },
-
-  {
-    name: {
-      en: "Abraham Lincoln",
-      es: "Abraham Lincoln",
-      hu: "Abraham Lincoln"
+    avatar: "images/patrik.jpg",
+    sources: [
+    {
+      type: "wikipedia",
+      label: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Patrik_Baboumian"
     },
-    title: {
-      en: "16th U.S. President",
-      es: "16.º presidente de los Estados Unidos",
-      hu: "Az Egyesült Államok 16. elnöke"
-    },
-    quote: {
-      en: "I am in favor of animal rights as well as human rights. That is the way of a whole human being.",
-      es: "Estoy a favor de los derechos de los animales así como de los derechos humanos. Ese es el camino de un ser humano completo.",
-      hu: "Az állatok jogai mellett ugyanúgy kiállok, mint az emberi jogok mellett. Ez a teljes ember útja."
-    },
-    avatar: "images/lincoln.jpg"
+    {
+      type: "video",
+      label: "The Game Changers (clip)",
+      url: "https://www.youtube.com/watch?v=6mu0b6npsKo"
+    }
+  ],
+credibilityLevel: "verified_paraphrase",
+credibilityLabel: {
+  en: "Verified paraphrase",
+  es: "Paráfrasis verificada",
+  hu: "Hitelesített parafrázis"
+},
+credibilityColor: "green"
   },
 
   {
@@ -12428,128 +12466,230 @@ celebrity: [
       hu: "Reneszánsz polihisztor"
     },
     quote: {
-      en: "I have from an early age abjured the use of meat.",
-      es: "Desde muy joven he rechazado el consumo de carne.",
-      hu: "Fiatal koromtól kezdve elutasítottam a hús fogyasztását."
+      en: "I have from an early age abjured the use of meat, and the time will come when men such as I will look upon the murder of animals as they now look upon the murder of men.",
+      es: "Desde una edad temprana he renunciado al consumo de carne, y llegará el día en que hombres como yo consideren el asesinato de animales como hoy se considera el asesinato de seres humanos.",
+      hu: "Fiatal koromtól kezdve elutasítottam a hús fogyasztását, és eljön az idő, amikor az olyan emberek, mint én, ugyanúgy tekintenek majd az állatok megölésére, mint ma az emberek megölésére."
     },
-    avatar: "images/davinci.jpg"
+    avatar: "images/davinci.jpg",
+
+  sources: [
+    {
+      type: "primary_reference",
+      label: "Andrea Corsali letter (1516, referenced in historical compilations)",
+      url: "https://www.ivu.org/history/davinci/index.html"
+    },
+    {
+      type: "wikipedia",
+      label: "Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Leonardo_da_Vinci"
+    }
+  ],
+credibilityLevel: "attributed_nonverbatim",
+credibilityLabel: {
+  en: "Attributed historical source",
+  es: "Fuente histórica atribuida",
+  hu: "Történelmi tulajdonítás"
+},
+credibilityColor: "orange"
   },
 
   {
-    name: {
-      en: "Pythagoras",
-      es: "Pitágoras",
-      hu: "Püthagorasz"
-    },
-    title: {
-      en: "Philosopher & Mathematician",
-      es: "Filósofo y matemático",
-      hu: "Filozófus és matematikus"
-    },
-    quote: {
-      en: "As long as man continues to be the ruthless destroyer of lower living beings, he will never know health or peace.",
-      es: "Mientras el hombre siga siendo el destructor despiadado de los seres vivos inferiores, nunca conocerá la salud ni la paz.",
-      hu: "Amíg az ember könyörtelen pusztítója marad az alacsonyabb rendű élőlényeknek, soha nem fogja megismerni az egészséget vagy a békét."
-    },
-    avatar: "images/pythagoras.jpg"
+  name: {
+    en: "Pythagoras",
+    es: "Pitágoras",
+    hu: "Püthagorasz"
   },
-
-  {
-    name: {
-      en: "Lewis Hamilton",
-      es: "Lewis Hamilton",
-      hu: "Lewis Hamilton"
-    },
-    title: {
-      en: "Formula 1 World Champion",
-      es: "Campeón del mundo de Fórmula 1",
-      hu: "Forma–1 világbajnok"
-    },
-    quote: {
-      en: "We all have choices to make. I choose to love, to be conscious of what I’m supporting and I refuse to support the companies killing and torturing animals.",
-      es: "Todos tenemos elecciones que hacer. Yo elijo amar, ser consciente de lo que apoyo y me niego a apoyar a empresas que matan y torturan animales.",
-      hu: "Mindannyiunknak vannak döntései. Én a szeretetet választom, tudatos vagyok abban, mit támogatok, és nem támogatom az állatokat megölő és kínzó vállalatokat."
-    },
-    avatar: "images/hamilton.jpg"
+  title: {
+    en: "Philosopher & Mathematician",
+    es: "Filósofo y matemático",
+    hu: "Filozófus és matematikus"
   },
-
-  {
-    name: {
-      en: "Mahatma Gandhi",
-      es: "Mahatma Gandhi",
-      hu: "Mahatma Gandhi"
-    },
-    title: {
-      en: "Indian Leader & Activist",
-      es: "Líder y activista indio",
-      hu: "Indiai vezető és aktivista"
-    },
-    quote: {
-      en: "The greatness of a nation can be judged by the way its animals are treated.",
-      es: "La grandeza de una nación se puede juzgar por la forma en que trata a sus animales.",
-      hu: "Egy nemzet nagysága megítélhető abból, ahogyan az állataival bánik."
-    },
-    avatar: "images/gandhi.jpg"
+  quote: {
+    en: "As long as man continues to be the ruthless destroyer of lower living beings, he will never know health or peace.",
+    es: "Mientras el hombre siga siendo el destructor despiadado de los seres vivos inferiores, nunca conocerá la salud ni la paz.",
+    hu: "Amíg az ember könyörtelen pusztítója marad az alacsonyabb rendű élőlényeknek, soha nem fogja megismerni az egészséget vagy a békét."
   },
+  avatar: "images/pythagoras.jpg",
 
-  {
-    name: {
-      en: "Leo Tolstoy",
-      es: "León Tolstói",
-      hu: "Lev Tolsztoj"
+  sources: [
+    {
+      type: "historical_context",
+      label: "Pythagorean philosophy (secondary ancient sources)",
+      url: "https://en.wikipedia.org/wiki/Pythagoreanism"
     },
-    title: {
-      en: "Author & Philosopher",
-      es: "Escritor y filósofo",
-      hu: "Író és filozófus"
-    },
-    quote: {
-      en: "As long as there are slaughterhouses, there will be battlefields.",
-      es: "Mientras existan los mataderos, habrá campos de batalla.",
-      hu: "Amíg léteznek vágóhidak, addig lesznek csataterek."
-    },
-    avatar: "images/tolstoy.jpg"
+    {
+      type: "wikipedia",
+      label: "Pythagoras – Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Pythagoras"
+    }
+  ],
+credibilityLevel: "unverified_historical_attribution",
+credibilityLabel: {
+  en: "Philosophical attribution",
+  es: "Atribución filosófica",
+  hu: "Filozófiai tulajdonítás"
+},
+credibilityColor: "orange"
+},
+
+{
+  name: {
+    en: "Lewis Hamilton",
+    es: "Lewis Hamilton",
+    hu: "Lewis Hamilton"
   },
-
-  {
-    name: {
-      en: "John Stuart Mill",
-      es: "John Stuart Mill",
-      hu: "John Stuart Mill"
-    },
-    title: {
-      en: "Philosopher & Economist",
-      es: "Filósofo y economista",
-      hu: "Filozófus és közgazdász"
-    },
-    quote: {
-      en: "The worth of a civilization is measured by the compassion it shows toward those who cannot defend themselves.",
-      es: "El valor de una civilización se mide por la compasión que muestra hacia quienes no pueden defenderse.",
-      hu: "Egy civilizáció értékét az mutatja meg, mennyi együttérzést tanúsít azokkal szemben, akik nem tudják megvédeni magukat."
-    },
-    avatar: "images/stuart.jpg"
+  title: {
+    en: "Formula 1 World Champion",
+    es: "Campeón del mundo de Fórmula 1",
+    hu: "Forma–1 világbajnok"
   },
-
-  {
-    name: {
-      en: "Buddha",
-      es: "Buda",
-      hu: "Buddha"
-    },
-    title: {
-      en: "Spiritual Leader",
-      es: "Líder espiritual",
-      hu: "Spirituális tanító"
-    },
-    quote: {
-      en: "All beings tremble before violence. All fear death. When a man considers this, he does not kill or cause to kill.",
-      es: "Todos los seres tiemblan ante la violencia. Todos temen la muerte. Cuando alguien reflexiona sobre esto, no mata ni hace que otros maten.",
-      hu: "Minden lény retteg az erőszaktól. Mindenki fél a haláltól. Aki ezt megérti, nem öl, és nem is késztet másokat ölésre."
-    },
-    avatar: "images/buddha.jpg"
+  quote: {
+    en: "We all have choices to make. I choose to love, to be conscious of what I’m supporting and I refuse to support the companies killing and torturing animals.",
+    es: "Todos tenemos elecciones que hacer. Yo elijo amar, ser consciente de lo que apoyo y me niego a apoyar a empresas que matan y torturan animales.",
+    hu: "Mindannyiunknak vannak döntései. Én a szeretetet választom, tudatos vagyok abban, mit támogatok, és nem támogatok az állatokat megölő és kínzó vállalatokat."
   },
+  avatar: "images/hamilton.jpg",
 
-  {
+  sources: [
+    {
+      type: "interview",
+      label: "Plant-based diet interview (performance & ethics)",
+      url: "https://www.youtube.com/watch?v=cbo_g6JlYcY"
+    },
+    {
+      type: "wikipedia",
+      label: "Lewis Hamilton – Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Lewis_Hamilton"
+    }
+  ],
+credibilityLevel: "verified_paraphrase",
+credibilityLabel: {
+  en: "Verified paraphrase",
+  es: "Paráfrasis verificada",
+  hu: "Hitelesített parafrázis"
+},
+credibilityColor: "green"
+},
+
+{
+  name: {
+    en: "Mahatma Gandhi",
+    es: "Mahatma Gandhi",
+    hu: "Mahatma Gandhi"
+  },
+  title: {
+    en: "Indian Leader & Activist",
+    es: "Líder y activista indio",
+    hu: "Indiai vezető és aktivista"
+  },
+  quote: {
+    en: "The greatness of a nation can be judged by the way its animals are treated.",
+    es: "La grandeza de una nación se puede juzgar por la forma en que trata a sus animales.",
+    hu: "Egy nemzet nagysága megítélhető abból, ahogyan az állataival bánik."
+  },
+  avatar: "images/gandhi.jpg",
+
+  sources: [
+    {
+      type: "wikipedia",
+      label: "Mahatma Gandhi – Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Mahatma_Gandhi"
+    },
+    {
+      type: "philosophical_writing",
+      label: "Gandhi – My Faith in Vegetarianism (essay)",
+      url: "https://www.mkgandhi.org/health/diet_reform/01my_faith_in_vegetarianism.php"
+    }
+  ],
+  credibilityLevel: "unverified_historical_attribution",
+  credibilityLabel: {
+    en: "Philosophical attribution",
+    es: "Atribución filosófica",
+    hu: "Filozófiai tulajdonítás"
+  },
+  credibilityColor: "orange"
+},
+
+{
+  name: {
+    en: "Leo Tolstoy",
+    es: "León Tolstói",
+    hu: "Lev Tolsztoj"
+  },
+  title: {
+    en: "Author & Philosopher",
+    es: "Escritor y filósofo",
+    hu: "Író és filozófus"
+  },
+  quote: {
+    en: "As long as there are slaughterhouses, there will be battlefields.",
+    es: "Mientras existan los mataderos, habrá campos de batalla.",
+    hu: "Amíg léteznek vágóhidak, addig lesznek csataterek."
+  },
+  avatar: "images/tolstoy.jpg",
+
+  sources: [
+    {
+      type: "philosophical_work",
+      label: "The First Step (essay on vegetarianism)",
+      url: "https://en.wikisource.org/wiki/The_First_Step"
+    },
+    {
+      type: "wikipedia",
+      label: "Leo Tolstoy – Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Leo_Tolstoy"
+    }
+  ],
+
+  credibilityLevel: "attributed_nonverbatim",
+  credibilityLabel: {
+    en: "Philosophical attribution",
+    es: "Atribución filosófica",
+    hu: "Filozófiai tulajdonítás"
+  },
+  credibilityColor: "orange"
+},
+
+{
+  name: {
+    en: "Buddha",
+    es: "Buda",
+    hu: "Buddha"
+  },
+  title: {
+    en: "Spiritual Leader",
+    es: "Líder espiritual",
+    hu: "Spirituális tanító"
+  },
+  quote: {
+    en: "All beings tremble before violence. All fear death. When a man considers this, he does not kill or cause to kill.",
+    es: "Todos los seres tiemblan ante la violencia. Todos temen la muerte. Cuando alguien reflexiona sobre esto, no mata ni hace que otros maten.",
+    hu: "Minden lény retteg az erőszaktól. Mindenki fél a haláltól. Aki ezt megérti, nem öl, és nem is késztet másokat ölésre."
+  },
+  avatar: "images/buddha.jpg",
+
+  sources: [
+    {
+      type: "modern_interpretation",
+      label: "Modern interpretation of Buddhist teachings on animal ethics",
+      url: "https://medium.com/elephantspirituality/what-the-buddha-said-about-animal-rights-why-its-in-our-interest-to-care-40eab1eea936"
+    },
+    {
+      type: "wikipedia",
+      label: "Buddha – Wikipedia",
+      url: "https://en.wikipedia.org/wiki/Gautama_Buddha"
+    }
+  ],
+  credibilityLevel: "attributed_nonverbatim",
+  credibilityLabel: {
+    en: "Scriptural attribution",
+    es: "Atribución escritural",
+    hu: "Szöveghagyományi tulajdonítás"
+  },
+  credibilityColor: "orange"
+},
+
+{
   name: {
     en: "Plato",
     es: "Platón",
@@ -12565,9 +12705,32 @@ celebrity: [
     es: "Todos los seres vivos están animados por un alma, y el alma no está ligada a la especie, sino a su condición.",
     hu: "Minden élőlénynek van lelke, és a lélek nem a fajhoz, hanem az állapotához kötődik."
   },
-  avatar: "images/plato.jpg"
+  avatar: "images/plato.jpg",
+
+  sources: [
+    {
+  type: "secondary_scholarly_article",
+  label: "Socrates, Plato and vegetarian themes in Ancient philosophy – Polytechnique Insights",
+  url: "https://www.polytechnique-insights.com/en/braincamps/society/nutrition-disease-biodiversity-do-we-need-a-new-relationship-with-animals/socrates-to-plato-bring-vegetarian-at-the-time-of-the-ancients/"
+    },
+    {
+      type: "philosophical_works",
+      label: "Plato – Dialogues (Republic, Phaedo, Timaeus)",
+      url: "https://en.wikipedia.org/wiki/Plato"
+    }
+  ],
+  credibilityLevel: "unverified_historical_attribution",
+  credibilityLabel: {
+    en: "Philosophical attribution",
+    es: "Atribución filosófica",
+    hu: "Filozófiai tulajdonítás"
+  },
+  credibilityColor: "orange"
 }
 ],
+
+
+
 success: [
   {
     title: {
@@ -12576,40 +12739,91 @@ success: [
       hu: "Olimpiai bajnok mentalitás"
     },
     story: {
-      en: "Novak Djokovic, one of the greatest tennis players of all time, has spoken about the importance of plant-based nutrition in supporting his performance and recovery, helping him sustain success at the highest level.",
-      es: "Novak Djokovic, uno de los mejores tenistas de todos los tiempos, ha hablado sobre la importancia de la alimentación vegetal para su rendimiento y recuperación.",
-      hu: "Novak Djokovic, minden idők egyik legjobb teniszezője, beszélt a növényi alapú táplálkozás szerepéről a teljesítményében."
-    },
-    image: "images/success/djokovic.jpg"
-  },
+  en: "In 2010, Novak Djokovic struggled with health issues and discovered a gluten intolerance. He switched to a plant-based, gluten-free diet, which dramatically improved his energy, recovery, and performance. In 2024, just weeks before the Olympics, he suffered a serious knee injury (torn meniscus) and underwent surgery. Most athletes would have stopped, but he recovered quickly and returned to compete. At 37 years old, he won the Olympic gold medal in men’s singles in Paris, becoming the oldest Olympic tennis champion in the individual men’s category of all time.",
 
-  {
-    title: {
-      en: "Ultramarathon endurance",
-      es: "Resistencia en ultramaratones",
-      hu: "Ultramaratoni állóképesség"
-    },
-    story: {
-      en: "Scott Jurek is one of the most famous ultrarunners in the world and follows a plant-based lifestyle, showing what the human body can achieve with consistent training and nutrition.",
-      es: "Scott Jurek es uno de los ultracorredores más famosos del mundo y sigue una alimentación vegetal.",
-      hu: "Scott Jurek a világ egyik legismertebb ultrafutója, növényi étrendet követ."
-    },
-    image: "images/success/jurek.jpg"
-  },
+  es: "En 2010, Novak Djokovic tenía problemas de salud y descubrió que era intolerante al gluten. Cambió a una dieta basada en plantas y sin gluten, lo que mejoró drásticamente su energía, recuperación y rendimiento. En 2024, pocas semanas antes de los Juegos Olímpicos, sufrió una grave lesión en la rodilla (rotura del menisco) y se sometió a una cirugía. La mayoría de los atletas se habrían detenido, pero él se recuperó rápidamente y volvió a competir. A los 37 años, ganó la medalla de oro olímpica en individuales masculinos en París, convirtiéndose en el tenista olímpico más veterano de la historia en la categoría individual masculina.",
 
-  {
-    title: {
-      en: "Pushing limits at any age",
-      es: "Superar límites a cualquier edad",
-      hu: "Határok áttörése bármely életkorban"
+  hu: "2010-ben Novak Djokovic egészségügyi problémákkal küzdött, és felfedezte, hogy gluténérzékeny. Növényi alapú, gluténmentes étrendre váltott, ami jelentősen javította az energiáját, a regenerációját és a teljesítményét. 2024-ben, néhány héttel az olimpia előtt súlyos térdsérülést szenvedett (meniszkuszszakadás), és műtéten esett át. A legtöbb sportoló feladta volna, de ő gyorsan felépült és visszatért a versenyzéshez. 37 évesen olimpiai aranyérmet nyert férfi Párizsban, ezzel minden idők legidősebb olimpiai teniszbajnoka lett az egyéni férfi kategóriában."
+},
+    image: "images/success/djokovic.jpg",
+
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://www.thecitizen.in/sport/novak-djokovic-has-scripted-history-1055745"
     },
-    story: {
-      en: "Fauja Singh became known for completing marathons past the age of 100, becoming a global symbol of endurance, discipline, and lifelong movement.",
-      es: "Fauja Singh se hizo conocido por completar maratones con más de 100 años.",
-      hu: "Fauja Singh 100 éves kora felett is maratont teljesített."
+    es: {
+      title: "Saber más",
+      url: "https://www.thecitizen.in/sport/novak-djokovic-has-scripted-history-1055745"
     },
-    image: "images/success/fauja.jpg"
+    hu: {
+      title: "További információ",
+      url: "https://www.thecitizen.in/sport/novak-djokovic-has-scripted-history-1055745"
+    }
   }
+  },
+
+  {
+  title: {
+    en: "Ultramarathon endurance",
+    es: "Resistencia en ultramaratones",
+    hu: "Ultramaratoni állóképesség"
+  },
+  story: {
+  en: "Scott Jurek is one of the most famous ultrarunners in the world, known for competing in extreme endurance races far beyond the marathon distance. After adopting a plant-based diet, he reached the peak of his career and dominated the Western States 100, a 160 km (100 miles) ultramarathon. He won the race seven times in a row from 1999 to 2005, becoming one of the greatest figures in endurance running.",
+
+  es: "Scott Jurek es uno de los ultracorredores más famosos del mundo, conocido por competir en carreras de resistencia extrema mucho más largas que un maratón. Tras adoptar una dieta basada en plantas, alcanzó el punto más alto de su carrera y dominó la Western States 100, una ultramaratón de 160 km (100 millas). Ganó esta carrera siete veces consecutivas entre 1999 y 2005, convirtiéndose en una de las grandes leyendas del deporte de resistencia.",
+
+  hu: "Scott Jurek a világ egyik legismertebb ultrafutója, aki extrém állóképességi versenyekben versenyez, jóval a maratoni távon túl. Növényi alapú étrendre váltása után pályafutása csúcsára ért, és uralta a Western States 100-at, egy 160 km-es (100 mérföldes) ultramaratont. 1999 és 2005 között hét egymást követő alkalommal nyerte meg a versenyt, az állóképességi futás egyik legnagyobb alakjává válva."
+},
+  image: "images/success/jurek.jpg",
+
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
+    }
+  }
+},
+
+{
+  title: {
+    en: "Pushing limits at any age",
+    es: "Superar límites a cualquier edad",
+    hu: "Határok áttörése bármely életkorban"
+  },
+  story: {
+  en: "Fauja Singh is a long-distance runner who became a global symbol of endurance and discipline by taking up running at the age of 89. He followed a plant-based vegetarian diet and built a lifestyle based on simplicity, walking, and consistency. He went on to complete marathons well past the age of 100, finishing a full marathon in Toronto at age 100 and continuing to race until around 101, proving that physical limits can be challenged at any stage of life. He passed away at the age of 114 in a road accident in India.",
+
+  es: "Fauja Singh es un corredor de larga distancia que se convirtió en un símbolo mundial de resistencia y disciplina al comenzar a correr a los 89 años. Sigue una dieta vegetariana basada en plantas y construyó su estilo de vida en la simplicidad, la caminata y la constancia. Llegó a completar maratones con más de 100 años, finalizando un maratón completo en Toronto a los 100 años y compitiendo hasta aproximadamente los 101, demostrando que los límites físicos pueden desafiarse en cualquier etapa de la vida. Falleció a los 114 años en un accidente de tráfico en India.",
+
+  hu: "Fauja Singh hosszútávfutó, aki az állóképesség és fegyelem globális szimbólumává vált azzal, hogy 89 évesen kezdett el futni. Növényi alapú vegetáriánus étrendet követett, és életmódját az egyszerűség, a séta és a következetesség határozta meg. 100 éves kora felett is teljesített maratonokat, Torontóban 100 évesen futotta le a teljes maratont, és nagyjából 101 éves koráig versenyzett, bizonyítva, hogy a fizikai határok bármely életkorban kitolhatók. 114 évesen közúti balesetben hunyt el Indiában."
+},
+  image: "images/success/fauja.jpg",
+
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://en.wikipedia.org/wiki/Fauja_Singh"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://en.wikipedia.org/wiki/Fauja_Singh"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://en.wikipedia.org/wiki/Fauja_Singh"
+    }
+  }
+}
 ]
 };
 
@@ -12855,52 +13069,108 @@ function pickrandommessage() {
 
   // 3️⃣ CELEBRITY SECTION
   else if (sectionType === "celebrity") {
-    const celeb =
-      characterTips.celebrity[
-        Math.floor(Math.random() * characterTips.celebrity.length)
-      ];
+  const celeb =
+    characterTips.celebrity[
+      Math.floor(Math.random() * characterTips.celebrity.length)
+    ];
 
-    html = `
+  const name = celeb.name[lang] || celeb.name.en;
+  const title = celeb.title[lang] || celeb.title.en;
+  const quote = celeb.quote[lang] || celeb.quote.en;
+
+  // credibility
+  const credibilityLabel =
+    celeb.credibilityLabel?.[lang] || celeb.credibilityLabel?.en || "";
+  const credibilityColor = celeb.credibilityColor || "gray";
+
+  // sources (ALWAYS show both)
+  const sourcesHtml = (celeb.sources || [])
+    .map(
+      (s) => `
+        <li>
+          <a href="${s.url}" target="_blank" rel="noopener noreferrer">
+            ${s.label}
+          </a>
+        </li>
+      `
+    )
+    .join("");
+
+  const sourcesLabel =
+    lang === "es"
+      ? "Fuentes:"
+      : lang === "hu"
+      ? "Források:"
+      : "Sources:";
+
+  const quoteLabel =
+    lang === "es"
+      ? "Cita de"
+      : lang === "hu"
+      ? "Idézet tőle:"
+      : "A quote from";
+
+  html = `
   <div class="celeb-inline">
-    
+
     <div class="celeb-header">
       <img src="${celeb.avatar}" class="celeb-avatar" />
-      
+
       <div class="celeb-info">
-        <strong>💬 ${
-          lang === "es"
-            ? "Cita de"
-            : lang === "hu"
-            ? "Idézet tőle:"
-            : "A quote from"
-        } ${celeb.name[lang] || celeb.name.en}</strong>
-        
-        <p><em>${celeb.title[lang] || celeb.title.en}</em></p>
+        <strong>💬 ${quoteLabel} ${name}</strong>
+
+        <p><em>${title}</em></p>
+
+        <span class="credibility-tag" style="color:${credibilityColor}">
+          ${credibilityLabel}
+        </span>
       </div>
     </div>
 
-    <p class="quote">“${celeb.quote[lang] || celeb.quote.en}”</p>
+    <p class="quote">“${quote}”</p>
+
+    <div class="sources">
+      <strong>${sourcesLabel}</strong>
+      <ul>
+        ${sourcesHtml}
+      </ul>
+    </div>
+
   </div>
 `;
-  }
+}
 
-  // 4️⃣ SUCCESS STORIES SECTION (NEW)
-  else if (sectionType === "success") {
-    const stories = characterTips.success || [];
-    const story = stories[Math.floor(Math.random() * stories.length)];
+  // 4️⃣ SUCCESS STORIES SECTION (UPDATED)
+else if (sectionType === "success") {
+  const stories = characterTips.success || [];
+  const story = stories[Math.floor(Math.random() * stories.length)];
 
-    html = `
-  <div class="success-story">
-    <img src="${story.image}" class="success-image" />
+  const learnMore = story.learnMore?.[lang] || story.learnMore?.en;
 
-    <h3>${story.title[lang] || story.title.en}</h3>
+  html = `
+    <div class="success-story">
+      <img src="${story.image}" class="success-image" />
 
-    <p>${story.story[lang] || story.story.en}</p>
-  </div>
-`;
-    } else {
-      html = `<div class="success-story">No story available.</div>`;
-    }
+      <h3>${story.title[lang] || story.title.en}</h3>
+
+      <p>${story.story[lang] || story.story.en}</p>
+
+      ${
+        learnMore
+          ? `
+        <div class="learn-more">
+          <a href="${learnMore.url}" target="_blank" rel="noopener noreferrer">
+            ${learnMore.title}
+          </a>
+        </div>
+      `
+          : ""
+      }
+    </div>
+  `;
+} else {
+  html = `<div class="success-story">No story available.</div>`;
+}
 
   // 5️⃣ Render
   showPetMessage(html);
