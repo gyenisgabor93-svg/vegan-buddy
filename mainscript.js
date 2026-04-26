@@ -8593,7 +8593,7 @@ let joinedLocationId = null;
 let firstLoad = true;
 let messageChannel = null;
 
-async function initCommunityModule() {
+async function initCommunityModule() { 
   // 1️⃣ Load locations
   await loadLocations();
 
@@ -8678,8 +8678,9 @@ async function loadLocations() {
 async function loadUserCommunity(currentUser) {
   if (!currentUser) return;
 
-  const locationId = window.currentCommunityLocationId;
-  if (!locationId) return;
+  const {data: locationData} = await supabase.from("community_participants").select("location_id").eq("user_id", currentUser.id).single();
+  const locationId = locationData?.location_id; 
+  if (!locationId) return; 
   
     const { data: location, error: locationError } = await supabase
       .from("locations")
@@ -9082,14 +9083,10 @@ document.getElementById("leaveCommunityDashboardBtn").addEventListener("click", 
 // ----------------------------
 // Community events
 // ----------------------------
-async function loadCommunityEvents(locationId) {
+async function loadCommunityEvents(locationId) { 
   let events;
 
-if (window.communityEventsGlobal && window.currentCommunityLocationId === locationId) {
 
-  events = window.communityEventsGlobal;
-
-} else {
 
   const { data, error: eventsError } = await supabase
     .from("community_events")
@@ -9105,7 +9102,6 @@ if (window.communityEventsGlobal && window.currentCommunityLocationId === locati
 
   window.communityEventsGlobal = events;
   window.currentCommunityLocationId = locationId;
-}
 
   // 2️⃣ Fetch all participants for events at once
   const { data: allParticipants, error: participantsError } = await supabase
@@ -12763,37 +12759,6 @@ success: [
   }
   },
 
-  {
-  title: {
-    en: "Ultramarathon endurance",
-    es: "Resistencia en ultramaratones",
-    hu: "Ultramaratoni állóképesség"
-  },
-  story: {
-  en: "Scott Jurek is one of the most famous ultrarunners in the world, known for competing in extreme endurance races far beyond the marathon distance. After adopting a plant-based diet, he reached the peak of his career and dominated the Western States 100, a 160 km (100 miles) ultramarathon. He won the race seven times in a row from 1999 to 2005, becoming one of the greatest figures in endurance running.",
-
-  es: "Scott Jurek es uno de los ultracorredores más famosos del mundo, conocido por competir en carreras de resistencia extrema mucho más largas que un maratón. Tras adoptar una dieta basada en plantas, alcanzó el punto más alto de su carrera y dominó la Western States 100, una ultramaratón de 160 km (100 millas). Ganó esta carrera siete veces consecutivas entre 1999 y 2005, convirtiéndose en una de las grandes leyendas del deporte de resistencia.",
-
-  hu: "Scott Jurek a világ egyik legismertebb ultrafutója, aki extrém állóképességi versenyekben versenyez, jóval a maratoni távon túl. Növényi alapú étrendre váltása után pályafutása csúcsára ért, és uralta a Western States 100-at, egy 160 km-es (100 mérföldes) ultramaratont. 1999 és 2005 között hét egymást követő alkalommal nyerte meg a versenyt, az állóképességi futás egyik legnagyobb alakjává válva."
-},
-  image: "images/success/jurek.jpg",
-
-  learnMore: {
-    en: {
-      title: "Learn more",
-      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
-    },
-    es: {
-      title: "Saber más",
-      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
-    },
-    hu: {
-      title: "További információ",
-      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
-    }
-  }
-},
-
 {
   title: {
     en: "Pushing limits at any age",
@@ -12823,6 +12788,96 @@ success: [
       url: "https://en.wikipedia.org/wiki/Fauja_Singh"
     }
   }
+},
+
+{
+  title: {
+    en: "Outliving a terminal diagnosis",
+    es: "Sobrevivir a un diagnóstico terminal",
+    hu: "Túlélni egy végzetes diagnózist"
+  },
+  story: {
+    en: "Stamatis Moraitis lived in the United States when he was diagnosed with lung cancer and given only 6–9 months to live. Instead of continuing treatment, he returned to his home island of Ikaria. There, he adopted a low-stress lifestyle, reconnected with friends and family, and followed a mostly plant-based diet typical of Blue Zones. He not only survived but lived around 40 more years, passing away at 102. Ikaria is known as a Blue Zone, where people commonly live longer due to strong community, low stress, and plant-based eating.",
+    
+    es: "Stamatis Moraitis vivía en Estados Unidos cuando fue diagnosticado con cáncer de pulmón y le dieron solo 6–9 meses de vida. En lugar de continuar el tratamiento, regresó a su isla natal, Ikaria. Allí adoptó un estilo de vida sin estrés, se reconectó con su comunidad y siguió una dieta mayormente vegetal típica de las Zonas Azules. No solo sobrevivió, sino que vivió unos 40 años más, falleciendo a los 102 años.",
+    
+    hu: "Stamatis Moraitis az Egyesült Államokban élt, amikor tüdőrákot diagnosztizáltak nála, és mindössze 6–9 hónapot adtak neki. A kezelések folytatása helyett visszatért szülőszigetére, Ikaria. Ott stresszmentesebb életet élt, újra kapcsolódott a közösségéhez, és a Kék Zónákra jellemző, főként növényi étrendet követte. Nemcsak túlélte a betegséget, hanem még körülbelül 40 évig élt, és 102 évesen hunyt el."
+  },
+  image: "images/success/moraitis.jpg",
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://www.bluezones.com/exploration/ikaria-greece/"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://www.bluezones.com/exploration/ikaria-greece/"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://www.bluezones.com/exploration/ikaria-greece/"
+    }
+  }
+},
+
+{
+  title: {
+    en: "Rethinking strength and health",
+    es: "Replanteando la fuerza y la salud",
+    hu: "Az erő és egészség újragondolása"
+  },
+  story: {
+    en: "Arnold Schwarzenegger built his physique by consuming large amounts of meat and eggs during his bodybuilding years. Later in life, he faced serious heart issues and underwent multiple surgeries. After that, he shifted toward a mostly plant-based diet to improve his health and reduce cholesterol. Now in his 70s, he remains active and strong, with improved heart health and significantly lower cholesterol levels.",
+    
+    es: "Arnold Schwarzenegger construyó su físico consumiendo grandes cantidades de carne y huevos durante sus años como culturista. Más tarde enfrentó graves problemas cardíacos y pasó por varias cirugías. Después, cambió hacia una dieta mayormente vegetal para mejorar su salud y reducir el colesterol. Ahora, con más de 70 años, sigue activo y fuerte, con una mejor salud cardiovascular y niveles de colesterol significativamente más bajos.",
+    
+    hu: "Arnold Schwarzenegger testépítő évei alatt nagy mennyiségű húst és tojást fogyasztott az izomépítéshez. Később súlyos szívproblémákkal szembesült, és több műtéten is átesett. Ezután nagyrészt növényi alapú étrendre váltott, hogy javítsa egészségét és csökkentse a koleszterinszintjét. Ma, 70 felett is aktív és erős, javult szív- és érrendszeri egészséggel és jelentősen alacsonyabb koleszterinszinttel."
+  },
+  image: "images/success/arnold.jpg",
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://www.youtube.com/watch?v=0L5SZLUmnYA"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://www.youtube.com/watch?v=0L5SZLUmnYA"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://www.youtube.com/watch?v=0L5SZLUmnYA"
+    }
+  }
+},
+
+{
+  title: {
+    en: "Built for strength, powered by plants",
+    es: "Construido para la fuerza, alimentado por plantas",
+    hu: "Erőre építve, növényekből táplálva"
+  },
+  story: {
+    en: "There are not many stories about elite bodybuilders raised without meat. Nimai Delgado was raised vegetarian and later fully adopted a plant-based vegan lifestyle as an adult. He went on to build a professional bodybuilding physique, proving that high-level muscle growth and strength are possible on a plant-based diet without relying on meat or animal products.",
+
+    es: "No hay muchas historias de culturistas de élite criados sin carne. Nimai Delgado fue criado como vegetariano y más tarde adoptó completamente un estilo de vida vegano. Llegó a desarrollar un físico de culturista profesional, demostrando que el crecimiento muscular y la fuerza son posibles con una dieta basada en plantas.",
+
+    hu: "Kevés történet van olyan élsportoló testépítőkről, akik hús nélkül nőttek fel. Nimai Delgado vegetáriánusként nevelkedett, majd felnőttként teljesen vegán életmódra váltott. Profi testépítő fizikumot épített, bizonyítva, hogy az izomépítés és az erő növényi étrenddel is elérhető."
+  },
+  image: "images/success/nimai.jpg",
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://www.greatveganathletes.com/nimai-delgado-vegan-bodybuilder/"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://www.greatveganathletes.com/nimai-delgado-vegan-bodybuilder/"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://www.greatveganathletes.com/nimai-delgado-vegan-bodybuilder/"
+    }
+  }
 }
 ]
 };
@@ -12844,7 +12899,7 @@ function impactIntro() {
       <ul>
         <li>🐾 ~21 animals</li>
         <li>🌳 ~15 m² forest</li>
-        <li>💧 ~1,980 liters of water</li>
+        <li>💧 ~19,800 liters of water</li>
         <li>🌍 ~120 kg CO₂</li>
       </ul>
 
@@ -12876,7 +12931,7 @@ function impactIntro() {
   <ul>
     <li>🐾 ~21 animales</li>
     <li>🌳 ~15 m² de bosque</li>
-    <li>💧 ~1.980 litros de agua</li>
+    <li>💧 ~19,800 litros de agua</li>
     <li>🌍 ~120 kg de CO₂</li>
   </ul>
 
@@ -12907,7 +12962,7 @@ function impactIntro() {
   <ul>
     <li>🐾 ~21 állat</li>
     <li>🌳 ~15 m² erdő</li>
-    <li>💧 ~1980 liter víz</li>
+    <li>💧 ~19,800 liter víz</li>
     <li>🌍 ~120 kg CO₂</li>
   </ul>
 
