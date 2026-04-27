@@ -3155,21 +3155,27 @@ localStorage.setItem(storageKey, JSON.stringify({
 async function loadWinnersFromData(ctx) {
 
 const now = new Date();
+const day = now.getDay();
 const year = now.getUTCFullYear();
 const week = getWeekNumber(now);
 
 const storageKey = `meal_winners_${year}_W${week}`;
 
-const stored = localStorage.getItem(storageKey);
+let stored = localStorage.getItem(storageKey);
+let data = null;
 
 if (stored) {
-  const data = JSON.parse(stored);
-
-  // already shown this week → block execution
-  if (data.week === `${year}-W${week}` && data.shown === true) {
-    return;
-  }
+  data = JSON.parse(stored);
 }
+
+if (
+  (day === 1) || 
+  (data &&
+  data.week === `${year}-W${week}` && data.shown === true )
+) {
+  return;
+}
+
   if (!currentMeals || currentMeals.length === 0) return;
 
   function getLatestWinner(isPro) {
@@ -12878,7 +12884,158 @@ success: [
       url: "https://www.greatveganathletes.com/nimai-delgado-vegan-bodybuilder/"
     }
   }
+},
+
+{
+  title: {
+    en: "Crossing the Atlantic through pure endurance",
+    es: "Cruzando el Atlántico con pura resistencia",
+    hu: "Az Atlanti-óceán meghódítása tiszta kitartással"
+  },
+  story: {
+    en: "Gábor Rakonczay is an extreme adventurer and endurance athlete who pushed human limits by crossing the Atlantic Ocean in a small rowing boat powered only by human strength. One of his most famous expeditions lasted around 75 days at sea, facing storms, exhaustion, isolation, and complete dependence on his own physical and mental endurance. He is widely associated with a disciplined, plant-based lifestyle and is often described as following a vegan or plant-focused diet during his endurance challenges.",
+
+    es: "Gábor Rakonczay es un aventurero extremo y atleta de resistencia que llevó los límites humanos al cruzar el océano Atlántico en un pequeño bote de remo impulsado únicamente por fuerza humana. Una de sus expediciones más famosas duró alrededor de 75 días en el mar, enfrentando tormentas, agotamiento, aislamiento y una dependencia total de su propia resistencia física y mental. Está asociado con un estilo de vida disciplinado y basado en plantas, y a menudo se le describe como vegano o con una alimentación vegetal durante sus desafíos.",
+
+    hu: "Rakonczay Gábor magyar extrém sportoló és felfedező, aki az emberi kitartás határait feszegette azzal, hogy egy kis evezős hajóval átkelt az Atlanti-óceánon, kizárólag emberi erővel hajtva. Egyik legismertebb útja körülbelül 75 napig tartott a tengeren, viharokkal, kimerültséggel, elszigeteltséggel és teljes önellátással. Tudatos, fegyelmezett életmódot követ, és gyakran növényi alapú vagy vegánként említett étrenddel hozzák összefüggésbe az extrém kihívások során."
+},
+  image: "images/success/rakonczay.jpg",
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://hu.wikipedia.org/wiki/Rakonczay_G%C3%A1bor"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://hu.wikipedia.org/wiki/Rakonczay_G%C3%A1bor"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://hu.wikipedia.org/wiki/Rakonczay_G%C3%A1bor"
+    }
+  }
+},
+
+{
+  title: {
+    en: "Ultra endurance on a plant-based path",
+    es: "Ultra resistencia con alimentación vegetal",
+    hu: "Ultrakitartás növényi alapokon"
+  },
+  story: {
+    en: "Scott Jurek is one of the most successful ultramarathon runners in the world and a defining figure in endurance sports. He dominated the Western States 100-Mile Endurance Run, winning it seven consecutive times between 1999 and 2005, competing against the toughest ultra runners on the planet. In 2015, he set a supported fastest known time on the Appalachian Trail, running the entire 3,500 km route in 46 days, 8 hours, and 7 minutes. Throughout his career, he has followed a fully plant-based vegan diet, showing that elite endurance performance is possible without animal products.",
+
+    es: "Scott Jurek es uno de los corredores de ultramaratón más exitosos del mundo y una figura clave en los deportes de resistencia. Dominó la Western States 100-Mile Endurance Run, ganándola siete veces consecutivas entre 1999 y 2005, compitiendo contra los mejores corredores de ultra distancia del planeta. En 2015, estableció el récord de velocidad asistido en el Appalachian Trail, recorriendo los 3.500 km en 46 días, 8 horas y 7 minutos. A lo largo de su carrera ha seguido una dieta vegana basada en plantas, demostrando que el máximo rendimiento en resistencia es posible sin productos animales. ",
+
+    hu: "Scott Jurek a világ egyik legsikeresebb ultramaraton futója és az állóképességi sportok meghatározó alakja. Hét egymást követő alkalommal nyerte meg a Western States 100 mérföldes versenyt 1999 és 2005 között, a világ legerősebb ultrafutóival versenyezve. 2015-ben rekordidőt állított fel az Appalachian Trail-en, amelyet 46 nap 8 óra és 7 perc alatt teljesített (kb. 3500 km). Karrierje során végig vegán, növényi alapú étrendet követett, bizonyítva, hogy a csúcsteljesítmény állóképességi sportban is elérhető állati eredetű termékek nélkül."
+  },
+  image: "images/success/jurek.jpg",
+  learnMore: {
+    en: {
+      title: "Learn more",
+      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
+    },
+    es: {
+      title: "Saber más",
+      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
+    },
+    hu: {
+      title: "További információ",
+      url: "https://en.wikipedia.org/wiki/Scott_Jurek"
+    }
+  }
+},
+
+{
+  "title": {
+    "en": "Climbing without limits or safety",
+    "es": "Escalar sin límites ni seguridad",
+    "hu": "Mászás határok és biztosítás nélkül"
+  },
+  "story": {
+    "en": "Alex Honnold is one of the most famous rock climbers in the world, known for pushing the limits of what is physically and mentally possible in climbing. In 2017, he achieved one of the most extraordinary feats in sports history by free soloing El Capitan in Yosemite National Park — climbing the 900-meter vertical granite wall without ropes, protection, or safety equipment. Honnold is also known for his disciplined and minimalist lifestyle, and he has spoken about leaning toward a plant-based diet and a health-focused, environmentally conscious way of living.",
+
+    "es": "Alex Honnold es uno de los escaladores más famosos del mundo, conocido por llevar los límites de lo posible en la escalada. En 2017 logró una de las hazañas más extraordinarias de la historia del deporte al escalar en free solo El Capitán en el Parque Nacional de Yosemite — una pared de granito de 900 metros sin cuerdas, protección ni ningún equipo de seguridad. Honnold también es conocido por su estilo de vida disciplinado y minimalista, y ha hablado de su interés por una alimentación basada en plantas y un estilo de vida saludable y consciente con el medio ambiente.",
+
+    "hu": " a világ egyik legismertebb sziklamászója, aki az emberi határok végső teszteléséről vált híressé. 2017-ben történelmi teljesítményt ért el, amikor biztosítókötél és védőfelszerelés nélkül, free solo módban megmászta az El Capitan 900 méter magas gránitfalát a Yosemite Nemzeti Parkban. Honnold fegyelmezett, minimalista életmódjáról is ismert, és nyilatkozatai szerint közel áll a növényi alapú étrendhez és egy egészségtudatos, környezettudatos életfelfogáshoz."
+  },
+  "image": "images/success/honnold.jpg",
+  "learnMore": {
+    "en": {
+      "title": "Learn more",
+      "url": "https://en.wikipedia.org/wiki/Alex_Honnold"
+    },
+    "es": {
+      "title": "Saber más",
+      "url": "https://en.wikipedia.org/wiki/Alex_Honnold"
+    },
+    "hu": {
+      "title": "További információ",
+      "url": "https://en.wikipedia.org/wiki/Alex_Honnold"
+    }
+  }
+},
+
+{
+  "title": {
+    "en": "Swimming beyond the limits of age",
+    "es": "Nadando más allá de los límites de la edad",
+    "hu": "Úszás az életkor határain túl"
+  },
+  "story": {
+    "en": "Diana Nyad is a long-distance swimmer and lifelong vegetarian known for her determination and endurance. After multiple attempts over several decades, she successfully completed a historic swim from Cuba to Florida at the age of 64, covering roughly 177 kilometers in open ocean without a shark cage. The journey took about 53 hours and required extreme physical and mental resilience against currents, fatigue, and harsh ocean conditions. Her achievement became a global symbol of persistence, proving that major human goals can be reached even later in life.",
+
+    "es": "Diana Nyad es una nadadora de larga distancia y vegetariana de toda la vida conocida por su determinación y resistencia. Después de varios intentos durante décadas, logró completar una travesía histórica de Cuba a Florida a los 64 años, nadando aproximadamente 177 kilómetros en mar abierto sin jaula antitiburones. El viaje duró unas 53 horas y requirió una resistencia física y mental extrema contra corrientes, fatiga y condiciones del océano. Su logro se convirtió en un símbolo mundial de perseverancia y de que los grandes objetivos pueden alcanzarse incluso en edades avanzadas.",
+
+    "hu": "Diana Nyad hosszútávúszó és élethosszig tartó vegetáriánus, aki kitartásáról és állóképességéről ismert. Több évtizeden és számos sikertelen kísérleten keresztül végül 64 évesen teljesítette a Kuba és Florida közötti történelmi úszást, körülbelül 177 kilométert megtéve nyílt óceánban, cápaellenes ketrec nélkül. Az út nagyjából 53 óráig tartott, és extrém fizikai és mentális kitartást igényelt az áramlatok, kimerültség és zord óceáni körülmények ellen. Teljesítménye a kitartás globális szimbóluma lett, bizonyítva, hogy nagy célok idősebb korban is elérhetők."
+  },
+  "image": "images/success/diana-nyad.jpg",
+  "learnMore": {
+    "en": {
+      "title": "Learn more",
+      "url": "https://en.wikipedia.org/wiki/Diana_Nyad"
+    },
+    "es": {
+      "title": "Saber más",
+      "url": "https://en.wikipedia.org/wiki/Diana_Nyad"
+    },
+    "hu": {
+      "title": "További információ",
+      "url": "https://en.wikipedia.org/wiki/Diana_Nyad"
+    }
+  }
+},
+
+{
+  "title": {
+    "en": "Endurance racing in the harshest conditions",
+    "es": "Carreras de resistencia en condiciones extremas",
+    "hu": "Kitartás a legkeményebb körülmények között"
+  },
+  "story": {
+    "en": "Jasmin Paris - follows a mostly plant-based diet - is a Scottish ultrarunner and mountaineer known for competing in some of the toughest endurance races in the world. She made history by becoming the first woman to win the overall Spine Race, a brutal multi-day ultramarathon across the Pennine Way in winter conditions, covering roughly 431 kilometers with extreme sleep deprivation, cold, and continuous physical strain. She completed the race while balancing life as a veterinarian and mother, becoming a powerful example of human endurance, discipline, and mental strength in extreme sport.",
+
+    "es": "Jasmin Paris - sigue una dieta mayormente basada en plantas - es una corredora de ultramaratón y montañista escocesa conocida por competir en algunas de las carreras de resistencia más duras del mundo. Hizo historia al convertirse en la primera mujer en ganar la Spine Race en la clasificación general, un ultramaratón extremo de varios días a través del Pennine Way en condiciones invernales, recorriendo aproximadamente 431 kilómetros con privación extrema de sueño, frío y esfuerzo físico continuo. Completó la carrera mientras equilibraba su vida como veterinaria y madre, convirtiéndose en un ejemplo de resistencia, disciplina y fortaleza mental.",
+
+    "hu": "Jasmin Paris - főként növényi alapú étrendet követ - Skóciából származó ultrafutó és hegymászó, aki a világ egyik legkeményebb állóképességi versenyein versenyez. Történelmet írt azzal, hogy első nőként megnyerte a Spine Race-t összetettben, amely egy brutális többnapos ultramaraton a Pennine Way-en téli körülmények között, körülbelül 431 kilométeres távval, extrém alváshiánnyal, hideggel és folyamatos fizikai terheléssel. Emellett állatorvos és édesanya is, így története a kitartás, fegyelem és mentális erő erőteljes példája."
+  },
+  "image": "images/success/jasmin-paris.jpeg",
+  "learnMore": {
+    "en": {
+      "title": "Learn more",
+      "url": "https://en.wikipedia.org/wiki/Jasmin_Paris"
+    },
+    "es": {
+      "title": "Saber más",
+      "url": "https://en.wikipedia.org/wiki/Jasmin_Paris"
+    },
+    "hu": {
+      "title": "További információ",
+      "url": "https://en.wikipedia.org/wiki/Jasmin_Paris"
+    }
+  }
 }
+
 ]
 };
 
