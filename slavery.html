@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slavery</title>
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 3%; /* 🔥 instead of margin + width trick */
+
+    font-family: "Georgia", "Times New Roman", serif;
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #e9eef2;
+
+    overflow-x: hidden;   /* ✅ prevent sideways scroll */
+    overflow-y: auto;     /* ✅ only scroll if needed */
+}
+
+/* cinematic dark-blue overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(10, 18, 28, 0.35),
+        rgba(5, 8, 12, 0.75)
+    );
+
+    pointer-events: none;
+}
+
+/* MAIN CONTAINER */
+.container {
+    width: 100%;
+    max-width: 760px;
+
+    max-height: none; /* ❌ remove constraint */
+
+    margin: auto 0; /* 🔥 keeps vertical centering behavior */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 34px 36px;
+
+    background: rgba(20, 28, 38, 0.35);
+
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    gap: 8px; /* 🔥 tighter vertical rhythm */
+    position: relative;
+}
+
+/* soft light “museum spotlight” */
+.container::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 140%;
+    height: 80%;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(120, 160, 200, 0.18),
+        transparent 60%
+    );
+
+    pointer-events: none;
+}
+
+/* IMAGE */
+img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    margin-bottom: 10px;
+
+    filter: grayscale(0.2) contrast(1.1) brightness(0.9);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* TITLE */
+h2 {
+    font-size: 26px;
+    font-weight: 500;
+
+    margin: 0 0 6px 0;
+
+    color: #f0f4f8;
+    letter-spacing: 0.3px;
+}
+
+/* TEXT */
+p {
+    font-size: 18px;
+    line-height: 1.55;
+
+    margin: 0;
+
+    color: rgba(230, 235, 240, 0.85);
+
+    white-space: pre-line;
+
+    max-width: 65ch; /* 🔥 gives “document / book” feel */
+}
+
+/* BUTTON BASE */
+button {
+    margin-top: 8px;
+    padding: 10px 14px;
+
+    font-size: 16px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #e9eef2;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    backdrop-filter: blur(8px);
+}
+
+/* hover */
+button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* OPTIONS (important spacing fix) */
+.options button {
+    width: 100%;
+    text-align: center;
+
+    margin: 6px 0;
+    padding: 12px 14px;
+
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* STAR RATING */
+span {
+    color: #cfd8e3;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+span:hover {
+    transform: scale(1.2);
+    color: white;
+}
+
+/* OPTIONAL: smoother transitions between steps */
+.container {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.container {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* fade-out (leaving exhibit) */
+.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* fade-in (arriving exhibit) */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+<body>
+<div class="container" id="container">
+    <img id="image" src="" alt="step image">
+    <h2 id="title"></h2>
+    <p id="content"></p>
+    <div id="options" class="options"></div>
+    <p id="feedback" class="feedback"></p>
+    <button id="nextBtn" onclick="nextStep()">Start</button>
+</div>
+
+<script>
+
+function transitionStep(callback) {
+  const container = document.getElementById("container");
+
+  container.classList.add("fade-out");
+
+  setTimeout(() => {
+    callback(); // change content
+
+    container.classList.remove("fade-out");
+    container.classList.add("fade-in");
+
+    setTimeout(() => {
+      container.classList.remove("fade-in");
+    }, 600);
+
+  }, 400);
+}
+
+const i18n = {
+  en: {
+
+    start: "Start",
+    next: "Next",
+    continue: "Continue",
+
+    welcome_title: "Welcome",
+    welcome_content: "This experience is about slavery and explores patterns in human history.\n\nTake your time with each step. There are no right or wrong reactions — only reflection.",
+
+    past_1_title: "1. Ownerships",
+    past_1_content: "Enslaved people were treated as property rather than individuals. They could be bought, sold, or inherited.",
+    past_1_justification: "This was often justified by beliefs in inferiority or economic necessity.",
+
+    past_2_title: "2. Selective breeding for productivity",
+    past_2_content: "They were forcibly bred to produce stronger workers. Their bodies and lives were controlled for productivity.",
+    past_2_justification: "This was often framed as efficiency or a way to increase output.",
+
+    past_3_title: "3. Family separation",
+    past_3_content: "Families were often separated during sales or transfers. Parents, children, and partners could be permanently divided.",
+    past_3_justification: "This was considered necessary for management and economic reasons.",
+
+    past_4_title: "4. Masks",
+    past_4_content: "In some agricultural systems, restraint tools such as masks or muzzles were used to prevent people from eating harvested crops while working in fields.",
+
+    past_5_title: "5. Tagging and marking",
+    past_5_content: "Permanent marks or branding were used on bodies to indicate ownership or control.\n\nThese marks served as a visible signal of status and belonging within the system.",
+
+    past_6_title: "6. Physical punishment and control",
+    past_6_content: "Violence was used to enforce obedience. This included whipping, branding, and other forms of control.",
+    past_6_justification: "These actions were often described as necessary discipline.",
+
+    past_7_title: "7. Commodification",
+    past_7_content: "People were assigned monetary value based on strength, age, or skills.",
+
+    past_8_title: "8. Denial of mental and emotional complexity",
+    past_8_content: "Some claimed that enslaved people felt less pain, had less intelligence, or were even content in their condition. These beliefs shaped how they were treated.",
+    past_8_justification: "These ideas were often supported by cultural habits or convenience.",
+
+    past_reflection_question: "How do you think systems like this can be accepted by society?",
+
+    past_reflection_option_1: "Economic pressure and survival needs",
+    past_reflection_option_2: "Cultural and historical normalization",
+    past_reflection_option_3: "Lack of awareness or distance from the system",
+
+    past_reflection_feedback_1: "Good point! Economic systems often shape what people feel they can or cannot question.",
+    past_reflection_feedback_2: "Indeed! Normalization through culture and tradition is one of the strongest forces in human history.",
+    past_reflection_feedback_3: "True! Distance from consequences often reduces perceived urgency for change.",
+
+    present_reminder_1: "Earlier you highlighted economic pressure. Many systems today still rely on similar dynamics.\n\nWill you take action to challenge these pressures?",
+    present_reminder_2: "Earlier you highlighted normalization. Culture still plays a strong role in shaping acceptance today.\n\nWill you take action and question cultural norms?",
+    present_reminder_3: "Earlier you highlighted distance from awareness. Modern systems can still create separation between action and consequence.\n\nWill you take action to reduce this distance and increase awareness?",
+
+    transition_content: "Over time, many systems of exploitation have changed in form and context.\n\nSome practices and justifications may still appear in different ways today.\n\nIn the next section, we will look at patterns of animal agriculture.",
+
+    present_1_title: "1. Ownerships",
+    present_1_content: "Animals are treated as property rather than individuals. They can be bought, sold, or controlled for various human purposes.",
+    present_1_justification: "This is often justified by beliefs in inferiority or economic necessity.",
+
+    present_2_title: "2. Selective breeding for productivity",
+    present_2_content: "Today, animals are selectively bred to maximize productivity. Their reproduction is controlled to increase output such as milk, eggs, or growth rate.",
+    present_2_justification: "This is often justified as efficiency or a way to increase output.",
+
+    present_3_title: "3. Family separation",
+    present_3_content: "Animals are separated from their offspring shortly after birth. This interrupts natural bonds and life cycles.",
+    present_3_justification: "This is often justified as necessary for production processes.",
+
+    present_4_title: "4. Masks",
+    present_4_content: "In some dairy systems today, calves may be fitted with devices that limit access to their mother's milk.",
+
+    present_5_title: "5. Tagging and marking",
+    present_5_content: "Animals are often marked with tags, brands, or identifiers to indicate ownership.\n\nThese marks are used for tracking and control.",
+
+    present_6_title: "6. Physical punishment and control",
+    present_6_content: "Animals are sometimes subjected to physical control methods to enforce compliance. These can include force or restrictive tools.",
+    present_6_justification: "This is often justified as necessary for handling and safety.",
+
+    present_7_title: "7. Commodification",
+    present_7_content: "Animals are assigned economic value based on productivity, breed, or characteristics.\n\nThey are treated as units within a market system.",
+
+    present_8_title: "8. Denial of mental and emotional complexity",
+    present_8_content: "Some claim that animals feel less pain and are content in their condition. These beliefs shaped how they were treated.",
+    present_8_justification: "These ideas are often supported by cultural habits or convenience.",
+
+    final_title: "You have finished!",
+    final_content: "Thank you for participating, how did you like our experience?",
+
+    final_negativefeedback: "Thank you for your feedback! We'll use it to improve and create more impactful experiences in the future.",
+    final_positivefeedback:
+`
+    Thank you for participating!<br><br>
+
+    We’re building more experiences like this - including applicatins - and will soon start street activism.<br><br>
+
+    👉 Follow us on 
+    <a href="https://instagram.com/org.elu" target="_blank">Instagram</a><br><br>
+
+    👉 Join our 
+    <a href="https://chat.whatsapp.com/FCwzIhcS0DSESI7mc60ge0?mode=gi_t" target="_blank">WhatsApp community</a> 
+    to stay updated and actively contribute.<br><br>
+`
+    
+  },
+
+  
+  es: {
+    start: "Comenzar",
+    next: "Siguiente",
+    continue: "Continuar",
+
+    welcome_title: "Bienvenido",
+    welcome_content: "Esta vivencia trata sobre la esclavitud y explora patrones en la historia humana.\n\nTómate tu tiempo con cada paso. No hay respuestas correctas o incorrectas — solo reflexión.",
+
+    past_1_title: "1. Propiedad",
+    past_1_content: "Las personas esclavizadas eran tratadas como propiedad en lugar de individuos. Podían ser compradas, vendidas o heredadas.",
+    past_1_justification: "Esto a menudo se justificaba con creencias de inferioridad o necesidad económica.",
+
+    past_2_title: "2. Cría selectiva para la productividad",
+    past_2_content: "Eran obligadas a reproducirse para producir trabajadores más fuertes. Sus cuerpos y vidas eran controlados para la productividad.",
+    past_2_justification: "Esto se presentaba como eficiencia o una forma de aumentar la producción.",
+
+    past_3_title: "3. Separación familiar",
+    past_3_content: "Las familias eran separadas durante ventas o traslados. Padres, hijos y parejas podían ser divididos permanentemente.",
+    past_3_justification: "Se consideraba necesario por razones económicas o de gestión.",
+
+    past_4_title: "4. Máscaras",
+    past_4_content: "En algunos sistemas agrícolas, se utilizaban dispositivos como máscaras o bozales para evitar que las personas comieran mientras trabajaban en los campos.",
+
+    past_5_title: "5. Marcaje",
+    past_5_content: "Se utilizaban marcas permanentes para indicar propiedad o control.\n\nEstas marcas señalaban su estatus dentro del sistema.",
+
+    past_6_title: "6. Castigo físico y control",
+    past_6_content: "Se utilizaba la violencia para imponer obediencia. Incluía azotes y otras formas de control.",
+    past_6_justification: "Se justificaba como disciplina necesaria.",
+
+    past_7_title: "7. Mercantilización",
+    past_7_content: "Las personas eran valoradas económicamente según su fuerza, edad o habilidades.",
+
+    past_8_title: "8. Negación de la complejidad emocional",
+    past_8_content: "Algunos afirmaban que sentían menos dolor o tenían menos inteligencia. Estas creencias influían en su trato.",
+    past_8_justification: "Estas ideas se apoyaban en costumbres culturales.",
+
+    past_reflection_question: "¿Cómo crees que sistemas como este han sido aceptados por la sociedad?",
+
+    past_reflection_option_1: "Presión económica y necesidades de supervivencia",
+    past_reflection_option_2: "Normalización cultural e histórica",
+    past_reflection_option_3: "Falta de conciencia o distancia del sistema",
+
+    past_reflection_feedback_1: "¡Buen punto! Los sistemas económicos a menudo determinan lo que las personas sienten que pueden o no cuestionar.",
+    past_reflection_feedback_2: "¡Exacto! La normalización a través de la cultura y la tradición es una de las fuerzas más fuertes de la historia humana.",
+    past_reflection_feedback_3: "Cierto. La distancia con las consecuencias suele reducir la urgencia percibida para el cambio.",
+
+    present_reminder_1: "Antes destacaste la presión económica. Muchos sistemas actuales siguen dependiendo de dinámicas similares.\n\n¿Tomarás acción para cuestionar estas presiones?",
+    present_reminder_2: "Antes destacaste la normalización. La cultura sigue influyendo fuertemente en lo que se acepta hoy.\n\n¿Tomarás acción para cuestionar las normas culturales?",
+    present_reminder_3: "Antes destacaste la distancia de la conciencia. Los sistemas modernos aún pueden separar acción y consecuencia.\n\n¿Tomarás acción para reducir esta distancia y aumentar la conciencia?",
+
+    transition_content: "Con el tiempo, muchos sistemas de explotación han cambiado.\n\nAlgunas prácticas aún aparecen hoy en día.\n\nAhora veremos la agricultura animal.",
+
+    present_1_title: "1. Propiedad",
+    present_1_content: "Los animales son tratados como propiedad en lugar de individuos. Pueden ser comprados, vendidos o controlados.",
+    present_1_justification: "Se justifica por creencias de inferioridad o necesidad económica.",
+
+    present_2_title: "2. Cría selectiva para la productividad",
+    present_2_content: "Hoy en día, los animales son criados selectivamente para maximizar la producción.",
+    present_2_justification: "Se justifica como eficiencia.",
+
+    present_3_title: "3. Separación familiar",
+    present_3_content: "Los animales son separados de sus crías poco después de nacer.",
+    present_3_justification: "Se considera necesario para la producción.",
+
+    present_4_title: "4. Máscaras",
+    present_4_content: "Algunos sistemas usan dispositivos para limitar el acceso a la leche materna.",
+
+    present_5_title: "5. Marcaje",
+    present_5_content: "Los animales son marcados para indicar propiedad.",
+
+    present_6_title: "6. Control físico",
+    present_6_content: "Se utilizan métodos físicos para controlar a los animales.",
+    present_6_justification: "Se justifica por seguridad.",
+
+    present_7_title: "7. Mercantilización",
+    present_7_content: "Los animales son tratados como unidades económicas.",
+
+    present_8_title: "8. Negación de la complejidad emocional",
+    present_8_content: "Algunos afirman que los animales sienten menos dolor y que están conformes con su condición. Estas creencias influyeron en cómo fueron tratados.",
+    present_8_justification: "Esto se basa en hábitos culturales.",
+
+    final_title: "¡Has terminado!",
+    final_content: "Gracias por participar, ¿qué te ha parecido la experiencia?",
+
+    final_negativefeedback: "Gracias por tu opinión. La utilizaremos para mejorar.",
+    final_positivefeedback: `
+    ¡Gracias por participar!<br><br>
+
+    Estamos creando más experiencias como esta — incluyendo aplicaciones — y pronto comenzaremos con activismo en la calle.<br><br>
+
+    👉 Síguenos en 
+    <a href="https://instagram.com/org.elu" target="_blank">Instagram</a><br><br>
+
+    👉 Únete a nuestra 
+    <a href="https://chat.whatsapp.com/FCwzIhcS0DSESI7mc60ge0?mode=gi_t" target="_blank">comunidad de WhatsApp</a> 
+    para mantenerte al día y contribuir activamente.<br><br>
+    `
+  },
+
+  hu: {
+    start: "Kezdés",
+    next: "Tovább",
+    continue: "Folytatás",
+
+    welcome_title: "Üdvözlet",
+    welcome_content: "Ez a tartalom a rabszolgaságról szól, és az emberi történelem visszatérő mintáit vizsgálja.\n\nHaladj a saját tempódban.\nNincsenek jó vagy rossz reakciók — csak megfigyelés és gondolkodás.",
+
+    past_1_title: "1. Tulajdon",
+    past_1_content: "A rabszolgasorba kényszerített embereket nem egyénként, hanem tulajdonként kezelték. Meg lehetett őket venni, eladni vagy örökölni.",
+    past_1_justification: "Ezt gyakran azzal indokolták, hogy alacsonyabb rendűek, vagy gazdaságilag szükséges.",
+
+    past_2_title: "2. Szelektív szaporítás a termelékenységért",
+    past_2_content: "Kényszerítették őket a szaporodásra, hogy erősebb munkásokat hozzanak létre. Testük és életük a termelés szolgálatában állt.",
+    past_2_justification: "Ezt hatékonyságként vagy a termelés növeléseként állították be.",
+
+    past_3_title: "3. Családok szétszakítása",
+    past_3_content: "A családokat gyakran szétválasztották eladások vagy áthelyezések során. Szülők, gyerekek és partnerek végleg elszakadhattak egymástól.",
+    past_3_justification: "Ezt gazdasági és irányítási okokkal indokolták.",
+
+    past_4_title: "4. Maszkok",
+    past_4_content: "Egyes mezőgazdasági rendszerekben eszközöket, például maszkokat vagy szájkosarakat használtak, hogy megakadályozzák, hogy az emberek munka közben egyenek a termésből.",
+
+    past_5_title: "5. Megjelölés és megbélyegzés",
+    past_5_content: "Maradandó jeleket vagy bélyegzéseket alkalmaztak a testen a tulajdon jelzésére.\n\nEzek a jelek láthatóan mutatták a rendszerben elfoglalt helyüket.",
+
+    past_6_title: "6. Fizikai büntetés és kontroll",
+    past_6_content: "Az engedelmességet erőszakkal kényszerítették ki. Ez magában foglalta az ostorozást és más kontroll eszközöket.",
+    past_6_justification: "Ezt gyakran szükséges fegyelmezésként írták le.",
+
+    past_7_title: "7. Áruvá tétel",
+    past_7_content: "Az emberek pénzbeli értéket kaptak erő, kor vagy képességek alapján.",
+
+    past_8_title: "8. Az érzelmi és mentális komplexitás tagadása",
+    past_8_content: "Voltak, akik azt állították, hogy kevesebb fájdalmat éreznek, kevésbé intelligensek, vagy akár elégedettek a helyzetükkel. Ezek a hiedelmek meghatározták, hogyan bántak velük.",
+    past_8_justification: "Ezek az elképzelések gyakran kulturális szokásokon és kényelmen alapultak.",
+
+    past_reflection_question: "Szerinted hogyan fogadhatta el a társadalom az ilyen rendszereket?",
+
+    past_reflection_option_1: "Gazdasági nyomás és túlélési szükségletek",
+    past_reflection_option_2: "Kulturális és történelmi normalizáció",
+    past_reflection_option_3: "Tudatosság hiánya vagy távolság a következményektől",
+
+    past_reflection_feedback_1: "Jó meglátás! A gazdasági rendszerek gyakran meghatározzák, hogy az emberek mit éreznek megkérdőjelezhetőnek.",
+    past_reflection_feedback_2: "Valóban! A kultúra és hagyomány általi normalizáció az emberi történelem egyik legerősebb ereje.",
+    past_reflection_feedback_3: "Igaz. A következményektől való távolság gyakran csökkenti a változás iránti sürgősség érzését.",   
+
+    present_reminder_1: "Korábban a gazdasági nyomást emelted ki. Sok rendszer ma is hasonló dinamikákra épül.\n\nA jövőben fel fogsz lépni ezek ellen?",
+    present_reminder_2: "Korábban a normalizációt emelted ki. A kultúra ma is erősen befolyásolja az elfogadást.\n\nMegkérdőjelezed a kulturális normákat?",
+    present_reminder_3: "Korábban a tudatosságtól való távolságot emelted ki. A modern rendszerek is elválaszthatják a tetteket a következményektől.\n\nMostantól növelni fogod a tudatosságod?",
+
+    transition_content: "Az idő múlásával a kizsákmányolás rendszerei formát és környezetet váltottak.\n\nNéhány gyakorlat és igazolás azonban ma is megjelenik, más formában.\n\nA következő részben az állattenyésztés mintáit vizsgáljuk meg.",
+
+    present_1_title: "1. Tulajdon",
+    present_1_content: "Az állatokat nem egyénként, hanem tulajdonként kezelik. Megvehetők, eladhatók és különböző emberi célokra használhatók.",
+    present_1_justification: "Ezt gyakran azzal indokolják, hogy alacsonyabb rendűek, vagy gazdaságilag szükséges.",
+
+    present_2_title: "2. Szelektív szaporítás a termelékenységért",
+    present_2_content: "Az állatokat szelektíven tenyésztik a maximális termelékenység érdekében. Szaporodásukat kontrollálják, hogy több tejet, tojást vagy gyorsabb növekedést érjenek el.",
+    present_2_justification: "Ezt hatékonyságként és a termelés növeléseként igazolják.",
+
+    present_3_title: "3. Családok szétszakítása",
+    present_3_content: "Az állatokat röviddel születés után elválasztják az utódaiktól. Ez megszakítja a természetes kötődéseket és életciklusokat.",
+    present_3_justification: "Ezt a termelési folyamatok szükségességével indokolják.",
+
+    present_4_title: "4. Maszkok",
+    present_4_content: "Egyes rendszerekben az állatokra olyan eszközöket helyeznek, amelyek korlátozzák például az anyatejhez való hozzáférést.",
+
+    present_5_title: "5. Megjelölés és azonosítás",
+    present_5_content: "Az állatokat gyakran címkékkel, bélyegekkel vagy más azonosítókkal jelölik.\n\nEzek a jelek a tulajdont és a kontrollt szolgálják.",
+
+    present_6_title: "6. Fizikai kontroll és kényszer",
+    present_6_content: "Az állatok viselkedését fizikai eszközökkel irányítják.\n\nEz magában foglalhat erőt vagy korlátozó eszközöket.",
+    present_6_justification: "Ezt gyakran biztonsági vagy kezelési okokkal indokolják.",
+
+    present_7_title: "7. Áruvá tétel",
+    present_7_content: "Az állatok gazdasági értéket kapnak termelékenységük vagy tulajdonságaik alapján.\n\nEgy rendszer részeként kezelik őket.",
+
+    present_8_title: "8. Az érzelmi és mentális komplexitás tagadása",
+    present_8_content: "Vannak, akik azt állítják, hogy az állatok kevesebb fájdalmat éreznek és elégedettek a helyzetükkel. Ezek a hiedelmek befolyásolják, hogyan bánunk velük.",
+    present_8_justification: "Ezek az elképzelések gyakran megszokáson és kényelmen alapulnak.",
+
+    final_title: "Vége!",
+    final_content: "Köszönjük a részvételed!\nHogy tetszett ez az élmény?",
+
+    final_negativefeedback: "Köszönjük a visszajelzésed! Ezt felhasználjuk a további fejlesztésekhez.",
+
+    final_positivefeedback: `
+    Köszönjük a visszajelzésed!<br><br>
+
+    További hasonló tartalmakon dolgozunk – beleértve alkalmazásokat is – és hamarosan utcai aktivizmust is indítunk.<br><br>
+
+    👉 Kövess minket itt: 
+    <a href="https://instagram.com/org.elu" target="_blank">Instagram</a><br><br>
+
+    👉 Csatlakozz a 
+    <a href="https://chat.whatsapp.com/FCwzIhcS0DSESI7mc60ge0?mode=gi_t" target="_blank">WhatsApp közösségünkhöz</a> 
+    hogy naprakész maradj és aktívan hozzájárulj.<br><br>
+`
+}
+};
+
+const getPresentReminder = () => {
+  return t(`present_reminder_${pastReflectionAnswer}`);
+};
+
+let currentLanguage = "en";
+
+const t = (key) => {
+  return i18n[currentLanguage]?.[key] 
+      || i18n.en?.[key] 
+      || key;
+};
+
+const steps = [
+  {
+    type: "language"
+  },
+
+  {
+    titleKey: "welcome_title",
+    contentKey: "welcome_content"
+  },
+
+  {
+    titleKey: "past_1_title",
+    contentKey: "past_1_content",
+    justificationKey: "past_1_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-property.jpeg"
+  },
+  {
+    titleKey: "past_2_title",
+    contentKey: "past_2_content",
+    justificationKey: "past_2_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-breeding.png"
+  },
+  {
+    titleKey: "past_3_title",
+    contentKey: "past_3_content",
+    justificationKey: "past_3_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-separation.jpeg"
+  },
+  {
+    titleKey: "past_4_title",
+    contentKey: "past_4_content",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-mask.jpeg"
+  },
+  {
+    titleKey: "past_5_title",
+    contentKey: "past_5_content",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-marking.jpeg"
+  },
+  {
+    titleKey: "past_6_title",
+    contentKey: "past_6_content",
+    justificationKey: "past_6_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-punishment.jpeg"
+  },
+  {
+    titleKey: "past_7_title",
+    contentKey: "past_7_content",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-product.jpeg"
+  },
+  {
+    titleKey: "past_8_title",
+    contentKey: "past_8_content",
+    justificationKey: "past_8_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/past-denial.png"
+  },
+  {
+  type: "reflection_past",
+  title: "",
+  contentKey: "past_reflection_question"
+},
+
+  {
+    contentKey: "transition_content"
+  },
+
+  {
+    titleKey: "present_1_title",
+    contentKey: "present_1_content",
+    justificationKey: "present_1_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-property.jpeg"
+  },
+  {
+    titleKey: "present_2_title",
+    contentKey: "present_2_content",
+    justificationKey: "present_2_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-breeding.jpeg"
+  },
+  {
+    titleKey: "present_3_title",
+    contentKey: "present_3_content",
+    justificationKey: "present_3_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-separation.jpeg"
+  },
+  {
+    titleKey: "present_4_title",
+    contentKey: "present_4_content",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-masks.jpeg"
+  },
+  {
+    titleKey: "present_5_title",
+    contentKey: "present_5_content",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-marking.jpeg"
+  },
+  {
+    titleKey: "present_6_title",
+    contentKey: "present_6_content",
+    justificationKey: "present_6_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-abuse.jpeg"
+  },
+  {
+    titleKey: "present_7_title",
+    contentKey: "present_7_content",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-products.jpeg"
+  },
+  {
+    titleKey: "present_8_title",
+    contentKey: "present_8_content",
+    justificationKey: "present_8_justification",
+    image: "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/slavery/present-denial.jpeg"
+  },
+  {
+  type: "reflection_present",
+  contentKey: "present_reflection_reminder"
+  },
+
+  {
+    type: "final",
+    titleKey: "final_title",
+    contentKey: "final_content",
+    negativefeedbackKey: "final_negativefeedback",
+    positivefeedbackKey: "final_positivefeedback"
+  }
+];
+
+let currentStep = 0;
+let pastReflectionAnswer = null;
+
+const imageCache = {};
+
+steps.forEach(step => {
+  if (step.image) {
+    const img = new Image();
+    img.src = step.image;
+    imageCache[step.image] = img;
+  }
+});
+
+function showStep() {
+  const step = steps[currentStep];
+
+  const title = document.getElementById("title");
+  const contentEl = document.getElementById("content");
+  const img = document.getElementById("image");
+  const optionsDiv = document.getElementById("options");
+  const btn = document.getElementById("nextBtn");
+
+  optionsDiv.style.display = "block";
+
+  // ---------------- LANGUAGE STEP ----------------
+if (step.type === "language") {
+  title.innerText = "🌍";
+  contentEl.innerText = "Select your language";
+  img.style.display = "none";
+
+  optionsDiv.innerHTML = "";
+
+  const languages = [
+    { code: "en", label: "English" },
+    { code: "es", label: "Español" },
+    { code: "hu", label: "Magyar" }
+  ];
+
+  languages.forEach(lang => {
+    const b = document.createElement("button");
+    b.innerText = lang.label;
+
+    b.onclick = () => {
+      currentLanguage = lang.code; // keep logic working (en/es/hu)
+      currentStep++;
+      optionsDiv.innerHTML = "";
+      transitionStep(() => {
+  showStep();
+});
+    };
+
+    optionsDiv.appendChild(b);
+  });
+
+  btn.style.display = "none";
+  return;
+}
+
+  // ---------------- REFLECTION STEP ----------------
+  if (step.type === "reflection_past") {
+  title.innerText = "";
+  img.style.display = "none";
+  btn.style.display = "none";
+
+  contentEl.innerText = t(step.contentKey);
+  optionsDiv.innerHTML = "";
+
+  const options = [
+    { key: "1", text: t("past_reflection_option_1") },
+    { key: "2", text: t("past_reflection_option_2") },
+    { key: "3", text: t("past_reflection_option_3") }
+  ];
+
+  options.forEach(opt => {
+    const b = document.createElement("button");
+    b.innerText = opt.text;
+
+    b.onclick = () => {
+      pastReflectionAnswer = opt.key;
+
+      // show feedback immediately
+      contentEl.innerText = t(`past_reflection_feedback_${opt.key}`);
+      optionsDiv.innerHTML = "";
+      btn.style.display = "inline-block";
+      btn.innerText = t("continue");
+
+      btn.onclick = () => {
+        currentStep++;
+        transitionStep(() => {
+  showStep();
+});
+      };
+    };
+
+    optionsDiv.appendChild(b);
+  });
+
+  return;
+  }
+
+  // ---------------- FINAL STEP ----------------
+  if (step.type === "final") {
+    img.style.display = "none";
+    btn.style.display = "none";
+
+    title.innerText = t(step.titleKey);
+    contentEl.innerText = t(step.contentKey);
+
+    optionsDiv.innerHTML = "";
+
+    let rating = 0;
+    const stars = document.createElement("div");
+
+    for (let i = 1; i <= 5; i++) {
+      const s = document.createElement("span");
+      s.innerText = "☆";
+      s.style.fontSize = "30px";
+      s.style.cursor = "pointer";
+
+      s.onclick = () => {
+        rating = i;
+
+        [...stars.children].forEach((c, idx) => {
+          c.innerText = idx < i ? "★" : "☆";
+        });
+        title.style.display = "none";
+        contentEl.style.display = "none";
+        showFinalFlow(rating);
+      };
+
+      stars.appendChild(s);
+    }
+
+    optionsDiv.appendChild(stars);
+    return;
+  }
+
+  // ---------------- PRESENT REFLECTION STEP ----------------
+if (step.type === "reflection_present") {
+  title.innerText = "";
+  img.style.display = "none";
+  btn.style.display = "inline-block";
+
+  contentEl.innerText = getPresentReminder();
+
+  optionsDiv.innerHTML = "";
+
+  btn.innerText = t("continue");
+
+  btn.onclick = () => {
+    currentStep++;
+    transitionStep(() => {
+  showStep();
+});
+  };
+
+  return;
+}
+
+  // ---------------- NORMAL STEPS ----------------
+  title.innerText = step.titleKey ? t(step.titleKey) : "";
+  let content = step.contentKey ? t(step.contentKey) : "";
+
+// add justification if exists
+if (step.justificationKey) {
+  content += "\n\n" + t(step.justificationKey);
+}
+
+contentEl.innerText = content;
+
+  title.style.display = step.titleKey ? "block" : "none";
+
+  img.style.display = step.image ? "block" : "none";
+  if (step.image) {
+  img.src = imageCache[step.image]?.src || step.image;
+}
+
+  btn.style.display = "inline-block";
+  btn.innerText = currentStep === 1 ? t("start") : t("next");
+}
+
+function nextStep() {
+  currentStep++;
+
+  if (currentStep < steps.length) {
+    transitionStep(() => {
+      showStep();
+    });
+  }
+}
+
+function showFinalFlow(rating) {
+  const step = steps[currentStep];
+  const optionsDiv = document.getElementById("options");
+
+  optionsDiv.innerHTML = "";
+
+  const msg = document.createElement("p");
+
+  if (rating < 3) {
+    msg.innerText = t(step.negativefeedbackKey);
+  } else {
+    msg.innerHTML = t(step.positivefeedbackKey);
+  }
+/*
+        msg.innerText = step.positivefeedback;
+
+        // 🌍 WEBSITE BUTTON
+        const websiteBtn = document.createElement("button");
+        websiteBtn.innerText = t("visitWebsite");
+        websiteBtn.onclick = () => {
+            window.open("https://yourwebsite.com", "_blank");
+        };
+
+        // 📱 APP STORE (placeholder links)
+        const appStoreBtn = document.createElement("button");
+        appStoreBtn.innerText = "Download on App Store 🍎";
+        appStoreBtn.onclick = () => {
+            window.open("https://apps.apple.com", "_blank");
+        };
+
+        const playStoreBtn = document.createElement("button");
+        playStoreBtn.innerText = "Get it on Google Play 🤖";
+        playStoreBtn.onclick = () => {
+            window.open("https://play.google.com", "_blank");
+        };
+
+        optionsDiv.appendChild(msg);
+        optionsDiv.appendChild(appStoreBtn);
+        optionsDiv.appendChild(playStoreBtn);
+        optionsDiv.appendChild(websiteBtn);
+        */
+  optionsDiv.appendChild(msg);
+}
+
+showStep();
+</script>
+</body>
+</html>
