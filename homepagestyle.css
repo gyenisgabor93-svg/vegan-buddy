@@ -5837,3 +5837,14 @@ button.button.danger:hover {
   padding-bottom: 12px;
   border-bottom: 1px solid #e0e0e0;
 }
+
+.lesson-source {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.lesson-source a {
+  color: inherit;
+  text-decoration: underline;
+}

@@ -27,7 +27,7 @@ const langTexts = {
     goalEnvironment: "Caring for the environment & fighting climate change",
     goalHealthy: "Healthy living & wellness",
     goalHealth: "Solving health issues",
-    goalAthlete: "Boosting my performance as an athlete",
+    // goalAthlete: "Boosting my performance as an athlete",
 
     healthConcernsLabel: "Are you experiencing any of these health concerns?",
     healthConcernsInfo: "This helps us offer tips and recipes that support your health in a gentle, personalized way.",
@@ -85,7 +85,7 @@ const langTexts = {
     goalEnvironment: "Cuidar el medio ambiente y combatir el cambio climático",
     goalHealthy: "Vida saludable y bienestar",
     goalHealth: "Resolver problemas de salud",
-    goalAthlete: "Mejorar mi rendimiento como atleta",
+    // goalAthlete: "Mejorar mi rendimiento como atleta",
 
     healthConcernsLabel: "¿Tienes alguna de estas preocupaciones de salud?",
     healthConcernsInfo: "Esto nos ayuda a ofrecer consejos y recetas que apoyen tu salud de manera personalizada.",
@@ -143,7 +143,7 @@ const langTexts = {
     goalEnvironment: "A környezet védelme és a klímaváltozás elleni küzdelem",
     goalHealthy: "Egészséges élet és jólét",
     goalHealth: "Egészségügyi problémák megoldása",
-    goalAthlete: "Teljesítményem növelése sportolóként",
+    // goalAthlete: "Teljesítményem növelése sportolóként",
 
     healthConcernsLabel: "Tapasztalsz bármelyik egészségügyi problémát?",
     healthConcernsInfo: "Ez segít abban, hogy tippeket és recepteket ajánljunk egészségedhez igazodva.",

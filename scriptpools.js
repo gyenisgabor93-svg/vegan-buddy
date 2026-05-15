@@ -6355,7 +6355,7 @@ export const LessonsByIndex = {
 
 // continue
 
-
+/*
 // --------------------------
 // Boosting my performance as an athlete – Omnivore
 // --------------------------
@@ -7515,7 +7515,7 @@ export const LessonsByIndex = {
     answer: 0
   }
 },
-
+*/
 // continue
 
 };
@@ -7528,282 +7528,119 @@ export const extralessonsData = {
   animals: [
     {
     title: {
-      en: "Instinct or Habit?",
-      es: "¿Instinto o hábito?",
-      hu: "Ösztön vagy szokás?"
-    },
-    content: {
-      en: "Imagine a small child who has never been taught to eat meat, placed in a room with a rabbit and an apple. What would she do? Most likely, she would play with the rabbit and eat the apple. This simple thought experiment helps us reflect on where our eating habits come from. It suggests that our tendency to eat animals is not an inborn instinct, but rather something shaped by culture, habit, and what we learn from others as we grow up. When our basic needs are met, harming animals for food isn’t a natural necessity—it’s a learned behavior.",
-      es: "Imagina a una niña pequeña que nunca ha aprendido a comer carne, colocada en una habitación con un conejo y una manzana. ¿Qué haría? Lo más probable es que jugara con el conejo y se comiera la manzana. Este sencillo experimento mental nos ayuda a reflexionar sobre el origen de nuestros hábitos alimentarios. Sugiere que nuestra tendencia a comer animales no es un instinto innato, sino algo moldeado por la cultura, la costumbre y lo que aprendemos al crecer. Cuando nuestras necesidades básicas están cubiertas, dañar a los animales para alimentarnos no es una necesidad natural, sino un comportamiento aprendido.",
-      hu: "Képzelj el egy kisgyermeket, akit soha nem tanítottak húsevésre, és egy szobába helyeznek egy nyúllal és egy almával. Mit tenne? Valószínűleg játszana a nyúllal, és megenni az almát. Ez az egyszerű gondolatkísérlet segít elgondolkodni azon, honnan származnak étkezési szokásaink. Arra utal, hogy az állatok fogyasztása nem velünk született ösztön, hanem a kultúra, a megszokás és a tanulás eredménye. Amikor alapvető szükségleteink kielégítettek, az állatok bántalmazása étel céljából nem természetes szükségszerűség, hanem tanult viselkedés."
-    },
-    question: {
-      text: {
-        en: "What does this thought experiment suggest about our eating habits?",
-        es: "¿Qué sugiere este experimento mental sobre nuestros hábitos alimentarios?",
-        hu: "Mit sugall ez a gondolatkísérlet az étkezési szokásainkról?"
-      },
-      options: {
-        en: [
-          "Killing animals is an unavoidable instinct",
-          "Our carnivore behavior is influenced by learning and culture",
-          "Humans always choose to eat meat",
-          "Instinct is stronger than choice"
-        ],
-        es: [
-          "Matar animales es un instinto inevitable",
-          "Nuestro comportamiento carnívoro está influenciado por el aprendizaje y la cultura",
-          "Los humanos siempre eligen comer carne",
-          "El instinto es más fuerte que la elección"
-        ],
-        hu: [
-          "Az állatok megölése elkerülhetetlen ösztön",
-          "A húsevő viselkedés tanult és kulturálisan befolyásolt",
-          "Az emberek mindig a húst választják",
-          "Az ösztön erősebb, mint a döntés"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Out of Sight, Out of Mind?",
-      es: "¿Ojos que no ven, corazón que no siente?",
-      hu: "Amit nem látunk, az nem fáj?"
-    },
-    content: {
-      en: "Most people would feel upset if they saw an animal suffering. Yet in modern society, eating animals has become so normalized that we rarely think about the pain behind our meals. Because most animal suffering happens behind closed doors — in farms and slaughterhouses — it’s easy to disconnect from it. But just because we don’t see it, does that make it acceptable?",
-      es: "La mayoría de las personas se sentirían mal si vieran a un animal sufrir. Sin embargo, en la sociedad moderna, comer animales se ha normalizado tanto que rara vez pensamos en el dolor detrás de nuestras comidas. Como la mayor parte del sufrimiento animal ocurre a puertas cerradas —en granjas y mataderos—, es fácil desconectarse de ello. Pero, ¿el hecho de no verlo lo hace aceptable?",
-      hu: "A legtöbb ember rosszul érezné magát, ha állati szenvedést látna. A modern társadalomban azonban az állatok fogyasztása annyira megszokottá vált, hogy ritkán gondolunk bele az ételeink mögötti fájdalomba. Mivel az állatok szenvedése többnyire zárt ajtók mögött történik — farmokon és vágóhidakon —, könnyű eltávolodni tőle. De attól, hogy nem látjuk, valóban elfogadhatóvá válik?"
-    },
-    question: {
-      text: {
-        en: "What does this lesson encourage us to question?",
-        es: "¿Qué nos invita a cuestionar esta lección?",
-        hu: "Mire ösztönöz bennünket ez a lecke?"
-      },
-      options: {
-        en: [
-          "Whether empathy matters",
-          "If suffering out of sight justifies our actions",
-          "Whether animals can feel pain",
-          "If we should ignore feelings"
-        ],
-        es: [
-          "Si la empatía importa",
-          "Si el sufrimiento invisible justifica nuestras acciones",
-          "Si los animales pueden sentir dolor",
-          "Si debemos ignorar los sentimientos"
-        ],
-        hu: [
-          "Számít-e az empátia",
-          "Igazolható-e a szenvedés, ha nem látjuk",
-          "Éreznek-e fájdalmat az állatok",
-          "Figyelmen kívül kell-e hagynunk az érzéseket"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-
-  {
-    title: {
-      en: "Hidden Reality",
+      en: "Hidden reality",
       es: "La realidad oculta",
-      hu: "A rejtett valóság"
+      hu: "Rejtett valóság"
     },
     content: {
-      en: "Would you kill an animal yourself? Most people never have to face that question, because meat is presented to us in clean packaging — neatly cut, labeled, and far removed from the living being it once was. This polished presentation makes it easier to eat meat without thinking about what truly happens behind the scenes. But is this comfort a sign of normality, or a shared illusion that keeps us disconnected from the real consequences of our choices?",
-      es: "¿Matarías a un animal tú mismo? La mayoría de las personas nunca tienen que enfrentarse a esta pregunta, porque la carne se nos presenta en envases limpios, cuidadosamente cortada y etiquetada, muy alejada del ser vivo que una vez fue. Esta presentación pulida facilita consumir carne sin pensar en lo que realmente ocurre detrás de escena. Pero, ¿es esta comodidad una señal de normalidad o una ilusión compartida que nos desconecta de las verdaderas consecuencias de nuestras elecciones?",
-      hu: "Megölnél egy állatot saját kezűleg? A legtöbb embernek soha nem kell szembenéznie ezzel a kérdéssel, mert a hús tiszta csomagolásban, feldarabolva és felcímkézve kerül eléjük, teljesen elszakítva attól az élőlénytől, ami egykor volt. Ez a kifinomult megjelenés megkönnyíti a fogyasztást anélkül, hogy belegondolnánk a háttérben zajló folyamatokba. De vajon ez a kényelem a normalitás jele, vagy egy közös illúzió, amely eltávolít bennünket döntéseink valódi következményeitől?"
+      en: "We live in a system where the process behind animal products is largely invisible. Animals are rarely seen as individuals with lives, but rather as products already transformed into food. This distance allows people to consume animal products without confronting the conditions or beings involved in their production. When systems are hidden, it becomes easier to avoid questioning them. But when we look closer at what is normally kept out of sight, we gain the ability to make more conscious choices. This is how society is shaping our relationship with food—through distance and disconnection.",
+      es: "Vivimos en un sistema donde el proceso detrás de los productos de origen animal es en gran medida invisible. Los animales rara vez son vistos como individuos con vidas, sino más bien como productos ya transformados en alimentos. Esta distancia permite a las personas consumir productos de origen animal sin enfrentarse a las condiciones o a los seres implicados en su producción. Cuando los sistemas están ocultos, se vuelve más fácil evitar cuestionarlos. Pero cuando observamos más de cerca lo que normalmente se mantiene fuera de la vista, obtenemos la capacidad de tomar decisiones más conscientes. Así es como la sociedad está moldeando nuestra relación con la comida: a través de la distancia y la desconexión.",
+      hu: "Egy olyan rendszerben élünk, ahol az állati eredetű termékek mögötti folyamat nagyrészt láthatatlan. Az állatokat ritkán tekintik egyéneknek, akiknek saját életük van, hanem inkább már élelmiszerré átalakított termékekként. Ez a távolság lehetővé teszi az emberek számára, hogy állati eredetű termékeket fogyasszanak anélkül, hogy szembesülnének az előállításukban részt vevő körülményekkel vagy élőlényekkel. Amikor a rendszerek rejtve maradnak, könnyebb elkerülni a megkérdőjelezésüket. De amikor közelebbről megnézzük azt, ami általában rejtve marad, képessé válunk tudatosabb döntéseket hozni. Így formálja a társadalom az étellel való kapcsolatunkat — távolságon és elszakadáson keresztül."
     },
     question: {
       text: {
-        en: "What does the sanitized presentation of meat encourage us to do?",
-        es: "¿Qué nos lleva a hacer la presentación higienizada de la carne?",
-        hu: "Mire ösztönöz bennünket a hús steril bemutatása?"
+        en: "What role does “distance” play in the system?",
+        es: "¿Qué papel desempeña la “distancia” en el sistema?",
+        hu: "Milyen szerepet játszik a „távolság” a rendszerben?"
       },
       options: {
         en: [
-          "Reflect deeply on killing",
-          "Ignore the process and consume without thought",
-          "Feel guilty for eating",
-          "Stop eating completely"
+          "It improves the quality control of animal products",
+          "It makes production more efficient and affordable",
+          "It reduces emotional and cognitive connection to the origins of food",
+          "It ensures that consumers are fully informed about production processes"
         ],
         es: [
-          "Reflexionar profundamente sobre matar",
-          "Ignorar el proceso y consumir sin pensar",
-          "Sentir culpa al comer",
-          "Dejar de comer por completo"
+          "Mejora el control de calidad de los productos de origen animal",
+          "Hace que la producción sea más eficiente y asequible",
+          "Reduce la conexión emocional y cognitiva con el origen de los alimentos",
+          "Garantiza que los consumidores estén plenamente informados sobre los procesos de producción"
         ],
         hu: [
-          "Mélyen elgondolkodni az ölésen",
-          "Figyelmen kívül hagyni a folyamatot és gondolkodás nélkül fogyasztani",
-          "Bűntudatot érezni evés közben",
-          "Teljesen abbahagyni az evést"
+          "Javítja az állati eredetű termékek minőségellenőrzését",
+          "Hatékonyabbá és megfizethetőbbé teszi a termelést",
+          "Csökkenti az érzelmi és kognitív kapcsolatot az ételek eredetével",
+          "Biztosítja, hogy a fogyasztók teljes mértékben tájékozottak legyenek a termelési folyamatokról"
         ]
       },
-      correctIndex: 1
-    }
-  },
-
-  {
-    title: {
-      en: "Killing for Pleasure?",
-      es: "¿Matar por placer?",
-      hu: "Ölés az élvezetért?"
-    },
-    content: {
-      en: "Most people would say they are against killing animals for entertainment or pleasure. Yet science shows that humans can live healthy and full lives on a plant-based diet. This raises an important ethical question: if we eat meat mainly for taste or habit, are we supporting the killing of animals for pleasure?",
-      es: "La mayoría de las personas dirían que están en contra de matar animales por entretenimiento o placer. Sin embargo, la ciencia demuestra que los seres humanos pueden vivir vidas sanas y plenas con una alimentación basada en plantas. Esto plantea una pregunta ética importante: si comemos carne principalmente por gusto o costumbre, ¿estamos apoyando la muerte de animales por placer?",
-      hu: "A legtöbb ember azt mondaná, hogy ellenzi az állatok megölését szórakozásból vagy élvezetből. A tudomány azonban azt mutatja, hogy az emberek egészséges és teljes életet élhetnek növényi alapú étrenden is. Ez fontos etikai kérdést vet fel: ha főként íz vagy megszokás miatt eszünk húst, vajon nem az állatok élvezetből történő megölését támogatjuk?"
-    },
-    question: {
-      text: {
-        en: "What ethical question does enjoying the taste of meat raise?",
-        es: "¿Qué pregunta ética plantea disfrutar del sabor de la carne?",
-        hu: "Milyen etikai kérdést vet fel a hús ízének élvezete?"
-      },
-      options: {
-        en: [
-          "Eating meat is always necessary",
-          "We may be supporting the killing of animals for pleasure",
-          "Tasting meat has no impact on animals",
-          "Humans cannot live without meat"
-        ],
-        es: [
-          "Comer carne siempre es necesario",
-          "Podríamos estar apoyando la muerte de animales por placer",
-          "El sabor de la carne no afecta a los animales",
-          "Los humanos no pueden vivir sin carne"
-        ],
-        hu: [
-          "A húsevés mindig szükséges",
-          "Lehet, hogy az állatok élvezetből történő megölését támogatjuk",
-          "A hús íze nincs hatással az állatokra",
-          "Az emberek nem élhetnek hús nélkül"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-
-  {
-    title: {
-      en: "The Circle of Life",
-      es: "El círculo de la vida",
-      hu: "Az élet körforgása"
-    },
-    content: {
-      en: "We often hear the phrase 'the circle of life' to describe how all living beings are connected in nature. In a truly natural environment, animals are born free and have the space to move, explore, and express their natural behaviors. They feel sunlight, fresh air, and live according to the rhythms of nature. Industrial farming, however, takes this away — confining animals in cages or crowded barns where they can’t move freely or experience the world around them. When animals are denied these natural experiences, it challenges the idea that our current food system is truly part of the 'circle of life.'",
-      es: "A menudo escuchamos la expresión 'el círculo de la vida' para describir cómo todos los seres vivos están conectados en la naturaleza. En un entorno verdaderamente natural, los animales nacen libres y tienen espacio para moverse, explorar y expresar sus comportamientos naturales. Sienten la luz del sol, el aire fresco y viven según los ritmos de la naturaleza. Sin embargo, la ganadería industrial les arrebata esto, confinándolos en jaulas o establos abarrotados donde no pueden moverse libremente ni experimentar el mundo que los rodea. Cuando se les niegan estas experiencias naturales, se pone en duda la idea de que nuestro sistema alimentario actual forme parte del 'círculo de la vida'.",
-      hu: "Gyakran halljuk az „élet körforgása” kifejezést arra, hogy leírjuk, hogyan kapcsolódnak egymáshoz az élőlények a természetben. Egy valóban természetes környezetben az állatok szabadon születnek, van terük mozogni, felfedezni és kifejezni természetes viselkedésüket. Érzik a napfényt, a friss levegőt, és a természet ritmusa szerint élnek. Az ipari állattartás azonban megfosztja őket ettől: ketrecekbe vagy zsúfolt istállókba zárja őket, ahol nem mozoghatnak szabadon, és nem tapasztalhatják meg a körülöttük lévő világot. Amikor az állatoktól megvonják ezeket az alapvető élményeket, megkérdőjeleződik, hogy jelenlegi élelmiszer-rendszerünk valóban az „élet körforgásának” része-e."
-    },
-    question: {
-      text: {
-        en: "What are farm animals often denied compared to natural life?",
-        es: "¿De qué se les priva con frecuencia a los animales de granja en comparación con la vida natural?",
-        hu: "Mitől fosztják meg gyakran a haszonállatokat a természetes élethez képest?"
-      },
-      options: {
-        en: [
-          "Freedom and space",
-          "Sunlight and natural behaviors",
-          "A chance to live fully",
-          "All of the above"
-        ],
-        es: [
-          "Libertad y espacio",
-          "Luz solar y comportamientos naturales",
-          "La oportunidad de vivir plenamente",
-          "Todas las anteriores"
-        ],
-        hu: [
-          "Szabadság és tér",
-          "Napfény és természetes viselkedés",
-          "A teljes élet lehetősége",
-          "Mindegyik"
-        ]
-      },
-      correctIndex: 3
+      correctIndex: 2
     }
   },
   {
     title: {
-      en: "Awareness in Animals",
-      es: "Conciencia en los animales",
-      hu: "Az állatok tudatossága"
+      en: "Survival today and in the past",
+      es: "Sobrevivencia hoy y en el pasado",
+      hu: "Túlélés ma és a múltban"
     },
     content: {
-      en: "Many animals clearly show signs of awareness and self-preservation. For instance, when they sense danger, they often try to escape or protect themselves — behavior that reflects understanding and a desire to live. These reactions reveal that animals experience fear and awareness in ways not so different from our own.",
-      es: "Muchos animales muestran claramente signos de conciencia y autopreservación. Por ejemplo, cuando perciben peligro, a menudo intentan escapar o protegerse, un comportamiento que refleja comprensión y deseo de vivir. Estas reacciones revelan que los animales experimentan miedo y conciencia de maneras no muy diferentes a las nuestras.",
-      hu: "Sok állat egyértelműen jelez tudatosságot és önfenntartási ösztönt. Például, amikor veszélyt éreznek, gyakran megpróbálnak elmenekülni vagy megvédeni magukat — ez a viselkedés az értésről és az élet iránti vágyról tanúskodik. Ezek a reakciók azt mutatják, hogy az állatok félelmet és tudatosságot élnek meg, nem sokban különbözően a miénktől."
+      en: "For most of human history, survival depended on direct knowledge of the environment. People learned from tradition—skills, diets, and practices passed down through generations. These traditions were closely tied to local conditions, seasons, and necessity. Modern survival is no longer about knowing how to directly obtain everything we need—it is about navigating systems we depend on but do not fully see. In this context, awareness becomes one of the most important survival skills.",
+      es: "Durante la mayor parte de la historia humana, la supervivencia dependía del conocimiento directo del entorno. Las personas aprendían de la tradición: habilidades, dietas y prácticas transmitidas de generación en generación. Estas tradiciones estaban estrechamente vinculadas a las condiciones locales, las estaciones y la necesidad. La supervivencia moderna ya no consiste en saber cómo obtener directamente todo lo que necesitamos; se trata de navegar sistemas de los que dependemos pero que no vemos completamente. En este contexto, la conciencia se convierte en una de las habilidades de supervivencia más importantes.",
+      hu: "Az emberi történelem nagy részében a túlélés a környezet közvetlen ismeretétől függött. Az emberek a hagyományokból tanultak — készségekből, étrendekből és generációról generációra átadott gyakorlatokból. Ezek a hagyományok szorosan kapcsolódtak a helyi körülményekhez, az évszakokhoz és a szükséghez. A modern túlélés már nem arról szól, hogy tudjuk, hogyan szerezzük meg közvetlenül mindazt, amire szükségünk van — hanem arról, hogy eligazodjunk azokban a rendszerekben, amelyektől függünk, de amelyeket nem látunk teljes mértékben. Ebben a kontextusban a tudatosság az egyik legfontosabb túlélési készséggé válik."
     },
     question: {
       text: {
-        en: "When animals sense danger and try to escape, what does this show?",
-        es: "Cuando los animales perciben peligro y tratan de escapar, ¿qué muestra esto?",
-        hu: "Amikor az állatok veszélyt éreznek és megpróbálnak elmenekülni, mit mutat ez?"
+        en: "What is the key to modern survival?",
+        es: "¿Cuál es la clave de la supervivencia moderna?",
+        hu: "Mi a modern túlélés kulcsa?"
       },
       options: {
         en: [
-          "They have no feelings",
-          "They have awareness and desire to live",
-          "It’s purely instinct",
-          "They enjoy danger"
+          "Returning fully to traditional ways of living",
+          "Increasing physical strength and self-sufficiency",
+          "Awareness of the system and how we shape it",
+          "Avoiding technology and modern infrastructure"
         ],
         es: [
-          "No tienen sentimientos",
-          "Tienen conciencia y deseo de vivir",
-          "Es puramente instinto",
-          "Disfrutan del peligro"
+          "Volver completamente a las formas tradicionales de vida",
+          "Aumentar la fuerza física y la autosuficiencia",
+          "Conciencia del sistema y de cómo lo moldeamos",
+          "Evitar la tecnología y la infraestructura moderna"
         ],
         hu: [
-          "Nincsenek érzéseik",
-          "Tudatosságot és életvágyat mutatnak",
-          "Csak ösztönből cselekednek",
-          "Élvezik a veszélyt"
+          "Teljes visszatérés a hagyományos életmódhoz",
+          "A fizikai erő és az önellátás növelése",
+          "A rendszer tudatosítása és annak megértése, hogyan formáljuk azt",
+          "A technológia és a modern infrastruktúra elkerülése"
         ]
       },
-      correctIndex: 1
+      correctIndex: 2
     }
   },
   {
     title: {
-      en: "Empathy and Action",
-      es: "Empatía y acción",
-      hu: "Empátia és cselekvés"
+      en: "Avoidable suffering",
+      es: "Sufrimiento evitable",
+      hu: "Kerülendő szenvedés"
     },
     content: {
-      en: "Acknowledging the harsh realities of animals’ lives can feel heavy, but this discomfort actually reflects your empathy and compassion — something to value, not avoid. Ignoring the truth doesn’t help anyone. Even small, thoughtful actions can make a meaningful difference, showing that kindness and awareness go hand in hand without needing to feel guilt.",
-      es: "Reconocer las duras realidades de la vida de los animales puede resultar pesado, pero esta incomodidad refleja tu empatía y compasión, algo que valorar y no evitar. Ignorar la verdad no ayuda a nadie. Incluso pequeñas acciones reflexivas pueden marcar una diferencia significativa, mostrando que la amabilidad y la conciencia van de la mano sin necesidad de sentir culpa.",
-      hu: "Az állatok életének kemény valóságát felismerni nehéz lehet, de ez a kényelmetlenség valójában az empátiádat és együttérzésedet tükrözi — olyasmi, amit értékelni kell, nem elkerülni. Az igazság figyelmen kívül hagyása senkinek sem segít. Még a kis, átgondolt cselekedetek is jelentős változást hozhatnak, megmutatva, hogy a kedvesség és a tudatosság kéz a kézben jár, bűntudat érzése nélkül."
+      en: "Not all suffering is the same. Some are unavoidable, caused by nature, illness, or circumstances beyond human control. But some suffering is created, maintained, or tolerated by systems and choices that could be changed. In modern society, many forms of suffering are distant from those who benefit from them. When harm is not directly visible, it becomes easier to ignore, normalize, or separate from personal responsibility. This distance makes such suffering difficult to see, and even harder to change.",
+      es: "No todo el sufrimiento es igual. Algunos son inevitables, causados por la naturaleza, enfermedades o circunstancias fuera del control humano. Pero parte del sufrimiento es creado, mantenido o tolerado por sistemas y decisiones que podrían cambiarse. En la sociedad moderna, muchas formas de sufrimiento están alejadas de quienes se benefician de ellas. Cuando el daño no es directamente visible, se vuelve más fácil ignorarlo, normalizarlo o separarlo de la responsabilidad personal. Esta distancia hace que dicho sufrimiento sea difícil de ver, y aún más difícil de cambiar.",
+      hu: "Nem minden szenvedés egyforma. Vannak elkerülhetetlenek, amelyeket a természet, betegségek vagy az emberi irányításon kívül eső körülmények okoznak. De van olyan szenvedés is, amelyet rendszerek és döntések hoznak létre, tartanak fenn vagy tűrnek meg, pedig ezek megváltoztathatók lennének. A modern társadalomban a szenvedés sok formája távol áll azoktól, akik hasznot húznak belőle. Amikor a kár nem közvetlenül látható, könnyebbé válik figyelmen kívül hagyni, normalizálni, vagy elválasztani a személyes felelősségtől. Ez a távolság megnehezíti az ilyen szenvedés észlelését, és még nehezebbé teszi a megváltoztatását."
     },
     question: {
       text: {
-        en: "What does feeling uncomfortable about animal suffering indicate?",
-        es: "¿Qué indica sentirse incómodo ante el sufrimiento animal?",
-        hu: "Mit jelez, ha kényelmetlenül érezzük magunkat az állati szenvedés láttán?"
+        en: "What did we learn about suffering?",
+        es: "¿Qué hemos aprendido sobre el sufrimiento?",
+        hu: "Mit tanultunk a szenvedésről?"
       },
       options: {
         en: [
-          "It shows our empathy",
-          "It proves we are bad people",
-          "It’s pointless",
-          "We should ignore it"
+          "Some suffering is unavoidable, but some is created or maintained by systems and choices",
+          "Suffering only comes from natural causes like illness or disasters",
+          "All suffering is unavoidable and cannot be changed",
+          "Suffering is always directly visible to those who cause it"
         ],
         es: [
-          "Muestra nuestra empatía",
-          "Prueba que somos malas personas",
-          "No tiene sentido",
-          "Debemos ignorarlo"
+          "Parte del sufrimiento es inevitable, pero parte es creado o mantenido por sistemas y decisiones",
+          "El sufrimiento solo proviene de causas naturales como enfermedades o desastres",
+          "Todo el sufrimiento es inevitable y no puede cambiarse",
+          "El sufrimiento siempre es directamente visible para quienes lo causan"
         ],
         hu: [
-          "Az empátiánkat mutatja",
-          "Bizonyítja, hogy rossz emberek vagyunk",
-          "Értelmetlen",
-          "Figyelmen kívül kell hagynunk"
+          "Van elkerülhetetlen szenvedés, de van olyan is, amelyet rendszerek és döntések hoznak létre vagy tartanak fenn",
+          "A szenvedés csak természetes okokból, például betegségekből vagy katasztrófákból származik",
+          "Minden szenvedés elkerülhetetlen, és nem változtatható meg",
+          "A szenvedés mindig közvetlenül látható azok számára, akik okozzák"
         ]
       },
       correctIndex: 0
@@ -7811,79 +7648,36 @@ export const extralessonsData = {
   },
   {
     title: {
-      en: "Pets vs. Food",
-      es: "Mascotas vs. comida",
-      hu: "Háziállatok vs. élelem"
-    },
-    content: {
-      en: "We often treat some animals, like dogs and cats, as family, while others, such as pigs, cows, and chickens, are raised for food. Most of us recognize that all these animals are innocent, feel pain, and have a desire to live. This raises an important question: why do we draw a line between animals we love and animals we eat? Reflecting on the reasons behind these boundaries — cultural traditions, perceived intelligence, and emotional attachment — helps us understand our values and the impact of our choices.",
-      es: "A menudo tratamos a algunos animales, como perros y gatos, como familia, mientras que otros, como cerdos, vacas y pollos, se crían para la alimentación. La mayoría de nosotros reconoce que todos estos animales son inocentes, sienten dolor y tienen deseo de vivir. Esto plantea una pregunta importante: ¿por qué trazamos una línea entre los animales que amamos y los que comemos? Reflexionar sobre las razones detrás de estas fronteras —tradiciones culturales, inteligencia percibida y apego emocional— nos ayuda a comprender nuestros valores y el impacto de nuestras decisiones.",
-      hu: "Gyakran úgy kezelünk bizonyos állatokat, mint a kutyákat és macskákat, mintha családtagok lennének, míg másokat, mint a disznókat, teheneket és csirkéket, élelemnek nevelünk. A legtöbben elismerjük, hogy minden állat ártatlan, érez fájdalmat és vágyik az életre. Ez felvet egy fontos kérdést: miért húzunk vonalat a szeretett állatok és az elfogyasztott állatok között? Az e határok mögött rejlő okok — kulturális hagyományok, észlelt intelligencia és érzelmi kötődés — megértése segít felismerni értékeinket és döntéseink hatását."
-    },
-    question: {
-      text: {
-        en: "Why do people treat some animals as pets and others as food?",
-        es: "¿Por qué la gente trata a algunos animales como mascotas y a otros como comida?",
-        hu: "Miért kezelik az emberek egyes állatokat házikedvencként, másokat pedig élelmeként?"
-      },
-      options: {
-        en: [
-          "Cultural traditions",
-          "Perceived intelligence",
-          "Emotional attachment",
-          "All of the above"
-        ],
-        es: [
-          "Tradiciones culturales",
-          "Inteligencia percibida",
-          "Vínculo emocional",
-          "Todas las anteriores"
-        ],
-        hu: [
-          "Kulturális hagyományok",
-          "Észlelt intelligencia",
-          "Érzelmi kötődés",
-          "Mindegyik"
-        ]
-      },
-      correctIndex: 3
-    }
-  },
-  {
-    title: {
-      en: "Natural Empathy",
+      en: "Natural emphaty",
       es: "Empatía natural",
       hu: "Természetes empátia"
     },
     content: {
-      en: "Imagine walking in a park and seeing a squirrel, a duck, or a turtle. How do you feel? Do you want to help them, offer food or water, or simply enjoy their presence? Would you judge someone who harms them in that moment? These reactions show that our natural empathy is often strong, even if our daily habits don’t always reflect it. Many of our behaviors are shaped by society and learned patterns.",
-      es: "Imagina caminar por un parque y ver una ardilla, un pato o una tortuga. ¿Cómo te sientes? ¿Quieres ayudarlos, ofrecerles comida o agua, o simplemente disfrutar de su presencia? ¿Juzgarías a alguien que los lastima en ese momento? Estas reacciones muestran que nuestra empatía natural suele ser fuerte, incluso si nuestros hábitos diarios no siempre lo reflejan. Muchos de nuestros comportamientos están moldeados por la sociedad y patrones aprendidos.",
-      hu: "Képzeld el, hogy sétálsz egy parkban, és látsz egy mókust, kacsát vagy teknőst. Mit érzel? Segíteni akarsz nekik, ételt vagy vizet adni, vagy egyszerűen élvezni a jelenlétüket? Megítélnéd valakit, aki bántja őket abban a pillanatban? Ezek a reakciók azt mutatják, hogy a természetes empátiánk gyakran erős, még ha a napi szokásaink ezt nem is tükrözik. Sok viselkedésünket a társadalom és a tanult minták alakítják."
+      en: "When people see animals directly, especially in vulnerable situations, many feel a natural urge to protect or help them. This instinct to care and avoid harm appears early in life and is not only shaped by culture or education—it is a form of natural empathy. However, in everyday life, most interactions with animals are indirect. Food systems and social distance separate the moment of consumption from the living being it originally came from. This creates a gap between what people feel in direct encounters and what they participate in indirectly.",
+      es: "Cuando las personas ven a los animales directamente, especialmente en situaciones vulnerables, muchas sienten un impulso natural de protegerlos o ayudarlos. Este instinto de cuidar y evitar el daño aparece temprano en la vida y no solo está moldeado por la cultura o la educación; es una forma de empatía natural. Sin embargo, en la vida cotidiana, la mayoría de las interacciones con animales son indirectas. Los sistemas alimentarios y la distancia social separan el momento del consumo del ser vivo del que originalmente proviene. Esto crea una brecha entre lo que las personas sienten en encuentros directos y en lo que participan indirectamente.",
+      hu: "Amikor az emberek közvetlenül látják az állatokat, különösen kiszolgáltatott helyzetekben, sokan természetes késztetést éreznek arra, hogy megvédjék vagy segítsenek nekik. Ez a gondoskodásra és az ártalom elkerülésére irányuló ösztön már korán megjelenik az életben, és nem csupán a kultúra vagy az oktatás formálja — ez a természetes empátia egy formája. A mindennapi életben azonban a legtöbb interakció az állatokkal közvetett. Az élelmiszerrendszerek és a társadalmi távolság elválasztják a fogyasztás pillanatát attól az élőlénytől, amelyből az eredetileg származik. Ez egy szakadékot hoz létre aközött, amit az emberek a közvetlen találkozások során éreznek, és aközött, amiben közvetve részt vesznek."
     },
     question: {
       text: {
-        en: "What does this scenario encourage us to reflect on?",
-        es: "¿Sobre qué nos invita a reflexionar este escenario?",
-        hu: "Mire késztet minket ez a helyzet a reflektálásra?"
+        en: "Are our consumption habits consistent with our natural instincts toward animals?",
+        es: "¿Son nuestros hábitos de consumo consistentes con nuestros instintos naturales hacia los animales?",
+        hu: "Összhangban vannak-e a fogyasztási szokásaink az állatokkal kapcsolatos természetes ösztöneinkkel?"
       },
       options: {
         en: [
-          "Our natural empathy versus learned behaviors",
-          "That animals in parks are different from farm animals",
-          "That we should ignore feelings",
-          "That instincts always control us"
+          "Not always, there can be a gap between instinctive empathy and indirect consumption.",
+          "Instincts do not play any role in consumption choices",
+          "Yes, they are fully consistent"
         ],
         es: [
-          "Nuestra empatía natural frente a comportamientos aprendidos",
-          "Que los animales en los parques son diferentes de los de granja",
-          "Que deberíamos ignorar los sentimientos",
-          "Que los instintos siempre nos controlan"
+          "No siempre, puede haber una brecha entre la empatía instintiva y el consumo indirecto.",
+          "Los instintos no desempeñan ningún papel en las decisiones de consumo",
+          "Sí, son completamente consistentes"
         ],
         hu: [
-          "Természetes empátia vs. tanult viselkedés",
-          "Hogy a parkok állatai különböznek a haszonállatoktól",
-          "Hogy figyelmen kívül kell hagynunk az érzéseket",
-          "Hogy az ösztön mindig irányít minket"
+          "Nem mindig, lehet különbség az ösztönös empátia és a közvetett fogyasztás között.",
+          "Az ösztönök nem játszanak szerepet a fogyasztási döntésekben",
+          "Igen, teljes mértékben összhangban vannak"
         ]
       },
       correctIndex: 0
@@ -7891,119 +7685,119 @@ export const extralessonsData = {
   },
   {
     title: {
-      en: "Pigs' Intelligence",
-      es: "Inteligencia de los cerdos",
-      hu: "A disznók intelligenciája"
+      en: "Human superiority",
+      es: "Superioridad humana",
+      hu: "Emberi felsőbbrendűség"
     },
     content: {
-      en: "Pigs are highly intelligent animals and often outperform dogs in various cognitive tasks. In problem-solving situations, pigs show persistence and the ability to work independently, while dogs tend to rely more on human guidance. Pigs also demonstrate advanced memory, long-term retention, and even the ability to use simple tools — all signs of complex thinking.",
-      es: "Los cerdos son animales muy inteligentes y a menudo superan a los perros en diversas tareas cognitivas. En situaciones de resolución de problemas, los cerdos muestran persistencia y capacidad para trabajar de forma independiente, mientras que los perros tienden a depender más de la guía humana. Los cerdos también demuestran memoria avanzada, retención a largo plazo e incluso la capacidad de usar herramientas simples, todos signos de pensamiento complejo.",
-      hu: "A disznók rendkívül intelligens állatok, és gyakran felülmúlják a kutyákat különböző kognitív feladatokban. Problémamegoldó helyzetekben a disznók kitartást és önálló munkavégzési képességet mutatnak, míg a kutyák inkább az emberi útmutatásra támaszkodnak. A disznók fejlett memóriát, hosszú távú emlékezést és akár egyszerű eszközök használatának képességét is mutatják — mind a komplex gondolkodás jelei."
+      en: "We cannot simply take a responsible position of human superiority as a fact. Instead, we can reflect on what this idea means in practice, and what it ethically authorizes us to do. The belief that humans are “above” other forms of life has shaped how we use animals, nature, and resources. But the ability to act in a certain way does not automatically mean it is ethically justified. What matters is not only the power we have, but how we choose to use it—and what limits we are willing to recognize.",
+      es: "No podemos simplemente adoptar una posición responsable de superioridad humana como un hecho. En su lugar, podemos reflexionar sobre lo que esta idea significa en la práctica y lo que nos autoriza éticamente a hacer. La creencia de que los humanos están “por encima” de otras formas de vida ha moldeado la forma en que usamos a los animales, la naturaleza y los recursos. Pero la capacidad de actuar de cierta manera no significa automáticamente que esté éticamente justificado. Lo que importa no es solo el poder que tenemos, sino cómo elegimos usarlo —y qué límites estamos dispuestos a reconocer.",
+      hu: "Az emberi felsőbbrendűséggel kapcsolatban nem tudunk felelős álláspontot foglalni. Ehelyett elgondolkodhatunk azon, mit jelent ez az elképzelés a gyakorlatban, és mire jogosít fel bennünket etikailag. Az a hit, hogy az emberek „fölötte állnak” más életformáknak, formálta azt, ahogyan az állatokat, a természetet és az erőforrásokat használjuk. De az, hogy képesek vagyunk egy bizonyos módon cselekedni, nem jelenti automatikusan azt, hogy ez etikailag igazolható. Ami számít, nemcsak az a hatalom, amellyel rendelkezünk, hanem az is, hogyan döntünk a használatáról — és milyen határokat vagyunk hajlandók elismerni."
     },
     question: {
       text: {
-        en: "In problem-solving tasks, how do pigs compare to dogs?",
-        es: "En tareas de resolución de problemas, ¿cómo se comparan los cerdos con los perros?",
-        hu: "Problémamegoldó feladatokban hogyan teljesítenek a disznók a kutyákhoz képest?"
+        en: "What are we learning about human superiority?",
+        es: "¿Qué hemos aprendido sobre la superioridad humana?",
+        hu: "Mit tanultunk az emberi felsőbbrendűségről?"
       },
       options: {
         en: [
-          "Pigs are less persistent",
-          "Dogs solve tasks more independently",
-          "Pigs often outperform dogs",
-          "Dogs have better memory"
+          "It should be accepted as a natural fact that guides how humans act",
+          "It should be questioned and reflected on in terms of ethical responsibility and limits",
+          "It means humans can use other forms of life however they want",
+          "It is not relevant to how humans make decisions"
         ],
         es: [
-          "Los cerdos son menos persistentes",
-          "Los perros resuelven tareas más independientemente",
-          "Los cerdos a menudo superan a los perros",
-          "Los perros tienen mejor memoria"
+          "Debe aceptarse como un hecho natural que guía cómo actúan los humanos",
+          "Debe ser cuestionada y reflexionada en términos de responsabilidad ética y límites",
+          "Significa que los humanos pueden usar otras formas de vida como quieran",
+          "No es relevante para cómo los humanos toman decisiones"
         ],
         hu: [
-          "A disznók kevésbé kitartóak",
-          "A kutyák önállóbban oldják meg a feladatokat",
-          "A disznók gyakran felülmúlják a kutyákat",
-          "A kutyáknak jobb a memóriájuk"
+          "Természetes tényként kell elfogadni, amely meghatározza az emberek cselekedeteit",
+          "Meg kell kérdőjelezni, és az etikai felelősség és határok szempontjából kell róla gondolkodni",
+          "Azt jelenti, hogy az emberek bármilyen módon használhatják más életformákat",
+          "Nem releváns azzal kapcsolatban, hogyan hoznak döntéseket az emberek"
+        ]
+      },
+      correctIndex: 1
+    }
+  },
+  {
+    title: {
+      en: "Intelligent world",
+      es: "Mundo inteligente",
+      hu: "Intelligens világ"
+    },
+    content: {
+      en: "Humans often see themselves as the most intelligent beings on Earth. We build technology, create systems, and reshape the world. But we are also part of nature—so could this belief be our ego speaking? \n\nWe still barely understand the world we live in, and we cannot recreate even the simplest living forms from scratch. Nature creates systems of incredible complexity—just like our brains or bodies—yet far beyond what we fully understand or can replicate.\n\nSo the question is:\n\nDo we own intelligence, or are we simply one expression of a much larger intelligence?\n\nReflecting on this can change how we see our place in the world—and how we treat the planet, its resources, and other living beings.",
+      es: "Los humanos a menudo se ven a sí mismos como los seres más inteligentes de la Tierra. Construimos tecnología, creamos sistemas y transformamos el mundo.\n\nPero también somos parte de la naturaleza — ¿podría esta creencia ser nuestro ego hablando?\n\nAún apenas entendemos el mundo en el que vivimos, y no podemos recrear ni siquiera las formas de vida más simples desde cero. La naturaleza crea sistemas de una complejidad increíble — como nuestros cerebros o cuerpos — pero mucho más allá de lo que comprendemos completamente o podemos replicar.\n\nEntonces, la pregunta es:\n\n¿Poseemos la inteligencia, o somos simplemente una expresión de una inteligencia mucho más grande?\n\nReflexionar sobre esto puede cambiar cómo vemos nuestro lugar en el mundo — y cómo tratamos al planeta, sus recursos y a otros seres vivos.",
+      hu: "Az emberek gyakran a Föld legintelligensebb lényeinek tartják magukat. Technológiát építünk, rendszereket hozunk létre, és átalakítjuk a világot.\nDe mi is a természet részei vagyunk — lehet, hogy ez a hit az egónk hangja?\n\nMég alig értjük azt a világot, amelyben élünk, és még a legegyszerűbb élőlényeket sem tudjuk a semmiből újraalkotni. A természet hihetetlenül összetett rendszereket hoz létre — például az agyunkat vagy a testünket —, amelyek messze meghaladják azt, amit teljesen megértünk vagy képesek vagyunk reprodukálni.\n\nTehát a kérdés:\n\nMi birtokoljuk az intelligenciát, vagy csupán egy sokkal nagyobb intelligencia egyik megnyilvánulása vagyunk?\n\nEnnek átgondolása megváltoztathatja azt, ahogyan a helyünket látjuk a világban — és azt is, hogyan bánunk a bolygóval, annak erőforrásaival és más élőlényekkel."
+    },
+    question: {
+      text: {
+        en: "What is this lesson encouraging us to reflect on?",
+        es: "¿Qué nos anima a reflexionar esta lección?",
+        hu: "Mit kell megkérdőjeleznünk a lecke szerint?"
+      },
+      options: {
+        en: [
+          "Our superiority over nature",
+          "Our inferiority compared to nature",
+          "Our place within a larger system of intelligence",
+          "Our ability to control the world"
+        ],
+        es: [
+          "Nuestra superioridad sobre la naturaleza",
+          "Nuestra inferioridad en comparación con la naturaleza",
+          "Nuestro lugar dentro de un sistema más amplio de inteligencia",
+          "Nuestra capacidad para controlar el mundo"
+        ],
+        hu: [
+          "A természet feletti felsőbbrendűségünket",
+          "A természethez képest való alárendeltségünket",
+          "A helyünket egy nagyobb intelligenciarendszeren belül",
+          "A világ irányítására való képességünket"
         ]
       },
       correctIndex: 2
     }
   },
-{
-    title: {
-      en: "Humans and Nature",
-      es: "Humanos y la naturaleza",
-      hu: "Emberek és a természet"
-    },
-    content: {
-      en: "Are we just one of many species sharing Earth’s resources, or are we the superior species meant to rule over it? How we answer this question shapes the way we treat the world around us. Seeing ourselves as part of nature encourages harmony and respect, protecting the right of every species to live freely. Seeing ourselves as above nature often justifies exploiting the Earth and its beings for our own benefit.",
-      es: "¿Somos solo una de las muchas especies que comparten los recursos de la Tierra, o somos la especie superior destinada a gobernarla? Cómo respondamos a esta pregunta da forma a la manera en que tratamos el mundo que nos rodea. Vernos como parte de la naturaleza fomenta la armonía y el respeto, protegiendo el derecho de cada especie a vivir libremente. Considerarnos por encima de la naturaleza a menudo justifica la explotación de la Tierra y sus seres para nuestro propio beneficio.",
-      hu: "Csak egy vagyunk a Föld erőforrásait megosztó sok faj közül, vagy mi vagyunk a felsőbbrendű faj, aki uralkodni hivatott? A kérdésre adott válaszunk alakítja, hogyan bánunk a körülöttünk lévő világgal. Ha magunkat a természet részeként látjuk, az harmóniára és tiszteletre ösztönöz, védve minden faj jogát a szabad élethez. Ha magunkat a természet fölé helyezzük, az gyakran igazolja a Föld és lényei kizsákmányolását saját hasznunkra."
-    },
-    question: {
-      text: {
-        en: "What does this lesson encourage us to reflect on?",
-        es: "¿Sobre qué nos invita a reflexionar esta lección?",
-        hu: "Mire késztet minket ez a lecke a reflektálásra?"
-      },
-      options: {
-        en: [
-          "Whether humans should dominate or coexist with nature",
-          "How to extract more resources",
-          "If animals can survive alone",
-          "Whether technology is natural"
-        ],
-        es: [
-          "Si los humanos deben dominar o coexistir con la naturaleza",
-          "Cómo extraer más recursos",
-          "Si los animales pueden sobrevivir solos",
-          "Si la tecnología es natural"
-        ],
-        hu: [
-          "Hogy az emberek uralkodjanak vagy együttéljenek a természettel",
-          "Hogyan nyerjünk ki több erőforrást",
-          "Hogy az állatok egyedül is életben maradnak-e",
-          "Hogy a technológia természetes-e"
-        ]
-      },
-      correctIndex: 0
-    }
-  },
   {
     title: {
-      en: "Learning from Animals",
-      es: "Aprendiendo de los animales",
-      hu: "Tanulás az állatoktól"
+      en: "Ethical equality",
+      es: "Igualdad ética",
+      hu: "Etikus egyenlőség"
     },
     content: {
-      en: "We often assume animals are less capable or valuable than humans. But watching them closely reveals their virtues — and even lessons for us. Take dogs, for example: they find joy simply in love and play, showing loyalty, kindness, and protective behavior. Reflecting on these traits challenges our sense of superiority and invites us to consider what we value in ourselves and in others.",
-      es: "A menudo asumimos que los animales son menos capaces o valiosos que los humanos. Pero observarlos de cerca revela sus virtudes e incluso lecciones para nosotros. Tomemos a los perros, por ejemplo: encuentran alegría simplemente en el amor y el juego, mostrando lealtad, amabilidad y comportamiento protector. Reflexionar sobre estas características desafía nuestro sentido de superioridad e invita a considerar qué valoramos en nosotros mismos y en los demás.",
-      hu: "Gyakran feltételezzük, hogy az állatok kevésbé képesek vagy értékesek, mint az emberek. De ha közelről figyeljük őket, felfedezhetjük erényeiket — és akár tanulságokat is meríthetünk belőlük. Vegyük például a kutyákat: az örömöt egyszerűen a szeretetben és játékban találják, hűséget, kedvességet és védelmező magatartást mutatva. Ezeknek a tulajdonságoknak a megfigyelése kihívást jelent a felsőbbrendűség érzésünkre, és arra ösztönöz, hogy fontoljuk meg, mit értékelünk magunkban és másokban."
+      en: "If we take a step back from our own lives and observe the world with distance and objectivity, we begin to notice something fundamental: all sentient beings share the same basic inner reality.\n\nEvery being wants to live. Every being fears pain and death. And across all forms of life, we find the same core emotions—fear, stress, anxiety, comfort, and joy.\n\nDespite our differences in intelligence, form, or ability, these experiences are shared. Pain is pain. Fear is fear. The desire to continue living is universal.\n\nThis reveals something we often forget:\n\nSuffering and happiness are not ours to possess.",
+      es: "Si damos un paso atrás respecto a nuestras propias vidas y observamos el mundo con distancia y objetividad, comenzamos a notar algo fundamental: todos los seres sintientes comparten la misma realidad interna básica.\nTodo ser quiere vivir. Todo ser teme el dolor y la muerte. Y en todas las formas de vida encontramos las mismas emociones fundamentales — miedo, estrés, ansiedad, comodidad y alegría.\nA pesar de nuestras diferencias en inteligencia, forma o capacidad, estas experiencias son compartidas. El dolor es dolor. El miedo es miedo. El deseo de seguir viviendo es universal.\n\nEsto revela algo que a menudo olvidamos\n\nEl sufrimiento y la felicidad no nos pertenecen.",
+      hu: "Ha egy lépést hátralépünk a saját életünktől, és távolsággal, objektíven figyeljük meg a világot, elkezdünk észrevenni valami alapvetőt: minden érző lény ugyanazzal az alapvető belső valósággal rendelkezik.\nMinden lény élni akar. Minden lény fél a fájdalomtól és a haláltól. És minden életformában ugyanazokat az alapvető érzelmeket találjuk — félelmet, stresszt, szorongást, kényelmet és örömöt.\nAz intelligenciában, formában vagy képességekben mutatkozó különbségek ellenére ezek a tapasztalatok közösek. A fájdalom fájdalom. A félelem félelem. Az élet folytatásának vágya egyetemes.\n\nEz rámutat valamire, amit gyakran elfelejtünk:\n\nA szenvedést és a boldogságot nem sajátíthatjuk ki."
     },
     question: {
       text: {
-        en: "What does observing animals like dogs encourage us to reflect on?",
-        es: "¿Qué nos anima a reflexionar la observación de animales como los perros?",
-        hu: "Mit késztet minket megfigyelni az állatokat, például a kutyákat?"
+        en: "What did we learn about basic inner reality?",
+        es: "¿Qué aprendimos sobre la realidad interna básica?",
+        hu: "Mit tanultunk az alapvető belső valóságról?"
       },
       options: {
         en: [
-          "Our own superiority",
-          "The values and abilities of animals",
-          "How we can learn from them",
-          "All of the above"
+          "It is unique to humans and separates us from other beings",
+          "It is defined by intelligence and cognitive ability",
+          "It shows that some beings matter more than others",
+          "From these basic aspects, we are all equal"
         ],
         es: [
-          "Nuestra propia superioridad",
-          "Los valores y habilidades de los animales",
-          "Cómo podemos aprender de ellos",
-          "Todas las anteriores"
+          "Es única de los humanos y nos separa de otros seres",
+          "Está definida por la inteligencia y la capacidad cognitiva",
+          "Muestra que algunos seres importan más que otros",
+          "A partir de estos aspectos básicos, todos somos iguales"
         ],
         hu: [
-          "A saját felsőbbrendűségünket",
-          "Az állatok értékeit és képességeit",
-          "Hogyan tanulhatunk tőlük",
-          "Mindegyik"
+          "Csak az emberekre jellemző, és elválaszt minket más lényektől",
+          "Az intelligencia és a kognitív képesség határozza meg",
+          "Azt mutatja, hogy egyes lények fontosabbak másoknál",
+          "Ezekből az alapvető szempontokból mindannyian egyenlőek vagyunk"
         ]
       },
       correctIndex: 3
@@ -8011,39 +7805,79 @@ export const extralessonsData = {
   },
   {
     title: {
-      en: "Innocence Exploited",
-      es: "Inocencia explotada",
-      hu: "Ártatlanság kihasználva"
+      en: "We do care about animals",
+      es: "Nos importa los animales",
+      hu: "Élőlények iránti gondoskodás"
     },
     content: {
-      en: "Animals live with pure innocence. They don’t harm for pleasure, lie for gain, or judge others by appearance. Their trust in humans is genuine — they approach with curiosity, not suspicion. Yet, this very innocence is often taken advantage of in industries that profit from their lives. Reflecting on this helps us recognize that their innocence deserves protection, not betrayal.",
-      es: "Los animales viven con pura inocencia. No dañan por placer, no mienten por beneficio ni juzgan a otros por su apariencia. Su confianza en los humanos es genuina: se acercan con curiosidad, no con sospecha. Sin embargo, esta misma inocencia a menudo se aprovecha en industrias que se benefician de sus vidas. Reflexionar sobre esto nos ayuda a reconocer que su inocencia merece protección, no traición.",
-      hu: "Az állatok tiszta ártatlansággal élnek. Nem ártanak örömből, nem hazudnak haszonért, és nem ítélkeznek a többiek kinézete alapján. Az ember iránti bizalmuk őszinte — kíváncsian közelítenek, nem gyanakvással. Ennek az ártatlanságnak a kihasználása azonban gyakori azokon az iparágakon belül, amelyek hasznot húznak az életükből. Ezen való reflektálás segít felismerni, hogy az ártatlanságuk védelmet érdemel, nem árulást."
+      en: "It is worth observing our own feelings and instincts more closely. For that, we can ask ourselves a few simple questions:\n\nWhat did you feel when you saved an animal?\nHow do you feel when you see a video of a squirrel drinking water from a bottle someone offered it?\nWhat would you feel if you had to kill an animal yourself?\nHow do you react when you see an animal being harmed or killed?\n\nIf we are honest in these moments, something becomes clear: we do care.",
+      es: "Vale la pena observar nuestros propios sentimientos e instintos más de cerca. Para ello, podemos hacernos algunas preguntas simples:\n\n¿Qué sentiste cuando salvaste a un animal?\n¿Cómo te sientes cuando ves un video de una ardilla bebiendo agua de una botella que alguien le ofreció?\n¿Qué sentirías si tuvieras que matar a un animal tú mismo?\n¿Cómo reaccionas cuando ves a un animal siendo dañado o matado?\n\nSi somos honestos en estos momentos, algo se vuelve claro: nos importan.",
+      hu: "Érdemes közelebbről megfigyelni a saját érzéseinket és ösztöneinket. Ehhez feltehetünk magunknak néhány egyszerű kérdést:\n\nMit éreztél, amikor megmentettél egy állatot?\nMit érzel, amikor látsz egy videót egy mókusról, amely egy palackból iszik, amit valaki felkínált neki?\nMit éreznél, ha neked kellene megölnöd egy állatot?\nHogyan reagálsz, amikor egy állatot bántanak vagy megölnek?\n\nHa ezekben a pillanatokban őszinték vagyunk, valami világossá válik: törődünk."
     },
     question: {
       text: {
-        en: "What makes animals’ innocence particularly tragic in the context of exploitation?",
-        es: "¿Qué hace que la inocencia de los animales sea particularmente trágica en el contexto de la explotación?",
-        hu: "Mi teszi az állatok ártatlanságát különösen tragikussá a kizsákmányolás kontextusában?"
+        en: "What do these reflections help us realize about ourselves?",
+        es: "¿Qué nos ayudan a darnos cuenta estas reflexiones sobre nosotros mismos?",
+        hu: "Mit segítenek felismerni ezek az önreflexiók rólunk?"
       },
       options: {
         en: [
-          "They trust us and we use that trust against them",
-          "They are dangerous to humans",
-          "They don’t understand emotions",
-          "They harm others intentionally"
+          "Our feelings toward animals are mostly irrelevant and should be ignored",
+          "We only care about animals when it is socially expected",
+          "Our emotional responses to animals are inconsistent and cannot be trusted",
+          "We naturally do care about animals, and this becomes clear when we honestly observe our reactions"
         ],
         es: [
-          "Confían en nosotros y usamos esa confianza en su contra",
-          "Son peligrosos para los humanos",
-          "No entienden las emociones",
-          "Hacen daño intencionalmente a otros"
+          "Nuestros sentimientos hacia los animales son en su mayoría irrelevantes y deben ser ignorados",
+          "Solo nos importan los animales cuando se espera socialmente",
+          "Nuestras respuestas emocionales hacia los animales son inconsistentes y no se puede confiar en ellas",
+          "Naturalmente nos importan los animales, y esto se vuelve claro cuando observamos honestamente nuestras reacciones"
         ],
         hu: [
-          "Bíznak bennünk, és ezt a bizalmat ellenük használjuk",
-          "Veszélyesek az emberekre",
-          "Nem értik az érzelmeket",
-          "Szándékosan ártanak másoknak"
+          "Az állatokkal kapcsolatos érzéseink többnyire irrelevánsak, és figyelmen kívül kell hagyni őket",
+          "Csak akkor törődünk az állatokkal, amikor ez társadalmilag elvárt",
+          "Az állatokkal kapcsolatos érzelmi reakcióink következetlenek, és nem megbízhatók",
+          "Természetünknél fogva törődünk az állatokkal, és ez világossá válik, amikor őszintén megfigyeljük a reakcióinkat"
+        ]
+      },
+      correctIndex: 3
+    }
+  },
+  {
+    title: {
+      en: "Choosing compassion",
+      es: "Elegir la compasión",
+      hu: "Empátia választása"
+    },
+    content: {
+      en: "In modern life, we are often distant from the consequences of our choices. Most animal products reach us in a form that hides the process behind them—clean packaging, neutral language, and separation from the act itself.\n\nThis distance makes it easier for us to support systems that we might feel uncomfortable with if we saw them directly.\n\nBecause of this, it becomes important to recognize what these choices represent. Purchasing these products is not neutral—it contributes to systems where animals experience suffering that is often preventable and prolonged.",
+      es: "En la vida moderna, a menudo estamos alejados de las consecuencias de nuestras decisiones. La mayoría de los productos de origen animal nos llegan en una forma que oculta el proceso que hay detrás — envases limpios, lenguaje neutral y separación del acto en sí. \n\nEsta distancia hace que sea más fácil para nosotros apoyar sistemas con los que podríamos sentirnos incómodos si los viéramos directamente. \n\nDebido a esto, se vuelve importante reconocer lo que representan estas decisiones. Comprar estos productos no es neutral — contribuye a sistemas en los que los animales experimentan un sufrimiento que a menudo es evitable y prolongado.",
+      hu: "A modern életben gyakran elhatárolódunk a döntéseink következményeitől. Az állati eredetű termékek többsége olyan formában jut el hozzánk, amely elrejti a mögöttük álló folyamatot — tiszta csomagolás, semleges nyelvezet és az aktustól való elválasztás. \n\nEz a távolság megkönnyíti számunkra, hogy olyan rendszereket támogassunk, amelyekkel közvetlenül szembesülve kellemetlenül éreznénk magunkat. \n\nEzért fontossá válik felismerni, mit képviselnek ezek a döntések. Ezeknek a termékeknek a megvásárlása nem semleges — olyan rendszerekhez járul hozzá, ahol az állatok olyan szenvedést élnek át, amely gyakran elkerülhető és elhúzódó."
+    },
+    question: {
+      text: {
+        en: "How can we choose compassion in practice?",
+        es: "¿Cómo podemos elegir la compasión en la práctica?",
+        hu: "Hogyan választhatjuk az együttérzést a gyakorlatban?"
+      },
+      options: {
+        en: [
+          "Not purchasing animal products",
+          "Ignoring how products are made and focusing only on convenience",
+          "Assuming distance from production removes responsibility",
+          "Choosing only based on price and availability"
+        ],
+        es: [
+          "No comprar productos de origen animal",
+          "Ignorar cómo se hacen los productos y centrarse solo en la conveniencia",
+          "Asumir que la distancia de la producción elimina la responsabilidad",
+          "Elegir solo en función del precio y la disponibilidad"
+        ],
+        hu: [
+          "Nem vásárolunk állati eredetű termékeket",
+          "Figyelmen kívül hagyjuk, hogyan készülnek a termékek, és csak a kényelemre összpontosítunk",
+          "Feltételezzük, hogy a termeléstől való távolság megszünteti a felelősséget",
+          "Csak az ár és az elérhetőség alapján választunk"
         ]
       },
       correctIndex: 0
@@ -8051,159 +7885,39 @@ export const extralessonsData = {
   },
   {
     title: {
-      en: "Cows and Calves",
-      es: "Vacas y terneros",
-      hu: "Tehenek és borjak"
+      en: "Ignorance is bliss",
+      es: "La ignorancia es dicha",
+      hu: "A tudatlanság boldogság"
     },
     content: {
-      en: "Cows are deeply emotional animals, capable of forming strong bonds with their calves. In natural settings, a mother may grieve the loss of her calf for days, staying nearby and showing nurturing behaviors like nudging or licking the deceased calf. In industrial farming, calves are often separated from their mothers shortly after birth, breaking this natural bond and causing stress for both mother and calf. Understanding this reality encourages reflection on the impact of our choices and how animals are treated in farming.",
-      es: "Las vacas son animales profundamente emocionales, capaces de formar fuertes vínculos con sus terneros. En entornos naturales, una madre puede llorar la pérdida de su ternero durante días, permaneciendo cerca y mostrando comportamientos de cuidado como empujar o lamer al ternero fallecido. En la ganadería industrial, los terneros a menudo se separan de sus madres poco después del nacimiento, rompiendo este vínculo natural y causando estrés tanto a la madre como al ternero. Comprender esta realidad fomenta la reflexión sobre el impacto de nuestras elecciones y cómo se trata a los animales en la agricultura.",
-      hu: "A tehenek mélyen érzelmes állatok, képesek erős kötelékeket kialakítani borjaikkal. Természetes környezetben az anya napokig gyászolhatja a borjának elvesztését, a közelben maradva, és gondoskodó viselkedést mutatva, mint a borjú meglökése vagy nyalogatása. Az ipari állattartásban a borjakat gyakran a születés után röviddel elválasztják anyjuktól, megtörve ezt a természetes köteléket, és stresszt okozva mind az anyának, mind a borjúnak. Ennek a valóságnak a megértése ösztönöz a döntéseink hatásain való reflexióra és az állatok tartásának megértésére a gazdaságban."
+      en: "When something feels emotionally difficult—such as the consequences behind certain products or actions—our mind tends to protect us. It does this by avoiding, minimizing, or not fully engaging with the information.\n\nThis is not unusual. It is a natural psychological tendency to reduce discomfort. But over time, it can shape our behavior in ways we do not consciously choose.\n\nWhat we call “normal” in society is often supported by this distance from uncomfortable reality.",
+      es: "Cuando algo resulta emocionalmente difícil — como las consecuencias detrás de ciertos productos o acciones — nuestra mente tiende a protegernos. Lo hace evitando, minimizando o no involucrándose completamente con la información.\n\nEsto no es inusual. Es una tendencia psicológica natural reducir el malestar. Pero con el tiempo, puede dar forma a nuestro comportamiento de maneras que no elegimos conscientemente.\n\nLo que llamamos “normal” en la sociedad a menudo está sostenido por esta distancia de una realidad incómoda.",
+      hu: "Amikor valami érzelmileg nehéz — például bizonyos termékek vagy tettek mögötti következmények — az elménk hajlamos megvédeni minket. Ezt úgy teszi, hogy elkerüli, minimalizálja, elferdíti vagy nem teljesen dolgozza fel az információt, ezáltal létrehozza a kényelmes közeget, amire vágyunk.\n\nEz nem szokatlan. Természetes pszichológiai tendencia a kellemetlenség csökkentése. De idővel ez olyan módon formálhatja a viselkedésünket, amelyet nem tudatosan választunk.\n\nGyakran a kellemetlen valóságtól való távolság mondatja velünk azt, hogy valami “rendben van”."
     },
     question: {
       text: {
-        en: "What impact does separating calves from their mothers in farming have?",
-        es: "¿Qué impacto tiene separar a los terneros de sus madres en la ganadería?",
-        hu: "Milyen hatással van a borjak anyjuktól való elválasztása a gazdaságban?"
+        en: "How do we respond to uncomfortable facts?",
+        es: "¿Cómo respondemos a los hechos incómodos?",
+        hu: "Hogyan reagálunk a kellemetlen tényekre?"
       },
       options: {
         en: [
-          "It causes stress for both mother and calf",
-          "It has no effect",
-          "Cows forget their calves immediately",
-          "It makes cows happier"
+          "We always face uncomfortable truths directly and rationally",
+          "Our mind may avoid or reduce exposure to uncomfortable realities to protect us from discomfort",
+          "Society removes all moral responsibility from individuals",
+          "Uncomfortable facts have no influence on human behavior"
         ],
         es: [
-          "Causa estrés tanto en la madre como en el ternero",
-          "No tiene efecto",
-          "Las vacas olvidan a sus terneros de inmediato",
-          "Hace a las vacas más felices"
+          "Siempre enfrentamos las verdades incómodas de forma directa y racional",
+          "Nuestra mente puede evitar o reducir la exposición a realidades incómodas para protegernos del malestar",
+          "La sociedad elimina toda responsabilidad moral de los individuos",
+          "Los hechos incómodos no influyen en el comportamiento humano"
         ],
         hu: [
-          "Stresszt okoz mind az anyának, mind a borjúnak",
-          "Nincs hatása",
-          "A tehenek azonnal elfelejtik a borjaikat",
-          "Boldogabbá teszi a teheneket"
-        ]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Valuing Animals",
-      es: "Valorando a los animales",
-      hu: "Az állatok értékelése"
-    },
-    content: {
-      en: "It’s interesting to consider why we treat some animals, like pets, differently from farm animals. Is it based on intelligence, appearance, or something else? With humans, we accept differences without feeling superior, so why do we value animals in such arbitrary ways? Reflecting on this helps us understand our biases and the cultural norms that shape how we treat different species.",
-      es: "Es interesante considerar por qué tratamos a algunos animales, como mascotas, de manera diferente a los animales de granja. ¿Se basa en la inteligencia, la apariencia o en otra cosa? Con los humanos, aceptamos las diferencias sin sentirnos superiores, entonces ¿por qué valoramos a los animales de manera tan arbitraria? Reflexionar sobre esto nos ayuda a comprender nuestros prejuicios y las normas culturales que moldean cómo tratamos a las diferentes especies.",
-      hu: "Érdekes megfontolni, miért kezelünk bizonyos állatokat, például házikedvenceket, másként, mint a haszonállatokat. Alapul ez intelligencián, kinézeten, vagy valami máson? Az embereknél elfogadjuk a különbségeket anélkül, hogy felsőbbrendűnek éreznénk magunkat, akkor miért értékeljük az állatokat ilyen önkényesen? Ezen való reflexió segít megérteni az előítéleteinket és a kulturális normákat, amelyek meghatározzák, hogyan bánunk a különböző fajokkal."
-    },
-    question: {
-      text: {
-        en: "Which factor most helps explain why society values some animals more than others?",
-        es: "¿Qué factor ayuda más a explicar por qué la sociedad valora más a algunos animales que a otros?",
-        hu: "Mely tényező segít leginkább megmagyarázni, miért értékelik a társadalomban egyes állatokat jobban, mint másokat?"
-      },
-      options: {
-        en: [
-          "Cultural norms and habits",
-          "Scientific measures of intelligence",
-          "Random chance",
-          "Their size or appearance"
-        ],
-        es: [
-          "Normas y hábitos culturales",
-          "Medidas científicas de inteligencia",
-          "Azar",
-          "Su tamaño o apariencia"
-        ],
-        hu: [
-          "Kulturális normák és szokások",
-          "Tudományos intelligenciamérések",
-          "Véletlen",
-          "Méretük vagy kinézetük"
-        ]
-      },
-      correctIndex: 0
-    }
-  },
-{
-    title: {
-      en: "Land and Livestock",
-      es: "Tierra y ganado",
-      hu: "Föld és állattartás"
-    },
-    content: {
-      en: "Some people wonder if killing plants is the same as killing animals. Science shows that plants don’t have a brain or central nervous system, so they don’t experience pain like animals do. Another important fact is that around 77% of global agricultural land is used to raise livestock, even though farm animals provide only about 18% of the world’s calories and 37% of its protein. This means most plants are used inefficiently to feed animals instead of people.",
-      es: "Algunas personas se preguntan si matar plantas es lo mismo que matar animales. La ciencia demuestra que las plantas no tienen cerebro ni sistema nervioso central, por lo que no sienten dolor como los animales. Otro hecho importante es que alrededor del 77% de la tierra agrícola mundial se utiliza para criar ganado, aunque los animales de granja solo proporcionan aproximadamente el 18% de las calorías y el 37% de la proteína mundial. Esto significa que la mayoría de las plantas se usan de manera ineficiente para alimentar animales en lugar de personas.",
-      hu: "Néhányan azt kérdezik, hogy a növények elpusztítása ugyanaz-e, mint az állatoké. A tudomány szerint a növényeknek nincs agyuk vagy központi idegrendszerük, így nem éreznek fájdalmat, mint az állatok. Egy másik fontos tény, hogy a globális mezőgazdasági terület körülbelül 77%-át állattenyésztésre használják, bár a haszonállatok csak a világ kalóriáinak kb. 18%-át és fehérjéjének 37%-át biztosítják. Ez azt jelenti, hogy a legtöbb növényt hatékonytalanul használják az állatok etetésére az emberek helyett."
-    },
-    question: {
-      text: {
-        en: "What percentage of global agricultural land is used for livestock?",
-        es: "¿Qué porcentaje de la tierra agrícola mundial se utiliza para el ganado?",
-        hu: "A globális mezőgazdasági terület hány százalékát használják állattenyésztésre?"
-      },
-      options: {
-        en: [
-          "36%",
-          "50%",
-          "77%",
-          "90%"
-        ],
-        es: [
-          "36%",
-          "50%",
-          "77%",
-          "90%"
-        ],
-        hu: [
-          "36%",
-          "50%",
-          "77%",
-          "90%"
-        ]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Chickens’ Minds",
-      es: "La mente de las gallinas",
-      hu: "A csirkék elméje"
-    },
-    content: {
-      en: "Chickens are far more intelligent and emotional than many people realize. They can recognize over 100 individual faces, both of other chickens and humans, communicate using dozens of distinct vocalizations, and even plan for the future. Hens show empathy by caring for their chicks and responding to their distress. Despite being underestimated, chickens have rich social lives and complex minds, reminding us that intelligence and emotion are not limited to mammals.",
-      es: "Las gallinas son mucho más inteligentes y emocionales de lo que muchos piensan. Pueden reconocer más de 100 caras individuales, tanto de otras gallinas como de humanos, comunicarse mediante decenas de vocalizaciones distintas e incluso planificar para el futuro. Las gallinas muestran empatía cuidando a sus polluelos y respondiendo a su angustia. A pesar de ser subestimadas, las gallinas tienen vidas sociales ricas y mentes complejas, recordándonos que la inteligencia y la emoción no se limitan a los mamíferos.",
-      hu: "A csirkék sokkal intelligensebbek és érzelmesebbek, mint azt sokan gondolják. Több mint 100 egyedi arcot ismernek fel, más csirkákét és emberekét egyaránt, több tucat különböző hangadással kommunikálnak, és még a jövőre is terveznek. A tyúkok empátiát mutatnak, amikor gondoskodnak a csibéikről és reagálnak azok distresszére. A csirkéket alábecsülik, de gazdag társas életük és összetett elméjük van, emlékeztetve minket arra, hogy az intelligencia és az érzelem nem korlátozódik az emlősökre."
-    },
-    question: {
-      text: {
-        en: "Which of these is true about chickens?",
-        es: "¿Cuál de estas afirmaciones es cierta sobre las gallinas?",
-        hu: "Melyik állítás igaz a csirkékre?"
-      },
-      options: {
-        en: [
-          "They have no social awareness",
-          "They can recognize individual faces and communicate",
-          "They act purely on instinct",
-          "They cannot plan ahead"
-        ],
-        es: [
-          "No tienen conciencia social",
-          "Pueden reconocer caras individuales y comunicarse",
-          "Actúan puramente por instinto",
-          "No pueden planificar el futuro"
-        ],
-        hu: [
-          "Nincs társas tudatosságuk",
-          "Fel tudják ismerni az egyedi arcokat és kommunikálni tudnak",
-          "Csak ösztönösen cselekednek",
-          "Nem tudnak előre tervezni"
+          "Mindig közvetlenül és racionálisan szembenézünk a kellemetlen igazságokkal",
+          "Az elménk elkerülheti vagy csökkentheti a kellemetlen valóságokkal való érintkezést, hogy megvédjen minket a diszkomforttól",
+          "A társadalom minden erkölcsi felelősséget eltávolít az egyénekről",
+          "A kellemetlen tényeknek nincs hatása az emberi viselkedésre"
         ]
       },
       correctIndex: 1
@@ -8211,1290 +7925,4804 @@ export const extralessonsData = {
   },
   {
     title: {
-      en: "Impact on Wildlife",
-      es: "Impacto sobre la fauna silvestre",
-      hu: "Hatás a vadon élő állatokra"
+      en: "Normalized harm",
+      es: "Daño normalizado",
+      hu: "Normalizált bántalmazás"
     },
     content: {
-      en: "When we imagine monkeys swinging through trees, sea turtles gliding in the ocean, or dolphins playing in waves, we picture a healthy planet. Yet much of the natural world these animals rely on is disappearing, largely due to animal agriculture. Around 77% of global agricultural land is used for livestock grazing or feed production, driving deforestation in rainforests like the Amazon and displacing countless monkeys and other species. Runoff from animal farms pollutes rivers and oceans, harming marine life such as turtles and dolphins.",
-      es: "Cuando imaginamos monos balanceándose entre los árboles, tortugas marinas deslizándose en el océano o delfines jugando en las olas, imaginamos un planeta saludable. Sin embargo, gran parte del mundo natural del que dependen estos animales está desapareciendo, en gran parte debido a la agricultura animal. Alrededor del 77% de la tierra agrícola mundial se utiliza para pastoreo o producción de alimento para el ganado, provocando la deforestación de selvas como el Amazonas y desplazando a innumerables monos y otras especies. El escurrimiento de las granjas de animales contamina ríos y océanos, dañando la vida marina como tortugas y delfines.",
-      hu: "Amikor majmokat képzelünk el, ahogy fákról hintáznak, tengeri teknősöket, ahogy az óceánban siklanak, vagy delfineket, ahogy a hullámokban játszanak, egészséges bolygót látunk. Azonban az a természetes világ, amire ezek az állatok támaszkodnak, nagyrészt eltűnik, főként az állattenyésztés miatt. A globális mezőgazdasági terület körülbelül 77%-át legeltetésre vagy takarmánytermelésre használják, ami erdőirtást okoz olyan esőerdőkben, mint az Amazonas, és elűz számtalan majmot és más fajokat. Az állatfarmokból származó vízszennyezés folyókat és óceánokat szennyez, károsítva a tengeri életet, például teknősöket és delfineket."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "How does animal agriculture harm wild animals like monkeys, turtles, and dolphins?",
-        es: "¿Cómo daña la agricultura animal a los animales salvajes como monos, tortugas y delfines?",
-        hu: "Hogyan károsítja az állattenyésztés a vadon élő állatokat, például majmokat, teknősöket és delfineket?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "By destroying their habitats and polluting ecosystems",
-          "By helping forests grow",
-          "By creating more ocean life",
-          "It has no effect"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Destruyendo sus hábitats y contaminando los ecosistemas",
-          "Ayudando a que crezcan los bosques",
-          "Creando más vida oceánica",
-          "No tiene efecto"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Az élőhelyük elpusztításával és az ökoszisztémák szennyezésével",
-          "Az erdők növekedésének elősegítésével",
-          "Több óceáni élet létrehozásával",
-          "Nincs hatása"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Nature’s Intelligence",
-      es: "La inteligencia de la naturaleza",
-      hu: "A természet intelligenciája"
+      en: "Social pressure",
+      es: "Presión social",
+      hu: "Társadalmi nyomás"
     },
     content: {
-      en: "We often think humans are the smartest beings on Earth, but nature tells a humbling story. Chimpanzees have been shown to have better short-term memory than humans, crows use tools and plan for the future, and elephants communicate across miles through vibrations. Each species demonstrates unique and remarkable abilities, reminding us that intelligence comes in many forms — and humans are just one part of a much bigger picture.",
-      es: "A menudo pensamos que los humanos son los seres más inteligentes de la Tierra, pero la naturaleza cuenta una historia humilde. Se ha demostrado que los chimpancés tienen mejor memoria a corto plazo que los humanos, los cuervos usan herramientas y planifican para el futuro, y los elefantes se comunican a kilómetros de distancia mediante vibraciones. Cada especie demuestra habilidades únicas y notables, recordándonos que la inteligencia viene en muchas formas —y los humanos son solo una parte de un panorama mucho más grande.",
-      hu: "Gyakran azt gondoljuk, hogy az emberek a legokosabb lények a Földön, de a természet egy alázatos történetet mesél. Bizonyított, hogy a csimpánzok rövid távú memóriája jobb, mint az embereké, a varjak eszközöket használnak és a jövőre terveznek, az elefántok pedig mérföldekre kommunikálnak rezgésekkel. Minden faj egyedi és figyelemre méltó képességeket mutat, emlékeztetve minket arra, hogy az intelligencia sok formában jelenik meg — az emberek csupán egy része a sokkal nagyobb képnek."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Which animal is proven to have better short-term memory than humans?",
-        es: "¿Qué animal ha demostrado tener mejor memoria a corto plazo que los humanos?",
-        hu: "Melyik állatnak bizonyítottan jobb a rövid távú memóriája, mint az embernek?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Crows",
-          "Chimpanzees",
-          "Dogs"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Cuervos",
-          "Chimpancés",
-          "Perros"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Varjak",
-          "Csimpánzok",
-          "Kutyák"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Choosing Compassion",
-      es: "Eligiendo la compasión",
-      hu: "Az együttérzés választása"
+      en: "Freedom",
+      es: "Libertad",
+      hu: "Szabadság"
     },
     content: {
-      en: "Most of us recognize that animals have feelings, unique personalities, and the ability to experience joy or fear. They are innocent, vulnerable, and, like us, they want to live. Knowing this raises an important question: do we want to contribute to the exploitation of sentient beings, or choose actions rooted in compassion instead?",
-      es: "La mayoría de nosotros reconocemos que los animales tienen sentimientos, personalidades únicas y la capacidad de experimentar alegría o miedo. Son inocentes, vulnerables y, al igual que nosotros, quieren vivir. Saber esto plantea una pregunta importante: ¿queremos contribuir a la explotación de seres sensibles o elegir acciones basadas en la compasión?",
-      hu: "A legtöbben elismerjük, hogy az állatoknak vannak érzéseik, egyedi személyiségük, és képesek örömöt vagy félelmet átélni. Ártatlanok, sebezhetőek, és, mint mi, élni akarnak. Ennek ismerete felvet egy fontos kérdést: szeretnénk hozzájárulni az érző lények kizsákmányolásához, vagy inkább az együttérzésen alapuló cselekedeteket választani?"
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What does this lesson encourage us to reflect on?",
-        es: "¿Sobre qué nos invita a reflexionar esta lección?",
-        hu: "Mire késztet minket ez a lecke a reflektálásra?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Whether our actions align with our compassion",
-          "If animals have no feelings",
-          "How to eat more meat",
-          "Whether guilt is necessary for change"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Si nuestras acciones están alineadas con nuestra compasión",
-          "Si los animales no tienen sentimientos",
-          "Cómo comer más carne",
-          "Si la culpa es necesaria para el cambio"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Hogy a cselekedeteink összhangban vannak-e az együttérzésünkkel",
-          "Hogy az állatoknak nincs érzése",
-          "Hogyan együnk több húst",
-          "Hogy a bűntudat szükséges-e a változáshoz"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
-    }
-  },
-{
-    title: {
-      en: "Profit vs Life",
-      es: "Beneficio vs Vida",
-      hu: "Profit vs Élet"
-    },
-    content: {
-      en: "Imagine running a small chicken farm. A chick hatches — would you raise it if it’s male? Male chicks don’t lay eggs and are often seen as ‘unprofitable.’ This scenario creates a moral tension: either invest resources in animals that won’t generate returns or end their lives for economic reasons. Reflecting on this helps us weigh profit against the intrinsic value of an individual life.",
-      es: "Imagina que diriges una pequeña granja de pollos. Nace un pollito: ¿lo criarías si es macho? Los pollitos machos no ponen huevos y a menudo se consideran 'no rentables'. Este escenario crea una tensión moral: invertir recursos en animales que no generarán beneficios o acabar con sus vidas por razones económicas. Reflexionar sobre esto nos ayuda a sopesar el beneficio económico frente al valor intrínseco de la vida de un individuo.",
-      hu: "Képzeld el, hogy egy kis csirkefarmot vezetsz. Kikel egy csibe — felnevelnéd, ha hím? A hím csibék nem tojnak tojást, ezért gyakran „nem nyereségesnek” tekintik őket. Ez a helyzet morális feszültséget teremt: vagy erőforrást fektetsz olyan állatokba, amelyek nem hoznak hasznot, vagy gazdasági okokból életed végére juttatod őket. A reflexió segít mérlegelni a profitot az egyes állatok belső értékével szemben."
-    },
-    question: {
-      text: {
-        en: "What moral tension does the farm-owner scenario highlight?",
-        es: "¿Qué tensión moral destaca el escenario del granjero?",
-        hu: "Milyen morális feszültséget emel ki a gazda helyzete?"
-      },
-      options: {
-        en: [
-          "Profit vs. the intrinsic value of an individual animal’s life",
-          "Whether eggs taste better from certain breeds",
-          "How to increase egg production quickly",
-          "The best feed to maximize profits"
-        ],
-        es: [
-          "Beneficio vs. el valor intrínseco de la vida de un animal individual",
-          "Si los huevos saben mejor de ciertas razas",
-          "Cómo aumentar la producción de huevos rápidamente",
-          "El mejor alimento para maximizar beneficios"
-        ],
-        hu: [
-          "Profit vs. az egyes állatok belső értéke",
-          "Hogy bizonyos fajták tojása ízletesebb-e",
-          "Hogyan növeljük gyorsan a tojástermelést",
-          "A legjobb takarmány a profit maximalizálásához"
-        ]
-      },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Invisible Suffering",
+      en: "Number of deaths",
+      es: "Número de muertes",
+      hu: "Halálok száma"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Natural carnivore - herbivore ratio",
+      es: "Proporción natural de carnívoros - herbívoros",
+      hu: "Természetes húsevő - növényevő arány"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Exploit the defenseless",
+      es: "Aprovechar a los indefensos",
+      hu: "A védtelenek kihasználása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Our habits and perspectives",
+      es: "Nuestros hábitos y perspectivas",
+      hu: "A mi szokásaink és látópontjaink"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pets or food?",
+      es: "¿Mascotas o comida?",
+      hu: "Családtag vagy étel?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Hypocrisy",
+      es: "Hipocresía",
+      hu: "Hipokritizmus"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Using animals",
+      es: "Usar animales",
+      hu: "Állatok használata"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pigs: Awareness",
+      es: "Cerdos: Conciencia",
+      hu: "Disznók: Tudatosság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pigs: Intelligence",
+      es: "Cerdos: Inteligencia",
+      hu: "Disznók: Intelligencia"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pigs: Habits",
+      es: "Cerdos: Hábitos",
+      hu: "Disznók: Szokások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pigs: Lifestyle",
+      es: "Cerdos: Estilo de vida",
+      hu: "Disznók: Életmód"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pigs: Lifespan",
+      es: "Cerdos: Esperanza de vida",
+      hu: "Disznók: Élettartam"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Chickens: Awareness",
+      es: "Gallinas: Conciencia",
+      hu: "Csirkék: Tudatosság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Chickens: Habits",
+      es: "Gallinas: Hábitos",
+      hu: "Csirkék: Szokások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Chickens: Lifestyle",
+      es: "Gallinas: Estilo de vida",
+      hu: "Csirkék: Életmód"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Chickens: Lifespan",
+      es: "Gallinas: Esperanza de vida",
+      hu: "Csirkék: Élettartam"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: Awareness",
+      es: "Vacas: Conciencia",
+      hu: "Tehenek: Tudatosság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: Emotional Intelligence",
+      es: "Vacas: Inteligencia emocional",
+      hu: "Tehenek: Érzelmi intelligencia"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: Family",
+      es: "Vacas: Familia",
+      hu: "Tehenek: Család"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: Habits",
+      es: "Vacas: Hábitos",
+      hu: "Tehenek: Szokások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: Lifestyle",
+      es: "Vacas: Estilo de vida",
+      hu: "Tehenek: Életmód"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: Lifespan",
+      es: "Vacas: Esperanza de vida",
+      hu: "Tehenek: Élettartam"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Fishes: Do they feel pain?",
+      es: "Peces: ¿Sienten dolor?",
+      hu: "Halak: Érzik a fájdalmat?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Fishes: Volume",
+      es: "Peces: Volumen",
+      hu: "Halak: Mennyiség"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Fishes: Farming tanks",
+      es: "Peces: Tanques de cría",
+      hu: "Halak: Tenyésztő tartályok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Influence on marine life",
+      es: "Influencia en la vida marina",
+      hu: "Hatás a tengeri életre"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Abandoned fishing gear",
+      es: "Equipo de pesca abandonado",
+      hu: "Elhagyott tengeri hálók"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Turtles",
+      es: "Tortugas",
+      hu: "Teknősök"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Sharks",
+      es: "Tiburones",
+      hu: "Cápák"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Dolphins",
+      es: "Delfines",
+      hu: "Delfinek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Invisible suffering",
       es: "Sufrimiento invisible",
       hu: "Láthatatlan szenvedés"
     },
     content: {
-      en: "In our society, animals are often treated as products rather than sentient beings. The price of meat, dairy, or eggs reflects only production, transport, and sale costs — it ignores suffering, confinement, and shortened lives. By reducing animal-based consumption or choosing plant-based alternatives, we acknowledge the intrinsic value of animals beyond any price tag.",
-      es: "En nuestra sociedad, los animales a menudo se tratan como productos en lugar de seres sensibles. El precio de la carne, los lácteos o los huevos refleja solo los costos de producción, transporte y venta — ignora el sufrimiento, el confinamiento y la vida acortada. Al reducir el consumo de productos animales o elegir alternativas vegetales, reconocemos el valor intrínseco de los animales más allá de cualquier precio.",
-      hu: "Társadalmunkban az állatokat gyakran termékként kezelik, nem érző lényekként. A hús, tejtermék vagy tojás ára csak a termelés, szállítás és eladás költségeit tükrözi — figyelmen kívül hagyja a szenvedést, a bezártságot és a rövidített életet. Ha csökkentjük az állati eredetű termékek fogyasztását vagy növényi alternatívákat választunk, elismerjük az állatok belső értékét a pénzértéken túl."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What does the price of animal products fail to account for?",
-        es: "¿Qué no refleja el precio de los productos animales?",
-        hu: "Mit nem vesz figyelembe az állati termékek ára?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "The cost of transporting the products",
-          "The suffering and loss of freedom experienced by animals",
-          "The packaging and marketing costs",
-          "The calories provided by the product"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "El costo de transporte de los productos",
-          "El sufrimiento y la pérdida de libertad que experimentan los animales",
-          "Los costos de embalaje y marketing",
-          "Las calorías proporcionadas por el producto"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "A termékek szállítási költségét",
-          "Az állatok által elszenvedett szenvedést és szabadságvesztést",
-          "A csomagolás és marketing költségeit",
-          "A termék által biztosított kalóriákat"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Cramped Lives",
-      es: "Vidas hacinadas",
-      hu: "Zsúfolt élet"
+      en: "Cages",
+      es: "Jaulas",
+      hu: "Ketrecek"
     },
     content: {
-      en: "Many farm animals spend their entire lives confined. Cows often stand on hard floors with limited movement; mother pigs are kept in tiny gestation crates; hens may have space smaller than an A4 sheet. These conditions prevent natural behaviors like walking, nursing, or stretching.",
-      es: "Muchos animales de granja pasan toda su vida confinados. Las vacas a menudo están de pie en suelos duros con movimiento limitado; las cerdas madre se mantienen en pequeñas jaulas de gestación; las gallinas pueden tener un espacio más pequeño que una hoja A4. Estas condiciones impiden comportamientos naturales como caminar, amamantar o estirarse.",
-      hu: "Sok haszonállat egész életét bezárva tölti. A tehenek gyakran kemény padlón állnak korlátozott mozgással; a kocák apró vemhességi ketrecekben vannak; a tyúkoknak lehet kisebb helyük, mint egy A4-es lap. Ezek a körülmények megakadályozzák a természetes viselkedéseket, mint a járás, szoptatás vagy nyújtózkodás."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "How much space does a hen typically have in a battery cage?",
-        es: "¿Cuánto espacio tiene típicamente una gallina en una jaula en batería?",
-        hu: "Mekkora helye van egy tyúknak tipikusan egy ketrecben?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Around the size of an A4 sheet of paper",
-          "About 2 square meters",
-          "A full open yard",
-          "Half a room"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Alrededor del tamaño de una hoja A4",
-          "Unos 2 metros cuadrados",
-          "Un patio completo",
-          "Medio cuarto"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Kb. egy A4-es lap méretű",
-          "Kb. 2 négyzetméter",
-          "Egy teljes udvar",
-          "Fél szoba"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Rapid Growth",
-      es: "Crecimiento rápido",
-      hu: "Gyors növekedés"
-    },
-    content: {
-      en: "Modern broiler chickens grow extremely fast, reaching market weight in just 5–7 weeks. Their wild ancestors grow naturally, live 5–10 years, and weigh much less. This rapid growth causes heart failure, leg deformities, and organ issues, highlighting how industrial breeding prioritizes human consumption over natural animal welfare.",
-      es: "Los pollos de engorde modernos crecen extremadamente rápido, alcanzando el peso de mercado en solo 5–7 semanas. Sus antepasados salvajes crecen de manera natural, viven de 5 a 10 años y pesan mucho menos. Este crecimiento rápido provoca insuficiencia cardíaca, deformidades en las patas y problemas de órganos, destacando cómo la cría industrial prioriza el consumo humano sobre el bienestar animal natural.",
-      hu: "A modern broilerek rendkívül gyorsan nőnek, mindössze 5–7 hét alatt elérik a piaci súlyt. Vad őseik természetesen nőnek, 5–10 évig élnek és sokkal kevesebbet nyomnak. Ez a gyors növekedés szívproblémákat, lábdeformitásokat és szervi problémákat okoz, kiemelve, hogy az ipari tenyésztés az emberi fogyasztást helyezi előtérbe a természetes állatjólét helyett."
-    },
-    question: {
-      text: {
-        en: "How does the lifespan and weight of factory-farmed chickens compare to their wild relatives?",
-        es: "¿Cómo se compara la vida útil y el peso de los pollos de granja con sus parientes salvajes?",
-        hu: "Hogyan viszonyul a tenyésztett csirkék élettartama és súlya a vad rokonaikhoz képest?"
-      },
-      options: {
-        en: [
-          "They grow slower and live longer than wild chickens",
-          "They have the same growth rate and lifespan as wild chickens",
-          "They live longer but weigh less than wild chickens",
-          "They grow much faster, weigh 4–5 times more, and have shorter lifespans"
-        ],
-        es: [
-          "Crecen más lento y viven más que los pollos salvajes",
-          "Tienen la misma tasa de crecimiento y esperanza de vida que los pollos salvajes",
-          "Viven más pero pesan menos que los pollos salvajes",
-          "Crecen mucho más rápido, pesan 4–5 veces más y tienen vidas más cortas"
-        ],
-        hu: [
-          "Lassabban nőnek és tovább élnek, mint a vad csirkék",
-          "Ugyanolyan növekedési ütemük és élettartamuk van, mint a vad csirkéknek",
-          "Hosszabb életűek, de könnyebbek, mint a vad csirkék",
-          "Sokkal gyorsabban nőnek, 4–5-ször többet nyomnak, és rövidebb élettartamúak"
-        ]
-      },
-      correctIndex: 3
-    }
-  },
-  {
-    title: {
-      en: "Life vs Suffering",
-      es: "Vida vs Sufrimiento",
-      hu: "Élet vs Szenvedés"
-    },
-    content: {
-      en: "Would you prefer a short life in freedom or a longer life filled with suffering? Many farmed animals endure intense pain from overcrowding, selective breeding, and confinement. This question helps us consider whether a longer life is truly valuable if it comes with suffering.",
-      es: "¿Preferirías una vida corta en libertad o una vida más larga llena de sufrimiento? Muchos animales de granja soportan un dolor intenso debido al hacinamiento, la cría selectiva y el confinamiento. Esta pregunta nos ayuda a considerar si una vida más larga realmente vale la pena si viene acompañada de sufrimiento.",
-      hu: "Egy rövid, szabad életet választanál, vagy egy hosszabb, szenvedéssel teli életet? Sok haszonállat intenzív fájdalmat él át a túlzsúfoltság, a szelektív tenyésztés és a bezártság miatt. Ez a kérdés segít megfontolni, hogy valóban értékes-e egy hosszabb élet, ha szenvedéssel jár."
-    },
-    question: {
-      text: {
-        en: "What dilemma does this lesson highlight?",
-        es: "¿Qué dilema destaca esta lección?",
-        hu: "Milyen dilemmát emel ki ez a lecke?"
-      },
-      options: {
-        en: [
-          "Animals always prefer being confined",
-          "The trade-off between a short life in freedom and a longer life in suffering",
-          "Longer life is always better, regardless of conditions",
-          "Suffering has no impact on life value"
-        ],
-        es: [
-          "Los animales siempre prefieren estar confinados",
-          "El dilema entre una vida corta en libertad y una vida más larga con sufrimiento",
-          "La vida más larga siempre es mejor, independientemente de las condiciones",
-          "El sufrimiento no afecta el valor de la vida"
-        ],
-        hu: [
-          "Az állatok mindig a bezártságot választják",
-          "A rövid, szabad élet és a hosszabb, szenvedéssel teli élet közötti kompromisszum",
-          "A hosszabb élet mindig jobb, függetlenül a körülményektől",
-          "A szenvedésnek nincs hatása az élet értékére"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Labels Can Mislead",
-      es: "Las etiquetas pueden engañar",
-      hu: "A címkék megtéveszthetnek"
-    },
-    content: {
-      en: "Many people choose 'free-range' or 'cage-free' products thinking animals don’t suffer. Yet labels can be misleading, and standards vary widely. Being aware of this allows us to make more compassionate choices, either by verifying sources or opting for plant-based alternatives.",
-      es: "Muchas personas eligen productos 'de corral' o 'libres de jaula' pensando que los animales no sufren. Sin embargo, las etiquetas pueden ser engañosas y los estándares varían ampliamente. Ser conscientes de esto nos permite tomar decisiones más compasivas, ya sea verificando las fuentes o eligiendo alternativas vegetales.",
-      hu: "Sokan a „szabadon tartott” vagy „ketrecmentes” termékeket választják, azt gondolva, hogy az állatok nem szenvednek. Azonban a címkék megtévesztőek lehetnek, és a szabványok széles körben eltérnek. Ennek ismerete lehetővé teszi, hogy együttérzőbb döntéseket hozzunk, akár a források ellenőrzésével, akár növényi alternatívák választásával."
-    },
-    question: {
-      text: {
-        en: "Why might 'free-range' labels not guarantee that animals lived without suffering?",
-        es: "¿Por qué las etiquetas 'de corral' podrían no garantizar que los animales vivieron sin sufrir?",
-        hu: "Miért nem garantálhatják a „szabadon tartott” címkék, hogy az állatok szenvedés nélkül éltek?"
-      },
-      options: {
-        en: [
-          "All animals live perfectly",
-          "Plant-based products are worse",
-          "Standards vary and labels can be misleading",
-          "Free-range always means happy animals"
-        ],
-        es: [
-          "Todos los animales viven perfectamente",
-          "Los productos vegetales son peores",
-          "Los estándares varían y las etiquetas pueden ser engañosas",
-          "De corral siempre significa animales felices"
-        ],
-        hu: [
-          "Minden állat tökéletesen él",
-          "A növényi termékek rosszabbak",
-          "A szabványok változnak, és a címkék megtévesztőek lehetnek",
-          "A szabadon tartott mindig boldog állatot jelent"
-        ]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Genetic Manipulation",
-      es: "Manipulación genética",
-      hu: "Genetikai manipuláció"
-    },
-    content: {
-      en: "If humans could design animals to produce more eggs, milk, or meat, we might do it for profit. Genetic manipulation can increase stress, health problems, and shorten natural lifespans. Buying such products indirectly supports these interventions.",
-      es: "Si los humanos pudieran diseñar animales para producir más huevos, leche o carne, podríamos hacerlo por lucro. La manipulación genética puede aumentar el estrés, los problemas de salud y acortar la vida natural. Comprar estos productos apoya indirectamente estas intervenciones.",
-      hu: "Ha az emberek úgy tudnák tervezni az állatokat, hogy több tojást, tejet vagy húst termeljenek, talán a profit érdekében tennék. A genetikai manipuláció növelheti a stresszt, az egészségügyi problémákat és lerövidítheti a természetes élettartamot. Az ilyen termékek vásárlása közvetve támogatja ezeket a beavatkozásokat."
-    },
-    question: {
-      text: {
-        en: "What ethical concern does genetic manipulation in farmed animals raise?",
-        es: "¿Qué preocupación ética plantea la manipulación genética en los animales de granja?",
-        hu: "Milyen etikai aggályt vet fel a genetikai manipuláció a haszonállatoknál?"
-      },
-      options: {
-        en: [
-          "It makes animals happier and healthier",
-          "It has no impact on animal welfare",
-          "It prioritizes human profit over animal health and natural life",
-          "It only affects the taste of products"
-        ],
-        es: [
-          "Hace que los animales sean más felices y saludables",
-          "No tiene impacto en el bienestar animal",
-          "Prioriza el beneficio humano sobre la salud y la vida natural de los animales",
-          "Solo afecta al sabor de los productos"
-        ],
-        hu: [
-          "Boldogabbá és egészségesebbé teszi az állatokat",
-          "Nincs hatással az állatjólétre",
-          "Az emberi profitot helyezi előtérbe az állatok egészsége és természetes élete felett",
-          "Csak a termék ízét befolyásolja"
-        ]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Free-Range Challenges",
-      es: "Desafíos de los productos de corral",
-      hu: "Szabadon tartott termékek kihívásai"
-    },
-    content: {
-      en: "Producing truly free-range animal products requires significant land. For example, 1,000 hens need 2.5 acres (about 108 sq ft per bird). Factory farms can house thousands in a fraction of that space. While free-range prioritizes welfare, land limitations and costs make scaling difficult.",
-      es: "Producir productos animales realmente de corral requiere una cantidad significativa de tierra. Por ejemplo, 1.000 gallinas necesitan 2,5 acres (aproximadamente 108 pies cuadrados por ave). Las granjas industriales pueden alojar a miles en una fracción de ese espacio. Si bien el corral prioriza el bienestar, las limitaciones de tierra y los costos dificultan la ampliación.",
-      hu: "A valóban szabadon tartott állati termékek előállítása jelentős földterületet igényel. Például 1000 tyúkhoz 2,5 hektár kell (kb. 108 négyzetláb/tyúk). Az ipari farmok ezreket tudnak elhelyezni ennek a töredékén. Bár a szabad tartás előtérbe helyezi a jólétet, a föld korlátozottsága és a költségek megnehezítik a skálázást."
-    },
-    question: {
-      text: {
-        en: "What is a significant challenge in producing free-range animal products?",
-        es: "¿Cuál es un desafío importante al producir productos animales de corral?",
-        hu: "Mi a jelentős kihívás a szabadon tartott állati termékek előállításában?"
-      },
-      options: {
-        en: [
-          "Lower operational costs",
-          "Limited land availability",
-          "Higher animal welfare standards",
-          "Increased scalability"
-        ],
-        es: [
-          "Menores costos operativos",
-          "Disponibilidad limitada de tierra",
-          "Estándares más altos de bienestar animal",
-          "Mayor escalabilidad"
-        ],
-        hu: [
-          "Alacsonyabb működési költségek",
-          "Korlátozott földterület",
-          "Magasabb állatjóléti szabványok",
-          "Növelt skálázhatóság"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Suffering vs Death",
-      es: "Sufrimiento vs Muerte",
-      hu: "Szenvedés vs Halál"
-    },
-    content: {
-      en: "Is it worse to kill an animal immediately or force it to live in extreme confinement and suffering? Philosophers argue that prolonged suffering, inability to express natural behaviors, and stressful conditions can be far worse than death. Factory farms often place animals in this second scenario.",
-      es: "¿Es peor matar a un animal de inmediato o obligarlo a vivir en confinamiento extremo y sufrimiento? Los filósofos argumentan que el sufrimiento prolongado, la incapacidad de expresar comportamientos naturales y las condiciones estresantes pueden ser mucho peores que la muerte. Las granjas industriales a menudo colocan a los animales en este segundo escenario.",
-      hu: "Rosszabb-e az állatot azonnal megölni, vagy arra kényszeríteni, hogy extrém bezártságban és szenvedésben éljen? A filozófusok szerint a hosszan tartó szenvedés, a természetes viselkedés kifejezésének képtelensége és a stresszes körülmények sokkal rosszabbak lehetnek a halálnál. Az ipari farmok gyakran ebbe a második helyzetbe helyezik az állatokat."
-    },
-    question: {
-      text: {
-        en: "Which scenario is often considered worse for an animal?",
-        es: "¿Qué escenario se considera a menudo peor para un animal?",
-        hu: "Melyik helyzetet tartják gyakran rosszabbnak az állat számára?"
-      },
-      options: {
-        en: [
-          "Being killed immediately",
-          "Living a life in extreme confinement and suffering",
-          "Being free in nature",
-          "Living with human companions who love them"
-        ],
-        es: [
-          "Ser matado inmediatamente",
-          "Vivir una vida en confinamiento extremo y sufrimiento",
-          "Ser libre en la naturaleza",
-          "Vivir con humanos que los aman"
-        ],
-        hu: [
-          "Azonnal megölve lenni",
-          "Extrém bezártságban és szenvedésben élni",
-          "Szabadon élni a természetben",
-          "Emberek társaságában élni, akik szeretik őket"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Egg Overproduction",
-      es: "Sobreproducción de huevos",
-      hu: "Tojás túltermelés"
-    },
-    content: {
-      en: "Modern egg-laying hens are bred to produce hundreds of eggs per year — over 300 compared to 10–15 for wild hens. This intense production causes stress, weakened bones, organ failure, and exhaustion. Understanding this highlights the ethical impact of selective breeding.",
-      es: "Las gallinas ponedoras modernas se crían para producir cientos de huevos al año: más de 300 frente a 10–15 para las gallinas salvajes. Esta producción intensa causa estrés, huesos debilitados, fallas de órganos y agotamiento. Entender esto destaca el impacto ético de la cría selectiva.",
-      hu: "A modern tojótyúkokat úgy tenyésztik, hogy évente több száz tojást hozzanak — több mint 300-at a vad tyúkok 10–15 tojásához képest. Ez az intenzív termelés stresszt, gyengült csontokat, szervi problémákat és kimerültséget okoz. Ennek megértése kiemeli a szelektív tenyésztés etikai hatását."
-    },
-    question: {
-      text: {
-        en: "How many eggs can a factory-farmed hen lay compared to a wild hen?",
-        es: "¿Cuántos huevos puede poner una gallina de granja en comparación con una gallina salvaje?",
-        hu: "Hány tojást tud tojni egy tenyésztett tyúk a vad tyúkhoz képest?"
-      },
-      options: {
-        en: [
-          "50 eggs per year vs. 100 eggs per year",
-          "100 eggs per year vs. 200 eggs per year",
-          "10–15 eggs per year vs. over 300 eggs per year",
-          "Both lay about the same amount"
-        ],
-        es: [
-          "50 huevos al año vs. 100 huevos al año",
-          "100 huevos al año vs. 200 huevos al año",
-          "10–15 huevos al año vs. más de 300 huevos al año",
-          "Ambas ponen aproximadamente la misma cantidad"
-        ],
-        hu: [
-          "Évente 50 tojás vs. évente 100 tojás",
-          "Évente 100 tojás vs. évente 200 tojás",
-          "Évente 10–15 tojás vs. évente több mint 300 tojás",
-          "Mindkettő körülbelül ugyanannyit toj"
-        ]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Dairy Separation",
-      es: "Separación en la leche",
-      hu: "Tejipari elkülönítés"
-    },
-    content: {
-      en: "Mother cows are social and form strong bonds with their calves. In the dairy industry, calves are often separated within hours or days to collect milk for humans. This causes immense stress for both mother and calf. Repeated impregnation ensures continuous milk production, while calves may be raised for veal or dairy replacement.",
-      es: "Las vacas madres son sociales y forman fuertes vínculos con sus terneros. En la industria láctea, los terneros suelen separarse a las pocas horas o días para recolectar leche para los humanos. Esto causa un estrés inmenso tanto para la madre como para el ternero. La inseminación repetida asegura una producción continua de leche, mientras que los terneros pueden criarse para ternera o reemplazo lácteo.",
-      hu: "Az anyatehenek társas lények és erős kötelékeket alakítanak ki borjaikkal. A tejiparban a borjakat gyakran órákon vagy napokon belül elválasztják, hogy az emberek számára tejet gyűjtsenek. Ez hatalmas stresszt okoz mind az anyának, mind a borjának. Az ismételt vemhesség folyamatos tejtermelést biztosít, miközben a borjakat borjúhúsra vagy tejpótlásra nevelhetik."
-    },
-    question: {
-      text: {
-        en: "Why is the separation of calves from their mothers in the dairy industry harmful?",
-        es: "¿Por qué es perjudicial la separación de los terneros de sus madres en la industria láctea?",
-        hu: "Miért káros a borjak elválasztása az anyjuktól a tejiparban?"
-      },
-      options: {
-        en: [
-          "It increases milk production",
-          "Cows are highly emotional and form strong bonds with their calves",
-          "It helps the calf grow faster",
-          "It is only done in small farms"
-        ],
-        es: [
-          "Aumenta la producción de leche",
-          "Las vacas son muy emocionales y forman fuertes vínculos con sus terneros",
-          "Ayuda a que el ternero crezca más rápido",
-          "Solo se hace en granjas pequeñas"
-        ],
-        hu: [
-          "Növeli a tejtermelést",
-          "A tehenek nagyon érzelmesek és erős kötelékeket alakítanak ki borjaikkal",
-          "Segíti a borjú gyorsabb növekedését",
-          "Csak kis farmokon történik"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Male Calf Fate",
-      es: "Destino del ternero macho",
-      hu: "A hím borjak sorsa"
-    },
-    content: {
-      en: "In dairy farming, male calves are considered 'by-products' because they cannot produce milk. They are sold for veal or beef under harsh conditions, often separated from their mothers and subjected to painful procedures. This shows that exploitation in dairy affects both females and males.",
-      es: "En la ganadería lechera, los terneros machos se consideran 'subproductos' porque no pueden producir leche. Se venden para carne de ternera o vacuno en condiciones duras, a menudo separados de sus madres y sometidos a procedimientos dolorosos. Esto muestra que la explotación en la leche afecta tanto a hembras como a machos.",
-      hu: "A tejtermelő farmokon a hím borjakat „mellékterméknek” tekintik, mert nem tudnak tejet adni. Kemény körülmények között adják el borjú- vagy marhahúsnak, gyakran elválasztják őket anyjuktól és fájdalmas eljárásoknak vetik alá. Ez mutatja, hogy a tejipari kizsákmányolás mindkét nemet érinti."
-    },
-    question: {
-      text: {
-        en: "What usually happens to male calves in the dairy industry?",
-        es: "¿Qué suele suceder con los terneros machos en la industria láctea?",
-        hu: "Mi történik általában a hím borjakkal a tejiparban?"
-      },
-      options: {
-        en: [
-          "They become dairy cows later",
-          "They are kept as pets on the farm",
-          "They are allowed to live freely on pastures",
-          "They are sold for veal or beef under harsh conditions"
-        ],
-        es: [
-          "Más tarde se convierten en vacas lecheras",
-          "Se mantienen como mascotas en la granja",
-          "Se les permite vivir libremente en los pastos",
-          "Se venden para ternera o carne bajo condiciones duras"
-        ],
-        hu: [
-          "Később tejtehenekké válnak",
-          "Háziállatként tartják a farmon",
-          "Szabadon élhetnek a legelőkön",
-          "Kemény körülmények között borjú- vagy marhahúsnak adják el őket"
-        ]
-      },
-      correctIndex: 3
-    }
-  },
-  {
-    title: {
-      en: "Male Chicks",
-      es: "Pollitos machos",
-      hu: "Hím csibék"
-    },
-    content: {
-      en: "Male chicks in the egg industry are killed shortly after hatching because they cannot lay eggs and are considered unprofitable. Methods include maceration or gassing. This mass culling highlights how animals are viewed as production units rather than sentient beings.",
-      es: "Los pollitos machos en la industria del huevo son asesinados poco después de la eclosión porque no pueden poner huevos y se consideran no rentables. Los métodos incluyen maceración o gaseado. Esta matanza masiva destaca cómo se considera a los animales unidades de producción y no seres sintientes.",
-      hu: "A tojásiparban a hím csibéket a kikelés után röviddel elpusztítják, mert nem tudnak tojni és nem nyereségesek. Módszerek közé tartozik a darabolás vagy gázosítás. Ez a tömeges leölés kiemeli, hogy az állatokat termelési egységként tekintik, nem érző lényként."
-    },
-    question: {
-      text: {
-        en: "Why are male chicks in the egg industry killed shortly after hatching?",
-        es: "¿Por qué se matan los pollitos machos en la industria del huevo poco después de nacer?",
-        hu: "Miért ölik meg a hím csibéket a tojásiparban a kikelés után röviddel?"
-      },
-      options: {
-        en: [
-          "They cannot lay eggs and are considered unprofitable",
-          "They grow too slowly for meat",
-          "They fight with other chickens",
-          "They are kept for breeding instead"
-        ],
-        es: [
-          "No pueden poner huevos y se consideran no rentables",
-          "Crecen demasiado despacio para carne",
-          "Pelean con otros pollos",
-          "Se mantienen para reproducción"
-        ],
-        hu: [
-          "Nem tudnak tojni és nem nyereségesek",
-          "Túl lassan nőnek húsnak",
-          "Harcolnak más csibékkel",
-          "Helyette tenyésztésre tartják őket"
-        ]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Male vs Female",
-      es: "Machos vs Hembras",
-      hu: "Hím vs Nőstény"
-    },
-    content: {
-      en: "Imagine being born into farming — male animals are often killed or raised under harsh conditions, while females are repeatedly bred, confined, and separated from offspring until slaughter. This scenario highlights the limited choices and suffering imposed on farmed animals.",
-      es: "Imagina nacer en la agricultura: los animales machos a menudo son asesinados o criados en condiciones duras, mientras que las hembras se reproducen repetidamente, se confinan y se separan de sus crías hasta el sacrificio. Este escenario destaca las opciones limitadas y el sufrimiento impuesto a los animales de granja.",
-      hu: "Képzeld el, hogy farmon születsz — a hím állatokat gyakran megölik vagy kemény körülmények között nevelik, míg a nőstényeket ismételten tenyésztik, korlátozzák, és elválasztják utódaiktól a vágásig. Ez a helyzet kiemeli a haszonállatokra kényszerített korlátozott választásokat és szenvedést."
-    },
-    question: {
-      text: {
-        en: "In the farming industry, what are typical fates of male and female animals?",
-        es: "En la industria agrícola, ¿cuáles son los destinos típicos de los animales machos y hembras?",
-        hu: "A farmiparban mik a tipikus sorsok a hím és nőstény állatok számára?"
-      },
-      options: {
-        en: [
-          "Males and females both live free lives on pastures",
-          "Males are often killed or raised for meat; females are repeatedly bred and exploited",
-          "Males become producers of milk or eggs; females are used for meat",
-          "All animals are treated equally and released after birth"
-        ],
-        es: [
-          "Machos y hembras viven libres en los pastos",
-          "Los machos a menudo son sacrificados o criados para carne; las hembras se reproducen y explotan repetidamente",
-          "Los machos producen leche o huevos; las hembras se usan para carne",
-          "Todos los animales son tratados por igual y liberados después del nacimiento"
-        ],
-        hu: [
-          "A hímek és a nőstények szabadon élnek a legelőkön",
-          "A hímeket gyakran megölik vagy húsra nevelik; a nőstényeket ismételten tenyésztik és kizsákmányolják",
-          "A hímek tejet vagy tojást termelnek; a nőstényeket húsra használják",
-          "Minden állatot egyenlően kezelnek és születés után szabadon engednek"
-        ]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Ethics vs Profit",
-      es: "Ética vs Beneficio",
-      hu: "Etika vs Profit"
-    },
-    content: {
-      en: "If you ran a farm, would you prioritize maximizing output or respecting natural behaviors? Competition and profit often push farmers toward unethical practices. This dilemma reflects capitalism’s tension between profit and ethics.",
-      es: "Si dirigieras una granja, ¿priorizarías maximizar la producción o respetar los comportamientos naturales? La competencia y el beneficio a menudo empujan a los agricultores hacia prácticas poco éticas. Este dilema refleja la tensión del capitalismo entre beneficio y ética.",
-      hu: "Ha egy farmot vezetnél, a termelés maximalizálását vagy a természetes viselkedések tiszteletben tartását helyeznéd előtérbe? A verseny és a profit gyakran az etikus gyakorlatoktól eltérő cselekvésre készteti a gazdákat. Ez a dilemma a kapitalizmus profit és etika közötti feszültségét tükrözi."
-    },
-    question: {
-      text: {
-        en: "What ethical tension does this lesson explore?",
-        es: "¿Qué tensión ética explora esta lección?",
-        hu: "Milyen etikai feszültséget vizsgál ez a lecke?"
-      },
-      options: {
-        en: [
-          "Choosing between profit and respecting animals’ natural behaviors",
-          "Deciding which breed of chicken tastes best",
-          "Maximizing milk output without considering ethics",
-          "Only thinking about competition in farming"
-        ],
-        es: [
-          "Elegir entre el beneficio y respetar los comportamientos naturales de los animales",
-          "Decidir qué raza de pollo sabe mejor",
-          "Maximizar la producción de leche sin considerar la ética",
-          "Solo pensar en la competencia en la agricultura"
-        ],
-        hu: [
-          "A profit és az állatok természetes viselkedésének tiszteletben tartása közötti választás",
-          "Dönteni, melyik csirke fajta ízlik a legjobban",
-          "A tejtermelés maximalizálása etika figyelembevétele nélkül",
-          "Csak a versenyre gondolni a farmon"
-        ]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Lives and Suffering",
-      es: "Vidas y Sufrimiento",
-      hu: "Életek és szenvedés"
-    },
-    content: {
-      en: "Roughly 2,340 kcal of chicken meat represents one broiler chicken’s life, and about 15,750 kcal of eggs equals one hen’s life (including the male chick). These numbers reflect deaths only, not suffering, yet they highlight the real impact of our choices. Reflecting on lives lost versus suffering helps us make compassionate decisions.",
-      es: "Aproximadamente 2.340 kcal de carne de pollo representan la vida de un pollo de engorde, y alrededor de 15.750 kcal de huevos equivalen a la vida de una gallina (incluido el pollito macho). Estos números reflejan solo muertes, no sufrimiento, pero destacan el impacto real de nuestras decisiones. Reflexionar sobre vidas perdidas frente a sufrimiento nos ayuda a tomar decisiones compasivas.",
-      hu: "Körülbelül 2 340 kcal csirkehús egy broiler csirke életét jelenti, és kb. 15 750 kcal tojás egy tyúk életét (beleértve a hím csibét is). Ezek a számok csak a halált tükrözik, nem a szenvedést, de kiemelik döntéseink valódi hatását. Az elveszett életek és a szenvedés mérlegelése segít együttérző döntéseket hozni."
-    },
-    question: {
-      text: {
-        en: "What does this lesson encourage us to consider?",
-        es: "¿Qué nos anima a considerar esta lección?",
-        hu: "Mit mérlegelésére ösztönöz ez a lecke?"
-      },
-      options: {
-        en: [
-          "Which animal tastes better",
-          "How to cook eggs efficiently",
-          "The number of lives lost and the suffering caused by our food choices",
-          "Which farm is most efficient"
-        ],
-        es: [
-          "Qué animal sabe mejor",
-          "Cómo cocinar huevos eficientemente",
-          "El número de vidas perdidas y el sufrimiento causado por nuestras elecciones alimentarias",
-          "Qué granja es la más eficiente"
-        ],
-        hu: [
-          "Melyik állat ízlik jobban",
-          "Hogyan főzzük a tojásokat hatékonyan",
-          "Az elveszett életek száma és az élelmiszer-választásaink okozta szenvedés",
-          "Melyik farm a leghatékonyabb"
-        ]
-      },
-      correctIndex: 2
+      correctIndex: 0-3
     }
   },
   {
     title: {
       en: "Debeaking",
-      es: "Recorte de pico",
-      hu: "Csőrmegvágás"
+      es: "Desplumado",
+      hu: "Csőrlevágás"
     },
     content: {
-      en: "Hens in the egg industry are often debeaked — the tip of their beak is removed to prevent pecking in crowded conditions. This is usually done shortly after hatching and often without anesthesia. While it reduces injuries, it causes pain, stress, and limits natural behaviors like pecking and eating.",
-      es: "Las gallinas en la industria del huevo a menudo tienen recortado el pico: se les quita la punta del pico para prevenir picoteos en condiciones de hacinamiento. Esto generalmente se realiza poco después de la eclosión y a menudo sin anestesia. Aunque reduce lesiones, causa dolor, estrés y limita comportamientos naturales como picotear y comer.",
-      hu: "A tojásiparban a tyúkok csőrét gyakran levágják — a csőr hegyét eltávolítják, hogy megakadályozzák a csipkedést zsúfolt körülmények között. Ezt általában a kikelés után végzik, gyakran érzéstelenítés nélkül. Bár csökkenti a sérüléseket, fájdalmat és stresszt okoz, valamint korlátozza a természetes viselkedéseket, például a csipkedést és az evést."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why are hens often debeaked in the egg industry?",
-        es: "¿Por qué a menudo se les recorta el pico a las gallinas en la industria del huevo?",
-        hu: "Miért vágják le gyakran a tyúkok csőrét a tojásiparban?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "To prevent injuries from pecking in crowded conditions",
-          "To make their beaks look nicer",
-          "To help them lay more eggs",
-          "To make them grow faster"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Para prevenir lesiones por picoteo en condiciones de hacinamiento",
-          "Para que sus picos se vean mejor",
-          "Para ayudarlas a poner más huevos",
-          "Para que crezcan más rápido"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "A sérülések megelőzésére zsúfolt körülmények között",
-          "Hogy csőrük szebb legyen",
-          "Hogy több tojást rakjanak",
-          "Hogy gyorsabban nőjenek"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Clothing Choices",
-      es: "Elecciones de ropa",
-      hu: "Ruhaválasztás"
+      en: "Masks",
+      es: "Máscaras",
+      hu: "Maszkok"
     },
     content: {
-      en: "Many people reject fur, yet leather, wool, and down are widely accepted. Considering the impact of these choices on sentient beings encourages alternatives like plant-based or synthetic materials, aligning our actions with compassion and reducing harm.",
-      es: "Muchas personas rechazan la piel, pero el cuero, la lana y el plumón son ampliamente aceptados. Considerar el impacto de estas elecciones sobre seres sintientes fomenta alternativas como materiales vegetales o sintéticos, alineando nuestras acciones con la compasión y reduciendo el daño.",
-      hu: "Sokan elutasítják a szőrmét, de a bőrt, gyapjút és pehelyt széles körben elfogadják. Ha mérlegeljük ezen választások hatását az érző lényekre, ösztönzi a növényi vagy szintetikus anyagok használatát, összehangolva tetteinket az együttérzéssel és csökkentve a kárt."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What ethical consideration does this lesson highlight regarding clothing?",
-        es: "¿Qué consideración ética destaca esta lección respecto a la ropa?",
-        hu: "Milyen etikai szempontot emel ki ez a lecke a ruházattal kapcsolatban?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "The style and fashion trends of animal products",
-          "How animals are exploited in the production of leather, wool, and down",
-          "Which clothing brand is the cheapest",
-          "How to wash clothes more efficiently"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "El estilo y las tendencias de moda de los productos animales",
-          "Cómo se explotan los animales en la producción de cuero, lana y plumón",
-          "Qué marca de ropa es la más barata",
-          "Cómo lavar la ropa más eficientemente"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Az állati termékek stílusa és divatja",
-          "Hogyan használják ki az állatokat a bőr, gyapjú és pehely előállításához",
-          "Melyik ruhamárka a legolcsóbb",
-          "Hogyan mossuk a ruhákat hatékonyabban"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Animals as Entertainment",
-      es: "Animales como entretenimiento",
-      hu: "Állatok szórakoztatásra"
+      en: "Fate of the males",
+      es: "Destino de los machos",
+      hu: "A hímek sorsa"
     },
     content: {
-      en: "Zoos and circuses often use animals for entertainment rather than recognizing their needs and feelings. Animals may be kept in small enclosures, separated from their habitats, or trained through stress. Reflecting on this encourages seeking alternatives that respect animal welfare.",
-      es: "Los zoológicos y circos a menudo usan animales para entretenimiento en lugar de reconocer sus necesidades y sentimientos. Los animales pueden estar en recintos pequeños, separados de sus hábitats o entrenados mediante estrés. Reflexionar sobre esto fomenta la búsqueda de alternativas que respeten el bienestar animal.",
-      hu: "Az állatkertek és cirkuszok gyakran az állatokat szórakoztatásra használják, ahelyett hogy figyelembe vennék szükségleteiket és érzéseiket. Az állatokat kis kifutókban tarthatják, elválaszthatják élőhelyüktől, vagy stressz révén képezhetik. Ennek mérlegelése ösztönöz alternatívák keresésére, amelyek tiszteletben tartják az állatok jólétét."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What is the ethical concern about zoos and circuses?",
-        es: "¿Cuál es la preocupación ética sobre los zoológicos y circos?",
-        hu: "Mi az etikai aggály az állatkertek és cirkuszok esetében?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "How to get the best seats for a show",
-          "That animals are used for entertainment and profit rather than their well-being",
-          "Which animal performs the hardest tricks",
-          "How to take selfies with animals"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Cómo conseguir los mejores asientos para un espectáculo",
-          "Que los animales se usan para entretenimiento y beneficio en lugar de su bienestar",
-          "Qué animal realiza los trucos más difíciles",
-          "Cómo tomarse selfies con animales"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Hogyan lehet a legjobb helyeket szerezni egy előadáshoz",
-          "Az állatokat szórakoztatásra és profitra használják, nem a jólétük érdekében",
-          "Melyik állat végzi a legnehezebb trükköket",
-          "Hogyan készítsünk szelfit az állatokkal"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Veganism: Beyond Diet",
-      es: "Veganismo: Más allá de la dieta",
-      hu: "Vegán életmód: Több mint étrend"
+      en: "Methods of slaughter 1.",
+      es: "Métodos de sacrificio 1.",
+      hu: "Kivégzési módszerek 1."
     },
     content: {
-      en: "Veganism seeks to avoid all forms of animal exploitation and cruelty, not just dietary choices. It excludes meat, dairy, eggs, leather, fur, silk, wool, and cosmetics tested on animals. The main goal is to protect animals and promote their welfare in every aspect of life.",
-      es: "El veganismo busca evitar todas las formas de explotación y crueldad hacia los animales, no solo las decisiones dietéticas. Excluye carne, lácteos, huevos, cuero, piel, seda, lana y cosméticos probados en animales. El objetivo principal es proteger a los animales y promover su bienestar en todos los aspectos de la vida.",
-      hu: "A vegánság célja minden állatkizsákmányolás és kegyetlenség elkerülése, nem csak az étrendi választások. Kizárja a húst, tejtermékeket, tojást, bőrt, szőrmét, selymet, gyapjút és az állatokon tesztelt kozmetikumokat. Fő célja az állatok védelme és jólétük előmozdítása az élet minden területén."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What is the main purpose of veganism?",
-        es: "¿Cuál es el objetivo principal del veganismo?",
-        hu: "Mi a vegánság fő célja?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "To eat only plant-based foods",
-          "To avoid harming animals and reduce exploitation",
-          "To follow a healthy diet plan"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Comer solo alimentos de origen vegetal",
-          "Evitar dañar a los animales y reducir la explotación",
-          "Seguir un plan de dieta saludable"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Csak növényi alapú ételek fogyasztása",
-          "Az állatok bántásának elkerülése és a kizsákmányolás csökkentése",
-          "Egészséges étrend követése"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Modern Survival vs Tradition",
-      es: "Supervivencia moderna vs tradición",
-      hu: "Modern túlélés vs hagyomány"
+      en: "Methods of slaughter 2.",
+      es: "Métodos de sacrificio 2.",
+      hu: "Kivégzési módszerek 2."
     },
     content: {
-      en: "While humans historically ate animals to survive, today we can easily obtain food without killing animals. True natural living means allowing animals to live freely, rather than confining them in cages or genetically modifying them for consumption.",
-      es: "Aunque históricamente los humanos comían animales para sobrevivir, hoy podemos obtener alimentos fácilmente sin matar animales. Vivir de manera verdaderamente natural significa permitir que los animales vivan libres, en lugar de confinarlos en jaulas o modificarlos genéticamente para su consumo.",
-      hu: "Bár az emberek történelmileg állatokat ettek a túlélésért, ma már könnyen hozzájuthatunk élelemhez állatok megölése nélkül. Az igazi természetes élet azt jelenti, hogy az állatok szabadon élhetnek, nem pedig hogy ketrecbe zárjuk vagy genetikai módosítással készítsük őket fogyasztásra."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why is eating animals no longer considered necessary for survival today?",
-        es: "¿Por qué ya no se considera necesario comer animales para sobrevivir hoy?",
-        hu: "Miért nem szükséges ma már állatokat enni a túléléshez?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because humans evolved to eat only plants",
-          "Because we can obtain food easily without killing animals",
-          "Because animals in the wild no longer exist"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque los humanos evolucionaron para comer solo plantas",
-          "Porque podemos obtener alimentos fácilmente sin matar animales",
-          "Porque los animales en la naturaleza ya no existen"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert az emberek kizárólag növényeket esznek evolúciósan",
-          "Mert könnyen hozzájuthatunk ételhez állatok megölése nélkül",
-          "Mert a vadon élő állatok már nem léteznek"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Plant Death vs Animal Death",
-      es: "Muerte de plantas vs muerte de animales",
-      hu: "Növényhalál vs állathalál"
+      en: "Being a male calf in the dairy industry",
+      es: "Ser un ternero macho en la industria láctea",
+      hu: "A hím tehenek szerepe a tejipari iparban"
     },
     content: {
-      en: "Some argue eating plants causes crop deaths, so veganism isn’t better. In reality, feeding animals requires far more crops than eating plants directly. About 77% of agricultural land grows animal feed, providing only 18% of global calories. Producing meat causes roughly 4.3 times more crop deaths per calorie than consuming plants directly.",
-      es: "Algunos argumentan que comer plantas causa muertes de cultivos, por lo que el veganismo no es mejor. En realidad, alimentar animales requiere muchos más cultivos que comer plantas directamente. Alrededor del 77% de la tierra agrícola produce alimento para animales, proporcionando solo el 18% de las calorías globales. Producir carne causa aproximadamente 4,3 veces más muertes de cultivos por caloría que consumir plantas directamente.",
-      hu: "Néhányan azt állítják, hogy a növények fogyasztása termésveszteséget okoz, ezért a vegánság nem jobb. Valójában az állatok etetése sokkal több növényt igényel, mint a növények közvetlen fogyasztása. A mezőgazdasági terület körülbelül 77%-án állati takarmányt termelnek, amely csupán a világ kalóriáinak 18%-át biztosítja. A hús előállítása kalóriánként kb. 4,3-szor több növényhalált okoz, mint a növények közvetlen fogyasztása."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why does eating animals indirectly cause more crop deaths?",
-        es: "¿Por qué comer animales causa indirectamente más muertes de cultivos?",
-        hu: "Miért okoz az állatok fogyasztása közvetve több növényhalált?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because animals eat large amounts of feed that could be eaten directly by humans",
-          "Because plants are not nutritious enough for humans",
-          "Because crops naturally die when humans harvest them"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque los animales comen grandes cantidades de alimento que podrían ser consumidas directamente por los humanos",
-          "Porque las plantas no son lo suficientemente nutritivas para los humanos",
-          "Porque los cultivos mueren naturalmente cuando los humanos los cosechan"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert az állatok nagy mennyiségű takarmányt esznek, amit az emberek közvetlenül fogyaszthatnának",
-          "Mert a növények nem elég táplálóak az emberek számára",
-          "Mert a termények természetesen elpusztulnak a betakarításkor"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Avoidable Suffering",
-      es: "Sufrimiento evitable",
-      hu: "Elkerülhető szenvedés"
+      en: "Selective breeding",
+      es: "Selección reproductiva",
+      hu: "Kiválasztott szaporítás"
     },
     content: {
-      en: "Some say animal suffering is natural, so human intervention doesn’t matter. While wild animals experience suffering, industrial farming causes far more intense and avoidable suffering. Humans have an ethical responsibility to reduce unnecessary harm.",
-      es: "Algunos dicen que el sufrimiento animal es natural, por lo que la intervención humana no importa. Aunque los animales salvajes experimentan sufrimiento, la ganadería industrial causa un sufrimiento mucho más intenso y evitable. Los humanos tienen la responsabilidad ética de reducir el daño innecesario.",
-      hu: "Sokan azt mondják, hogy az állatok szenvedése természetes, így az emberi beavatkozás nem számít. Bár a vadon élő állatok szenvednek, az ipari állattartás sokkal intenzívebb és elkerülhető szenvedést okoz. Az embereknek etikai felelősségük csökkenteni a szükségtelen kárt."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why is human-caused animal suffering considered different from natural suffering?",
-        es: "¿Por qué se considera diferente el sufrimiento animal causado por humanos al sufrimiento natural?",
-        hu: "Miért tekintjük másnak az ember által okozott állati szenvedést a természetes szenvedésnél?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because animals in nature never suffer",
-          "Because it is larger in scale and avoidable",
-          "Because humans cannot understand animal pain"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque los animales en la naturaleza nunca sufren",
-          "Porque es de mayor escala y evitable",
-          "Porque los humanos no pueden entender el dolor animal"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert a természetes állatok soha nem szenvednek",
-          "Mert nagyobb léptékű és elkerülhető",
-          "Mert az emberek nem értik az állati fájdalmat"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Extreme Choices",
-      es: "Opciones extremas",
-      hu: "Extrém választások"
+      en: "Holocaust",
+      es: "El Holocausto",
+      hu: "A holokauszt"
     },
     content: {
-      en: "Veganism may seem inconvenient, but continuing animal agriculture causes immense harm. We feed 70 billion animals yearly while nearly 800 million people go hungry. Continuing to consume animals may actually be the more extreme approach due to inefficiency and unnecessary suffering.",
-      es: "El veganismo puede parecer inconveniente, pero continuar con la ganadería causa un daño inmenso. Alimentamos a 70 mil millones de animales al año mientras casi 800 millones de personas pasan hambre. Continuar consumiendo animales puede ser en realidad el enfoque más extremo debido a la ineficiencia y el sufrimiento innecesario.",
-      hu: "A vegánság kényelmetlennek tűnhet, de az állattartás folytatása hatalmas kárt okoz. Évente 70 milliárd állatot etetünk, miközben közel 800 millió ember éhezik. Az állatok fogyasztásának folytatása valójában extrémebb megközelítés lehet a hatékonyság hiánya és a szükségtelen szenvedés miatt."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why might continuing to eat animals be considered more extreme than going vegan?",
-        es: "¿Por qué continuar comiendo animales podría considerarse más extremo que volverse vegano?",
-        hu: "Miért tekinthető az állatok fogyasztásának folytatása extrémebbnek, mint a vegán életmód?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because vegan food is tastier",
-          "Because people like animals more than plants",
-          "Because it causes more unnecessary harm and inefficiency"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque la comida vegana es más sabrosa",
-          "Porque a la gente le gustan más los animales que las plantas",
-          "Porque causa más daño innecesario e ineficiencia"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert a vegán étel ízletesebb",
-          "Mert az emberek jobban szeretik az állatokat, mint a növényeket",
-          "Mert több szükségtelen kárt és hatékonysági hiányt okoz"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 2
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Ethical Equality",
-      es: "Igualdad ética",
-      hu: "Etikai egyenlőség"
+      en: "Exploiting the female body",
+      es: "Aprovechamiento del cuerpo femenino",
+      hu: "A női test kihasználása"
     },
     content: {
-      en: "Some argue animals aren’t equal to humans. However, humans accept differences in abilities among people, yet pigs — highly intelligent animals — are still raised for food. Ethically, humans and animals are the same in what matters: both experience fears, feelings, and suffering.",
-      es: "Algunos argumentan que los animales no son iguales a los humanos. Sin embargo, los humanos aceptan diferencias en habilidades entre personas, y aun así los cerdos — animales altamente inteligentes — siguen siendo criados para alimento. Éticamente, humanos y animales son iguales en lo que importa: ambos experimentan miedos, sentimientos y sufrimiento.",
-      hu: "Néhányan azt állítják, hogy az állatok nem egyenlők az emberekkel. Az emberek azonban elfogadják a képességek közötti különbségeket az emberek között, mégis a disznókat — rendkívül intelligens állatokat — továbbra is élelem céljából tenyésztik. Etikailag az emberek és az állatok ugyanazok abban, ami számít: mindkettő félelmet, érzéseket és szenvedést él át."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why are humans and animals considered equal in important ways?",
-        es: "¿Por qué se consideran iguales los humanos y los animales en aspectos importantes?",
-        hu: "Miért tekinthetők az emberek és az állatok egyenlőnek fontos szempontból?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because animals are smarter than humans",
-          "Because both experience fears, feelings, and suffering",
-          "Because humans are naturally stronger"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque los animales son más inteligentes que los humanos",
-          "Porque ambos experimentan miedos, sentimientos y sufrimiento",
-          "Porque los humanos son naturalmente más fuertes"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert az állatok okosabbak, mint az emberek",
-          "Mert mindketten félelmet, érzéseket és szenvedést élnek át",
-          "Mert az emberek természetesen erősebbek"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Individual Impact",
-      es: "Impacto individual",
-      hu: "Egyéni hatás"
+      en: "Egg overproduction",
+      es: "Sobrerproducción de huevos",
+      hu: "Tojásfelesleg"
     },
     content: {
-      en: "Some think 'a little meat won’t hurt.' While one person seems insignificant, collective behavior has enormous effects. Reducing or eliminating animal products collectively can drastically improve animal welfare, climate impact, and resource use. Every choice matters.",
-      es: "Algunos piensan 'un poco de carne no hará daño.' Aunque una persona parezca insignificante, el comportamiento colectivo tiene enormes efectos. Reducir o eliminar productos animales colectivamente puede mejorar drásticamente el bienestar animal, el impacto climático y el uso de recursos. Cada elección importa.",
-      hu: "Sokan azt gondolják: „egy kis hús nem árt.” Bár egy ember jelentéktelennek tűnik, a közös cselekvés hatalmas következményekkel jár. Az állati termékek csökkentése vagy elhagyása közösen drasztikusan javíthatja az állatok jólétét, a klímahatást és az erőforrás-használatot. Minden döntés számít."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why does even small individual meat consumption matter?",
-        es: "¿Por qué importa incluso un pequeño consumo individual de carne?",
-        hu: "Miért számít még a kis egyéni húsfogyasztás is?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because collective choices add up and create large impact",
-          "Because one person cannot survive without meat",
-          "Because plants can replace meat immediately without planning"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque las decisiones colectivas se suman y generan un gran impacto",
-          "Porque una persona no puede sobrevivir sin carne",
-          "Porque las plantas pueden reemplazar la carne inmediatamente sin planificación"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert a közös döntések összeadódnak és nagy hatást gyakorolnak",
-          "Mert egy ember nem élhet hús nélkül",
-          "Mert a növények azonnal helyettesíthetik a húst terv nélkül"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Human Dominance",
-      es: "Dominio humano",
-      hu: "Emberi dominancia"
+      en: "Rapid growth",
+      es: "Crecimiento rápido",
+      hu: "Gyors növekedés"
     },
     content: {
-      en: "Humans dominate 36% of all mammals on Earth, including livestock, pets, and urban-adapted species. Farm animals make up 60%, and only 4% are truly wild. This shows how human activity has reshaped mammal populations and left little space for wildlife.",
-      es: "Los humanos dominan el 36% de todos los mamíferos en la Tierra, incluyendo ganado, mascotas y especies adaptadas a la ciudad. Los animales de granja representan el 60%, y solo el 4% son verdaderamente salvajes. Esto muestra cómo la actividad humana ha remodelado las poblaciones de mamíferos y dejado poco espacio para la vida silvestre.",
-      hu: "Az emberek az összes emlős 36%-át uralják a Földön, beleértve a háziállatokat, házikedvenceket és városhoz alkalmazkodott fajokat. Az állatok 60%-a háziállat, és csak 4% valóban vad. Ez mutatja, hogyan alakította át az emberi tevékenység az emlőspopulációkat, és hagyott kevés teret a vadon élő állatoknak."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What percentage of mammals are truly wild?",
-        es: "¿Qué porcentaje de mamíferos son verdaderamente salvajes?",
-        hu: "Az emlősök hány százaléka valóban vad?"
-      },
-      options: {
-        en: ["4%", "36%", "60%"],
-        es: ["4%", "36%", "60%"],
-        hu: ["4%", "36%", "60%"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Mammal Extinction",
-      es: "Extinción de mamíferos",
-      hu: "Emlősök kihalása"
-    },
-    content: {
-      en: "About 25% of mammal species are currently threatened with extinction, according to the IUCN. Iconic species like primates, big cats, and elephants get attention, but small rodents and bats are equally important for ecosystems. Protecting all mammals matters.",
-      es: "Según la UICN, aproximadamente el 25% de las especies de mamíferos están actualmente amenazadas de extinción. Especies icónicas como primates, grandes felinos y elefantes reciben atención, pero pequeños roedores y murciélagos son igualmente importantes para los ecosistemas. Proteger a todos los mamíferos importa.",
-      hu: "A becslések szerint az emlősfajok körülbelül 25%-a veszélyeztetett a kihalással. Az ikonikus fajok, mint a főemlősök, a nagymacskák és az elefántok nagy figyelmet kapnak, de a kis rágcsálók és denevérek ugyanolyan fontosak az ökoszisztémák számára. Minden emlős védelme számít."
-    },
-    question: {
-      text: {
-        en: "What percentage of mammal species are currently threatened with extinction?",
-        es: "¿Qué porcentaje de especies de mamíferos está actualmente en peligro de extinción?",
-        hu: "Az emlősfajok hány százaléka van jelenleg a kihalás veszélyében?"
-      },
-      options: {
-        en: ["10%", "25%", "50%"],
-        es: ["10%", "25%", "50%"],
-        hu: ["10%", "25%", "50%"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Antibiotics in Farming",
-      es: "Antibióticos en la agricultura",
-      hu: "Antibiotikumok az állattartásban"
-    },
-    content: {
-      en: "Around 70% of global antibiotic supply is used in livestock farming, not in humans. Antibiotics promote growth and prevent disease in crowded conditions, but this contributes to antibiotic resistance—a major public health issue.",
-      es: "Alrededor del 70% del suministro mundial de antibióticos se utiliza en la ganadería, no en humanos. Los antibióticos promueven el crecimiento y previenen enfermedades en condiciones de hacinamiento, pero esto contribuye a la resistencia a los antibióticos, un problema importante de salud pública.",
-      hu: "A globális antibiotikum-készlet kb. 70%-át állattartásban használják, nem emberekben. Az antibiotikumok elősegítik a növekedést és megelőzik a betegségeket zsúfolt körülmények között, de ez hozzájárul az antibiotikum-rezisztenciához – egy súlyos közegészségügyi problémához."
-    },
-    question: {
-      text: {
-        en: "What percentage of antibiotics is used in livestock farming?",
-        es: "¿Qué porcentaje de antibióticos se utiliza en la ganadería?",
-        hu: "Az antibiotikumok hány százalékát használják az állattartásban?"
-      },
-      options: {
-        en: ["70%", "30%", "50%"],
-        es: ["70%", "30%", "50%"],
-        hu: ["70%", "30%", "50%"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Cage Confinement",
-      es: "Confinamiento en jaulas",
-      hu: "Ketrecbe zárás"
-    },
-    content: {
-      en: "Many farmed animals are kept in extremely small cages, unable to turn around or move freely. This raises ethical questions about whether severe confinement is worse than slaughter itself.",
-      es: "Muchos animales de granja se mantienen en jaulas extremadamente pequeñas, incapaces de girar o moverse libremente. Esto plantea preguntas éticas sobre si el confinamiento severo es peor que el sacrificio en sí.",
-      hu: "Sok haszonállatot rendkívül kicsi ketrecekben tartanak, nem tudnak megfordulni vagy szabadon mozogni. Ez etikai kérdéseket vet fel arról, hogy a szigorú bezártság rosszabb-e, mint maga a leölés."
-    },
-    question: {
-      text: {
-        en: "What ethical issue arises from very small cages?",
-        es: "¿Qué problema ético surge de las jaulas muy pequeñas?",
-        hu: "Milyen etikai kérdés merül fel a nagyon kicsi ketrecek kapcsán?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Animals become smarter",
-          "Severe confinement limits movement",
-          "Cages improve health"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Los animales se vuelven más inteligentes",
-          "El confinamiento severo limita el movimiento",
-          "Las jaulas mejoran la salud"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Az állatok okosabbak lesznek",
-          "A szigorú bezártság korlátozza a mozgást",
-          "A ketrecek javítják az egészséget"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Higher Cost Ethics",
-      es: "Ética de mayor costo",
-      hu: "Magasabb költség etikai kérdése"
+      en: "Genetic manipulation",
+      es: "Manipulación genética",
+      hu: "Genetikai módosítás"
     },
     content: {
-      en: "Companies that provide better animal conditions cannot compete with conventional farms due to higher costs. This highlights the ethical question: should profit outweigh the well-being of sentient beings?",
-      es: "Las empresas que proporcionan mejores condiciones para los animales no pueden competir con las granjas convencionales debido a los mayores costos. Esto destaca la pregunta ética: ¿debería la ganancia prevalecer sobre el bienestar de los seres sensibles?",
-      hu: "Azok a cégek, amelyek jobb állati körülményeket biztosítanak, nem versenyezhetnek a hagyományos gazdaságokkal a magasabb költségek miatt. Ez kiemeli az etikai kérdést: vajon a profit felülírhatja-e az érző lények jólétét?"
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why can't companies with better animal conditions compete?",
-        es: "¿Por qué no pueden competir las empresas con mejores condiciones para los animales?",
-        hu: "Miért nem versenyezhetnek a jobb állati körülményeket biztosító cégek?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "They don't care about animals",
-          "They produce less milk",
-          "Higher costs than industrial farms"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "No se preocupan por los animales",
-          "Producen menos leche",
-          "Costos más altos que las granjas industriales"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Nem törődnek az állatokkal",
-          "Kevesebb tejet termelnek",
-          "Magasabb költségek, mint az ipari gazdaságoknál"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 2
+      correctIndex: 0-3
     }
   },
-//More Lessons here
+  {
+    title: {
+      en: "Profit versus life",
+      es: "Beneficio en contra de vida",
+      hu: "Haszon az élet ellen"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Ethics versus profit",
+      es: "Etica en contra de beneficio",
+      hu: "Etiika a profit ellen"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Capitalism in animal agriculture",
+      es: "El capitalismo en la agricultura animal",
+      hu: "A kapitalizmus az állattenyésztésben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Free-range challenges",
+      es: "Desafíos de libre pastoreo",
+      hu: "A szabadtartás kihívásai"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Death or suffering?",
+      es: "Muerte o sufrimiento?",
+      hu: "Halál vagy szenvedés?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Value of lives",
+      es: "Valor de las vidas",
+      hu: "Életek értéke"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "An extreme choice",
+      es: "Una elección extrema",
+      hu: "Egy extrém választás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Misleading labels",
+      es: "Etiquetas engañosas",
+      hu: "Csalóka címkék"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "What do labels mean?",
+      es: "¿Qué significan las etiquetas?",
+      hu: "Mit jelentenek a címkék?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Trustworthiness",
+      es: "Fiabilidad",
+      hu: "Megbízhatóság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Our ancestors did it",
+      es: "Nuestros ancestros lo hicieron",
+      hu: "Az őseink így csinálták"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Bible",
+      es: "Biblia",
+      hu: "Biblia"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Islam",
+      es: "Islam",
+      hu: "Iszlám"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Buddhism",
+      es: "Budismo",
+      hu: "Buddhizmus"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Plants feel pain 1.",
+      es: "Las plantas sienten dolor 1.",
+      hu: "A növények éreznek fájdalmat 1."
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Plants feel pain 2.",
+      es: "Las plantas sienten dolor 2.",
+      hu: "A növények éreznek fájdalmat 2."
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Plants feel pain 3.",
+      es: "Las plantas sienten dolor 3.",
+      hu: "A növények éreznek fájdalmat 3."
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "If the animal had a good life...",
+      es: "Si el animal hubiera tenido una buena vida...",
+      hu: "Ha a állatnak jó élete volt..."
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Eating the less intelligent",
+      es: "Comiendo a los menos inteligentes",
+      hu: "A kevésbé intelligens élőlények fogyasztása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "'I would never kill an animal'",
+      es: "'Nunca mataría a un animal'",
+      hu: "'Sosem ölnék meg egy állatot'"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "'I can't watch graphic videos'",
+      es: "'No puedo ver videos gráficos'",
+      hu: "'Nem bírok megnézni durva videókat'"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Loving animals",
+      es: "Amando a los animales",
+      hu: "Szeretni az állatokat"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Being against animal abuse",
+      es: "Siendo en contra del abuso animal",
+      hu: "Ellenezni az állatkínzást"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Out of sight, out of mind?",
+      es: "Fuera de vista, fuera de mente?",
+      hu: "Ha nem látjuk, nem gondolunk rá?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Killing for pleasure",
+      es: "Matar por placer",
+      hu: "Gyilkolás élvezetből"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Speciesism",
+      es: "Especiesismo",
+      hu: "Fajmegkülönböztetés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Circus",
+      es: "Circo",
+      hu: "Cirkusz"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Zoos",
+      es: "Zoológicos",
+      hu: "Állatkertek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Pets",
+      es: "Mascotas",
+      hu: "Háziállatok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cosmetics",
+      es: "Cosméticos",
+      hu: "Kozmetikumok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Experiments",
+      es: "Experimentos",
+      hu: "Kísérletek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "What veganism is?",
+      es: "¿Qué es el veganismo?",
+      hu: "Mi az a véganizmus?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Doing our bests",
+      es: "Haciendo nuestro mejor esfuerzo",
+      hu: "Megteszünk mindent, amit tudunk"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Leather and fur",
+      es: "Cuero y piel",
+      hu: "Bőr és gyapjú"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Leather production",
+      es: "Producción de cuero",
+      hu: "Bőrtermelés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Wool",
+      es: "Lana",
+      hu: "Gyapjú"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Human starvation",
+      es: "Inanición humana",
+      hu: "Emberi éhezés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Buying or adapting?",
+      es: "¿Comprar o adaptar?",
+      hu: "Vásárolni vagy alkalmazni?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "About pet food",
+      es: "Sobre la comida para mascotas",
+      hu: "Az állateledelekről"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Feeding pets",
+      es: "Alimentando a las mascotas",
+      hu: "Háziállatok táplálása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Are dogs carnivores?",
+      es: "¿Los perros son carnívoros?",
+      hu: "A kutyák húsevők?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Vegan dogs",
+      es: "Perros veganos",
+      hu: "Végan kutyák"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cats - how to feed them?",
+      es: "Gatos - ¿cómo alimentarlos?",
+      hu: "Macska - hogyan tápláljuk?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Individual impact on a plant-based diet",
+      es: "Impacto individual en una dieta basada en plantas",
+      hu: "Az egyéni hatás egy növényi alapú étrendre"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Donations",
+      es: "Donaciones",
+      hu: "Adományok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Understanding behaviour - Comfort",
+      es: "Entendiendo el comportamiento - Comodidad",
+      hu: "Viselkedés megértése - Kényelem"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Understanding behaviour - New perspectives",
+      es: "Entendiendo el comportamiento - Nuevas perspectivas",
+      hu: "Viselkedés megértése - Új perspektívák"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Understanding behaviour - Challenge views",
+      es: "Entendiendo el comportamiento - Desafiando perspectivas",
+      hu: "Viselkedés megértése - Kihívások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Masculinity - a real men eat meat?",
+      es: "La masculinidad - ¿los hombres reales comen carne?",
+      hu: "A fériasság - az igazi férfiak esznek húst?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Short term memory of chimpanzees",
+      es: "Memoria de corto plazo de los chimpancés",
+      hu: "A csimpánzok rövidtávú memóriája"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Heroism of dogs",
+      es: "Heroísmo de los perros",
+      hu: "A kutyák hősiessége"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "How to express love - cats",
+      es: "Cómo expresar amor - gatos",
+      hu: "Hogyan mutassunk szeretetet - macskák"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: Ownership",
+      es: "La esclavitud: Propiedad",
+      hu: "A rabszolgaság: Tulajdonlás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: Selective breeding",
+      es: "La esclavitud: Cría selectiva",
+      hu: "A rabszolgaság: Kiválasztott szaporítás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: Family separation",
+      es: "La esclavitud: Separación de familias",
+      hu: "A rabszolgaság: Családi elválasztás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: Masks",
+      es: "La esclavitud: Máscaras",
+      hu: "A rabszolgaság: Maszkok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: Labeling",
+      es: "Esclavitud: Etiquetado",
+      hu: "A rabszolgaság: Címkézés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: punishment as control",
+      es: "La esclavitud: Castigo como control",
+      hu: "A rabszolgaság: Bűntetés mint irányítás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Slavery: Denial of suffering",
+      es: "La esclavitud: Negación del sufrimiento",
+      hu: "A rabszolgaság: A szenvedés megtagadása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Extinctions",
+      es: "Extinciones",
+      hu: "Kihalások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "What animals do we care about?",
+      es: "¿Qué animales nos importan?",
+      hu: "Mely állatok fontosak számunkra?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Threatened by extinction",
+      es: "Amenazados por la extinción",
+      hu: "Veszélyeztetett"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "How many species are in danger",
+      es: "¿Cuántas especies están en peligro?",
+      hu: "Hány faj van veszélyben?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Mass extinction",
+      es: "Extinción en masa",
+      hu: "Tömeges kihalás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Northern white rhinoceros",
+      es: "Rinoceronte blanco del norte",
+      hu: "Észak-egyeni fehér rinocéros"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Baiji",
+      es: "Baiji",
+      hu: "Baiji"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Amur leopard",
+      es: "Leopardo de Amur",
+      hu: "Amuri leopárd"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Mountain gorilla",
+      es: "Gorila de montaña",
+      hu: "Hegyies gorilla"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Sumatrian tiger",
+      es: "Tigre de Sumatra",
+      hu: "Sumatrai tigris"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "African forest elephant",
+      es: "Elefante de la selva africana",
+      hu: "Afrikai erdő elefánt"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Vaquita",
+      es: "Vaquita",
+      hu: "Vaquita"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Javan rhinoceros",
+      es: "Rinoceronte de Java",
+      hu: "Jávai rinocéros"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "What can we do?",
+      es: "¿Qué podemos hacer?",
+      hu: "Mit tehetünk?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
 {
   title: {
     en: "🔄 Review a Lesson",
@@ -9513,1213 +12741,3333 @@ export const extralessonsData = {
   earth: [
   {
     title: {
-      en: "Global Temperature Rise",
-      es: "Aumento de la temperatura global",
-      hu: "A globális hőmérséklet emelkedése"
+      en: "Triple planetary crisis",
+      es: "Triple crisis planetaria",
+      hu: "Hármas planetáris válság"
     },
     content: {
-      en: "Since 1970, the Earth's average surface temperature has risen rapidly. By 2024, it was about 1.46°C above pre-industrial levels, making it the warmest year on record. Without action, temperatures could rise 4.5–5°C by 2100, causing severe climate impacts. Immediate reductions in greenhouse gas emissions are critical.",
-      es: "Desde 1970, la temperatura media de la superficie terrestre ha aumentado rápidamente. En 2024, se situó aproximadamente 1,46 °C por encima de los niveles preindustriales, convirtiéndose en el año más cálido registrado. Sin medidas, la temperatura podría aumentar entre 4,5 y 5 °C para 2100, provocando graves impactos climáticos. Reducir de inmediato las emisiones de gases de efecto invernadero es crucial.",
-      hu: "1970 óta a Föld átlagos felszíni hőmérséklete gyorsan emelkedik. 2024-re körülbelül 1,46 °C-kal haladta meg az iparosodás előtti szintet, ezzel ez lett a valaha mért legmelegebb év. Beavatkozás nélkül a hőmérséklet 2100-ra 4,5–5 °C-kal is emelkedhet, súlyos éghajlati következményeket okozva. Az üvegházhatású gázok kibocsátásának azonnali csökkentése kulcsfontosságú."
+      en: "Environmental issues are often grouped into three main pillars.\n\nThese pillars help us understand the biggest areas where human activity affects the planet.\n\nThe three main pillars are:\n\nClimate change\nBiodiversity loss\nPollution\n\nIn the next lessons, we are going to explore each of them in more detail and understand how they are connected.",
+      es: "Los problemas ambientales a menudo se agrupan en tres pilares principales\n\nEstos pilares nos ayudan a entender las áreas más importantes en las que la actividad humana afecta al planeta.\n\nLos tres pilares principales son:\n\nCambio climático\nPérdida de biodiversidad\nContaminación\n\nEn las próximas lecciones, vamos a explorar cada uno de ellos con más detalle y entender cómo están conectados.",
+      hu: "A környezeti problémákat gyakran három fő pillérbe soroljuk.\n\nEzek a pillérek segítenek megérteni azokat a legfontosabb területeket, ahol az emberi tevékenység hatással van a bolygóra.\n\nA három fő pillér:\n\nÉghajlatváltozás\nBiodiverzitás csökkenése\nSzennyezés\n\nA következő leckékben mindegyiket részletesebben fogjuk megvizsgálni, és megértjük, hogyan kapcsolódnak egymáshoz."
     },
     question: {
       text: {
-        en: "By approximately how much has the Earth's average surface temperature increased since the pre-industrial era?",
-        es: "¿En cuánto ha aumentado aproximadamente la temperatura media de la superficie terrestre desde la era preindustrial?",
-        hu: "Körülbelül mennyivel nőtt a Föld átlagos felszíni hőmérséklete az iparosodás előtti korszak óta?"
-      },
-      options: {
-        en: ["About 0.5°C", "About 1.5°C", "About 3°C"],
-        es: ["Aproximadamente 0,5 °C", "Aproximadamente 1,5 °C", "Aproximadamente 3 °C"],
-        hu: ["Körülbelül 0,5 °C", "Körülbelül 1,5 °C", "Körülbelül 3 °C"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Energy and Emissions",
-      es: "Energía y emisiones",
-      hu: "Energia és kibocsátások"
-    },
-    content: {
-      en: "The energy industry is the largest contributor to global greenhouse-gas emissions, responsible for around 70% through electricity, heat, transport, and fossil fuel extraction. Switching to renewable energy like solar, wind, and hydro, and improving efficiency are central to reducing emissions across multiple sectors.",
-      es: "La industria energética es la mayor fuente de emisiones globales de gases de efecto invernadero, responsable de alrededor del 70 % a través de la electricidad, el calor, el transporte y la extracción de combustibles fósiles. La transición a energías renovables como la solar, eólica e hidroeléctrica, junto con una mayor eficiencia, es clave para reducir las emisiones.",
-      hu: "Az energiaipar a globális üvegházhatású gázkibocsátás legnagyobb forrása, mintegy 70 %-ért felelős az áramtermelés, fűtés, közlekedés és fosszilis tüzelőanyag-kitermelés révén. A megújuló energiákra – például nap-, szél- és vízenergiára – való átállás és a hatékonyság javítása alapvető a kibocsátások csökkentéséhez."
-    },
-    question: {
-      text: {
-        en: "Approximately what share of global greenhouse-gas emissions comes from energy-related sources?",
-        es: "¿Qué porcentaje aproximado de las emisiones globales de gases de efecto invernadero proviene de fuentes energéticas?",
-        hu: "A globális üvegházhatású gázkibocsátás körülbelül mekkora része származik az energiafelhasználásból?"
-      },
-      options: {
-        en: ["About 25%", "About 50%", "About 70%"],
-        es: ["Aproximadamente 25 %", "Aproximadamente 50 %", "Aproximadamente 70 %"],
-        hu: ["Körülbelül 25 %", "Körülbelül 50 %", "Körülbelül 70 %"]
-      },
-      correctIndex: 2
-    }
-  },
-
-  {
-    title: {
-      en: "Forests and Agriculture",
-      es: "Bosques y agricultura",
-      hu: "Erdők és mezőgazdaság"
-    },
-    content: {
-      en: "Deforestation is a major climate challenge. Agriculture drives nearly 90% of tropical forest loss, with livestock – especially pasture and feed crops – being major contributors. Protecting forests and restoring land are essential strategies to combat climate change.",
-      es: "La deforestación es uno de los principales desafíos climáticos. La agricultura impulsa casi el 90 % de la pérdida de bosques tropicales, siendo la ganadería —especialmente los pastos y cultivos para pienso— uno de los principales responsables. Proteger los bosques y restaurar la tierra es fundamental para combatir el cambio climático.",
-      hu: "Az erdőirtás az egyik legnagyobb éghajlati kihívás. A mezőgazdaság felelős a trópusi erdőpusztulás közel 90 %-áért, különösen az állattartás – legelők és takarmánynövények révén. Az erdők védelme és a területek helyreállítása kulcsfontosságú az éghajlatváltozás elleni küzdelemben."
-    },
-    question: {
-      text: {
-        en: "What percent of tropical deforestation is driven by agriculture?",
-        es: "¿Qué porcentaje de la deforestación tropical es causada por la agricultura?",
-        hu: "A trópusi erdőirtás hány százalékát okozza a mezőgazdaság?"
-      },
-      options: {
-        en: ["About 50%", "About 70%", "About 90%"],
-        es: ["Aproximadamente 50 %", "Aproximadamente 70 %", "Aproximadamente 90 %"],
-        hu: ["Körülbelül 50 %", "Körülbelül 70 %", "Körülbelül 90 %"]
-      },
-      correctIndex: 2
-    }
-  },
-
-  {
-    title: {
-      en: "Beef and Deforestation",
-      es: "Carne de res y deforestación",
-      hu: "Marhahús és erdőirtás"
-    },
-    content: {
-      en: "Beef production is responsible for about 41% of tropical deforestation. Land is cleared for grazing and feed crops like soy. Reducing demand for land-intensive animal products is crucial to protecting forests and fighting climate change.",
-      es: "La producción de carne de res es responsable de aproximadamente el 41 % de la deforestación tropical. Se talan tierras para el pastoreo y cultivos de alimento como la soja. Reducir la demanda de productos animales que requieren mucha tierra es clave para proteger los bosques.",
-      hu: "A marhahús-termelés felelős a trópusi erdőirtás körülbelül 41 %-áért. Földeket tisztítanak meg legeltetéshez és takarmánynövények, például szója termesztéséhez. A nagy területigényű állati termékek iránti kereslet csökkentése elengedhetetlen az erdők védelméhez."
-    },
-    question: {
-      text: {
-        en: "What percentage of tropical deforestation is linked to beef production?",
-        es: "¿Qué porcentaje de la deforestación tropical está relacionado con la producción de carne de res?",
-        hu: "A trópusi erdőirtás hány százaléka köthető a marhahús-termeléshez?"
-      },
-      options: {
-        en: ["About 20%", "About 41%", "About 60%"],
-        es: ["Aproximadamente 20 %", "Aproximadamente 41 %", "Aproximadamente 60 %"],
-        hu: ["Körülbelül 20 %", "Körülbelül 41 %", "Körülbelül 60 %"]
-      },
-      correctIndex: 1
-    }
-  },
-
-  {
-    title: {
-      en: "Water Footprint of Food",
-      es: "Huella hídrica de los alimentos",
-      hu: "Az élelmiszerek vízlábnyoma"
-    },
-    content: {
-      en: "Animal products require significantly more water than plant-based foods. For example, producing 1 kg of beef uses up to 15,000 liters of water, whereas 1 kg of tofu uses about 302 liters. Choosing plant-based foods can dramatically reduce water use.",
-      es: "Los productos de origen animal requieren mucha más agua que los alimentos de origen vegetal. Por ejemplo, producir 1 kg de carne de res puede utilizar hasta 15 000 litros de agua, mientras que 1 kg de tofu necesita alrededor de 302 litros. Elegir alimentos vegetales puede reducir drásticamente el consumo de agua.",
-      hu: "Az állati eredetű termékek előállítása lényegesen több vizet igényel, mint a növényi alapú élelmiszereké. Például 1 kg marhahús előállításához akár 15 000 liter víz is szükséges, míg 1 kg tofuhoz körülbelül 302 liter. A növényi étrend jelentősen csökkentheti a vízfelhasználást."
-    },
-    question: {
-      text: {
-        en: "How does the water needed to produce 1 kg of beef compare to 1 kg of tofu?",
-        es: "¿Cómo se compara el agua necesaria para producir 1 kg de carne de res con 1 kg de tofu?",
-        hu: "Hogyan viszonyul az 1 kg marhahús és az 1 kg tofu vízigénye?"
+        en: "What are the 3 main pillars of environmental issues?",
+        es: "¿Cuáles son los 3 pilares principales de los problemas ambientales?",
+        hu: "Melyek a környezeti problémák 3 fő pillérei?"
       },
       options: {
         en: [
-          "Beef: 15,000 liters, Tofu: 302 liters",
-          "Beef: 5,000 liters, Tofu: 3,000 liters",
-          "Beef: 1,500 liters, Tofu: 500 liters"
+          "Climate change, deforestation, overpopulation",
+          "Climate change, biodiversity loss, pollution",
+          "Pollution, recycling, energy use",
+          "Biodiversity loss, farming, transportation"
         ],
         es: [
-          "Carne de res: 15 000 litros, Tofu: 302 litros",
-          "Carne de res: 5 000 litros, Tofu: 3 000 litros",
-          "Carne de res: 1 500 litros, Tofu: 500 litros"
+          "Cambio climático, deforestación, sobrepoblación",
+          "Cambio climático, pérdida de biodiversidad, contaminación",
+          "Contaminación, reciclaje, uso de energía",
+          "Pérdida de biodiversidad, agricultura, transporte"
         ],
         hu: [
-          "Marhahús: 15 000 liter, Tofu: 302 liter",
-          "Marhahús: 5 000 liter, Tofu: 3 000 liter",
-          "Marhahús: 1 500 liter, Tofu: 500 liter"
+          "Éghajlatváltozás, erdőirtás, túlnépesedés",
+          "Éghajlatváltozás, biodiverzitás csökkenése, szennyezés",
+          "Szennyezés, újrahasznosítás, energiafelhasználás",
+          "Biodiverzitás csökkenése, mezőgazdaság, közlekedés"
         ]
       },
-      correctIndex: 0
-    }
+      correctIndex: 1
+    },
+    source: "https://unfccc.int/news/what-is-the-triple-planetary-crisis"
   },
   {
     title: {
-      en: "Reducing Food Waste",
-      es: "Reduciendo el desperdicio de alimentos",
-      hu: "Élelmiszerpazarlás csökkentése"
+      en: "Greenhouse gases",
+      es: "Gases de efecto invernadero",
+      hu: "Üvegházhatású gázok"
     },
     content: {
-      en: "Around one-third of all food produced globally is wasted each year, accounting for 8–10% of greenhouse gas emissions. Reducing food waste by buying only what you need, storing food properly, using leftovers, and composting can save resources and fight climate change.",
-      es: "Alrededor de un tercio de todos los alimentos producidos a nivel mundial se desperdicia cada año, representando el 8–10% de las emisiones de gases de efecto invernadero. Reducir el desperdicio de alimentos comprando solo lo necesario, almacenando correctamente, usando sobras y compostando puede ahorrar recursos y combatir el cambio climático.",
-      hu: "A világon előállított élelmiszer körülbelül egyharmadát évente pazarolják el, ami az üvegházhatású gázok 8–10%-át teszi ki. Az élelmiszerpazarlás csökkentése azzal, hogy csak a szükségeset vásároljuk, megfelelően tároljuk, felhasználjuk a maradékokat és komposztálunk, erőforrásokat takarít meg és segít a klímavédelemben."
+      en: "Greenhouse gases are gases in the atmosphere that trap heat and contribute to global warming. The most significant human-produced emissions come from a few major sectors of the global economy\n\nEnergy supply: 34.0\nThis is the largest source. It includes electricity and heat production from burning fossil fuels such as coal, oil, and natural gas.\n\nEnergy use in industry: 24.2%\nIncludes emissions from manufacturing, cement production, chemicals, and industrial energy use.\n\nAgriculture, Forestry, and Land Use: 18.4%\nIncludes emissions from livestock, deforestation, and soil-related processes.\n\nTransport: 16.2%\nIncludes emissions from road transport, aviation, and shipping.",
+      es: "Los gases de efecto invernadero son gases en la atmósfera que atrapan el calor y contribuyen al calentamiento global. Las emisiones más significativas producidas por el ser humano provienen de unos pocos sectores principales de la economía global.\n\nSuministro de energía: 34.0%\nEs la fuente más grande. Incluye la producción de electricidad y calor a partir de la quema de combustibles fósiles como el carbón, el petróleo y el gas natural.\n\nUso de energía en la industria: 24.2%\nIncluye emisiones de la fabricación, producción de cemento, productos químicos y uso de energía industrial.\n\nAgricultura, silvicultura y uso del suelo: 18.4%\nIncluye emisiones del ganado, la deforestación y procesos relacionados con el suelo.\n\nTransporte: 16.2%\nIncluye emisiones del transporte por carretera, la aviación y el transporte marítimo.",
+      hu: "Az üvegházhatású gázok a légkörben található gázok, amelyek csapdába ejtik a hőt, és hozzájárulnak a globális felmelegedéshez. Az ember által kibocsátott legjelentősebb kibocsátások a globális gazdaság néhány fő szektorából származnak.\n\nEnergiaellátás: 34.0%\nEz a legnagyobb forrás. Magában foglalja az elektromosság és hő előállítását fosszilis tüzelőanyagok, például szén, olaj és földgáz elégetésével.\n\nIpari energiafelhasználás: 24.2%\nMagában foglalja a gyártásból, cementgyártásból, vegyiparból és ipari energiafelhasználásból származó kibocsátásokat.\n\nMezőgazdaság, erdészet és földhasználat: 18.4%\nMagában foglalja az állattartásból, erdőirtásból és a talajjal kapcsolatos folyamatokból származó kibocsátásokat.\n\nKözlekedés: 16.2%\nMagában foglalja a közúti közlekedés, a légi közlekedés és a tengeri szállítás kibocsátásait."
     },
     question: {
       text: {
-        en: "Roughly what percentage of all food produced worldwide is wasted?",
-        es: "¿Qué porcentaje aproximadamente de los alimentos producidos en todo el mundo se desperdicia?",
-        hu: "Körülbelül az előállított élelmiszer hány százalékát pazarolják el világszerte?"
+        en: "What percentage of global greenhouse gas emissions comes from the agricultural, forestry, and land use sector?",
+        es: "¿Qué porcentaje de las emisiones globales de gases de efecto invernadero proviene del sector de la agricultura, silvicultura y uso del suelo?",
+        hu: "A globális üvegházhatású gázkibocsátás hány százaléka származik a mezőgazdaság, erdészet és földhasználat szektorából?"
       },
       options: {
-        en: ["About one-tenth", "About one-third", "About half"],
-        es: ["Aproximadamente una décima parte", "Aproximadamente un tercio", "Aproximadamente la mitad"],
-        hu: ["Körülbelül egytized", "Körülbelül egyharmad", "Körülbelül a fele"]
+        en: [
+          "16.2%",
+          "18.4%",
+          "24.2%",
+          "34.0%"
+        ],
+        es: [
+          "16.2%",
+          "18.4%",
+          "24.2%",
+          "34.0%"
+        ],
+        hu: [
+          "16.2%",
+          "18.4%",
+          "24.2%",
+          "34.0%"
+        ]
       },
       correctIndex: 1
-    }
+    },
+    source: "https://ourworldindata.org/ghg-emissions-by-sector"
   },
   {
     title: {
-      en: "Impact of Reducing Food Waste",
-      es: "Impacto de reducir el desperdicio de alimentos",
-      hu: "Az élelmiszerpazarlás csökkentésének hatása"
+      en: "Biodiversity loss",
+      es: "Pérdida de biodiversidad",
+      hu: "Biológiai sokszínűség csökkenése"
     },
     content: {
-      en: "Reducing food waste by half can lower your carbon footprint by around 16%. Combined with a mostly plant-based diet, water conservation, and sustainable products, small lifestyle changes collectively make a big difference for biodiversity and climate.",
-      es: "Reducir a la mitad el desperdicio de alimentos puede reducir tu huella de carbono en alrededor del 16%. Combinado con una dieta mayormente basada en plantas, la conservación del agua y productos sostenibles, pequeños cambios de estilo de vida hacen una gran diferencia para la biodiversidad y el clima.",
-      hu: "Az élelmiszerpazarlás felére csökkentése körülbelül 16%-kal csökkentheti a karbonlábnyomot. Egy főleg növényi alapú étrenddel, a víz megtakarításával és fenntartható termékek használatával a kis életmódbeli változtatások összességében nagy hatással lehetnek a biodiverzitásra és a klímára."
+      en: "Biodiversity refers to the variety of life on Earth, including the number of species and the size of wildlife populations. One of the most widely used indicators to measure changes in biodiversity is the Living Planet Index, which tracks trends in thousands of vertebrate populations around the world\n\nAccording to the index, there has been an average decline of around 73% in monitored wildlife populations since 1970.\n\nThis does not mean that 73% of species have gone extinct. Instead, it shows that, on average, the size of monitored animal populations has decreased significantly over time.",
+      es: "La biodiversidad se refiere a la variedad de vida en la Tierra, incluyendo el número de especies y el tamaño de las poblaciones de fauna silvestre. Uno de los indicadores más utilizados para medir los cambios en la biodiversidad es el Índice Planeta Vivo, que rastrea las tendencias en miles de poblaciones de vertebrados en todo el mundo.\n\nSegún el índice, ha habido un declive promedio de alrededor del 73% en las poblaciones de vida silvestre monitoreadas desde 1970.\n\nEsto no significa que el 73% de las especies se hayan extinguido. En cambio, muestra que, en promedio, el tamaño de las poblaciones animales monitoreadas ha disminuido significativamente con el tiempo.",
+      hu: "A biodiverzitás a Földön található élet sokféleségére utal, beleértve a fajok számát és a vadon élő populációk méretét. A biodiverzitás változásainak mérésére az egyik legszélesebb körben használt mutató az Élő Bolygó Index, amely világszerte több ezer gerinces populáció trendjeit követi.\n\nAz index szerint a megfigyelt vadon élő populációk átlagosan körülbelül 73%-kal csökkentek 1970 óta.\n\nEz nem azt jelenti, hogy a fajok 73%-a kihalt. Ehelyett azt mutatja, hogy átlagosan a megfigyelt állati populációk mérete jelentősen csökkent az idő múlásával."
     },
     question: {
       text: {
-        en: "Approximately how much can reducing food waste by half decrease your carbon footprint?",
-        es: "¿Aproximadamente cuánto puede reducirse tu huella de carbono al reducir a la mitad el desperdicio de alimentos?",
-        hu: "Körülbelül mennyivel csökkentheti a karbonlábnyomot az élelmiszerpazarlás felére csökkentése?"
+        en: "What is the average decline in monitored wildlife populations since 1970?",
+        es: "¿Cuál es la disminución promedio en las poblaciones de vida silvestre monitoreadas desde 1970?",
+        hu: "Mekkora az átlagos csökkenés a megfigyelt vadon élő populációkban 1970 óta?"
       },
       options: {
-        en: ["About 10%", "About 16%", "About 25%"],
-        es: ["Aproximadamente 10%", "Aproximadamente 16%", "Aproximadamente 25%"],
-        hu: ["Körülbelül 10%", "Körülbelül 16%", "Körülbelül 25%"]
+        en: [
+          "~34%",
+          "~50%",
+          "~73%",
+          "~90%"
+        ],
+        es: [
+          "~34%",
+          "~50%",
+          "~73%",
+          "~90%"
+        ],
+        hu: [
+          "~34%",
+          "~50%",
+          "~73%",
+          "~90%"
+        ]
       },
-      correctIndex: 1
-    }
+      correctIndex: 2
+    },
+    source: "https://ourworldindata.org/grapher/global-living-planet-index"
   },
   {
     title: {
-      en: "Renewable Energy Benefits",
-      es: "Beneficios de la energía renovable",
-      hu: "Megújuló energia előnyei"
+      en: "Land use",
+      es: "Uso de la tierra",
+      hu: "Földhasználat"
     },
     content: {
-      en: "Switching to renewable energy reduces carbon footprints significantly. Electric vehicles in Europe, for example, produce up to 73% fewer greenhouse gas emissions over their lifetime than gasoline cars. Using renewable energy to charge EVs further increases climate benefits.",
-      es: "Cambiar a energía renovable reduce significativamente la huella de carbono. Los vehículos eléctricos en Europa, por ejemplo, producen hasta un 73% menos de emisiones de gases de efecto invernadero durante su vida útil que los coches de gasolina. Usar energía renovable para cargar vehículos eléctricos aumenta aún más los beneficios climáticos.",
-      hu: "A megújuló energiára való áttérés jelentősen csökkenti a karbonlábnyomot. Például Európában az elektromos járművek élettartamuk alatt akár 73%-kal kevesebb üvegházhatású gázt bocsátanak ki, mint a benzinüzemű autók. Ha megújuló energiával töltjük az EV-ket, a klímaelőnyök tovább növekednek."
+      en: "Agriculture is the largest use of land on Earth, covering about 50% of all habitable land. This includes cropland for food and feed, and pasture for livestock.\n\nBecause it takes up so much space, agriculture is the main driver of habitat loss, which is one of the biggest causes of biodiversity decline. As natural ecosystems are converted into farmland, wildlife loses living space and populations decrease.\n\nA large share of agricultural land is also used for livestock, which requires significantly more land than plant-based food production.",
+      es: "La agricultura es el mayor uso de la tierra en la Tierra, cubriendo aproximadamente el 50% de toda la tierra habitable. Esto incluye tierras de cultivo para alimentos y forraje, y pastos para el ganado.\n\nDebido a que ocupa tanto espacio, la agricultura es el principal impulsor de la pérdida de hábitat, que es una de las mayores causas del declive de la biodiversidad. A medida que los ecosistemas naturales se convierten en tierras de cultivo, la fauna pierde espacio vital y las poblaciones disminuyen.\n\nUna gran parte de la tierra agrícola también se utiliza para el ganado, lo que requiere significativamente más tierra que la producción de alimentos de origen vegetal.",
+      hu: "A mezőgazdaság a Föld legnagyobb földhasználati formája, a lakható területek körülbelül 50%-át lefedve. Ez magában foglalja az élelmiszer- és takarmánytermesztésre használt szántóföldeket, valamint az állattartásra használt legelőket.\n\nMivel ilyen nagy területet foglal el, a mezőgazdaság a legfőbb hajtóereje az élőhelyek elvesztésének, amely a biodiverzitás csökkenésének egyik legnagyobb oka. Ahogy a természetes ökoszisztémákat mezőgazdasági területekké alakítják, a vadon élő állatok elveszítik élőhelyüket, és a populációk csökkennek.\n\nA mezőgazdasági területek nagy része állattenyésztésre is szolgál, amely jelentősen több földet igényel, mint a növényi alapú élelmiszertermelés."},
+    question: {
+      text: {
+        en: "What is the main way agriculture contributes to biodiversity loss?",
+        es: "¿Cuál es la principal forma en que la agricultura contribuye a la pérdida de biodiversidad?",
+        hu: "Mi a fő módja annak, ahogyan a mezőgazdaság hozzájárul a biodiverzitás csökkenéséhez?"
+      },
+      options: {
+        en: [
+          "By increasing global temperatures",
+          "By reducing air quality in cities",
+          "By converting natural ecosystems into farmland and reducing habitat",
+          "By increasing ocean pollution"
+        ],
+        es: [
+          "Aumentando las temperaturas globales",
+          "Reduciendo la calidad del aire en las ciudades",
+          "Convirtiendo ecosistemas naturales en tierras de cultivo y reduciendo el hábitat",
+          "Aumentando la contaminación de los océanos"
+        ],
+        hu: [
+          "A globális hőmérséklet növelésével",
+          "A városi levegőminőség romlásával",
+          "A természetes ökoszisztémák mezőgazdasági területté alakításával és az élőhelyek csökkentésével",
+          "Az óceáni szennyezés növelésével"
+        ]
+      },
+      correctIndex: 2
+    },
+    source: "https://ourworldindata.org/global-land-for-agricultur"
+  },
+  {
+    title: {
+      en: "Resource depletion",
+      es: "Agotamiento de recursos",
+      hu: "Erőforrás-kimerülés"
+    },
+    content: {
+      en: "Natural resources are materials we take from the Earth to support human life and systems. These include water, minerals, fossil fuels, forests, and fertile soil.\n\nResource depletion happens when these resources are used faster than they can naturally regenerate or be replaced.\n\nA key example is freshwater: although water is renewable, many regions use groundwater faster than it can be replenished. Similar patterns occur with fossil fuels, forests, and soil quality\n\nAs global demand increases, more systems depend on intensive extraction and consumption, which puts pressure on natural reserves.",
+      es: "Los recursos naturales son materiales que tomamos de la Tierra para sostener la vida humana y los sistemas. Estos incluyen agua, minerales, combustibles fósiles, bosques y suelo fértil.\n\nEl agotamiento de recursos ocurre cuando estos recursos se utilizan más rápido de lo que pueden regenerarse o ser reemplazados de forma natural.\n\nUn ejemplo clave es el agua dulce: aunque el agua es renovable, muchas regiones utilizan las aguas subterráneas más rápido de lo que pueden reponerse. Patrones similares ocurren con los combustibles fósiles, los bosques y la calidad del suelo.\n\nA medida que aumenta la demanda global, más sistemas dependen de la extracción y el consumo intensivos, lo que ejerce presión sobre las reservas naturales.",
+      hu: "A természeti erőforrások olyan anyagok, amelyeket a Földről veszünk el az emberi élet és rendszerek fenntartására. Ezek közé tartozik a víz, az ásványok, a fosszilis tüzelőanyagok, az erdők és a termékeny talaj.\n\nAz erőforrás-kimerülés akkor következik be, amikor ezeket az erőforrásokat gyorsabban használjuk fel, mint ahogyan természetes módon megújulhatnak vagy pótolhatók.\n\nEgy fontos példa az édesvíz: bár a víz megújuló, sok régióban a felszín alatti vizeket gyorsabban használják fel, mint ahogyan újratöltődnek. Hasonló minták figyelhetők meg a fosszilis tüzelőanyagok, az erdők és a talaj minősége esetében is.\n\nAhogy a globális kereslet nő, egyre több rendszer támaszkodik intenzív kitermelésre és fogyasztásra, ami nyomást gyakorol a természeti készletekre."
     },
     question: {
       text: {
-        en: "By what percentage can electric vehicles reduce lifetime greenhouse gas emissions compared to gasoline cars in Europe?",
-        es: "¿En qué porcentaje pueden los vehículos eléctricos reducir las emisiones de gases de efecto invernadero durante su vida útil en comparación con los coches de gasolina en Europa?",
-        hu: "Milyen százalékkal csökkenthetik az elektromos járművek az élettartamuk alatt az üvegházhatású gázkibocsátást a benzinüzemű autókhoz képest Európában?"
+        en: "What is resource depletion?",
+        es: "¿Qué es el agotamiento de recursos?",
+        hu: "Mi az erőforrás-kimerülés?"
       },
       options: {
-        en: ["Up to 50%", "Up to 73%", "Up to 90%"],
-        es: ["Hasta un 50%", "Hasta un 73%", "Hasta un 90%"],
-        hu: ["Akár 50%", "Akár 73%", "Akár 90%"]
+        en: [
+          "The increase of natural resources over time",
+          "The use of resources faster than they can naturally regenerate",
+          "The recycling of materials back into ecosystems",
+          "The natural cycle of resource renewal"
+        ],
+        es: [
+          "El aumento de los recursos naturales con el tiempo",
+          "El uso de los recursos más rápido de lo que pueden regenerarse naturalmente",
+          "El reciclaje de materiales de vuelta a los ecosistemas",
+          "El ciclo natural de renovación de los recursos"
+        ],
+        hu: [
+          "A természeti erőforrások növekedése idővel",
+          "Az erőforrások gyorsabb felhasználása, mint ahogyan természetesen megújulhatnak",
+          "Az anyagok visszaforgatása az ökoszisztémákba",
+          "Az erőforrások természetes megújulási ciklusa"
+        ]
       },
       correctIndex: 1
+    },
+    source: "https://en.wikipedia.org/wiki/Resource_depletion"
+  },
+  {
+    title: {
+      en: "Waste",
+      es: "Residuos",
+      hu: "Hulladék"
+    },
+    content: {
+      en: "Waste refers to materials that are discarded after use and not effectively reused, recycled, or recovered. It includes plastics, packaging, industrial by-products, and organic waste such as food.\n\nOne of the most significant forms of waste globally is food waste. Large amounts of food are lost or wasted at every stage of the system—from production and storage to retail and household consumption.\n\nKey facts:\n\n- Around one-third of all food produced globally is lost or wasted each yea\n- Food waste happens both in supply chains (production, transport, retail) and at the consumer level (households, restaurants)\n- At the same time, a large number of people globally still face food insecurity\n\nFood waste is also important environmentally because producing food requires land, water, and energy. When food is wasted, all these resources are wasted too.",
+      es: "Los residuos se refieren a materiales que se desechan después de su uso y no se reutilizan, reciclan o recuperan de manera efectiva. Incluyen plásticos, envases, subproductos industriales y residuos orgánicos como los alimentos\n\nUna de las formas más significativas de residuos a nivel mundial es el desperdicio de alimentos. Grandes cantidades de alimentos se pierden o se desperdician en todas las etapas del sistema —desde la producción y el almacenamiento hasta el comercio minorista y el consumo en los hogares\n\nDatos clave:\n\n- Aproximadamente un tercio de todos los alimentos producidos a nivel mundial se pierden o se desperdician cada año.\n- El desperdicio de alimentos ocurre tanto en las cadenas de suministro (producción, transporte, venta minorista) como a nivel del consumidor (hogares, restaurantes).\n- Al mismo tiempo, un gran número de personas en el mundo todavía enfrenta inseguridad alimentaria.\n\nEl desperdicio de alimentos también es importante desde el punto de vista ambiental porque producir alimentos requiere tierra, agua y energía. Cuando se desperdicia comida, todos estos recursos también se desperdician.",
+      hu: "A hulladék olyan anyagokra utal, amelyeket használat után kidobnak, és nem hasznosítanak újra vagy nem nyernek vissza hatékonyan. Ide tartoznak a műanyagok, csomagolóanyagok, ipari melléktermékek és a szerves hulladék, például az élelmiszer.\n\nA hulladék egyik legjelentősebb formája globálisan az élelmiszer-pazarlás. Nagy mennyiségű élelmiszer vész el vagy pazarlódik el a rendszer minden szakaszában — a termeléstől és tárolástól kezdve a kiskereskedelemig és a háztartási fogyasztásig.\n\nFő tények:\n\n- A világon előállított élelmiszer körülbelül egyharmada minden évben elveszik vagy pazarlódik.\n- Az élelmiszer-pazarlás a teljes ellátási láncban előfordul (termelés, szállítás, kiskereskedelem), valamint a fogyasztói szinten (háztartások, éttermek)\n- Ugyanakkor világszerte sok ember továbbra is élelmiszer-ellátási bizonytalansággal küzd.\n\nAz élelmiszer-pazarlás környezeti szempontból is fontos, mivel az élelmiszer előállítása földet, vizet és energiát igényel. Ha az élelmiszer kárba vész, ezek az erőforrások is elvesznek."
+    },
+    question: {
+      text: {
+        en: "How much of the food produced globally is lost or wasted each year?",
+        es: "¿Cuánta comida producida globalmente se pierde o desperdicia cada año?",
+        hu: "A globálisan előállított élelmiszer hány százaléka vész el vagy pazarlódik el évente?"
+      },
+      options: {
+        en: [
+          "About 10%",
+          "About 20%",
+          "About 30%",
+          "About 50%"
+        ],
+        es: [
+          "Aproximadamente 10%",
+          "Aproximadamente 20%",
+          "Aproximadamente 30%",
+          "Aproximadamente 50%"
+        ],
+        hu: [
+          "Körülbelül 10%",
+          "Körülbelül 20%",
+          "Körülbelül 30%",
+          "Körülbelül 50%"
+        ]
+      },
+      correctIndex: 2
+    },
+    source: "https://en.wikipedia.org/wiki/Food_loss_and_waste"
+  },
+  {
+    title: {
+      en: "Emissions of animals vs. plants",
+      es: "Emisiones de animales vs. plantas",
+      hu: "Állatok vs. növények gáz kibocsátása"
+    },
+    content: {
+      en: "To reduce our carbon footprint, it is important to understand how different foods contribute to greenhouse gas emissions. Not all calories have the same environmental impact.\n\nIn general, plant-based foods produce significantly fewer greenhouse gas emissions than animal-based foods, but the difference varies depending on the product.\n\nKey comparisons (approximate values per 1000 kcal)\n\n- Beef (beef cattle): ~20–60 kg CO₂e per 1000 kcal\n- Beans (e.g. red beans): ~1–3 kg CO₂e per 1000 kcal\n\nThis means beef can produce 10–30+ times more emissions than legumes for the same energy content.",
+      es: "Para reducir nuestra huella de carbono, es importante entender cómo los diferentes alimentos contribuyen a las emisiones de gases de efecto invernadero. No todas las calorías tienen el mismo impacto ambiental.\n\nEn general, los alimentos de origen vegetal producen significativamente menos emisiones de gases de efecto invernadero que los alimentos de origen animal, pero la diferencia varía según el producto.\n\nComparaciones clave (valores aproximados por 1000 kcal):\n\n- Carne de vacuno (ganado bovino): ~20–60 kg CO₂e por 1000 kcal\n- Judías (por ejemplo, frijoles rojos): ~1–3 kg CO₂e por 1000 kcal\n\nEsto significa que la carne de vacuno puede producir entre 10 y 30+ veces más emisiones que las legumbres para la misma cantidad de energía.",
+      hu: "A karbon lábnyom csökkentéséhez fontos megérteni, hogy a különböző élelmiszerek hogyan járulnak hozzá az üvegházhatású gázkibocsátáshoz. Nem minden kalória környezeti hatása azonos.\n\nÁltalánosságban elmondható, hogy a növényi alapú élelmiszerek lényegesen kevesebb üvegházhatású gázt bocsátanak ki, mint az állati eredetű élelmiszerek, de a különbség termékenként változik.\n\nFő összehasonlítások (kb. értékek 1000 kcal-ra):\n\n- Marhahús (szarvasmarha): ~20–60 kg CO₂e / 1000 kcal\n- Babok (pl. vörösbab): ~1–3 kg CO₂e / 1000 kcal\n\nEz azt jelenti, hogy a marhahús 10–30-szor vagy még többször több kibocsátást okozhat ugyanannyi energia előállításához képest, mint a hüvelyesek"
+    },
+    question: {
+      text: {
+        en: "In general, which type of food has a lower carbon footprint?",
+        es: "En general, ¿qué tipo de alimento tiene una menor huella de carbono?",
+        hu: "Általánosságban melyik élelmiszer típusnak alacsonyabb a karbon lábnyoma?"
+      },
+      options: {
+        en: [
+          "Animal-based foods",
+          "Plant-based foods",
+          "Both have the same impact",
+          "It depends only on packaging"
+        ],
+        es: [
+          "Alimentos de origen animal",
+          "Alimentos de origen vegetal",
+          "Ambos tienen el mismo impacto",
+          "Depende solo del embalaje"
+        ],
+        hu: [
+          "Állati eredetű élelmiszerek",
+          "Növényi alapú élelmiszerek",
+          "Mindkettőnek ugyanakkora a hatása",
+          "Ez csak a csomagolástól függ"
+        ]
+      },
+      correctIndex: 1
+    },
+    source: "https://ourworldindata.org/environmental-impacts-of-food"
+  },
+  {
+    title: {
+      en: "Which transport emits less?",
+      es: "¿Qué transporte emite menos?",
+      hu: "Melyik közlekedési mód környezetbarátabb?"
+    },
+    content: {
+      en: "Different transport modes produce very different amounts of greenhouse gas emissions depending on energy efficiency and how many passengers are carried.\n\nHere are average global estimates of emissions per passenger-kilometer:\n\n✈️ Airplane (short-haul flights):\n~200–300 g CO₂e / passenger-k\n\n 🚗 Private car (typical occupancy ~1–2 people):\n~120–180 g CO₂e / passenger-km\n\n 🚌 Bus / coach:\n~60–100 g CO₂e / passenger-km\n\n 🚆 Train (rail):\n~10–50 g CO₂e / passenger-km\n\n 🚴 Bicycle / walking:\n~0 g CO₂e / passenger-km\n\nKey insight:\n\n- Flying is the most carbon-intensive common transport method.\n- Cars are often inefficient when used with few passengers.\n- Trains are one of the cleanest motorized transport options.",
+      es: "Los diferentes modos de transporte producen cantidades muy diferentes de emisiones de gases de efecto invernadero, dependiendo de la eficiencia energética y del número de pasajeros transportados.\n\nAquí hay estimaciones globales promedio de emisiones por pasajero-kilómetro\n\n✈️ Avión (vuelos de corta distancia):\n~200–300 g CO₂e / pasajero-k\n\n🚗 Coche privado (ocupación típica ~1–2 personas):\n~120–180 g CO₂ e/ pasajero-km\n\n🚌 Autobús / autocar:\n~60–100 g CO₂e/ pasajero-km\n\n🚆 Tren (ferrocarril):\n~10–50 g CO₂e / pasajero-km\n\n🚴 Bicicleta / caminar:\n~0 g CO₂e / pasajero-km\n\nIdea clave:\n\nVolar es el método de transporte común más intensivo en carbono.\nLos coches suelen ser ineficientes cuando se usan con pocos pasajeros\nLos trenes son una de las opciones de transporte motorizado más limpias.",
+      hu: "A különböző közlekedési módok nagyon eltérő mennyiségű üvegházhatású gázt bocsátanak ki, az energiahatékonyságtól és az utasok számától függően.\n\nItt vannak az átlagos globális becslések kibocsátásra utaskilométerenként\n\n✈️ Repülőgép (rövid távú járatok):\n~200–300 g CO₂ / utask\n\n🚗 Személyautó (tipikus kihasználtság ~1–2 fő):\n~120–180 g CO₂ / utask\n\n🚌 Busz / távolsági autóbusz\n~60–100 g CO₂ / utaskm\n\n🚆 Vonat (vasút)\n~10–50 g CO₂ / utask\n\n🚴 Kerékpár / gyaloglás\n~0 g CO₂ / utaskm\n\nFő tanulság\n\nA repülés a legszénintenzívebb gyakori közlekedési mód.\nAz autók gyakran nem hatékonyak, ha kevés utas használja őket.\nA vonatok az egyik legtisztább motoros közlekedési lehetőségek."
+    },
+    question: {
+      text: {
+        en: "Which transport mode generally emits the least CO₂ per passenger kilometer (excluding walking and cycling)?",
+        es: "¿Qué medio de transporte generalmente emite menos CO₂e por pasajero-kilómetro (excluyendo caminar y andar en bicicleta)?",
+        hu: "Általában melyik közlekedési mód bocsátja ki a legkevesebb CO₂-t utaskilométerenként (a gyaloglás és kerékpározás kivételével)?"
+      },
+      options: {
+        en: [
+          "Airplane",
+          "Private car",
+          "Bus",
+          "Train"
+        ],
+        es: [
+          "Avión",
+          "Coche privado",
+          "Autobús",
+          "Tren"
+        ],
+        hu: [
+          "Repülőgép",
+          "Személyautó",
+          "Busz",
+          "Vonat"
+        ]
+      },
+      correctIndex: 3
+    },
+    source: "https://ourworldindata.org/co2-emissions-from-transport"
+  },
+  {
+    title: {
+      en: "CO₂ emissions from eggs",
+      es: "Emisiones de CO₂ de los huevos",
+      hu: "CO₂ kibocsátás a tojásiparban"
+    },
+    content: {
+      en: "To understand the environmental impact of foods, we compare their greenhouse gas emissions per kilogram of product (kg CO₂e / kg food). These values come from lifecycle assessments that include production, feed, energy use, and processing\n\nHere is a strictly sourced comparison:\n\n🥚 Eggs:\n5.3 kg CO₂e per kf of eggs\n🌱 Tofu:\n0.8 kg CO₂e per kg of tofu\n\nBoth are lower-impact than most meat products, but plant-based proteins like tofu are still generally more efficient.",
+      es: "Para entender el impacto ambiental de los alimentos, comparamos sus emisiones de gases de efecto invernadero por kilogramo de producto (kg CO₂e / kg de alimento). Estos valores provienen de evaluaciones del ciclo de vida que incluyen producción, alimentación, uso de energía y procesamiento.\n\nAquí hay una comparación basada en datos:\n\n🥚 Huevos:\n5.3 kg CO₂e por kg de huevos\n🌱 Tofu:\n0.8 kg CO₂e por kg de tofu\n\nAmbos tienen un impacto menor que la mayoría de los productos cárnicos, pero las proteínas de origen vegetal como el tofu suelen ser más eficientes.",
+      hu: "Az élelmiszerek környezeti hatásának megértéséhez összehasonlítjuk az üvegházhatású gázkibocsátásukat kilogrammonként (kg CO₂e / kg élelmiszer). Ezek az értékek életciklus-elemzésekből származnak, amelyek figyelembe veszik a termelést, takarmányozást, energiafelhasználást és feldolgozást.\n\nItt egy szigorúan forrásolt összehasonlítás:\n\n🥚 Tojás:\n5,3 kg CO₂ / kg tojás\n🌱 Tofu:\n0,8 kg CO₂ / kg tofu\n\nMindkettő alacsonyabb hatású, mint a legtöbb húskészítmény, de a növényi alapú fehérjék, mint a tofu, általában hatékonyabbak."
+    },
+    question: {
+      text: {
+        en: "Which food generally has lower greenhouse gas emissions per kilogram?",
+        es: "¿Qué alimento generalmente tiene menores emisiones de gases de efecto invernadero por kilogramo?",
+        hu: "Általában melyik élelmiszernek alacsonyabb az üvegházhatású gázkibocsátása kilogrammonként?"
+      },
+      options: {
+        en: [
+          "Eggs",
+          "Tofu",
+          "They are the same",
+          "It depends only on packaging"
+        ],
+        es: [
+          "Huevos",
+          "Tofu",
+          "Son iguales",
+          "Depende solo del embalaje"
+        ],
+        hu: [
+          "Tojás",
+          "Tofu",
+          "Ugyanaz",
+          "Csak a csomagolástól függ"
+        ]
+      },
+      correctIndex: 1
+    },
+    source:"https://www.co2everything.com/co2e-of/eggs"
+  },
+  {
+    title: {
+      en: "CO₂ emissions from cheese",
+      es: "Emisiones de CO₂ del queso",
+      hu: "CO₂ kibocsátás a sajtiparban"
+    },
+    content: {
+      en: "Different foods have different environmental impacts depending on how they are produced. These impacts are measured in kg CO₂e per kg of food, based on lifecycle assessments (including production, feed, land use, and processing).\n\n🧀 Cheese:\n2.79 kg CO₂e per kg of chees\n\nIt is more than 50 times higher than mixed nuts, which are 0.05 kg CO₂e per kg\n\nCheese has a relatively high carbon footprint compared to many plant-based foods because it is produced from milk, which comes from cows. Dairy production involves\n\nMethane emissions from cattl\nFeed production and land us\nEnergy used in processing and refrigeration",
+      es: "Los diferentes alimentos tienen distintos impactos ambientales dependiendo de cómo se producen. Estos impactos se miden en kg CO₂e por kg de alimento, basados en evaluaciones del ciclo de vida (incluyendo producción, alimentación, uso del suelo y procesamiento).\n\n🧀 Queso:\n2.79 kg CO₂e por kg de queso\n\nEs más de 50 veces mayor que los frutos secos mixtos, que son 0.05 kg CO₂e por kg.\n\nEl queso tiene una huella de carbono relativamente alta en comparación con muchos alimentos de origen vegetal porque se produce a partir de leche, que proviene de vacas. La producción láctea implica:\n\nEmisiones de metano del ganado\nProducción de alimento y uso del suelo\nEnergía utilizada en el procesamiento y la refrigeración",
+      hu: "A különböző élelmiszereknek eltérő környezeti hatásuk van attól függően, hogyan állítják elő őket. Ezeket a hatásokat kg CO₂e / kg élelmiszerben mérik, életciklus-elemzések alapján (beleértve a termelést, takarmányozást, földhasználatot és feldolgozást)\n\n🧀 Sajt:\n2,79 kg CO₂e / kg sajt\n\nEz több mint 50-szer magasabb, mint a vegyes diófélék esetében, amelyek 0,05 kg CO₂e / kg értéket jelentenek.\n\nA sajt viszonylag magas karbon lábnyommal rendelkezik sok növényi alapú élelmiszerhez képest, mert tejből készül, amely tehenektől származik. A tejtermelés magában foglalja:\n\nMetánkibocsátás a szarvasmarháktól\nTakarmánytermelés és földhasznála\nEnergia a feldolgozásban és hűtésben"
+    },
+    question: {
+      text: {
+        en: "What is the approximate carbon footprint of cheese per kilogram?",
+        es: "¿Cuál es la huella de carbono aproximada del queso por kilogramo?",
+        hu: "Mennyi a sajt hozzávetőleges karbon lábnyoma kilogrammonként?"
+      },
+      options: {
+        en: [
+          "0.2 kg CO₂e",
+          "0.95 kg CO₂e",
+          "2.79 kg CO₂e",
+          "15.5 kg CO₂e"
+        ],
+        es: [
+          "0.2 kg CO₂e",
+          "0.95 kg CO₂e",
+          "2.79 kg CO₂e",
+          "15.5 kg CO₂e"
+        ],
+        hu: [
+          "0.2 kg CO₂e",
+          "0.95 kg CO₂e",
+          "2.79 kg CO₂e",
+          "15.5 kg CO₂e"
+        ]
+      },
+      correctIndex: 2
+    },
+    source: "https://www.co2everything.com/co2e-of/eggs"
+  },
+  {
+    title: {
+      en: "What is climate change?",
+      es: "¿Qué es el cambio climático?",
+      hu: "Mi az az éghajlat-változás?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Returning Land to Nature",
-      es: "Devolver tierras a la naturaleza",
+      en: "Causes",
+      es: "Causas",
+      hu: "Okok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "From 1970",
+      es: "Desde 1970",
+      hu: "1970-től"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Margin we have",
+      es: "Margen que tenemos",
+      hu: "Az idő amink van"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Animal agriculture",
+      es: "Agricultura animal",
+      hu: "Állattenyésztés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows: methane",
+      es: "Vacas: metano",
+      hu: "Tehén: metán"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cows in natural environment",
+      es: "Vacas en el entorno natural",
+      hu: "Tehén a természetes környezetben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deforestation",
+      es: "Deforestación",
+      hu: "Erdőirtás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cropland for animals",
+      es: "Tierras de cultivo para animales",
+      hu: "Termőföld az állatoknak"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Beef production",
+      es: "Producción de carne de res",
+      hu: "Marhahús termelés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Returning land to nature",
+      es: "Retornar la tierra a la naturaleza",
       hu: "A föld visszaadása a természetnek"
     },
     content: {
-      en: "Rewilding, or returning land to nature, helps ecosystems recover, stores carbon, and protects biodiversity. Reducing livestock farming could free up around 3.1 billion hectares (about 75% of agricultural land), allowing restoration of forests, grasslands, and wetlands. Planting native trees, creating wildlife corridors, and adopting sustainable practices support this goal.",
-      es: "La reforestación y la devolución de tierras a la naturaleza ayuda a que los ecosistemas se recuperen, almacena carbono y protege la biodiversidad. Reducir la ganadería podría liberar alrededor de 3,1 mil millones de hectáreas (aproximadamente el 75% de la tierra agrícola), permitiendo la restauración de bosques, praderas y humedales. Plantar árboles nativos, crear corredores para la vida silvestre y adoptar prácticas sostenibles apoyan este objetivo.",
-      hu: "A rewilding, vagyis a föld visszaadása a természetnek segít az ökoszisztémák helyreállításában, a szén tárolásában és a biodiverzitás védelmében. Az állattartás csökkentése körülbelül 3,1 milliárd hektárt szabadíthat fel (az összes mezőgazdasági terület ~75%-a), lehetővé téve erdők, füves területek és vizes élőhelyek helyreállítását. A hazai fafajták ültetése, vadon élő állatok számára folyosók létrehozása és fenntartható gyakorlatok támogatják ezt a célt."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Which human activity uses the most land globally and affects rewilding efforts?",
-        es: "¿Qué actividad humana utiliza más tierra a nivel mundial y afecta los esfuerzos de rewilding?",
-        hu: "Mely emberi tevékenység használja a legtöbb földet a világon, és befolyásolja a rewilding erőfeszítéseket?"
-      },
-      options: {
-        en: ["Animal agriculture", "Urban development", "Renewable energy installations"],
-        es: ["Agricultura animal", "Desarrollo urbano", "Instalaciones de energía renovable"],
-        hu: ["Állattenyésztés", "Városiasodás", "Megújuló energia létesítmények"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Mammalian Biomass Imbalance",
-      es: "Desequilibrio de biomasa de mamíferos",
-      hu: "Emlős biomassza egyensúlytalanság"
-    },
-    content: {
-      en: "Large land mammal biomass is dominated by humans (36%) and livestock (60%), leaving wild mammals with only 4%. Industrial agriculture heavily shapes the planet and reduces space for wild species, highlighting the need for rewilding and sustainable land use.",
-      es: "La biomasa de grandes mamíferos terrestres está dominada por humanos (36%) y ganado (60%), dejando a los mamíferos salvajes solo con un 4%. La agricultura industrial da forma al planeta y reduce el espacio para especies salvajes, destacando la necesidad de rewilding y uso sostenible de la tierra.",
-      hu: "A nagytestű szárazföldi emlősök biomasszáját az emberek (36%) és a háziállatok (60%) uralják, így a vad emlősöknek csak 4% jut. Az ipari mezőgazdaság jelentősen alakítja a bolygót, és csökkenti a vadon élő fajok helyét, kiemelve a rewilding és a fenntartható földhasználat szükségességét."
-    },
-    question: {
-      text: {
-        en: "What percentage of the total mammalian biomass is made up by humans and livestock combined?",
-        es: "¿Qué porcentaje de la biomasa total de mamíferos está compuesto por humanos y ganado juntos?",
-        hu: "A teljes emlős biomassza hány százalékát teszik ki az emberek és a háziállatok együtt?"
-      },
-      options: {
-        en: ["About 50%", "About 96%", "About 70%"],
-        es: ["Aproximadamente 50%", "Aproximadamente 96%", "Aproximadamente 70%"],
-        hu: ["Körülbelül 50%", "Körülbelül 96%", "Körülbelül 70%"]
-      },
-      correctIndex: 1
-    }
-  },
-{
-    title: {
-      en: "Biodiversity Decline",
-      es: "Declive de la biodiversidad",
-      hu: "A biodiverzitás csökkenése"
-    },
-    content: {
-      en: "Vertebrate populations — mammals, birds, amphibians, reptiles, and fish — have declined by around 70% since 1970 due to deforestation, industrial agriculture, overfishing, and urban expansion. Protecting and restoring biodiversity strengthens ecosystems, regulates climate, and supports food and water security.",
-      es: "Las poblaciones de vertebrados — mamíferos, aves, anfibios, reptiles y peces — han disminuido alrededor del 70% desde 1970 debido a la deforestación, la agricultura industrial, la sobrepesca y la expansión urbana. Proteger y restaurar la biodiversidad fortalece los ecosistemas, regula el clima y apoya la seguridad alimentaria y del agua.",
-      hu: "A gerinces populációk — emlősök, madarak, kétéltűek, hüllők és halak — körülbelül 70%-kal csökkentek 1970 óta az erdőirtás, az ipari mezőgazdaság, a túlhalászás és a városiasodás miatt. A biodiverzitás védelme és helyreállítása erősíti az ökoszisztémákat, szabályozza az éghajlatot és támogatja az élelmiszer- és vízbiztonságot."
-    },
-    question: {
-      text: {
-        en: "By approximately how much have vertebrate populations declined since 1970?",
-        es: "¿En qué porcentaje aproximadamente han disminuido las poblaciones de vertebrados desde 1970?",
-        hu: "Körülbelül mennyivel csökkentek a gerinces populációk 1970 óta?"
-      },
-      options: {
-        en: ["About 30%", "About 50%", "About 70%"],
-        es: ["Aproximadamente 30%", "Aproximadamente 50%", "Aproximadamente 70%"],
-        hu: ["Körülbelül 30%", "Körülbelül 50%", "Körülbelül 70%"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Biodiversity Importance",
-      es: "Importancia de la biodiversidad",
-      hu: "A biodiverzitás fontossága"
-    },
-    content: {
-      en: "Biodiversity includes all living organisms on Earth. Healthy ecosystems regulate climate, purify air and water, pollinate crops, and maintain soil fertility. Human activities like deforestation, pollution, and overfishing threaten biodiversity, making its protection crucial in fighting climate change.",
-      es: "La biodiversidad incluye todos los organismos vivos en la Tierra. Los ecosistemas saludables regulan el clima, purifican el aire y el agua, polinizan los cultivos y mantienen la fertilidad del suelo. Actividades humanas como la deforestación, la contaminación y la sobrepesca amenazan la biodiversidad, haciendo crucial su protección para combatir el cambio climático.",
-      hu: "A biodiverzitás magában foglal minden élőlényt a Földön. Az egészséges ökoszisztémák szabályozzák az éghajlatot, tisztítják a levegőt és a vizet, beporozzák a növényeket és fenntartják a talaj termékenységét. Az emberi tevékenységek, mint az erdőirtás, a szennyezés és a túlhalászás, veszélyeztetik a biodiverzitást, ezért annak védelme kulcsfontosságú a klímaváltozás elleni küzdelemben."
-    },
-    question: {
-      text: {
-        en: "Why is biodiversity important in the fight against climate change?",
-        es: "¿Por qué es importante la biodiversidad en la lucha contra el cambio climático?",
-        hu: "Miért fontos a biodiverzitás a klímaváltozás elleni küzdelemben?"
-      },
-      options: {
-        en: ["It helps ecosystems stay healthy and absorb carbon", "It increases pollution levels", "It reduces soil fertility"],
-        es: ["Ayuda a los ecosistemas a mantenerse saludables y absorber carbono", "Aumenta los niveles de contaminación", "Reduce la fertilidad del suelo"],
-        hu: ["Segíti az ökoszisztémák egészségét és elnyeli a szenet", "Növeli a szennyezést", "Csökkenti a talaj termékenységét"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Ghost Nets in the Ocean",
-      es: "Redes fantasma en el océano",
-      hu: "Szellemhálók az óceánban"
-    },
-    content: {
-      en: "A huge part of the ocean’s plastic problem comes from abandoned fishing nets, known as ghost nets. In the Great Pacific Garbage Patch — the world’s largest floating collection of trash — almost 46% of the plastic by weight is made up of these fishing nets. These nets can drift for decades, trapping fish, dolphins, turtles, and other animals. Reducing seafood consumption helps reduce the demand for industrial fishing, which is the source of most ghost nets.",
-      es: "Gran parte del problema del plástico en los océanos proviene de redes de pesca abandonadas, conocidas como redes fantasma. En el Gran Parche de Basura del Pacífico — la mayor colección flotante de basura del mundo — casi el 46% del plástico por peso está compuesto por estas redes de pesca. Estas redes pueden flotar durante décadas, atrapando peces, delfines, tortugas y otros animales. Reducir el consumo de mariscos ayuda a disminuir la demanda de pesca industrial, que es la fuente de la mayoría de las redes fantasma.",
-      hu: "Az óceánok műanyagszennyezésének nagy része az elhagyott halászhálók, az úgynevezett szellemhálók miatt van. A Nagy Csendes-óceáni Szemétfoltban — a világ legnagyobb úszó hulladékgyűjteményében — a műanyag súlyának majdnem 46%-át ezek a hálók teszik ki. Ezek a hálók évtizedekig sodródhatnak, csapdába ejtve halakat, delfineket, teknősöket és más állatokat. A tengeri ételek fogyasztásának csökkentése segít a halászat iránti kereslet mérséklésében, ami a legtöbb szellemháló forrása."
-    },
-    question: {
-      text: {
-        en: "In the Great Pacific Garbage Patch, what percentage of plastic (by weight) comes from abandoned fishing nets?",
-        es: "En el Gran Parche de Basura del Pacífico, ¿qué porcentaje del plástico (por peso) proviene de redes de pesca abandonadas?",
-        hu: "A Nagy Csendes-óceáni Szemétfoltban a műanyag súlyának hány százaléka származik elhagyott halászhálókból?"
-      },
-      options: {
-        en: ["About 5%", "About 20%", "Almost 46%"],
-        es: ["Alrededor del 5%", "Alrededor del 20%", "Casi 46%"],
-        hu: ["Körülbelül 5%", "Körülbelül 20%", "Majdnem 46%"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Soy Production Impact",
-      es: "Impacto de la producción de soja",
-      hu: "A szója termesztésének hatása"
-    },
-    content: {
-      en: "Most soy (77%) is grown to feed livestock, not humans. This demand drives deforestation, releases CO₂, and threatens biodiversity. Shifting to plant-based consumption can reduce environmental impacts significantly.",
-      es: "La mayor parte de la soja (77%) se cultiva para alimentar al ganado, no a los humanos. Esta demanda impulsa la deforestación, libera CO₂ y amenaza la biodiversidad. Pasarse a un consumo basado en plantas puede reducir significativamente los impactos ambientales.",
-      hu: "A szója nagy részét (77%) állatok etetésére termesztik, nem embereknek. Ez a kereslet erdőirtást okoz, CO₂-t bocsát ki, és veszélyezteti a biodiverzitást. A növényi alapú fogyasztásra való áttérés jelentősen csökkentheti a környezeti hatásokat."
-    },
-    question: {
-      text: {
-        en: "What percentage of global soy production is used to feed farm animals?",
-        es: "¿Qué porcentaje de la producción mundial de soja se utiliza para alimentar al ganado?",
-        hu: "A globális szója-termelés hány százalékát használják állatok etetésére?"
-      },
-      options: {
-        en: ["About 50%", "About 77%", "About 90%"],
-        es: ["Alrededor del 50%", "Alrededor del 77%", "Alrededor del 90%"],
-        hu: ["Körülbelül 50%", "Körülbelül 77%", "Körülbelül 90%"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Transportation Emissions",
-      es: "Emisiones del transporte",
-      hu: "A közlekedés kibocsátása"
-    },
-    content: {
-      en: "Transportation contributes about 25% of global greenhouse gas emissions, mainly from cars, trucks, and planes. Sustainable alternatives like walking, cycling, public transport, or electric vehicles can reduce your carbon footprint, improve air quality, and lower emissions.",
-      es: "El transporte contribuye con aproximadamente el 25% de las emisiones globales de gases de efecto invernadero, principalmente de coches, camiones y aviones. Alternativas sostenibles como caminar, ir en bicicleta, usar transporte público o vehículos eléctricos pueden reducir tu huella de carbono, mejorar la calidad del aire y disminuir las emisiones.",
-      hu: "A közlekedés körülbelül 25%-át adja a globális üvegházhatású gázkibocsátásnak, főként autók, teherautók és repülőgépek révén. Fenntartható alternatívák, mint a gyaloglás, kerékpározás, tömegközlekedés vagy elektromos járművek csökkenthetik a karbonlábnyomot, javíthatják a levegő minőségét és mérsékelhetik a kibocsátást."
-    },
-    question: {
-      text: {
-        en: "Roughly what share of global greenhouse gas emissions comes from transportation?",
-        es: "¿Aproximadamente qué parte de las emisiones globales de gases de efecto invernadero proviene del transporte?",
-        hu: "Körülbelül a globális üvegházhatású gázkibocsátás hány százaléka származik a közlekedésből?"
-      },
-      options: {
-        en: ["About 10%", "About 25%", "About 50%"],
-        es: ["Alrededor del 10%", "Alrededor del 25%", "Alrededor del 50%"],
-        hu: ["Körülbelül 10%", "Körülbelül 25%", "Körülbelül 50%"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Fighting Climate Change",
-      es: "Luchando contra el cambio climático",
-      hu: "A klímaváltozás elleni küzdelem"
-    },
-    content: {
-      en: "Key pillars in fighting climate change include switching to renewable energy, protecting forests, reducing waste, sustainable transport, safeguarding biodiversity, and returning land to nature. These steps cut greenhouse gas emissions and help restore the planet's balance.",
-      es: "Los pilares clave para combatir el cambio climático incluyen cambiar a energía renovable, proteger los bosques, reducir residuos, transporte sostenible, proteger la biodiversidad y devolver la tierra a la naturaleza. Estos pasos reducen las emisiones de gases de efecto invernadero y ayudan a restaurar el equilibrio del planeta.",
-      hu: "A klímaváltozás elleni küzdelem fő pillérei közé tartozik a megújuló energia használata, az erdők védelme, a hulladék csökkentése, a fenntartható közlekedés, a biodiverzitás megőrzése és a föld visszaadása a természetnek. Ezek a lépések csökkentik az üvegházhatású gázkibocsátást és segítenek helyreállítani a bolygó egyensúlyát."
-    },
-    question: {
-      text: {
-        en: "Which of the following is NOT one of the main pillars of fighting climate change?",
-        es: "¿Cuál de los siguientes NO es uno de los pilares principales para combatir el cambio climático?",
-        hu: "Melyik NEM a klímaváltozás elleni küzdelem fő pillérei közül?"
-      },
-      options: {
-        en: ["Switching to renewable energy", "Protecting forests", "Increasing fossil fuel use"],
-        es: ["Cambiar a energía renovable", "Proteger los bosques", "Aumentar el uso de combustibles fósiles"],
-        hu: ["Megújuló energiára váltás", "Az erdők védelme", "A fosszilis üzemanyagok növelése"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Daily Food Choices Matter",
-      es: "Las elecciones alimentarias diarias importan",
-      hu: "A napi étkezési döntések számítanak"
-    },
-    content: {
-      en: "Our daily food choices greatly impact the environment, affecting deforestation, greenhouse gas emissions, water use, and ocean health. Choosing more plant-based meals, reducing food waste, and supporting sustainable products are highly effective ways to protect the planet. Your plate is your most powerful environmental tool.",
-      es: "Nuestras elecciones alimentarias diarias impactan mucho en el medio ambiente, afectando la deforestación, las emisiones de gases de efecto invernadero, el uso del agua y la salud de los océanos. Elegir comidas más basadas en plantas, reducir el desperdicio de alimentos y apoyar productos sostenibles son formas muy efectivas de proteger el planeta. Tu plato es tu herramienta ambiental más poderosa.",
-      hu: "A napi étkezési döntéseink nagy hatással vannak a környezetre, befolyásolják az erdőirtást, az üvegházhatású gázok kibocsátását, a vízfelhasználást és az óceánok egészségét. A növényi alapú ételek választása, az élelmiszerpazarlás csökkentése és a fenntartható termékek támogatása rendkívül hatékony módja a bolygó védelmének. A tányérod a legerősebb környezeti eszközöd."
-    },
-    question: {
-      text: {
-        en: "What is considered your most powerful tool to protect the environment?",
-        es: "¿Cuál se considera tu herramienta más poderosa para proteger el medio ambiente?",
-        hu: "Mi számít a legerősebb eszközödnek a környezet védelmében?"
-      },
-      options: {
-        en: ["Your plate", "Your phone", "Your car"],
-        es: ["Tu plato", "Tu teléfono", "Tu coche"],
-        hu: ["A tányérod", "A telefonod", "Az autód"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Heating Your Home Efficiently",
-      es: "Calentar tu hogar de manera eficiente",
-      hu: "Otthonod fűtése hatékonyan"
-    },
-    content: {
-      en: "Heating our homes takes a lot of energy — and even one degree makes a difference. Lowering your thermostat by just 1°C can cut your heating energy use by about 7% and prevent roughly 300 kg of CO₂ emissions per year for an average household. Just put on a cozy sweater instead!",
-      es: "Calentar nuestros hogares requiere mucha energía, y incluso un grado marca la diferencia. Bajar el termostato solo 1°C puede reducir el uso de energía en calefacción en aproximadamente un 7% y evitar alrededor de 300 kg de emisiones de CO₂ por año en un hogar promedio. ¡Solo ponte un suéter acogedor!",
-      hu: "Otthonaink fűtése sok energiát igényel — és már egy fok is számít. A termosztát 1°C-kal történő csökkentése körülbelül 7%-kal csökkentheti a fűtési energiafelhasználást, és évente kb. 300 kg CO₂-kibocsátást spórolhat egy átlagos háztartásban. Csak vegyél fel egy meleg pulóvert!"
-    },
-    question: {
-      text: {
-        en: "Lowering the thermostat by 1°C can reduce home heating energy use by roughly:",
-        es: "Bajar el termostato 1°C puede reducir el uso de energía para calefacción aproximadamente en:",
-        hu: "A termosztát 1°C-kal történő csökkentése körülbelül mennyivel csökkenti a fűtési energiafelhasználást?"
-      },
-      options: {
-        en: ["2%", "7%", "15%"],
-        es: ["2%", "7%", "15%"],
-        hu: ["2%", "7%", "15%"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Impact of Abandoned Fishing Gear",
-      es: "Impacto del equipo de pesca abandonado",
-      hu: "Az elhagyott halászeszközök hatása"
-    },
-    content: {
-      en: "Abandoned fishing gear, or 'ghost nets,' can float in the ocean for over 600 years, continuously trapping marine life. Choosing plant-based foods reduces demand on industrial fishing, helping protect marine ecosystems and prevent plastic pollution at its source.",
-      es: "El equipo de pesca abandonado, o 'redes fantasma', puede flotar en el océano durante más de 600 años, atrapando continuamente vida marina. Elegir alimentos de origen vegetal reduce la demanda de pesca industrial, ayudando a proteger los ecosistemas marinos y prevenir la contaminación plástica desde la fuente.",
-      hu: "Az elhagyott halászhálók, vagyis a 'szellemhálók', több mint 600 évig sodródhatnak az óceánban, folyamatosan csapdába ejtve a tengeri élőlényeket. A növényi alapú ételek választása csökkenti az ipari halászat iránti keresletet, segítve a tengeri ökoszisztémák védelmét és a műanyagszennyezés megelőzését már a forrásnál."
-    },
-    question: {
-      text: {
-        en: "How long can abandoned fishing nets continue to trap marine animals in the ocean?",
-        es: "¿Durante cuánto tiempo pueden las redes de pesca abandonadas seguir atrapando animales marinos en el océano?",
-        hu: "Meddig csapdázhatják tovább az elhagyott halászhálók a tengeri állatokat az óceánban?"
-      },
-      options: {
-        en: ["10–50 years", "100–200 years", "Over 600 years"],
-        es: ["10–50 años", "100–200 años", "Más de 600 años"],
-        hu: ["10–50 év", "100–200 év", "Több mint 600 év"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Global Temperature Rise 2",
-      es: "Aumento de la temperatura global 2",
-      hu: "A globális hőmérséklet emelkedése 2"
-    },
-    content: {
-      en: "Global temperatures have already risen by about 1.2°C since pre-industrial times. If warming reaches 2°C, up to 99% of coral reefs could disappear, destroying ecosystems that support a quarter of all marine life.",
-      es: "Las temperaturas globales ya han aumentado alrededor de 1,2°C desde la época preindustrial. Si el calentamiento alcanza los 2°C, hasta el 99% de los arrecifes de coral podrían desaparecer, destruyendo ecosistemas que sostienen una cuarta parte de toda la vida marina.",
-      hu: "A globális hőmérséklet már kb. 1,2°C-kal emelkedett az ipari forradalom előtti időkhöz képest. Ha a felmelegedés eléri a 2°C-ot, a korallzátonyok akár 99%-a eltűnhet, elpusztítva az ökoszisztémákat, amelyek a tengeri élőlények negyedét támogatják."
-    },
-    question: {
-      text: {
-        en: "What percentage of coral reefs could vanish if global warming reaches 2°C?",
-        es: "¿Qué porcentaje de los arrecifes de coral podría desaparecer si el calentamiento global alcanza los 2°C?",
-        hu: "A korallzátonyok hány százaléka tűnhet el, ha a globális felmelegedés eléri a 2°C-ot?"
-      },
-      options: {
-        en: ["25%", "60%", "Up to 99%"],
-        es: ["25%", "60%", "Hasta el 99%"],
-        hu: ["25%", "60%", "Akár 99%"]
-      },
-      correctIndex: 2
-    }
-  },
-{
-    title: {
-      en: "Oceans as Carbon Sinks",
-      es: "Los océanos como sumideros de carbono",
-      hu: "Az óceánok mint szénelnyelők"
-    },
-    content: {
-      en: "Oceans absorb about 25–30% of human CO₂ emissions and store more heat than the atmosphere. Phytoplankton alone captures roughly 50 billion tons of CO₂ each year. Protecting marine ecosystems maintains this natural CO₂ sink.",
-      es: "Los océanos absorben aproximadamente el 25-30% de las emisiones humanas de CO₂ y almacenan más calor que la atmósfera. Solo el fitoplancton captura alrededor de 50 mil millones de toneladas de CO₂ cada año. Proteger los ecosistemas marinos mantiene este sumidero natural de CO₂.",
-      hu: "Az óceánok az emberi CO₂-kibocsátás körülbelül 25–30%-át elnyelik, és több hőt tárolnak, mint a légkör. Maga a fitoplankton évente kb. 50 milliárd tonna CO₂-t köt meg. A tengeri ökoszisztémák védelme fenntartja ezt a természetes szénelnyelőt."
-    },
-    question: {
-      text: {
-        en: "Approximately what percentage of human CO₂ emissions do oceans absorb?",
-        es: "¿Qué porcentaje aproximado de las emisiones humanas de CO₂ absorben los océanos?",
-        hu: "Körülbelül a hány százalékát nyelik el az óceánok az emberi CO₂-kibocsátásnak?"
-      },
-      options: {
-        en: ["10–15%", "25–30%", "50–60%"],
-        es: ["10–15%", "25–30%", "50–60%"],
-        hu: ["10–15%", "25–30%", "50–60%"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "CO₂ Emissions from Animal vs Plant Foods",
-      es: "Emisiones de CO₂ de alimentos animales vs vegetales",
-      hu: "CO₂-kibocsátás állati és növényi élelmiszerekből"
-    },
-    content: {
-      en: "Producing 1 kg of beef releases ~60 kg of CO₂, cheese ~23 kg, and milk ~3 kg. In contrast, tofu produces 3 kg, and lentils less than 1 kg. Choosing more plant-based options can cut food-related emissions by up to 75%.",
-      es: "Producir 1 kg de carne de res libera ~60 kg de CO₂, queso ~23 kg y leche ~3 kg. En contraste, el tofu produce 3 kg y las lentejas menos de 1 kg. Elegir más opciones vegetales puede reducir las emisiones relacionadas con los alimentos hasta en un 75%.",
-      hu: "1 kg marhahús előállítása kb. 60 kg CO₂-t bocsát ki, a sajt ~23 kg-ot, a tej ~3 kg-ot. Ezzel szemben a tofu 3 kg, a lencse kevesebb, mint 1 kg CO₂-t termel. Több növényi alapú étel választása akár 75%-kal csökkentheti az élelmiszerhez kapcsolódó kibocsátást."
-    },
-    question: {
-      text: {
-        en: "Which of these foods causes the most CO₂ emissions per kilogram?",
-        es: "¿Cuál de estos alimentos causa más emisiones de CO₂ por kilogramo?",
-        hu: "Melyik étel bocsát ki a legtöbb CO₂-t kilogrammonként?"
-      },
-      options: {
-        en: ["Beef", "Cheese", "Tofu"],
-        es: ["Carne de res", "Queso", "Tofu"],
-        hu: ["Marhahús", "Sajt", "Tofu"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Water Use in Milk Production",
-      es: "Uso de agua en la producción de leche",
-      hu: "A vízhasználat a tejtermelésben"
-    },
-    content: {
-      en: "Dairy milk is water-intensive: producing 1 liter requires about 1,000 liters of water. Plant-based alternatives need far less — oat milk ~48 liters, soy milk ~28 liters, almond milk ~371 liters.",
-      es: "La leche de vaca requiere mucha agua: producir 1 litro necesita aproximadamente 1.000 litros de agua. Las alternativas vegetales necesitan mucho menos: leche de avena ~48 litros, leche de soja ~28 litros, leche de almendra ~371 litros.",
-      hu: "A tehéntej vízigényes: 1 liter előállításához kb. 1000 liter víz szükséges. A növényi alternatívák sokkal kevesebbet igényelnek — zabtej ~48 liter, szója tej ~28 liter, mandulatej ~371 liter."
-    },
-    question: {
-      text: {
-        en: "Which type of milk uses the most water per liter?",
-        es: "¿Qué tipo de leche utiliza más agua por litro?",
-        hu: "Melyik tejfajta használja a legtöbb vizet literenként?"
-      },
-      options: {
-        en: ["Cow’s milk", "Oat milk", "Soy milk"],
-        es: ["Leche de vaca", "Leche de avena", "Leche de soja"],
-        hu: ["Tehéntej", "Zabtej", "Szója tej"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Land Use for Milk Production",
-      es: "Uso de tierra para la producción de leche",
-      hu: "Földhasználat a tejtermeléshez"
-    },
-    content: {
-      en: "To produce 1 liter of cow’s milk, farmers need about 9 m² of land per year — mostly for feed. Oat milk needs 0.8 m², soy milk 0.7 m², almond milk 0.5 m². Switching to plant-based milk reduces land use by over 85%.",
-      es: "Para producir 1 litro de leche de vaca, los agricultores necesitan aproximadamente 9 m² de tierra al año, principalmente para el alimento. La leche de avena necesita 0,8 m², la de soja 0,7 m² y la de almendra 0,5 m². Cambiar a leche vegetal reduce el uso de tierra en más del 85%.",
-      hu: "1 liter tehéntej előállításához a gazdáknak évente kb. 9 m² földre van szükségük — főként takarmányhoz. A zabtej 0,8 m²-t, a szója tej 0,7 m²-t, a mandulatej 0,5 m²-t igényel. A növényi alapú tejekre váltás több mint 85%-kal csökkenti a földhasználatot."
-    },
-    question: {
-      text: {
-        en: "How much land is needed each year to produce 1 liter of cow’s milk?",
-        es: "¿Cuánta tierra se necesita cada año para producir 1 litro de leche de vaca?",
-        hu: "Mennyi földre van szükség évente 1 liter tehéntej előállításához?"
-      },
-      options: {
-        en: ["9 m²", "2 m²", "0.7 m²"],
-        es: ["9 m²", "2 m²", "0,7 m²"],
-        hu: ["9 m²", "2 m²", "0,7 m²"]
-      },
-      correctIndex: 0
-    }
-  },
-  {
-    title: {
-      en: "Free-range and Regenerative Farming",
-      es: "Agricultura libre y regenerativa",
-      hu: "Szabad tartású és regeneratív gazdálkodás"
-    },
-    content: {
-      en: "Free-range and regenerative farming can cut emissions by up to 50% compared to conventional methods, but require 2–2.5 times more land to produce the same amount of food.",
-      es: "La agricultura libre y regenerativa puede reducir las emisiones hasta en un 50% en comparación con los métodos convencionales, pero requiere 2-2,5 veces más tierra para producir la misma cantidad de alimentos.",
-      hu: "A szabad tartású és regeneratív gazdálkodás akár 50%-kal csökkentheti a kibocsátást a hagyományos módszerekhez képest, de ugyanannyi élelmiszer előállításához 2–2,5-szer több földre van szükség."
-    },
-    question: {
-      text: {
-        en: "Compared to conventional farming, how much more land do free-range products typically need?",
-        es: "En comparación con la agricultura convencional, ¿cuánta más tierra necesitan típicamente los productos de libre crianza?",
-        hu: "A hagyományos gazdálkodáshoz képest mennyivel több földre van szükség a szabad tartású termékek előállításához?"
-      },
-      options: {
-        en: ["1.5x", "2–2.5x", "3x"],
-        es: ["1,5x", "2–2,5x", "3x"],
-        hu: ["1,5x", "2–2,5x", "3x"]
-      },
-      correctIndex: 1
-    }
-  },
-{
-    title: {
-      en: "Low-Carbon Transportation",
-      es: "Transporte de bajo carbono",
-      hu: "Alacsony szén-dioxid-kibocsátású közlekedés"
-    },
-    content: {
-      en: "A medium car emits ~120 g CO₂/km, a return flight NY-London ~1.2 tons per passenger, and the train ~14 g CO₂/km. Choosing trains, biking, walking, or combining trips drastically reduces your carbon footprint.",
-      es: "Un coche medio emite ~120 g CO₂/km, un vuelo de ida y vuelta NY-Londres ~1,2 toneladas por pasajero, y el tren ~14 g CO₂/km. Elegir trenes, bicicletas, caminar o combinar viajes reduce drásticamente tu huella de carbono.",
-      hu: "Egy közepes autó kb. 120 g CO₂/km-t bocsát ki, egy New York–London oda-vissza járat ~1,2 tonna/passzager, míg a vonat ~14 g CO₂/km-t. A vonat, kerékpár, gyaloglás vagy utak kombinálása drasztikusan csökkenti a szénlábnyomot."
-    },
-    question: {
-      text: {
-        en: "Which mode of transport emits the least CO₂ per kilometer?",
-        es: "¿Qué medio de transporte emite menos CO₂ por kilómetro?",
-        hu: "Melyik közlekedési mód bocsátja ki a legkevesebb CO₂-t kilométerenként?"
-      },
-      options: {
-        en: ["Car", "Plane", "Train"],
-        es: ["Coche", "Avión", "Tren"],
-        hu: ["Autó", "Repülő", "Vonat"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Leather and Environmental Impact",
-      es: "Cuero e impacto ambiental",
-      hu: "Bőr és környezeti hatás"
-    },
-    content: {
-      en: "Producing 1 m² of cowhide leather emits 65–110 kg of CO₂ and requires ~15,000 liters of water. Plant-based leathers produce only 1–8 kg of CO₂ and use less than 100 liters of water.",
-      es: "Producir 1 m² de cuero de vaca emite 65–110 kg de CO₂ y requiere ~15,000 litros de agua. Los cueros vegetales producen solo 1–8 kg de CO₂ y usan menos de 100 litros de agua.",
-      hu: "1 m² marhabőr előállítása 65–110 kg CO₂-t bocsát ki és kb. 15 000 liter vizet igényel. A növényi alapú bőrök mindössze 1–8 kg CO₂-t termelnek és kevesebb mint 100 liter vizet használnak."
-    },
-    question: {
-      text: {
-        en: "How many kilograms of CO₂ does 1 m² of cowhide leather emit?",
-        es: "¿Cuántos kilogramos de CO₂ emite 1 m² de cuero de vaca?",
-        hu: "Hány kg CO₂-t bocsát ki 1 m² marhabőr?"
-      },
-      options: {
-        en: ["10–20 kg", "30–50 kg", "65–110 kg"],
-        es: ["10–20 kg", "30–50 kg", "65–110 kg"],
-        hu: ["10–20 kg", "30–50 kg", "65–110 kg"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Cropland for Meat and Dairy",
-      es: "Tierras agrícolas para carne y lácteos",
-      hu: "Mezőgazdasági föld hús és tejtermékek számára"
-    },
-    content: {
-      en: "77% of global cropland produces meat and dairy, providing only ~18% of calories. Producing these foods emits 2–5 times more CO₂ than necessary compared to growing crops directly for humans.",
-      es: "El 77% de la tierra cultivable mundial produce carne y lácteos, proporcionando solo ~18% de las calorías. Producir estos alimentos emite 2–5 veces más CO₂ de lo necesario en comparación con cultivar directamente para humanos.",
-      hu: "A világ mezőgazdasági földjeinek 77%-án húst és tejterméket termelnek, amelyek csak kb. 18%-át adják a kalóriáknak. Ezek előállítása 2–5-ször több CO₂-t bocsát ki, mintha a növényeket közvetlenül embereknek termelnénk."
-    },
-    question: {
-      text: {
-        en: "Producing meat and dairy emits how many times more CO₂ than necessary?",
-        es: "¿Cuántas veces más CO₂ se emite al producir carne y lácteos de lo necesario?",
-        hu: "Hányszor több CO₂-t bocsátanak ki a hús- és tejtermékek előállítása során, mint amennyi szükséges lenne?"
-      },
-      options: {
-        en: ["1x", "2–5x", "10x"],
-        es: ["1x", "2–5x", "10x"],
-        hu: ["1x", "2–5x", "10x"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Water for Egg Production",
-      es: "Agua para la producción de huevos",
-      hu: "Víz a tojástermeléshez"
-    },
-    content: {
-      en: "Producing 1 kg of eggs requires ~3,300 liters of water, mostly to grow feed for hens. 1 kg of lentils needs only ~1,250 liters.",
-      es: "Producir 1 kg de huevos requiere ~3,300 litros de agua, principalmente para cultivar alimento para las gallinas. 1 kg de lentejas necesita solo ~1,250 litros.",
-      hu: "1 kg tojás előállításához kb. 3 300 liter víz szükséges, főként a tyúkok takarmányához. 1 kg lencse csak kb. 1 250 liter vizet igényel."
-    },
-    question: {
-      text: {
-        en: "How much water is needed to produce 1 kg of eggs?",
-        es: "¿Cuánta agua se necesita para producir 1 kg de huevos?",
-        hu: "Mennyi vízre van szükség 1 kg tojás előállításához?"
-      },
-      options: {
-        en: ["1,250 liters", "3,300 liters", "5,000 liters"],
-        es: ["1,250 litros", "3,300 litros", "5,000 litros"],
-        hu: ["1 250 liter", "3 300 liter", "5 000 liter"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Global Wildlife Decline",
-      es: "Declive de la fauna mundial",
-      hu: "Globális vadon élő állatok állománycsökkenése"
-    },
-    content: {
-      en: "Globally, monitored wildlife populations fell by 73% between 1970–2020. Many marine mammal stocks are now vulnerable to warming waters and habitat loss, with some species near collapse.",
-      es: "A nivel mundial, las poblaciones de fauna monitoreadas cayeron un 73% entre 1970 y 2020. Muchas poblaciones de mamíferos marinos ahora son vulnerables al calentamiento de las aguas y la pérdida de hábitat, y algunas especies están cerca del colapso.",
-      hu: "Világszerte a monitorozott vadvilág-populációk 73%-kal csökkentek 1970–2020 között. Sok tengeri emlősállomány most a vízhőmérséklet emelkedése és az élőhelyvesztés miatt sebezhető, egyes fajok közel állnak a kipusztuláshoz."
-    },
-    question: {
-      text: {
-        en: "By roughly what percentage did monitored wildlife populations decline globally from 1970 to 2020?",
-        es: "¿En qué porcentaje aproximadamente disminuyeron las poblaciones de fauna monitoreadas a nivel mundial entre 1970 y 2020?",
-        hu: "Körülbelül hány százalékkal csökkentek a monitorozott vadvilág-populációk 1970 és 2020 között világszerte?"
-      },
-      options: {
-        en: ["35%", "73%", "90%"],
-        es: ["35%", "73%", "90%"],
-        hu: ["35%", "73%", "90%"]
-      },
-      correctIndex: 1
-    }
-  },
-{
-    title: {
-      en: "Environmental Impact of Eggs",
-      es: "Impacto ambiental de los huevos",
-      hu: "A tojások környezeti hatása"
-    },
-    content: {
-      en: "Producing 1 kg of eggs emits about 2.7 kg of CO₂, requires roughly 3,300 liters of water, and about 36 m² of land. In comparison, 1 kg of lentils emits around 0.9 kg of CO₂, uses 1,250 liters of water, and 2–3 m² of land. Tofu is similar, with ~3 kg CO₂, 302 liters of water, and 2–3 m² of land per kilogram.",
-      es: "Producir 1 kg de huevos emite aproximadamente 2,7 kg de CO₂, requiere alrededor de 3.300 litros de agua y unos 36 m² de tierra. En comparación, 1 kg de lentejas emite alrededor de 0,9 kg de CO₂, usa 1.250 litros de agua y 2–3 m² de tierra. El tofu es similar, con ~3 kg de CO₂, 302 litros de agua y 2–3 m² de tierra por kilogramo.",
-      hu: "1 kg tojás előállítása kb. 2,7 kg CO₂-t bocsát ki, kb. 3 300 liter vizet és kb. 36 m² földet igényel. Összehasonlításként 1 kg lencse kb. 0,9 kg CO₂-t termel, 1 250 liter vizet használ és 2–3 m² földet igényel. A tofu hasonló, kb. 3 kg CO₂, 302 liter víz és 2–3 m² föld kilogrammonként."
-    },
-    question: {
-      text: {
-        en: "Which has a lower environmental impact per kilogram?",
-        es: "¿Cuál tiene un menor impacto ambiental por kilogramo?",
-        hu: "Mi rendelkezik alacsonyabb környezeti hatással kilogrammonként?"
-      },
-      options: {
-        en: ["Eggs", "Lentils", "Beef"],
-        es: ["Huevos", "Lentejas", "Carne de res"],
-        hu: ["Tojás", "Lencse", "Marhahús"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Water for Cheese Production",
-      es: "Agua para producir queso",
-      hu: "Víz a sajt előállításához"
-    },
-    content: {
-      en: "Producing 1 kg of cheese requires ~5,000 liters of water, mostly to grow the milk. 1 kg of lentils only requires ~1,250 liters.",
-      es: "Producir 1 kg de queso requiere ~5.000 litros de agua, principalmente para la leche. 1 kg de lentejas solo necesita ~1.250 litros.",
-      hu: "1 kg sajt előállításához kb. 5 000 liter víz szükséges, főleg a tej előállításához. 1 kg lencse csak kb. 1 250 liter vizet igényel."
-    },
-    question: {
-      text: {
-        en: "How much water is needed to produce 1 kg of cheese?",
-        es: "¿Cuánta agua se necesita para producir 1 kg de queso?",
-        hu: "Mennyi víz szükséges 1 kg sajt előállításához?"
-      },
-      options: {
-        en: ["1,250 liters", "3,000 liters", "5,000 liters"],
-        es: ["1.250 litros", "3.000 litros", "5.000 litros"],
-        hu: ["1 250 liter", "3 000 liter", "5 000 liter"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Carbon Footprint of Cheese",
-      es: "Huella de carbono del queso",
-      hu: "A sajt szénlábnyoma"
-    },
-    content: {
-      en: "1 kg of cheese emits ~23 kg of CO₂, while 1 liter of cow’s milk emits ~3 kg CO₂. Cheese produces 5–10 times more emissions per kilogram than plant-based alternatives.",
-      es: "1 kg de queso emite ~23 kg de CO₂, mientras que 1 litro de leche de vaca emite ~3 kg CO₂. El queso produce 5–10 veces más emisiones por kilogramo que las alternativas vegetales.",
-      hu: "1 kg sajt kb. 23 kg CO₂-t bocsát ki, míg 1 liter tehéntej kb. 3 kg CO₂-t termel. A sajt 5–10-szer több kibocsátást okoz kilogrammonként, mint a növényi alternatívák."
-    },
-    question: {
-      text: {
-        en: "How many kilograms of CO₂ are emitted to produce 1 kg of cheese?",
-        es: "¿Cuántos kilogramos de CO₂ se emiten al producir 1 kg de queso?",
-        hu: "Hány kg CO₂-t bocsátanak ki 1 kg sajt előállításához?"
-      },
-      options: {
-        en: ["3 kg", "10 kg", "23 kg"],
-        es: ["3 kg", "10 kg", "23 kg"],
-        hu: ["3 kg", "10 kg", "23 kg"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Impact of Industrial Fishing",
-      es: "Impacto de la pesca industrial",
-      hu: "Az ipari halászat hatása"
-    },
-    content: {
-      en: "Industrial fishing kills ~300,000 whales, dolphins, and porpoises each year via bycatch. Overfishing has caused predator fish populations to drop by over 90% in 50 years.",
-      es: "La pesca industrial mata a ~300.000 ballenas, delfines y marsopas cada año por captura incidental. La sobrepesca ha hecho que las poblaciones de peces depredadores caigan más del 90% en 50 años.",
-      hu: "Az ipari halászat évente kb. 300 000 bálnát, delfint és csőröscápát öl meg mellékfogásként. Az túlhalászás miatt a ragadozó halpopulációk az elmúlt 50 évben több mint 90%-kal csökkentek."
-    },
-    question: {
-      text: {
-        en: "Approximately how many large marine mammals are killed by bycatch each year?",
-        es: "¿Aproximadamente cuántos mamíferos marinos grandes mueren cada año por captura incidental?",
-        hu: "Körülbelül hány nagy tengeri emlőst ölnek meg mellékfogásként évente?"
-      },
-      options: {
-        en: ["50,000", "300,000", "1,000,000"],
-        es: ["50.000", "300.000", "1.000.000"],
-        hu: ["50 000", "300 000", "1 000 000"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Sustainability of Plant-based Foods",
-      es: "Sostenibilidad de los alimentos vegetales",
-      hu: "Növényi alapú élelmiszerek fenntarthatósága"
-    },
-    content: {
-      en: "Highly processed vegetarian foods can have up to 4 times the CO₂ emissions of fresh vegetables due to production energy, packaging, and transport. Minimally processed plant foods maximize environmental benefits.",
-      es: "Los alimentos vegetarianos altamente procesados pueden tener hasta 4 veces las emisiones de CO₂ de los vegetales frescos debido a la energía de producción, el empaquetado y el transporte. Los alimentos vegetales mínimamente procesados maximizan los beneficios ambientales.",
-      hu: "A nagyon feldolgozott vegetáriánus élelmiszerek akár 4-szer több CO₂-t termelhetnek, mint a friss zöldségek a gyártási energia, csomagolás és szállítás miatt. A minimálisan feldolgozott növényi élelmiszerek maximalizálják a környezeti előnyöket."
-    },
-    question: {
-      text: {
-        en: "How much higher can emissions be for processed vegetarian foods compared to fresh vegetables?",
-        es: "¿Cuánto más altas pueden ser las emisiones de los alimentos vegetarianos procesados en comparación con los vegetales frescos?",
-        hu: "Mennyivel lehet magasabb a kibocsátás a feldolgozott vegetáriánus ételek esetén a friss zöldségekhez képest?"
-      },
-      options: {
-        en: ["About the same", "2x higher", "Up to 4x higher"],
-        es: ["Más o menos igual", "2x más", "Hasta 4x más"],
-        hu: ["Körülbelül ugyanannyi", "2x magasabb", "Akár 4x magasabb"]
-      },
-      correctIndex: 2
-    }
-  },
-{
-    title: {
-      en: "Bottom Trawling Damage",
-      es: "Daños de la pesca de arrastre de fondo",
-      hu: "Az aljzathúzó halászat káros hatásai"
-    },
-    content: {
-      en: "Bottom trawling drags heavy nets along the ocean floor, destroying habitats and releasing stored carbon. About 15% of the world’s continental shelf is affected, making it one of the most destructive fishing practices.",
-      es: "La pesca de arrastre de fondo arrastra redes pesadas por el fondo del océano, destruyendo hábitats y liberando carbono almacenado. Aproximadamente el 15% de la plataforma continental mundial se ve afectada, siendo una de las prácticas de pesca más destructivas.",
-      hu: "Az aljzathúzó halászat nehéz hálókat húz az óceán fenekén, elpusztítva az élőhelyeket és kibocsátva a felhalmozódott szén-dioxidot. A világ kontinentális talapzatának kb. 15%-át érinti, ez az egyik legpusztítóbb halászati módszer."
-    },
-    question: {
-      text: {
-        en: "Why is bottom trawling considered highly destructive?",
-        es: "¿Por qué se considera muy destructiva la pesca de arrastre de fondo?",
-        hu: "Miért tekinthető az aljzathúzó halászat rendkívül károsnak?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "It selectively catches only large fish",
-          "It scrapes the ocean floor, destroying habitats and releasing carbon",
-          "It uses too much fuel"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Solo captura selectivamente peces grandes",
-          "Raspa el fondo del océano, destruyendo hábitats y liberando carbono",
-          "Consume demasiado combustible"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Csak a nagy halakat fogja ki szelektíven",
-          "Lekaparja az óceánfeneket, elpusztítva az élőhelyeket és kibocsátva a szén-dioxidot",
-          "Túl sok üzemanyagot használ"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Water Footprint of Animal vs Plant Foods",
-      es: "Huella hídrica de alimentos animales vs vegetales",
-      hu: "Vízfelhasználás állati és növényi ételeknél"
+      en: "Soy production",
+      es: "Producción de soja",
+      hu: "Szójatermelés"
     },
     content: {
-      en: "Producing 1 kg of beef requires over 15,000 liters of water, whereas 1 kg of beans needs around 4,000 liters. This huge difference shows why plant-based diets are far less water-intensive.",
-      es: "Producir 1 kg de carne de res requiere más de 15.000 litros de agua, mientras que 1 kg de frijoles necesita alrededor de 4.000 litros. Esta gran diferencia muestra por qué las dietas basadas en plantas consumen mucha menos agua.",
-      hu: "1 kg marhahús előállítása több mint 15 000 liter vizet igényel, míg 1 kg bab körülbelül 4 000 litert. Ez a nagy különbség megmutatja, miért kevésbé vízigényes a növényi alapú étrend."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Approximately how many liters of water are needed to produce 1 kg of beef?",
-        es: "¿Aproximadamente cuántos litros de agua se necesitan para producir 1 kg de carne de res?",
-        hu: "Körülbelül hány liter víz szükséges 1 kg marhahús előállításához?"
-      },
-      options: {
-        en: ["1,000 liters", "5,000 liters", "15,000 liters", "30,000 liters"],
-        es: ["1.000 litros", "5.000 litros", "15.000 litros", "30.000 litros"],
-        hu: ["1 000 liter", "5 000 liter", "15 000 liter", "30 000 liter"]
-      },
-      correctIndex: 2
-    }
-  },
-  {
-    title: {
-      en: "Veganism and Economic Transition",
-      es: "Veganismo y transición económica",
-      hu: "A veganizmus és a gazdasági átmenet"
-    },
-    content: {
-      en: "A shift to a plant-based diet can create new jobs in sustainable farming, food innovation, and eco-friendly industries. The transition is gradual, allowing farmers and communities time to adapt while protecting people, animals, and the planet.",
-      es: "Un cambio hacia una dieta basada en plantas puede crear nuevos empleos en agricultura sostenible, innovación alimentaria e industrias ecológicas. La transición es gradual, permitiendo que los agricultores y comunidades se adapten mientras se protege a las personas, animales y al planeta.",
-      hu: "A növényi alapú étrendre való áttérés új munkahelyeket teremthet a fenntartható mezőgazdaságban, élelmiszer-innovációban és környezetbarát iparágakban. Az átmenet fokozatos, lehetőséget adva a gazdáknak és közösségeknek az alkalmazkodásra, miközben védi az embereket, az állatokat és a bolygót."
-    },
-    question: {
-      text: {
-        en: "Why shouldn’t we worry that veganism will suddenly harm the economy?",
-        es: "¿Por qué no debemos preocuparnos de que el veganismo dañe repentinamente la economía?",
-        hu: "Miért nem kell aggódnunk amiatt, hogy a veganizmus hirtelen kárt okozna a gazdaságnak?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because the transition will be slow and allow people to adapt",
-          "Because farmers will stop working immediately",
-          "Because veganism eliminates all jobs",
-          "Because no one needs to eat anymore"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque la transición será lenta y permitirá que la gente se adapte",
-          "Porque los agricultores dejarán de trabajar inmediatamente",
-          "Porque el veganismo elimina todos los empleos",
-          "Porque nadie necesita comer más"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert az átmenet lassú lesz, és lehetővé teszi az emberek számára az alkalmazkodást",
-          "Mert a gazdák azonnal abbahagyják a munkát",
-          "Mert a veganizmus megszünteti az összes munkahelyet",
-          "Mert senkinek sem kell többé ennie"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Climate Impact of Animal Agriculture",
-      es: "Impacto climático de la agricultura animal",
-      hu: "Az állattenyésztés klímahatása"
+      en: "Land use of milk production",
+      es: "Uso de la tierra para la producción de leche",
+      hu: "Földhasználat a tejtermelésben"
     },
     content: {
-      en: "Raising animals for meat and dairy produces about 14.5% of global greenhouse gas emissions — roughly the same as all transport combined. It also drives deforestation, water overuse, and other environmental damage.",
-      es: "La cría de animales para carne y lácteos produce aproximadamente el 14,5% de las emisiones globales de gases de efecto invernadero, aproximadamente lo mismo que todo el transporte combinado. También impulsa la deforestación, el uso excesivo de agua y otros daños ambientales.",
-      hu: "Az állatok hús- és tejtermelésre történő tenyésztése a globális üvegházhatású gázok kb. 14,5%-át termeli — nagyjából ugyanannyit, mint az összes közlekedés együttvéve. Emellett erdőirtást, víztúlfelhasználást és más környezeti károkat okoz."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Animal agriculture produces roughly the same greenhouse gas emissions as which sector?",
-        es: "La agricultura animal produce aproximadamente las mismas emisiones de gases de efecto invernadero que qué sector?",
-        hu: "Az állattenyésztés nagyjából ugyanannyi üvegházhatású gázt bocsát ki, mint melyik szektor?"
-      },
-      options: {
-        en: ["Industry", "Transport", "Energy production", "Buildings"],
-        es: ["Industria", "Transporte", "Producción de energía", "Edificios"],
-        hu: ["Ipar", "Közlekedés", "Energia előállítás", "Épületek"]
-      },
-      correctIndex: 1
-    }
-  },
-  {
-    title: {
-      en: "Limits of Regenerative Farming",
-      es: "Límites de la agricultura regenerativa",
-      hu: "A regeneratív gazdálkodás korlátai"
-    },
-    content: {
-      en: "Even regenerative animal farming cannot sustainably feed the global population with a meat-heavy diet. The land required exceeds what is available on Earth, despite some carbon capture benefits.",
-      es: "Incluso la agricultura animal regenerativa no puede alimentar de manera sostenible a la población mundial con una dieta rica en carne. La tierra requerida supera la disponible en la Tierra, a pesar de algunos beneficios de captura de carbono.",
-      hu: "Még a regeneratív állattartás sem képes fenntarthatóan ellátni a világ népességét húsban gazdag étrenddel. A szükséges földterület meghaladja a Földön rendelkezésre állót, némi szénelnyelési előny ellenére."
-    },
-    question: {
-      text: {
-        en: "Why can’t regenerative farming fully make meat production sustainable for everyone?",
-        es: "¿Por qué la agricultura regenerativa no puede hacer que la producción de carne sea completamente sostenible para todos?",
-        hu: "Miért nem tudja a regeneratív gazdálkodás mindenki számára fenntarthatóvá tenni a hús előállítását?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
         en: [
-          "Because it doesn’t capture any carbon",
-          "Because meat requires far more land than is available for the current global diet",
-          "Because plants can’t grow on regenerative farms",
-          "Because it eliminates jobs in agriculture"
+          "",
+          "",
+          "",
+          ""
         ],
         es: [
-          "Porque no captura carbono",
-          "Porque la carne requiere mucha más tierra de la disponible para la dieta global actual",
-          "Porque las plantas no pueden crecer en granjas regenerativas",
-          "Porque elimina empleos en agricultura"
+          "",
+          "",
+          "",
+          ""
         ],
         hu: [
-          "Mert nem nyel el szén-dioxidot",
-          "Mert a hús sokkal több földet igényel, mint ami a jelenlegi globális étrendhez rendelkezésre áll",
-          "Mert a növények nem nőhetnek regeneratív gazdaságokban",
-          "Mert megszünteti a mezőgazdasági munkahelyeket"
+          "",
+          "",
+          "",
+          ""
         ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
-{
+  {
     title: {
-      en: "Importance of Biodiversity",
+      en: "Regenerative farming",
+      es: "Cultivo regenerativo",
+      hu: "Regeneratív mezőgazdaság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Limits",
+      es: "Límites",
+      hu: "Korlátok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Land use offf eggs",
+      es: "Uso de la tierra para la producción de huevos",
+      hu: "Földhasználat a tojástermelésben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Importance of biodiversity",
       es: "Importancia de la biodiversidad",
       hu: "A biodiverzitás jelentősége"
     },
     content: {
-      en: "Biodiversity provides food, clean water, fertile soils, and helps regulate the climate. Losing species reduces ecosystem resilience and weakens the services humans rely on for survival.",
-      es: "La biodiversidad proporciona alimentos, agua limpia, suelos fértiles y ayuda a regular el clima. La pérdida de especies reduce la resiliencia de los ecosistemas y debilita los servicios de los que dependen los humanos para sobrevivir.",
-      hu: "A biodiverzitás élelmet, tiszta vizet, termékeny talajt biztosít, és segít a klíma szabályozásában. A fajok elvesztése csökkenti az ökoszisztémák ellenálló képességét és gyengíti azokat a szolgáltatásokat, amelyekre az emberek támaszkodnak a túléléshez."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Why is biodiversity important for humans?",
-        es: "¿Por qué es importante la biodiversidad para los humanos?",
-        hu: "Miért fontos a biodiverzitás az emberek számára?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
-        en: ["It is just nice to look at", "It supports food, water, and climate regulation", "It increases traffic"],
-        es: ["Solo es agradable de ver", "Apoya alimentos, agua y regulación del clima", "Aumenta el tráfico"],
-        hu: ["Csak szép nézni", "Támogatja az élelmet, vizet és a klíma szabályozását", "Növeli a forgalmat"]
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Land Freed by Plant-Based Diets",
-      es: "Tierras liberadas por dietas basadas en plantas",
-      hu: "A növényi alapú étrendek által felszabadított földterület"
+      en: "Global wildlife decline",
+      es: "Declive global de la fauna",
+      hu: "A globális állomány csökkenése"
     },
     content: {
-      en: "Shifting to a mostly plant-based diet could free up around 70% of agricultural land currently used for livestock and feed crops. Returning this land to nature could restore habitats, boost biodiversity, and allow wildlife to recover.",
-      es: "Pasarse a una dieta mayormente basada en plantas podría liberar alrededor del 70% de la tierra agrícola actualmente utilizada para ganado y cultivos de alimento. Devolver esta tierra a la naturaleza podría restaurar hábitats, aumentar la biodiversidad y permitir que la vida silvestre se recupere.",
-      hu: "Az áttérés túlnyomórészt növényi alapú étrendre a mezőgazdasági földek kb. 70%-át szabadíthatja fel, amelyet jelenleg állatok és takarmánynövények termelésére használnak. Ennek a földnek a természetnek való visszaadása helyreállíthatja az élőhelyeket, növelheti a biodiverzitást és lehetővé teheti a vadon élő állatok regenerálódását."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What percentage of agricultural land could be freed by adopting a plant-based diet?",
-        es: "¿Qué porcentaje de la tierra agrícola podría liberarse al adoptar una dieta basada en plantas?",
-        hu: "A mezőgazdasági földek hány százaléka szabadítható fel növényi alapú étrend alkalmazásával?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
-        en: ["Around 70%", "10%", "50%"],
-        es: ["Alrededor del 70%", "10%", "50%"],
-        hu: ["Kb. 70%", "10%", "50%"]
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
       },
-      correctIndex: 0
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Destructive Fishing Practices",
-      es: "Prácticas de pesca destructivas",
-      hu: "Destruktív halászati módszerek"
+      en: "Human dominance",
+      es: "Dominio humano",
+      hu: "Az emberi uralkodás"
     },
     content: {
-      en: "Bottom trawling and other destructive fishing methods destroy ocean habitats, reduce biodiversity, and destabilize marine ecosystems, making it harder for oceans to recover.",
-      es: "El arrastre de fondo y otros métodos de pesca destructivos destruyen los hábitats oceánicos, reducen la biodiversidad y desestabilizan los ecosistemas marinos, dificultando la recuperación de los océanos.",
-      hu: "Az aljzathúzó halászat és más destruktív halászati módszerek elpusztítják az óceán élőhelyeit, csökkentik a biodiverzitást és destabilizálják a tengeri ökoszisztémákat, megnehezítve az óceánok regenerálódását."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "Which effect do destructive fishing methods like bottom trawling have?",
-        es: "¿Qué efecto tienen los métodos de pesca destructivos como el arrastre de fondo?",
-        hu: "Milyen hatása van az aljzathúzó halászathoz hasonló destruktív módszereknek?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
-        en: ["Increase fish populations","Destroy habitats and reduce biodiversity", "Help coral growth"],
-        es: ["Aumentar la población de peces", "Destruir hábitats y reducir la biodiversidad", "Ayudar al crecimiento de los corales"],
-        hu: ["Növeli a halpopulációkat", "Elpusztítja az élőhelyeket és csökkenti a biodiverzitást", "Segíti a korallnövekedést"]
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Oceans as Carbon Sinks 2",
-      es: "Océanos como sumideros de carbono 2",
-      hu: "Óceánok, mint szénelnyelők 2"
+      en: "Biodiversity decline",
+      es: "Declive de la biodiversidad",
+      hu: "A biodiverzitás csökkenése"
     },
     content: {
-      en: "Oceans absorb about 30% of human CO₂ emissions. Declining biodiversity reduces this capacity, accelerating climate change and weakening marine ecosystem health.",
-      es: "Los océanos absorben alrededor del 30% de las emisiones de CO₂ humanas. La disminución de la biodiversidad reduce esta capacidad, acelerando el cambio climático y debilitando la salud de los ecosistemas marinos.",
-      hu: "Az óceánok az emberi CO₂-kibocsátás kb. 30%-át elnyelik. A biodiverzitás csökkenése csökkenti ezt a képességet, felgyorsítva a klímaváltozást és gyengítve a tengeri ökoszisztémák egészségét."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "How does declining ocean biodiversity affect CO₂ absorption?",
-        es: "¿Cómo afecta la disminución de la biodiversidad oceánica a la absorción de CO₂?",
-        hu: "Hogyan befolyásolja a tengeri biodiverzitás csökkenése a CO₂ elnyelését?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
-        en: ["Increases carbon storage", "Has no effect","Reduces the ocean's ability to store carbon"],
-        es: ["Aumenta el almacenamiento de carbono", "No tiene efecto", "Reduce la capacidad del océano para almacenar carbono"],
-        hu: ["Növeli a szénelnyelést", "Nincs hatása", "Csökkenti az óceán szénelnyelő képességét"]
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
       },
-      correctIndex: 2
+      correctIndex: 0-3
     }
   },
   {
     title: {
-      en: "Agriculture and Greenhouse Gas Emissions",
-      es: "Agricultura y emisiones de gases de efecto invernadero",
-      hu: "Mezőgazdaság és üvegházhatású gázok kibocsátása"
+      en: "Renewable energy",
+      es: "Energía renovable",
+      hu: "Újrahasznos energia"
     },
     content: {
-      en: "Agriculture contributes nearly 25% of global greenhouse gas emissions, mostly from livestock. Reducing animal product consumption directly lowers emissions from methane, nitrous oxide, and CO₂.",
-      es: "La agricultura contribuye con casi el 25% de las emisiones globales de gases de efecto invernadero, principalmente del ganado. Reducir el consumo de productos animales reduce directamente las emisiones de metano, óxido nitroso y CO₂.",
-      hu: "A mezőgazdaság a globális üvegházhatású gázok közel 25%-áért felelős, főként az állattenyésztésből. Az állati termékek fogyasztásának csökkentése közvetlenül csökkenti a metán, a dinitrogén-oxid és a CO₂ kibocsátását."
+      en: "",
+      es: "",
+      hu: ""
     },
     question: {
       text: {
-        en: "What percentage of global greenhouse gas emissions comes from agriculture?",
-        es: "¿Qué porcentaje de las emisiones globales de gases de efecto invernadero proviene de la agricultura?",
-        hu: "A globális üvegházhatású gázok hány százaléka származik a mezőgazdaságból?"
+        en: "",
+        es: "",
+        hu: ""
       },
       options: {
-        en: ["10%", "25%", "50%"],
-        es: ["10%", "25%", "50%"],
-        hu: ["10%", "25%", "50%"]
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
       },
-      correctIndex: 1
+      correctIndex: 0-3
     }
   },
-{
-  title: {
-    en: "Deforestation and Livestock",
-    es: "Deforestación y ganadería",
-    hu: "Erdőirtás és állattenyésztés"
-  },
-  content: {
-    en: "Deforestation is largely driven by pasture and feed crops for animals. Millions of hectares of forests are cleared annually, releasing stored carbon and worsening climate change.",
-    es: "La deforestación se debe en gran parte a pastos y cultivos para alimentar animales. Millones de hectáreas de bosques se talan cada año, liberando carbono almacenado y empeorando el cambio climático.",
-    hu: "Az erdőirtást nagyrészt legelők és takarmánynövények termesztése okozza az állatok számára. Évente millió hektár erdőt vágnak ki, felszabadítva a tárolt szenet és súlyosbítva a klímaváltozást."
-  },
-  question: {
-    text: {
-      en: "What is a primary driver of deforestation?",
-      es: "¿Cuál es el principal impulsor de la deforestación?",
-      hu: "Mi az erdőirtás fő oka?"
+  {
+    title: {
+      en: "Water requirements",
+      es: "Requisitos de agua",
+      hu: "Vízszükséglet"
     },
-    options: {
-      en: ["Urban expansion only", "Natural causes", "Pasture and feed crops for animals"],
-      es: ["Solo expansión urbana", "Causas naturales", "Pastos y cultivos para alimentar animales"],
-      hu: ["Csak városi terjeszkedés", "Természetes okok", "Legelők és takarmánynövények az állatok számára"]
+    content: {
+      en: "",
+      es: "",
+      hu: ""
     },
-    correctIndex: 2
-  }
-},
-// more lessons here
-
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Water use of milk",
+      es: "Uso de la tierra para la producción de leche",
+      hu: "Földhasználat a tejtermelésben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Water use of cheese",
+      es: "Uso de la tierra para la producción de queso",
+      hu: "Földhasználat a sajttermelésben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Water use of eggs",
+      es: "Uso de la tierra para la producción de huevos",
+      hu: "Földhasználat a tojástermelésben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Waste - where does it go?",
+      es: "Residuos - ¿a dónde van?",
+      hu: "Felesleg - hova megy?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Food waste",
+      es: "Desperdicio de comida",
+      hu: "Élelmiszer hulladék"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Reducing food waste",
+      es: "Reducir el desperdicio de comida",
+      hu: "Élelmiszer hulladék csökkentése"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Math of food waste",
+      es: "El cálculo del desperdicio de comida",
+      hu: "Az élelmiszer hulladék matematikája"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Consume less",
+      es: "Consumir menos",
+      hu: "Kevesebbet fogyasztani"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Natural carnivore - herbivore ratio",
+      es: "Proporción de carnívoros - herbívoros en la naturaleza",
+      hu: "Természetes húsevő - növényevő arány"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Humans and farm animals ratio",
+      es: "Proporción de humanos - animales de granja",
+      hu: "Emberek és a haszonállatok aránya"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Role of a carnivore",
+      es: "El papel de un carnívoro",
+      hu: "Húsevők szerepe"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Wolves",
+      es: "Los lobos",
+      hu: "A farkasok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Plastic use",
+      es: "Uso de plástico",
+      hu: "Műanyag felhasználás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deadly plastic",
+      es: "Plástico mortal",
+      hu: "Halálos műanyag"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Ghost nets",
+      es: "Las redes fantasma",
+      hu: "A fantomhálók"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Impact of ghost nets",
+      es: "El impacto de las redes fantasma",
+      hu: "A fantomhálók hatása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Industrial fishing",
+      es: "Pesca industrial",
+      hu: "Ipari halászat"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Bottom trawling",
+      es: "Arrastre de fondo",
+      hu: "Fenékvonóhálós halászat"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "50 years: CO₂",
+      es: "50 años: CO₂",
+      hu: "50 év: CO₂"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "50 years: Energy",
+      es: "50 años: Energía",
+      hu: "50 év: Energia"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "50 years: temperature rising",
+      es: "50 años: el calentamiento global",
+      hu: "50 év: a hőmérséklet-emelkedés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "50 years: temperature rising",
+      es: "50 años: el calentamiento global",
+      hu: "50 év: a hőmérséklet-emelkedés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "50 years: biodiversity",
+      es: "50 años: biodiversidad",
+      hu: "50 év: biológiai sokféleség"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Transport emission",
+      es: "Emisión del transporte",
+      hu: "Közlekedési kibocsátás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Compares",
+      es: "Comparaciones",
+      hu: "Összehasonlítások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calorie converter: beef",
+      es: "Convertidor de calorías: carne de res",
+      hu: "Kalóriakonverter: marhahús"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calorie converter: chicken",
+      es: "Convertidor de calorías: pollo",
+      hu: "Kalóriakonverter: csirke"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calorie converter: pig",
+      es: "Convertidor de calorías: cerdo",
+      hu: "Kalóriakonverter: disznó"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calorie converter: eggs",
+      es: "Convertidor de calorías: huevos",
+      hu: "Kalóriakonverter: tojás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calorie converter: cheese",
+      es: "Convertidor de calorías: queso",
+      hu: "Kalóriakonverter: sajt"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calorie converter: cheese",
+      es: "Convertidor de calorías: queso",
+      hu: "Kalóriakonverter: sajt"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Water contamination",
+      es: "Contaminación del agua",
+      hu: "Vízszennyezés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Contaminations",
+      es: "Contaminaciones",
+      hu: "Szennyezések"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cloth industry",
+      es: "Industria textil",
+      hu: "Ruhaipar"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Leather",
+      es: "Cuero",
+      hu: "Bőr"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Antibiotics",
+      es: "Antibióticos",
+      hu: "Antibiotikumok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Resources- machines",
+      es: "Recursos - máquinas",
+      hu: "Erőforrások - gépek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Resources - fuel",
+      es: "Recursos - combustible",
+      hu: "Erőforrások - üzemanyag"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Oceans as carbon sinks",
+      es: "Oceanos como sumideros de carbono",
+      hu: "Szénelnyelő óceánok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Forests and oceans",
+      es: "Bosques y oceanos",
+      hu: "Erdők és óceánok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Protecting forests",
+      es: "Proteger bosques",
+      hu: "Védni az erdőket"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Protecting ocean's carbon sink ability",
+      es: "Proteger la capacidad del océano para absorber carbono",
+      hu: "Védeni az óceánok szénelnyelő képességét"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Manipulated capitalism",
+      es: "Capitalismo manipulado",
+      hu: "Manipulált kapitalizmuus"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "To plant-based living",
+      es: "Adoptar una vida basada en plantas",
+      hu: "Növényi étrendre váltás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Fighting climate change",
+      es: "Luchar contra el cambio climático",
+      hu: "Harc a klímaváltozás ellen"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Sustainability of plant-based foods",
+      es: "Sostenibilidad de los alimentos de origen vegetal",
+      hu: "A növényi étrend fenntarthatósága"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Daily food choices",
+      es: "Elecciones alimentarias diarias",
+      hu: "Napi ételválasztások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Heating homes",
+      es: "Calefacción del hogar",
+      hu: "Otthonok fűtése"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Reduce waste",
+      es: "Reducir resudios",
+      hu: "Felesleg csökkentése"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Returning lands",
+      es: "Devolver tierras",
+      hu: "Terület visszaadása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Get into action!",
+      es: "¡Pasa a la acción!",
+      hu: "Lépj akcióba!"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
 {
   title: {
     en: "🔄 Review a Lesson",
@@ -10738,1259 +16086,3571 @@ export const extralessonsData = {
  health: [
   {
     title: {
-      en: "Plant-Based Diets and Heart Health",
-      es: "Dietas basadas en plantas y salud del corazón",
-      hu: "Növényi alapú étrend és szív-egészség"
+      en: "History of categorising",
+      es: "Historia de la categorización",
+      hu: "A kategorizálás története"
     },
     content: {
-      en: "A plant-based diet can naturally lower LDL cholesterol — often called 'bad' cholesterol — because plant foods contain no dietary cholesterol and are usually low in saturated fats. High LDL levels can lead to plaque buildup in the arteries, narrowing them over time. Plant foods are also rich in soluble fiber, which helps remove excess LDL cholesterol from the bloodstream. By eating more fruits, vegetables, whole grains, legumes, nuts, and seeds, you support smoother blood flow, healthier arteries, and better long-term heart health.",
-      es: "Una dieta basada en plantas puede reducir de forma natural el colesterol LDL — conocido como colesterol \"malo\" — porque los alimentos vegetales no contienen colesterol dietético y suelen ser bajos en grasas saturadas. Los niveles altos de LDL pueden provocar la acumulación de placas en las arterias, estrechándolas con el tiempo. Además, los alimentos vegetales son ricos en fibra soluble, que ayuda a eliminar el exceso de LDL del torrente sanguíneo. Al consumir más frutas, verduras, cereales integrales, legumbres, frutos secos y semillas, favoreces un flujo sanguíneo más saludable y una mejor salud cardiovascular a largo plazo.",
-      hu: "A növényi alapú étrend természetes módon csökkentheti az LDL-koleszterinszintet — amelyet gyakran „rossz” koleszterinnek neveznek — mivel a növényi élelmiszerek nem tartalmaznak étrendi koleszterint, és általában alacsony a telítettzsír-tartalmuk. A magas LDL-szint az artériák beszűküléséhez vezethet a lerakódások miatt. A növényi ételek emellett gazdagok oldható rostokban, amelyek segítenek eltávolítani a felesleges LDL-koleszterint a vérből. Több gyümölcs, zöldség, teljes értékű gabona, hüvelyes, dióféle és mag fogyasztásával támogathatod az egészséges véráramlást és a szív hosszú távú egészségét."
+      en: "The way humans have been classified has changed over time.\n\nIn early scientific thinking, even Carl Linnaeus explored different ways of grouping animals based on diet and anatomy. In his early work, he experimented with categories like “fructivores” (fruit-eaters), and in some notes, humans were placed in this group based on teeth and similarities to other primates. \n\nAs science developed, classification became more evidence-based. Modern biology classifies humans as omnivores, meaning we are capable of eating and digesting both plant and animal foods\n\nAt the same time, this classification describes what we can eat, not necessarily what we should eat.",
+      es: "La forma en que se ha clasificado a los humanos ha cambiado con el tiempo\n\nEn el pensamiento científico temprano, incluso Carl Linnaeus exploró diferentes formas de agrupar a los animales basándose en la dieta y la anatomía. En su trabajo inicial, experimentó con categorías como “frugívoros” (comedores de fruta), y en algunas notas, los humanos fueron incluidos en este grupo basándose en los dientes y similitudes con otros primates.\n\nA medida que la ciencia se desarrolló, la clasificación se volvió más basada en la evidencia. La biología moderna clasifica a los humanos como omnívoros, lo que significa que somos capaces de comer y digerir tanto alimentos de origen vegetal como animal\n\nAl mismo tiempo, esta clasificación describe lo que podemos comer, no necesariamente lo que debemos comer.",
+      hu: "Az emberek osztályozásának módja idővel változott.\n\nA korai tudományos gondolkodásban még Carl Linnaeus is különböző módszereket vizsgált az állatok étrend és anatómia alapján történő csoportosítására. Korai munkáiban olyan kategóriákkal is kísérletezett, mint a „frugivorok” (gyümölcsevők), és néhány jegyzetében az embereket is ebbe a csoportba sorolta a fogazat és a főemlősökhöz való hasonlóság alapján.\n\nAhogy a tudomány fejlődött, az osztályozás egyre inkább bizonyítékokon alapult. A modern biológia az embert mindenevőként (omnivor) osztályozza, ami azt jelenti, hogy képesek vagyunk növényi és állati eredetű ételeket is fogyasztani és megemészteni\n\nUgyanakkor ez az osztályozás azt írja le, amit meg tudunk enni, nem feltétlenül azt, amit meg kell ennünk."
     },
     question: {
       text: {
-        en: "Why does a plant-based diet often lower LDL ('bad') cholesterol?",
-        es: "¿Por qué una dieta basada en plantas suele reducir el colesterol LDL?",
-        hu: "Miért csökkenti gyakran az LDL („rossz”) koleszterinszintet a növényi alapú étrend?"
+        en: "How are humans classified in modern biology?",
+        es: "¿Cómo se clasifican los humanos en la biología moderna?",
+        hu: "Hogyan sorolja be az embert a modern biológia?"
       },
       options: {
         en: [
-          "Plant foods contain no dietary cholesterol and are lower in saturated fats",
-          "Plant foods increase cholesterol production",
-          "Plant foods are high in trans fats"
+          "Omnivores",
+          "Carnivores",
+          "Herbivores",
+          "Frugivores"
         ],
         es: [
-          "Los alimentos vegetales no contienen colesterol y tienen menos grasas saturadas",
-          "Los alimentos vegetales aumentan la producción de colesterol",
-          "Los alimentos vegetales tienen muchas grasas trans"
+          "Omnívoros",
+          "Carnívoros",
+          "Herbívoros",
+          "Frugívoros"
         ],
         hu: [
-          "A növényi ételek nem tartalmaznak koleszterint és kevesebb telített zsírt tartalmaznak",
-          "A növényi ételek növelik a koleszterintermelést",
-          "A növényi ételek sok transzzsírt tartalmaznak"
+          "Mindenevők",
+          "Húsevők",
+          "Növényevők",
+          "Gyümölcsevők"
         ]
       },
       correctIndex: 0
-    }
+    },
+    source: "https://fruitfest.co.uk/linnaeus/"
   },
   {
     title: {
-      en: "Protein from Plants vs Meat",
-      es: "Proteína vegetal frente a carne",
-      hu: "Növényi fehérje vs. hús"
+      en: "As an omnivore",
+      es: "Como omnívoro",
+      hu: "Mindenevőként"
     },
     content: {
-      en: "Plant-based proteins come from a wide variety of foods, including legumes (lentils, chickpeas, beans), tofu, tempeh, seitan, quinoa, nuts, and seeds. These provide all essential amino acids when eaten in varied combinations throughout the day. Compared to meat, many plant proteins are lower in fat and contain additional nutrients like fiber, calcium, and iron. For example, 100 g of textured soy contains around 52 g of protein, 15 mg of iron, 350 mg of calcium, and only 0.5 g of fat, while 100 g of chicken breast contains about 31 g of protein, 1 mg of iron, 13 mg of calcium, and 3.6 g of fat. This shows that plant foods can match or even surpass meat nutritionally while supporting heart health.",
-      es: "Las proteínas vegetales provienen de una gran variedad de alimentos, como legumbres (lentejas, garbanzos, alubias), tofu, tempeh, seitán, quinoa, frutos secos y semillas. Consumidas en combinaciones variadas a lo largo del día, aportan todos los aminoácidos esenciales. En comparación con la carne, muchas proteínas vegetales contienen menos grasa y aportan nutrientes adicionales como fibra, calcio y hierro. Por ejemplo, 100 g de soja texturizada contienen aproximadamente 52 g de proteína, 15 mg de hierro, 350 mg de calcio y solo 0,5 g de grasa, mientras que 100 g de pechuga de pollo aportan unos 31 g de proteína, 1 mg de hierro, 13 mg de calcio y 3,6 g de grasa. Esto demuestra que los alimentos vegetales pueden igualar o superar nutricionalmente a la carne.",
-      hu: "A növényi fehérjék sokféle élelmiszerből származnak, például hüvelyesekből (lencse, csicseriborsó, bab), tofuból, tempehből, szejtánból, quinoából, diófélékből és magvakból. Változatos kombinációkban fogyasztva a nap folyamán minden esszenciális aminosavat biztosítanak. A húshoz képest sok növényi fehérje kevesebb zsírt tartalmaz, és további tápanyagokban — például rostban, kalciumban és vasban — gazdag. Például 100 g texturált szója körülbelül 52 g fehérjét, 15 mg vasat, 350 mg kalciumot és mindössze 0,5 g zsírt tartalmaz, míg 100 g csirkemell 31 g fehérjét, 1 mg vasat, 13 mg kalciumot és 3,6 g zsírt. Ez jól mutatja, hogy a növényi ételek táplálkozási szempontból is versenyképesek."
+      en: "Being an omnivore means having the biological ability to eat and digest both plant and animal foods. It describes what a species can eat—not what it must eat\n\nHumans have flexible digestion and can obtain nutrients from a variety of sources. This adaptability has helped humans survive in different environments throughout history.\n\nHowever, being omnivorous does not mean we need to eat all types of food to survive. Nutritional needs can be met in different ways, including diets that rely primarily or entirely\n\nSo, omnivory is about capability and flexibility, not necessity or obligation.",
+      es: "Ser omnívoro significa tener la capacidad biológica de comer y digerir tanto alimentos de origen vegetal como animal. Describe lo que una especie puede comer, no lo que debe comer.\n\nLos humanos tienen una digestión flexible y pueden obtener nutrientes de una variedad de fuentes. Esta adaptabilidad ha ayudado a los humanos a sobrevivir en diferentes entornos a lo largo de la historia\n\nSin embargo, ser omnívoro no significa que necesitemos comer todo tipo de alimentos para sobrevivir. Las necesidades nutricionales pueden satisfacerse de diferentes maneras, incluyendo dietas que dependen principalmente o completamente de una sola fuente\n\nPor lo tanto, el omnívorismo trata de capacidad y flexibilidad, no de necesidad u obligación.",
+      hu: "Mindenevőnek lenni azt jelenti, hogy biológiailag képesek vagyunk növényi és állati eredetű ételeket is fogyasztani és megemészteni. Ez azt írja le, hogy egy faj mit képes enni, nem azt, hogy mit kell ennie.\n\nAz emberek rugalmas emésztéssel rendelkeznek, és különböző forrásokból tudnak tápanyagokat nyerni. Ez az alkalmazkodóképesség segítette az embert a történelem során különböző környezetekben való túlélésben.\n\nUgyanakkor a mindenevő lét nem jelenti azt, hogy minden típusú ételt meg kell ennünk a túléléshez. A tápanyagszükségletek különböző módokon is kielégíthetők, beleértve azokat az étrendeket is, amelyek nagyrészt vagy teljesen egy forrásra épülnek.\n\nTehát a mindenevőség a képességről és a rugalmasságról szól, nem pedig szükségszerűségről vagy kötelezettségről."
     },
     question: {
       text: {
-        en: "Which protein source is richer in calcium and iron?",
-        es: "¿Qué fuente de proteína es más rica en calcio y hierro?",
-        hu: "Melyik fehérjeforrás gazdagabb kalciumban és vasban?"
+        en: "Does being an omnivore mean humans need to eat both plants and animals to survive?",
+        es: "¿Ser omnívoro significa que los humanos necesitan comer tanto plantas como animales para sobrevivir?",
+        hu: "A mindenevő lét azt jelenti, hogy az embereknek növényeket és állatokat is kell enniük a túléléshez?"
       },
       options: {
-        en: ["Chicken breast", "Textured soy", "Both are the same"],
-        es: ["Pechuga de pollo", "Soja texturizada", "Ambas son iguales"],
-        hu: ["Csirkemell", "Texturált szója", "Mindkettő ugyanaz"]
+        en: [
+          "Yes, both are always required",
+          "No, it means humans are capable of eating both, but not required to",
+          "Yes, otherwise humans cannot get enough nutrients",
+          "No, it means humans should only eat plants"
+        ],
+        es: [
+          "Sí, ambos son siempre necesarios",
+          "No, significa que los humanos son capaces de comer ambos, pero no están obligados a hacerlo",
+          "Sí, de lo contrario los humanos no pueden obtener suficientes nutrientes",
+          "No, significa que los humanos solo deben comer plantas"
+        ],
+        hu: [
+          "Igen, mindkettő mindig szükséges",
+          "Nem, azt jelenti, hogy az emberek képesek mindkettőt enni, de nem kötelező",
+          "Igen, különben nem jutnak elég tápanyaghoz",
+          "Nem, azt jelenti, hogy az embereknek csak növényeket kell enniük"
+        ]
       },
       correctIndex: 1
-    }
+    },
+    source: "https://v7.viva.org.uk/faqs/humans-are-omnivores-so-were-supposed-to-eat-meat/"
   },
-
   {
     title: {
-      en: "Iron Absorption from Plant Foods",
-      es: "Absorción del hierro vegetal",
-      hu: "A növényi vas felszívódása"
+      en: "Eating raw",
+      es: "Comer crudo",
+      hu: "Nyers étkezés"
     },
     content: {
-      en: "Many plant foods are excellent sources of iron, including lentils, chickpeas, tofu, spinach, kale, pumpkin seeds, and quinoa. However, plant iron (non-heme iron) is absorbed less efficiently than iron from animal sources. Pairing iron-rich plant foods with vitamin C–rich foods like oranges, bell peppers, or strawberries greatly improves absorption. This simple combination helps maintain energy levels, supports red blood cell production, and prevents fatigue.",
-      es: "Muchos alimentos vegetales son excelentes fuentes de hierro, como las lentejas, los garbanzos, el tofu, la espinaca, la col rizada, las semillas de calabaza y la quinoa. Sin embargo, el hierro vegetal (hierro no hemo) se absorbe con menor eficiencia que el hierro de origen animal. Combinar alimentos ricos en hierro con alimentos ricos en vitamina C —como naranjas, pimientos o fresas— mejora significativamente su absorción y ayuda a mantener la energía y prevenir la fatiga.",
-      hu: "Számos növényi élelmiszer kiváló vasforrás, például a lencse, csicseriborsó, tofu, spenót, kelkáposzta, tökmag és quinoa. A növényi vas (nem-hem vas) azonban kevésbé hatékonyan szívódik fel, mint az állati eredetű vas. A vasban gazdag növényi ételek C-vitaminban gazdag élelmiszerekkel — például narancs, paprika vagy eper — való párosítása jelentősen javítja a felszívódást, segít fenntartani az energiaszintet és megelőzni a fáradtságot."
+      en: "Looking at how we naturally consume foods can give insight into our behavior and adaptations.\n\nMost plant foods—like fruits, vegetables, nuts, and seeds—can be eaten raw and are often appealing without preparation.\n\nIn contrast, most animal products are not typically consumed raw in everyday life. Meat, for example, is usually cooked to improve taste, texture, and safety by reducing the risk of pathogens. While some animal products (like certain fish or dishes) can be eaten raw, this is usually done with preparation, processing, or cultural knowledge.\n\nThis suggests an important difference: many plant foods are naturally ready to eat, while most animal products require tools, processing, or cooking.",
+      es: "Observar cómo consumimos los alimentos de forma natural puede dar una idea de nuestro comportamiento y adaptaciones\n\nLa mayoría de los alimentos vegetales —como frutas, verduras, frutos secos y semillas— pueden comerse crudos y a menudo resultan apetecibles sin preparación.\n\nEn cambio, la mayoría de los productos de origen animal no se consumen típicamente crudos en la vida cotidiana. La carne, por ejemplo, normalmente se cocina para mejorar el sabor, la textura y la seguridad, reduciendo el riesgo de patógenos. Aunque algunos productos de origen animal (como ciertos pescados o platos) pueden consumirse crudos, esto suele hacerse con preparación, procesamiento o conocimiento cultural.\n\nEsto sugiere una diferencia importante: muchos alimentos vegetales están naturalmente listos para comer, mientras que la mayoría de los productos de origen animal requieren herramientas, procesamiento o cocción.",
+      hu: "Az, ahogyan természetesen fogyasztjuk az ételeket, betekintést adhat viselkedésünkbe és alkalmazkodásainkba.\n\nA legtöbb növényi élelmiszer — például gyümölcsök, zöldségek, diófélék és magvak — nyersen is fogyasztható, és gyakran előkészítés nélkül is vonzó\n\nEzzel szemben a legtöbb állati eredetű terméket nem jellemzően nyersen fogyasztjuk a mindennapi életben. A húst például általában megfőzik vagy megsütik az íz, az állag és a biztonság javítása érdekében, a kórokozók kockázatának csökkentésével. Bár egyes állati eredetű termékek (például bizonyos halak vagy ételek) nyersen is fogyaszthatók, ez általában előkészítéssel, feldolgozással vagy kulturális tudással történik.\n\nEz egy fontos különbségre mutat rá: sok növényi étel természetesen fogyasztásra kész, míg a legtöbb állati eredetű termék eszközöket, feldolgozást vagy főzést igényel."
     },
     question: {
       text: {
-        en: "What helps your body absorb iron from plant-based foods?",
-        es: "¿Qué ayuda al cuerpo a absorber el hierro de los alimentos vegetales?",
-        hu: "Mi segíti a növényi eredetű vas felszívódását?"
+        en: "Which statement best describes how humans typically consume animal products?",
+        es: "¿Qué afirmación describe mejor cómo consumen los humanos los productos de origen animal?",
+        hu: "Melyik állítás írja le legjobban, hogyan fogyasztják az emberek az állati eredetű termékeket?"
       },
       options: {
-        en: ["Calcium", "Fiber", "Vitamin C"],
-        es: ["Calcio", "Fibra", "Vitamina C"],
-        hu: ["Kalcium", "Rost", "C-vitamin"]
+        en: [
+          "Most are naturally eaten raw without preparation",
+          "Most are consumed raw in everyday life",
+          "Most require cooking or processing before consumption",
+          "Humans cannot eat animal products at all"
+        ],
+        es: [
+          "La mayoría se comen naturalmente crudos sin preparación",
+          "La mayoría se consumen crudos en la vida cotidiana",
+          "La mayoría requieren cocción o procesamiento antes de su consumo",
+          "Los humanos no pueden comer productos de origen animal en absoluto"
+        ],
+        hu: [
+          "A legtöbb természetesen nyersen fogyasztható előkészítés nélkül",
+          "A legtöbb nyersen kerül fogyasztásra a mindennapokban",
+          "A legtöbb főzést vagy feldolgozást igényel a fogyasztás előtt",
+          "Az emberek egyáltalán nem tudnak állati eredetű termékeket fogyasztani"
+        ]
       },
       correctIndex: 2
     }
   },
-
   {
     title: {
-      en: "Healthy Carbohydrates for Energy",
-      es: "Carbohidratos saludables para la energía",
-      hu: "Egészséges szénhidrátok az energiához"
+      en: "Variety of plant-based food",
+      es: "Variedad de comidas plant-based",
+      hu: "A növényi étrend sokszínűsége"
     },
     content: {
-      en: "Whole plant foods provide carbohydrates that efficiently fuel the brain and muscles. Unlike refined carbohydrates or high-fat animal products, these foods deliver steady energy without promoting excess fat storage. Fruits, vegetables, grains, and legumes supply the glucose needed for focus, stamina, and metabolic health, making plant-based diets a sustainable source of energy.",
-      es: "Los alimentos vegetales integrales aportan carbohidratos que alimentan eficazmente el cerebro y los músculos. A diferencia de los carbohidratos refinados o los productos animales ricos en grasa, proporcionan energía estable sin favorecer el almacenamiento excesivo de grasa. Frutas, verduras, cereales y legumbres suministran la glucosa necesaria para la concentración, la resistencia y la salud metabólica.",
-      hu: "A teljes értékű növényi élelmiszerek olyan szénhidrátokat biztosítanak, amelyek hatékonyan látják el energiával az agyat és az izmokat. A finomított szénhidrátokkal vagy zsírdús állati termékekkel ellentétben ezek kiegyensúlyozott energiát adnak, anélkül hogy elősegítenék a túlzott zsírraktározást. A gyümölcsök, zöldségek, gabonák és hüvelyesek támogatják a koncentrációt, az állóképességet és az anyagcserét."
+      en: "Plant-based foods offer a wide range of nutrients essential for human health. Fruits, vegetables, legumes, whole grains, nuts, and seeds are often nutrient-dense, meaning they provide many vitamins, minerals, fiber, and beneficial compounds relative to their calories.\n\nCompared to many animal products, plant foods generally contain\n\n- More fiber (important for digestion and gut health)\n- More vitamins and antioxidants\n- Lower saturated fat\n\nAnimal products can be rich in protein and certain nutrients (like vitamin B12), but they typically contain no fiber and can be higher in saturated fats.\n\nBecause of this, diets rich in plant-based foods are consistently associated with better health outcomes, including lower risk of heart disease, type 2 diabetes, and some cancers.",
+      es: "Los alimentos de origen vegetal ofrecen una amplia gama de nutrientes esenciales para la salud humana. Frutas, verduras, legumbres, cereales integrales, frutos secos y semillas suelen ser densos en nutrientes, lo que significa que aportan muchas vitaminas, minerales, fibra y compuestos beneficiosos en relación con sus calorías.\n\nEn comparación con muchos productos de origen animal, los alimentos vegetales generalmente contienen:\n\n- Más fibra (importante para la digestión y la salud intestinal)\n- Más vitaminas y antioxidantes\n- Menos grasas saturada\n\nLos productos de origen animal pueden ser ricos en proteínas y ciertos nutrientes (como la vitamina B12), pero normalmente no contienen fibra y pueden tener más grasas saturadas.\n\nPor esta razón, las dietas ricas en alimentos de origen vegetal se asocian consistentemente con mejores resultados de salud, incluyendo un menor riesgo de enfermedades cardíacas, diabetes tipo 2 y algunos tipos de cáncer.",
+      hu: "A növényi alapú élelmiszerek széles körű, az emberi egészséghez szükséges tápanyagokat biztosítanak. A gyümölcsök, zöldségek, hüvelyesek, teljes kiőrlésű gabonák, diófélék és magvak általában tápanyagdúsak, ami azt jelenti, hogy sok vitamint, ásványi anyagot, rostot és hasznos vegyületet tartalmaznak kalóriájukhoz képest\n\nSok állati eredetű termékkel összehasonlítva a növényi élelmiszerek általában\n\n- Több rostot, \n -több vitamint és antioxidánst, \n- kevesebb telített zsírt tartalmaznak.\n\nAz állati eredetű termékek gazdagok lehetnek fehérjében és bizonyos tápanyagokban (például B12-vitaminban), de általában nincs bennük rost, és több telített zsírt tartalmazhatnak.\n\nEzért a növényi alapú élelmiszerekben gazdag étrendeket következetesen jobb egészségi kimenetelekkel hozzák összefüggésbe, beleértve a szívbetegségek, a 2-es típusú cukorbetegség és egyes daganatos betegségek alacsonyabb kockázatát."
     },
     question: {
       text: {
-        en: "What do healthy carbohydrates mainly provide for your body?",
-        es: "¿Qué aportan principalmente los carbohidratos saludables al cuerpo?",
-        hu: "Mit biztosítanak elsősorban az egészséges szénhidrátok a szervezet számára?"
+        en: "Which of the following is a key advantage of plant-based foods compared to most animal products?",
+        es: "¿Cuál de las siguientes es una ventaja clave de los alimentos de origen vegetal en comparación con la mayoría de los productos animales?",
+        hu: "Melyik az alábbiak közül a növényi alapú élelmiszerek egyik fő előnye a legtöbb állati termékkel szemben?"
       },
       options: {
-        en: ["Excess fat storage", "Energy for the brain and muscles", "No nutritional value"],
-        es: ["Almacenamiento excesivo de grasa", "Energía para el cerebro y los músculos", "Ningún valor nutricional"],
-        hu: ["Túlzott zsírraktározás", "Energia az agy és az izmok számára", "Nincs tápértékük"]
+        en: [
+          "They contain more cholesterol",
+          "They provide fiber and a high density of essential nutrients",
+          "They must always be cooked before eating",
+          "They only provide energy but no vitamins"
+        ],
+        es: [
+          "Contienen más colesterol",
+          "Proporcionan fibra y una alta densidad de nutrientes esenciales",
+          "Siempre deben cocinarse antes de comerlos",
+          "Solo proporcionan energía pero no vitaminas"
+        ],
+        hu: [
+          "Több koleszterint tartalmaznak",
+          "Rostot és magas tápanyagsűrűséget biztosítanak",
+          "Mindig meg kell őket főzni fogyasztás előtt",
+          "Csak energiát adnak, de nem tartalmaznak vitaminokat"
+        ]
       },
       correctIndex: 1
-    }
+    },
+    source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11412377/"
   },
-
   {
     title: {
-      en: "Heart Disease and Chronic Illness Prevention",
-      es: "Prevención de enfermedades cardíacas y crónicas",
-      hu: "Szívbetegségek és krónikus betegségek megelőzése"
+      en: "Instinct or habit?",
+      es: "¿Instinto o hábito?",
+      hu: "Ösztön vagy szokás?"
     },
     content: {
-      en: "Around 70% of global deaths are linked to chronic diseases such as heart disease, stroke, diabetes, and certain cancers. Many of these conditions are strongly associated with lifestyle factors, including diet, physical activity, smoking, and stress. Adopting a plant-forward diet, staying active, avoiding tobacco, and managing stress could prevent up to 80% of these deaths. Each positive choice supports long-term health and well-being.",
-      es: "Aproximadamente el 70 % de las muertes a nivel mundial están relacionadas con enfermedades crónicas como las cardiopatías, los accidentes cerebrovasculares, la diabetes y algunos tipos de cáncer. Muchas de estas enfermedades están fuertemente asociadas con el estilo de vida, incluyendo la alimentación, la actividad física, el tabaquismo y el estrés. Adoptar una dieta basada en plantas, mantenerse activo y gestionar el estrés puede prevenir hasta el 80 % de estas muertes.",
-      hu: "A globális halálozások körülbelül 70 %-a krónikus betegségekhez köthető, mint például a szívbetegségek, a stroke, a cukorbetegség és egyes daganatok. Ezek közül sok szorosan összefügg az életmóddal, beleértve az étrendet, a mozgást, a dohányzást és a stresszt. A növényi alapú étrend, az aktív életmód és a stresszkezelés akár az esetek 80 %-ában is megelőzheti ezeket a betegségeket."
+      en: "A popular and classic reflection used in animal ethics discussions explores what our natural instincts might look like if we observe children before social conditioning fully shapes their habits.\n\nImagine placing a small child in a room with an apple and a rabbit.\n\nMost likely, the child would eat the apple and play with the rabbit\n\nAnd not the other way around.\n\nThis simple example is not about proving anything strict, but about reflection: it suggests that our natural instincts tend toward curiosity, connection, and playfulness toward animals, while eating is directed toward food\n\nThe idea is to question how much of our adult behavior comes from instinct — and how much comes from habit, culture, and learning.",
+      es: "Una reflexión popular y clásica utilizada en discusiones de ética animal explora cómo podrían ser nuestros instintos naturales si observamos a los niños antes de que el condicionamiento social moldee completamente sus hábitos.\n\nImagina colocar a un niño pequeño en una habitación con una manzana y con un conejo.\n\nLo más probable es que el niño vaya a comer la manzana y jugar con el conejo.\n\nY no al revés.\n\nEste ejemplo simple no pretende demostrar nada de forma estricta, sino invitar a la reflexión: sugiere que nuestros instintos naturales tienden hacia la curiosidad, la conexión y el juego con los animales, mientras que la alimentación se dirige hacia la comida\n\nLa idea es cuestionar cuánto de nuestro comportamiento adulto proviene del instinto y cuánto proviene del hábito, la cultura y el aprendizaje.",
+      hu: "Egy népszerű és klasszikus gondolatkísérlet, amelyet állatetikai vitákban is használnak, azt vizsgálja, hogy milyenek lehetnek természetes ösztöneink, ha a gyerekeket még a társadalmi kondicionálás teljes hatása előtt figyeljük meg.\n\nKépzeljük el, hogy egy gyermeket egy szobába helyezünk egy almával és egy nyúllal.\n\nNagy valószínűséggel a gyermek megeszi az almát és játszik a nyúllal.\n\nÉs nem fordítva.\n\nEz az egyszerű példa nem arra szolgál, hogy bármit szigorúan bizonyítson, hanem inkább elmélkedésre hív: azt sugallja, hogy természetes ösztöneink inkább a kíváncsiság, a kapcsolódás és a játék felé irányulnak az állatokkal, míg az evés az ételek felé.\n\nEz alapján megkérdőjelezhetjük ösztöneinket - melyek származnak kultúrából és tanulásból."
     },
     question: {
       text: {
-        en: "What percentage of global deaths are caused by chronic diseases?",
-        es: "¿Qué porcentaje de las muertes globales son causadas por enfermedades crónicas?",
-        hu: "A globális halálesetek hány százalékát okozzák krónikus betegségek?"
+        en: "What can we reflect about our instincts by observing ourselves?",
+        es: "¿Qué podemos reflexionar sobre nuestros instintos al observarnos?",
+        hu: "Mit tükrözhetünk az ösztöneinkről önmagunk megfigyelésével?"
       },
       options: {
-        en: ["About 70%", "About 30%", "About 10%"],
-        es: ["Aproximadamente 70 %", "Aproximadamente 30 %", "Aproximadamente 10 %"],
-        hu: ["Körülbelül 70 %", "Körülbelül 30 %", "Körülbelül 10 %"]
+        en: [
+          "Instinct always determines all human behavior",
+          "Humans are naturally afraid of animals and avoid them",
+          "Our behavior may be shaped by both instinct and learned habits",
+          "Children are taught to prefer apples over animals"
+        ],
+        es: [
+          "El instinto siempre determina todo el comportamiento humano",
+          "Los humanos tienen miedo natural a los animales y los evitan",
+          "Nuestro comportamiento puede estar influenciado tanto por el instinto como por hábitos aprendidos",
+          "A los niños se les enseña a preferir manzanas en lugar de animales"
+        ],
+        hu: [
+          "Az ösztön mindig teljes mértékben meghatározza az emberi viselkedést",
+          "Az emberek természetüknél fogva félnek az állatoktól és kerülik őket",
+          "Viselkedésünket részben ösztönök, részben tanult szokások alakítják",
+          "A gyerekeket arra tanítják, hogy az almát részesítsék előnyben az állatokkal szemben"
+        ]
       },
-      correctIndex: 0
+      correctIndex: 2
     }
   },
-{
-  title: {
-    en: "Plant-Based Foods and Gut Health",
-    es: "Alimentos vegetales y salud intestinal",
-    hu: "Növényi ételek és bélflóra egészsége"
-  },
-  content: {
-    en: "Fiber-rich plant foods feed beneficial gut bacteria, which improve digestion, nutrient absorption, immunity, and even mental health. A diverse microbiome helps protect against inflammation and chronic diseases. In contrast, diets high in animal products and low in fiber can disrupt the microbiome, leading to digestive issues and increased disease risk. Eating a variety of fruits, vegetables, whole grains, nuts, and legumes supports a healthy gut ecosystem and overall wellbeing.",
-    es: "Los alimentos vegetales ricos en fibra alimentan bacterias intestinales beneficiosas, mejorando la digestión, la absorción de nutrientes, la inmunidad e incluso la salud mental. Una microbiota diversa ayuda a proteger contra la inflamación y enfermedades crónicas. En contraste, las dietas altas en productos animales y bajas en fibra pueden alterar la microbiota, provocando problemas digestivos y aumentando el riesgo de enfermedades. Consumir una variedad de frutas, verduras, cereales integrales, frutos secos y legumbres favorece un ecosistema intestinal saludable y el bienestar general.",
-    hu: "A rostban gazdag növényi ételek táplálják a jótékony bélbaktériumokat, amelyek javítják az emésztést, a tápanyagfelszívódást, az immunitást és még a mentális egészséget is. A sokszínű mikrobiom segít a gyulladások és krónikus betegségek elleni védelemben. Ezzel szemben a magas állati termék- és alacsony rosttartalmú étrend felboríthatja a mikrobiomot, emésztési problémákhoz és fokozott betegségek kockázatához vezetve. A gyümölcsök, zöldségek, teljes kiőrlésű gabonák, magvak és hüvelyesek változatos fogyasztása támogatja a bélflóra egészségét és az általános jólétet."
-  },
-  question: {
-    text: {
-      en: "What helps beneficial gut bacteria thrive?",
-      es: "¿Qué ayuda a que las bacterias intestinales beneficiosas prosperen?",
-      hu: "Mi segíti a jótékony bélbaktériumok fejlődését?"
-    },
-    options: {
-      en: ["High-fat animal products", "Refined sugar", "Fiber from plant foods"],
-      es: ["Productos animales ricos en grasa", "Azúcar refinada", "Fibra de alimentos vegetales"],
-      hu: ["Magas zsírtartalmú állati termékek", "Finomított cukor", "Rost a növényi ételekből"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Calcium Without Dairy",
-    es: "Calcio sin lácteos",
-    hu: "Kalcium tejtermék nélkül"
-  },
-  content: {
-    en: "Calcium is vital for strong bones and teeth. Many plant foods provide ample calcium, including tofu, tempeh, almonds, chia seeds, sesame seeds, broccoli, kale, and bok choy. Fortified plant milks and juices also help meet daily needs. Combined with regular weight-bearing exercise, a plant-based diet can maintain bone density and prevent osteoporosis without relying on dairy products.",
-    es: "El calcio es vital para huesos y dientes fuertes. Muchos alimentos vegetales proporcionan calcio suficiente, incluidos el tofu, tempeh, almendras, semillas de chía, semillas de sésamo, brócoli, kale y bok choy. Las leches y jugos vegetales fortificados también ayudan a cubrir las necesidades diarias. Combinado con ejercicio de carga regular, una dieta basada en plantas puede mantener la densidad ósea y prevenir la osteoporosis sin depender de lácteos.",
-    hu: "A kalcium elengedhetetlen az erős csontokhoz és fogakhoz. Sok növényi étel bőséges kalciumforrás, például a tofu, tempeh, mandula, chia mag, szezámmag, brokkoli, kelkáposzta és pak choi. A dúsított növényi tejek és gyümölcslevek szintén segítenek a napi szükséglet kielégítésében. Rendszeres testsúlyt viselő gyakorlatokkal kombinálva a növényi alapú étrend megőrizheti a csontsűrűséget és megelőzheti a csontritkulást anélkül, hogy tejtermékekre lenne szükség."
-  },
-  question: {
-    text: {
-      en: "Which of the following plant foods is rich in calcium?",
-      es: "¿Cuál de los siguientes alimentos vegetales es rico en calcio?",
-      hu: "Melyik növényi étel gazdag kalciumban?"
-    },
-    options: {
-      en: ["Tofu", "Potato", "Apple"],
-      es: ["Tofu", "Patata", "Manzana"],
-      hu: ["Tofu", "Burgonya", "Alma"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Vitamin B12 on a Plant-Based Diet",
-    es: "Vitamina B12 en una dieta vegetal",
-    hu: "B12-vitamin növényi étrenden"
-  },
-  content: {
-    en: "Vitamin B12 is essential for nerve health, red blood cell formation, and energy. It is produced naturally by bacteria, not by plants. While some animal products contain B12, modern industrial farming is inconsistent, so vegans should rely on fortified foods like plant milks, cereals, nutritional yeast, or supplements. Regular intake ensures adequate B12 levels, supporting energy, neurological function, and long-term health.",
-    es: "La vitamina B12 es esencial para la salud nerviosa, la formación de glóbulos rojos y la energía. Se produce naturalmente por bacterias, no por plantas. Aunque algunos productos animales contienen B12, la agricultura industrial moderna es inconsistente, por lo que los veganos deben recurrir a alimentos fortificados como leches vegetales, cereales, levadura nutricional o suplementos. La ingesta regular asegura niveles adecuados de B12, apoyando la energía, la función neurológica y la salud a largo plazo.",
-    hu: "A B12-vitamin létfontosságú az idegek egészségéhez, a vörösvértestek képződéséhez és az energiaszinthez. Természetesen baktériumok állítják elő, nem a növények. Bár néhány állati termék tartalmaz B12-t, a modern ipari gazdálkodás kiszámíthatatlan, ezért a vegánoknak dúsított ételekre, például növényi tejekre, gabonafélékre, tápélesztőre vagy kiegészítőkre kell támaszkodniuk. A rendszeres bevitel biztosítja a megfelelő B12-szintet, támogatva az energiát, az idegrendszeri működést és a hosszú távú egészséget."
-  },
-  question: {
-    text: {
-      en: "Why do plant-based eaters need fortified foods or supplements for B12?",
-      es: "¿Por qué las personas que siguen una dieta vegetal necesitan alimentos fortificados o suplementos de B12?",
-      hu: "Miért van szükségük B12-dúsított ételekre vagy kiegészítőkre a növényi étrendet követőknek?"
-    },
-    options: {
-      en: ["Plants naturally contain enough B12", "B12 comes from bacteria, not plants", "Animals always provide sufficient B12"],
-      es: ["Las plantas contienen suficiente B12", "La B12 proviene de bacterias, no de plantas", "Los animales siempre proporcionan suficiente B12"],
-      hu: ["A növények természetesen elegendő B12-t tartalmaznak", "A B12 baktériumokból származik, nem a növényekből", "Az állatok mindig biztosítanak elegendő B12-t"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Healthy Fats from Plant Sources",
-    es: "Grasas saludables de fuentes vegetales",
-    hu: "Egészséges zsírok növényi forrásokból"
-  },
-  content: {
-    en: "Fats are essential for brain function, hormone production, and heart health. Beneficial plant-based fats come from avocados, nuts, seeds, and olive oil. Omega-3 fatty acids, important for cardiovascular and cognitive health, are found in flaxseeds, chia seeds, hemp seeds, and walnuts. Including these fats in the diet supports energy, reduces inflammation, and promotes long-term heart and brain health.",
-    es: "Las grasas son esenciales para la función cerebral, la producción hormonal y la salud del corazón. Las grasas vegetales beneficiosas provienen de aguacates, frutos secos, semillas y aceite de oliva. Los ácidos grasos omega-3, importantes para la salud cardiovascular y cognitiva, se encuentran en semillas de lino, chía, cáñamo y nueces. Incluir estas grasas en la dieta apoya la energía, reduce la inflamación y promueve la salud a largo plazo del corazón y el cerebro.",
-    hu: "A zsírok elengedhetetlenek az agyműködéshez, a hormontermeléshez és a szív egészségéhez. A jótékony növényi zsírok forrásai az avokádó, diófélék, magvak és olívaolaj. Az omega-3 zsírsavak, amelyek fontosak a szív- és érrendszeri, valamint a kognitív egészséghez, megtalálhatók a lenmagban, chia magban, kendermagban és dióban. Ezeknek a zsíroknak a étrendbe való beépítése támogatja az energiát, csökkenti a gyulladást és elősegíti a hosszú távú szív- és agyegészséget."
-  },
-  question: {
-    text: {
-      en: "Which of the following plant foods is rich in omega-3 fatty acids?",
-      es: "¿Cuál de los siguientes alimentos vegetales es rico en ácidos grasos omega-3?",
-      hu: "Melyik növényi étel gazdag omega-3 zsírsavakban?"
-    },
-    options: {
-      en: ["Flaxseeds", "Bananas", "Potatoes"],
-      es: ["Semillas de lino", "Plátanos", "Patatas"],
-      hu: ["Lenmag", "Banán", "Burgonya"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Soy and Hormonal Health",
-    es: "Soja y salud hormonal",
-    hu: "Szója és hormonális egészség"
-  },
-  content: {
-    en: "Soy contains phytoestrogens, plant compounds that weakly mimic estrogen. Moderate consumption of soy foods like tofu, tempeh, and soy milk is safe for most people and does not negatively affect hormone levels. In fact, soy can be part of a heart-healthy, balanced diet and provide high-quality protein, calcium, and iron without excess fat.",
-    es: "La soja contiene fitoestrógenos, compuestos vegetales que imitan débilmente el estrógeno. El consumo moderado de alimentos de soja como tofu, tempeh y leche de soja es seguro para la mayoría de las personas y no afecta negativamente los niveles hormonales. De hecho, la soja puede formar parte de una dieta equilibrada y saludable para el corazón, proporcionando proteínas de alta calidad, calcio y hierro sin exceso de grasa.",
-    hu: "A szója fitoösztrogéneket tartalmaz, növényi vegyületeket, amelyek gyengén utánozzák az ösztrogént. A szójaételek, például a tofu, tempeh és szója tej mérsékelt fogyasztása biztonságos a legtöbb ember számára, és nem befolyásolja negatívan a hormonszintet. Valójában a szója része lehet egy szívbarát, kiegyensúlyozott étrendnek, biztosítva a magas minőségű fehérjét, kalciumot és vasat felesleges zsír nélkül."
-  },
-  question: {
-    text: {
-      en: "What are the plant compounds in soy that can mimic estrogen?",
-      es: "¿Cuáles son los compuestos vegetales en la soja que pueden imitar el estrógeno?",
-      hu: "Melyek azok a növényi vegyületek a szójában, amelyek utánozhatják az ösztrogént?"
-    },
-    options: {
-      en: ["Saturated fats", "Phytoestrogens", "Cholesterol"],
-      es: ["Grasas saturadas", "Fitoestrógenos", "Colesterol"],
-      hu: ["Telített zsírok", "Fitoösztrogének", "Koleszterin"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Human Teeth and Natural Diet",
-    es: "Dientes humanos y dieta natural",
-    hu: "Az emberi fogak és a természetes étrend"
-  },
-  content: {
-    en: "Humans have small canines, unlike carnivores such as lions or wolves. Our teeth are adapted for grinding and chewing a variety of foods, particularly plants. Our long intestines are suited to digesting fiber-rich foods. This suggests that humans are naturally adapted to a mixed or plant-forward diet rather than being strict carnivores.",
-    es: "Los humanos tienen caninos pequeños, a diferencia de los carnívoros como leones o lobos. Nuestros dientes están adaptados para triturar y masticar una variedad de alimentos, particularmente plantas. Nuestros intestinos largos son adecuados para digerir alimentos ricos en fibra. Esto sugiere que los humanos están naturalmente adaptados a una dieta mixta o principalmente vegetal en lugar de ser carnívoros estrictos.",
-    hu: "Az embereknek kicsi szemfogai vannak, ellentétben a ragadozókkal, mint az oroszlán vagy a farkas. Fogaink alkalmasak különféle ételek, különösen növények őrlésére és rágására. Hosszú beleink a rostban gazdag ételek emésztésére alkalmasak. Ez azt sugallja, hogy az emberek természetüknél fogva vegyes vagy növénycentrikus étrendre vannak adaptálva, nem szigorúan ragadozó étrendre."
-  },
-  question: {
-    text: {
-      en: "What do human canines suggest about our natural diet?",
-      es: "¿Qué sugieren los caninos humanos sobre nuestra dieta natural?",
-      hu: "Mit sugallnak az emberi szemfogak a természetes étrendről?"
-    },
-    options: {
-      en: [
-        "Humans are strict carnivores",
-        "Humans cannot digest plants",
-        "Humans are adapted for a mixed or plant-forward diet"
-      ],
-      es: [
-        "Los humanos son carnívoros estrictos",
-        "Los humanos no pueden digerir plantas",
-        "Los humanos están adaptados a una dieta mixta o principalmente vegetal"
-      ],
-      hu: [
-        "Az emberek szigorúan húsevők",
-        "Az emberek nem tudnak növényeket emészteni",
-        "Az emberek vegyes vagy növénycentrikus étrendre vannak adaptálva"
-      ]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Stomach Acidity and Diet",
-    es: "Acidez estomacal y dieta",
-    hu: "Gyomorsav és étrend"
-  },
-  content: {
-    en: "Carnivores have highly acidic stomachs to break down meat and kill bacteria. Humans have moderately acidic stomachs, which are sufficient for digesting protein but also allow for efficient breakdown of fiber from plants. Our digestive system is longer than that of strict carnivores, supporting a mixed or plant-forward diet rather than a meat-only diet.",
-    es: "Los carnívoros tienen estómagos muy ácidos para descomponer la carne y matar bacterias. Los humanos tienen estómagos moderadamente ácidos, suficientes para digerir proteínas pero también para descomponer eficientemente la fibra de las plantas. Nuestro sistema digestivo es más largo que el de los carnívoros estrictos, lo que favorece una dieta mixta o principalmente vegetal en lugar de solo carne.",
-    hu: "A ragadozóknak nagyon savas a gyomruk a hús lebontására és a baktériumok elpusztítására. Az emberek gyomra mérsékelten savas, ami elegendő a fehérje emésztéséhez, de lehetővé teszi a növényi rostok hatékony lebontását is. Az emésztőrendszerünk hosszabb, mint a szigorú ragadozóké, ami vegyes vagy növénycentrikus étrendet támogat a csak hús helyett."
-  },
-  question: {
-    text: {
-      en: "What does human stomach acidity suggest about our natural diet?",
-      es: "¿Qué sugiere la acidez del estómago humano sobre nuestra dieta natural?",
-      hu: "Mit sugall az emberi gyomorsav a természetes étrendről?"
-    },
-    options: {
-      en: ["We are adapted to a mixed diet with plenty of plant foods", "We are strict carnivores", "We can only digest meat"],
-      es: ["Estamos adaptados a una dieta mixta con muchas plantas", "Somos carnívoros estrictos", "Solo podemos digerir carne"],
-      hu: ["Vegyes étrendre vagyunk adaptálódva, sok növénnyel", "Szigorú ragadozók vagyunk", "Csak húst tudunk emészteni"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Minimally Processed Plant Foods",
-    es: "Alimentos vegetales mínimamente procesados",
-    hu: "Minimálisan feldolgozott növényi ételek"
-  },
-  content: {
-    en: "Whole plant foods like fruits, vegetables, beans, nuts, and whole grains are minimally processed and nutrient-rich. In contrast, many modern meat and dairy products are highly processed with added salt, sugars, preservatives, and unhealthy fats. Eating more whole plant foods supports better health, higher energy levels, and reduced risk of chronic diseases.",
-    es: "Los alimentos vegetales integrales como frutas, verduras, legumbres, frutos secos y cereales integrales son mínimamente procesados y ricos en nutrientes. En contraste, muchos productos modernos de carne y lácteos están altamente procesados con sal, azúcares, conservantes y grasas poco saludables añadidas. Consumir más alimentos vegetales enteros favorece mejor salud, más energía y menor riesgo de enfermedades crónicas.",
-    hu: "Az egész növényi ételek, mint a gyümölcsök, zöldségek, bab, diófélék és teljes kiőrlésű gabonák minimálisan feldolgozottak és tápanyagban gazdagok. Ezzel szemben sok modern hús- és tejtermék erősen feldolgozott, hozzáadott sóval, cukorral, tartósítószerekkel és egészségtelen zsírokkal. Több egész növényi étel fogyasztása támogatja az egészséget, növeli az energiaszintet és csökkenti a krónikus betegségek kockázatát."
-  },
-  question: {
-    text: {
-      en: "Which of the following is usually minimally processed and nutrient-rich?",
-      es: "¿Cuál de los siguientes alimentos suele ser mínimamente procesado y rico en nutrientes?",
-      hu: "Melyik az alábbiak közül minimálisan feldolgozott és tápanyagban gazdag?"
-    },
-    options: {
-      en: ["Processed meats and cheeses", "Whole plant foods like beans and vegetables", "Packaged sugary snacks"],
-      es: ["Carnes y quesos procesados", "Alimentos vegetales enteros como legumbres y verduras", "Snacks azucarados envasados"],
-      hu: ["Feldolgozott húsok és sajtok", "Egész növényi ételek, pl. bab és zöldség", "Csomagolt cukros nassolnivalók"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Brain Glucose Needs and Diet",
-    es: "Necesidades de glucosa cerebral y dieta",
-    hu: "Agy glükózigénye és étrend"
-  },
-  content: {
-    en: "The human brain consumes about 120 grams of glucose daily. Carbohydrates from fruits, vegetables, grains, and legumes efficiently supply this energy. Meat and dairy are very low in carbs, meaning a strictly carnivorous diet would struggle to meet the brain’s energy demands. This suggests humans are adapted to a mixed or plant-forward diet that ensures sufficient glucose for optimal brain function.",
-    es: "El cerebro humano consume unos 120 gramos de glucosa al día. Los carbohidratos de frutas, verduras, cereales y legumbres proporcionan esta energía de manera eficiente. La carne y los lácteos son muy bajos en carbohidratos, lo que significa que una dieta estrictamente carnívora tendría dificultades para cubrir las necesidades energéticas del cerebro. Esto sugiere que los humanos están adaptados a una dieta mixta o principalmente vegetal que asegura glucosa suficiente para la función cerebral óptima.",
-    hu: "Az emberi agy napi kb. 120 g glükózt fogyaszt. A gyümölcsökből, zöldségekből, gabonákból és hüvelyesekből származó szénhidrátok hatékonyan biztosítják ezt az energiát. A hús és tej nagyon kevés szénhidrátot tartalmaz, így a szigorúan húsevő étrend nehezen fedezné az agy energiaszükségletét. Ez azt sugallja, hogy az emberek vegyes vagy növénycentrikus étrendre adaptálódtak, amely biztosítja az elegendő glükózt az optimális agyműködéshez."
-  },
-  question: {
-    text: {
-      en: "What does our brain’s need for glucose suggest about our natural diet?",
-      es: "¿Qué sugiere la necesidad de glucosa de nuestro cerebro sobre nuestra dieta natural?",
-      hu: "Mit sugall az agyunk glükózigénye a természetes étrendről?"
-    },
-    options: {
-      en: ["Humans are strict carnivores", "Humans don’t need carbohydrates", "Humans are adapted to a mixed or plant-forward diet"],
-      es: ["Los humanos son carnívoros estrictos", "Los humanos no necesitan carbohidratos", "Los humanos están adaptados a una dieta mixta o principalmente vegetal"],
-      hu: ["Az emberek szigorú húsevők", "Az embereknek nincs szükségük szénhidrátra", "Az emberek vegyes vagy növénycentrikus étrendre adaptálódtak"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Preventing Artery Plaques",
-    es: "Prevención de placas arteriales",
-    hu: "Érplakkok megelőzése"
-  },
-  content: {
-    en: "Plaques form when cholesterol and saturated fats accumulate inside arteries, narrowing them and increasing the risk of high blood pressure and heart disease. Diets rich in fiber, antioxidants, and low in cholesterol — especially plant-forward diets — prevent plaque buildup and keep arteries flexible, supporting long-term cardiovascular health.",
-    es: "Las placas se forman cuando el colesterol y las grasas saturadas se acumulan dentro de las arterias, estrechándolas y aumentando el riesgo de hipertensión y enfermedades cardíacas. Las dietas ricas en fibra, antioxidantes y bajas en colesterol —especialmente dietas vegetales— previenen la acumulación de placas y mantienen las arterias flexibles, apoyando la salud cardiovascular a largo plazo.",
-    hu: "A plakkok akkor alakulnak ki, amikor a koleszterin és telített zsírok felhalmozódnak az artériákban, szűkítve azokat és növelve a magas vérnyomás és szívbetegségek kockázatát. A rostban, antioxidánsokban gazdag és alacsony koleszterintartalmú étrend — különösen a növénycentrikus étrend — megakadályozza a plakkok kialakulását és rugalmasan tartja az ereket, támogatva a hosszú távú szív- és érrendszeri egészséget."
-  },
-  question: {
-    text: {
-      en: "What mainly causes plaque buildup in the arteries?",
-      es: "¿Qué causa principalmente la acumulación de placas en las arterias?",
-      hu: "Mi okozza elsősorban az érplakkok kialakulását?"
-    },
-    options: {
-      en: ["Fiber and antioxidants", "Water and vitamins", "Cholesterol and saturated fats"],
-      es: ["Fibra y antioxidantes", "Agua y vitaminas", "Colesterol y grasas saturadas"],
-      hu: ["Rost és antioxidánsok", "Víz és vitaminok", "Koleszterin és telített zsírok"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Maintaining Heart Health",
-    es: "Mantener la salud del corazón",
-    hu: "A szív egészségének megőrzése"
-  },
-  content: {
-    en: "A healthy heart relies on both diet and lifestyle. Whole plant foods provide fiber to keep cholesterol low, antioxidants to protect arteries, and essential nutrients for circulation. Regular exercise and good sleep further support cardiovascular health. Combining these habits keeps the heart strong, resilient, and better protected against chronic diseases.",
-    es: "Un corazón saludable depende tanto de la dieta como del estilo de vida. Los alimentos vegetales integrales proporcionan fibra para mantener el colesterol bajo, antioxidantes para proteger las arterias y nutrientes esenciales para la circulación. El ejercicio regular y un buen sueño apoyan aún más la salud cardiovascular. Combinar estos hábitos mantiene el corazón fuerte, resistente y mejor protegido contra enfermedades crónicas.",
-    hu: "Az egészséges szív mind az étrenden, mind az életmódon múlik. Az egész növényi ételek rostot biztosítanak a koleszterin alacsonyan tartásához, antioxidánsokat az erek védelmére és létfontosságú tápanyagokat a keringéshez. A rendszeres testmozgás és a jó alvás tovább támogatja a szív- és érrendszeri egészséget. E szokások kombinálása erős, ellenálló szívet biztosít, jobban védve a krónikus betegségek ellen."
-  },
-  question: {
-    text: {
-      en: "Which habit best supports a healthy heart?",
-      es: "¿Qué hábito apoya mejor un corazón saludable?",
-      hu: "Melyik szokás támogatja legjobban az egészséges szívet?"
-    },
-    options: {
-      en: ["Eating whole plant foods and exercising regularly", "Eating processed meats and avoiding physical activity", "Consuming more salt and sugar"],
-      es: ["Comer alimentos vegetales enteros y hacer ejercicio regularmente", "Comer carnes procesadas y evitar la actividad física", "Consumir más sal y azúcar"],
-      hu: ["Egész növényi ételek fogyasztása és rendszeres mozgás", "Feldolgozott húsok fogyasztása és mozgás kerülése", "Több só és cukor fogyasztása"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Essential Benefits of Plant-Based Foods",
-    es: "Beneficios esenciales de los alimentos vegetales",
-    hu: "A növényi ételek alapvető előnyei"
-  },
-  content: {
-    en: "Plants are naturally rich in essential nutrients, high in fiber, and free from harmful saturated fats present in many animal products. A balanced plant-based diet supports strong muscles, cardiovascular health, stable energy levels, and long-term wellness. It is possible to be completely healthy without meat or dairy while enjoying a variety of whole, nutrient-rich foods.",
-    es: "Las plantas son naturalmente ricas en nutrientes esenciales, altas en fibra y libres de grasas saturadas dañinas presentes en muchos productos animales. Una dieta equilibrada basada en plantas apoya músculos fuertes, salud cardiovascular, niveles de energía estables y bienestar a largo plazo. Es posible estar completamente sano sin carne ni lácteos disfrutando de una variedad de alimentos enteros y ricos en nutrientes.",
-    hu: "A növények természetüknél fogva gazdagok létfontosságú tápanyagokban, magas a rosttartalmuk, és mentesek a sok állati termékben jelen lévő káros telített zsíroktól. A kiegyensúlyozott növényi alapú étrend támogatja az erős izmokat, a szív- és érrendszer egészségét, az állandó energiaszintet és a hosszú távú jólétet. Teljesen egészséges lehet valaki hús vagy tejtermék nélkül, miközben változatos, tápanyagban gazdag ételeket fogyaszt."
-  },
-  question: {
-    text: {
-      en: "Which of the following is a key benefit of plant-based foods?",
-      es: "¿Cuál de los siguientes es un beneficio clave de los alimentos vegetales?",
-      hu: "Mi a növényi ételek egyik fő előnye?"
-    },
-    options: {
-      en: ["They are high in fiber and rich in nutrients", "They contain a lot of cholesterol", "They lack vitamins and minerals"],
-      es: ["Son ricos en fibra y nutrientes", "Contienen mucho colesterol", "Carecen de vitaminas y minerales"],
-      hu: ["Magas a rosttartalmuk és tápanyagban gazdagok", "Sok koleszterint tartalmaznak", "Hiányoznak belőlük vitaminok és ásványi anyagok"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Sources of Plant-Based Protein",
-    es: "Fuentes de proteína vegetal",
-    hu: "Növényi fehérjeforrások"
-  },
-  content: {
-    en: "Plant foods provide a wide range of proteins suitable for muscle growth and repair. Excellent sources include lentils, chickpeas, beans, tofu, tempeh, seitan, quinoa, nuts, and seeds. By combining these foods throughout the day, you can meet all essential amino acid requirements without relying on animal products, supporting a balanced and heart-healthy diet.",
-    es: "Los alimentos vegetales proporcionan una amplia gama de proteínas adecuadas para el crecimiento y la reparación muscular. Las fuentes excelentes incluyen lentejas, garbanzos, frijoles, tofu, tempeh, seitán, quinoa, nueces y semillas. Combinando estos alimentos durante el día, puedes cubrir todos los aminoácidos esenciales sin depender de productos animales, apoyando una dieta equilibrada y saludable para el corazón.",
-    hu: "A növényi ételek széles fehérjespektrumot biztosítanak, ami alkalmas az izomnövekedésre és a regenerációra. Kiváló források: lencse, csicseriborsó, bab, tofu, tempeh, seitan, quinoa, diófélék és magvak. Ezek kombinálásával a nap folyamán minden esszenciális aminosav fedezhető állati termékek nélkül, támogatva az egyensúlyban lévő, szívbarát étrendet."
-  },
-  question: {
-    text: {
-      en: "Which of the following foods is rich in plant-based protein?",
-      es: "¿Cuál de los siguientes alimentos es rico en proteína vegetal?",
-      hu: "Melyik az alábbi ételek közül gazdag növényi fehérjében?"
-    },
-    options: {
-      en: ["Apples", "Lentils", "Cucumbers"],
-      es: ["Manzanas", "Lentejas", "Pepinos"],
-      hu: ["Alma", "Lencse", "Uborka"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Plant Foods vs Meat and Dairy",
-    es: "Alimentos vegetales vs carne y lácteos",
-    hu: "Növényi ételek vs hús és tejtermékek"
-  },
-  content: {
-    en: "Meat and dairy both provide protein and essential nutrients — meat is rich in iron and B vitamins, while dairy offers calcium and B12. However, both can contain saturated fat and, especially in processed forms, added salt or sugar. Plant foods, like legumes, nuts, seeds, and whole grains, are naturally high in protein, fiber, vitamins, and minerals, while being low in saturated fat. Balancing animal foods with a variety of plant-based foods supports heart health, digestion, and overall wellness.",
-    es: "La carne y los lácteos proporcionan proteínas y nutrientes esenciales: la carne es rica en hierro y vitaminas B, mientras que los lácteos ofrecen calcio y B12. Sin embargo, ambos pueden contener grasas saturadas y, especialmente en formas procesadas, sal o azúcar añadidos. Los alimentos vegetales, como legumbres, nueces, semillas y cereales integrales, son naturalmente ricos en proteínas, fibra, vitaminas y minerales, y bajos en grasas saturadas. Equilibrar los alimentos animales con una variedad de alimentos vegetales apoya la salud del corazón, la digestión y el bienestar general.",
-    hu: "A hús és a tejtermékek mind fehérjét és esszenciális tápanyagokat biztosítanak — a hús gazdag vasban és B-vitaminokban, a tejtermékek pedig kalciumot és B12-vitamint tartalmaznak. Mindkettő tartalmazhat telített zsírt, és különösen feldolgozott formában hozzáadott sót vagy cukrot. A növényi ételek, mint a hüvelyesek, diófélék, magvak és teljes kiőrlésű gabonák, természetüknél fogva gazdagok fehérjében, rostban, vitaminokban és ásványi anyagokban, miközben alacsony a telített zsírtartalmuk. Az állati ételek és a változatos növényi ételek kombinálása támogatja a szív egészségét, az emésztést és az általános jóllétet."
-  },
-  question: {
-    text: {
-      en: "Which type of food provides protein and essential nutrients but is low in saturated fat?",
-      es: "¿Qué tipo de alimento proporciona proteínas y nutrientes esenciales pero es bajo en grasas saturadas?",
-      hu: "Melyik élelmiszercsoport biztosít fehérjét és esszenciális tápanyagokat, de alacsony a telített zsírtartalma?"
-    },
-    options: {
-      en: ["Plant foods like legumes, nuts, and seeds", "Meat", "Dairy"],
-      es: ["Alimentos vegetales como legumbres, nueces y semillas", "Carne", "Lácteos"],
-      hu: ["Növényi ételek, pl. hüvelyesek, diófélék és magvak", "Hús", "Tejtermékek"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Plant-Based Diet Myths",
-    es: "Mitos sobre la dieta vegetal",
-    hu: "Növényi étrend mítoszai"
-  },
-  content: {
-    en: "Many people believe they cannot get enough protein, calcium, or maintain strong bones without meat or dairy. In reality, plant foods like beans, lentils, tofu, nuts, seeds, whole grains, and leafy greens provide these nutrients abundantly. With a variety of foods and a reliable B12 source, plant-based diets fully support muscle growth, bone health, and overall wellness. Additionally, plants provide extra fiber, antioxidants, and healthy fats that boost long-term health.",
-    es: "Mucha gente cree que no puede obtener suficiente proteína, calcio o mantener huesos fuertes sin carne o lácteos. En realidad, alimentos vegetales como frijoles, lentejas, tofu, nueces, semillas, cereales integrales y verduras de hoja proporcionan estos nutrientes abundantemente. Con una variedad de alimentos y una fuente confiable de B12, las dietas basadas en plantas apoyan completamente el crecimiento muscular, la salud ósea y el bienestar general. Además, las plantas proporcionan fibra, antioxidantes y grasas saludables que mejoran la salud a largo plazo.",
-    hu: "Sokan hiszik, hogy nem tudnak elegendő fehérjét, kalciumot szerezni vagy erős csontokat fenntartani hús vagy tejtermékek nélkül. Valójában a növényi ételek, mint a bab, lencse, tofu, diófélék, magvak, teljes kiőrlésű gabonák és leveles zöldségek bőségesen biztosítják ezeket a tápanyagokat. A változatos étrend és megbízható B12-forrás mellett a növényi étrend teljes mértékben támogatja az izomnövekedést, a csontok egészségét és az általános jólétet. Emellett a növények extra rostot, antioxidánsokat és egészséges zsírokat biztosítanak, amelyek fokozzák a hosszú távú egészséget."
-  },
-  question: {
-    text: {
-      en: "Which statement is true about plant-based diets?",
-      es: "¿Cuál afirmación es verdadera sobre las dietas basadas en plantas?",
-      hu: "Melyik állítás igaz a növényi étrendre?"
-    },
-    options: {
-      en: ["They can provide enough protein, calcium, and nutrients", "They always lead to weak bones", "They cannot support muscle growth"],
-      es: ["Pueden proporcionar suficiente proteína, calcio y nutrientes", "Siempre conducen a huesos débiles", "No pueden apoyar el crecimiento muscular"],
-      hu: ["Elég fehérjét, kalciumot és tápanyagot biztosíthatnak", "Mindig gyenge csontokhoz vezetnek", "Nem támogathatják az izomnövekedést"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Vegetarian Diet and Immunity",
-    es: "Dieta vegetariana e inmunidad",
-    hu: "Vegetáriánus étrend és immunrendszer"
-  },
-  content: {
-    en: "Your immune system relies on the nutrients you consume daily. Vegetarian diets are naturally rich in vitamin C, vitamin E, beta-carotene, zinc, and antioxidants, which defend against infections and inflammation. Phytonutrients in plants help regulate immune responses and speed up recovery. High consumption of animal fats and processed meats, on the other hand, is linked to lower immune resilience. By eating a variety of colorful plant foods, you provide your immune system with the essential fuel it needs to stay strong, healthy, and energized.",
-    es: "Tu sistema inmunológico depende de los nutrientes que consumes diariamente. Las dietas vegetarianas son naturalmente ricas en vitamina C, vitamina E, betacaroteno, zinc y antioxidantes, que defienden contra infecciones e inflamación. Los fitonutrientes en las plantas ayudan a regular las respuestas inmunológicas y acelerar la recuperación. Por otro lado, un alto consumo de grasas animales y carnes procesadas se relaciona con menor resiliencia inmune. Al comer una variedad de alimentos vegetales coloridos, proporcionas a tu sistema inmunológico el combustible esencial que necesita para mantenerse fuerte, sano y con energía.",
-    hu: "Az immunrendszer a napi tápanyagbeviteltől függ. A vegetáriánus étrend természeténél fogva gazdag C-vitaminban, E-vitaminban, béta-karotinban, cinkben és antioxidánsokban, amelyek védik a szervezetet a fertőzésektől és a gyulladásoktól. A növények fitotápanyagai segítenek szabályozni az immunválaszt és gyorsítani a regenerációt. Az állati zsírok és feldolgozott húsok nagy mennyiségű fogyasztása alacsonyabb immunrezilienciával jár. Színes növényi ételek változatos fogyasztásával biztosítod az immunrendszerednek a szükséges energiát az erő, egészség és vitalitás fenntartásához."
-  },
-  question: {
-    text: {
-      en: "Which vitamin is especially important for boosting the immune system and is abundant in fruits and vegetables?",
-      es: "¿Qué vitamina es especialmente importante para fortalecer el sistema inmunológico y abunda en frutas y verduras?",
-      hu: "Melyik vitamin különösen fontos az immunrendszer erősítéséhez és bőségesen található gyümölcsökben és zöldségekben?"
-    },
-    options: {
-      en: ["Vitamin C", "Vitamin D", "Vitamin B12"],
-      es: ["Vitamina C", "Vitamina D", "Vitamina B12"],
-      hu: ["C-vitamin", "D-vitamin", "B12-vitamin"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Understanding LDL and Saturated Fat",
-    es: "Comprendiendo el LDL y las grasas saturadas",
-    hu: "Az LDL és a telített zsír megértése"
-  },
-  content: {
-    en: "LDL, or low-density lipoprotein, is often called 'bad cholesterol' because high levels can accumulate in arteries, increasing heart disease risk. Experts recommend limiting saturated fat to 20–30 grams per day for an average adult. To put this in perspective, a single cheeseburger can contain 15–20 grams of saturated fat — nearly an entire day’s limit! Reducing saturated fat intake through plant-based foods can help maintain healthy cholesterol levels and support heart health.",
-    es: "LDL, o lipoproteína de baja densidad, se llama a menudo 'colesterol malo' porque niveles altos pueden acumularse en las arterias, aumentando el riesgo de enfermedades cardíacas. Los expertos recomiendan limitar las grasas saturadas a 20–30 gramos por día para un adulto promedio. Para ponerlo en perspectiva, una sola hamburguesa con queso puede contener 15–20 gramos de grasa saturada, ¡casi el límite diario completo! Reducir la ingesta de grasas saturadas mediante alimentos vegetales puede ayudar a mantener niveles saludables de colesterol y apoyar la salud del corazón.",
-    hu: "Az LDL vagy alacsony sűrűségű lipoprotein gyakran 'rossz koleszterin'-ként ismert, mert a magas szint felhalmozódhat az artériákban, növelve a szívbetegségek kockázatát. A szakértők napi 20–30 gramm telített zsír fogyasztását javasolják egy átlagos felnőtt számára. Összehasonlításképp, egy sajtos hamburger 15–20 gramm telített zsírt tartalmazhat — majdnem a teljes napi limitet! A telített zsír csökkentése növényi ételeken keresztül segíthet az egészséges koleszterinszint fenntartásában és a szív egészségének támogatásában."
-  },
-  question: {
-    text: {
-      en: "Approximately how much saturated fat does a single cheeseburger contain?",
-      es: "¿Cuánta grasa saturada contiene aproximadamente una hamburguesa con queso?",
-      hu: "Körülbelül mennyi telített zsírt tartalmaz egy sajtos hamburger?"
-    },
-    options: {
-      en: ["5 grams", "15–20 grams", "30–40 grams"],
-      es: ["5 gramos", "15–20 gramos", "30–40 gramos"],
-      hu: ["5 gramm", "15–20 gramm", "30–40 gramm"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Energy from Plant Foods",
-    es: "Energía de los alimentos vegetales",
-    hu: "Energia növényi ételekből"
-  },
-  content: {
-    en: "Many wonder if a vegetarian diet provides enough energy for an active lifestyle. Plant-based foods are excellent sources of carbohydrates, the body's primary energy source, along with healthy fats and proteins. Whole grains, legumes, fruits, and vegetables provide slow-releasing energy that keeps blood sugar stable and supports metabolism throughout the day. Compared to heavy animal-based meals, plant-based meals are lighter, easier to digest, and packed with nutrients that help your cells produce energy efficiently.",
-    es: "Muchos se preguntan si una dieta vegetariana proporciona suficiente energía para un estilo de vida activo. Los alimentos vegetales son excelentes fuentes de carbohidratos, la principal fuente de energía del cuerpo, junto con grasas saludables y proteínas. Los granos enteros, legumbres, frutas y verduras proporcionan energía de liberación lenta que mantiene estable el azúcar en sangre y apoya el metabolismo durante todo el día. En comparación con comidas pesadas de origen animal, las comidas vegetales son más ligeras, fáciles de digerir y ricas en nutrientes que ayudan a las células a producir energía de manera eficiente.",
-    hu: "Sokan kíváncsiak, hogy egy vegetáriánus étrend elegendő energiát biztosít-e egy aktív életmódhoz. A növényi ételek kiváló szénhidrátforrások, a test elsődleges energiaforrása, emellett egészséges zsírokat és fehérjéket is biztosítanak. A teljes kiőrlésű gabonák, hüvelyesek, gyümölcsök és zöldségek lassan felszabaduló energiát biztosítanak, ami stabil vércukorszintet tart fenn és támogatja az anyagcserét a nap folyamán. A nehéz állati alapú ételekkel összehasonlítva a növényi alapú ételek könnyebbek, könnyebben emészthetők és tápanyagokban gazdagok, amelyek segítik a sejtek hatékony energiaelőállítását."
-  },
-  question: {
-    text: {
-      en: "What is the body’s main source of energy?",
-      es: "¿Cuál es la principal fuente de energía del cuerpo?",
-      hu: "Mi a test elsődleges energiaforrása?"
-    },
-    options: {
-      en: ["Carbohydrates", "Protein", "Fat"],
-      es: ["Carbohidratos", "Proteínas", "Grasas"],
-      hu: ["Szénhidrátok", "Fehérje", "Zsír"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Heart-Healthy Plant Fats",
-    es: "Grasas vegetales saludables para el corazón",
-    hu: "Szívbarát növényi zsírok"
-  },
-  content: {
-    en: "Fats from nuts, seeds, avocados, and olive oil are primarily unsaturated, which helps lower LDL ('bad') cholesterol and increase HDL ('good') cholesterol. They also contain antioxidants and anti-inflammatory compounds that protect arteries from damage. Regularly including these fats in your diet supports healthy blood flow, reduces heart disease risk, and provides sustained energy, all while keeping saturated fat intake in check.",
-    es: "Las grasas de nueces, semillas, aguacates y aceite de oliva son principalmente insaturadas, lo que ayuda a reducir el colesterol LDL ('malo') y aumentar el HDL ('bueno'). También contienen antioxidantes y compuestos antiinflamatorios que protegen las arterias del daño. Incluir regularmente estas grasas en la dieta favorece un flujo sanguíneo saludable, reduce el riesgo de enfermedades cardíacas y proporciona energía sostenida, manteniendo bajo control la ingesta de grasas saturadas.",
-    hu: "A diófélékből, magvakból, avokádóból és olívaolajból származó zsírok főként telítetlenek, ami segít csökkenteni az LDL („rossz”) koleszterint és növelni a HDL („jó”) koleszterint. Antioxidánsokat és gyulladáscsökkentő vegyületeket is tartalmaznak, amelyek védik az artériákat a károsodástól. Ezeknek a zsíroknak a rendszeres fogyasztása támogatja az egészséges véráramlást, csökkenti a szívbetegségek kockázatát és fenntartható energiát biztosít, miközben kordában tartja a telített zsírfogyasztást."
-  },
-  question: {
-    text: {
-      en: "Which type of fat helps lower LDL cholesterol and supports heart health?",
-      es: "¿Qué tipo de grasa ayuda a reducir el colesterol LDL y apoya la salud del corazón?",
-      hu: "Melyik zsírtípus segít csökkenteni az LDL koleszterint és támogatja a szív egészségét?"
-    },
-    options: {
-      en: ["Saturated fats from butter and cheese", "Trans fats from processed foods", "Unsaturated fats from plant foods"],
-      es: ["Grasas saturadas de mantequilla y queso", "Grasas trans de alimentos procesados", "Grasas insaturadas de alimentos vegetales"],
-      hu: ["Telített zsírok vajból és sajtból", "Transzzsírok feldolgozott ételekből", "Telítetlen zsírok növényi ételekből"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Getting Complete Protein Without Dairy",
-    es: "Obtener proteína completa sin lácteos",
-    hu: "Teljes fehérje bevitel tejtermék nélkül"
-  },
-  content: {
-    en: "Complete protein contains all nine essential amino acids. While dairy is complete, some plant-based foods like soy, quinoa, buckwheat, and hemp seeds are also complete. Most other plant foods may lack one or more amino acids, but by combining different plant foods throughout the day — for example, beans with grains or nuts with legumes — you can easily meet all protein requirements. Well-planned plant-based diets fully support protein needs without relying on dairy.",
-    es: "La proteína completa contiene los nueve aminoácidos esenciales. Aunque los lácteos son completos, algunos alimentos vegetales como la soja, la quinoa, el trigo sarraceno y las semillas de cáñamo también lo son. La mayoría de los demás alimentos vegetales pueden carecer de uno o más aminoácidos, pero combinando diferentes alimentos vegetales durante el día —por ejemplo, legumbres con cereales o nueces con legumbres— puedes cubrir fácilmente todos los requerimientos de proteínas. Una dieta vegetal bien planificada satisface completamente las necesidades de proteína sin depender de lácteos.",
-    hu: "A teljes értékű fehérje tartalmazza a kilenc esszenciális aminosavat. Bár a tejtermékek teljes értékűek, egyes növényi ételek, például a szója, quinoa, hajdina és kendermagok szintén teljesek. A legtöbb más növényi étel egy vagy több aminosavat hiányolhat, de a különböző növényi ételek kombinálásával a nap folyamán — például bab gabonákkal vagy dió hüvelyesekkel — könnyen fedezhetők a fehérjeszükségletek. A jól megtervezett növényi étrend teljes mértékben támogatja a fehérjeszükségletet tejtermékek nélkül."
-  },
-  question: {
-    text: {
-      en: "How can plant-based eaters get all essential amino acids?",
-      es: "¿Cómo pueden los consumidores de plantas obtener todos los aminoácidos esenciales?",
-      hu: "Hogyan szerezhetnek a növényi étrendet követők minden esszenciális aminosavat?"
-    },
-    options: {
-      en: ["It’s impossible without dairy", "By eating only one type of plant food", "By combining different plant foods like beans and grains throughout the day"],
-      es: ["Es imposible sin lácteos", "Comiendo solo un tipo de alimento vegetal", "Combinando diferentes alimentos vegetales como legumbres y cereales a lo largo del día"],
-      hu: ["Tejtermékek nélkül lehetetlen", "Csak egy típusú növényi étel fogyasztásával", "Különböző növényi ételek kombinálásával, pl. bab és gabona a nap folyamán"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Vegetarian Diet and Skin Health",
-    es: "Dieta vegetariana y salud de la piel",
-    hu: "Vegetáriánus étrend és bőr egészsége"
-  },
-  content: {
-    en: "Skin health reflects what you eat. A vegetarian diet is rich in antioxidants, vitamins, and healthy fats that protect skin from damage and premature aging. Vitamin C from fruits aids collagen formation, vitamin E from nuts and seeds protects against oxidative stress, and beta-carotene from colorful vegetables promotes a natural glow. Plant-based diets are also lower in inflammatory compounds, reducing skin breakouts and slowing aging. Eating more plants nourishes both body and skin.",
-    es: "La salud de la piel refleja lo que comes. Una dieta vegetariana es rica en antioxidantes, vitaminas y grasas saludables que protegen la piel del daño y del envejecimiento prematuro. La vitamina C de las frutas ayuda a la formación de colágeno, la vitamina E de nueces y semillas protege contra el estrés oxidativo, y el betacaroteno de verduras coloridas promueve un brillo natural. Las dietas vegetales también tienen menos compuestos inflamatorios, reduciendo los brotes y ralentizando el envejecimiento. Comer más plantas nutre tanto el cuerpo como la piel.",
-    hu: "A bőr egészsége tükrözi, mit eszel. A vegetáriánus étrend gazdag antioxidánsokban, vitaminokban és egészséges zsírokban, amelyek védik a bőrt a károsodástól és az idő előtti öregedéstől. A gyümölcsök C-vitaminja segíti a kollagén képződését, a diófélék és magvak E-vitaminja védi az oxidatív stressztől, a színes zöldségek béta-karotinja pedig természetes ragyogást biztosít. A növényi étrend alacsonyabb a gyulladást okozó vegyületekben, csökkenti a bőrproblémákat és lassítja az öregedést. Több növény fogyasztása táplálja a testet és a bőrt is."
-  },
-  question: {
-    text: {
-      en: "Which nutrient from fruits helps your skin produce collagen and stay firm?",
-      es: "¿Qué nutriente de las frutas ayuda a la piel a producir colágeno y mantenerse firme?",
-      hu: "Melyik tápanyag segíti a bőr kollagéntermelését és feszességét?"
-    },
-    options: {
-      en: ["Vitamin B12", "Vitamin C", "Iron"],
-      es: ["Vitamina B12", "Vitamina C", "Hierro"],
-      hu: ["B12-vitamin", "C-vitamin", "Vas"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Diet and Chronic Inflammation",
-    es: "Dieta e inflamación crónica",
-    hu: "Étrend és krónikus gyulladás"
-  },
-  content: {
-    en: "Inflammation is a natural response to injury or infection, but chronic inflammation contributes to heart disease, diabetes, arthritis, and other issues. Diet is key: foods high in saturated fat, sugar, and ultra-processed ingredients can increase inflammation, while plant-based foods rich in antioxidants, fiber, and healthy fats — such as fruits, vegetables, whole grains, nuts, seeds, and olive oil — help reduce it. Eating a variety of these foods supports long-term health and naturally manages inflammation.",
-    es: "La inflamación es una respuesta natural a lesiones o infecciones, pero la inflamación crónica contribuye a enfermedades cardíacas, diabetes, artritis y otros problemas. La dieta es clave: los alimentos altos en grasas saturadas, azúcar e ingredientes ultraprocesados pueden aumentar la inflamación, mientras que los alimentos vegetales ricos en antioxidantes, fibra y grasas saludables —como frutas, verduras, cereales integrales, nueces, semillas y aceite de oliva— ayudan a reducirla. Comer una variedad de estos alimentos apoya la salud a largo plazo y controla naturalmente la inflamación.",
-    hu: "A gyulladás természetes reakció sérülésre vagy fertőzésre, de a krónikus gyulladás hozzájárul a szívbetegségekhez, cukorbetegséghez, ízületi problémákhoz és más gondokhoz. Az étrend kulcsfontosságú: a telített zsírokban, cukorban és ultra-feldolgozott összetevőkben gazdag ételek növelhetik a gyulladást, míg a növényi ételek, gazdag antioxidánsokban, rostban és egészséges zsírokban — például gyümölcsök, zöldségek, teljes kiőrlésű gabonák, diófélék, magvak és olívaolaj — csökkentik azt. Ezek változatos fogyasztása támogatja a hosszú távú egészséget és természetesen szabályozza a gyulladást."
-  },
-  question: {
-    text: {
-      en: "Which type of foods help reduce chronic inflammation?",
-      es: "¿Qué tipo de alimentos ayudan a reducir la inflamación crónica?",
-      hu: "Milyen típusú ételek segítenek csökkenteni a krónikus gyulladást?"
-    },
-    options: {
-      en: ["Processed foods high in sugar and saturated fat", "Plant-based foods rich in antioxidants and healthy fats", "Fried fast foods"],
-      es: ["Alimentos procesados altos en azúcar y grasas saturadas", "Alimentos vegetales ricos en antioxidantes y grasas saludables", "Comida rápida frita"],
-      hu: ["Cukorban és telített zsírban gazdag feldolgozott ételek", "Antioxidánsokban és egészséges zsírokban gazdag növényi ételek", "Sült gyorsételek"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Vitamin B12 and Vegetarian Diets",
-    es: "Vitamina B12 y dietas vegetarianas",
-    hu: "B12-vitamin és vegetáriánus étrend"
-  },
-  content: {
-    en: "The main nutrient not naturally found in plants is vitamin B12, which is essential for nerve function and red blood cells. Calcium, protein, and other vitamins can be obtained from plant foods like tofu, tempeh, leafy greens, nuts, seeds, and fortified plant milks. Including a reliable B12 source — through fortified foods or supplements — ensures all nutritional needs are met without dairy.",
-    es: "El principal nutriente que no se encuentra naturalmente en las plantas es la vitamina B12, esencial para la función nerviosa y los glóbulos rojos. El calcio, la proteína y otras vitaminas se pueden obtener de alimentos vegetales como tofu, tempeh, verduras de hoja, nueces, semillas y leches vegetales fortificadas. Incluir una fuente confiable de B12 — mediante alimentos fortificados o suplementos — asegura que todas las necesidades nutricionales se cubran sin lácteos.",
-    hu: "A fő tápanyag, amely természetes módon nem található a növényekben, a B12-vitamin, amely elengedhetetlen az idegrendszer működéséhez és a vörösvérsejtekhez. Kalcium, fehérje és más vitaminok beszerezhetők növényi ételekből, mint a tofu, tempeh, leveles zöldségek, diófélék, magvak és dúsított növényi tejek. Megbízható B12-forrás — dúsított ételek vagy kiegészítők formájában — biztosítja, hogy minden táplálkozási szükséglet teljesüljön tejtermék nélkül."
-  },
-  question: {
-    text: {
-      en: "Which nutrient in dairy is not naturally found in plants?",
-      es: "¿Qué nutriente de los lácteos no se encuentra naturalmente en las plantas?",
-      hu: "Melyik tápanyag nincs természetes módon jelen a növényekben, amit a tej tartalmaz?"
-    },
-    options: {
-      en: ["Calcium", "Protein", "Vitamin B12"],
-      es: ["Calcio", "Proteína", "Vitamina B12"],
-      hu: ["Kalcium", "Fehérje", "B12-vitamin"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Fiber and Gut Health",
-    es: "Fibra y salud intestinal",
-    hu: "Rost és bél egészség"
-  },
-  content: {
-    en: "Your gut hosts trillions of bacteria critical for digestion, immunity, and mood. A vegetarian diet naturally supports gut health because it is high in fiber, which feeds beneficial bacteria and promotes smooth digestion. Fruits, vegetables, legumes, and whole grains create a diverse microbiome, reducing inflammation and improving nutrient absorption. Animal-based foods contain no fiber and can encourage harmful bacteria, so a plant-rich diet nurtures a balanced gut ecosystem from the inside out.",
-    es: "Tu intestino alberga trillones de bacterias críticas para la digestión, la inmunidad y el estado de ánimo. Una dieta vegetariana apoya naturalmente la salud intestinal porque es alta en fibra, que alimenta las bacterias beneficiosas y promueve una digestión fluida. Frutas, verduras, legumbres y cereales integrales crean un microbioma diverso, reduciendo la inflamación y mejorando la absorción de nutrientes. Los alimentos de origen animal no contienen fibra y pueden favorecer bacterias dañinas, por lo que una dieta rica en plantas nutre un ecosistema intestinal equilibrado desde adentro.",
-    hu: "A bélrendszered trillió számú baktériumnak ad otthont, amelyek kritikusak az emésztéshez, az immunitáshoz és a hangulathoz. A vegetáriánus étrend természeténél fogva támogatja a bél egészségét, mert magas a rosttartalma, ami táplálja a jótékony baktériumokat és elősegíti a zavartalan emésztést. A gyümölcsök, zöldségek, hüvelyesek és teljes kiőrlésű gabonák változatos mikrobiomot hoznak létre, csökkentve a gyulladást és javítva a tápanyagok felszívódását. Az állati eredetű ételek nem tartalmaznak rostot, és elősegíthetik a káros baktériumok elszaporodását, így a növényekben gazdag étrend belülről táplálja a kiegyensúlyozott bélökológiát."
-  },
-  question: {
-    text: {
-      en: "What nutrient in plant foods helps feed beneficial gut bacteria?",
-      es: "¿Qué nutriente en los alimentos vegetales ayuda a alimentar las bacterias beneficiosas del intestino?",
-      hu: "Melyik tápanyag a növényi ételekben táplálja a jótékony bélbaktériumokat?"
-    },
-    options: {
-      en: ["Cholesterol", "Saturated fat", "Fiber"],
-      es: ["Colesterol", "Grasa saturada", "Fibra"],
-      hu: ["Koleszterin", "Telített zsír", "Rost"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Building Strong Bones Without Milk",
-    es: "Fortalecer los huesos sin leche",
-    hu: "Erős csontok tej nélkül"
-  },
-  content: {
-    en: "While milk contains calcium, digesting its animal protein can increase calcium excretion, limiting net benefits for bones. Bone health relies on calcium, vitamin D, exercise, and other nutrients. Plant-based foods like leafy greens, tofu, almonds, chia seeds, and fortified plant milks provide calcium without this drawback, along with fiber, antioxidants, and nutrients that support overall health.",
-    es: "Aunque la leche contiene calcio, digerir su proteína animal puede aumentar la excreción de calcio, limitando los beneficios netos para los huesos. La salud ósea depende de calcio, vitamina D, ejercicio y otros nutrientes. Los alimentos vegetales como verduras de hoja, tofu, almendras, semillas de chía y leches vegetales fortificadas proporcionan calcio sin esta desventaja, junto con fibra, antioxidantes y nutrientes que apoyan la salud general.",
-    hu: "Bár a tej tartalmaz kalciumot, az állati fehérje emésztése növelheti a kalcium kiválasztódását, korlátozva a csontokra gyakorolt nettó előnyöket. A csontok egészsége a kalciumon, D-vitaminon, mozgáson és más tápanyagokon múlik. Növényi ételek, mint a leveles zöldségek, tofu, mandula, chia mag és dúsított növényi tejek kalciumot biztosítanak ezen hátrány nélkül, valamint rostot, antioxidánsokat és az egészséget támogató tápanyagokat."
-  },
-  question: {
-    text: {
-      en: "Why might milk not always be the most efficient way to strengthen bones?",
-      es: "¿Por qué la leche puede no ser siempre la forma más eficiente de fortalecer los huesos?",
-      hu: "Miért nem mindig a tej a leghatékonyabb módja a csontok erősítésének?"
-    },
-    options: {
-      en: ["Milk contains no calcium", "Digesting milk protein can increase calcium excretion", "Milk automatically prevents fractures without exercise"],
-      es: ["La leche no contiene calcio", "Digerir la proteína de la leche puede aumentar la excreción de calcio", "La leche previene automáticamente las fracturas sin ejercicio"],
-      hu: ["A tej nem tartalmaz kalciumot", "A tej fehérjéjének emésztése növelheti a kalcium kiválasztódását", "A tej automatikusan megakadályozza a töréseket mozgás nélkül"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Safely Removing Dairy",
-    es: "Eliminar lácteos de manera segura",
-    hu: "Tejtermékek biztonságos elhagyása"
-  },
-  content: {
-    en: "Removing dairy is generally safe and can even be beneficial. Calcium, protein, and other nutrients in dairy can be obtained from plant foods like leafy greens, tofu, almonds, chia seeds, and fortified plant milks. Including a variety of these foods maintains bone and overall health without difficulty. Thoughtful removal of dairy often supports heart health, digestion, and reduced saturated fat intake.",
-    es: "Eliminar los lácteos generalmente es seguro e incluso puede ser beneficioso. El calcio, la proteína y otros nutrientes presentes en los lácteos se pueden obtener de alimentos vegetales como verduras de hoja, tofu, almendras, semillas de chía y leches vegetales fortificadas. Incluir una variedad de estos alimentos mantiene la salud ósea y general sin dificultad. La eliminación cuidadosa de lácteos suele apoyar la salud del corazón, la digestión y la reducción de grasas saturadas.",
-    hu: "A tejtermékek elhagyása általában biztonságos, sőt előnyös is lehet. A tejben található kalcium, fehérje és más tápanyagok növényi ételekből, mint a leveles zöldségek, tofu, mandula, chia mag és dúsított növényi tejek, beszerezhetők. Ezek változatos fogyasztása biztosítja a csontok és az általános egészség fenntartását nehézség nélkül. A gondos tejelhagyás gyakran támogatja a szív egészségét, az emésztést és a telített zsír bevitel csökkentését."
-  },
-  question: {
-    text: {
-      en: "Is it safe to remove dairy from your diet when done thoughtfully?",
-      es: "¿Es seguro eliminar los lácteos de tu dieta cuando se hace de manera consciente?",
-      hu: "Biztonságos a tejtermékek eltávolítása az étrendből, ha megfontoltan történik?"
-    },
-    options: {
-      en: ["No, it always causes nutrient deficiencies", "Only if you eat more meat", "Yes, with plant-based calcium and protein sources"],
-      es: ["No, siempre causa deficiencias nutricionales", "Solo si comes más carne", "Sí, con fuentes vegetales de calcio y proteína"],
-      hu: ["Nem, mindig tápanyaghiányt okoz", "Csak ha több húst eszel", "Igen, növényi alapú kalcium- és fehérjeforrásokkal"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Practical Dairy Alternatives",
-    es: "Alternativas prácticas a los lácteos",
-    hu: "Gyakorlati tejhelyettesítők"
-  },
-  content: {
-    en: "Practical ways to reduce dairy without compromising health include:\n1. Swap cow’s milk for fortified plant milks (soy, oat, almond).\n2. Replace cheese with tofu spreads, cashew cheeses, or nutritional yeast.\n3. Use plant-based yogurts made from soy, coconut, or almond.\n4. Include calcium-rich plants daily: leafy greens, broccoli, almonds, chia, sesame seeds. \nThese swaps allow a plant-forward diet while keeping bones, muscles, and overall health strong.",
-    es: "Formas prácticas de reducir los lácteos sin comprometer la salud incluyen:\n1. Cambiar la leche de vaca por leches vegetales fortificadas (soja, avena, almendra).\n2. Sustituir el queso por cremas de tofu, quesos de anacardo o levadura nutricional.\n3. Usar yogures vegetales de soja, coco o almendra.\n4. Incluir plantas ricas en calcio a diario: verduras de hoja, brócoli, almendras, chía, semillas de sésamo.\nEstos cambios permiten una dieta basada en plantas manteniendo fuertes huesos, músculos y salud general.",
-    hu: "Gyakorlati módok a tejtermékek csökkentésére az egészség kompromisszumos veszélye nélkül:\n1. Cseréld a tehéntejet dúsított növényi tejekre (szója, zab, mandula).\n2. Cseréld a sajtot tofukrémekre, kesudió sajtokra vagy táplálékkiegészítő élesztőre.\n3. Használj növényi joghurtokat szója-, kókusz- vagy mandulatejből.\n4. Napi szinten fogyassz kalciumban gazdag növényeket: leveles zöldségek, brokkoli, mandula, chia, szezámmag.\nEzek a cserék lehetővé teszik a növényekre épülő étrendet, miközben erős csontokat, izmokat és általános egészséget biztosítanak."
-  },
-  question: {
-    text: {
-      en: "Which of the following is a practical way to reduce dairy intake safely?",
-      es: "¿Cuál de las siguientes es una forma práctica de reducir la ingesta de lácteos de manera segura?",
-      hu: "Melyik a következőkből a gyakorlati módja a tejtermékek biztonságos csökkentésének?"
-    },
-    options: {
-      en: ["Swap cow’s milk with fortified plant milk", "Remove all calcium sources", "Eat more butter instead"],
-      es: ["Cambiar la leche de vaca por leche vegetal fortificada", "Eliminar todas las fuentes de calcio", "Consumir más mantequilla en su lugar"],
-      hu: ["Cseréld a tehéntejet dúsított növényi tejre", "Távolíts el minden kalciumforrást", "Ehelyett egyél több vajat"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Complete Protein on a Vegan Diet",
-    es: "Proteína completa en una dieta vegana",
-    hu: "Teljes értékű fehérje vegán étrenden"
-  },
-  content: {
-    en: "Proteins are made of amino acids, which are the building blocks our bodies use to repair tissues, build muscles, and produce enzymes and hormones. Plant foods like beans, lentils, tofu, nuts, seeds, and whole grains provide all essential amino acids when eaten in variety, making it easy to get enough protein without animal products.",
-    es: "Las proteínas están formadas por aminoácidos, que son los bloques de construcción que nuestro cuerpo utiliza para reparar tejidos, desarrollar músculos y producir enzimas y hormonas. Los alimentos vegetales como frijoles, lentejas, tofu, nueces, semillas y granos integrales proporcionan todos los aminoácidos esenciales cuando se consumen en variedad, facilitando obtener suficiente proteína sin productos animales.",
-    hu: "A fehérjék aminosavakból állnak, amelyek az építőelemei a testünknek a szövetek javításához, izmok építéséhez és enzimek, hormonok előállításához. A növényi ételek, mint a bab, lencse, tofu, diófélék, magvak és teljes kiőrlésű gabonák, megfelelő kombinációban fogyasztva biztosítják az összes esszenciális aminosavat, így könnyen fedezhető a fehérjeszükséglet állati termékek nélkül."
-  },
-  question: {
-    text: {
-      en: "How can humans get all essential amino acids on a vegan diet?",
-      es: "¿Cómo pueden los humanos obtener todos los aminoácidos esenciales en una dieta vegana?",
-      hu: "Hogyan juthat minden esszenciális aminosavhoz az ember vegán étrenden?"
-    },
-    options: {
-      en: ["Only by eating meat", "By eating a variety of plant foods like beans, lentils, tofu, nuts, and grains", "By drinking only water"],
-      es: ["Solo comiendo carne", "Comiendo una variedad de alimentos vegetales como frijoles, lentejas, tofu, nueces y granos", "Bebiendo solo agua"],
-      hu: ["Csak hús fogyasztásával", "Különböző növényi ételek fogyasztásával, mint bab, lencse, tofu, dió és gabona", "Csak víz fogyasztásával"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Vitamin B12 Source",
-    es: "Fuente de vitamina B12",
-    hu: "B12-vitamin forrása"
-  },
-  content: {
-    en: "Vitamin B12 actually comes from bacteria, not directly from animals. Animals are often supplemented with B12, which is why humans get it from meat and dairy. For humans, B12 supplements or fortified foods can easily meet daily needs. In fact, B12 supplementation is recommended for everyone, not just vegans, to prevent deficiency.",
-    es: "La vitamina B12 en realidad proviene de bacterias, no directamente de los animales. Los animales a menudo reciben B12 suplementaria, por eso los humanos la obtienen de la carne y los lácteos. Para los humanos, los suplementos de B12 o alimentos fortificados pueden cubrir fácilmente las necesidades diarias. De hecho, se recomienda la suplementación de B12 para todos, no solo para veganos, para prevenir la deficiencia.",
-    hu: "A B12-vitamin valójában baktériumokból származik, nem közvetlenül az állatokból. Az állatokat gyakran B12-vitaminnal egészítik ki, ezért a humán étrendből hús és tej révén jutunk hozzá. Emberek számára a B12-kiegészítők vagy dúsított élelmiszerek könnyen fedezik a napi szükségletet. Valójában mindenki számára javasolt a B12-pótlás, nem csak a vegánoknak, a hiány megelőzésére."
-  },
-  question: {
-    text: {
-      en: "Where does vitamin B12 originally come from?",
-      es: "¿De dónde proviene originalmente la vitamina B12?",
-      hu: "Honnan származik eredetileg a B12-vitamin?"
-    },
-    options: {
-      en: ["Plants", "Bacteria", "Sunlight", "Only animals"],
-      es: ["Plantas", "Bacterias", "Luz solar", "Solo animales"],
-      hu: ["Növények", "Baktériumok", "Napfény", "Csak állatok"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Calcium from Plant Foods",
-    es: "Calcio de los alimentos vegetales",
-    hu: "Kalcium növényi ételekből"
-  },
-  content: {
-    en: "Many plant-based foods are rich in calcium. For example, 100g of tofu contains about 350mg of calcium, 100g of kale has 150mg, and 30g of almonds provide around 75mg. Fortified plant milks also provide amounts comparable to dairy. Eating a variety of these foods easily meets daily calcium needs and supports strong bones.",
-    es: "Muchos alimentos vegetales son ricos en calcio. Por ejemplo, 100g de tofu contiene unos 350mg de calcio, 100g de col rizada tiene 150mg y 30g de almendras aportan alrededor de 75mg. Las leches vegetales fortificadas también proporcionan cantidades comparables a los lácteos. Consumir una variedad de estos alimentos satisface fácilmente las necesidades diarias de calcio y mantiene los huesos fuertes.",
-    hu: "Sok növényi étel gazdag kalciumban. Például 100 g tofu körülbelül 350 mg kalciumot tartalmaz, 100 g kelkáposzta 150 mg-ot, 30 g mandula körülbelül 75 mg-ot biztosít. A dúsított növényi tejek mennyisége is összehasonlítható a tejével. Ezek változatos fogyasztása könnyen fedezi a napi kalciumszükségletet és erős csontokat biztosít."
-  },
-  question: {
-    text: {
-      en: "Which plant-based foods provide calcium comparable to dairy?",
-      es: "¿Qué alimentos vegetales proporcionan calcio comparable al de los lácteos?",
-      hu: "Mely növényi ételek biztosítanak a tejhez hasonló kalciumot?"
-    },
-    options: {
-      en: ["Tofu, kale, almonds, fortified plant milks", "Potatoes and rice only", "Fruit juice"],
-      es: ["Tofu, col rizada, almendras, leches vegetales fortificadas", "Solo papas y arroz", "Jugo de frutas"],
-      hu: ["Tofu, kelkáposzta, mandula, dúsított növényi tejek", "Csak burgonya és rizs", "Gyümölcslé"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Iron in a Vegan Diet",
-    es: "Hierro en una dieta vegana",
-    hu: "Vas a vegán étrendben"
-  },
-  content: {
-    en: "Iron is essential for transporting oxygen in the blood and supporting energy levels. Plant-based sources like lentils, beans, spinach, pumpkin seeds, and fortified cereals provide plenty of iron. Absorption is improved when these foods are eaten with vitamin C-rich foods such as citrus, peppers, or tomatoes. With proper planning, vegans can easily meet daily iron needs.",
-    es: "El hierro es esencial para transportar oxígeno en la sangre y mantener los niveles de energía. Fuentes vegetales como lentejas, frijoles, espinacas, semillas de calabaza y cereales fortificados proporcionan mucho hierro. La absorción mejora cuando estos alimentos se consumen con alimentos ricos en vitamina C, como cítricos, pimientos o tomates. Con una planificación adecuada, los veganos pueden cubrir fácilmente sus necesidades diarias de hierro.",
-    hu: "A vas létfontosságú az oxigén szállításához a vérben és az energiaszint fenntartásához. Növényi források, mint a lencse, bab, spenót, tökmag és dúsított gabonafélék bőséges vasat biztosítanak. A felszívódás javul, ha ezeket a ételeket C-vitaminban gazdag ételekkel, például citrusfélékkel, paprikával vagy paradicsommal fogyasztjuk. Megfelelő tervezéssel a vegánok könnyen fedezhetik a napi vasszükségletet."
-  },
-  question: {
-    text: {
-      en: "How can vegans improve iron absorption from plant foods?",
-      es: "¿Cómo pueden los veganos mejorar la absorción de hierro de los alimentos vegetales?",
-      hu: "Hogyan javíthatják a vegánok a vas felszívódását a növényi ételekből?"
-    },
-    options: {
-      en: ["Eat iron alone", "Pair iron-rich foods with vitamin C", "Only eat meat occasionally"],
-      es: ["Consumir hierro solo", "Combinar alimentos ricos en hierro con vitamina C", "Comer carne ocasionalmente"],
-      hu: ["Vastartalmú ételek önmagukban", "Vasban gazdag ételek fogyasztása C-vitaminos ételekkel", "Csak alkalmanként enni húst"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Omega-3 Fatty Acids for Vegans",
-    es: "Ácidos grasos omega-3 para veganos",
-    hu: "Omega-3 zsírsavak vegánoknak"
-  },
-  content: {
-    en: "Omega-3 fatty acids are important for heart, brain, and joint health. Plant-based sources include flaxseeds, chia seeds, walnuts, hemp seeds, and algae oil. These provide ALA, which the body can partially convert into EPA and DHA, the forms found in fish. Including these plant sources ensures adequate omega-3 intake on a vegan diet and supports overall health.",
-    es: "Los ácidos grasos omega-3 son importantes para la salud del corazón, cerebro y articulaciones. Fuentes vegetales incluyen semillas de lino, chía, nueces, semillas de cáñamo y aceite de algas. Estas proporcionan ALA, que el cuerpo puede convertir parcialmente en EPA y DHA, las formas presentes en el pescado. Incluir estas fuentes vegetales asegura una ingesta adecuada de omega-3 en una dieta vegana y apoya la salud general.",
-    hu: "Az omega-3 zsírsavak fontosak a szív, az agy és az ízületek egészségéhez. Növényi források közé tartozik a lenmag, chia mag, dió, kendermag és algazsír. Ezek ALA-t biztosítanak, amelyet a szervezet részben EPA- és DHA-vá alakíthat, amelyek a halban található formák. Ezeknek a növényi forrásoknak a fogyasztása biztosítja az omega-3 megfelelő bevitelét vegán étrenden, és támogatja az általános egészséget."
-  },
-  question: {
-    text: {
-      en: "Which plant foods provide omega-3 fatty acids?",
-      es: "¿Qué alimentos vegetales proporcionan ácidos grasos omega-3?",
-      hu: "Mely növényi ételek biztosítanak omega-3 zsírsavakat?"
-    },
-    options: {
-      en: ["Flaxseeds, chia seeds, walnuts, hemp seeds, algae oil", "Rice, potatoes, apples", "Meat and cheese only"],
-      es: ["Semillas de lino, chía, nueces, semillas de cáñamo, aceite de algas", "Arroz, patatas, manzanas", "Solo carne y queso"],
-      hu: ["Lenmag, chia mag, dió, kendermag, algazsír", "Rizs, burgonya, alma", "Csak hús és sajt"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Humans Don’t Need Meat",
-    es: "Los humanos no necesitan carne",
-    hu: "Az embernek nem kell hús"
-  },
-  content: {
-    en: "All humans share the same digestive system, teeth, and gut microbiota. We are not naturally carnivores or herbivores — our anatomy is adapted for a mostly plant-based diet. With a variety of plant foods, humans can get all the nutrients they need for strength, energy, and overall health, regardless of individual differences.",
-    es: "Todos los humanos comparten el mismo sistema digestivo, dientes y microbiota intestinal. No somos carnívoros ni herbívoros por naturaleza; nuestra anatomía está adaptada a una dieta mayormente vegetal. Con una variedad de alimentos vegetales, los humanos pueden obtener todos los nutrientes necesarios para fuerza, energía y salud general, independientemente de las diferencias individuales.",
-    hu: "Minden ember ugyanazzal az emésztőrendszerrel, fogakkal és bélmikrobiotával rendelkezik. Nem vagyunk természetes húsevők vagy növényevők – az anatómiánk nagyrészt növényi étrendre van adaptálva. A különféle növényi ételek biztosítják a szükséges tápanyagokat az erőhöz, energiához és az általános egészséghez, egyéni különbségektől függetlenül."
-  },
-  question: {
-    text: {
-      en: "Why don’t some humans need meat to get nutrients?",
-      es: "¿Por qué algunos humanos no necesitan carne para obtener nutrientes?",
-      hu: "Miért nincs szükségük egyes embereknek húsra a tápanyagokhoz?"
-    },
-    options: {
-      en: ["Because our digestive system is the same for all humans and can process plants for all nutrients", "Because some people are natural carnivores", "Because meat is the only source of protein"],
-      es: ["Porque nuestro sistema digestivo es igual para todos y puede procesar plantas para todos los nutrientes", "Porque algunas personas son carnívoras por naturaleza", "Porque la carne es la única fuente de proteína"],
-      hu: ["Mert az emésztőrendszerünk minden embernél ugyanaz és képes a növények feldolgozására az összes tápanyaghoz", "Mert néhány ember természetes húsevő", "Mert a hús az egyetlen fehérjeforrás"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Vegan Athletes Are Strong",
-    es: "Los atletas veganos son fuertes",
-    hu: "A vegán sportolók erősek"
-  },
-  content: {
-    en: "Many athletes, bodybuilders, and high-performance individuals thrive on vegan diets. For example, ultramarathoner Scott Jurek, bodybuilder Torre Washington, and tennis champion Venus Williams all maintain strength, endurance, and energy on plant-based diets. With proper planning, vegan diets can support all activity levels and promote overall health.",
-    es: "Muchos atletas, culturistas y personas de alto rendimiento prosperan con dietas veganas. Por ejemplo, el ultramaratonista Scott Jurek, el culturista Torre Washington y la campeona de tenis Venus Williams mantienen fuerza, resistencia y energía con dietas basadas en plantas. Con una planificación adecuada, las dietas veganas pueden apoyar todos los niveles de actividad y promover la salud general.",
-    hu: "Sok sportoló, testépítő és nagy teljesítményű egyén jól teljesít vegán étrenden. Például Scott Jurek ultramaratonista, Torre Washington testépítő és Venus Williams teniszbajnok mind erőt, állóképességet és energiát tartanak fenn növényi alapú étrenden. Megfelelő tervezéssel a vegán étrend minden aktivitási szintet támogathat és elősegíti az általános egészséget."
-  },
-  question: {
-    text: {
-      en: "Which statement is true about vegan athletes?",
-      es: "¿Qué afirmación es verdadera sobre los atletas veganos?",
-      hu: "Melyik állítás igaz a vegán sportolókról?"
-    },
-    options: {
-      en: ["Vegans are always weak", "Vegans can be strong and energetic like Scott Jurek and Venus Williams", "Vegans cannot build muscle"],
-      es: ["Los veganos siempre son débiles", "Los veganos pueden ser fuertes y enérgicos como Scott Jurek y Venus Williams", "Los veganos no pueden desarrollar músculo"],
-      hu: ["A vegánok mindig gyengék", "A vegánok erősek és energikusak lehetnek, mint Scott Jurek és Venus Williams", "A vegánok nem tudnak izmot építeni"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Vegan Diet Diversity",
-    es: "Diversidad en la dieta vegana",
-    hu: "A vegán étrend változatossága"
-  },
-  content: {
-    en: "Vegan diets offer enormous variety. There are over 30,000 edible plant species worldwide, including fruits, vegetables, grains, legumes, nuts, and seeds. By comparison, most people consume only a few dozen animal species in their lifetime. A vegan diet can be far more diverse, colorful, and flavorful than most typical omnivorous diets.",
-    es: "Las dietas veganas ofrecen una enorme variedad. Hay más de 30,000 especies vegetales comestibles en todo el mundo, incluyendo frutas, verduras, granos, legumbres, nueces y semillas. En comparación, la mayoría de las personas consumen solo unas pocas docenas de especies animales en su vida. Una dieta vegana puede ser mucho más diversa, colorida y sabrosa que la mayoría de las dietas omnívoras típicas.",
-    hu: "A vegán étrend hatalmas változatosságot kínál. Világszerte több mint 30 000 ehető növényfaj létezik, köztük gyümölcsök, zöldségek, gabonák, hüvelyesek, diófélék és magvak. Ehhez képest a legtöbb ember életében csak néhány tucat állatfajt fogyaszt. A vegán étrend sokkal változatosabb, színesebb és ízletesebb lehet, mint a tipikus mindenevő étrend."
-  },
-  question: {
-    text: {
-      en: "Approximately how many edible plant species exist worldwide?",
-      es: "¿Aproximadamente cuántas especies vegetales comestibles existen en todo el mundo?",
-      hu: "Körülbelül hány ehető növényfaj létezik világszerte?"
-    },
-    options: {
-      en: ["About 100", "Only 500", "Over 30,000"],
-      es: ["Alrededor de 100", "Solo 500", "Más de 30,000"],
-      hu: ["Kb. 100", "Csak 500", "Több mint 30 000"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Plant-Based Diets and Chronic Disease",
-    es: "Dietas vegetales y enfermedades crónicas",
-    hu: "Növényi étrendek és krónikus betegségek"
-  },
-  content: {
-    en: "Although humans evolved as omnivores, a predominantly plant-based diet is fully compatible with health. Research shows these diets can prevent, and sometimes reverse, chronic diseases like heart disease, type 2 diabetes, and high blood pressure. Eating plants is both natural and highly beneficial for long-term wellness.",
-    es: "Aunque los humanos evolucionaron como omnívoros, una dieta predominantemente vegetal es totalmente compatible con la salud. La investigación muestra que estas dietas pueden prevenir y, a veces, revertir enfermedades crónicas como enfermedades cardíacas, diabetes tipo 2 y presión arterial alta. Comer plantas es natural y altamente beneficioso para el bienestar a largo plazo.",
-    hu: "Bár az emberek mindenevőként fejlődtek ki, a főleg növényi alapú étrend teljes mértékben kompatibilis az egészséggel. A kutatások azt mutatják, hogy ezek az étrendek megelőzhetik, és néha visszafordíthatják a krónikus betegségeket, például a szívbetegséget, a 2-es típusú cukorbetegséget és a magas vérnyomást. A növények fogyasztása természetes és rendkívül előnyös a hosszú távú egészség szempontjából."
-  },
-  question: {
-    text: {
-      en: "What does science say about plant-based diets for humans?",
-      es: "¿Qué dice la ciencia sobre las dietas basadas en plantas para los humanos?",
-      hu: "Mit mond a tudomány az emberek növényi étrendjéről?"
-    },
-    options: {
-      en: ["They are unnatural and harmful", "They can prevent or reverse chronic diseases", "They only work for children"],
-      es: ["Son antinaturales y dañinas", "Pueden prevenir o revertir enfermedades crónicas", "Solo funcionan para niños"],
-      hu: ["Természetellenesek és károsak", "Megelőzhetik vagy visszafordíthatják a krónikus betegségeket", "Csak gyermekeknél működnek"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Meat, Dairy, and Chronic Disease",
-    es: "Carne, lácteos y enfermedades crónicas",
-    hu: "Hús, tejtermékek és krónikus betegségek"
-  },
-  content: {
-    en: "Global meat consumption has more than doubled in the last 50 years — from about 23 kg per person per year in 1961 to over 45 kg today. Dairy production has also increased by more than 50% over the same period. During this time, global obesity rates have nearly tripled (since 1975), and type 2 diabetes prevalence has doubled (from around 4.7% in 1980 to about 9.3% today). Heart disease remains the leading cause of death worldwide, linked closely to high intake of saturated fats and processed meats. These trends show a clear connection between rising meat and dairy consumption and the increase in modern chronic diseases.",
-    es: "El consumo global de carne se ha más que duplicado en los últimos 50 años — de unos 23 kg por persona al año en 1961 a más de 45 kg hoy. La producción de lácteos también ha aumentado más del 50% en el mismo período. Durante este tiempo, las tasas de obesidad global casi se han triplicado (desde 1975) y la prevalencia de diabetes tipo 2 se ha duplicado (de alrededor del 4,7% en 1980 a aproximadamente el 9,3% hoy). Las enfermedades cardíacas siguen siendo la principal causa de muerte en todo el mundo, estrechamente vinculadas a la alta ingesta de grasas saturadas y carnes procesadas. Estas tendencias muestran una clara relación entre el aumento del consumo de carne y lácteos y el incremento de las enfermedades crónicas modernas.",
-    hu: "Az elmúlt 50 évben a globális húsfogyasztás több mint megduplázódott — 1961-ben személyenként évente kb. 23 kg-ról mára több mint 45 kg-ra nőtt. A tejtermékek előállítása is több mint 50%-kal nőtt ugyanebben az időszakban. Eközben a globális elhízási arány majdnem háromszorosára nőtt (1975 óta), és a 2-es típusú cukorbetegség előfordulása megduplázódott (1980 körül 4,7%-ról kb. 9,3%-ra ma). A szívbetegségek továbbra is a vezető halálokok világszerte, szoros kapcsolatban a magas telítettzsír- és feldolgozott húsfogyasztással. Ezek a trendek világos kapcsolatot mutatnak a hús- és tejfogyasztás növekedése és a modern krónikus betegségek terjedése között."
-  },
-  question: {
-    text: {
-      en: "What trend coincided with the rise in global meat and dairy consumption?",
-      es: "¿Qué tendencia coincidió con el aumento del consumo global de carne y lácteos?",
-      hu: "Mely trend következett be a globális hús- és tejfogyasztás növekedésével egy időben?"
-    },
-    options: {
-      en: ["Increase in chronic diseases like obesity, diabetes, and heart disease", "Decline in obesity rates", "Decrease in global diabetes rates"],
-      es: ["Aumento de enfermedades crónicas como obesidad, diabetes y enfermedades cardíacas", "Disminución de la obesidad", "Reducción de la diabetes global"],
-      hu: ["A krónikus betegségek, például elhízás, cukorbetegség és szívbetegségek növekedése", "Az elhízás csökkenése", "A globális cukorbetegség csökkenése"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Humans Are Frugivore-Like",
-    es: "Los humanos son similares a frugívoros",
-    hu: "Az emberek gyümölcsevőhöz hasonlóak"
-  },
-  content: {
-    en: "Humans are biologically closer to frugivores and herbivores like gorillas. Our digestive system, teeth, and gut microbiota are adapted for high-fiber, plant-based foods. While we can digest meat, our anatomy suggests that a mostly plant-based diet is optimal for long-term health.",
-    es: "Los humanos son biológicamente más cercanos a frugívoros y herbívoros como los gorilas. Nuestro sistema digestivo, dientes y microbiota intestinal están adaptados a alimentos vegetales ricos en fibra. Aunque podemos digerir carne, nuestra anatomía sugiere que una dieta mayormente vegetal es óptima para la salud a largo plazo.",
-    hu: "Az emberek biológiailag közelebb állnak a gyümölcsevőkhöz és növényevőkhoz, például a gorillákhoz. Emésztőrendszerünk, fogaink és bélmikrobiotánk a magas rosttartalmú, növényi ételekhez alkalmazkodott. Bár képesek vagyunk húst emészteni, anatómiánk azt sugallja, hogy a nagyrészt növényi étrend optimális a hosszú távú egészséghez."
-  },
-  question: {
-    text: {
-      en: "Humans are most similar in diet to which group?",
-      es: "¿A qué grupo son más similares los humanos en cuanto a dieta?",
-      hu: "Mely csoport étrendjéhez hasonlít leginkább az ember?"
-    },
-    options: {
-      en: ["Carnivores like lions", "Omnivores like pigs", "Frugivores/herbivores like gorillas"],
-      es: ["Carnívoros como leones", "Omnívoros como cerdos", "Frugívoros/herbívoros como gorilas"],
-      hu: ["Húsevők, például oroszlánok", "Mindenevők, például sertések", "Gyümölcsevők/növényevők, például gorillák"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Blue Zones and Plant-Based Diets",
-    es: "Zonas azules y dietas basadas en plantas",
-    hu: "Kék zónák és növényi étrendek"
-  },
-  content: {
-    en: "Blue Zones—regions where people live exceptionally long lives—primarily eat plant-based diets rich in vegetables, legumes, and whole grains. The arrival of fast, meat-heavy foods has eroded these traditional diets, contributing to rising rates of chronic disease and shorter lifespans.",
-    es: "Zonas Azules — regiones donde las personas viven vidas excepcionalmente largas — consumen principalmente dietas basadas en plantas ricas en verduras, legumbres y granos enteros. La llegada de alimentos rápidos y ricos en carne ha erosionado estas dietas tradicionales, contribuyendo al aumento de enfermedades crónicas y vidas más cortas.",
-    hu: "Kék Zónák – olyan régiók, ahol az emberek rendkívül hosszú életet élnek – elsősorban növényi étrendet fogyasztanak, gazdag zöldségekben, hüvelyesekben és teljes kiőrlésű gabonákban. A gyorsételek és húsban gazdag ételek megjelenése lerombolta ezeket a hagyományos étrendeket, hozzájárulva a krónikus betegségek növekedéséhez és a rövidebb élettartamhoz."
-  },
-  question: {
-    text: {
-      en: "What type of diet is common in Blue Zones?",
-      es: "¿Qué tipo de dieta es común en las Zonas Azules?",
-      hu: "Milyen típusú étrend a jellemző a Kék Zónákban?"
-    },
-    options: {
-      en: ["Plant-based with vegetables and legumes", "Fast-food and meat-heavy", "High sugar and processed snacks"],
-      es: ["Basada en plantas con verduras y legumbres", "Comida rápida y rica en carne", "Alto contenido de azúcar y snacks procesados"],
-      hu: ["Növényi alapú, zöldségekkel és hüvelyesekkel", "Gyorsétel és húsban gazdag", "Magas cukor- és feldolgozott snack tartalom"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Plant vs Meat Protein",
-    es: "Proteínas vegetales vs carne",
-    hu: "Növényi fehérje vs hús"
-  },
-  content: {
-    en: "Plant proteins, such as beans, lentils, tofu, and quinoa, provide all essential amino acids when eaten in variety. Unlike meat, they contain no cholesterol and much less saturated fat. Diets rich in plant protein are linked to lower risk of heart disease and longer lifespan, while high meat protein intake is associated with inflammation and chronic illness.",
-    es: "Las proteínas vegetales, como frijoles, lentejas, tofu y quinoa, proporcionan todos los aminoácidos esenciales cuando se consumen en variedad. A diferencia de la carne, no contienen colesterol y tienen mucha menos grasa saturada. Las dietas ricas en proteínas vegetales se asocian con menor riesgo de enfermedades cardíacas y mayor longevidad, mientras que una alta ingesta de proteínas de carne se relaciona con inflamación y enfermedades crónicas.",
-    hu: "A növényi fehérjék, mint a bab, lencse, tofu és quinoa, az összes esszenciális aminosavat biztosítják, ha változatosan fogyasztjuk őket. A hússal ellentétben nem tartalmaznak koleszterint és sokkal kevesebb telített zsírt. A növényi fehérjében gazdag étrend alacsonyabb szívbetegség-kockázattal és hosszabb élettartammal jár, míg a magas húsfehérje-fogyasztás gyulladással és krónikus betegségekkel társul."
-  },
-  question: {
-    text: {
-      en: "What is one key difference between plant and meat protein?",
-      es: "¿Cuál es una diferencia clave entre la proteína vegetal y la carne?",
-      hu: "Mi az egyik fő különbség a növényi és a húsfehérje között?"
-    },
-    options: {
-      en: ["Meat proteins are cholesterol-free", "Plant proteins contain no cholesterol", "Plant proteins lack amino acids"],
-      es: ["Las proteínas de la carne no tienen colesterol", "Las proteínas vegetales no contienen colesterol", "Las proteínas vegetales carecen de aminoácidos"],
-      hu: ["A húsfehérjék koleszterinmentesek", "A növényi fehérjék nem tartalmaznak koleszterint", "A növényi fehérjék hiányosak aminosavakban"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Milk and Saturated Fat",
-    es: "Leche y grasa saturada",
-    hu: "Tej és telített zsír"
-  },
-  content: {
-    en: "A standard 250ml glass of whole milk contains roughly 8g of fat, of which about 5g is saturated. This can provide a significant percentage of your daily recommended saturated fat intake, often over 20% of calories for an average adult, contributing to heart disease risk if consumed daily.",
-    es: "Un vaso estándar de 250 ml de leche entera contiene aproximadamente 8 g de grasa, de los cuales unos 5 g son saturados. Esto puede proporcionar un porcentaje significativo de la ingesta diaria recomendada de grasas saturadas, a menudo más del 20% de las calorías para un adulto promedio, contribuyendo al riesgo de enfermedad cardíaca si se consume a diario.",
-    hu: "Egy standard 250 ml-es pohár teljes tej körülbelül 8 g zsírt tartalmaz, amelyből kb. 5 g telített zsír. Ez jelentős százalékát adhatja a napi ajánlott telített zsírbevitelnek, gyakran az átlagos felnőtt napi kalóriájának több mint 20%-át, hozzájárulva a szívbetegség kockázatához, ha naponta fogyasztjuk."
-  },
-  question: {
-    text: {
-      en: "What percentage of your daily saturated fat can a glass of milk provide?",
-      es: "¿Qué porcentaje de su grasa saturada diaria puede proporcionar un vaso de leche?",
-      hu: "A napi telített zsírbevitel hány százalékát fedezheti egy pohár tej?"
-    },
-    options: {
-      en: ["Less than 5%", "Over 20%", "0%"],
-      es: ["Menos del 5%", "Más del 20%", "0%"],
-      hu: ["Kevesebb mint 5%", "Több mint 20%", "0%"]
-    },
-    correctIndex: 1
-  }
-},
-{
-  title: {
-    en: "Hormones in Milk",
-    es: "Hormonas en la leche",
-    hu: "Hormonnok a tejben"
-  },
-  content: {
-    en: "Milk contains hormones like estrogen, progesterone, and IGF-1. These hormones can influence human hormone levels, potentially affecting growth, development, and reproductive health, which is particularly concerning for children consuming large quantities.",
-    es: "La leche contiene hormonas como estrógeno, progesterona e IGF-1. Estas hormonas pueden influir en los niveles hormonales humanos, afectando potencialmente el crecimiento, desarrollo y la salud reproductiva, lo cual es especialmente preocupante en niños que consumen grandes cantidades.",
-    hu: "A tej olyan hormonokat tartalmaz, mint az ösztrogén, progeszteron és IGF-1. Ezek a hormonok befolyásolhatják az emberi hormon szinteket, potenciálisan hatva a növekedésre, fejlődésre és reprodukciós egészségre, ami különösen aggasztó gyermekek nagyfokú fogyasztásakor."
-  },
-  question: {
-    text: {
-      en: "What hormones are naturally present in cow's milk?",
-      es: "¿Qué hormonas están presentes naturalmente en la leche de vaca?",
-      hu: "Milyen hormonok találhatók természetesen a tehéntejben?"
-    },
-    options: {
-      en: ["Adrenaline, testosterone", "Insulin only", "Estrogen, progesterone, IGF-1"],
-      es: ["Adrenalina, testosterona", "Solo insulina", "Estrógeno, progesterona, IGF-1"],
-      hu: ["Adrenalin, tesztoszteron", "Csak inzulin", "Ösztrogén, progeszteron, IGF-1"]
-    },
-    correctIndex: 2
-  }
-},
-{
-  title: {
-    en: "Soy and Male Hormones",
-    es: "Soja y hormonas masculinas",
-    hu: "Szója és a férfi hormonok"
-  },
-  content: {
-    en: "Soy contains phytoestrogens, plant compounds that mimic estrogen. Research shows they do not feminize men when consumed in normal dietary amounts. Instead, they may offer health benefits like lowering cholesterol and supporting heart health.",
-    es: "La soja contiene fitoestrógenos, compuestos vegetales que imitan el estrógeno. La investigación muestra que no feminiza a los hombres cuando se consume en cantidades dietéticas normales. En cambio, puede ofrecer beneficios para la salud como reducir el colesterol y apoyar la salud del corazón.",
-    hu: "A szója fitoösztrogéneket tartalmaz, növényi vegyületeket, amelyek az ösztrogént utánozzák. A kutatások szerint nem feminizálja a férfiakat normális étrendi mennyiségben történő fogyasztás esetén. Ehelyett egészségügyi előnyökkel járhat, például csökkentheti a koleszterint és támogathatja a szív egészségét."
-  },
-  question: {
-    text: {
-      en: "Does consuming soy make men feminine?",
-      es: "¿El consumo de soja hace que los hombres se feminicen?",
-      hu: "A szója fogyasztása feminissé teszi a férfiakat?"
-    },
-    options: {
-      en: ["No, normal dietary amounts are safe", "Yes, immediately", "Only if combined with dairy"],
-      es: ["No, las cantidades dietéticas normales son seguras", "Sí, inmediatamente", "Solo si se combina con lácteos"],
-      hu: ["Nem, a normál étrendi mennyiségek biztonságosak", "Igen, azonnal", "Csak tejtermékkel kombinálva"]
-    },
-    correctIndex: 0
-  }
-},
-{
-  title: {
-    en: "Fiber Benefits on a Vegan Diet",
-    es: "Beneficios de la fibra en una dieta vegana",
-    hu: "A rost előnyei a vegán étrendben"
-  },
-  content: {
-    en: "Plant-based diets are naturally high in fiber, which helps regulate digestion, stabilize blood sugar, and lower cholesterol levels. Over time, this can reduce the risk of cardiovascular disease and improve gut microbiome diversity.",
-    es: "Las dietas basadas en plantas son naturalmente ricas en fibra, lo que ayuda a regular la digestión, estabilizar el azúcar en sangre y reducir los niveles de colesterol. Con el tiempo, esto puede reducir el riesgo de enfermedades cardiovasculares y mejorar la diversidad del microbioma intestinal.",
-    hu: "A növényi alapú étrendek természetüknél fogva magas rosttartalmúak, ami segít szabályozni az emésztést, stabilizálni a vércukorszintet és csökkenteni a koleszterinszintet. Idővel ez csökkentheti a szív- és érrendszeri betegségek kockázatát, és javíthatja a bélmikrobiom sokféleségét."
-  },
-  question: {
-    text: {
-      en: "Why is fiber in plant-based diets beneficial?",
-      es: "¿Por qué es beneficiosa la fibra en las dietas basadas en plantas?",
-      hu: "Miért előnyös a rost a növényi étrendben?"
-    },
-    options: {
-      en: ["Causes constipation", "Regulates digestion, lowers cholesterol, stabilizes blood sugar", "No effect"],
-      es: ["Causa estreñimiento", "Regula la digestión, reduce el colesterol, estabiliza el azúcar en sangre", "Sin efecto"],
-      hu: ["Székrekedést okoz", "Szabályozza az emésztést, csökkenti a koleszterint, stabilizálja a vércukrot", "Nincs hatása"]
-    },
-    correctIndex: 1
-  }
-},
-//more lessons
-
-
+  {
+    title: {
+      en: "Appetizing",
+      es: "Estimulante del apetito",
+      hu: "Étvágygerjesztő"
+    },
+    content: {
+      en: "Have you ever felt appetite when seeing a living animal or smelling it? For most people, the answer is no\n\nUntil animals are processed, cooked, and presented in a familiar cultural way, they are not seen as food. In survival situations, people might eat them as a last resort, but even then, many would experience discomfort or resistance rather than natural desire.\n\nThis raises an interesting idea: our sense of what is “appetizing” is not purely instinctive — it is largely shaped and taught by culture, environment, and learning over time.",
+      es: "¿Alguna vez has sentido apetito al ver un animal vivo o al olerlo? Para la mayoría de las personas, la respuesta es no.\n\nHasta que los animales son procesados, cocinados y presentados de una manera culturalmente familiar, no suelen percibirse como comida. En situaciones de supervivencia, las personas pueden comerlos como último recurso, pero incluso entonces, muchas experimentarían incomodidad o resistencia en lugar de un deseo natural.\n\nEsto plantea una idea interesante: nuestra percepción de lo que es “apetecible” no es puramente instintiva, sino que está en gran parte moldeada por la cultura, el entorno y el aprendizaje a lo largo del tiempo.",
+      hu: "Éreztél már étvágyat egy élő állat látványától vagy szagától? A legtöbb ember számára a válasz nem.\n\nAmíg az állatokat nem dolgozzák fel, nem készítik el és nem tálalják kulturálisan megszokott módon, általában nem tekintjük őket ételnek. Túlélési helyzetekben az emberek megehetik őket végső megoldásként, de még ilyenkor is sokan inkább kellemetlenséget vagy ellenállást éreznek, nem természetes vágyat.\n\nEz egy érdekes gondolatot vet fel: az, hogy mit tartunk „étvágygerjesztőnek”, nem pusztán ösztönös — nagyrészt a kultúra, a környezet és a tanulás alakítja az idő során."
+    },
+    question: {
+      text: {
+        en: "What does this example mainly suggest?",
+        es: "¿Qué sugiere principalmente este ejemplo?",
+        hu: "Mit sugall elsősorban ez a példa?"
+      },
+      options: {
+        en: [
+          "Humans naturally feel appetite for animals in any form",
+          "Appetite is only based on survival instinct",
+          "Living animals are always seen as food",
+          "Our perception of food is strongly shaped by culture and learning"
+        ],
+        es: [
+          "Los humanos sienten naturalmente apetito por los animales en cualquier forma",
+          "El apetito se basa únicamente en el instinto de supervivencia",
+          "Los animales vivos siempre se perciben como comida",
+          "Nuestra percepción de la comida está fuertemente influenciada por la cultura y el aprendizaje"
+        ],
+        hu: [
+          "Az emberek természetesen minden formában étvágyat éreznek az állatok iránt",
+          "Az étvágy kizárólag a túlélési ösztönön alapul",
+          "Az élő állatokat mindig ételként látjuk",
+          "Az ételről alkotott képünket erősen befolyásolja a kultúra és a tanulás"
+        ]
+      },
+      correctIndex: 3
+    }
+  },
+  {
+    title: {
+      en: "Canines",
+      es: "Caninos",
+      hu: "Szemfogak"
+    },
+    content: {
+      en: "Do canines prove that we are meant to eat meat? When we compare human teeth to true carnivores, we see important differences.\n\nCarnivores (like lions) have large, sharp canines for tearing flesh. Humans, however, have small canines (not specialized for tearing)\n\nIt is also interesting to note that some primates, like gorillas, have much larger canines than humans, yet they do not rely on meat in their diet. This shows that large canines alone are not a reliable indicator of meat consumption.",
+      es: "¿Los caninos humanos demuestran que estamos hechos para comer carne? Cuando comparamos los dientes humanos con los de verdaderos carnívoros, vemos diferencias importantes.\n\nLos carnívoros (como los leones) tienen caninos grandes y afilados para desgarrar carne. Los humanos, en cambio, tienen caninos pequeños (no especializados para desgarrar).\n\nTambién es interesante notar que algunos primates, como los gorilas, tienen caninos mucho más grandes que los humanos, y aun así no dependen de la carne en su dieta. Esto muestra que tener caninos grandes por sí solo no es un indicador fiable del consumo de carne.",
+      hu: "Az emberi szemfogak bizonyítják, hogy húsfogyasztásra vagyunk tervezve? Ha összehasonlítjuk az emberi fogakat a valódi ragadozókéval, fontos különbségeket látunk.\n\nA ragadozók (például az oroszlánok) nagy, éles szemfogakkal rendelkeznek a hús tépésére. Az embereknek ezzel szemben kicsi szemfogaik vannak (nem a hús tépésére specializálódtak).\n\nÉrdekes megjegyezni azt is, hogy egyes főemlősök, például a gorillák, sokkal nagyobb szemfogakkal rendelkeznek, mint az emberek, mégsem alapozzák étrendjüket húsra. Ez azt mutatja, hogy a nagy szemfogak önmagukban nem megbízható mutatói a húsfogyasztásnak."
+    },
+    question: {
+      text: {
+        en: "What do human canines prove about our diet?",
+        es: "¿Qué demuestran los caninos humanos sobre nuestra dieta?",
+        hu: "Mit bizonyítanak az emberi szemfogak az étrendünkről?"
+      },
+      options: {
+        en: [
+          "Nothing — canines alone do not determine diet",
+          "That humans are strict carnivores",
+          "That humans are designed only for meat eating",
+          "That humans should not eat plants"
+        ],
+        es: [
+          "Nada — los caninos por sí solos no determinan la dieta",
+          "Que los humanos son carnívoros estrictos",
+          "Que los humanos están diseñados solo para comer carne",
+          "Que los humanos no deberían comer plantas"
+        ],
+        hu: [
+          "Semmit — a szemfogak önmagukban nem határozzák meg az étrendet",
+          "Azt, hogy az emberek szigorúan húsevők",
+          "Azt, hogy az emberek kizárólag húsfogyasztásra lettek tervezve",
+          "Azt, hogy az embereknek nem szabad növényeket enniük"
+        ]
+      },
+      correctIndex: 0
+    },
+    source: "https://nutritionstudies.org/are-humans-herbivores-or-omnivores/"
+  },
+  {
+    title: {
+      en: "Our teeths",
+      es: "Nuestros dientes",
+      hu: "A fogaink"
+    },
+    content: {
+      en: "Human teeth are designed for handling a wide variety of foods through different functions.\n\nWe have\n\n🦷 Incisors (front teeth):\nUsed for biting and cutting food into smaller pieces, especially fruits and vegetables\n\n🦷 Premolars:\nHelp break food into smaller chunks and begin the grinding process\n\n🦷 Molars (back teeth):\nFlat, strong teeth used for grinding and crushing food thoroughly before swallowing\n\nThis combination allows humans to process a wide range of plant-based foods such as fruits, vegetables, nuts, and grains efficiently.\n\nOverall, human teeth support a general-purpose eating pattern rather than a highly specialized one.",
+      es: "Los dientes humanos están diseñados para manejar una amplia variedad de alimentos mediante diferentes funciones\n\nTenemos:\n\n🦷 Incisivos (dientes frontales):\nSe utilizan para morder y cortar los alimentos en trozos más pequeños, especialmente frutas y verduras\n\n🦷 Premolares:\nAyudan a romper los alimentos en partes más pequeñas y comienzan el proceso de trituración\n\n🦷 Molares (dientes traseros):\nDientes planos y fuertes que se utilizan para triturar y aplastar completamente los alimentos antes de tragarlos\n\nEsta combinación permite a los humanos procesar eficientemente una amplia gama de alimentos de origen vegetal como frutas, verduras, frutos secos y cereales.\n\nEn general, los dientes humanos apoyan un patrón de alimentación de uso general en lugar de uno altamente especializado.",
+      hu: "Az emberi fogak úgy vannak kialakítva, hogy különböző funkciók segítségével sokféle ételt tudjanak feldolgozni\n\n🦷 Metszőfogak (elülső fogak)\nAz étel megharapására és kisebb darabokra vágására szolgálnak, különösen gyümölcsök és zöldségek esetében\n\n🦷 Kisőrlő fogak (premolárisok):\nSegítenek az ételt kisebb darabokra törni, és megkezdik az őrlési folyamatot\n\n🦷 Nagyőrlő fogak (hátulsó fogak)\nLapos, erős fogak, amelyek az étel alapos őrlésére és összezúzására szolgálnak lenyelés előtt\n\nEz a kombináció lehetővé teszi az emberek számára, hogy hatékonyan feldolgozzanak sokféle növényi eredetű ételt, például gyümölcsöket, zöldségeket, magvakat és gabonákat\n\nÖsszességében az emberi fogak egy általános, nem pedig erősen specializált táplálkozási mintát támogatnak."
+    },
+    question: {
+      text: {
+        en: "What best describes the function of human teeth?",
+        es: "¿Qué describe mejor la función de los dientes humanos?",
+        hu: "Mi írja le legjobban az emberi fogak funkcióját?"
+      },
+      options: {
+        en: [
+          "Only cutting food",
+          "Only grinding food",
+          "A combination of cutting, breaking, and grinding food",
+          "No clear function"
+        ],
+        es: [
+          "Solo cortar alimentos",
+          "Solo triturar alimentos",
+          "Una combinación de cortar, romper y triturar alimentos",
+          "Ninguna función clara"
+        ],
+        hu: [
+          "Csak az étel vágása",
+          "Csak az étel őrlése",
+          "Az étel vágásának, törésének és őrlésének kombinációja",
+          "Nincs egyértelmű funkció"
+        ]
+      },
+      correctIndex: 2
+    },
+    source: "https://nutritionstudies.org/are-humans-herbivores-or-omnivores/"
+  },
+  {
+    title: {
+      en: "Compared to carnivores",
+      es: "En comparación con los carnívoros",
+      hu: "A húsevőkhöz képest"
+    },
+    content: {
+      en: "When comparing different animals, we can look at how their digestive systems are structured, since this reflects the types of food they are adapted to process.\n\n🦁 Carnivores:\nOften have larger stomach capacity, allowing them to eat large amounts of food at once after hunting. Their digestive systems are generally shorter, meaning they digest food more quickly and rely on periodic, large meals.\n\n🐄 Herbivores:\nTypically have smaller stomach capacity, so they eat more often. They also have much longer small intestines, which helps slowly digest plant material efficiently over time.\n\nOur small intestines are longer than carnivores’ small intestines, and our stomach capacities are smaller than carnivores’ stomach capacities. Our closest primate relatives consume overwhelmingly herbivorous diets",
+      es: "Al comparar diferentes animales, podemos observar cómo están estructurados sus sistemas digestivos, ya que esto refleja los tipos de alimentos que están adaptados a procesar.\n\n🦁 Carnívoros:\nA menudo tienen una mayor capacidad estomacal, lo que les permite comer grandes cantidades de alimento de una sola vez después de cazar. Sus sistemas digestivos suelen ser más cortos, lo que significa que digieren los alimentos más rápidamente y dependen de comidas grandes y ocasionales.\n\n🐄 Herbívoros:\nPor lo general, tienen una menor capacidad estomacal, por lo que comen con más frecuencia. También tienen intestinos delgados mucho más largos, lo que ayuda a digerir lentamente el material vegetal de manera eficiente con el tiempo\n\nNuestros intestinos delgados son más largos que los de los carnívoros, y nuestra capacidad estomacal es menor que la de los carnívoros. Nuestros parientes primates más cercanos consumen dietas predominantemente herbívoras.",
+      hu: "Különböző állatok összehasonlításakor megvizsgálhatjuk az emésztőrendszerük felépítését, mivel ez tükrözi, milyen típusú táplálék feldolgozásához alkalmazkodtak.\n\n🦁 Ragadozók:\nGyakran nagyobb gyomorkapacitással rendelkeznek, ami lehetővé teszi számukra, hogy vadászat után egyszerre nagy mennyiségű ételt fogyasszanak. Emésztőrendszerük általában rövidebb, ami azt jelenti, hogy gyorsabban emésztik meg az ételt, és inkább ritkább, de nagyobb étkezésekre támaszkodnak\n\n🐄 Növényevők:\nÁltalában kisebb gyomorkapacitással rendelkeznek, ezért gyakrabban esznek. Emellett sokkal hosszabb vékonybéllel rendelkeznek, ami segíti a növényi táplálék lassú és hatékony emésztését.\n\nA mi vékonybelünk hosszabb, a gyomorkapacitásunk kisebb, mint a ragadozóké. Legközelebbi főemlős rokonaink túlnyomórészt növényevő étrendet követnek."
+    },
+    question: {
+      text: {
+        en: "What is a key difference between carnivores and herbivores?",
+        es: "¿Cuál es una diferencia clave entre carnívoros y herbívoros?",
+        hu: "Mi a fő különbség a ragadozók és a növényevők között?"
+      },
+      options: {
+        en: [
+          "Carnivores eat constantly throughout the day",
+          "Herbivores have shorter intestines than carnivores",
+          "Carnivores do not need to digest food",
+          "Herbivores have longer intestines for slow digestion"
+        ],
+        es: [
+          "Los carnívoros comen constantemente durante todo el día",
+          "Los herbívoros tienen intestinos más cortos que los carnívoros",
+          "Los carnívoros no necesitan digerir los alimentos",
+          "Los herbívoros tienen intestinos más largos para una digestión lenta"
+        ],
+        hu: [
+          "A ragadozók egész nap folyamatosan esznek",
+          "A növényevőknek rövidebb beleik vannak, mint a ragadozóknak",
+          "A ragadozóknak nem kell megemészteniük az ételt",
+          "A növényevőknek hosszabb beleik vannak a lassú emésztéshez"
+        ]
+      },
+      correctIndex: 3
+    },
+    source: "https://nutritionstudies.org/are-humans-herbivores-or-omnivores/"
+  },
+  {
+    title: {
+      en: "Our jaws",
+      es: "Nuestras mandíbulas",
+      hu: "Az állkapcsunk"
+    },
+    content: {
+      en: "Jaw structure and movement give strong clues about how they process food.\n\n🦁 Carnivores:\nTheir jaw movement is mainly vertical (up and down). This supports strong biting and holding, but very limited side-to-side motion. Their jaws are built for stability rather than grinding. They also tend to have larger mouth openings, allowing them to bite and consume large pieces of food.\n\n🐄 Herbivores:\nTheir jaws allow both forward–backward and side-to-side movement, which is essential for grinding fibrous plant material efficiently. This horizontal motion is a key adaptation for breaking down tough plant foods. They typically have smaller mouth openings, as their feeding relies more on continuous chewing rather than large bites\n\nThis difference in jaw mechanics reflects how different animals are adapted to process different types of food.",
+      es: "La estructura y el movimiento de la mandíbula dan pistas importantes sobre cómo se procesan los alimentos\n\n🦁 Carnívoros:\nEl movimiento de su mandíbula es principalmente vertical (arriba y abajo). Esto permite morder con fuerza y sujetar, pero con muy poco movimiento lateral. Sus mandíbulas están diseñadas para la estabilidad más que para triturar. También suelen tener aperturas bucales más grandes, lo que les permite morder y consumir grandes trozos de alimento.\n\n🐄 Herbívoros\nSus mandíbulas permiten movimientos hacia adelante–atrás y de lado a lado, lo cual es esencial para triturar eficientemente el material vegetal fibroso. Este movimiento horizontal es una adaptación clave para descomponer alimentos vegetales duros. Normalmente tienen aperturas bucales más pequeñas, ya que su alimentación se basa más en la masticación continua que en grandes mordidas.\n\nEsta diferencia en la mecánica de la mandíbula refleja cómo distintos animales están adaptados para procesar diferentes tipos de alimentos.",
+      hu: "Az állkapocs felépítése és mozgása fontos információt ad arról, hogyan dolgozzák fel az állatok a táplálékot.\n\n🦁 Ragadozók:\nAz állkapcsuk mozgása főként függőleges (fel és le). Ez erős harapást és tartást tesz lehetővé, de nagyon korlátozott az oldalirányú mozgás. Az állkapcsuk inkább stabilitásra, mint őrlésre van kialakítva. Emellett általában nagyobb szájnyílással rendelkeznek, ami lehetővé teszi nagy darabok megharapását és elfogyasztását.\n\n🐄 Növényevők:\nAz állkapcsuk előre–hátra és oldalirányú mozgást is lehetővé tesz, ami elengedhetetlen a rostos növényi táplálék hatékony őrléséhez. Ez a vízszintes mozgás kulcsfontosságú alkalmazkodás a kemény növényi ételek lebontásához. Általában kisebb szájnyílással rendelkeznek, mivel táplálkozásuk inkább folyamatos rágáson alapul, nem nagy harapásokon\n\nEz a különbség az állkapocs működésében tükrözi, hogy a különböző állatok hogyan alkalmazkodtak különböző típusú táplálék feldolgozásához."
+    },
+    question: {
+      text: {
+        en: "What is a key difference in jaw movement between carnivores and herbivores?",
+        es: "¿Cuál es una diferencia clave en el movimiento de la mandíbula entre carnívoros y herbívoros?",
+        hu: "Mi a fő különbség a ragadozók és a növényevők állkapocs mozgása között?"
+      },
+      options: {
+        en: [
+          "Carnivores have more side-to-side jaw movement",
+          "Herbivores only have vertical jaw movement",
+          "Carnivores mainly use vertical movement, while herbivores use more horizontal grinding movement",
+          "Both have identical jaw movement patterns"
+        ],
+        es: [
+          "Los carnívoros tienen más movimiento lateral de la mandíbula",
+          "Los herbívoros solo tienen movimiento vertical de la mandíbula",
+          "Los carnívoros usan principalmente movimiento vertical, mientras que los herbívoros usan más movimiento horizontal de trituración",
+          "Ambos tienen patrones de movimiento mandibular idénticos"
+        ],
+        hu: [
+          "A ragadozóknak nagyobb az oldalirányú mozgásuk",
+          "A növényevők csak függőleges mozgást használnak",
+          "A ragadozók főként függőleges mozgást használnak, míg a növényevők inkább vízszintes őrlő mozgást",
+          "Mindkettő azonos állkapocsmozgási mintát használ"
+        ]
+      },
+      correctIndex: 2
+    },
+    source: "https://nutritionstudies.org/are-humans-herbivores-or-omnivores/"
+  },
+  {
+    title: {
+      en: "Carbohydrate as our enemy",
+      es: "Los carbohidratos como enemigos",
+      hu: "A szénhidrátok mint ellenségek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Carbohydrate is our friend",
+      es: "Los carbohidratos son nuestros amigos",
+      hu: "A szénhidrátok a barátaink"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Human's brain fuel",
+      es: "El combustible del cerebro humano",
+      hu: "Az emberi agy üzemanyaga"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Fake studies",
+      es: "Investigaciones falsas",
+      hu: "Hamis tanulmányok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Carbohydrate sources",
+      es: "Fuentes de carbohidratos",
+      hu: "Szénhidrátforrások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Unhealthy carbohydrates",
+      es: "Carbohidratos no saludables",
+      hu: "Egészségtelen szénhidrátok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Where do nutrients come from?",
+      es: "¿De dónde vienen los nutrientes?",
+      hu: "Honnan származnak a tápanyagok?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Iron",
+      es: "Hierro",
+      hu: "Vas"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Iron absorption",
+      es: "Absorción de hierro",
+      hu: "Vas felszívódása"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Iron and vitamin C",
+      es: "Hierro y vitamina C",
+      hu: "Vas és C-vitamin"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Calcium without dairy",
+      es: "Calcio sin lácteos",
+      hu: "Kalcium tejtermékek nélkül"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Milk's calcium",
+      es: "El calcio de la leche",
+      hu: "A tej kálciumtartalma"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Soy and oestrogen",
+      es: "Soja y estrógeno",
+      hu: "Szója és ösztrogén"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Omega 3",
+      es: "Omega 3",
+      hu: "Omega 3"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Where does protein come from?",
+      es: "¿De dónde proviene la proteína?",
+      hu: "Honnan származik a fehérje?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Amino acids",
+      es: "Aminoácidos",
+      hu: "Aminosavak"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Essential amino acids",
+      es: "Aminoácidos esenciales",
+      hu: "Esszenciális aminosavak"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Complex protein",
+      es: "Proteína compleja",
+      hu: "Komplex fehérje"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "How to get enough protein",
+      es: "Cómo obtener suficiente proteína",
+      hu: "Hogyan juthatsz elég fehérjéhez?"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Dying in protein deficiency",
+      es: "Morir por falta de proteínas",
+      hu: "Fehérjehiányban meghalni"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Fats",
+      es: "Grasas",
+      hu: "Zsírok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "LDL and HDL",
+      es: "LDL y HDL",
+      hu: "LDL és HDL"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Too much saturated fat",
+      es: "Demasiada grasa saturada",
+      hu: "Túl sok telített zsír"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Animal products and LDL",
+      es: "Productos de animales y LDL",
+      hu: "Állati termékek és LDL"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Healthy digestion: fiber",
+      es: "Digestión saludable: fibra",
+      hu: "Egészséges emésztés: rost"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Digesting food",
+      es: "Digiriendo los alimentos",
+      hu: "Az ételek emésztése"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Acids",
+      es: "Ácidos",
+      hu: "Savak"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Role of fiber",
+      es: "El papel de la fibra",
+      hu: "A rost szerepe"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Foods rich in fiber",
+      es: "Alimentos ricos en fibra",
+      hu: "Rostban gazdag ételek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Lack of fiber",
+      es: "Falta de fibra",
+      hu: "A rost hiánya"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cholesterol: the cause",
+      es: "El colesterol: la causa",
+      hu: "A koleszterin: az ok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cholesterol: consequences",
+      es: "El colesterol: consecuencias",
+      hu: "A koleszterin: következmények"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "High blood pressure: start",
+      es: "Presión arterial alta: inicio",
+      hu: "Magas vérnyomás: kezdet"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "High blood pressure: cause",
+      es: "Presión arterial alta: causa",
+      hu: "Magas vérnyomás: ok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "High blood pressure: veins",
+      es: "Presión arterial alta: venas",
+      hu: "Magas vérnyomás: erek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Clogged arteries",
+      es: "Arterias bloqueadas",
+      hu: "Elzáródott artériák"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Happy heart",
+      es: "Corazón feliz",
+      hu: "Boldog szív"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Heart disease: prevention",
+      es: "Prevención de enfermedades cardíacas",
+      hu: "Szívbetegség: megelőzés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Heart overload",
+      es: "Sobrecarga del corazón",
+      hu: "A szív túlterhelése"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Oxygen supply",
+      es: "Suministro de oxígeno",
+      hu: "Oxigénellátás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Circulation",
+      es: "Circulación",
+      hu: "Vérkeringés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Solution of a plant-based diet",
+      es: "Solución basada en una dieta vegetal",
+      hu: "Növényi alapú étrend mint megoldás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Studies",
+      es: "Estudios",
+      hu: "Tanulmányok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Carnicogen products",
+      es: "Productos carcinógenos",
+      hu: "Rákkeltő termékek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Ignorance",
+      es: "Ignorancia",
+      hu: "Tudatlanság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Cigarette ads",
+      es: "Anuncios de cigarrillos",
+      hu: "Cigaretta reklámok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Processed food",
+      es: "Comida procesada",
+      hu: "Feldolgozott élelmiszerek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Best choices",
+      es: "Mejores opciones",
+      hu: "Legjobb választások"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Unhealthy plant-based products",
+      es: "Productos vegetales poco saludables",
+      hu: "Egészségtelen növényi alapú termékek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Milk: fats",
+      es: "Leche: grasas",
+      hu: "Tej: zsírok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Milk: calories",
+      es: "Leche: calórias",
+      hu: "Tej: kalóriák"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Milk: calcium",
+      es: "Leche: calcio",
+      hu: "Tej: kálcium"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Milk: pus",
+      es: "Leche: pus",
+      hu: "Tej: genny"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Milk: hormones",
+      es: "Leche: hormonas",
+      hu: "Tej: hormonok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "B12",
+      es: "B12",
+      hu: "B12"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "B12 source",
+      es: "Fuente de B12",
+      hu: "B12 forrás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Supplementing animals",
+      es: "Suplementar animales",
+      hu: "Táplálékkiegészítő állatoknak"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Supplements",
+      es: "Suplementos",
+      hu: "Étrend-kiegészítők"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Vegans vs Carnivores on B12",
+      es: "Veganos vs carnívoros sobre la vitamina B12",
+      hu: "Vegánok és húsevők a B12-vitamin kapcsán"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Antibiotics in animal agriculture",
+      es: "Antibióticos en la ganadería",
+      hu: "Antibiotikumok az állattenyésztésben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Effectiveness loss",
+      es: "Pérdida de eficacia",
+      hu: "Hatékonyság elvesztése"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "In our food",
+      es: "En nuestra comida",
+      hu: "Az ételeinkben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Results of a healthy visceral system",
+      es: "Resultados de un sistema visceral saludable",
+      hu: "Egy egészséges zsigeri rendszer eredményei"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "A better rest",
+      es: "Un descanso mejor",
+      hu: "Egy jobb pihenés"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Masculinity",
+      es: "Masculinidad",
+      hu: "Férfiasság"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Strength",
+      es: "Fuerza",
+      hu: "Erő"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deaths",
+      es: "Muertes",
+      hu: "Halálozás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deaths: the leader",
+      es: "Muertes: el líder",
+      hu: "Halálozás: a vezető"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deaths: taking the second place",
+      es: "Muertes: ocupando el segundo lugar",
+      hu: "Halálozások: a második helyen"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deaths: on the podium",
+      es: "Muertes: en el podio",
+      hu: "Halálozások: a dobogón"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Deaths: lack of nutrients",
+      es: "Muertes: falta de nutrientes",
+      hu: "Halálozások: tápanyaghiány"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Death statistics in the last 50 years",
+      es: "Estadísticas de muertes en los últimos 50 años",
+      hu: "Halálozási statisztikák az elmúlt 50 évben"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Blue zones",
+      es: "Blue zones",
+      hu: "Blue zones"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Secrets of blue zones: Whole food",
+      es: "Secretos de las Blue Zones: alimentos integrales",
+      hu: "A Blue Zones titkai: teljes értékű élelmiszerek"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Secrets of blue zones: Exercise",
+      es: "Secretos de las Blue Zones: Ejercicio",
+      hu: "A Blue Zones titkai: testmozgás"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Secrets of blue zones: social connections",
+      es: "Secretos de las Blue Zones: conexiones sociales",
+      hu: "A Blue Zones titkai: társadalmi kapcsolatok"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Secrets of blue zones: Stress",
+      es: "Secretos de las Blue Zones: Estrés",
+      hu: "A Blue Zones titkai: Stressz"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Secrets of blue zones: diet",
+      es: "Secretos de las Blue Zones: dieta",
+      hu: "A Blue Zones titkai: étrend"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
+  {
+    title: {
+      en: "Get moving!",
+      es: "¡A moverse!",
+      hu: "Gyerünk!"
+    },
+    content: {
+      en: "",
+      es: "",
+      hu: ""
+    },
+    question: {
+      text: {
+        en: "",
+        es: "",
+        hu: ""
+      },
+      options: {
+        en: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        es: [
+          "",
+          "",
+          "",
+          ""
+        ],
+        hu: [
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      correctIndex: 0-3
+    }
+  },
 {
   title: {
     en: "🔄 Review a Lesson",
@@ -12370,6 +20030,8 @@ celebrity: [
 ]
 };
 */
+
+
 //#region Functions
 /*
 Ariana Grande – Singer and Actress

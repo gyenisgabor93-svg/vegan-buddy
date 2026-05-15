@@ -114,7 +114,7 @@ goalOption1: "Protecting animals",
 goalOption2: "Caring for the environment",
 goalOption3: "Healthy living",
 goalOption4: "Solving health issues",
-goalOption5: "Boosting my performance as an athlete",
+// goalOption5: "Boosting my performance as an athlete",
 
 editHealthTitle: "Health Issues:",
 healthOption1: "Heart disease",
@@ -505,7 +505,7 @@ goalOption1: "Proteger a los animales",
 goalOption2: "Cuidar el medio ambiente",
 goalOption3: "Vida saludable",
 goalOption4: "Resolver problemas de salud",
-goalOption5: "Mejorar mi rendimiento como atleta",
+// goalOption5: "Mejorar mi rendimiento como atleta",
 
 editHealthTitle: "Problemas de salud:",
 healthOption1: "Enfermedad cardíaca",
@@ -897,7 +897,7 @@ goalOption1: "Állatok védelme",
 goalOption2: "Környezet védelme",
 goalOption3: "Egészséges életmód",
 goalOption4: "Egészségügyi problémák megoldása",
-goalOption5: "Sportteljesítmény javítása",
+// goalOption5: "Sportteljesítmény javítása",
 
 editHealthTitle: "Egészségügyi problémák:",
 healthOption1: "Szívbetegség",
@@ -1324,7 +1324,7 @@ document.getElementById("goalOption1").innerText = t.goalOption1;
 document.getElementById("goalOption2").innerText = t.goalOption2;
 document.getElementById("goalOption3").innerText = t.goalOption3;
 document.getElementById("goalOption4").innerText = t.goalOption4;
-document.getElementById("goalOption5").innerText = t.goalOption5;
+// document.getElementById("goalOption5").innerText = t.goalOption5;
 
 // Health options
 document.getElementById("editHealthTitle").innerText = t.editHealthTitle;
@@ -1948,7 +1948,7 @@ mealWinnerPro: ({ name }) => [
 communityImpactHeadline: "El impacto de nuestra unión",
 
 communityAnimals: ({ values = {} }) => {
-  const water = values.water ?? 0;
+  const animals = values.animals ?? 0;
 
   return[
   `Juntos, nuestras decisiones han salvado ${animals} animales. Cada elección individual ha contribuido a este cambio.`,
@@ -2183,11 +2183,11 @@ const goalTranslations = {
     es: "Resolver problemas de salud",
     hu: "Egészségügyi problémák megoldása"
   },
-  "Boosting my performance as an athlete": {
-    en: "Boosting my performance as an athlete",
-    es: "Mejorar mi rendimiento como atleta",
-    hu: "Teljesítményem növelése sportolóként"
-  }
+  //"Boosting my performance as an athlete": {
+   // en: "Boosting my performance as an athlete",
+   // es: "Mejorar mi rendimiento como atleta",
+   // hu: "Teljesítményem növelése sportolóként"
+  //}
 };
 
 // ===== Translation pools for Health Issues =====
@@ -2773,7 +2773,7 @@ function hasNextLesson(profile) {
     "Protecting animals & animal welfare",
     "Caring for the environment & fighting climate change",
     "Healthy living & wellness",
-    "Boosting my performance as an athlete"
+   // "Boosting my performance as an athlete"
   ];
 
   const normalize = s => (s || "").toString().trim().toLowerCase();
@@ -2865,7 +2865,7 @@ function getNextLessonFromPool(profile) {
     "Protecting animals & animal welfare",
     "Caring for the environment & fighting climate change",
     "Healthy living & wellness",
-    "Boosting my performance as an athlete"
+   // "Boosting my performance as an athlete"
   ];
 
   const normalize = s => (s || "").toString().trim().toLowerCase();
@@ -3714,14 +3714,14 @@ function pickWeightedStat(stats) {
   // Define weights per key
   const weights = {
   meal_winners: 0.2,
-  animals_saved: 0.125,
-  forest_saved: 0.125,
-  co2_saved: 0.125,
-  water_saved: 0.125,
-  other_impacts: 0.1,
-  community_impact: 0.1,
-  consistency: 0.05,
-  encouragement: 0.05
+  animals_saved: 0.075,
+  forest_saved: 0.075,
+  co2_saved: 0.075,
+  water_saved: 0.075,
+  other_impacts: 0.120,
+  community_impact: 0.2,
+  consistency: 0.09,
+  encouragement: 0.09
 };
 
   // Build weighted pool
@@ -5606,11 +5606,11 @@ const dietStartIndex = {
     vegetarian: 2021,
     vegan: 2041
   },
-  "Boosting my performance as an athlete": {
-    omnivore: 3001,
-    vegetarian: 3011,
-    vegan: 3016
-  }
+//  "Boosting my performance as an athlete": {
+//    omnivore: 3001,
+//    vegetarian: 3011,
+//    vegan: 3016
+//  }
 };
 
 // Map actual diet preference to lesson group
@@ -5639,7 +5639,7 @@ function getTodaysLessonFromProfile(profile) {
     "Protecting animals & animal welfare",
     "Caring for the environment & fighting climate change",
     "Healthy living & wellness",
-    "Boosting my performance as an athlete"
+   // "Boosting my performance as an athlete"
   ];
 
   const normalize = s => (s || "").toString().trim().toLowerCase();
@@ -5952,7 +5952,8 @@ const learnPathTranslations = {
     tryAgain: "Try again!",
     correct: "✅ Correct!",
     xpChallengeDone:
-      "You've completed your daily XP challenge! Claim your reward in the playground section!"
+      "You've completed your daily XP challenge! Claim your reward in the playground section!",
+      source: "Source"
   },
 
   es: {
@@ -5966,7 +5967,8 @@ const learnPathTranslations = {
     tryAgain: "¡Inténtalo de nuevo!",
     correct: "✅ ¡Correcto!",
     xpChallengeDone:
-      "¡Has completado tu desafío diario de XP! Reclama tu recompensa en la sección del parque de juegos."
+      "¡Has completado tu desafío diario de XP! Reclama tu recompensa en la sección del parque de juegos.",
+      source: "Fuente"
   },
 
   hu: {
@@ -5980,7 +5982,8 @@ const learnPathTranslations = {
     tryAgain: "Próbáld újra!",
     correct: "✅ Helyes!",
     xpChallengeDone:
-      "Teljesítetted a napi XP kihívást! Vedd át a jutalmadat a játszótér szekcióban!"
+      "Teljesítetted a napi XP kihívást! Vedd át a jutalmadat a játszótér szekcióban!",
+      source: "Forrás"
   }
 };
 
@@ -6002,6 +6005,21 @@ function getLocalizedText(obj) {
   const lang = getLang();
   if (!obj) return "";
   return obj[lang] || obj.en || "";
+}
+
+function renderLessonSource(source) {
+  if (!source) return "";
+
+  const display = source.replace(/^https?:\/\//, "");
+
+  return `
+    <div class="lesson-source">
+      ${learnPathT("source")}: 
+      <a href="${source}" target="_blank" rel="noopener noreferrer">
+        ${display}
+      </a>
+    </div>
+  `;
 }
 
 // ------- Health issues----------
@@ -6124,7 +6142,10 @@ function setupLessonClickForHealth(li, lesson, index, issue, userData, userId) {
 
     // Fill lesson content
     lessonTitle.textContent = getLocalizedText(lesson.title);
-    lessonContent.innerHTML = `<p>${getLocalizedText(lesson.content)}</p>`;
+    lessonContent.innerHTML = `
+      <p>${getLocalizedText(lesson.content)}</p>
+      ${renderLessonSource(lesson.source)}
+    `;
 
     // Start Quiz button
     const startQuizBtn = document.createElement("button");
@@ -6384,10 +6405,11 @@ function setupExtraLessonClicks() {
         const questionObj = lessonData.question || lessonData.quiz || null;
 
         let html = `
-          <div class="extralesson-text">
-            <p>${getLocalizedText(lessonData.content)}</p>
-            ${questionObj ? `<button class="start-quiz-btn">${learnPathT("takeQuiz")}</button>` : ""}
-          </div>
+        <div class="extralesson-text">
+          <p>${getLocalizedText(lessonData.content)}</p>
+          ${renderLessonSource(lessonData.source)}
+          ${questionObj ? `<button class="start-quiz-btn">${learnPathT("takeQuiz")}</button>` : ""}
+        </div>
         `;
 
         if (questionObj) {
