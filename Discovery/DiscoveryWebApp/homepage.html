@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MainPage</title>
+  <link rel="stylesheet" href="homepagestyle.css" />
+</head>
+<body>
+  
+<div id="globalLoader" class="global-loader">
+  <div class="spinner"></div>
+</div>
+
+<div id="homepageContentfirst" style="display:none;">
+
+  <div id="bg"></div>
+  <div id="app">
+  <!-- Greeting -->
+  <h2 id="greetingText">
+    <span id="greetingTime">Good morning</span>,<br>
+    <span id="profileNamehp"></span>
+  </h2>
+
+  <!-- Instruction -->
+  <p id="dailyCheckinText">
+  </p>
+
+  <!-- Buttons -->
+  <div id="homepageActions">
+    <button id="startCheckinBtn">Start Daily Check-in</button>
+    <button id="skipCheckinBtn">Skip Daily Check-in</button>
+  </div>
+</div>
+</div>
+
+<div id="homepageContentsecond" style="display:none;">
+  <!-- All homepage content here -->
+<div id="main-container">
+<!--  <div id="topBar" class="top-bar">
+      <div class="top-bar-row">
+         Level + Streak 
+        <div class="center-counters">
+          <span class="counter" id="currentLevelSpan">🌍 <span id="currentLevel">0</span></span>
+          
+
+    
+    <div class="level-bar" id="levelBar">
+      <div class="progress">
+        <div id="levelProgress" class="progress-fill"></div>
+        <small id="xpToNext"><span id="xpRemaining">0</span> <span id="xpLabel">XP to next level</span></small>
+      </div>
+    </div>
+
+          <span class="counter" id="streak"><span class="fire">🔥</span> <span id="streak-counter">0</span>
+        </span>
+        </div>
+      </div>
+    </div>-->
+    <!-- 🏠 Home Content -->
+  <div id="home" class="page">  <!-- 🔝 Top Tabs -->
+
+  <!-- 🔝 Combined Profile + Progress + Impact -->
+<div class="top-combined-box" id="topCombinedBox">
+
+  <!-- Top Row: Profile + Info -->
+  <div class="top-profile-row">
+
+    <!-- Profile Picture -->
+    <div class="profile-photo-wrapper">
+      <img 
+        id="profilePhotoTop" 
+        src="https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg"
+        class="profile-photo large"
+      />
+    </div>
+
+    <!-- Right Side Info -->
+    <div class="profile-info">
+
+      <!-- Row 1: Name + Streak -->
+      <div class="row row1">
+        <span id="profileNameHome" class="profile-nameHome">Name</span>
+        <span id="streak" class="counter">
+        <span class="fire">🔥</span> <span id="streak-counter">0</span>
+        </span>
+      </div>
+
+      <!-- Row 2: Level -->
+      <div class="row row2">
+      <span id="Levelword">Level</span> <span id="currentLevel"> 0</span>
+      </div>
+
+      <!-- Row 3: Progress Bar -->
+      <div class="row row3">
+        <div class="level-bar" id="levelBar">
+          <div class="progress">
+            <div id="levelProgress" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🔽 Personal Impact -->
+  <div class="impact-personal">
+
+    <p class="impact-title" id="impactsofar">Your impact so far:</p>
+
+    <div class="impact-list">
+
+      <div class="impact-item">
+        🐾 <span id="youAnimals">0</span> <span id="animalsLabel">animals</span>
+      </div>
+
+      <div class="impact-item">
+        🌲 <span id="youForest">0</span> <span id="forestLabel">m² forest</span>
+      </div>
+
+      <div class="impact-item">
+        💧 <span id="youWater">0</span> <span id="waterLabel">L water</span>
+      </div>
+
+      <div class="impact-item">
+        🌬️ <span id="youCO2">0</span> <span id="co2Label">kg CO₂</span>
+      </div>
+
+    </div>
+  </div>
+
+<div class="divider"></div>
+
+ <!-- End Top Tabs -->
+  <div class="top-buttons-wrapper">
+    <button id="NextLessonSpoiler"><!-- Today's lesson: ".." or "Tomorrow's lesson: ".." --></button>
+    <button id="finishDCIBtn" class="button hidden">Finish Check-in</button>
+<!--  <div class="ArtBtnrecipesBtn">
+    Learn Path 
+    <button id="lessonPathBtn" class="button button-circle small-circle">Learn Path</button> 
+     Left: Meal-Art 
+    <button id="mealArtBtn" class="button button-circle small-circle">Meal-Art Contest</button>
+    Right: Recipes 
+    <button id="recipesBtn" class="button button-circle small-circle">Trending Recipes</button>
+  </div>-->
+  </div>
+
+  <div class="divider"></div>
+
+<div class="newsBox1">
+
+      <!-- Pet Onboarding -->
+<div class="pet-onboarding hidden" id="petOnboardingBox">
+  <div class="pet-onboarding-header">
+    <img id="petOnboardingPhoto" src="" alt="Pet" />
+  </div>
+
+  <div class="pet-onboarding-content" id="petOnboardingText">
+    I'm learning how to help you...
+  </div>
+</div>
+
+      <!-- Meal-Art Contest -->
+      <div class="meal-art-winners hidden" id="mealArtWinnersBox">
+        <h3 id="mealArtTitle">🍽️ Meal-Art Winners This Week:</h3>
+        <div class="meal-art-categories">
+
+          <!-- Amateur -->
+          <div class="meal-art-card">
+            <!--<h4 id="homeChefTitle">🥕 Home Chef</h4>-->
+            <p class="winner-name" id="amateurName">Jane Doe</p>
+            <div class="meal-art-image-wrapper">
+              <img id="amateurImage" src="meals/amateur.jpg" class="meal-art-image">
+              <div class="recipe-badge hidden" id="recipebadgeAM">Recipe</div>
+            </div>
+          </div>
+
+          <!-- Professional -->
+          <div class="meal-art-card">
+           <!-- <h4 id="proKitchenTitle">🍴 Pro Kitchen</h4>-->
+            <p class="winner-name" id="proName">Green Leaf Bistro</p>
+            <div class="meal-art-image-wrapper">
+              <img id="proImage" src="meals/professional.jpg" class="meal-art-image">
+              <div class="recipe-badge hidden" id="recipebadgePRO">Recipe</div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+</div>  
+   
+
+
+<!-- 
+<div class = impact-box>
+  <p><span id="youLabel" class="you">You, </span><span id="andour"> and our </span></span><span id="communityLabel" class="community">Community</span> <br>
+  
+<div class="impact-cards">
+  
+  
+  <div class="card">
+    🐾
+    <p id="animalsSave"> saved <br>
+       <strong id="youAnimals">12</strong> 
+       <strong id="communityAnimals">3560</strong> </p>
+    <p id="animalsLabel" class = "lastPincards">animals</p>
+  </div>
+
+  
+  <div class="card">
+    🌲
+    <p id="forestSave"> saved <br>
+       <strong id="youForest">12</strong> 
+       <strong id="communityForest">3560</strong> </p>
+    <p id="forestLabel" class = "lastPincards"> m² of forests</p>
+  </div>
+
+  
+  <div class="card">
+    💧
+    <p id="waterSave"> saved <br>
+       <strong id="youWater">12</strong> 
+       <strong id="communityWater">3560</strong> </p>
+    <p id="waterLabel" class = "lastPincards">L of water</p>
+  </div>
+
+  
+  <div class="card">
+    🌬️
+    <p id="co2save"> reduced <br>
+       <strong id="youCO2">12</strong> 
+       <strong id="communityCO2">3560</strong> </p>
+    <p id="co2Label" class = "lastPincards">kg of CO₂</p>
+  </div>
+ </div>
+</div>
+-->
+
+
+<!-- Characters -->
+ <!-- Characters -->
+  <!-- Characters -->
+   <!-- Characters -->
+<div class="avatar-row">
+  <!-- Eluna 
+  <div class="profile-wrapper" id="elunaWrapper">
+    <img class="avatar" src="characters/eluna.png" alt="Eluna">
+    <div class="thought-toggle">💭</div>
+    <div id="elunaThought" class="thought-bubble">
+      <span>Eluna</span> says...
+      <div id="elunaTip" class="lesson-box"></div>
+      <span class="close-thought">×</span>
+    </div>
+  </div>
+
+  <div class="profile-wrapper" id="eluneWrapper">
+    <img class="avatar" src="characters/elune.png" alt="Elune">
+    <div class="thought-toggle">💭</div>
+    <div id="eluneThought" class="thought-bubble">
+      <span>Elune</span> says...
+      <div id="eluneTip" class="lesson-box"></div>
+      <span class="close-thought">×</span>
+    </div>
+  </div>
+-->
+
+  <!-- Pet 
+  <div class="profile-wrapper" id="petWrapper">
+    <div class="avatar hidden" id="petAvatar"></div>
+    <div class="thought-toggle">💭</div>
+    <div id="petThought" class="thought-bubble">
+      <span id="petName">Pet</span> <span id="petSays">says...</span>
+      <div id="petTip" class="lesson-box"></div>
+      <span class="close-thought">×</span>
+    </div>
+  </div>-->
+  <!-- Celebrity 
+<div class="profile-wrapper" id="celebrityWrapper">
+  <img class="avatar" id="celebrityAvatar" src="" alt="Celebrity Avatar">
+  <div class="thought-toggle">💭</div>
+  <div id="celebrityThought" class="thought-bubble">
+    <div id="celebrityQuote" class="lesson-box"></div>
+    <span class="close-thought">×</span>
+  </div>
+</div>-->
+
+</div>
+
+</div>
+   <!-- 🔖 Bottom Navigation -->
+    <!-- 🔖 Bottom Navigation -->
+<div class="bottom-nav">
+
+   <!-- 👤 Profile -->
+  <div class="dropdown">
+    <button class="profile-wrapper" id="profiledropdownBtn">
+      <span class="profile-icon">👤</span>
+      <span class="red-dot" id="profileDot"></span>
+    </button>
+    <div class="dropdown-content">
+      <button id="profileBtn" onclick="showSection('profile')">Profile</button>
+
+<button id="localBtn" onclick="showSection('local')">
+  <span class="btn-label">
+    Community
+    <span class="red-dot" id="LocalDot"></span>
+  </span>
+</button>
+
+      <button id="friendsBtn" onclick="showSection('friends')">
+  <span class="btn-label">
+    Friends
+    <span class="red-dot" id="friendRequestsDot"></span>
+  </span>
+</button>
+
+
+<button id="messagesBtn" onclick="showSection('messages')">
+  <span class="btn-label">
+    Messages
+    <span class="red-dot" id="messagesDot"></span>
+  </span>
+</button>
+
+    </div>
+  </div>
+
+  <!-- 🏠 Home -->
+  <div class="dropdown">
+    <button onclick="showSection('home')">🏠</button>
+  </div>
+<!--  <div class="ArtBtnrecipesBtn">
+    Learn Path 
+    <button id="lessonPathBtn" class="button button-circle small-circle">Learn Path</button> 
+     Left: Meal-Art 
+    <button id="mealArtBtn" class="button button-circle small-circle">Meal-Art Contest</button>
+    Right: Recipes 
+    <button id="recipesBtn" class="button button-circle small-circle">Trending Recipes</button>
+  </div>-->
+  <!-- 🌐 Community-->
+  <div class="dropdown">
+    <button id="discoverdropdownbtn">📚</button>
+    <div class="dropdown-content">
+      
+<button id="lessonPathBtn" onclick="showSection('learn')">Learn Path</button> 
+
+<!-- <button id="nutritionBtn" onclick="showSection('nutritiontable')">Nutrition Table</button> -->
+
+<button id="recipesBtn" onclick="showSection('recipes')">Recipes</button>
+
+<button id="mealArtBtn" onclick="showSection('mealart')">Meal Art</button>
+    </div>
+  </div>
+  
+  <!-- 🌐 Community
+  <div class="dropdown">
+    <button>🌐 <span class="red-dot" id="communityDot"></span> </button>
+    <div class="dropdown-content">
+      <button id="localBtn" onclick="showSection('local')">
+  <span class="btn-label">
+    Local Community
+    <span class="red-dot" id="LocalDot"></span>
+  </span>
+</button> -->
+
+<!--<button id="forumBtn" onclick="showSection('forum')">
+  <span class="btn-label">
+    Anonymous Forum
+    <span class="red-dot" id="ForumDot"></span>
+  </span>
+</button>
+      <button id="mentorshipBtn" onclick="showSection('mentorship')">Mentorship</button>
+    </div>
+  </div>-->
+
+  <!-- 🧸 Achievements -->
+  <div class="dropdown" id="playgroundDropdown">
+    <button>🧸 <span class="red-dot" id="playgroundDot"></span> </button>
+    <div class="dropdown-content">
+      <button id="leaderboardsBtn" onclick="showSection('leaderboards')">Leaderboards</button>
+      <button id="achievementsPageBtn" onclick="showSection('achievements')">Achievements</button>
+      <button id="shopBtn" onclick="showSection('shop')">Shop</button>
+      <button id="challengesBtn" onclick="showSection('challenges')"> 
+        <span class="btn-label">Challenges 
+          <span class="red-dot" id="challengesDot"></span> 
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ☰ Menu -->
+  <div class="dropdown">
+    <button>☰</button>
+    <div class="dropdown-content">
+<!--  <button id="recommendationsBtn" onclick="showSection('recommendations')">Recommendations</button> -->
+<!--  <button id="sourcesBtn" onclick="showSection('sources')">Sources</button>  -->
+      <button id="subscriptionsBtn" onclick="showSection('subscriptions')">Subscriptions</button>     
+      <button id="aboutUsBtn" onclick="showSection('aboutus')">About Us</button>
+      <button id="contactUsBtn" onclick="showSection('contactus')">Contact Us</button>
+      <button id="settingsBtn" onclick="showSection('systemsettings')">Settings</button>
+    </div>
+  </div>
+
+</div>
+
+  </div>  
+<!-- End Home Page-->
+ <!-- End Home Page-->
+  <!-- End Home Page-->
+   <!-- End Home Page-->
+    <!-- End Home Page-->
+
+
+
+
+
+
+<!-- Main features -->   
+ <!-- Main features -->   
+  <!-- Main features -->   
+   <!-- Main features -->   
+<!-- Meal Art Contest -->
+ <!-- Meal Art Contest -->
+  <!-- Meal Art Contest -->
+   <!-- Meal Art Contest -->
+    <div id="mealartcontest" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      
+      
+      <div id="mealArtContestSmall" class="tab-content">
+  <!-- Header / Intro -->
+  <div class="meal-art-header">
+    <h2 id="mealArtHeaderTitle">Meal Art Contest</h2>
+    <p class="generalnote" id="generalnote" style="display: inline-block">Upload your meal art from Tuesday to Sunday. Voting is on Monday.</p>
+
+    <!-- Buttons -->
+  <div class="header-buttons">
+  <button id="uploadBtn" class="hidden-meal">Upload My Meal</button>
+  
+  <p class="uploadnote hidden-meal" id="uploadnote">
+    <a href="#" id="openProKitchenPopup">Request Pro Kitchen access</a>
+  </p>
+  
+  <p class="votenote hidden-meal" id="votenote">It's a vote day! Pick your favorite!</p>
+  
+  <!-- New message when user already uploaded -->
+  <p class="already-uploaded hidden-meal" id="alreadyUploadedMsg" style="color: green; font-weight: bold;">
+    You uploaded your meal this week, congratulations!
+  </p>
+</div>
+  </div>
+
+  <!-- Main Tabs: Current Participants / Past Winners -->
+  <div class="meal-art-main-tabs">
+    <button class="main-tab active" data-tab="participants" id="participantsTab">Current Participants</button>
+    <button class="main-tab" data-tab="past-winners" id="pastWinnersTab">Past Winners</button>
+  </div>
+
+  <!-- Participants Gallery -->
+<div class="main-tab-content" id="participants">
+  <div class="participants-gallery">
+    <div class="category-column" id="home-chef-column">
+      <h4 id="homeChefCategory1">Home Chef</h4>
+      <!-- JS will insert current week meals here -->
+      <div class="current-week-gallery" id="home-chef-gallery"></div>
+    </div>
+
+    <div class="category-column" id="pro-kitchen-column">
+      <h4 id="proKitchenCategory1">Pro Kitchen</h4>
+      <!-- JS will insert current week meals here -->
+      <div class="current-week-gallery" id="pro-kitchen-gallery"></div>
+    </div>
+  </div>
+</div>
+
+<div class="main-tab-content" id="past-winners">
+  <div class="past-winners-columns">
+    <div class="category-column" id="home-chef-past">
+      <h4 id="homeChefCategory2">Home Chef</h4>
+      <!-- JS will insert winners here -->
+      <div class="winner-list" id="home-chef-winners"></div>
+    </div>
+
+    <div class="category-column" id="pro-kitchen-past">
+      <h4 id="proKitchenCategory2">Pro Kitchen</h4>
+      <!-- JS will insert winners here -->
+      <div class="winner-list" id="pro-kitchen-winners"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+
+<div id="mealArtUploadTab" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);">
+<div class="MealArtUploadContent hidden-meal" id="MealArtUploadContent">
+  <h2 class="UploadYourMeal" id="uploadYourMealTitle">Upload Your Meal</h2>
+  <p class="rule" id="plantBasedRule">Only plant-based meals are allowed!</p>
+
+  <form id="mealUploadForm">
+    <!-- Required Photo -->
+    <label for="mealPhoto" id="mealPhotoLabel">Meal Photo <span style="color:red">*</span></label>
+    <input type="file" id="mealPhoto" name="mealPhoto" accept="image/*" required>
+
+    <!-- Preview Area -->
+    <div class="mealArtpreview hidden-meal" id="mealArtphotoPreview">
+      <img id="mealArtpreviewImage" src="" alt="Meal Preview">
+    </div>
+
+    <!-- Optional Recipe -->
+     <p class="recipe-note" id="recipeNote">Fill all boxes to make your recipe available:</p>
+
+    <label for="recipeName" id="recipeNameLabel">Recipe Name <span class="optional-label">(optional)</span></label>
+    <input type="text" id="mealArtrecipeName" name="mealArtrecipeName" placeholder="E.g., Vegan Lasagna">
+    
+    <label for="mealArtPrepTime" id="prepTimeLabel">Preparation Time <span class="optional-label">(optional)</span></label>
+    <input type="text" id="mealArtPrepTime" name="mealArtPrepTime" placeholder="E.g., 30 mins">
+    
+    <!-- Ingredients -->
+    <label for="mealArtrecipeIngredients" id="ingredientsLabel">Ingredients <span class="optional-label"  id="optional1">(optional)</span></label>
+    <textarea id="mealArtrecipeIngredients" name="mealArtrecipeIngredients" placeholder="List ingredients here..." maxlength="1000"></textarea>
+    <small id="ingredientsCharCount">0/1000</small>
+
+    <!-- Instructions -->
+    <label for="mealArtrecipeInstructions" id="instructionsLabel">Instructions <span class="optional-label"  id="optional2">(optional)</span></label>
+    <textarea id="mealArtrecipeInstructions" name="mealArtrecipeInstructions" placeholder="Write instructions here..." maxlength="1000"></textarea>
+    <small id="instructionsCharCount">0/1000</small>
+
+    <button class= "button" id="sbmtMealArtBtn" type="submit">Submit Meal</button>
+  </form>
+
+
+</div>
+
+</div>
+
+<!-- LEARN -->
+ <!-- LEARN -->
+  <!-- LEARN -->
+   <!-- LEARN -->
+
+  <div id="checkin" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
+  
+<div id="checkinCard" class="boxDCI">
+
+  <!-- TOP: avatar + lesson -->
+  <div class="topRowDCI">
+    <div id="petAvatarDCI"></div>
+    <div id="lessonContent">
+      <div id="dailyLessonDCI" class="lesson-boxDCIN"></div>
+    </div>
+  </div>
+
+  <!-- MEALS (hidden at first) -->
+  <div id="mealSection" class="hiddenDCIANIMATION">
+    <label class="bigLabelDCI" id="mealsQuestion"></label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="1">
+      <span id="mealOption1"></span>
+    </label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="2">
+      <span id="mealOption2"></span>
+    </label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="3">
+      <span id="mealOption3"></span>
+    </label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="4">
+      <span id="mealOption4"></span>
+    </label>
+  </div>
+
+  <!-- BUTTONS (hidden at first) -->
+  <div id="actionButtons" class="hidden">
+    <button class="button" id="submitAndSupportBtnDCI">▶️ Submit & Support +2🏅</button>
+    <button class="button" id="submitBtnDCI">Submit</button>
+    <button class="button" onclick="starterSubmit()" style="display: none;" id="startSubmitBtnDCI">Submit</button>
+  </div>
+
+</div>
+
+
+  <!-- LESSON 
+  <div id="lessonsectionDCI" class="boxDCI"> 
+    <div id="petAvatar"></div>
+        <label class="bigLabelDCI" id="todayLessonLabel"></label> 
+    <div id="dailyLessonDCI" class="lesson-boxDCI"></div>
+  </div>
+
+
+  <div id="mealsectionDCI" class="boxDCI">
+    <label class="bigLabelDCI" id="mealsQuestion"></label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="1">
+      <span id="mealOption1"></span>
+    </label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="2">
+      <span id="mealOption2"></span>
+    </label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="3">
+      <span id="mealOption3"></span>
+    </label>
+
+    <label class="checkbox-labelDCI">
+      <input type="radio" name="mealsDCI" value="4">
+      <span id="mealOption4"></span>
+    </label>
+  </div>
+
+  <button class="button" id="submitAndSupportBtnDCI"> ▶️ Submit & Support +2🏅 </button>
+  <button class="button" id="submitBtnDCI">Submit</button>
+  <button class="button" onclick="starterSubmit()" style="display: none;" id="startSubmitBtnDCI">Submit</button>
+  
+  -->
+  
+  
+  
+  
+  
+  
+    <!-- DAILY CHECK-IN  
+    <div id="quizDCI" class="boxDCI step step-1"> 
+    </div>
+      <button class="button nextBtnDCI" id="nextDCI1">Next</button>
+
+    <div id="lessonsectionDCI" class="boxDCI step step-2">
+      <label class="bigLabelDCI" id="todayLessonLabel">Your lesson for today:</label>
+      <div id="dailyLessonDCI" class="lesson-boxDCI"></div>
+      <button class="button nextBtnDCI" id="nextDCI2">Next</button>
+    </div>
+
+    <div id="mealsectionDCI" class="boxDCI step step-3">
+      <label class="bigLabelDCI" id="mealsQuestion">How many fully plant-powered meals did you enjoy yesterday?</label>
+
+      <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="1"> <span id="mealOption1">Oops! My plate betrayed me 😅 </span></label>
+      <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="2"> <span id="mealOption2">Some plant magic in my meals ✨</span></label>
+      <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="3"> <span id="mealOption3">Plant-powered most of the day! 🌿</span></label>
+      <label class="checkbox-labelDCI"><input type="radio" name="mealsDCI" value="4"> <span id="mealOption4">I was fully powered by plants! 🌱</span></label>
+      <button class="button nextBtnDCI" id="nextDCI3">Next</button>
+    </div>
+
+    <div id="streakSectionDCI" class="boxDCI step step-3-5">
+      <label class="bigLabelDCI" id="streakQuestion"></label>
+
+        <div id="streakButtons">
+          
+        </div>
+    </div>
+
+   
+
+    <div id="petDCI" class="boxDCI step step-4">
+ 
+  <div id="petMessageCard" class="lesson-boxDCI">
+    <div class="petHeader">
+      <img id="petStepAvatar" class="avatarSmall" src="" alt="avatar" />
+  </div>
+
+    <div id="petStepMessage" class="petMessage">
+
+  <div id="petMessageWrapper" class="pet-wrapper"></div>
+  <div id="petMessageBox" class="pet-box"></div>
+</div>
+</div>
+    <button class="button" id="submitAndSupportBtnDCI"> ▶️ Submit & Support +2🏅 </button>
+    <button class="button" id="submitBtnDCI">Submit</button>
+    <button class="button" onclick="starterSubmit()" style="display: none;" id="startSubmitBtnDCI">Submit</button>
+  </div>
+</div>
+
+-->
+
+</div>
+
+
+<div id="starterGuide" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
+
+  <div class="starter-container">
+    <h2 class="starter-title">How do you want to continue?</h2>
+
+    <div class="starter-options">
+
+      <button class="starter-btn" onclick="showSection('learn')">
+        📘 Start learning
+      </button>
+
+      <button class="starter-btn" onclick="showSection('local')">
+        👥 Check out my local community
+      </button>
+
+      <!-- Group (NOT clickable) -->
+      <div class="starter-group">
+        <div class="starter-group-title">
+          🍽️ See meals
+        </div>
+
+        <div class="starter-sub-options">
+          <button class="starter-sub-btn" onclick="showSection('recipes')">
+            📖 Recipes
+          </button>
+
+          <button class="starter-sub-btn" onclick="showSection('mealartcontest')">
+            🎨 Meal-art contest
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+  <!-- LESSON PATH  -->
+<div id="learn" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(safe-area-inset-bottom, 80px);">
+    <div class="learning-path-head">
+      <h2 id="learnTitle">Learn</h2> 
+    <div class="learning-path-buttons">
+      <button class="path-btn" data-path="animals" id="pathAnimalsBtn">For the Animals</button>
+      <button class="path-btn" data-path="earth" id="pathEarthBtn">For the Earth</button>
+      <button class="path-btn" data-path="health" id="pathHealthBtn">For Health</button>
+    </div>
+    </div>
+
+    <div class="courses">
+      <div class="course hidden" id="animals"><ul class="extralesson-list"></ul></div>
+      <div class="course hidden" id="earth"><ul class="extralesson-list"></ul></div>
+      <div class="course hidden" id="health"><ul class="extralesson-list"></ul></div>
+    </div>
+</div>
+
+<!-- Recipes -->
+ <!-- Recipes -->
+  <!-- Recipes -->
+   <!-- Recipes -->
+    <div id="recipes" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      <h2 id="recipesTitle">Recipes</h2>
+  <div id="recipes-container" class="recipes-container">
+    <!-- Recipes will be loaded here dynamically -->
+  </div>
+  <!-- Upload Recipe Button -->
+  <button id="openUploadBtn" class="upload-btn">➕ Upload Your Own Recipe</button>
+    </div>
+   
+
+
+
+
+
+
+
+    <!-- Profile subsections -->
+     <!-- Profile subsections -->
+      <!-- Profile subsections -->
+       <!-- Profile subsections -->
+<!-- profile -->   
+ <!-- profile -->   
+  <!-- profile -->   
+   <!-- profile -->        
+<div id="profile" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+  <div class="containersettings active">
+    <h1 class="settingsh1" id="myProfileTitle">My Profile</h1>
+
+    <div class="profile-sectionsettings">
+        <img id="profilePhotoprofile" class="profile-photosettings" src="blankphoto.jpg" alt="Profile Photo">
+        <div class="profile-infosettings">
+            <div class="info-itemsettings"><strong id="nameLabel">Name:</strong> <br><span id="profileName">-</span></div>
+            <div class="info-itemsettings"><strong id="dietLabel">Diet:</strong><br> <span id="diet">-</span></div>
+        </div>
+    </div>
+
+<div class="profile-counterssettings">
+  <span class="countersettings">🌍 <span id="currentLevelprofile">0</span></span>
+  <span class="countersettings">🔥 <span id="streak-counterprofile">0</span></span>
+  <span class="countersettings">🏅 <span id="badgeprofile">0</span></span>
+</div>
+
+    <div class="section-titlesettings" id="goalsTitle">Goals</div>
+<ul id="goalsList" class="details-listsettings"></ul>
+
+<div id="healthTitle" class="section-titlesettings">Health Issues</div>
+<ul id="healthIssuesList" class="details-listsettings"></ul>
+
+<!-- ✅ Move Achievements here -->
+  <div class="section-titlesettings" id="achievementsTitle">Achievements</div>
+  <div id="AchievementsListSettings" class="details-listsettings"></div>
+
+    <div class="profile-sectionsettings">
+        <img id="petPhotoprofile" class="pet-photosettings" src="defaultPet.jpg" alt="Pet Photo">
+        <div class="profile-infosettings">
+            <div class="info-item"><strong id="buddyNameLabel">Buddy's Name:</strong> <br><span id="petNameprofile">-</span></div>
+        </div>
+    </div>
+    <a href="#" class="editprofile"> <button id="editProfileBtn">Edit profile</button></a>
+
+  </div>
+</div>
+
+<div id="editProfileTabBtn" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);">
+
+  <div class="containeredit">
+    <h1 class="settingsh1" id="editProfileTitle">Edit My Profile</h1>
+
+  
+    <!-- Profile Info -->
+      <div class="profile-sectionsettings">
+        <img id="profilePhotoPreview" class="profile-photosettings" src="blankphoto.jpg" alt="Profile Photo">
+        <input type="text-hidden" id="profilePhotoInput">
+
+        <div class="profile-infoedit">
+          <div class="info-itemsettings">
+        <label for="profileNameInput"><strong id="usernameLabel">Username:</strong></label>
+        <div class="dob-container">
+          <input type="text" id="profileNameInput" placeholder="Enter your name" maxlength="15"><br>
+          <small id="profileNameCharCount">0/15</small>
+        </div>
+        </div>
+          <div class="info-itemsettings">
+
+        <label for="profileDietSelect"><strong id="dietEditLabel">Diet:</strong></label>
+  <select id="profileDietSelect">
+    <option value="Vegan" id="dietOptionVegan">Vegan</option>
+    <option value="InTransition" id="dietOptionInTransition">In Transition</option>
+    <option value="Vegetarian" id="dietOptionVegetarian">Vegetarian</option>
+    <option value="Pescatarian" id="dietOptionPescatarian">Pescatarian</option>
+    <option value="Flexitarian" id="dietOptionFlexitarian">Flexitarian</option>
+    <option value="Omnivore" id="dietOptionOmnivore">Omnivore</option>
+  </select>
+          </div>
+        </div>
+      </div>
+
+          <div class="changebtn">
+            <input type="file" id="profilePhotoUpload" accept="image/*" style="display: none;">
+            <button class="button" id="changeProfilePhotoBtn">Change Profile Photo</button>
+          </div>
+
+      <!-- Lists -->
+      <!-- Q2: Goals -->
+<div class="question" id="q2">
+  <div class="section-titleedit" id="editGoalsTitle">Goals:</div>
+
+  <label class="checkbox-label">
+    <input type="checkbox" name="goal" value="Protecting animals & animal welfare">
+    <p id="goalOption1">Protecting animals</p>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="goal" value="Caring for the environment & fighting climate change">
+    <p id="goalOption2">Caring for the environment</p>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="goal" value="Healthy living & wellness">
+    <p id="goalOption3">Healthy living</p>
+  </label> <br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="goal" value="Solving health issues">
+    <p id="goalOption4">Solving health issues</p>
+  </label> 
+  
+  <!--<br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="goal" value="Boosting my performance as an athlete">
+    <p id="goalOption5">Boosting my performance as an athlete</p>
+  </label>-->
+
+</div>
+
+<!-- Q2b: Health Issues (shown only if "Solving health issues" is checked) -->
+<div class="question" id="q2b">
+  <div class="section-titleedit" id="editHealthTitle">Health Issues:</div>
+
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Heart disease">
+    <span id="healthOption1">Heart disease</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="High cholesterol">
+    <span id="healthOption2">High cholesterol</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="High blood pressure">
+   <span id="healthOption3"> High blood pressure</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Type 2 diabetes">
+    <span id="healthOption4">Type 2 diabetes</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Obesity">
+    <span id="healthOption5">Obesity</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Digestive issues">
+    <span id="healthOption6">Digestive issues</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Inflammation or swelling">
+    <span id="healthOption7">Inflammation or swelling</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Fatigue">
+    <span id="healthOption8">Fatigue</span>
+  </label><br>
+  <label class="checkbox-label">
+    <input type="checkbox" name="healthIssue" value="Cancer risk">
+    <span id="healthOption9">Concerned about cancer risk</span>
+  </label>
+</div>
+
+
+      <!-- Pet Info -->
+      <div class="profile-sectionsettings"><br>
+        <img id="petPhotoPreview" class="pet-photosettings" src="defaultPet.jpg" alt="Pet Photo"> 
+        <input type="text-hidden" id="petPhotoInput">
+        <div class="profile-infoedit">
+          <div class="info-itemsettings">
+        <label for="petNameInput"><strong id="buddyNameEditLabel">Buddy's Name:</strong></label>
+        <div class="dob-container">
+          <input type="text" id="petNameInput" placeholder="Enter pet name" maxlength="15"><br>
+          <small id="petNameCharCount">0/15</small>
+        </div>
+        </div>
+          <div class="info-itemsettings">
+            <input type="file" id="petPhotoUpload" accept="image/*" style="display: none;">
+            <button class="button" id="changePetPhotoBtn">Change Buddy Photo</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin:1rem 0;">
+        <button class="button" id="saveBtn">💾 Save Profile</button>
+      </div> 
+   
+</div>
+  </div>
+
+
+<!-- Friends -->
+ <!-- Friends -->
+  <!-- Friends -->
+   <!-- Friends -->
+    <div id="friends" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      <!-- Search / Send Request -->
+  <div class="friend-search-container">
+    <button id="openSearchPopup" class="search-btn">🔎 Connect with a friend</button>
+  </div>
+
+
+  <!-- Incoming Requests -->
+  <ul id="incomingRequestsList"></ul>
+
+  <!-- Accepted Friends -->
+  <p class="friendsTitle" id="friendsTitleLabel">Friends:</p>
+  <ul id="friendsList"></ul>
+    </div>
+
+<!-- Messages -->
+ <!-- Messages -->
+  <!-- Messages -->
+   <!-- Messages -->
+<!-- Messages -->
+<div id="messages" class="page hidden" >
+
+  <div class="messages-container">
+    <!-- Chat List -->
+    <div id="chatListView">
+      <div class="chat-list-header"><h3 id="messagesTitle">Chats</h3></div>
+      <ul id="chatListItems"></ul>
+    </div>
+
+    <!-- Chat View -->
+    <div id="chatView" class="hidden">
+      <div class="chat-header">
+        <span id="backToList" class="back-arrow">⬅️</span>
+        <img id="chatHeaderAvatar" class="chat-avatar" />
+        <span id="chatHeader">Chat</span>
+
+        <!-- Single action button -->
+  <div class="chat-actions">
+    <span id="actionButton">⋮</span>
+    <div id="chatdropdownMenu" class="chatdropdown-menu">
+      <div id="deleteChatBtn" class="chatdropdown-item">Clear Chat</div>
+      <div id="blockUserBtn" class="chatdropdown-item">Block User</div>
+    </div>
+  </div>
+
+      </div>
+
+      <!-- Messages -->
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <!-- Input -->
+      <div class="chat-input">
+        <input type="text" id="messageInput" placeholder="Type a message..." maxlength="1000">
+        <small id="messageCharCount">0/1000</small>
+        <button id="sendMessageBtn">Send</button>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+
+
+
+
+    <!-- Community subsections -->
+     <!-- Community subsections -->
+      <!-- Community subsections -->
+       <!-- Community subsections -->
+  
+<!-- Local Community -->
+ <!-- Local Community -->
+  <!-- Local Community -->
+   <!-- Local Community -->
+
+    <div id="local" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      
+      <div id="communityCardWrapper">
+  <div class="community-card" id="joinCommunityCard">
+    <h5 class="localCommunityh2" id="findLocalCommunityLabel">Find your local community</h5>
+    <select id="countrySelect">
+      <option value="">Select country</option>
+    </select>
+    <select id="citySelect" disabled>
+      <option value="">Select city</option>
+    </select>
+    <button id="joinCommunityBtn" disabled>Join Community</button>
+    <button id="leaveCommunityBtn" style="display:none;">Leave Community</button>
+    <p id="joinedCommunityText" style="margin-top:1rem;"></p>
+  </div>
+
+  <!-- Community Dashboard (hidden by default) -->
+  <div class="community-dashboard" id="communityDashboard" style="display:none;">
+  <div class="community-section">
+    <h3 id="communityTitle"></h3> <!-- Title will be inserted here -->
+    <div class="community-section-header" id="communityChatHeader">Community Chat ▼</div>
+    <div class="community-section-content" id="communityChatSection">
+      <div id="communityMessages" class="chat-box"></div>
+  
+    <div class="chat-input-container">
+      <input type="text" id="communityMessageInput" placeholder="Type a message..." maxlength="1000">
+      <small id="communityMessageCounter">0/1000</small>
+    </div>
+  
+    <button id="sendCommunityMessageBtn">Send</button>
+  </div>
+
+  </div>
+
+  <div class="community-section">
+    <div class="community-section-header" id="upcomingEventsHeader">Upcoming Events ▼</div>
+    <div class="community-section-content" id="communityEventsSection">
+    
+    <ul id="communityEventsList">
+      <!-- Events populated dynamically -->
+    </ul>
+    <!-- Create Event Form -->
+    <div id="createEventForm">
+      <button id="createEventBtn">Create Event</button>
+      
+      <div id="createEventInputs" style="display:none; margin-top:0.5rem;">
+        <input type="text" id="eventPlaceInput" placeholder="Event place" />
+        <div class="event-description-container">
+          <input type="text" id="eventDescriptionInput" placeholder="Description" maxlength="300" />
+          <small id="eventDescriptionCounter">0/300</small>
+        </div>
+        <input type="datetime-local" id="eventTimeInput" />
+    <button id="submitEventBtn">Submit Event</button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="community-section">
+  <div class="community-section-header" id="membersHeader">Members ▼</div>
+  <div class="community-section-content" id="communityMembersSection" style="display: none;">
+    <ul id="communityMembersList">
+      <!-- Members populated dynamically -->
+    </ul>
+  </div>
+</div>
+
+<!-- Local Businesses Section -->
+<div id="localBusinessesSection" style="margin:1rem 0;">
+  <h3 id="localPartnersHeader">Local Partners:</h3>
+  <div id="localBusinessesList" style="display:flex; flex-direction: column; gap:1rem;">
+    <!-- Businesses will be populated dynamically here -->
+  </div>
+</div>
+
+<!-- Local Business Banner -->
+<div id="localBusinessBanner" style="
+    background-color: #fffae6;
+    border: 1px solid #ffd700;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+">
+    <span id="localBusinessBannerText">Put your local business here!</span>
+
+    <a href="#" id="openLocalBusinessPopup" style="color: #007bff; text-decoration: underline;">
+       Contact us
+    </a>
+</div>
+
+  <button id="leaveCommunityDashboardBtn">Leave Community</button>
+</div>
+
+</div>
+    </div>
+
+<!-- Anonymous Forum -->
+ <!-- Anonymous Forum -->
+  <!-- Anonymous Forum -->
+   <!-- Anonymous Forum -->
+    <div id="forum" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      
+      <!-- Anonymous forum -->
+    <section class="AFsection" id="forum">
+        <div class="AFsection-content">
+  <p class="forum-quote">
+  <span class="quote-text" id="forumQuoteText">
+    <em>"That is the best of humanity: When we support each other. Not when we cancel each other out for past mistakes, but when we help each other to grow."</em>
+  </span>
+  
+  <span class="quote-source" id="forumQuoteSource">
+    <a href="https://www.youtube.com/watch?v=WVPw0UrjLuo" target="_blank" rel="noopener noreferrer" class="quote-link">
+      — Joaquin Phoenix, Oscars 2020
+    </a>
+  </span>
+  
+  <span class="forum-guideline" id="forumGuideline">
+    Please share your thoughts kindly and help others grow 🧡
+  </span>
+</p>
+
+<ul id="forumMessages"></ul>
+
+<div id="newBlock">
+  <textarea id="blockContent" placeholder="Open a topic anonymously..." rows="3" maxlength="1000"></textarea>
+  <small id="blockContentCounter">0/1000</small>
+  <button id="submitBlockBtn">Submit</button>
+</div>
+      
+        </div>
+    </section>
+
+
+
+    </div>
+
+<!-- Mentorship -->
+ <!-- Mentorship -->
+  <!-- Mentorship -->
+   <!-- Mentorship -->
+
+    <div id="mentorship" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+       <section class="section" id="buddy">
+  <h2 id="buddySystemHeader">Find a mentor 🤝</h2>
+
+  <div class="section-content">
+    <p id="ConnectWithAMentor">Connect with someone who has been vegan longer for mentorship.</p>
+    <!-- Row to display if user is already a mentor -->
+<div id="alrdymentor" style="display: none;">
+  <p class="youareamentorP" id="youAreAMentor"> You are a mentor </p>
+  <button id = "endmentorship">End mentorships</button>
+</div>
+
+ <p id="mentorsTitle" class="mentorlisttitle">Mentors:</p> 
+    <!-- Mentor list -->
+    <ul id="mentorsList" class="mentor-list"></ul>
+<!-- Apply to be mentor button -->
+    <button id="applyMentorBtn">Apply to be a mentor</button>
+
+ 
+
+    
+  </div>
+</section>
+
+</div>
+
+
+
+
+    <!-- Playground subsections -->
+     <!-- Playground subsections -->
+      <!-- Playground subsections -->
+       <!-- Playground subsections -->
+
+<!-- LeaderBoards -->
+ <!-- LeaderBoards -->
+  <!-- LeaderBoards -->
+   <!-- LeaderBoards -->
+  <div id="leaderboards" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      
+      <div class="leaderboard-container" id="leaderboards">
+<h2 id="leaderboardsHeader">Leaderboards</h2>
+  <!-- Overall Leaderboards -->
+  <div class="leaderboard" data-period="overall">
+    <h3 id="biggestImpactHeader" onclick="toggleListLeader(this)">Biggest Impact</h3>
+    <ul id="overall-impact">
+      <!-- JS will insert top 10 impact users here -->
+    </ul>
+  </div>
+
+  <div class="leaderboard" data-period="overall">
+    <h3 id="mostXPHeader" onclick="toggleListLeader(this)">Most XP</h3>
+  <ul id="overall-level">
+    <!-- JS will insert top 10 users by XP here -->
+  </ul>
+  </div>
+
+  <div class="leaderboard" data-period="overall">
+    <h3 id="biggestStreakHeader" onclick="toggleListLeader(this)">Biggest Streak</h3>
+    <ul id="overall-streak">
+      <!-- JS will insert top 10 streak users here -->
+    </ul>
+  </div>
+
+  <div class="leaderboard" data-period="overall">
+    <h3 id="mostBadgeHeader" onclick="toggleListLeader(this)">Most Badge</h3>
+    <ul id="overall-badge">
+      <!-- JS will insert top 10 badge users here -->
+    </ul>
+  </div>
+
+</div>
+
+</div>
+
+<!-- Achievements -->
+ <!-- Achievements -->
+  <!-- Achievements -->
+   <!-- Achievements -->
+<div id="achievements" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+         
+<section id="AchievementsInfo">
+<p id="achievementsInfoText">Earn achievements to unlock special titles that appear next to your name and are visible to the community. You can proudly display these rewards on your profile card to show off your progress and impact.</p>
+</section>
+
+<section id="AchievementsList"></section>
+    
+    </div>
+
+<!-- Shop -->
+ <!-- Shop -->
+  <!-- Shop -->
+   <!-- Shop -->
+    <div id="shop" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px); padding-bottom: 8rem;"> 
+       
+      <!-- 🪙 Wallet section -->
+  <section id="ShopWallet">
+    <div class="badge-count">
+      <div class="badge-icon">🏅</div>
+      <span id="badgeCountText">Your Badges: </span> <span id="badge-countshop">0</span>
+    </div>
+  </section>
+
+  <!-- 🌱 How to get badges -->
+  <section id="ShopMethods">
+  <h3 id="shopMethodsHeader">How to get badges</h3>
+  <ul>
+    <li>
+       <button class="watchAdBtn" id="watchAdBtn">Watch an Ad>Watch an Ad</button> → <span id="watchAdReward">+2 badges and +3 XPs per ad</span>
+    </li>
+    <li id="veganChallengesText">Complete vegan challenges</li>
+    <li id="streakText">Keep your plant-based streak alive 🌿</li>
+  </ul>
+</section>
+
+  <!-- 🛍️ Product list -->
+  <section id="ShopProducts"></section>
+</div>
+
+
+
+<!-- Challenges -->
+ <!-- Challenges -->
+  <!-- Challenges -->
+   <!-- Challenges -->
+    <div id="challenges" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      
+<div class="challenge-list" id="daily-challenges">
+
+  <div class="challenge-card" id="daily-xp-challenge">
+    <h3 id="dailyXpTitle">Daily Challenge — Earn 50 XP</h3>
+    <p id="dailyXpDesc">Complete your daily goal by earning 50 XP today through lessons and activities.</p>
+    
+    <div class="reward" id="dailyXpReward">
+      🏅 Reward: +3 Badges + 3 Xps
+    </div>
+    
+    <div class="progress">
+      <div id="daily-xp-progress" style="width:0%"></div>
+    </div>
+
+    <div class="badge-count" id="daily-xp-text">Progress: 0 / 50 XP</div>
+    <button id="daily-xp-claim" disabled>Claim Reward</button>
+  </div>
+
+  <div class="challenge-card" id="learnChallenge">
+  <h3 id="learnChallengeTitle">📚 Learn Something New</h3>
+  <p id="learnChallengeDesc">Complete a new lesson in every path today:</p>
+  <ul>
+    <li><span id="animalLabel">Animal</span>: <span id="animalStatus">❌</span></li>
+    <li><span id="earthLabel">Earth</span>: <span id="earthStatus">❌</span></li>
+    <li><span id="healthLabel">Health</span>: <span id="healthStatus">❌</span></li>
+  </ul>
+  <div class="progress"><div id="learnProgress" style="width:0%"></div></div>
+  <div class="reward" id="learnChallengeReward">Reward: 🏅 +3 Badges +3 Xps</div>
+  <button id="learnClaimBtn" disabled>Claim Reward</button>
+</div>
+
+<div class="challenge-card" id="mindfulChallenge">
+  <h3 id="mindfulChallengeTitle">🧘 Take Care of Yourself</h3>
+  <p id="mindfulChallengeDesc">Take 5 minutes for self-care. Meditate, stretch, or take a walk — the goal is to clear your mind, relax, and take deep, calm breaths.</p>
+  <div class="reward" id="mindfulChallengeReward">Reward: 🏅 +5 Badge +5 XPs</div>
+  <button id="mindfulStartBtn">Start 5-Minute Timer</button>
+  <div id="mindfulTimer" style="margin-top:10px;font-weight:bold;"></div>
+ 
+</div>
+
+<div class="challenge-card" id="encourageChallenge">
+  <h3 id="encourageChallengeTitle">💖 Encourage Someone</h3>
+  <p id="encourageChallengeDesc">Send a kind message to encourage a friend today!</p>
+
+  <!-- Friend selector -->
+  <label for="friendSelect" id="chooseFriendLabel" style="display:block;margin-top:5px;">Choose a friend:</label>
+  <select id="friendSelect" style="width:100%;margin-bottom:5px;">
+    <option value="" disabled selected class="placeholderOption">Select a friend</option>
+    <!-- Friends will be dynamically loaded here -->
+  </select>
+
+   <!-- User message with fixed template --> 
+    <label for="encourageMessage" id="yourMessageLabel" style="display:block;margin-top:5px;">Your message:</label>
+
+  <!-- Message template display -->
+  <div id="encourageTemplateStart" style="margin:5px 0; font-size:14px; color:#555;">
+    "I've chosen you to encourage in my daily challenge.
+  </div>
+
+  <!-- User message input -->
+  <textarea id="encourageMessage" placeholder="[your message]" style="width:100%;height:80px;margin-bottom:5px;"></textarea>
+
+  <!-- Template ending -->
+  <div id="encourageTemplateEnd" style="margin:5px 0; font-size:14px; color:#555;">
+    Keep going 🌱"
+  </div>
+
+  <div class="reward" id="encourageReward">Reward: 🏅 +2 Badge +2 Xps</div>
+  <button id="sendEncourageBtn">Send Message</button>
+</div>
+
+</div>
+
+</div>
+ 
+
+
+
+
+    <!-- Menu subsections -->
+     <!-- Menu subsections -->
+      <!-- Menu subsections -->
+       <!-- Menu subsections -->
+
+<!-- Recommendations -->
+ <!-- Recommendations -->
+  <!-- Recommendations -->
+   <!-- Recommendations -->
+      <div id="recommendations" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+      <h2 id="rec-title" class="recommendation-title">📚 Recommendations</h2>
+
+  <!-- Books -->
+  <div class="recommendation-section" id="recommendation-books">
+    <h3 id="rec-books-title" class="recommendation-subtitle">Books</h3>
+    <ul class="recommendation-list">
+    <li id="rec-book-1" class="recommendation-item">
+      "How Not to Die" <em>by Michael Greger, M.D.</em>
+    </li>
+    <li id="rec-book-2" class="recommendation-item">
+      "Debunking every argument against veganism" <em>by Danny Ishay</em>
+    </li>
+    <li id="rec-book-3" class="recommendation-item">
+      "How to argue with a meat eater and always win" <em>by Ed Winters</em>
+    </li>
+    </ul>
+  </div>
+
+  <!-- Movies -->
+  <div class="recommendation-section" id="recommendation-movies">
+    <h3 id="rec-movies-title" class="recommendation-subtitle">Movies</h3>
+    <ul class="recommendation-list">
+    <li id="rec-movie-1" class="recommendation-item">
+      "Cowspiracy" (Netflix, 2014) – Explores the environmental impact of animal agriculture.
+    </li>
+    <li id="rec-movie-2" class="recommendation-item">
+      "The Game Changers" (Netflix, 2018) – Focuses on plant-based diets for athletes and performance.
+    </li>
+    <li id="rec-movie-3" class="recommendation-item">
+      "Earthlings" (2005) – Powerful documentary on human use of animals.
+    </li>
+    <li id="rec-movie-4" class="recommendation-item">
+      "Dominion" (2018) – Investigates the treatment of animals in modern industries.
+    </li>
+    </ul>
+  </div>
+
+  <!-- Websites -->
+  <div class="recommendation-section" id="recommendation-websites">
+    <h3 id="rec-websites-title" class="recommendation-subtitle">Websites</h3>
+    <ul class="recommendation-list">
+    <li id="rec-website-1" class="recommendation-item">
+      <a href="https://www.veganuary.com" target="_blank">Veganuary</a> – Support and resources for trying veganism for a month (or longer!).
+    </li>
+    <li id="rec-website-2" class="recommendation-item">
+      <a href="https://www.nutritionfacts.org" target="_blank">NutritionFacts.org</a> – Evidence-based information on plant-based nutrition.
+    </li>
+    </ul>
+  </div>
+    
+      </div>
+
+<!-- Subscriptions -->
+ <!-- Subscriptions -->
+  <!-- Subscriptions -->
+   <!-- Subscriptions -->
+   <div id="subscriptions" class="page hidden"> 
+      <h3 id="subscriptionsTitle">Memberships</h3>
+  <p id="subscriptionsIntro">
+    Want to support us long-term and unlock extra rewards? Become a member! You’ll get XP boosts, badges, and special recognition. 
+  </p>
+
+  <div id="membership-list" >
+    <h4 id="membershipTiersTitle">🌟 Membership Tiers</h4>
+    <div class="membership-cardssupportus">
+
+      <div class="membership-cardsupportus">
+        <h5 id="seedMemberTitle">Seed Member 🌱</h5>
+        <p id="seedMemberPrice">€2 / month</p>
+        <ul>
+          <li id="seedMemberBenefit1">+10% XP boost on all activities & badges for donations</li>
+          <li id="seedMemberBenefit2">Seed badge in profile</li>
+        </ul>
+      </div>
+
+      <div class="membership-cardsupportus">
+        <h5 id="sproutMemberTitle">Sprout Member 🌿</h5>
+        <p id="sproutMemberPrice">€5 / month</p>
+        <ul>
+          <li id="sproutMemberBenefit1">+25% XP boost</li>
+          <li id="sproutMemberBenefit2">Exclusive badge</li>
+        </ul>
+      </div>
+
+      <div class="membership-cardsupportus">
+        <h5 id="treeMemberTitle">Tree Member 🌳</h5>
+        <p id="treeMemberPrice">€10 / month</p>
+        <ul>
+          <li id="treeMemberBenefit1">+50% XP boost</li>
+          <li id="treeMemberBenefit2">Early access to new features</li>
+        </ul>
+      </div>
+
+      <div class="membership-cardsupportus">
+        <h5 id="forestMemberTitle">Forest Member 🌲</h5>
+        <p id="forestMemberPrice">€20 / month</p>
+        <ul>
+          <li id="forestMemberBenefit1">+100% XP boost</li>
+          <li id="forestMemberBenefit2">Highlighted spot on leaderboard</li>
+          <li id="forestMemberBenefit3">Special recognition badge</li>
+        </ul>
+      </div>
+
+      <div class="membership-cardsupportus">
+        <h5 id="earthGuardianTitle">Earth Guardian Member 🌍</h5>
+        <p id="earthGuardianPrice">€50 / month</p>
+        <ul>
+          <li id="earthGuardianBenefit1">+200% XP boost</li>
+          <li id="earthGuardianBenefit2">VIP badge & profile highlight</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+    </div>
+<!-- Sources -->
+ <!-- Sources -->
+  <!-- Sources -->
+   <!-- Sources -->
+   <div id="sources" class="page hidden"> 
+     <p id="sourcesContentText">...Sources content... </p> 
+    </div>
+<!-- AboutUs -->   
+ <!-- AboutUs -->   
+  <!-- AboutUs -->   
+   <!-- AboutUs -->   
+<div id="aboutus" class="page hidden" style="margin-top: env(safe-area-inset-top, 30px); margin-bottom: env(50px+safe-area-inset-bottom, 80px);"> 
+
+  <div class="explanationsupportus">
+    <div class="message-section">
+      <div class="buddy-messagesupportus">
+     <!--   <img src="characters/yo.jpg" alt="Eluna" class="buddy-portraitsupportus" /> -->  
+
+        <div class="buddy-text">
+          <strong id="aboutGreeting" style="font-size: 1.1em; line-height: 1.3rem;"></strong><br>
+
+          <span id="aboutText"></span>
+
+          <br><br>
+
+          <span id="aboutFollowText"></span>
+          <a href="https://www.instagram.com/org.elu/" target="_blank">
+            <strong id="aboutInstagram"></strong>
+          </a>
+          <span id="aboutEnding"></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ContactUs -->
+ <!-- ContactUs -->
+  <!-- ContactUs -->
+   <!-- ContactUs -->
+   <div id="contactus" class="page hidden"> 
+      <div class="contactus-container" style="max-width: 500px; margin: 2rem auto; padding: 1rem;">
+    <h2 id="contactTitle">Contact Us</h2>
+    <p id="contactIntro">We’re here to help! Choose a subject and tell us your message.</p>
+
+    <label for="contactSubject" id="contactSubjectLabel">Subject:</label>
+    <select id="contactSubject" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem;">
+      <option value="" id="contactSubjectPlaceholder">-- Select a subject --</option>
+      <option value="Report a Bug" id="contactSubjectBug">Report a Bug</option>
+      <option value="Billing issue" id="contactBillingIssue">Billing issue</option>
+      <option value="App Feedback" id="contactSubjectFeedback">App Feedback</option>
+      <option value="Feature Request" id="contactSubjectFeature">Feature Request</option>
+      <option value="Request New Community" id="contactSubjectCommunity">Add a new city in communities</option>
+      <option value="Other" id="contactSubjectOther">Other</option>
+    </select>
+
+    <label for="contactMessage" id="contactMessageLabel" style="margin-top: 1rem; display: block;">Message:</label>
+    <textarea
+      id="contactMessage"
+      rows="6"
+      style="width: 100%; padding: 0.5rem; margin-top: 0.5rem;"
+    ></textarea>
+
+    <button id="sendContactMessage" style="margin-top: 1rem; width: 100%; padding: 0.5rem;">Send Message</button>
+  </div>
+   </div>
+
+   <!-- SystemSettings -->
+    <!-- SystemSettings -->
+     <!-- SystemSettings -->
+      <!-- SystemSettings -->
+   <div id="systemsettings" class="page hidden"> 
+
+     <h2 id="settingsTitle">Settings</h2>
+
+  <label for="languageSelect" id="languageLabel">Select Language:</label>
+  <select id="languageSelect">
+    <option value="en" id="langOptionEn">English</option>
+    <option value="es" id="langOptionEs">Español</option>
+    <option value="hu" id="langOptionHu">Magyar</option>
+  </select>
+
+  <button id="saveLanguageBtn">Save Language</button>
+
+  <small id="languageInfo">Changing the language will update your app interface immediately.</small>
+
+<div class="profile-actions-secondary">
+  <button id="logoutBtn" class="logout-btn">Log out</button>
+</div>
+
+<!-- PUUSH NOPTIFICATIONS -->
+
+<h3 id="notificationsTitle"></h3>
+
+<label>
+  <input type="checkbox" id="toggleNewMessage">
+  <span id="labelNewMessage"></span>
+</label>
+
+<label>
+  <input type="checkbox" id="toggleFriendRequest">
+  <span id="labelFriendRequest"></span>
+</label>
+
+<label>
+  <input type="checkbox" id="toggleCommunityEvent">
+  <span id="labelCommunityEvent"></span>
+</label>
+
+<label>
+  <input type="checkbox" id="toggleDailyCheckin">
+  <span id="labelDailyCheckin"></span>
+</label>
+
+<label>
+  <input type="checkbox" id="toggleWeeklyVote">
+  <span id="labelWeeklyVote"></span>
+</label>
+
+<label>
+  <input type="checkbox" id="toggleEncouragement">
+  <span id="labelEncouragement"></span>
+</label>
+
+<!-- Danger Zone -->
+  <button
+    class="button danger"
+    id="deleteProfileBtn"
+  >
+    🗑️ Delete Profile
+  </button>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- POPUPS -->
+ <!-- POPUPS -->
+  <!-- POPUPS -->
+   <!-- POPUPS -->
+    <!-- POPUPS -->
+
+<!--    <div class = "popuptrick popupinit-hidden"> -->
+<!-- Popup: Animals -->
+<div id="popupAnimals" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <div id="animalsSentence"></div> <br> 
+    <p id="impactSentence1">See how far your impact can go:</p>
+      <span id="openCalculatorText1" class="openCalculator">
+        Use our impact calculator
+      </span>
+    </p>
+  </div>
+</div>
+<!-- Popup: Forest -->
+<div id="popupForest" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <div id="forestSentence"></div> <br> 
+    <p id="impactSentence2">See how far your impact can go:</p>
+      <span id="openCalculatorText2" class="openCalculator">
+        Use our impact calculator
+      </span>
+    </p>
+  </div>
+</div>
+<!-- Popup: Water -->
+<div id="popupWater" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <div id="waterSentence"></div> <br> 
+    <p id="impactSentence3">See how far your impact can go:</p>
+      <span id="openCalculatorText3" class="openCalculator">
+        Use our impact calculator
+      </span>
+    </p>
+  </div>
+</div>
+<!-- Popup: CO2 -->
+<div id="popupCO2" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <div id="co2Sentence"></div> <br> 
+    <p id="impactSentence4">See how far your impact can go:</p>
+      <span id="openCalculatorText4" class="openCalculator">
+        Use our impact calculator
+      </span>
+    </p>
+  </div>
+</div>
+<!-- Popup: Impact Calculator -->
+<div id="impactcalculator" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <h2 id="ImpactCalcTitle">Impact Calculator</h2>
+
+    <div class="calculator-inputs">
+      <label id="ImpactCalcYears">
+        Years:
+        <input type="number" id="years" min="0" value="0">
+      </label>
+      <label id="ImpactCalcMonths">
+        Months:
+        <input type="number" id="months" min="0" max="11" value="0">
+      </label>
+      <button id="calculateImpactBtn">Calculate Impact</button>
+    </div>
+
+    <div class="calculator-results hidden" id="impactResults">
+  <!-- Raw numbers -->
+  <ul class="impact-list">
+    <li id="animalsSavedCalc">Animals saved: <span class="highlight" id="calcAnimals">0</span></li>
+    <li id="forestSavedCalc">Forest saved: <span class="highlight" id="calcForest">0</span> m²</li>
+    <li id="waterSavedCalc">Water saved: <span class="highlight" id="calcWater">0</span> liters</li>
+    <li id="coSavedCalc">CO₂ reduced: <span class="highlight" id="calcCO2">0</span> kg</li>
+  </ul>
+
+  <!-- Single combined comparison paragraph -->
+  <p id="calcComparison" class="comparison-sentence"></p>
+</div>
+
+  </div>
+</div>
+<!-- Popup: Amateur Home Chef -->
+<div id="popupAmateur" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <img id="amateurImagePopup" src="meals/amateur.jpg" alt="Amateur winning dish" class="meal-art-image">
+  </div>
+</div>
+<!-- Popup: Pro Kitchen -->
+<div id="popupProfessional" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <img id="proImagePopup" src="meals/professional.jpg" alt="Professional winning dish" class="meal-art-image">
+  </div>
+</div>
+<!-- Popup: MealArt -->
+<div id="mealPopup" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <img id="popupMealImage" src="" alt="Meal" class="meal-art-image">
+  </div>
+</div>
+<!-- Recipe Modal -->
+<div id="mealArtrecipeModal" class="popup modal" >
+  <div class="modal-content">
+    <button class="popup-close">✖</button>
+    <img id="mealArtmodalImage" class="meal-art-image">
+    <h3 id="mealArtmodalFoodName"></h3>
+    <h4 id="mealArtModalPrepTime">Preparation time:</h4>
+    <p id="mealArtmodalPrepTime"></p>
+    <h4 id="mealArtIngredient">Ingredients:</h4>
+    <p id="mealArtmodalIngredients"></p>
+    <h4 id="mealArtInstructions">Instructions:</h4>
+    <p id="mealArtmodalInstructions"></p>
+  </div>
+</div>
+<!-- Upload Recipe Modal -->
+<div id="upload-recipe" class="popup modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 id="uploadNewRecipe">Upload a New Recipe</h2>
+    <form id="recipeForm">
+      <label id="RecipeImageuploadform">
+        Recipe Image:
+      </label>
+        <input type="file" id="recipeImage" accept="image/*" required>
+      <div id="imagePreview" style="width:150px; height:150px; border:1px solid #ccc; display:none; align-items:center; justify-content:center; overflow:hidden; border-radius:10px; margin:auto; margin-bottom: 0.5rem;">
+  <img id="previewImg" style="display:block;width:100%; height:100%; object-fit:cover; margin-bottom: 0.5rem;">
+</div>
+      <label id="RecipeTitleuploadform">
+        Title:
+      </label>
+        <input type="text" id="recipeTitle" required>
+      <label id="RecipePrepTimeuploadform">
+        Preparation Time:
+      </label> 
+        <input type="text" id="recipePrepTime" placeholder="e.g., 30 mins" required>
+      <!-- Ingredients -->
+      <label id="RecipeIngredientsuploadform">
+        Ingredients:
+      </label> 
+        <textarea id="recipeIngredients" placeholder="List ingredients..." maxlength="1000" required></textarea>
+      <small id="recipeIngredientsCounter">0/1000</small>
+
+      <!-- Instructions -->
+      <label id="RecipeInstructionsuploadform">
+        Instructions:
+      </label>
+        <textarea id="recipeInstructions" placeholder="Step by step instructions..." maxlength="1000" required></textarea>
+      <small id="recipeInstructionsCounter">0/1000</small>
+
+      <button id="UploadRecipeButton" type="submit">Upload Recipe</button>
+    </form>
+    <div id="uploadFeedback" style="margin-top:10px;"></div>
+  </div>
+</div>
+<!-- Recipe Details Modal -->
+<div id="recipe-modal" class="popup modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <img id="modal-img" src="" alt="" class="modal-img">
+    <h2 id="modal-title"></h2>
+    <h3 id="RecipeModalPrepTime">Preparation time:</h3>
+    <p id="modal-preptime"></p><br>
+    <h3 id="RecipeModalIngredients">Ingredients:</h3>
+    <p id="modal-ingredients"></p><br>
+    <h3 id="RecipeModalInstructions">Instructions:</h3>
+    <p id="modal-instructions"></p>
+  </div>
+</div>
+<!-- Profile card -->
+<div id="ProfileCard" class="popup profile-card">
+  <button class="close-btnProfileCard">×</button>
+
+  <div class="ProfileAvatarLarge"></div>
+  <h2 class="profile-name">User Name</h2>
+
+  <!-- Info row -->
+  <div class="profile-info-row">
+    <div class="info-itemprofilecard">
+      <span class="info-value dietprofilecard"></span>
+    </div>
+    <div class="info-itemprofilecard">
+      <span class="info-value goalsprofilecard"></span>
+    </div>
+  </div>
+
+  <div class="profile-stats">
+    <span class="levelprofilecard">🌍 15</span>
+    <span class="streakprofilecard">🔥 10 days</span>
+  </div>
+
+  <h3 id="achievements-heading">Achievements</h3>
+  <div class="achievements-list">
+    <!-- Badges dynamically inserted here -->
+  </div>
+</div>
+<!-- Ingredient Modal -->
+<div id="ingredientModal" class="popup modal">
+  <div class="modal-content">
+    <span class="close-modal" id="closeIngredientModal">×</span>
+    <h2 id="ingredientName"></h2>
+    <p id="ingredientDescription"></p>
+    <p id="ingredientNutrition"></p>
+  </div>
+</div>
+<!-- Confirmation popup -->
+<div id="confirmationPopup" class="popup confirmation-popup">
+  <p id="confirmationMessage"></p>
+  <div class="confirmation-buttons">
+    <button id="confirmBtn">Confirm</button>
+    <button id="cancelBtn">Cancel</button>
+  </div>
+</div>
+<!-- Pro Kitchen Access -->
+<div id="proKitchenPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" id="closeProKitchenPopup">&times;</span>
+
+    <h3 id="ReqProKitchen">Request Pro Kitchen Access</h3>
+    <p id="InfoReqProKitchen">
+      This category is recommended for professional chefs and restaurants.
+      Tell us a little about yourself!
+    </p>
+
+    <textarea
+      id="proKitchenMessage"
+      placeholder="Who are you? What do you cook? Where are you based?"
+    ></textarea>
+
+    <button id="sendProKitchenRequest">Send request</button>
+  </div>
+</div>
+<!-- LocalPartner -->
+<div id="localBusinessPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" id="closeLocalBusinessPopup">&times;</span>
+
+    <h3 id="ReqBusinessList">List Your Business!</h3>
+    <p id="ReqBusinessListLabel">
+      We love supporting our community, and we’d be thrilled to support you by listing your business here! Share a little about your business, and we’ll get in touch with all the details.
+    </p>
+
+    <textarea
+      id="localBusinessMessage"
+      placeholder="Tell us about your business, location, and what you offer..."
+    ></textarea>
+
+    <button id="sendLocalBusinessRequest">Send request</button>
+  </div>
+</div>
+ <!-- Mindful Moment Popup -->
+<div id="mindfulPopup" class="popup">
+  <div class="popup-content">
+    <span id="mindfulCloseBtn" class="popup-close">&times;</span>
+    <div id="mindfulPopupBody">
+      <p id="mindfulTimerRow">
+        Time left: <span id="mindfulPopupTimer">5:00</span>
+      </p>
+      <button id="mindfulPopupRewardBtn" style="display:none;">Claim Reward 🏅 +5 Badges, +5 Xps</button>
+    </div>
+  </div>
+</div>
+<!-- ShopModal -->
+<div id="shopModal" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">✖</button>
+    <h3 id="shopModalTitle"></h3>
+    <div id="shopModalBody"></div>
+    <div class="modal-buttons">
+      <button id="shopModalConfirm">Confirm</button>
+      <button id="shopModalCancel">Cancel</button>
+    </div>
+  </div>
+</div>
+   <!-- Mentor Popup Modal -->
+<div id="mentor-popup" class="popup mentor-popup-overlay">
+  <div class="mentor-popup">
+    <h2 id="ApplyAsAMentor" class="mentor-title">Apply as Mentor</h2>
+    <label id="ApplyAsAMentorQuestion" for="mentor-years">How long have you been a vegan for?</label>
+    <input type="number" id="mentor-years" class="mentor-input" min="0" placeholder="Enter years" />
+    <button id="mentor-submit" class="mentor-button">Submit</button>
+    <button id="mentor-cancel" class="mentor-button mentor-cancel">Cancel</button>
+  </div>
+</div>
+    <!-- Popup for comments in anonymous forum -->
+<div id="AFcommentPopup" class="popup AFpopup">
+  <div class="AFpopup-content">
+    <span id="AFclosePopup" class="close">&times;</span>
+    <div id="AFpopupBlockContent"></div>
+    <ul id="AFpopupCommentsList"></ul>
+
+    <div class="comment-input-container">
+      <input type="text" id="AFnewCommentInput" placeholder="Write your comment..." maxlength="1000">
+      <small id="AFnewCommentCounter">0/1000</small>
+    </div>
+    
+    <button class="button" id="AFsubmitCommentBtn">Comment</button>
+  </div>
+</div>
+<!-- New Chat Popup -->
+  <div id="newChatPopup" class="popup">
+    <div class="popup-content">
+      <span id="closePopup" class="close">&times;</span>
+      <h3 id="SelectAFriendToStartChat">Select a friend to message</h3>
+      <ul id="friendsListPopup"></ul>
+    </div>
+  </div>
+<!-- Search Friend Popup -->
+<div id="searchPopup" class="popup">
+    <div class="popup-content">
+      <span id="closeSearchPopup" class="close">&times;</span>
+      <input id="friendfriendcode" type="bpchar" placeholder="Enter your friend's code." />
+      <button id="sendFriendRequestBtn">Send Request</button>
+      <p id="YourFriendCode" class="yourfriendcode">Your friend code:</p> <div id="myfriendcode"></id></div>
+    </div>
+  </div>
+
+
+<!--   </div>  -->
+</div>
+
+
+<script type="module" src="mainscript.js"></script>
+<script type="module" src="scriptpools.js"></script>
+<script src="scriptbuttons.js"></script>
+</body>
+</html>
