@@ -815,12 +815,20 @@ async function fetchDiscover(type) {
       : "get_dates_users";
 
   try {
-    const { data, error } = await supabase.rpc(rpcName, { 
+    const params = {
       p_viewer_id: appState.user.id,
-      result_limit: 18, 
-    });
+      result_limit: 18,
+    };
 
-    if (error) throw error;
+    const { data, error } = await supabase.rpc(rpcName, params);
+
+    if (error) {
+      throw error;
+    }
+
+    if (!data || data.length === 0) {
+      console.warn("[discover] EMPTY RESULT from RPC:", rpcName);
+    }
 
     if (type === "friends") {
       discoverState.friends = data || [];
@@ -833,7 +841,7 @@ async function fetchDiscover(type) {
     discoverState.lastFetched[type] = Date.now();
 
   } catch (err) {
-    console.error("Discover fetch error:", err);
+    console.error("[discover] Fetch exception:", err);
   } finally {
     discoverState.loading = false;
     hideLoadingSmall?.();
@@ -1277,7 +1285,7 @@ async function saveDatingProfile() {
 
 
       interested_in,
-      age_filter: [min, max]
+      filter_age: [min, max]
     };
 
     const { error } = await supabase
