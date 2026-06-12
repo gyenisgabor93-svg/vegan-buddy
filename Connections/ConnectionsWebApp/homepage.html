@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connection Homepage</title>
+  <link rel="stylesheet" href="ConnectionStyle.css" />
+</head>
+
+<body>
+
+<!-- DATE SURVEY -->
+<div id="survey" class="hidden">
+
+  <div class="survey-container">
+
+    <div class="survey-header">
+      <button id="exitSurveyBtn">← Back</button>
+      <h2>Create dating profile</h2>
+    </div>
+
+    <!-- STEP 1: PHOTOS -->
+    <section class="survey-section">
+      <h3>Photos (max 5)</h3>
+
+      <input type="file" id="photoInput" accept="image/*" multiple hidden />
+
+      <button id="addPhotoBtn">+ Add photos</button>
+
+      <div id="photoPreviewGrid" class="photo-grid"></div>
+
+      <p class="hint">First photo will be your profile picture</p>
+    </section>
+
+    <!-- STEP 2: DESCRIPTION -->
+    <section class="survey-section">
+      <h3>Description</h3>
+      <textarea id="dateDescription" maxlength="300"
+        placeholder="Write something about yourself..."></textarea>
+    </section>
+
+    <!-- STEP 3: HOBBIES -->
+    <section class="survey-section">
+      <h3>Hobbies</h3>
+      <textarea id="hobbies" maxlength="300"
+        placeholder="e.g. climbing, vegan cooking, skating"></textarea>
+    </section>
+
+    <!-- STEP 4: QUESTIONS -->
+    <section class="survey-section">
+      <h3>About you</h3>
+      <div id="surveyQuestions"></div>
+    </section>
+
+    <!-- SAVE -->
+    <button id="saveSurveyBtn" class="primary-btn">
+      Save profile
+    </button>
+
+  </div>
+
+</div>
+
+  <!-- CONTENT -->
+<div class="content">
+    
+    <div id="discover" class="tab active">
+         <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo">🔗 Connection</div>
+
+    <div class="top-right">
+
+      <div class="toggle">
+        <button id="friendsBtn" class="active">Friends</button>
+        <button id="dateBtn">Date</button>
+      </div>
+    </div>
+  </div>
+  
+                <div id="loading-screenSmall" class="hidden">
+  <div class="spinner"></div>
+                </div>      
+       
+  <!-- FRIENDS VIEW -->
+  <div id="friendsView" class="discover-view active">
+
+  <div id="friendsList" class="discover-grid"></div>
+
+  <button class="floatingFilter" id="friendsFilterBtn">⚙️</button>
+
+</div>
+
+  <!-- DATE VIEW -->
+  <div id="dateView" class="discover-view">
+
+  <div id="dateList" class="discover-grid"></div>
+
+  <button class="floatingFilter" id="dateFilterBtn">⚙️</button>
+
+</div>
+
+
+    </div>
+
+    <div id="messages" class="tab">
+        
+        
+        Messages tab (empty)
+
+
+
+
+    </div>
+
+    <div id="matches" class="tab">
+        
+        Matches tab (empty)
+    
+    
+    
+    </div>
+
+    <div id="communities" class="tab">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo">👥 Communities</div>
+
+    <div class="mode-toggle">
+        <button id="yourCommunitiesBtn" class="active">Your</button>
+        <button id="searchCommunitiesBtn">Discover</button>
+    </div>
+  </div>
+
+  <!-- YOUR COMMUNITIES -->
+<div id="yourCommunitiesView" class="community-view active">
+  <h3>Your Communities</h3>
+  <div class="communityList"></div>
+</div>
+
+<!-- DISCOVER COMMUNITIES -->
+<div id="searchCommunitiesView" class="community-view">
+  <h3>Discover Communities</h3>
+  <div class="communityList"></div>
+</div>
+
+  <!-- FLOATING CREATE BUTTON (PRIMARY ACTION) -->
+  <button id="createCommunityBtnFloating" class="floatingAction">
+     Create community
+  </button>
+
+    </div>
+
+    <div id="profile" class="tab">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+  <div class="logo">👤 Profile</div>
+
+  <div class="top-right">
+    <div id="settingsBtn">⚙️</div>
+    <div id="backToProfile" class="hidden">← Back</div>
+  </div>
+
+</div>
+  <!-- PROFILE CONTENT -->
+  <div id="profileContent">
+
+  <!-- MODE TOGGLE -->
+  <div class="mode-toggle">
+    <button id="profileFriendsBtn" class="active">Friends</button>
+    <button id="profileDateBtn">Date</button>
+  </div>
+
+  <!-- FRIENDS PROFILE -->
+  <div id="friendsProfile" class="profile-section active">
+   
+<div class="profile-header">
+  <img id="profileAvatar" src="" alt="Profile Photo">
+</div>
+<h2 id="profileName"></h2>
+<p id="profileDescription"></p>
+
+<div id="profileBadge"></div>
+<div id="avocadoCount"></div>
+
+<div class="friend-mode-container">
+  <span id="friendModeStatus"></span>
+
+  <label class="switch">
+    <input type="checkbox" id="friendModeToggle">
+    <span class="slider"></span>
+  </label>
+</div>
+
+<div id="languagesList"></div>
+
+<div id="closureBadge"></div>
+
+<div id="friendsBox"></div>
+
+
+  </div>
+
+<!-- DATING PROFILE -->
+<div id="dateProfile" class="profile-section">
+
+  <!-- PHOTO CAROUSEL -->
+  <div id="datePhotos" class="photo-carousel"></div>
+
+  <!-- BASIC INFO -->
+  <h2 id="dateName"></h2>
+  <p id="dateDescriptionView"></p>
+
+  <div id="dateBadge"></div>
+  <div id="dateTofuCount"></div>
+
+  <!-- MODE -->
+  <div class="friend-mode-container">
+    <span id="dateModeStatus"></span>
+
+    <label class="switch">
+      <input type="checkbox" id="dateModeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- INCÓGNITO (JS will inject if premium) -->
+  <div id="incognitoBox"></div>
+
+  <!-- HOBBIES -->
+  <div id="dateHobbies"></div>
+
+  <!-- SIMPLE ANSWERS -->
+  <div id="dateAnswersBox"></div>
+
+</div>
+
+</div>
+
+  <!-- SETTINGS VIEW (hidden by default) -->
+  <div id="settingsView" class="hidden">
+  
+    <!-- PREMIUM SUBSCRIPTION SECTION -->
+  <div class="settings-section premium-box">
+    <h4>🌟 Premium Subscription</h4>
+    <p><strong>€10 / month</strong></p>
+
+    <p>Upgrade to unlock everything:</p>
+
+    <ul>
+      <li>Unlimited dealbreakers</li>
+      <li>Unlimited avocados & tofu (likes / swipes / boosts)</li>
+      <li>Full survey access (see all answers from others)</li>
+      <li>Customize answer weight for better matches</li>
+      <li>Discover in incognito mode</li>
+      <li>Create your own community</li>
+      <li>Travel mode (match while traveling)</li>
+    </ul>
+
+    <button id="upgradePremium" class="button">Upgrade to Premium</button>
+  </div>
+
+
+  <!-- APP SETTINGS -->
+  <div class="settings-section">
+
+    <!-- LANGUAGE -->
+    <h4>🌍 Language</h4>
+    <select id="languageSelect">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="hu">Hungarian</option>
+    </select>
+
+    <br>
+    <!-- NOTIFICATIONS -->
+    <h4>🔔 Notifications</h4>
+    <label>
+      <input type="checkbox" id="notifMatches" checked>
+      Match notifications
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="notifIncomes" checked>
+      Avocado or tofu notifications
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="notifMessages" checked>
+      Messages
+    </label><br>
+
+    <label>
+      <input type="checkbox" id="communitymessages">
+      Community messages
+    </label>
+
+    <label>
+      <input type="checkbox" id="communityevents">
+      Community events
+    </label>
+
+    <label>
+      <input type="checkbox" id="notifUpdates">
+      App updates & tips
+    </label>
+
+  </div>
+
+  <!-- CONTACT SECTION -->
+<div class="settings-section">
+
+  <h4>📩 Contact us</h4>
+
+  <p>Need help or have feedback? We’re here for you.</p>
+
+  <button id="contactSupportBtn" class="button">Contact support</button>
+
+  <!-- Optional: quick email fallback -->
+  <p style="font-size: 12px; opacity: 0.7;">
+    Or email us at: support@yourapp.com
+  </p>
+
+</div>
+
+
+  <!-- ACCOUNT ACTIONS -->
+  <div class="settings-section danger-zone">
+
+    <h4>⚙️ Account</h4>
+
+    <button id="logoutBtn" class="button">Log out</button>
+    <button id="deleteAccountBtn" class="danger button">
+      Delete profile
+    </button>
+
+  </div>
+
+ 
+
+  
+
+  
+</div>
+
+    </div>
+
+
+</div>
+
+
+ 
+
+
+
+
+  <!-- BOTTOM BAR -->
+  <div class="bottombar">
+
+    <div class="nav-item active" data-tab="discover">
+      <span>🔍</span>Discover
+    </div>
+
+    <div class="nav-item" data-tab="messages">
+      <span>💬</span>Messages
+    </div>
+
+    <div class="nav-item" data-tab="matches">
+      <span>❤️</span>Matches
+    </div>
+
+    <div class="nav-item" data-tab="communities">
+      <span>👥</span>Communities
+    </div>
+
+    <div class="nav-item" data-tab="profile">
+      <span>👤</span>Profile
+    </div>
+
+  </div>
+
+  <!-- POPUPS -->
+<div id="friendsFilterModal" class="modal" style="display:none;">
+
+  <div class="modalContent">
+    <h3>Friends Filters</h3>
+
+    <div class="filters">
+      <label>
+        Distance
+        <input type="range">
+      </label>
+
+      <label>
+        Activities
+        <select>
+          <option>Sports</option>
+          <option>Hiking</option>
+          <option>Chill</option>
+        </select>
+      </label>
+
+      <label>
+        Group size
+        <select>
+          <option>1-2</option>
+          <option>3-5</option>
+          <option>5+</option>
+        </select>
+      </label>
+    </div>
+
+    <button class="closeBtn">Close</button>
+  </div>
+
+</div>
+
+<div id="dateFilterModal" class="modal" style="display:none;">
+
+  <div class="modalContent">
+    <h3>Dating Filters</h3>
+
+    <div class="filters">
+
+      <label>
+        Age range
+        <input type="range">
+      </label>
+
+      <label>
+        Distance
+        <input type="range">
+      </label>
+
+      <label>
+        Intent
+        <select>
+          <option>Long-term</option>
+          <option>Short-term</option>
+          <option>Open</option>
+        </select>
+      </label>
+
+    </div>
+
+    <button class="closeBtn">Close</button>
+  </div>
+
+</div>
+
+<div id="createCommunityModal" class="modal" style="display:none;">
+
+  <div class="modalContent">
+
+    <h3>Create Community</h3>
+
+    <label>
+      Name
+      <input type="text" placeholder="e.g. Vegan Runners">
+    </label>
+
+    <label>
+      Description
+      <input type="text" placeholder="What is this community about?">
+    </label>
+
+    <label>
+      Type
+      <select>
+        <option>Public</option>
+        <option>Private</option>
+      </select>
+    </label>
+
+    <button id="submitCommunityBtn">Create</button>
+    <button id="closeCommunityModalBtn">Cancel</button>
+
+  </div>
+
+</div>
+
+<div id="editFriendsModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h2>Edit Preferences</h2>
+
+    <div id="editQuestions"></div>
+
+    <div class="modal-actions">
+      <button id="saveEditBtn">Save</button>
+      <button id="closeEditBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="loading-screen" class="hidden">
+  <div class="spinner"></div>
+</div>
+
+<script type="module" src="ConnectionScript.js"></script>
+</body>
+</html>

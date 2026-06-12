@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connection Survey</title>
+</head>
+<body>
+
+<div id="app">
+
+   <!-- Language Selector -->
+  <div id="languageSelector">
+    <button id="langBtn">🌐 EN ▾</button>
+    <div id="langDropdown">
+      <div id="English" data-lang="en">🇬🇧 English</div>
+      <div id="Spanish" data-lang="es">🇪🇸 Español</div>
+      <div id="Hungarian" data-lang="hu">🇭🇺 Magyar</div>
+    </div>
+  </div>
+
+    <!-- STEP 1 -->
+
+  <div class="step active" id="step1">
+    <h2 data-i18n="nameTitle"></h2>
+    <input type="text" id="name" maxlength="15" />
+  </div>
+
+  <!-- STEP 2 -->
+
+  <div class="step" id="step2">
+   <!-- <h2 data-i18n="photoTitle"></h2> -->
+    <button type="button" id="photoLabel"></button>
+    <input type="file" id="photo" hidden />
+    <img id="photoPreview"/>
+  </div>
+
+  <!-- STEP 3 -->
+
+  <div class="step" id="step3">
+    <h2 data-i18n="descTitle"></h2>
+    <textarea id="description" maxlength="300"></textarea>
+  </div>
+
+  <!-- EXPLANATION -->
+
+  <div class="step" id="stepExplanation">
+    <p id="explanationText"></p>
+  </div>
+
+  <!-- STEP 4 -->
+
+  <div class="step" id="step4">
+    <h2 data-i18n="langTitle"></h2>
+    <div id="languageOptions"></div>
+  </div>
+
+  <!-- QUESTIONS -->
+
+  <div class="step" id="stepQuestions">
+    <div id="globalDealbreakerBox"></div>
+    <div id="questionsContainer"></div>
+  </div>
+
+  <!-- NAV BUTTONS -->
+
+<button id="nextBtn"></button> <button id="finishBtn" style="display:none;"></button>
+
+
+<div id="loadingOverlay" style="display:none;">
+  <div class="spinner"></div>
+  <p id="savingText"></p>
+</div>
+
+</div>
+
+<script type="module">
+import { supabase } from "./supabaseClient.mjs";
+
+function collectSurveyData() {
+  const name = document.getElementById("name").value.trim();
+  const description = document.getElementById("description").value.trim();
+
+  // languages already tracked
+  const languages = selectedLanguages;
+
+  // collect answers
+  const answers = {};
+
+  t.questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected) {
+      answers[q.id] = selected.value;
+    }
+  });
+
+  return {
+    name,
+    description,
+    languages,
+    answers,
+    dealbreaker: selectedDealbreaker,
+    lang: currentLang
+  };
+}
+
+const translations = {
+  en: {
+    nameTitle: "What's your name?",
+    photoTitle: "Upload your photo",
+    descTitle: "Describe yourself",
+    langTitle: "Languages you speak",
+    explanation: "Answer a few questions to help us match you with vegans who share your values. Mark answers as “dealbreaker” if you don't want to know someone with that opinion.",
+    next: "Next",
+    finish: "Finish",
+    dealbreaker: "Dealbreaker",
+    photoLabel: "Upload a photo",
+    savingText: "Saving your profile...",
+    nameAlert: "Please enter your name",
+    langAlert: "Please select at least one language",
+    answerAlert: "Please answer all questions",
+
+  languages: [
+  { id: "english", label: "English" },
+  { id: "spanish", label: "Spanish" },
+  { id: "hungarian", label: "Hungarian" },
+  { id: "french", label: "French" },
+  { id: "german", label: "German" },
+  { id: "italian", label: "Italian" },
+  { id: "portuguese", label: "Portuguese" },
+  { id: "dutch", label: "Dutch" },
+  { id: "romanian", label: "Romanian" },
+  { id: "russian", label: "Russian" }
+],
+
+  questions: [
+  {
+    id: "vegan_reason",
+    text: "What are your main reasons for being vegan?",
+    options: [
+      { id: "reduce_animal_suffering1", text: "Reduce animal suffering" },
+      { id: "environmental_concerns1", text: "Environmental concerns" },
+      { id: "health_reasons1", text: "Health reasons" },
+      { id: "animals_primary1", text: "Vegan for the animals, while I care about other reasons" },
+      { id: "all_reasons1", text: "For all the reasons" }
+    ]
+  },
+  {
+    id: "eating_together_animals",
+    text: "Are you comfortable sitting at a table where others eat animal products?",
+    options: [
+      { id: "avoid_always2", text: "Not at all, I avoid situations like that" },
+      { id: "fine_with_it2", text: "Yes, no problem" },
+      { id: "uncomfortable_but_do_it2", text: "I feel uncomfortable, but still do it sometimes" }
+    ]
+  },
+  {
+    id: "dating_non_vegan",
+    text: "Would you date someone who is not vegan?",
+    options: [
+      { id: "no3", text: "No" },
+      { id: "maybe_open_minded3", text: "Maybe, if they are open-minded" },
+      { id: "yes3", text: "Yes" }
+    ]
+  },
+  {
+    id: "circle_importance",
+    text: "How important is it for you to keep your close circles vegan?",
+    options: [
+      { id: "very_important4", text: "Very important" },
+      { id: "somewhat_important4", text: "Somewhat important" },
+      { id: "not_important4", text: "Not important" }
+    ]
+  },
+  {
+    id: "communication_style",
+    text: "How do you usually communicate with non-vegans about veganism?",
+    options: [
+      { id: "direct_confrontational5", text: "Direct and confrontational" },
+      { id: "neutral5", text: "Neutral - no difference" },
+      { id: "respectful_educational5", text: "Respectful and educational" },
+      { id: "avoid_topic5", text: "I avoid the topic" }
+    ]
+  },
+  {
+    id: "openness_opinions",
+    text: "How open are you to discussing opposing views?",
+    options: [
+      { id: "not_open6", text: "Not open" },
+      { id: "somewhat_open6", text: "Somewhat open" },
+      { id: "very_open6", text: "Very open" }
+    ]
+  },
+  {
+    id: "animal_vs_human_rights",
+    text: "How do you see the relationship between animal rights and human rights?",
+    options: [
+      { id: "animals_more_important7", text: "Animal rights are more important" },
+      { id: "humans_more_important7", text: "Human rights are more important" },
+      { id: "equal7", text: "Equally important" },
+      { id: "unsure7", text: "Not sure, too complex" }
+    ]
+  },
+  {
+    id: "other_injustices",
+    text: "How do you approach other injustices?",
+    options: [
+      { id: "animals_only8", text: "Focus on animal rights only" },
+      { id: "support_when_possible8", text: "I stand up against them when it's necessary" },
+      { id: "multiple_causes8", text: "Actively care about multiple" }
+    ]
+  },
+  {
+    id: "politics",
+    text: "How would you describe your political attitude?",
+    options: [
+      { id: "left_intolerant9", text: "Left, not tolerant to opposing views" },
+      { id: "left_open9", text: "Left, open to dialogue" },
+      { id: "right_open9", text: "Right, open to dialogue" },
+      { id: "right_intolerant9", text: "Right, not tolerant to opposing views" },
+      { id: "no_labels9", text: "I avoid labels, open dialogue is more important" },
+      { id: "dont_care9", text: "Don't care about politics" }
+    ]
+  },
+  {
+    id: "feminism",
+    text: "What is your perspective on feminism?",
+    options: [
+      { id: "negative10", text: "Negative" },
+      { id: "frustrated10", text: "Frustrated by gender dynamics" },
+      { id: "supportive10", text: "Supportive without hostility" }
+    ]
+  },
+  {
+    id: "lgbtq",
+    text: "What are your views on LGBTQ+ rights?",
+    options: [
+      { id: "negative11", text: "Negative" },
+      { id: "neutral11", text: "Neutral" },
+      { id: "support11", text: "Support equality" },
+      { id: "active_support11", text: "Actively supportive and advocate for awareness" }
+    ]
+  },
+  {
+    id: "capitalism",
+    text: "What is your view on capitalism?",
+    options: [
+      { id: "against12", text: "Against it" },
+      { id: "support12", text: "Support it" },
+      { id: "regulated12", text: "It could work with proper regulation" }
+    ]
+  },
+  {
+    id: "lonely_vegan",
+    text: "Do you feel like a lonely vegan?",
+    options: [
+      { id: "yes13", text: "Yes" },
+      { id: "sometimes13", text: "Sometimes" },
+      { id: "no13", text: "No" }
+    ]
+  },
+  {
+    id: "pets",
+    text: "What is your view on keeping pets?",
+    options: [
+      { id: "vegan_feed_only14", text: "Only okay if vegan-fed" },
+      { id: "ok_anyway14", text: "Okay anyway" },
+      { id: "prefer_none14", text: "Okay, but I prefer not having pets" }
+    ]
+  },
+  {
+    id: "injured_pigeon",
+    text: "You see an injured pigeon on the street, what do you do?",
+    options: [
+      { id: "help_all_costs15", text: "I do everything I can to help" },
+      { id: "try_if_possible15", text: "I check if I can realistically help and do it if possible" },
+      { id: "leave_it15", text: "Leave it, I can't save every animal" }
+    ]
+  },
+  {
+    id: "activism_style",
+    text: "Which activism style resonates most with you?",
+    options: [
+      { id: "confrontational16", text: "Confrontational / disruptive" },
+      { id: "calm16", text: "Calm and educational" },
+      { id: "storytelling16", text: "Inspirational / storytelling" }
+    ]
+  },
+  {
+    id: "activism",
+    text: "Do you do activism?",
+    options: [
+      { id: "active17", text: "Yes, actively" },
+      { id: "rarely17", text: "Rarely" },
+      { id: "want_to17", text: "Not yet, but I want to" },
+      { id: "not_my_thing17", text: "Not my thing" }
+    ]
+  },
+  {
+    id: "conversations",
+    text: "What conversations do you enjoy most?",
+    options: [
+      { id: "deep18", text: "Deep and philosophical" },
+      { id: "light18", text: "Light and fun" },
+      { id: "mixed18", text: "Mix of both" }
+    ]
+  },
+  {
+    id: "conflict",
+    text: "How do you handle disagreements?",
+    options: [
+      { id: "avoid19", text: "I avoid them" },
+      { id: "calm19", text: "I stay calm and try to understand the other person" },
+      { id: "emotional19", text: "I become emotionally involved" }
+    ]
+  },
+  {
+  id: "graphic_content_sensitivity",
+  text: "How sensitive are you to seeing graphic content (animal abuse)?",
+  options: [
+    { id: "very_sensitive20", text: "Very sensitive – I avoid it whenever possible" },
+    { id: "somewhat_sensitive20", text: "Somewhat sensitive – it affects me, but I can handle it" },
+    { id: "not_sensitive20", text: "Not very sensitive – I can watch it if needed" }
+  ]
+  },
+  {
+  id: "material_values",
+  text: "How important are money, luxury items, and a fancy lifestyle to you?",
+  options: [
+    { id: "important21", text: "Important – I value comfort and luxury" },
+    { id: "neutral21", text: "Neutral – I don't focus much on material things" },
+    { id: "minimalist21", text: "I am more of a minimalist – simple living is enough for me" }
+  ]
+  }
+]
+  },
+
+  es: {
+nameTitle: "¿Cómo te llamas?",
+photoTitle: "Sube tu foto",
+descTitle: "Descríbete",
+langTitle: "Idiomas que hablas",
+explanation: "Responde algunas preguntas para ayudarte a encontrar veganos que compartan tus valores. Marca respuestas como “dealbreaker” si no quieres relacionarte con alguien que piense así.",
+next: "Siguiente",
+finish: "Terminar",
+dealbreaker: "Exclusión",
+photoLabel: "Sube una foto",
+savingText: "Guardando tu perfil...",
+nameAlert: "Por favor, introduce tu nombre",
+langAlert: "Por favor, selecciona al menoos un idioma",
+answerAlert: "Por favor, responde a todas las preguntas",
+
+languages: [
+  { id: "english", label: "Inglés" },
+  { id: "spanish", label: "Español" },
+  { id: "hungarian", label: "Húngaro" },
+  { id: "french", label: "Francés" },
+  { id: "german", label: "Alemán" },
+  { id: "italian", label: "Italiano" },
+  { id: "portuguese", label: "Portugués" },
+  { id: "dutch", label: "Neerlandés" },
+  { id: "romanian", label: "Rumano" },
+  { id: "russian", label: "Ruso" }
+],
+
+questions: [
+{
+id: "vegan_reason",
+text: "¿Cuáles son tus principales razones para ser vegano/a?",
+options: [
+{ id: "reduce_animal_suffering1", text: "Reducir el sufrimiento animal" },
+{ id: "environmental_concerns1", text: "Preocupación por el medio ambiente" },
+{ id: "health_reasons1", text: "Salud" },
+{ id: "animals_primary1", text: "Vegano/a por los animales, pero también me importan otras razones" },
+{ id: "all_reasons1", text: "Por todas las razones" }
+]
+},
+{
+id: "eating_together_animals",
+text: "¿Te sientes cómodo/a sentado/a en una mesa donde otros comen productos animales?",
+options: [
+{ id: "avoid_always2", text: "Para nada, evito esas situaciones" },
+{ id: "fine_with_it2", text: "Sí, no tengo problema" },
+{ id: "uncomfortable_but_do_it2", text: "Me incomoda, pero a veces lo hago" }
+]
+},
+{
+id: "dating_non_vegan",
+text: "¿Saldrías con alguien que no es vegano/a?",
+options: [
+{ id: "no3", text: "No" },
+{ id: "maybe_open_minded3", text: "Quizás, si tiene la mente abierta" },
+{ id: "yes3", text: "Sí" }
+]
+},
+{
+id: "circle_importance",
+text: "¿Qué tan importante es para ti que tu círculo cercano sea vegano?",
+options: [
+{ id: "very_important4", text: "Muy importante" },
+{ id: "somewhat_important4", text: "Algo importante" },
+{ id: "not_important4", text: "No es importante" }
+]
+},
+{
+id: "communication_style",
+text: "¿Cómo sueles comunicarte con personas no veganas sobre el veganismo?",
+options: [
+{ id: "direct_confrontational5", text: "Directo/a y confrontativo/a" },
+{ id: "neutral5", text: "Neutral - no hay diferencia" },
+{ id: "respectful_educational5", text: "Respetuoso/a y educativo/a" },
+{ id: "avoid_topic5", text: "Evito el tema" }
+]
+},
+{
+id: "openness_opinions",
+text: "¿Qué tan abierto/a estás a discutir opiniones opuestas?",
+options: [
+{ id: "not_open6", text: "Nada abierto/a" },
+{ id: "somewhat_open6", text: "Algo abierto/a" },
+{ id: "very_open6", text: "Muy abierto/a" }
+]
+},
+{
+id: "animal_vs_human_rights",
+text: "¿Cómo ves la relación entre los derechos animales y los derechos humanos?",
+options: [
+{ id: "animals_more_important7", text: "Los derechos animales son más importantes" },
+{ id: "humans_more_important7", text: "Los derechos humanos son más importantes" },
+{ id: "equal7", text: "Igualmente importantes" },
+{ id: "unsure7", text: "No lo sé, es demasiado complejo" }
+]
+},
+{
+id: "other_injustices",
+text: "¿Cómo afrontas otras injusticias?",
+options: [
+{ id: "animals_only8", text: "Me centro solo en los animales" },
+{ id: "support_when_possible8", text: "Me enfrento a ellos cuando es necesario." },
+{ id: "multiple_causes8", text: "Me importa activamente más de una causa" }
+]
+},
+{
+id: "politics",
+text: "¿Cómo describirías tu postura política?",
+options: [
+{ id: "left_intolerant9", text: "Izquierda, poco tolerante a las opiniones opuestas" },
+{ id: "left_open9", text: "Izquierda, abierta a diálogo" },
+{ id: "right_open9", text: "Derecha, abierta a diálogo" },
+{ id: "right_intolerant9", text: "Derecha, poco tolerante a las opiniones opuestas" },
+{ id: "no_labels9", text: "Evito etiquetas, el diálogo abierto es más importante" },
+{ id: "dont_care9", text: "No me importa la política" }
+]
+},
+{
+id: "feminism",
+text: "¿Cuál es tu perspectiva sobre el feminismo?",
+options: [
+{ id: "negative10", text: "Negativa" },
+{ id: "frustrated10", text: "Frustración por las dinámicas de género" },
+{ id: "supportive10", text: "Apoyo sin hostilidad" }
+]
+},
+{
+id: "lgbtq",
+text: "¿Qué opinas sobre los derechos LGBTQ+?",
+options: [
+{ id: "negative11", text: "Negativa" },
+{ id: "neutral11", text: "Neutral" },
+{ id: "support11", text: "Apoyo la igualdad" },
+{ id: "active_support11", text: "Apoyo activamente y abogo por la concientización" }
+]
+},
+{
+id: "capitalism",
+text: "¿Cuál es tu opinión sobre el capitalismo?",
+options: [
+{ id: "against12", text: "En contra" },
+{ id: "support12", text: "A favor" },
+{ id: "regulated12", text: "Podría funcionar con la regulación adecuada" }
+]
+},
+{
+id: "lonely_vegan",
+text: "¿Te sientes un/a vegano/a solitario/a?",
+options: [
+{ id: "yes13", text: "Sí" },
+{ id: "sometimes13", text: "A veces" },
+{ id: "no13", text: "No" }
+]
+},
+{
+id: "pets",
+text: "¿Qué opinas sobre tener mascotas?",
+options: [
+{ id: "vegan_feed_only14", text: "Está bien solo si se alimentan vegano" },
+{ id: "ok_anyway14", text: "Está bien de todas formas" },
+{ id: "prefer_none14", text: "Está bien, pero prefiero no tener mascotas" }
+]
+},
+{
+id: "injured_pigeon",
+text: "Ves una paloma herida en la calle, ¿qué haces?",
+options: [
+{ id: "help_all_costs15", text: "Hago todo lo posible por ayudar" },
+{ id: "try_help_if_possible15", text: "Echó un vistazo para ver si puedo ayudar de manera realista y lo hago si es posible" },
+{ id: "leave_it15", text: "La dejo, no puedo salvar a todos los animales" }
+]
+},
+{
+id: "activism_style",
+text: "¿Qué tipo de activismo conecta más contigo?",
+options: [
+{ id: "confrontational16", text: "Confrontativo / disruptivo" },
+{ id: "calm16", text: "Tranquilo y educativo" },
+{ id: "storytelling16", text: "Inspirador / narración de historias" }
+]
+},
+{
+id: "activism",
+text: "¿Haces activismo?",
+options: [
+{ id: "active17", text: "Sí, activamente" },
+{ id: "rarely17", text: "Rara vez" },
+{ id: "want_to17", text: "No todavía, pero quiero" },
+{ id: "not_my_thing17", text: "No es lo mío" }
+]
+},
+{
+id: "conversations",
+text: "¿Qué tipo de conversaciones disfrutas más?",
+options: [
+{ id: "deep18", text: "Profundas y filosóficas" },
+{ id: "light18", text: "Ligeras y divertidas" },
+{ id: "mixed18", text: "Una mezcla de ambas" }
+]
+},
+{
+id: "conflict",
+text: "¿Cómo manejas los desacuerdos?",
+options: [
+{ id: "avoid19", text: "Los evito" },
+{ id: "calm19", text: "Mantengo la calma y trato de entender a la otra persona" },
+{ id: "emotional19", text: "Me pongo emocional" }
+]
+},
+{
+  id: "graphic_content_sensitivity",
+  text: "¿Qué tan sensible eres al ver contenido gráfico (maltrato animal)?",
+  options: [
+    { id: "very_sensitive20", text: "Muy sensible – lo evito siempre que puedo" },
+    { id: "somewhat_sensitive20", text: "Algo sensible – me afecta, pero puedo soportarlo" },
+    { id: "not_sensitive20", text: "Poco sensible – puedo verlo si es necesario" }
+  ]
+},
+{
+  id: "material_values",
+  text: "¿Qué tan importantes son el dinero, los artículos de lujo y un estilo de vida sofisticado para ti?",
+  options: [
+    { id: "important21", text: "Importante – valoro la comodidad y el lujo" },
+    { id: "neutral21", text: "Neutral – no me enfoco en lo material" },
+    { id: "minimalist21", text: "Soy más minimalista – me basta con una vida simple" }
+  ]
+}
+]
+},
+
+  hu: {
+nameTitle: "Hogy hívnak?",
+photoTitle: "Tölts fel egy képet",
+descTitle: "Írj magadról",
+langTitle: "Milyen nyelveket beszélsz",
+explanation: "Válaszolj néhány kérdésre, hogy olyan vegánokkal tudjunk párosítani, akik hasonló értékeket vallanak. Jelöld be a “dealbreaker” opciót, ha nem szeretnél olyan emberrel találkozni, aki így gondolkodik.",
+next: "Következő",
+finish: "Befejezés",
+dealbreaker: "Kizáró ok",
+photoLabel: "Tölts fel egy képet",
+savingText: "Profilod mentése...",
+nameAlert: "Kérlek, add meg a neved",
+langAlert: "Kérlek, válassz legalább egy nyelvet",
+answerAlert: "Kérlek, válaszolj minden kérdésre",
+
+languages: [
+  { id: "english", label: "Angol" },
+  { id: "spanish", label: "Spanyol" },
+  { id: "hungarian", label: "Magyar" },
+  { id: "french", label: "Francia" },
+  { id: "german", label: "Német" },
+  { id: "italian", label: "Olasz" },
+  { id: "portuguese", label: "Portugál" },
+  { id: "dutch", label: "Holland" },
+  { id: "romanian", label: "Román" },
+  { id: "russian", label: "Orosz" }
+],
+
+questions: [
+  {
+    id: "vegan_reason",
+    text: "Mi motivál a vegánságra?",
+    options: [
+      { id: "reduce_animal_suffering1", text: "Az állatok szenvedésének csökkentése" },
+      { id: "environmental_concerns1", text: "Környezeti okok" },
+      { id: "health_reasons1", text: "Egészség" },
+      { id: "animals_primary1", text: "Vegán az állatokért, de más okok is fontosak" },
+      { id: "all_reasons1", text: "Mindhárom" }
+    ]
+  },
+  {
+    id: "eating_together_animals",
+    text: "Leülsz olyan asztalhoz, ahol mások állati termékeket esznek?",
+    options: [
+      { id: "avoid_always2", text: "Egyáltalán nem, kerülöm az ilyen helyzeteket" },
+      { id: "fine_with_it2", text: "Igen, nincs problémám vele" },
+      { id: "uncomfortable_but_do_it2", text: "Kellemetlen, de néha elviselem" }
+    ]
+  },
+  {
+    id: "dating_non_vegan",
+    text: "Randiznál nem vegán emberrel?",
+    options: [
+      { id: "no3", text: "Nem" },
+      { id: "maybe_open_minded3", text: "Talán, ha nyitott gondolkodású" },
+      { id: "yes3", text: "Igen" }
+    ]
+  },
+  {
+    id: "circle_importance",
+    text: "Mennyire fontos számodra, hogy a közeli környezeted vegán legyen?",
+    options: [
+      { id: "very_important4", text: "Nagyon fontos" },
+      { id: "somewhat_important4", text: "Kicsit fontos" },
+      { id: "not_important4", text: "Nem fontos" }
+    ]
+  },
+  {
+    id: "communication_style",
+    text: "Hogyan kommunikálsz általában nem vegánokkal a veganizmusról?",
+    options: [
+      { id: "direct_confrontational5", text: "Direkt és konfrontatív módon" },
+      { id: "neutral5", text: "Semleges, ugyanúgy beszélek mindenkivel" },
+      { id: "respectful_educational5", text: "Tiszteletteljes és edukatív módon" },
+      { id: "avoid_topic5", text: "Kerülöm a témát" }
+    ]
+  },
+  {
+    id: "openness_opinions",
+    text: "Mennyire vagy nyitott az ellentétes nézetek megbeszélésére?",
+    options: [
+      { id: "not_open6", text: "Nem vagyok nyitott" },
+      { id: "somewhat_open6", text: "Kicsit nyitott" },
+      { id: "very_open6", text: "Nagyon nyitott" }
+    ]
+  },
+  {
+    id: "animal_vs_human_rights",
+    text: "Hogyan látod az állati és emberi jogok kapcsolatát?",
+    options: [
+      { id: "animals_more_important7", text: "Az állati jogok fontosabbak" },
+      { id: "humans_more_important7", text: "Az emberi jogok fontosabbak" },
+      { id: "equal7", text: "Egyformán fontosak" },
+      { id: "unsure7", text: "Nem tudom, túl összetett kérdés" }
+    ]
+  },
+  {
+    id: "other_injustices",
+    text: "Hogyan állsz más igazságtalanságokhoz?",
+    options: [
+      { id: "animals_only8", text: "Csak az állatokra fókuszálok" },
+      { id: "support_when_possible8", text: "Szükség esetén kiállok ellenük." },
+      { id: "multiple_causes8", text: "Több ügy is aktívan érdekel" }
+    ]
+  },
+  {
+    id: "politics",
+    text: "Hogyan írnád le a politikai hozzáállásodat?",
+    options: [
+      { id: "left_intolerant9", text: "Baloldali, nem toleráns ellentétes nézetekkel" },
+      { id: "left_open9", text: "Baloldali, nyitott a párbeszédre" },
+      { id: "right_open9", text: "Jobboldali, nyitott a párbeszédre" },
+      { id: "right_intolerant9", text: "Jobboldali, nem toleráns ellentétes nézetekkel" },
+      { id: "no_labels9", text: "Kerülöm a címkéket, a nyitott párbeszéd fontosabb" },
+      { id: "dont_care9", text: "Nem érdekel a politika" }
+    ]
+  },
+  {
+    id: "feminism",
+    text: "Mi a véleményed a feminizmusról?",
+    options: [
+      { id: "negative10", text: "Negatív, nem támogatom" },
+      { id: "frustrated10", text: "Frusztrál a jelenlegi nemi egyenlőtlenség" },
+      { id: "supportive10", text: "Támogatom a feminizmust, de nem frusztrál" }
+    ]
+  },
+  {
+    id: "lgbtq",
+    text: "Mi a véleményed az LGBTQ+ jogokról?",
+    options: [
+      { id: "negative11", text: "Negatív, nem támogatom" },
+      { id: "neutral11", text: "Semleges" },
+      { id: "support11", text: "Támogatom az egyenlőséget" },
+      { id: "active_support11", text: "Aktívan támogatom és igyekszem növelni a tudatosságot" }
+    ]
+  },
+  {
+    id: "capitalism",
+    text: "Mi a véleményed a kapitalizmusról?",
+    options: [
+      { id: "against12", text: "Ellene vagyok" },
+      { id: "support12", text: "Támogatom" },
+      { id: "regulated12", text: "Szabályozásra szorul" }
+    ]
+  },
+  {
+    id: "lonely_vegan",
+    text: "Magányos vegánnak érzed magad?",
+    options: [
+      { id: "yes13", text: "Igen" },
+      { id: "sometimes13", text: "Néha" },
+      { id: "no13", text: "Nem" }
+    ]
+  },
+  {
+    id: "pets",
+    text: "Mi a véleményed a háziállattartásról?",
+    options: [
+      { id: "vegan_feed_only14", text: "Rendben van, ha növényi táplálékot kapnak" },
+      { id: "ok_anyway14", text: "Rendben van, akkor is ha húsos táplálékot kapnak" },
+      { id: "prefer_none14", text: "Rendben van, de inkább nem tartok állatot" }
+    ]
+  },
+  {
+    id: "injured_pigeon",
+    text: "Látsz egy sérült galambot az utcán. Mit teszel?",
+    options: [
+      { id: "help_all_costs15", text: "Mindent megteszek, hogy segítsek" },
+      { id: "try_if_possible15", text: "Megnézem, hogy mi a baja és ha tudok segíteni, akkor segítek" },
+      { id: "leave_it15", text: "Otthagyom, nem tudok minden állaton segíteni" }
+    ]
+  },
+  {
+    id: "activism_style",
+    text: "Melyik aktivizmus áll hozzád a legközelebb?",
+    options: [
+      { id: "confrontational16", text: "Konfrontatív, provokatív" },
+      { id: "calm16", text: "Nyugodt és edukáló" },
+      { id: "storytelling16", text: "Inspiráló és történetmesélős" }
+    ]
+  },
+  {
+    id: "activism",
+    text: "Részt veszel aktivizmusban?",
+    options: [
+      { id: "active17", text: "Igen, aktívan" },
+      { id: "rarely17", text: "Ritkán" },
+      { id: "want_to17", text: "Nem még, de szeretnék" },
+      { id: "not_my_thing17", text: "Nem az én világom" }
+    ]
+  },
+  {
+    id: "conversations",
+    text: "Milyen beszélgetéseket élvezel a legjobban?",
+    options: [
+      { id: "deep18", text: "Mélyeket és filozofikusakat" },
+      { id: "light18", text: "Könnyedeket és szórakoztatókat" },
+      { id: "mixed18", text: "Vegyesen mindkettő" }
+    ]
+  },
+  {
+    id: "conflict",
+    text: "Hogyan kezeled a nézeteltéréseket?",
+    options: [
+      { id: "avoid19", text: "Kerülöm őket" },
+      { id: "calm19", text: "Nyugodt maradok és megpróbálom megérteni a másik embert" },
+      { id: "emotional19", text: "Érzelmes leszek" }
+    ]
+  },
+  {
+  id: "graphic_content_sensitivity",
+  text: "Mennyire vagy érzékeny grafikus tartalom (állatkínzás) látványára?",
+  options: [
+    { id: "very_sensitive20", text: "Nagyon érzékeny vagyok – amennyire lehet, kerülöm" },
+    { id: "somewhat_sensitive20", text: "Kicsit érzékeny vagyok – zavar, de elviselem" },
+    { id: "not_sensitive20", text: "Nem igazán vagyok érzékeny – szükség esetén megnézem" }
+  ]
+  },
+  {
+  id: "material_values",
+  text: "Mennyire fontos számodra a pénz, a luxuscikkek és a fényűző életmód?",
+  options: [
+    { id: "important21", text: "Fontos – értékelem a kényelmet és a luxust" },
+    { id: "neutral21", text: "Semleges – nem foglalkozom az anyagi dolgokkal" },
+    { id: "minimalist21", text: "Minimalista vagyok – az egyszerű élet elég nekem" }
+  ]
+  }
+]
+}
+
+};
+
+let currentLang = localStorage.getItem("lang") || "en";
+let t = translations[currentLang];
+
+function updateLanguageUI(lang) {
+  currentLang = lang;
+  t = translations[lang];
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.innerText = t[key];
+  });
+
+  document.getElementById("nextBtn").innerText = t.next;
+  document.getElementById("finishBtn").innerText = t.finish;
+  document.getElementById("explanationText").innerText = t.explanation;
+  document.getElementById("savingText").innerText = t.savingText;
+  document.getElementById("photoLabel").innerText = t.photoLabel;
+
+document.getElementById("photoLabel").onclick = () => {
+  document.getElementById("photo").click();
+};
+
+  renderLanguages();
+}
+
+let selectedDealbreaker = null;
+
+// APPLY STATIC TEXT
+document.querySelectorAll("[data-i18n]").forEach(el => {
+  const key = el.getAttribute("data-i18n");
+  el.innerText = t[key];
+});
+
+document.getElementById("nextBtn").innerText = t.next;
+document.getElementById("finishBtn").innerText = t.finish;
+document.getElementById("explanationText").innerText = t.explanation;
+
+// STEP CONTROL
+const steps = [
+  document.getElementById("step1"),
+  document.getElementById("step2"),
+  document.getElementById("step3"),
+  document.getElementById("step4"),
+  document.getElementById("stepExplanation"),
+  document.getElementById("stepQuestions")
+];
+let currentStep = 0;
+
+function showStep(index) {
+  steps.forEach(s => s.classList.remove("active"));
+  steps[index].classList.add("active");
+
+  if (index === steps.length - 1) {
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("finishBtn").style.display = "block";
+  } else {
+    document.getElementById("nextBtn").style.display = "block";
+    document.getElementById("finishBtn").style.display = "none";
+  }
+}
+
+document.getElementById("nextBtn").onclick = () => {
+  if (!validateStep(currentStep)) return;
+
+  currentStep++;
+  showStep(currentStep);
+};
+
+
+document.getElementById("finishBtn").onclick = async () => {
+  if (!validateQuestions()) return;
+
+  showLoading();
+
+  try {
+    const data = collectSurveyData();
+
+    const { data: userData } = await supabase.auth.getUser();
+    const user = userData?.user;
+
+    if (!user) {
+      hideLoading();
+      alert("User not found");
+      return;
+    }
+
+const fileInput = document.getElementById("photo");
+const file = fileInput.files[0];
+
+let photoUrl = null;
+
+if (file) {
+  try {
+    const processedFile = await processImage(file);
+
+    const filePath = `${user.id}/profile.jpg`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("CONNECTION_PROFILE_PHOTOS")
+      .upload(filePath, processedFile, {
+        contentType: "image/jpeg",
+        upsert: true
+      });
+
+    if (uploadError) {
+      hideLoading();
+      alert("Photo upload failed");
+      return;
+    }
+
+    const { data: publicData } = supabase.storage
+      .from("CONNECTION_PROFILE_PHOTOS")
+      .getPublicUrl(filePath);
+
+    photoUrl = publicData.publicUrl;
+
+  } catch (err) {
+    hideLoading();
+    alert(err.message || "Image processing failed");
+    return;
+  }
+}
+
+    const now = new Date().toISOString();
+
+    const { error } = await supabase
+      .from("0con_profilesdata")
+      .update({
+        name: data.name,
+        description: data.description,
+        languages: data.languages,
+        friends_survey: data.answers,
+        dealbreaker: data.dealbreaker,
+        lang: currentLang,
+        profile_photo_url: photoUrl,
+        friends_updated_at: now,
+        last_online_at: now,
+        friends_survey_completed: true
+      })
+      .eq("id", user.id);
+
+    if (error) {
+      hideLoading();
+      alert("Error saving data");
+      return;
+    }
+
+    const { error: profileError } = await supabase
+      .from("profiles")
+      .update({
+        connection_survey_completed: true
+      })
+      .eq("id", user.id);
+
+    if (profileError) {
+      hideLoading();
+      alert("Profile flag update failed");
+      return;
+    }
+
+    // SUCCESS → keep loading, then redirect
+    window.location.href = "homepage.html";
+
+  } catch (err) {
+    hideLoading();
+    console.error(err);
+    alert("Unexpected error occurred");
+  }
+};
+
+
+function validateQuestions() {
+  const unanswered = t.questions.some((_, i) => {
+    return !document.querySelector(`input[name="q${i}"]:checked`);
+  });
+
+  if (unanswered) {
+    alert("Please answer all questions");
+    return false;
+  }
+
+  return true;
+}
+
+function validateStep(step) {
+  // STEP 1: name
+  if (step === 0) {
+    const name = document.getElementById("name").value.trim();
+    if (!name) {
+      alert(t.nameAlert);
+      return false;
+    }
+  }
+
+  // STEP 4: languages
+  if (step === 4) {
+    if (selectedLanguages.length === 0) {
+      alert(t.langAlert);
+      return false;
+    }
+  }
+
+  // QUESTIONS step validation (optional but recommended)
+  if (step === 5) {
+    const unanswered = t.questions.some((_, i) => {
+      return !document.querySelector(`input[name="q${i}"]:checked`);
+    });
+
+    if (unanswered) {
+      alert(t.answerAlert);
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// RENDER QUESTIONS
+const container = document.getElementById("questionsContainer");
+
+t.questions.forEach((q, index) => {
+  const div = document.createElement("div");
+  div.classList.add("question-block");
+
+  const title = document.createElement("h3");
+  title.innerText = `${index + 1}. ${q.text}`;
+  div.appendChild(title);
+
+  q.options.forEach(opt => {
+    const row = document.createElement("div");
+    row.classList.add("option-row");
+
+    const left = document.createElement("label");
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = `q${index}`;
+    radio.value = opt.id;
+
+    left.appendChild(radio);
+    left.appendChild(document.createTextNode(opt.text));
+
+    const right = document.createElement("label");
+    const groupName = `dealbreaker-${index}`;
+
+const checkbox = document.createElement("input");
+checkbox.classList.add("dealbreaker-checkbox");
+checkbox.type = "checkbox";
+checkbox.name = groupName;
+
+checkbox.onchange = () => {
+  if (checkbox.checked) {
+    // uncheck all others
+    document.querySelectorAll(".dealbreaker-checkbox").forEach(cb => {
+      cb.checked = false;
+    });
+
+    // check only current one
+    checkbox.checked = true;
+    selectedDealbreaker = opt.id;
+
+  } else {
+    selectedDealbreaker = null;
+  }
+};
+
+    right.appendChild(checkbox);
+    right.appendChild(document.createTextNode(t.dealbreaker));
+
+    row.appendChild(left);
+    row.appendChild(right);
+
+    div.appendChild(row);
+
+  });
+  
+/*
+  // SCALE
+  const scale = document.createElement("div");
+  for (let i = 1; i <= 10; i++) {
+    const btn = document.createElement("button");
+    btn.innerText = i;
+    btn.type = "button";
+
+    btn.onclick = () => {
+      scale.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    };
+
+    scale.appendChild(btn);
+  }
+
+  div.appendChild(scale);
+*/
+  container.appendChild(div);
+});
+// INIT
+showStep(0);
+
+
+const selectedLanguages = [];
+const langContainer = document.getElementById("languageOptions");
+
+function renderLanguages() {
+  langContainer.innerHTML = "";
+
+  t.languages.forEach(lang => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerText = lang.label;
+    btn.classList.add("lang-btn");
+
+    btn.onclick = () => {
+      if (selectedLanguages.includes(lang)) {
+        selectedLanguages.splice(selectedLanguages.indexOf(lang), 1);
+        btn.classList.remove("active");
+      } else {
+        selectedLanguages.push(lang);
+        btn.classList.add("active");
+      }
+    };
+
+    langContainer.appendChild(btn);
+  });
+}
+
+renderLanguages();
+
+
+// ===== Language Selector =====
+const langBtn = document.getElementById("langBtn");
+const langDropdown = document.getElementById("langDropdown");
+
+// Toggle dropdown
+langBtn.addEventListener("click", () => {
+  langDropdown.style.display = langDropdown.style.display === "block" ? "none" : "block";
+});
+
+// Select language
+document.querySelectorAll("#langDropdown div").forEach(el => {
+  el.addEventListener("click", () => {
+    const lang = el.dataset.lang;
+    localStorage.setItem("lang", lang);
+    currentLang = lang;
+    langBtn.textContent = `🌐 ${currentLang.toUpperCase()} ▾`;
+    langDropdown.style.display = "none";
+
+    updateLanguageUI(lang); // <-- dynamically update UI
+  });
+});
+
+
+// Hide dropdown if clicked outside
+document.addEventListener("click", (e) => {
+  if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+    langDropdown.style.display = "none";
+  }
+});
+// ===== Initial language setup on page load =====
+
+// Ensure lang exists
+if (!currentLang) {
+  currentLang = "en";
+  localStorage.setItem("lang", "en");
+}
+
+// Set button label immediately
+langBtn.textContent = `🌐 ${currentLang.toUpperCase()} ▾`;
+
+// Apply language to UI immediately
+updateLanguageUI(currentLang);
+
+
+async function processImage(file) {
+  // 1. size limit (10MB hard cap before anything else)
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error("File too large (max 10MB)");
+  }
+
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    img.onload = () => {
+      const size = Math.min(img.width, img.height);
+
+      // 2. square crop (center crop)
+      const startX = (img.width - size) / 2;
+      const startY = (img.height - size) / 2;
+
+      canvas.width = 512;   // final size (good for profiles)
+      canvas.height = 512;
+
+      ctx.drawImage(
+        img,
+        startX,
+        startY,
+        size,
+        size,
+        0,
+        0,
+        512,
+        512
+      );
+
+      // 3. compression (JPEG, quality 0.75)
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) return reject("Compression failed");
+          resolve(blob);
+        },
+        "image/jpeg",
+        0.75
+      );
+    };
+
+    img.onerror = reject;
+
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+const photoInput = document.getElementById("photo");
+const photoPreview = document.getElementById("photoPreview");
+
+photoInput.addEventListener("change", async () => {
+  const file = photoInput.files[0];
+  if (!file) return;
+
+  try {
+    const processed = await processImage(file);
+
+    // create preview URL from processed blob
+    const url = URL.createObjectURL(processed);
+
+    photoPreview.src = url;
+    photoPreview.style.display = "block";
+    photoPreview.style.width = "120px";
+    photoPreview.style.height = "120px";
+    photoPreview.style.objectFit = "cover";
+    photoPreview.style.borderRadius = "12px";
+
+  } catch (err) {
+    alert("Could not preview image");
+    console.error(err);
+  }
+});
+
+photoPreview.style.display = "none";
+
+function showLoading() {
+  document.getElementById("loadingOverlay").style.display = "flex";
+  document.body.style.pointerEvents = "none";
+}
+
+function hideLoading() {
+  document.getElementById("loadingOverlay").style.display = "none";
+  document.body.style.pointerEvents = "auto";
+}
+
+</script>
+
+<style>
+ /* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* BODY — soft vegan gradient */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e9fdf3, #e6f4ff);
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+}
+
+/* APP CONTAINER */
+#app {
+  width: 100%;
+  max-width: 520px;
+  padding: 22px;
+}
+
+/* STEPS */
+.step {
+  display: none;
+  animation: fade 0.25s ease;
+  margin-top: 3rem;
+}
+
+.step.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADINGS */
+h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #0f766e;
+}
+
+h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #0f766e;
+  opacity: 0.85;
+}
+
+/* INPUTS */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #cde8e3;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #1f2937;
+  outline: none;
+  transition: 0.2s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
+}
+
+textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+/* IMAGE */
+#photoPreview {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 14px;
+}
+
+/* BUTTONS */
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  transition: 0.2s ease;
+}
+
+/* primary green */
+#nextBtn {
+  background: linear-gradient(135deg, #34d399, #22c55e);
+  color: white;
+}
+
+#finishBtn {
+  background: linear-gradient(135deg, #60a5fa, #38bdf8);
+  color: white;
+}
+
+#skipBtn {
+  background: transparent;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* QUESTION BLOCK */
+.question-block {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #dbeafe;
+  padding: 16px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  backdrop-filter: blur(6px);
+}
+
+/* OPTION ROW */
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0fdfa;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #d1fae5;
+}
+
+/* LEFT SIDE */
+.option-row label:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* RIGHT SIDE */
+.option-row label:last-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #ef4444;
+}
+
+/* RADIO / CHECKBOX */
+input[type="radio"],
+input[type="checkbox"] {
+  transform: scale(1.15);
+  cursor: pointer;
+  accent-color: #22c55e;
+}
+
+/* SCALE */
+.question-block div button {
+  width: 34px;
+  height: 34px;
+  margin: 4px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 12px;
+  padding: 0;
+  border: 1px solid #cbd5e1;
+}
+
+.question-block div button.active {
+  background: linear-gradient(135deg, #34d399, #22c55e);
+  color: white;
+  border: none;
+}
+
+/* EXPLANATION */
+#stepExplanation {
+  text-align: center;
+}
+
+#explanationText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #334155;
+  margin-bottom: 20px;
+}
+
+/* LANG BUTTONS */
+.lang-btn {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: rgba(255, 255, 255, 0.7);
+  color: #0f172a;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, #34d399, #22c55e);
+  color: white;
+  border: none;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .option-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .option-row label:last-child {
+    align-self: flex-end;
+  }
+}
+
+
+/* ===== Language Selector ===== */
+#languageSelector {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  font-size: 0.9rem;
+}
+
+#langBtn {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  border: 1px solid #b7e4c7;
+  font-weight: bold;
+  color: #2d6a4f;
+}
+
+#langDropdown {
+  display: none;
+  margin-top: 5px;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#langDropdown div {
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #2d6a4f;
+}
+
+#langDropdown div:hover {
+  background-color: #d9f0e1;
+}
+
+#loadingOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-size: 18px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+
+</body>
+</html>
