@@ -966,8 +966,6 @@ function renderDateProfile(profile) {
   const container = document.getElementById("dateList");
   if (!container) return;
 
-  const profile = appState.profile;
-
   // ❌ If survey NOT completed → show empty state
   if (!profile?.dates_survey_completed) {
     container.innerHTML = `
