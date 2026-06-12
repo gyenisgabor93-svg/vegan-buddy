@@ -1265,7 +1265,7 @@ async function saveDatingProfile() {
     const age = getSurveyValue(survey, "age");
 
     const interested_in = calculateInterestedIn(gender);
-    const age_filter = calculateAgeFilter(age);
+    const { min, max } = calculateAgeFilter(age);
 
     const payload = {
       photos: uploadedPhotos,
@@ -1277,10 +1277,7 @@ async function saveDatingProfile() {
 
 
       interested_in,
-      age_filter: {
-            min,
-            max
-                  }
+      age_filter: [min, max]
     };
 
     const { error } = await supabase
