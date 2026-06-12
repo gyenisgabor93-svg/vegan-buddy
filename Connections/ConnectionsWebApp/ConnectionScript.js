@@ -251,9 +251,9 @@ function initUI() {
   setupCommunities();
 
   renderFriendsProfile(appState.profile);
-  renderDateProfile(appState.profile);
-
   renderDateProfileView(appState.profile);
+
+  renderDateProfile(appState.profile);
 
   setupDiscoverTab();
 }
@@ -868,6 +868,7 @@ function renderDiscover(type) {
 
   // ✅ NORMAL STATE
   container.innerHTML = data.map(createDiscoverCard).join("");
+  attachCardEvents();
 }
 
 // -----------------------------
@@ -882,7 +883,7 @@ function createDiscoverCard(user) {
   const score = Math.round(user.score || 0);
 
   return `
-    <div class="discover-card" data-user-id="${user.id}">
+    <div class="discover-card clickable" data-user-id="${user.id}">
       
       <div class="card-image">
         <img 
@@ -892,12 +893,10 @@ function createDiscoverCard(user) {
       </div>
 
       <div class="card-content">
-
         <div class="card-header">
           <h3 class="name">${user.name}</h3>
           <span class="score">${score}%</span>
         </div>
-
       </div>
 
     </div>
@@ -905,21 +904,10 @@ function createDiscoverCard(user) {
 }
 
 function attachCardEvents() {
-  document.querySelectorAll(".like-btn").forEach(btn => {
-    btn.onclick = (e) => {
-      const userId = e.target.dataset.id;
-      console.log("LIKE:", userId);
-
-      // later: call Supabase match table insert
-    };
-  });
-
-  document.querySelectorAll(".skip-btn").forEach(btn => {
-    btn.onclick = (e) => {
-      const userId = e.target.dataset.id;
-      console.log("SKIP:", userId);
-
-      // later: mark as seen
+  document.querySelectorAll(".discover-card").forEach(card => {
+    card.onclick = () => {
+      const userId = card.dataset.userId;
+      openUserProfile(userId);
     };
   });
 }
@@ -949,6 +937,25 @@ async function enableMode(column, type) {
   }
 }
 
+async function openUserProfile(userId) {
+  showLoadingSmall?.();
+
+  try {
+    const { data, error } = await supabase.rpc("get_user_profile", {
+      p_viewer_id: appState.user.id,
+      p_target_id: userId
+    });
+
+    if (error) throw error;
+
+    renderProfilePopup(data);
+
+  } catch (err) {
+    console.error("Profile fetch error:", err);
+  } finally {
+    hideLoadingSmall?.();
+  }
+}
 
 
 //#endregion
@@ -956,6 +963,9 @@ async function enableMode(column, type) {
 //#region Dates Functions
 
 function renderDateProfile(container) {
+  const container = document.getElementById("dateList");
+  if (!container) return;
+
   const profile = appState.profile;
 
   // ❌ If survey NOT completed → show empty state
@@ -1251,13 +1261,28 @@ async function saveDatingProfile() {
 
     const uploadedPhotos = await uploadPhotosToBucket(userId, data.photos);
 
+    const survey = data.dating_survey;
+
+    const gender = getSurveyValue(survey, "gender");
+    const age = getSurveyValue(survey, "age");
+
+    const interested_in = calculateInterestedIn(gender);
+    const age_filter = calculateAgeFilter(age);
+
     const payload = {
       photos: uploadedPhotos,
       dating_survey: data.dating_survey,
       date_description: data.date_description.slice(0, 300),
       hobbies: data.hobbies.slice(0, 300),
       dates_mode_on: true,
-      dates_survey_completed: true
+      dates_survey_completed: true,
+
+
+      interested_in,
+      age_filter: {
+            min,
+            max
+                  }
     };
 
     const { error } = await supabase
@@ -1296,6 +1321,25 @@ setDiscoverTab("dates"); // this triggers loadDiscover internally
     hideLoading();
     alert("Failed to save profile");
   }
+}
+
+function getSurveyValue(survey, id) {
+  return survey.find(q => q.questionId === id)?.answer;
+}
+
+function calculateInterestedIn(gender) {
+  if (gender === "Man") return "women";
+  if (gender === "Woman") return "men";
+  return "others";
+}
+
+function calculateAgeFilter(age) {
+  const parsedAge = parseInt(age, 10);
+
+  return {
+    min: Math.max(18, parsedAge - 10),
+    max: parsedAge + 10
+  };
 }
 
 async function uploadPhotosToBucket(userId, photos) {
