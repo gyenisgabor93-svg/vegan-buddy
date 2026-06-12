@@ -962,7 +962,7 @@ async function openUserProfile(userId) {
 
 //#region Dates Functions
 
-function renderDateProfile(container) {
+function renderDateProfile(profile) {
   const container = document.getElementById("dateList");
   if (!container) return;
 
