@@ -91,15 +91,13 @@ function collectSurveyData() {
 
   // answers: MUST always be plain object (JSONB safe)
   const answers = Object.fromEntries(
-    Object.entries(t.questions || {}).length
-      ? (t.questions || [])
-          .map(q => {
-            const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
-            return selected ? [q.id, String(selected.value)] : null;
-          })
-          .filter(Boolean) // 🔥 removes null entries (THE FIX)
-      : []
-  );
+  (t.questions || [])
+    .map((q, index) => {
+      const selected = document.querySelector(`input[name="q${index}"]:checked`);
+      return selected ? [q.id, String(selected.value)] : null;
+    })
+    .filter(Boolean)
+);
 
   // dealbreaker: ALWAYS array of strings (JSONB safe)
   const dealbreaker = selectedDealbreaker
