@@ -78,29 +78,42 @@
 import { supabase } from "./supabaseClient.mjs";
 
 function collectSurveyData() {
-  const name = document.getElementById("name").value.trim();
-  const description = document.getElementById("description").value.trim();
+  const name = String(document.getElementById("name").value || "").trim();
+  const description = String(document.getElementById("description").value || "").trim();
 
-  // languages already tracked
-  const languages = selectedLanguages;
+  // languages: MUST always be array of objects with {id, label}
+  const languages = Array.isArray(selectedLanguages)
+    ? selectedLanguages.map(l => ({
+        id: String(l.id || l),
+        label: String(l.label || "")
+      }))
+    : [];
 
-  // collect answers
-  const answers = {};
+  // answers: MUST always be plain object (JSONB safe)
+  const answers = Object.fromEntries(
+    Object.entries(t.questions || {}).length
+      ? (t.questions || []).map(q => {
+          const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+          return [q.id, selected ? String(selected.value) : null];
+        })
+      : []
+  );
 
-  t.questions.forEach((q, i) => {
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    if (selected) {
-      answers[q.id] = selected.value;
-    }
-  });
+  // dealbreaker: ALWAYS array of strings (JSONB safe)
+  const dealbreaker = selectedDealbreaker
+    ? [String(selectedDealbreaker)]
+    : [];
+
+  // lang: ALWAYS string
+  const lang = String(currentLang || "en");
 
   return {
     name,
     description,
     languages,
     answers,
-    dealbreaker: selectedDealbreaker,
-    lang: currentLang
+    dealbreaker,
+    lang
   };
 }
 
@@ -886,7 +899,9 @@ document.getElementById("finishBtn").onclick = async () => {
 const fileInput = document.getElementById("photo");
 const file = fileInput.files[0];
 
-let photoUrl = null;
+const DEFAULT_PHOTO_URL =
+  "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg";
+let photoUrl = DEFAULT_PHOTO_URL;
 
 if (file) {
   try {
