@@ -1213,3 +1213,295 @@ textarea:focus {
   color: white;
   border-color: #66bb6a;
 }
+
+
+
+
+
+/* ----------------------------- */
+/* PROFILECARD (3 per row)       */
+/* ----------------------------- */
+/* PROFILECARD (3 per row)       */
+/* ----------------------------- */
+/* ----------------------------- */
+/* PROFILECARD (3 per row)       */
+/* ----------------------------- */
+#friendsList,
+#dateList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 16px;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  #friendsList,
+  #dateList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  #friendsList,
+  #dateList {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------- */
+/* CARD                         */
+/* ----------------------------- */
+.discover-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  height: 320px;
+
+  background: transparent;
+  box-shadow: 0 8px 20px rgba(0, 60, 20, 0.10);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.discover-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 60, 20, 0.15);
+}
+
+/* ----------------------------- */
+/* IMAGE                        */
+/* ----------------------------- */
+.card-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0.4rem !important;
+}
+
+/* ----------------------------- */
+/* OVERLAY                      */
+/* ----------------------------- */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* 👈 THIS FIXES TEXT BEING BEHIND */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+
+  color: white;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.55)
+  );
+}
+
+/* NAME + AGE */
+.card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-age {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.card-score {
+  align-self: center;
+  font-size: 44px;
+  font-weight: 800;
+}
+
+/* ----------------------------- */
+/* SCORE COLORS                 */
+/* ----------------------------- */
+.score-low {
+  color: #e85c5c; /* soft red */
+}
+
+.score-mid {
+  color: #e6b34d; /* warm earth yellow */
+}
+
+.score-high {
+  color: #3bbf7a; /* natural green */
+}
+
+/* ----------------------------- */
+/* RENDER PROFILE                */
+/* ----------------------------- */
+/* ----------------------------- */
+/* RENDER PROFILE                */
+/* ----------------------------- */
+/* ----------------------------- */
+/* RENDER PROFILE                */
+/* ----------------------------- */
+
+#profile-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 👈 key change */
+
+  padding: 10px 0;
+  overflow-y: auto;
+  z-index: 1000;
+
+  background: rgba(0,0,0,0.7);
+}
+
+#profile-popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+}
+
+
+#profile-popup {
+  position: fixed;
+  z-index: 1000; /* above backdrop */
+}
+
+/* Prevent scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+.card.seen {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+/* MATCHES */
+/* MATCHES */
+/* MATCHES */
+/* MATCHES */
+
+
+
+/* BASE CARD (LIGHT) */
+#matches .invitation-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  height: 90px;
+
+  padding: 10px 16px;
+  border-radius: 14px;
+
+  background: #ffffff;
+  color: #222;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  border: 1px solid #eee;
+}
+
+.invitation-card:hover {
+  transform: scale(1.01);
+}
+
+/* IMAGE */
+.invitation-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* CONTENT */
+.invitation-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.invitation-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invitation-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.invitation-meta {
+  font-size: 14px;
+  color: #666;
+}
+
+.invitation-score {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 💙 FRIEND STYLE (friendly, calm, trust) */
+#matches .invitation-card.friend {
+  background: #f0f7ff;
+  border: 1px solid #cfe5ff;
+}
+
+.invitation-card.friend:hover {
+  background: #e6f2ff;
+}
+
+.invitation-card.friend .invitation-score {
+  color: #2196F3;
+}
+
+/* 💖 DATE STYLE (romantic, warm) */
+#matches .invitation-card.date {
+  background: #fff0f5;
+  border: 1px solid #ffd1dc;
+}
+
+.invitation-card.date:hover {
+  background: #ffe6ee;
+}
+
+.invitation-card.date .invitation-score {
+  color: #e91e63;
+}

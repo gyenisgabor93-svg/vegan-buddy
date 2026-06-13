@@ -140,6 +140,11 @@ function openTab(tabId, element) {
 
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   element.classList.add('active');
+
+  // 👇 add this
+  if (tabId === 'matches') {
+    createInvitationCards();
+  }
 }
 
 function setMode(mode) {
@@ -514,92 +519,89 @@ const AppData = (() => {
 const DateData = (() => {
 
   const answerMap = {
-  gender: {
-    question: "Gender",
-    answers: {
-      Man: "Man",
-      Woman: "Woman",
-      Other: "Other"
+    gender: {
+      question: "Gender",
+      answers: {
+        "1": "Man",
+        "0": "Woman",
+        "2": "Other"
+      }
+    },
+
+    age: {
+      question: "Age",
+      default: (v) => `${v}`
+    },
+
+    height: {
+      question: "Height (cm)",
+      default: (v) => `${v} cm`
+    },
+
+    looking_for: {
+      question: "What are you looking for?",
+      answers: {
+        "long_term": "Long term",
+        "connection_no_commitment": "Connection without commitment",
+        "ethical_non_monogamy": "Ethical non-monogamy",
+        "casual": "Casual"
+      }
+    },
+
+    smoke: {
+      question: "Do you smoke?",
+      answers: {
+        "no": "No",
+        "occasionally": "Occasionally",
+        "yes": "Yes",
+        "trying_to_quit": "Trying to quit"
+      }
+    },
+
+    drink: {
+      question: "Do you drink alcohol?",
+      answers: {
+        "no": "No",
+        "occasionally": "Occasionally",
+        "socially": "Socially",
+        "regularly": "Regularly"
+      }
+    },
+
+    children: {
+      question: "Do you have or want children?",
+      answers: {
+        "dont_have": "Don't have",
+        "want": "Want",
+        "dont_want": "Don't want",
+        "not_sure": "Not sure / depends"
+      }
     }
-  },
+  };
 
-  age: {
-    question: "Age",
-    default: (v) => `${v}`
-  },
+  function getLabel(questionId, value) {
+    const config = answerMap[questionId];
 
-  height: {
-    question: "Height (cm)",
-    default: (v) => `${v} cm`
-  },
+    if (!config) return value ?? "—";
 
-  looking_for: {
-    question: "What are you looking for?",
-    answers: {
-      "Long term": "Long term",
-      "Connection without commitment": "Connection without commitment",
-      "Ethical non-monogamy": "Ethical non-monogamy",
-      "Casual": "Casual"
+    if (Array.isArray(value)) {
+      return value.map(v => getLabel(questionId, v)).join(", ");
     }
-  },
 
-  smoke: {
-    question: "Do you smoke?",
-    answers: {
-      No: "No",
-      Occasionally: "Occasionally",
-      Yes: "Yes",
-      "Trying to quit": "Trying to quit"
+    if (config.answers && config.answers[value] !== undefined) {
+      return config.answers[value];
     }
-  },
 
-  drink: {
-    question: "Do you drink alcohol?",
-    answers: {
-      No: "No",
-      Occasionally: "Occasionally",
-      Socially: "Socially",
-      Regularly: "Regularly"
+    if (config.default) {
+      return config.default(value);
     }
-  },
 
-  children: {
-    question: "Do you have or want children?",
-    answers: {
-      "Don't have": "Don't have",
-      Want: "Want",
-      "Don't want": "Don't want",
-      "Not sure / depends": "Not sure / depends"
-    }
+    return value ?? "—";
   }
-};
 
-function getLabel(questionId, value) {
-  const config = answerMap[questionId];
-
-  if (!config) return value ?? "—";
-
-  // arrays (multi-select)
-  if (Array.isArray(value)) {
-    return value.map(v => getLabel(questionId, v)).join(", ");
+  function getQuestionLabel(questionId) {
+    return answerMap[questionId]?.question || questionId;
   }
-
-  // answers map
-  if (config.answers && config.answers[value] !== undefined) {
-    return config.answers[value];
-  }
-
-  // default handler (numbers)
-  if (config.default) {
-    return config.default(value);
-  }
-
-  return value ?? "—";
-}
-
-function getQuestionLabel(questionId) {
-  return answerMap[questionId]?.question || questionId;
-}
 
   return {
     getLabel,
@@ -831,12 +833,16 @@ async function fetchDiscover(type) {
     }
 
     if (type === "friends") {
-      discoverState.friends = data || [];
-      renderDiscover("friends");
-    } else {
-      discoverState.dates = data || [];
-      renderDiscover("dates");
-    }
+  discoverState.friends = (data || []).map(u =>
+    normalizeDiscoverUser(u, "friends")
+  );
+  renderDiscover("friends");
+} else {
+  discoverState.dates = (data || []).map(u =>
+    normalizeDiscoverUser(u, "dates")
+  );
+  renderDiscover("dates");
+}
 
     discoverState.lastFetched[type] = Date.now();
 
@@ -876,7 +882,17 @@ function renderDiscover(type) {
 
   // ✅ NORMAL STATE
   container.innerHTML = data.map(createDiscoverCard).join("");
-  attachCardEvents();
+  attachCardEvents(type);
+}
+
+function normalizeDiscoverUser(user, type) {
+  return {
+    id: user.c_id,
+    name: user.c_name,
+    photo: user.c_photo,
+    age: type === "dates" ? user.c_age : null,
+    score: user.score ?? 0,
+  };
 }
 
 // -----------------------------
@@ -887,7 +903,13 @@ async function refreshDiscover() {
 }
 
 
-function createDiscoverCard(user) {
+function getScoreClass(score) {
+  if (score >= 75) return "score-high";
+  if (score >= 40) return "score-mid";
+  return "score-low";
+}
+
+function createDiscoverCard(user) { 
   const score = Math.round(user.score || 0);
 
   return `
@@ -895,27 +917,33 @@ function createDiscoverCard(user) {
       
       <div class="card-image">
         <img 
-          src="${user.profile_photo_url || "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg"}" 
+          src="${user.photo || "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg"}" 
           alt="${user.name}"
         />
       </div>
 
-      <div class="card-content">
-        <div class="card-header">
-          <h3 class="name">${user.name}</h3>
-          <span class="score">${score}%</span>
+      <div class="card-overlay">
+
+        <div class="card-top">
+          <div class="card-name">${user.name}</div>
+          ${user.age ? `<div class="card-age">${user.age} years old</div>` : ""}
         </div>
+
+        <div class="card-score ${getScoreClass(score)}">
+          ${score}%
+        </div>
+
       </div>
 
     </div>
   `;
 }
 
-function attachCardEvents() {
+function attachCardEvents(type) {
   document.querySelectorAll(".discover-card").forEach(card => {
     card.onclick = () => {
       const userId = card.dataset.userId;
-      openUserProfile(userId);
+      openUserProfile(userId, type);
     };
   });
 }
@@ -945,13 +973,14 @@ async function enableMode(column, type) {
   }
 }
 
-async function openUserProfile(userId) {
+async function openUserProfile(userId, type) {
   showLoadingSmall?.();
 
-  try {
-    const { data, error } = await supabase.rpc("get_user_profile", {
+  try { 
+    const { data, error } = await supabase.rpc("get_user_profile", { 
       p_viewer_id: appState.user.id,
-      p_target_id: userId
+      p_target_id: userId,
+      p_mode: type 
     });
 
     if (error) throw error;
@@ -965,6 +994,338 @@ async function openUserProfile(userId) {
   }
 }
 
+function renderProfilePopup(user) {
+  const popup = document.getElementById("profile-popup");
+  const container = document.getElementById("profile-data");
+  const backdrop = document.getElementById("profile-backdrop");
+
+  if (user.type === "friends") {
+    container.innerHTML = renderFriendsProfileCard(user);
+  } else {
+    container.innerHTML = renderDateProfileCard(user);
+  }
+
+  // Show popup + backdrop
+  popup.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
+
+  // Disable background interaction
+  document.body.classList.add("modal-open");
+}
+
+function getQuestionById(id) {
+  return AppData.questions.find(q => q.id === id);
+}
+
+function renderQuestionBlock(questionId, viewerAnswer, targetAnswer, label) {
+  const q = getQuestionById(questionId);
+  if (!q) return "";
+
+  return `
+    <div class="section">
+      <h4>${label}: ${q.text}</h4>
+      <ul>
+        ${q.options.map(opt => {
+
+          const isViewer = opt.id === viewerAnswer;
+          const isTarget = opt.id === targetAnswer;
+
+          let style = "";
+
+          if (isViewer && isTarget) {
+            style = "background:#d4edda;font-weight:bold;color:#155724;";
+          } else if (isViewer) {
+            style = "background:#fff3cd;font-weight:bold;";
+          } else if (isTarget) {
+            style = "background:#f8d7da;";
+          }
+
+          return `
+            <li style="padding:6px;border-radius:6px;margin-bottom:4px;${style}">
+              ${opt.text}
+            </li>
+          `;
+        }).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+function renderFriendsProfileCard(user) { 
+  return `
+    <img src="${user.photo}" width="100%" />
+
+    <h2>${user.name}</h2>
+    <p>${user.description || ""}</p>
+
+    <div class="section">
+      <h4>🤝 Things in common</h4>
+      ${
+        user.common === "no_common" ||
+        !user.common ||
+        user.common.length === 0
+          ? "<p>No matching answers</p>"
+          : user.common
+              .map(c =>
+                renderQuestionBlock(
+                  c.questionId,
+                  c.viewerAnswer,
+                  c.targetAnswer,
+                  "Common"
+                )
+              )
+              .join("")
+      }
+    </div>
+
+    <div class="section">
+      <h4>⚡ Difference</h4>
+      ${
+        !user.difference || user.difference === "no_strong_difference"
+          ? "<p>No differences</p>"
+          : Array.isArray(user.difference)
+              ? user.difference
+                  .map(d =>
+                    renderQuestionBlock(
+                      d.questionId,
+                      d.viewerAnswer,
+                      d.targetAnswer,
+                      "Difference"
+                    )
+                  )
+                  .join("")
+              : user.difference.questionId
+                  ? renderQuestionBlock(
+                      user.difference.questionId,
+                      user.difference.viewerAnswer,
+                      user.difference.targetAnswer,
+                      "Difference"
+                    )
+                  : "<p>No differences</p>"
+      }
+    </div>
+
+    <div class="section">
+      <h4>🎯 Hobbies</h4>
+      <p>${user.hobbies || ""}</p>
+    </div>
+
+    <div class="actions">
+
+      <button data-action="hide" data-id="${user.id}">
+        ❌ Hide
+      </button>
+
+      <button data-action="avocado" data-id="${user.id}">
+        🥑 Send avocado
+      </button>
+
+    </div>
+  `;
+}
+
+function renderDateProfileCard(user) {
+  return `
+    <div class="photo-gallery">
+      ${(user.photos || [])
+        .map(p => `<img src="${p.url}" style="width:100%; margin-bottom:6px; border-radius:8px;" />`)
+        .join("")}
+    </div>
+
+    <h2>${user.name}</h2>
+    <p>${user.date_description || ""}</p>
+
+    <div class="section">
+      <h4>🎯 Hobbies</h4>
+      <p>${user.hobbies || ""}</p>
+    </div>
+
+
+    <div class="section">
+      <h4>🤝 Things in common</h4>
+      ${
+        user.common === "no_common" ||
+        !user.common ||
+        user.common.length === 0
+          ? "<p>No matching answers</p>"
+          : user.common
+              .map(c =>
+                renderQuestionBlock(
+                  c.questionId,
+                  c.viewerAnswer,
+                  c.targetAnswer,
+                  "Common"
+                )
+              )
+              .join("")
+      }
+    </div>
+
+    <div class="section">
+      <h4>⚡ Difference</h4>
+      ${
+        !user.difference || user.difference === "no_strong_difference"
+          ? "<p>No differences</p>"
+          : Array.isArray(user.difference)
+              ? user.difference
+                  .map(d =>
+                    renderQuestionBlock(
+                      d.questionId,
+                      d.viewerAnswer,
+                      d.targetAnswer,
+                      "Difference"
+                    )
+                  )
+                  .join("")
+              : user.difference.questionId
+                  ? renderQuestionBlock(
+                      user.difference.questionId,
+                      user.difference.viewerAnswer,
+                      user.difference.targetAnswer,
+                      "Difference"
+                    )
+                  : "<p>No differences</p>"
+      }
+    </div>
+
+    <div class="section">
+  <h4>💭 Dating profile details</h4>
+
+  ${
+    Array.isArray(user.survey)
+      ? user.survey
+          .map(item => {
+            return `
+              <div style="padding:6px 0; border-bottom:1px solid #eee;">
+                <strong>${DateData.getQuestionLabel(item.key)}:</strong>
+                ${DateData.getLabel(item.key, normalizeValue(item.value))}
+              </div>
+            `;
+          })
+          .join("")
+      : "<p>No survey data</p>"
+  }
+</div>
+
+    <div class="actions">
+
+      <button data-action="hide" data-id="${user.id}">
+        ❌ Hide
+      </button>
+
+      <button data-action="tofu" data-id="${user.id}">
+            🍲 Share your Tofu
+      </button>
+
+    </div>
+  `;
+}
+
+function normalizeValue(value) {
+  if (Array.isArray(value)) return value;
+
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value);
+      if (Array.isArray(parsed)) return parsed;
+    } catch (e) {}
+
+    // fallback: comma-separated string
+    return value.split(",").map(v => v.trim());
+  }
+
+  return value;
+}
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-action]");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+  const action = btn.dataset.action;
+
+  if (action === "tofu") sendTofu(id);
+  if (action === "avocado") sendAvocado(id);
+  if (action === "hide") hideUser(id);
+});
+
+async function hideUser(userId) {
+  await performAction(userId, null);
+}
+
+async function sendAvocado(userId) {
+  await performAction(userId, 1);
+}
+
+async function sendTofu(userId) {
+  await performAction(userId, 2);
+}
+
+async function performAction(userId, invitationType = null) {
+  try {
+    await addToSeenProfiles(userId);
+
+    if (invitationType !== null) {
+      const { error } = await supabase
+        .from("0con_incomes")
+        .insert({
+          receiver_id: userId,
+          sender_id: appState.user.id,
+          invitation_type: invitationType
+        });
+
+      if (error) throw error;
+    }
+
+    const card = getUserCard(userId);
+    if (card) card.classList.add("seen");
+
+  } catch (err) {
+    console.error("Action failed:", err);
+  }
+
+  closeProfilePopup();
+}
+
+document.getElementById("close-popup").onclick = closeProfilePopup;
+
+function closeProfilePopup() {
+  const popup = document.getElementById("profile-popup");
+  const backdrop = document.getElementById("profile-backdrop");
+
+  popup.classList.add("hidden");
+  backdrop.classList.add("hidden");
+
+  document.body.classList.remove("modal-open");
+}
+
+async function addToSeenProfiles(userId) {
+  const user = appState.user;
+
+  const seen = user.seen_profiles || [];
+
+  if (!seen.includes(userId)) {
+    seen.push(userId);
+  }
+
+  const { error } = await supabase
+    .from("0con_profilesdata")
+    .update({
+      seen_profiles: seen
+    })
+    .eq("id", user.id);
+
+  if (error) {
+    console.error("Failed to update seen_profiles:", error);
+  } else {
+    // keep local state in sync
+    appState.user.seen_profiles = seen;
+  }
+}
+
+function getUserCard(userId) {
+  return document.querySelector(`.discover-card[data-user-id="${userId}"]`);
+}
 
 //#endregion
 
@@ -1140,27 +1501,75 @@ function renderPhotos() {
 }
 
 const dateQuestions = [
-  { id: "gender", label: "Gender", type: "single", options: ["Man", "Woman", "Other"] },
-  { id: "age", label: "Age", type: "number" },
-  { id: "height", label: "Height (cm)", type: "number" },
+  {
+    id: "gender",
+    label: "Gender",
+    type: "single",
+    options: [
+      { id: 1, label: "Man" },
+      { id: 0, label: "Woman" },
+      { id: 2, label: "Other" }
+    ]
+  },
+
+  {
+    id: "age",
+    label: "Age",
+    type: "number"
+  },
+
+  {
+    id: "height",
+    label: "Height (cm)",
+    type: "number"
+  },
+
   {
     id: "looking_for",
     label: "What are you looking for?",
     type: "single",
     options: [
-      "Long term",
-      "Connection without commitment",
-      "Ethical non-monogamy",
-      "Casual"
+      { id: "long_term", label: "Long term" },
+      { id: "connection_no_commitment", label: "Connection without commitment" },
+      { id: "ethical_non_monogamy", label: "Ethical non-monogamy" },
+      { id: "casual", label: "Casual" }
     ]
   },
-  { id: "smoke", label: "Do you smoke?", type: "single", options: ["No", "Occasionally", "Yes", "Trying to quit"] },
-  { id: "drink", label: "Do you drink alcohol?", type: "single", options: ["No", "Occasionally", "Socially", "Regularly"] },
+
+  {
+    id: "smoke",
+    label: "Do you smoke?",
+    type: "single",
+    options: [
+      { id: "no", label: "No" },
+      { id: "occasionally", label: "Occasionally" },
+      { id: "yes", label: "Yes" },
+      { id: "trying_to_quit", label: "Trying to quit" }
+    ]
+  },
+
+  {
+    id: "drink",
+    label: "Do you drink alcohol?",
+    type: "single",
+    options: [
+      { id: "no", label: "No" },
+      { id: "occasionally", label: "Occasionally" },
+      { id: "socially", label: "Socially" },
+      { id: "regularly", label: "Regularly" }
+    ]
+  },
+
   {
     id: "children",
     label: "Do you have or want children?",
     type: "single",
-    options: ["Don't have", "Want", "Don't want", "Not sure / depends"]
+    options: [
+      { id: "dont_have", label: "Already Have" },
+      { id: "want", label: "Want" },
+      { id: "dont_want", label: "Don't want" },
+      { id: "not_sure", label: "Not sure / depends" }
+    ]
   }
 ];
 
@@ -1186,10 +1595,10 @@ function renderDateQuestions() {
         <label>${q.label}</label>
         <div class="chip-group" data-id="${q.id}">
           ${q.options.map(opt => `
-            <button type="button" class="chip" data-value="${opt}">
-              ${opt}
-            </button>
-          `).join("")}
+  <button type="button" class="chip" data-value="${opt.id}">
+    ${opt.label}
+  </button>
+`).join("")}
         </div>
       `;
     }
@@ -1199,8 +1608,8 @@ function renderDateQuestions() {
       div.innerHTML = `
         <label>${q.label}</label>
         <select data-id="${q.id}">
-          ${q.options.map(o => `<option value="${o}">${o}</option>`).join("")}
-        </select>
+  ${q.options.map(o => `<option value="${o.id}">${o.label}</option>`).join("")}
+</select>
       `;
     }
 
@@ -1219,7 +1628,10 @@ function renderDateQuestions() {
 
     // collect ALL active chips
     const selected = Array.from(group.querySelectorAll(".chip.active"))
-      .map(b => b.dataset.value);
+  .map(b => {
+    const v = b.dataset.value;
+    return isNaN(v) ? v : Number(v);
+  });
 
     group.dataset.selected = JSON.stringify(selected);
   });
@@ -1232,19 +1644,21 @@ function collectSurveyData() {
   document.querySelectorAll("#surveyQuestions [data-id]").forEach(el => {
     const id = el.dataset.id;
 
-    // CHIP GROUP (looking_for)
+    // CHIP GROUP (multi-select like looking_for)
     if (el.classList.contains("chip-group")) {
-  answers.push({
-    questionId: id,
-    answer: JSON.parse(el.dataset.selected || "[]")
-  });
-}
+      const selected = JSON.parse(el.dataset.selected || "[]");
 
-    // SELECT / INPUT
+      answers.push({
+        questionId: id,
+        answer: selected
+      });
+    }
+
+    // INPUT / SELECT
     else {
       answers.push({
         questionId: id,
-        answer: el.value
+        answer: mapAnswerToId(id, el.value)
       });
     }
   });
@@ -1269,8 +1683,8 @@ async function saveDatingProfile() {
 
     const survey = data.dating_survey;
 
-    const gender = getSurveyValue(survey, "gender");
-    const age = getSurveyValue(survey, "age");
+    const gender = Number(getSurveyValue(survey, "gender"));
+    const age = Number(getSurveyValue(survey, "age"));
 
     const interested_in = calculateInterestedIn(gender);
     const { min, max } = calculateAgeFilter(age);
@@ -1316,9 +1730,6 @@ discoverState.dates = [];
 openScreen("discover");
 goToDiscoverDateView();
 
-// ✅ 4. Force reload + ensure correct tab
-setDiscoverTab("dates"); // this triggers loadDiscover internally
-
   } catch (err) {
     console.error(err);
     hideLoading();
@@ -1326,23 +1737,33 @@ setDiscoverTab("dates"); // this triggers loadDiscover internally
   }
 }
 
-function getSurveyValue(survey, id) {
-  return survey.find(q => q.questionId === id)?.answer;
+function mapAnswerToId(questionId, value) {
+  if (questionId === "gender") {
+  return typeof value === "string" ? Number(value) : value;
+}
+
+  if (questionId === "age") return Number(value);
+  if (questionId === "height") return Number(value);
+
+  // already ID-based fields
+  return value;
 }
 
 function calculateInterestedIn(gender) {
-  if (gender === "Man") return "women";
-  if (gender === "Woman") return "men";
-  return "others";
+  if (gender === 1) return "0"; // man -> interested in women
+  if (gender === 0) return "1"; // woman -> interested in men
+  return "2"; // other
 }
 
+function getSurveyValue(survey, questionId) {
+  const item = survey.find(q => q.questionId === questionId);
+  return item ? item.answer : null;
+}
 function calculateAgeFilter(age) {
-  const parsedAge = parseInt(age, 10);
+  const min = Math.max(18, age - 10);
+  const max = age + 10;
 
-  return {
-    min: Math.max(18, parsedAge - 10),
-    max: parsedAge + 10
-  };
+  return { min, max };
 }
 
 async function uploadPhotosToBucket(userId, photos) {
@@ -1407,10 +1828,493 @@ document.getElementById("saveSurveyBtn").addEventListener("click", () => {
 
     //#endregion
 
-//#region Matches Tab
+//#region Income Tab
+
+async function createInvitationCards() {
+  try {
+    const viewerId = appState.user.id;
+
+    // 1. fetch raw invitations first
+    const { data: invites, error } = await supabase
+      .from('0con_incomes')
+      .select('id, sender_id, receiver_id, invitation_type')
+      .eq('receiver_id', viewerId);
+
+    if (error) {
+      console.error('fetch invites error:', error);
+      return;
+    }
+
+    if (!invites || invites.length === 0) {
+      renderInvitationCards([]);
+      return;
+    }
+
+    // 2. resolve each invitation into a card via RPC
+    const cards = await Promise.all(
+  invites.map(async (inv) => {
+
+    let result = null;
+
+    if (inv.invitation_type === 1) {
+      const { data, error } = await supabase.rpc('set_friend_invitation_card', {
+        p_receiver_id: inv.receiver_id,
+        p_sender_id: inv.sender_id
+      });
+
+      if (!error) result = data;
+    }
+
+    if (inv.invitation_type === 2) {
+      const { data, error } = await supabase.rpc('set_date_invitation_card', {
+        p_receiver_id: inv.receiver_id,
+        p_sender_id: inv.sender_id
+      });
+
+      if (!error) result = data;
+    }
+
+    // 👇 attach type to every returned card
+    if (result) {
+      return result.map(c => ({
+        ...c,
+        invitation_type: inv.invitation_type,
+        income_id: inv.id
+      }));
+    }
+
+    return null;
+  })
+);
+
+    // 3. flatten + remove nulls
+    const flatCards = cards.flat().filter(Boolean);
+
+    renderInvitationCards(flatCards);
+
+  } catch (err) {
+    console.error('createInvitationCards failed:', err);
+  }
+}
+
+function renderInvitationCards(cards) {  
+  const container = document.getElementById('invitation-list');
+  container.innerHTML = '';
+
+  if (!cards || cards.length === 0) {
+    container.innerHTML = `<p>No invitations yet</p>`;
+    return;
+  }
+
+  cards.forEach(card => {
+  const el = document.createElement('div');
+
+  // 👇 dynamic class
+  const typeClass =
+    card.invitation_type === 1 ? 'friend' : 'date';
+
+    el.dataset.incomeId = card.income_id;
+
+    el.className = `invitation-card ${typeClass}`;
+
+    const ageSection = card.c_age != null
+      ? `<span class="invitation-meta">Age: ${card.c_age}</span>`
+      : '';
+
+    el.innerHTML = `
+      <img src="${card.c_photo}" />
+      
+      <div class="invitation-content">
+        <div class="invitation-top">
+          <span class="invitation-name">${card.c_name}</span>
+          <span class="invitation-score">${Math.round(card.score ?? 0)}%</span>
+        </div>
+
+        ${ageSection}
+      </div>
+    `;
+
+    // 👇 CLICK HANDLER
+    el.addEventListener('click', () => { 
+  openUserInvitationProfile(card);
+});
+
+    container.appendChild(el);
+  });
+}
+
+function getInvitationMode(type) {
+  if (type === 1) return "friends";
+  if (type === 2) return "dates";
+  if (type === 3) return "community";
+  return "unknown";
+}
 
 
-    //#endregion
+async function openUserInvitationProfile(card) {
+  showLoadingSmall?.();
+
+const mode = getInvitationMode(card.invitation_type);
+
+  try { 
+    const { data, error } = await supabase.rpc("get_user_profile", {
+      p_viewer_id: appState.user.id,
+      p_target_id: card.c_id,
+      p_mode: mode 
+    });
+
+    if (error) throw error;
+
+    openInvitationProfile(data);
+
+  } catch (err) {
+    console.error("Profile fetch error:", err);
+  } finally {
+    hideLoadingSmall?.();
+  }
+}
+
+function openInvitationProfile(user) {
+  const popup = document.getElementById("profile-popup");
+  const container = document.getElementById("profile-data");
+  const backdrop = document.getElementById("profile-backdrop");
+
+  let html = "";
+
+  if (user.type === "friends") {
+    html = renderFriendsProfileCardInvitation(user);
+  } else {
+    html = renderDateProfileCardInvitation(user);
+  }
+
+  // ✅ THIS is what you missed
+  container.innerHTML = html;
+
+  // Show popup + backdrop
+  popup.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
+
+  document.body.classList.add("modal-open");
+}
+
+
+
+
+
+
+function renderFriendsProfileCardInvitation(user) {  
+  return `
+    <img src="${user.photo}" width="100%" />
+
+    <h2>${user.name}</h2>
+    <p>${user.description || ""}</p>
+
+    <div class="section">
+      <h4>🤝 Things in common</h4>
+      ${
+        user.common === "no_common" ||
+        !user.common ||
+        user.common.length === 0
+          ? "<p>No matching answers</p>"
+          : user.common
+              .map(c =>
+                renderQuestionBlock(
+                  c.questionId,
+                  c.viewerAnswer,
+                  c.targetAnswer,
+                  "Common"
+                )
+              )
+              .join("")
+      }
+    </div>
+
+    <div class="section">
+      <h4>⚡ Difference</h4>
+      ${
+        !user.difference || user.difference === "no_strong_difference"
+          ? "<p>No differences</p>"
+          : Array.isArray(user.difference)
+              ? user.difference
+                  .map(d =>
+                    renderQuestionBlock(
+                      d.questionId,
+                      d.viewerAnswer,
+                      d.targetAnswer,
+                      "Difference"
+                    )
+                  )
+                  .join("")
+              : user.difference.questionId
+                  ? renderQuestionBlock(
+                      user.difference.questionId,
+                      user.difference.viewerAnswer,
+                      user.difference.targetAnswer,
+                      "Difference"
+                    )
+                  : "<p>No differences</p>"
+      }
+    </div>
+
+    <div class="section">
+      <h4>🎯 Hobbies</h4>
+      <p>${user.hobbies || ""}</p>
+    </div>
+
+    <div class="actions">
+
+      <button data-action="Reject" data-id="${user.id}">
+        ❌ I don't want this avocado
+      </button>
+
+      <button data-action="AcceptAvocado" data-id="${user.id}">
+        🥑 Accept avocado
+      </button>
+
+    </div>
+  `;
+}
+
+function renderDateProfileCardInvitation(user) { 
+  return `
+    <div class="photo-gallery">
+      ${(user.photos || [])
+        .map(p => `<img src="${p.url}" style="width:100%; margin-bottom:6px; border-radius:8px;" />`)
+        .join("")}
+    </div>
+
+    <h2>${user.name}</h2>
+    <p>${user.date_description || ""}</p>
+
+    <div class="section">
+      <h4>🎯 Hobbies</h4>
+      <p>${user.hobbies || ""}</p>
+    </div>
+
+
+    <div class="section">
+      <h4>🤝 Things in common</h4>
+      ${
+        user.common === "no_common" ||
+        !user.common ||
+        user.common.length === 0
+          ? "<p>No matching answers</p>"
+          : user.common
+              .map(c =>
+                renderQuestionBlock(
+                  c.questionId,
+                  c.viewerAnswer,
+                  c.targetAnswer,
+                  "Common"
+                )
+              )
+              .join("")
+      }
+    </div>
+
+    <div class="section">
+      <h4>⚡ Difference</h4>
+      ${
+        !user.difference || user.difference === "no_strong_difference"
+          ? "<p>No differences</p>"
+          : Array.isArray(user.difference)
+              ? user.difference
+                  .map(d =>
+                    renderQuestionBlock(
+                      d.questionId,
+                      d.viewerAnswer,
+                      d.targetAnswer,
+                      "Difference"
+                    )
+                  )
+                  .join("")
+              : user.difference.questionId
+                  ? renderQuestionBlock(
+                      user.difference.questionId,
+                      user.difference.viewerAnswer,
+                      user.difference.targetAnswer,
+                      "Difference"
+                    )
+                  : "<p>No differences</p>"
+      }
+    </div>
+
+    <div class="section">
+  <h4>💭 Dating profile details</h4>
+
+  ${
+    Array.isArray(user.survey)
+      ? user.survey
+          .map(item => {
+            return `
+              <div style="padding:6px 0; border-bottom:1px solid #eee;">
+                <strong>${DateData.getQuestionLabel(item.key)}:</strong>
+                ${DateData.getLabel(item.key, normalizeValue(item.value))}
+              </div>
+            `;
+          })
+          .join("")
+      : "<p>No survey data</p>"
+  }
+</div>
+
+    <div class="actions">
+
+      <button data-action="Reject" data-id="${user.id}">
+        ❌ I don't want that tofu
+      </button>
+
+      <button data-action="AcceptTofu" data-id="${user.id}">
+        🍲 Accept Tofu
+      </button>
+
+    </div>
+  `;
+}
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-action]");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+  const action = btn.dataset.action;
+
+  if (action === "AcceptTofu") await AcceptTofu(id);
+  if (action === "AcceptAvocado") await AcceptAvocado(id);
+  if (action === "Reject") await DeleteUser(id);
+});
+
+async function DeleteUser(userId) {
+  await performActionInvitation(userId, 0);
+}
+
+async function AcceptAvocado(userId) {
+  await performActionInvitation(userId, 1);
+}
+
+async function AcceptTofu(userId) {
+  await performActionInvitation(userId, 2);
+}
+
+async function performActionInvitation(userId, invitationType) {
+  try {
+    const user1 = appState.user.id;
+    const user2 = userId;
+
+    // 1. ONLY create match if NOT reject
+    if (invitationType !== 0) {
+
+      const { data: existing, error: fetchError } = await supabase
+        .from("0con_matches")
+        .select("type")
+        .match({ user1_id: user1, user2_id: user2 })
+        .maybeSingle();
+
+      if (fetchError) throw fetchError;
+
+      let finalType = invitationType;
+
+      if (existing) {
+        finalType = Math.max(existing.type, invitationType);
+      }
+
+      const { error: upsertError } = await supabase
+        .from("0con_matches")
+        .upsert(
+          {
+            user1_id: user1,
+            user2_id: user2,
+            type: finalType
+          },
+          { onConflict: "user1_id,user2_id" }
+        );
+
+      if (upsertError) throw upsertError;
+    }
+
+    // 2. DELETE logic
+    let deleteQuery = {
+      receiver_id: user1,
+      sender_id: user2
+    };
+
+    // if NOT reject → delete only matching type
+    if (invitationType !== 0) {
+      deleteQuery.invitation_type = invitationType;
+    }
+
+    // if reject (0) → delete ALL types between users
+
+    const { data: deletedRows, error: deleteError } = await supabase
+  .from("0con_incomes")
+  .delete()
+  .match(deleteQuery)
+  .select();
+
+if (deleteError) throw deleteError;
+
+deletedRows.forEach(row => {
+  removeInvitationCard(row.id);
+});
+
+    await addToSeenProfiles(userId);
+
+  } catch (err) {
+    console.error("Action failed:", err);
+  }
+
+  closeProfilePopup();
+}
+
+function removeInvitationCard(incomeId) {
+  const container = document.getElementById("invitation-list");
+
+  const card = container.querySelector(`[data-income-id="${incomeId}"]`);
+  if (card) card.remove();
+}
+
+async function upsertMatch(userId, invitationType) {
+  const user1 = appState.user.id;
+  const user2 = userId;
+
+  try {
+    // 1. check existing match
+    const { data: existing, error: fetchError } = await supabase
+      .from("0con_matches")
+      .select("type")
+      .match({
+        user1_id: user1,
+        user2_id: user2
+      })
+      .maybeSingle();
+
+    if (fetchError) throw fetchError;
+
+    // 2. decide final type (NEVER downgrade 2 → 1)
+    let finalType = invitationType;
+
+    if (existing) {
+      finalType = Math.max(existing.type, invitationType);
+    }
+
+    // 3. upsert
+    const { error: upsertError } = await supabase
+      .from("0con_matches")
+      .upsert({
+        user1_id: user1,
+        user2_id: user2,
+        type: finalType
+      }, {
+        onConflict: "user1_id,user2_id"
+      });
+
+    if (upsertError) throw upsertError;
+
+  } catch (err) {
+    console.error("upsertMatch failed:", err);
+  }
+}
+//#endregion
 
 //#region Communities Tab
 
@@ -1870,15 +2774,15 @@ photoContainer.innerHTML = photos.length
   const badge = document.getElementById("dateBadge");
   badge.textContent = profile.is_premium ? "⭐ Premium Profile" : "Basic Profile";
 
-  // 🥑 TOFU COUNTER (DATE VERSION)
+  // 🍲 TOFU COUNTER (DATE VERSION)
   const tofuBox = document.getElementById("dateTofuCount");
 
   const tofuCount = profile.tofus || 0;
 
   tofuBox.textContent =
     tofuCount === 0
-      ? "You have no tofus left today, upgrade to Premium for unlimited tofu 🥢"
-      : `You have ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} to send today 🥢`;
+      ? "You have no tofus left today, upgrade to Premium for unlimited tofu 🍲"
+      : `You have ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} to send today 🍲`;
 
 // =========================
 // DATE MODE TOGGLE
