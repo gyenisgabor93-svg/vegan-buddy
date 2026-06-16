@@ -5774,6 +5774,7 @@ kitchensendBtn.addEventListener("click", async () => {
     .from("contact_messages")
     .insert({
       user_id: currentUser.id,
+      application: "Mind",
       email: currentUser.email,
       subject: "ProKitchenAccess",
       message
@@ -10604,6 +10605,7 @@ sendLocalBtn.addEventListener("click", async () => {
     .from("contact_messages")
     .insert({
       user_id: currentUser.id,
+      application: "Mind",
       email: currentUser.email,
       subject: "NewLocalPartner",
       message
@@ -10641,6 +10643,7 @@ sendContactBtn.addEventListener("click", async () => {
     .from("contact_messages")
     .insert({
       user_id: currentUser.id,
+      application: "Mind",
       email: currentUser.email,
       subject,
       message

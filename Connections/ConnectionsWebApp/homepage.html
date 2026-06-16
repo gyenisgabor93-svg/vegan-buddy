@@ -61,10 +61,59 @@
 
 </div>
 
+<!-- PREMIUM VIEW -->
+<div id="premium" class="hidden">
+
+  <div class="premium-container">
+
+    <div class="premium-header">
+      <button id="exitPremiumBtn">← Back</button>
+      <h2>Premium</h2>
+    </div>
+
+    <!-- PREMIUM CARD -->
+    <div class="premium-card">
+
+      <h3>🌟 Premium Subscription</h3>
+
+      <p class="price">€10 / month</p>
+
+      <p>Unlock everything:</p>
+
+      <ul>
+        <li>Unlimited dealbreakers</li>
+        <li>Unlimited avocados & tofu (likes, swipes, boosts)</li>
+        <li>Full survey access (see all answers from others)</li>
+        <li>Customize question weights for more precise matching</li>
+        <li>Incognito modes - discover and invite people without being seen</li>
+        <li>Create your own community</li>
+        <li>Travel mode (match while traveling)</li>
+      </ul>
+
+<p class="support-note">
+  By subscribing, you are also supporting our mission to promote veganism and make our lifestyle easier.
+</p>
+
+<a id="supportLink" class="support-link" href="#">
+  Learn more about the project →
+</a>
+
+      <button id="confirmPremiumBtn" class="primary-btn">
+        Upgrade to Premium
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
   <!-- CONTENT -->
 <div class="content">
     
-    <div id="discover" class="tab active">
+    <div id="discover" class="tab active has-topbar">
          <!-- TOP BAR -->
   <div class="topbar">
     <div class="logo">🔗 Connection</div>
@@ -104,22 +153,40 @@
     </div>
 
     <div id="messages" class="tab">
-        
-        
-        Messages tab (empty)
+        <div id="messages-tab">
+            <div id="messages-list"></div>
 
+        </div>
 
-
-
+            <div id="chat-container" class="tab" style="display:none;"></div>
+       
     </div>
 
     <div id="matches" class="tab">
+
+<!-- TOPBAR CREATE COMMUNITY -->
+<div id="createCommunityTopbar" class="topbar-action locked">
+  
+  <span class="topbar-title">
+    Create your own community
+  </span>
+
+  <!-- INFO ICON (ONLY FOR BASIC USERS) -->
+  <button id="communityInfoBtn" class="info-icon" title="What is this?">
+    ⓘ
+  </button>
+
+</div>
+
          <div id="invitation-list"></div>
+
+  
     </div>
 
+<!--
     <div id="communities" class="tab">
 
-  <!-- TOP BAR -->
+   TOP BAR 
   <div class="topbar">
     <div class="logo">👥 Communities</div>
 
@@ -129,26 +196,22 @@
     </div>
   </div>
 
-  <!-- YOUR COMMUNITIES -->
+  
 <div id="yourCommunitiesView" class="community-view active">
   <h3>Your Communities</h3>
   <div class="communityList"></div>
 </div>
 
-<!-- DISCOVER COMMUNITIES -->
+
 <div id="searchCommunitiesView" class="community-view">
   <h3>Discover Communities</h3>
   <div class="communityList"></div>
 </div>
 
-  <!-- FLOATING CREATE BUTTON (PRIMARY ACTION) -->
-  <button id="createCommunityBtnFloating" class="floatingAction">
-     Create community
-  </button>
-
     </div>
 
-    <div id="profile" class="tab">
+-->
+    <div id="profile" class="tab has-topbar">
 
   <!-- TOP BAR -->
   <div class="topbar">
@@ -190,6 +253,9 @@
   </label>
 </div>
 
+  <!-- INCÓGNITO (JS will inject if premium) -->
+  <div id="FriendsincognitoBox"></div>
+
 <div id="languagesList"></div>
 
 <div id="closureBadge"></div>
@@ -223,7 +289,7 @@
   </div>
 
   <!-- INCÓGNITO (JS will inject if premium) -->
-  <div id="incognitoBox"></div>
+  <div id="DatesincognitoBox"></div>
 
   <!-- HOBBIES -->
   <div id="dateHobbies"></div>
@@ -233,32 +299,27 @@
 
 </div>
 
+ 
 </div>
-
-  <!-- SETTINGS VIEW (hidden by default) -->
+<!-- SETTINGS VIEW (hidden by default) -->
   <div id="settingsView" class="hidden">
   
-    <!-- PREMIUM SUBSCRIPTION SECTION -->
-  <div class="settings-section premium-box">
-    <h4>🌟 Premium Subscription</h4>
-    <p><strong>€10 / month</strong></p>
+  <!-- PREMIUM UPGRADE -->
+<div class="settings-section premium-box">
 
-    <p>Upgrade to unlock everything:</p>
+  <h4>🌟 Premium Profile</h4>
 
-    <ul>
-      <li>Unlimited dealbreakers</li>
-      <li>Unlimited avocados & tofu (likes / swipes / boosts)</li>
-      <li>Full survey access (see all answers from others)</li>
-      <li>Customize answer weight for better matches</li>
-      <li>Discover in incognito mode</li>
-      <li>Create your own community</li>
-      <li>Travel mode (match while traveling)</li>
-    </ul>
+  <a id="learnMoreLink" class="settings-link" href="#">
+    Learn more about our features & mission →
+  </a>
 
-    <button id="upgradePremium" class="button">Upgrade to Premium</button>
-  </div>
+  <button id="redirectToPremium" class="button">
+    Upgrade to Premium
+  </button>
 
 
+</div>
+  
   <!-- APP SETTINGS -->
   <div class="settings-section">
 
@@ -270,40 +331,47 @@
       <option value="hu">Hungarian</option>
     </select>
 
-    <br>
-    <!-- NOTIFICATIONS -->
-    <h4>🔔 Notifications</h4>
-    <label>
-      <input type="checkbox" id="notifMatches" checked>
-      Match notifications
-    </label><br>
+    <button id="setLanguageBtn">Set Language</button>
 
-    <label>
-      <input type="checkbox" id="notifIncomes" checked>
-      Avocado or tofu notifications
-    </label><br>
+   </div>
 
-    <label>
-      <input type="checkbox" id="notifMessages" checked>
-      Messages
-    </label><br>
+  
+<div class="settings-section">
+  <h4>🔔 Notifications</h4>
 
-    <label>
-      <input type="checkbox" id="communitymessages">
-      Community messages
-    </label>
+  <label>
+    Match notifications
+    <div class="switch">
+      <input type="checkbox" id="notifMatches">
+      <span class="slider"></span>
+    </div>
+  </label><br>
 
-    <label>
-      <input type="checkbox" id="communityevents">
-      Community events
-    </label>
+  <label>
+    Invitation notifications
+    <div class="switch">
+      <input type="checkbox" id="notifIncomes">
+      <span class="slider"></span>
+    </div>
+  </label><br>
 
-    <label>
+  <label>
+    Messages
+    <div class="switch">
+      <input type="checkbox" id="notifMessages">
+      <span class="slider"></span>
+    </div>
+  </label><br>
+
+  <label>
+    App updates & tips
+    <div class="switch">
       <input type="checkbox" id="notifUpdates">
-      App updates & tips
-    </label>
+      <span class="slider"></span>
+    </div>
+  </label>
+</div>
 
-  </div>
 
   <!-- CONTACT SECTION -->
 <div class="settings-section">
@@ -333,13 +401,9 @@
     </button>
 
   </div>
-
- 
-
-  
-
   
 </div>
+ 
 
     </div>
 
@@ -367,9 +431,11 @@
       <span>📨</span>Invites
     </div>
 
+<!-- 
     <div class="nav-item" data-tab="communities">
       <span>👥</span>Communities
     </div>
+-->
 
     <div class="nav-item" data-tab="profile">
       <span>👤</span>Profile
@@ -377,6 +443,12 @@
 
   </div>
 
+
+
+
+
+
+  
   <!-- POPUPS -->
 <div id="friendsFilterModal" class="modal" style="display:none;">
 
@@ -446,37 +518,6 @@
 
 </div>
 
-<div id="createCommunityModal" class="modal" style="display:none;">
-
-  <div class="modalContent">
-
-    <h3>Create Community</h3>
-
-    <label>
-      Name
-      <input type="text" placeholder="e.g. Vegan Runners">
-    </label>
-
-    <label>
-      Description
-      <input type="text" placeholder="What is this community about?">
-    </label>
-
-    <label>
-      Type
-      <select>
-        <option>Public</option>
-        <option>Private</option>
-      </select>
-    </label>
-
-    <button id="submitCommunityBtn">Create</button>
-    <button id="closeCommunityModalBtn">Cancel</button>
-
-  </div>
-
-</div>
-
 <div id="editFriendsModal" class="modal" style="display:none;">
   <div class="modal-content">
     <h2>Edit Preferences</h2>
@@ -499,10 +540,46 @@
   </div>
 </div>
 
+<div id="contactModal" class="modal" style="display:none;">
+  <div class="modal-content">
+
+    <h2>Contact Us</h2>
+    <p>We’re here to help! Choose a subject and tell us your message.</p>
+
+    <!-- SUBJECT -->
+    <label>Subject:</label>
+    <select id="contactSubject" style="width: 100%; padding: 0.5rem;">
+      <option value="">-- Select a subject --</option>
+      <option value="Report a Bug">Report a Bug</option>
+      <option value="Billing issue">Billing issue</option>
+      <option value="App Feedback">App Feedback</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <!-- MESSAGE -->
+    <label style="margin-top: 1rem; display:block;">Message:</label>
+    <textarea id="contactMessage" rows="6"
+      style="width: 100%; padding: 0.5rem;"></textarea>
+
+    <button id="sendContactMessage" style="margin-top: 1rem; width: 100%;">
+      Send Message
+    </button>
+
+    <button id="closeContactModal" style="margin-top: 0.5rem; width: 100%;">
+      Close
+    </button>
+
+  </div>
+</div>
+
+
+
+
 
 <div id="loading-screen" class="hidden">
   <div class="spinner"></div>
 </div>
+
 
 <script type="module" src="ConnectionScript.js"></script>
 </body>
