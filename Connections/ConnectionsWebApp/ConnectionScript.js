@@ -3085,7 +3085,7 @@ async function createInvitationCards() {
       console.error('fetch invites error:', error);
       return;
     }
-
+console.log(invites)
     if (!invites || invites.length === 0) {
       renderInvitationCards([]);
       return;
