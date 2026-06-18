@@ -3194,16 +3194,14 @@ const isCommunity = card.invitation_type === 3;
 
 el.innerHTML = isCommunity
   ? `
-    <div class="community-card-preview">
-      <div class="community-placeholder">
-        🥑 Community
+    <img src="${card.c_photo}" class="community-image" />
+
+    <div class="invitation-content">
+      <div class="invitation-top">
+        <span class="invitation-name">${card.c_name}</span>
       </div>
-      <div class="invitation-content">
-        <div class="invitation-top">
-          <span class="invitation-name">Community</span>
-          <span class="invitation-score">${Math.round(card.score ?? 0)}%</span>
-        </div>
-      </div>
+
+      <span class="invitation-meta">Community</span>
     </div>
   `
   : `

@@ -2167,3 +2167,10 @@ body.modal-open {
   width: 28px;
   height: 28px;
 }
+
+.community-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
