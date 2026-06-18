@@ -1424,8 +1424,8 @@ async function addToSeenCommunities(communityId) {
   const seen = data.seen_communities || [];
 
   // 2. update safely
-  if (!seen.includes(userId)) {
-    seen.push(userId);
+  if (!seen.includes(currentUserId)) {
+    seen.push(currentUserId);
   }
 
   const { error: updateError } = await supabase
