@@ -3481,6 +3481,9 @@ async function openCommunityPageWithInvitation(communityId) {
 
     const incomeId = invitation?.id;
 
+// ✅ store it on modal
+modal.dataset.incomeId = incomeId;
+
     // 1. Get community
     const { data: community, error } = await supabase
       .from("0con_communities")
@@ -3559,23 +3562,25 @@ async function openCommunityPageWithInvitation(communityId) {
 
     // ✅ MOVE HANDLERS HERE (inside try)
 
-    document.getElementById("communityDeclineBtn").onclick = async () => {
-      await DeclineCommunity(
-        community.id,
-        community.community_name,
-        community.community_photo,
-        incomeId
-      );
-    };
+    const incomeIdFromDom = modal.dataset.incomeId;
 
-    document.getElementById("communityAcceptBtn").onclick = async () => {
-      await AcceptCommunity(
-        community.id,
-        community.community_name,
-        community.community_photo,
-        incomeId
-      );
-    };
+document.getElementById("communityDeclineBtn").onclick = async () => {
+  await DeclineCommunity(
+    community.id,
+    community.community_name,
+    community.community_photo,
+    incomeIdFromDom
+  );
+};
+
+document.getElementById("communityAcceptBtn").onclick = async () => {
+  await AcceptCommunity(
+    community.id,
+    community.community_name,
+    community.community_photo,
+    incomeIdFromDom
+  );
+};
 
   } catch (err) {
     console.error("Community modal error:", err);
