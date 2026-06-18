@@ -3075,7 +3075,6 @@ async function createInvitationCards() {
   try {
     const viewerId = appState.user.id;
 
-    // 1. fetch raw invitations first
     const { data: invites, error } = await supabase
       .from('0con_incomes')
       .select('id, sender_id, receiver_id, invitation_type')
@@ -3085,50 +3084,77 @@ async function createInvitationCards() {
       console.error('fetch invites error:', error);
       return;
     }
-console.log(invites)
+
     if (!invites || invites.length === 0) {
       renderInvitationCards([]);
       return;
     }
 
-    // 2. resolve each invitation into a card via RPC
     const cards = await Promise.all(
-  invites.map(async (inv) => {
+      invites.map(async (inv) => {
 
-    let result = null;
+        // ---------------------------
+        // FRIEND
+        // ---------------------------
+        if (inv.invitation_type === 1) {
+          const { data, error } = await supabase.rpc('set_friend_invitation_card', {
+            p_receiver_id: inv.receiver_id,
+            p_sender_id: inv.sender_id
+          });
 
-    if (inv.invitation_type === 1) {
-      const { data, error } = await supabase.rpc('set_friend_invitation_card', {
-        p_receiver_id: inv.receiver_id,
-        p_sender_id: inv.sender_id
-      });
+          if (error || !data) return null;
 
-      if (!error) result = data;
-    }
+          return data.map(c => ({
+            ...c,
+            invitation_type: 1,
+            income_id: inv.id
+          }));
+        }
 
-    if (inv.invitation_type === 2) {
-      const { data, error } = await supabase.rpc('set_date_invitation_card', {
-        p_receiver_id: inv.receiver_id,
-        p_sender_id: inv.sender_id
-      });
+        // ---------------------------
+        // DATE
+        // ---------------------------
+        if (inv.invitation_type === 2) {
+          const { data, error } = await supabase.rpc('set_date_invitation_card', {
+            p_receiver_id: inv.receiver_id,
+            p_sender_id: inv.sender_id
+          });
 
-      if (!error) result = data;
-    }
+          if (error || !data) return null;
 
-    // 👇 attach type to every returned card
-    if (result) {
-      return result.map(c => ({
-        ...c,
-        invitation_type: inv.invitation_type,
-        income_id: inv.id
-      }));
-    }
+          return data.map(c => ({
+            ...c,
+            invitation_type: 2,
+            income_id: inv.id
+          }));
+        }
 
-    return null;
-  })
-);
+        // ---------------------------
+        // COMMUNITY (NO RPC)
+        // ---------------------------
+        if (inv.invitation_type === 3) {
+          const { data, error } = await supabase
+            .from('0con_communities')
+            .select('id, community_name, community_photo')
+            .eq('id', inv.sender_id)
+            .single();
 
-    // 3. flatten + remove nulls
+          if (error || !data) return null;
+
+          return [{
+            c_id: data.id,
+            c_name: data.community_name,
+            c_photo: data.community_photo,
+            invitation_type: 3,
+            income_id: inv.id,
+            sender_id: data.id // important for navigation
+          }];
+        }
+
+        return null;
+      })
+    );
+
     const flatCards = cards.flat().filter(Boolean);
 
     renderInvitationCards(flatCards);
