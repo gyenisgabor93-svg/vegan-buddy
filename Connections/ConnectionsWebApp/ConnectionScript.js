@@ -3467,19 +3467,19 @@ async function openCommunityPageWithInvitation(communityId) {
 
   try {
 
-  const { data: invitation, error: inviteError } = await supabase
-  .from("0con_incomes")
-  .select("id")
-  .eq("receiver_id", appState.user.id)
-  .eq("sender_id", communityId)
-  .eq("invitation_type", 3)
-  .single();
+    const { data: invitation, error: inviteError } = await supabase
+      .from("0con_incomes")
+      .select("id")
+      .eq("receiver_id", appState.user.id)
+      .eq("sender_id", communityId)
+      .eq("invitation_type", 3)
+      .single();
 
-if (inviteError) {
-  console.error("Invitation fetch error:", inviteError);
-}
+    if (inviteError) {
+      console.error("Invitation fetch error:", inviteError);
+    }
 
-const incomeId = invitation?.id;
+    const incomeId = invitation?.id;
 
     // 1. Get community
     const { data: community, error } = await supabase
@@ -3490,7 +3490,7 @@ const incomeId = invitation?.id;
 
     if (error) throw error;
 
-    // 2. Get members (with profiles join)
+    // 2. Get members
     const { data: members, error: membersError } = await supabase
       .from("0con_community_participants")
       .select(`
@@ -3505,78 +3505,85 @@ const incomeId = invitation?.id;
     if (membersError) throw membersError;
 
     // 3. Render UI
-body.innerHTML = `
-  <div class="community-modal-card">
+    body.innerHTML = `
+      <div class="community-modal-card">
 
-    <!-- HEADER -->
-    <div class="community-hero">
-      <img src="${community.community_photo}" class="community-hero-img" />
+        <div class="community-hero">
+          <img src="${community.community_photo}" class="community-hero-img" />
 
-      <div class="community-hero-content">
-        <h2 class="community-title">
-          ${community.community_name}
-        </h2>
+          <div class="community-hero-content">
+            <h2 class="community-title">
+              ${community.community_name}
+            </h2>
 
-        <p class="community-desc">
-          ${community.community_description || "No description yet."}
-        </p>
+            <p class="community-desc">
+              ${community.community_description || "No description yet."}
+            </p>
 
-        <div class="community-meta">
-          👥 ${members.length} members
-        </div>
-      </div>
-    </div>
-
-    <!-- MEMBERS -->
-    <div class="community-section">
-      <h3 class="section-title">Members</h3>
-
-      <div class="members-grid">
-        ${members.map(m => `
-          <div class="member-card">
-            <img 
-              src="${m["0con_profilesdata"]?.profile_photo_url || "default.png"}" 
-              class="member-avatar"
-            />
-            <div class="member-name">
-              ${m["0con_profilesdata"]?.name || "Unknown"}
+            <div class="community-meta">
+              👥 ${members.length} members
             </div>
           </div>
-        `).join("")}
+        </div>
+
+        <div class="community-section">
+          <h3 class="section-title">Members</h3>
+
+          <div class="members-grid">
+            ${members.map(m => `
+              <div class="member-card">
+                <img 
+                  src="${m["0con_profilesdata"]?.profile_photo_url || "default.png"}" 
+                  class="member-avatar"
+                />
+                <div class="member-name">
+                  ${m["0con_profilesdata"]?.name || "Unknown"}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="community-actions">
+          <button id="communityDeclineBtn" class="btn-decline">
+            ❌ Decline
+          </button>
+
+          <button id="communityAcceptBtn" class="btn-accept">
+            👥 Accept
+          </button>
+        </div>
+
       </div>
-    </div>
+    `;
 
-        <!-- ACTIONS -->
-    <div class="community-actions">
-      <button id="communityDeclineBtn" class="btn-decline">
-        ❌ Decline
-      </button>
+    // ✅ MOVE HANDLERS HERE (inside try)
 
-      <button id="communityAcceptBtn" class="btn-accept">
-        👥 Accept
-      </button>
-    </div>
+    document.getElementById("communityDeclineBtn").onclick = async () => {
+      await DeclineCommunity(
+        community.id,
+        community.community_name,
+        community.community_photo,
+        incomeId
+      );
+    };
 
-  </div>
-`;
+    document.getElementById("communityAcceptBtn").onclick = async () => {
+      await AcceptCommunity(
+        community.id,
+        community.community_name,
+        community.community_photo,
+        incomeId
+      );
+    };
 
   } catch (err) {
     console.error("Community modal error:", err);
     body.innerHTML = "<p>Error loading community</p>";
   }
 
-  // Close handler
+  // Close handler (this is fine outside)
   document.getElementById("closeCommunityModalBtn").onclick = closeCommunityPage;
-
-  // Decline invitation
-  document.getElementById("communityDeclineBtn").onclick = async () => {
-  await DeclineCommunity(community.id, community.community_name, community.community_photo, incomeId);
-};
-
-  // Accept invitation
-document.getElementById("communityAcceptBtn").onclick = async () => {
-  await AcceptCommunity(community.id, community.community_name, community.community_photo, incomeId);
-};
 }
 
 function getProfilePhoto(user) {
