@@ -108,6 +108,69 @@
 
 </div>
 
+<!-- Create Community SURVEY -->
+<div id="communitycreator" class="hidden">
+
+  <div class="survey-container">
+
+    <div class="survey-header">
+      <button id="exitCommunitySurveyBtn">← Back</button>
+      <h2>Create your community</h2>
+    </div>
+    
+    <!-- STEP 1: NAME -->
+    <input type="text"  id="CommunityName" maxlength="30" placeholder="Enter community name..." class="text-input survey-section"/>
+
+    <!-- STEP 2: PHOTO -->
+    <section class="survey-section">
+      <h3>Set a Photo</h3>
+
+      <input type="file" id="CommunityphotoInput" accept="image/*" hidden />
+
+      <button id="CommunityaddPhotoBtn">+ Add photo</button>
+
+      <div id="photoPreviewGridCommunity" class="photo-grid"></div>
+
+    </section>
+
+    <!-- STEP 3: DESCRIPTION -->
+    <section class="survey-section">
+      <h3>Description</h3>
+      <textarea id="CommunityDescription" maxlength="300"
+        placeholder="Write something about your community..."></textarea>
+    </section>
+
+    <!-- STEP 4: VALUES SURVEY -->
+    <section class="survey-section">
+  <h3>Community Values</h3>
+  <div id="communityQuestions"></div>
+</section>
+
+
+  <!-- STEP 5: THRESHOLD -->
+<section class="survey-section">
+  <h3>Match Requirement</h3>
+
+  <label>
+    Minimum match: 
+    <span id="thresholdValue">40</span>%
+  </label>
+
+  <input type="range" id="CommunityThreshold"min="0" max="100" value="40"/>
+
+  <small>
+    Only users above this compatibility will be invited
+  </small>
+</section>
+
+    <!-- SAVE -->
+    <button id="CommunitysaveSurveyBtn" class="primary-btn">
+      Create Community
+    </button>
+
+  </div>
+
+</div>
 
 
   <!-- CONTENT -->
@@ -153,18 +216,8 @@
     </div>
 
     <div id="messages" class="tab">
-        <div id="messages-tab">
-            <div id="messages-list"></div>
 
-        </div>
-
-            <div id="chat-container" class="tab" style="display:none;"></div>
-       
-    </div>
-
-    <div id="matches" class="tab">
-
-<!-- TOPBAR CREATE COMMUNITY -->
+      <!-- TOPBAR CREATE COMMUNITY -->
 <div id="createCommunityTopbar" class="topbar-action locked">
   
   <span class="topbar-title">
@@ -178,9 +231,19 @@
 
 </div>
 
+        <div id="messages-tab">
+            <div id="messages-list"></div>
+
+        </div>
+
+            <div id="chat-container" class="tab" style="display:none;"></div>
+       
+    </div>
+
+    <div id="matches" class="tab">
+
          <div id="invitation-list"></div>
 
-  
     </div>
 
 <!--
@@ -428,7 +491,7 @@
     </div>
 
     <div class="nav-item" data-tab="matches">
-      <span>📨</span>Invites
+      <span>📨</span>Invitations
     </div>
 
 <!-- 
@@ -448,7 +511,7 @@
 
 
 
-  
+
   <!-- POPUPS -->
 <div id="friendsFilterModal" class="modal" style="display:none;">
 
@@ -531,7 +594,20 @@
   </div>
 </div>
 
-<div id="profile-backdrop" class="hidden"></div>
+<div id="communityModal" class="modal" style="display:none;">
+  <div class="modalContent">
+    
+    <button class="closeBtn" id="closeCommunityModalBtn">Close</button>
+
+    <div id="communityModalBody"></div>
+
+  </div>
+</div>
+
+<div id="profile-backdrop" class="hidden">
+
+
+</div>
 
 <div id="profile-popup" class="hidden">
   <div class="popup-content">

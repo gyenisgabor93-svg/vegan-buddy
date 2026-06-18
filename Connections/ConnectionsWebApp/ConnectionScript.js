@@ -274,6 +274,30 @@ function initUI() {
 
 //#region Helpers
 
+const DEFAULT_ANSWER_WEIGHTS = {
+  pets: 0.5,
+  lgbtq: 0.3,
+  activism: 0.1,
+  conflict: 0.5,
+  feminism: 0.3,
+  politics: 0.4,
+  capitalism: 0.4,
+  lonely_vegan: 0.2,
+  vegan_reason: 0.6,
+  conversations: 0.5,
+  activism_style: 0.5,
+  injured_pigeon: 0.2,
+  material_values: 0.3,
+  dating_non_vegan: 0.4,
+  other_injustices: 0.5,
+  circle_importance: 0.4,
+  openness_opinions: 0.7,
+  communication_style: 0.7,
+  animal_vs_human_rights: 0.5,
+  eating_together_animals: 0.4,
+  graphic_content_sensitivity: 0.1
+};
+
 const AppData = (() => {
   const languages = [
     { id: "english", label: "English" },
@@ -370,10 +394,10 @@ const AppData = (() => {
     id: "politics",
     text: "How would you describe your political attitude?",
     options: [
-      { id: "left_intolerant9", text: "Left, not tolerant to opposing views" },
+      { id: "left_intolerant9", text: "Left, I avoid rightists" },
       { id: "left_open9", text: "Left, open to dialogue" },
       { id: "right_open9", text: "Right, open to dialogue" },
-      { id: "right_intolerant9", text: "Right, not tolerant to opposing views" },
+      { id: "right_intolerant9", text: "Right, I avoid leftists" },
       { id: "no_labels9", text: "I avoid labels, open dialogue is more important" },
       { id: "dont_care9", text: "Don't care about politics" }
     ]
@@ -1869,6 +1893,584 @@ document.getElementById("saveSurveyBtn").addEventListener("click", () => {
 
 //#region Messages Tab
 
+//#region Community TOPBAR
+function isPremiumUser() {
+  return !!appState.profile?.is_premium;
+}
+
+function hasCommunity() {
+  return !!appState.profile?.community_id;
+}
+
+// INFO BUBBLE
+function showInfoBubble() {
+  // remove existing
+  document.querySelector(".info-overlay")?.remove();
+  document.querySelector(".info-bubble")?.remove();
+
+  // overlay
+  const overlay = document.createElement("div");
+  overlay.className = "info-overlay";
+
+  // bubble
+  const bubble = document.createElement("div");
+  bubble.className = "info-bubble";
+
+  bubble.innerHTML = `
+    <button class="info-close">×</button>
+
+    <strong>Create your own community</strong><br><br>
+
+    Bring together people near you who share your values and interests.<br><br>
+
+    Once created, users who match your preferences in your local area will be automatically invited to your community. New users will also be included after registration.<br><br>
+
+    <span class="info-cta" id="upgradeToPremium">
+      Upgrade to Premium →
+    </span>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(bubble);
+
+  // CLOSE ON X
+  bubble.querySelector(".info-close").onclick = closeBubble;
+
+  // CLOSE ON OUTSIDE CLICK
+  overlay.onclick = closeBubble;
+
+  function closeBubble() {
+    overlay.remove();
+    bubble.remove();
+  }
+
+  // CTA click → open premium tab
+  document.getElementById("upgradeToPremium").onclick = (e) => {
+    e.stopPropagation();
+    closeBubble();
+    openPremiumScreen(); 
+  };
+}
+
+// TOPBAR RENDER
+async function renderCommunityTopbar() {
+  const topbar = document.getElementById("createCommunityTopbar");
+
+  const premium = isPremiumUser();
+  const hasComm = hasCommunity();
+
+  topbar.onclick = null;
+
+  if (hasComm) {
+    topbar.classList.remove("locked");
+    topbar.classList.add("unlocked");
+
+    const communityId = appState.profile.community_id;
+
+    const { data: community, error } = await supabase
+      .from("0con_communities")
+      .select("id, community_name, community_photo")
+      .eq("id", communityId)
+      .single();
+
+    if (error) {
+      console.error("Community fetch error:", error);
+      return;
+    }
+
+    const { count: memberCount } = await supabase
+      .from("0con_community_participants")
+      .select("*", { count: "exact", head: true })
+      .eq("community_id", communityId);
+
+    topbar.innerHTML = `
+      <div class="community-preview">
+        <img class="community-preview-img" src="${community.community_photo}" />
+
+        <div class="community-preview-info">
+          <div class="community-preview-name">
+            ${community.community_name}
+          </div>
+          <div class="community-preview-count">
+            ${memberCount ?? 0} members
+          </div>
+        </div>
+      </div>
+    `;
+
+    topbar.onclick = () => {
+      openCommunityPage(communityId);
+    };
+
+    return;
+  }
+
+  if (premium) {
+    topbar.classList.remove("locked");
+    topbar.classList.add("unlocked");
+
+    topbar.innerHTML = `<span class="topbar-title">Create community</span>`;
+    topbar.onclick = () => openCommunitySurvey();
+    return;
+  }
+
+  topbar.classList.add("locked");
+
+  topbar.innerHTML = `
+    <span class="topbar-title premium-lock">🔒 Create community</span>
+    <button id="communityInfoBtn" class="info-icon">ⓘ</button>
+  `;
+
+  const infoBtn = topbar.querySelector("#communityInfoBtn");
+
+  topbar.onclick = () => showInfoBubble();
+
+  infoBtn.onclick = (e) => {
+    e.stopPropagation();
+    showInfoBubble();
+  };
+}
+
+let communityPhoto = null;
+
+document.getElementById("CommunityaddPhotoBtn").onclick = () => {
+  document.getElementById("CommunityphotoInput").click();
+};
+
+document.getElementById("CommunityphotoInput").onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  communityPhoto = file;
+
+  const preview = document.getElementById("photoPreviewGridCommunity");
+  preview.innerHTML = ""; // clear previous
+
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
+  img.className = "preview-img";
+
+  preview.appendChild(img);
+};
+
+const communityState = {
+  answers: {},
+  weights: {},
+  dealbreakers: new Set() // ✅ ADD THIS
+};
+
+document.getElementById("exitCommunitySurveyBtn").onclick = closeCommunitySurvey;
+
+function openCommunitySurvey() {
+  // initialize defaults ONLY once
+  AppData.questions.forEach(q => {
+    if (!(q.id in communityState.weights)) {
+      communityState.weights[q.id] =
+        DEFAULT_ANSWER_WEIGHTS[q.id] ?? 0.5;
+    }
+  });
+
+  renderCommunityQuestions();
+
+  const matchesTab = document.getElementById("messages");
+  matchesTab.classList.remove("active");
+  document.getElementById("communitycreator").classList.remove("hidden");
+}
+
+function closeCommunitySurvey() {
+  document.getElementById("communitycreator").classList.add("hidden");
+  
+  const matchesTab = document.getElementById("messages");
+  matchesTab.classList.add("active"); 
+};
+
+function renderCommunityQuestions() {
+  const container = document.getElementById("communityQuestions");
+  container.innerHTML = "";
+
+  AppData.questions.forEach(q => {
+    const block = document.createElement("div");
+    block.className = "question-block";
+
+    const title = document.createElement("h3");
+    title.innerText = q.text;
+    block.appendChild(title);
+
+    // DEFAULT weight
+    const baseWeight = DEFAULT_ANSWER_WEIGHTS[q.id] ?? 0.5;
+
+const weight = Math.round(
+  (communityState.weights[q.id] ?? baseWeight) * 10
+);
+
+    const weightHTML = `
+      <label>
+        Importance: <span id="cWeightVal-${q.id}">${weight}</span>/10
+      </label>
+      <input 
+        type="range" 
+        min="1" 
+        max="10" 
+        value="${weight}" 
+        class="community-weight-slider"
+        data-qid="${q.id}"
+      />
+    `;
+
+    const weightWrapper = document.createElement("div");
+    weightWrapper.innerHTML = weightHTML;
+    block.appendChild(weightWrapper);
+
+    // OPTIONS
+    q.options.forEach(opt => {
+  const row = document.createElement("div");
+  row.className = "option-row";
+
+  const isSelected = communityState.answers[q.id] === opt.id;
+  const isDealbreaker = communityState.dealbreakers.has(opt.id);
+
+  // ANSWER BUTTON
+  const answerBtn = document.createElement("button");
+  answerBtn.innerText = opt.text;
+  answerBtn.className = "option-btn";
+
+  if (isSelected) answerBtn.classList.add("selected-option");
+
+  answerBtn.onclick = () => {
+    communityState.answers[q.id] = opt.id;
+    renderCommunityQuestions();
+  };
+
+  // 🚫 DEALBREAKER BUTTON (UNLIMITED)
+  const dbBtn = document.createElement("button");
+  dbBtn.innerText = "🚫";
+  dbBtn.className = "dealbreaker-btn";
+
+  if (isDealbreaker) dbBtn.classList.add("dealbreaker-active");
+
+  dbBtn.onclick = () => {
+    if (communityState.dealbreakers.has(opt.id)) {
+      communityState.dealbreakers.delete(opt.id);
+    } else {
+      communityState.dealbreakers.add(opt.id);
+    }
+
+    renderCommunityQuestions();
+  };
+
+  row.appendChild(answerBtn);
+  row.appendChild(dbBtn);
+  block.appendChild(row);
+});
+
+    container.appendChild(block);
+  });
+
+  // sliders
+  document.querySelectorAll(".community-weight-slider").forEach(slider => {
+    slider.oninput = () => {
+      const qid = slider.dataset.qid;
+      const val = parseInt(slider.value);
+
+      document.getElementById(`cWeightVal-${qid}`).innerText = val;
+      communityState.weights[qid] = val / 10;
+    };
+  });
+}
+
+const thresholdSlider = document.getElementById("CommunityThreshold");
+const thresholdLabel = document.getElementById("thresholdValue");
+
+thresholdSlider.oninput = () => {
+  thresholdLabel.innerText = thresholdSlider.value;
+};
+
+document.getElementById("CommunitysaveSurveyBtn").onclick = async () => {
+  // BASIC VALIDATION
+
+  const name = document.getElementById("CommunityName").value.trim();
+
+if (!name) {
+  alert("Please enter a community name");
+  return;
+}
+
+if (name.length > 30) {
+  alert("Community name must be max 30 characters");
+  return;
+}
+
+  if (!communityPhoto) {
+    alert("Please add a community photo");
+    return;
+  }
+
+  const description = document.getElementById("CommunityDescription").value.trim();
+
+  if (!description) {
+    alert("Please add a description");
+    return;
+  }
+
+const answeredCount = Object.keys(communityState.answers).length;
+
+if (answeredCount !== AppData.questions.length) {
+  alert("Please answer all questions");
+  return;
+}
+
+
+  try {
+    // 🔥 Upload photo first (example)
+    const photoUrl = await uploadCommunityPhoto(communityPhoto);
+
+    const threshold = parseInt(
+  document.getElementById("CommunityThreshold").value
+);
+
+const communityData = {
+  name, // ✅ add this
+  description,
+  photo: photoUrl,
+
+  values: communityState.answers,
+  weights: communityState.weights,
+  dealbreakers: Array.from(communityState.dealbreakers), // ✅
+
+  threshold, // ✅
+
+  created_at: new Date().toISOString()
+};
+
+    await saveCommunityToDB(communityData);
+
+    alert("Community created!");
+
+  } catch (err) {
+    console.error(err);
+    alert("Error creating community");
+  }
+};
+
+async function uploadCommunityPhoto(file) {
+  const userId = appState.user.id;
+
+  if (!file) throw new Error("No file provided");
+
+  const fileExt = file.name.split(".").pop();
+  const fileName = `${userId}_${Date.now()}.${fileExt}`;
+  const filePath = `${userId}/${Date.now()}.${fileExt}`;
+
+  // 1️⃣ Upload file
+  const { error: uploadError } = await supabase.storage
+    .from("COMMUNITY_PHOTOS")
+    .upload(filePath, file);
+
+  if (uploadError) {
+    console.error("Upload error:", uploadError);
+    throw uploadError;
+  }
+
+  // 2️⃣ Get public URL
+  const { data } = supabase.storage
+    .from("COMMUNITY_PHOTOS")
+    .getPublicUrl(filePath);
+
+  return data.publicUrl;
+}
+
+async function saveCommunityToDB(communityData) {
+  const userId = appState.user.id;
+
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  // 1️⃣ INSERT COMMUNITY
+  const { data: community, error: insertError } = await supabase
+    .from("0con_communities")
+    .insert([
+      {
+        owner_id: userId,
+        community_name: communityData.name,
+        community_description: communityData.description,
+        community_photo: communityData.photo,
+
+        community_values: communityData.values,
+        community_weights: communityData.weights,
+        community_dealbreakers: communityData.dealbreakers,
+
+        community_threshold: communityData.threshold,
+        created_at: communityData.created_at
+      }
+    ])
+    .select()
+    .single();
+
+  if (insertError) {
+    console.error("Insert error:", insertError);
+    throw insertError;
+  }
+
+  const communityId = community.id;
+
+  // 2️⃣ CREATE COMMUNITY CHAT
+const { data: chat, error: chatError } = await supabase
+.from("0con_community_chats")
+.insert([
+{
+community_name: communityData.name,
+community_photo: communityData.photo,
+community_id: communityId,
+owner_id: appState.user.id,
+
+last_message: "Community chat is created",
+last_sender_id: null
+  }
+])
+.select()
+.single();
+
+if (chatError) {
+  console.error("Chat insert error:", chatError);
+  throw chatError;
+}
+  // 3️⃣ UPDATE USER PROFILE WITH COMMUNITY ID
+  const { error: updateError } = await supabase
+    .from("0con_profilesdata")
+    .update({ community_id: communityId })
+    .eq("id", userId);
+
+  if (updateError) {
+    console.error("Update error:", updateError);
+    throw updateError;
+  }
+
+
+
+  // 3️⃣ 🔥 ADD OWNER AS PARTICIPANT (IMPORTANT)
+  const { error: participantError } = await supabase
+    .from("0con_community_participants")
+    .insert({
+      community_id: communityId,
+      user_id: userId
+    });
+
+  if (participantError) {
+    console.error("Participant insert error:", participantError);
+    throw participantError;
+  }
+
+  // 4️⃣ UPDATE LOCAL STATE
+  appState.profile = {
+    ...appState.profile,
+    community_id: communityId
+  };
+
+  appState.community = community;
+
+  // 5️⃣ RE-RENDER UI
+  renderCommunityTopbar();
+
+  // 6️⃣ CLOSE SURVEY
+  closeCommunitySurvey();
+
+  return communityId;
+}
+
+async function openCommunityPage(communityId) {
+  const modal = document.getElementById("communityModal");
+  const body = document.getElementById("communityModalBody");
+
+  body.innerHTML = "<p>Loading...</p>";
+  modal.style.display = "block";
+
+  try {
+    // 1. Get community
+    const { data: community, error } = await supabase
+      .from("0con_communities")
+      .select("id, community_name, community_description, community_photo")
+      .eq("id", communityId)
+      .single();
+
+    if (error) throw error;
+
+    // 2. Get members (with profiles join)
+    const { data: members, error: membersError } = await supabase
+      .from("0con_community_participants")
+      .select(`
+        user_id,
+        0con_profilesdata (
+          name,
+          profile_photo_url
+        )
+      `)
+      .eq("community_id", communityId);
+
+    if (membersError) throw membersError;
+
+    // 3. Render UI
+body.innerHTML = `
+  <div class="community-modal-card">
+
+    <!-- HEADER -->
+    <div class="community-hero">
+      <img src="${community.community_photo}" class="community-hero-img" />
+
+      <div class="community-hero-content">
+        <h2 class="community-title">
+          ${community.community_name}
+        </h2>
+
+        <p class="community-desc">
+          ${community.community_description || "No description yet."}
+        </p>
+
+        <div class="community-meta">
+          👥 ${members.length} members
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBERS -->
+    <div class="community-section">
+      <h3 class="section-title">Members</h3>
+
+      <div class="members-grid">
+        ${members.map(m => `
+          <div class="member-card">
+            <img 
+              src="${m["0con_profilesdata"]?.profile_photo_url || "default.png"}" 
+              class="member-avatar"
+            />
+            <div class="member-name">
+              ${m["0con_profilesdata"]?.name || "Unknown"}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+  </div>
+`;
+
+  } catch (err) {
+    console.error("Community modal error:", err);
+    body.innerHTML = "<p>Error loading community</p>";
+  }
+
+  // Close handler
+  document.getElementById("closeCommunityModalBtn").onclick = closeCommunityPage;
+}
+
+function closeCommunityPage() {
+  document.getElementById("communityModal").style.display = "none";
+}
+
+//#endregion
+
+//#region MESSAGES
+
 function subscribeToMessageUpdates() {
   const viewerId = appState.user.id;
 
@@ -1884,30 +2486,52 @@ function subscribeToMessageUpdates() {
       async payload => {
         const msg = payload.new;
 
-        // 🔍 check if this message belongs to one of my matches
-        const { data: match } = await supabase
-          .from('0con_matches')
-          .select('*')
-          .eq('id', msg.match_id)
-          .single();
+        // ignore unrelated rows
+        if (!msg.match_id && !msg.community_id) return;
 
-        if (!match) return;
+        // =========================
+        // MATCH MESSAGE
+        // =========================
+        if (msg.match_id) {
+          const { data: match } = await supabase
+            .from('0con_matches')
+            .select('id, user1_id, user2_id')
+            .eq('id', msg.match_id)
+            .single();
 
-        if (
-          match.user1_id !== viewerId &&
-          match.user2_id !== viewerId
-        ) return;
+          if (!match) return;
 
-        // 🔄 update match preview in DB (optional but good)
-        await supabase
-          .from('0con_matches')
-          .update({
-            last_message: msg.content,
-            last_sender_id: msg.sender_id
-          })
-          .eq('id', msg.match_id);
+          if (
+            match.user1_id !== viewerId &&
+            match.user2_id !== viewerId
+          ) return;
 
-        // 🔁 re-render message cards
+          await supabase
+            .from('0con_matches')
+            .update({
+              last_message: msg.content,
+              last_sender_id: msg.sender_id
+            })
+            .eq('id', msg.match_id);
+        }
+
+        // =========================
+        // COMMUNITY MESSAGE
+        // =========================
+        if (msg.community_id) {
+          await supabase
+            .from('0con_community_chats')
+            .update({
+              last_message: msg.content,
+              last_sender_id: msg.sender_id,
+              last_sender_name: msg.sender_name
+            })
+            .eq('community_id', msg.community_id);
+        }
+
+        // =========================
+        // REFRESH UI
+        // =========================
         await createMessageCards();
       }
     )
@@ -1934,7 +2558,7 @@ async function createMessageCards() {
       return;
     }
 
-    const cards = matches.map(match => {
+    const matchCards = matches.map(match => {
       const isUser1 = match.user1_id === viewerId;
 
       return {
@@ -1943,6 +2567,27 @@ async function createMessageCards() {
         photo: isUser1 ? match.user2_photo : match.user1_photo
       };
     });
+
+    // =========================
+    // COMMUNITY CHATS (NEW)
+    // =========================
+    const communityChats = await getCommunityChats(viewerId);
+
+const communityCards = communityChats.map(chat => ({
+  id: chat.community_id,
+  name: chat.community_name,
+  photo: chat.community_photo,
+  last_message: chat.last_message,
+  last_sender_id: chat.last_sender_id,
+  last_sender_name: chat.last_sender_name,
+  type: 3,
+  isCommunity: true
+}));
+
+    // =========================
+    // COMBINE
+    // =========================
+    const cards = [...matchCards, ...communityCards];
 
     renderMessageCards(cards);
 
@@ -1982,10 +2627,11 @@ let preview = card.last_message
 let senderLabel = '';
 
 if (card.last_sender_id) {
-  senderLabel =
-    card.last_sender_id === appState.user.id
-      ? 'You:'
-      : `${card.name || 'Unknown'}:`;
+  if (card.last_sender_id === appState.user.id) {
+    senderLabel = 'You:';
+  } else {
+    senderLabel = card.last_sender_name || '';
+  }
 }
 
 // combine
@@ -2040,6 +2686,15 @@ openChatView();
 
   const viewerId = appState.user.id;
 
+  // ✅ NEW: detect type
+  const isCommunity = card.isCommunity;
+
+  const chatState = {
+  lastSenderId: null
+};
+
+let isLoadingMessages = true;
+
   // ✅ prevent multiple channels
   if (window.currentChatChannel) {
     supabase.removeChannel(window.currentChatChannel);
@@ -2089,15 +2744,25 @@ header.querySelector('#back-btn').addEventListener('click', () => {
 
   container.appendChild(inputBar);
 
+
+  renderedMessageIds.clear();
+  chatState.lastSenderId = null;
   // =========================
   // LOAD MESSAGES
   // =========================
   async function loadMessages() {
-    const { data, error } = await supabase
+    let query = supabase
       .from('0con_messages')
-      .select('*')
-      .eq('match_id', card.id)
-      .order('created_at', { ascending: true });
+      .select('*');
+
+    // ✅ NEW: conditional filter
+    if (isCommunity) {
+      query = query.eq('community_id', card.id);
+    } else {
+      query = query.eq('match_id', card.id);
+    }
+
+    const { data, error } = await query.order('created_at', { ascending: true });
 
     if (error) {
       console.error('load messages error:', error);
@@ -2107,26 +2772,61 @@ header.querySelector('#back-btn').addEventListener('click', () => {
     messagesBox.innerHTML = '';
     renderedMessageIds.clear();
 
-    data.forEach(msg => {
-      renderedMessageIds.add(msg.id);
 
-      const msgEl = document.createElement('div');
+data.forEach(msg => {
+  renderedMessageIds.add(msg.id);
 
-      const isMine = msg.sender_id === viewerId;
+  const msgEl = document.createElement('div');
 
-      msgEl.className = `chat-message ${isMine ? 'mine' : 'theirs'}`;
+  const isMine = msg.sender_id === viewerId;
+  const isSameSender = msg.sender_id === chatState.lastSenderId;
 
-      msgEl.innerHTML = `
-        <div class="bubble">
-          ${msg.content}
+  msgEl.className = `chat-message ${isMine ? 'mine' : 'theirs'}`;
+
+  if (isCommunity && !isMine) {
+    msgEl.innerHTML = `
+      <div class="community-message">
+        
+        ${!isSameSender ? `
+          <img 
+            src="${msg.sender_photo_url || '/default-avatar.png'}" 
+            class="message-avatar"
+          />
+        ` : `<div class="message-avatar-placeholder"></div>`}
+
+        <div class="message-content">
+
+          ${!isSameSender ? `
+            <div class="message-sender">
+              ${msg.sender_name || 'Unknown'}
+            </div>
+          ` : ``}
+
+          <div class="bubble">
+            ${msg.content}
+          </div>
+
         </div>
-      `;
+      </div>
+    `;
+  } else {
+    msgEl.innerHTML = `
+      <div class="bubble">
+        ${msg.content}
+      </div>
+    `;
+  }
 
-      messagesBox.appendChild(msgEl);
-    });
+  messagesBox.appendChild(msgEl);
+
+  // 🔥 update tracker AFTER rendering
+  chatState.lastSenderId = msg.sender_id;
+});
 
     // scroll to bottom
     messagesBox.scrollTop = messagesBox.scrollHeight;
+
+    isLoadingMessages = false;
   }
 
   channel = supabase
@@ -2137,34 +2837,65 @@ header.querySelector('#back-btn').addEventListener('click', () => {
       event: 'INSERT',
       schema: 'public',
       table: '0con_messages',
-      filter: `match_id=eq.${card.id}`
+      // ✅ NEW: dynamic filter
+      filter: isCommunity
+        ? `community_id=eq.${card.id}`
+        : `match_id=eq.${card.id}`
     },
     payload => {
-      const msg = payload.new;
+const msg = payload.new;
 
-      // ✅ prevent duplicates
-      if (renderedMessageIds.has(msg.id)) return;
-      renderedMessageIds.add(msg.id);
+if (isLoadingMessages) return;
 
-      // 🔥 remove optimistic message (fix duplicate issue)
-      const tempEl = messagesBox.querySelector(`[data-id^="temp-"]`);
-      if (tempEl) {
-        tempEl.remove();
-      }
+if (renderedMessageIds.has(msg.id)) return;
+renderedMessageIds.add(msg.id);
 
-      const msgEl = document.createElement('div');
-      const isMine = msg.sender_id === viewerId;
+const msgEl = document.createElement('div');
 
-      msgEl.className = `chat-message ${isMine ? 'mine' : 'theirs'}`;
+const isMine = msg.sender_id === viewerId;
+const isSameSender = msg.sender_id === chatState.lastSenderId;
 
-      msgEl.innerHTML = `
+msgEl.className = `chat-message ${isMine ? 'mine' : 'theirs'}`;
+
+if (isCommunity && !isMine) {
+  msgEl.innerHTML = `
+    <div class="community-message">
+
+      ${!isSameSender ? `
+        <img 
+          src="${msg.sender_photo_url || '/default-avatar.png'}" 
+          class="message-avatar"
+        />
+      ` : `<div class="message-avatar-placeholder"></div>`}
+
+      <div class="message-content">
+
+        ${!isSameSender ? `
+          <div class="message-sender">
+            ${msg.sender_name || 'Unknown'}
+          </div>
+        ` : ``}
+
         <div class="bubble">
           ${msg.content}
         </div>
-      `;
 
-      messagesBox.appendChild(msgEl);
-      messagesBox.scrollTop = messagesBox.scrollHeight;
+      </div>
+    </div>
+  `;
+} else {
+  msgEl.innerHTML = `
+    <div class="bubble">
+      ${msg.content}
+    </div>
+  `;
+}
+
+messagesBox.appendChild(msgEl);
+messagesBox.scrollTop = messagesBox.scrollHeight;
+
+// 🔥 update tracker
+chatState.lastSenderId = msg.sender_id;
     }
   )
   .subscribe();
@@ -2180,44 +2911,57 @@ await loadMessages();
 const input = inputBar.querySelector('#chat-input');
 const button = inputBar.querySelector('#send-btn');
 
-async function sendMessage() {
+async function sendMessage() { 
   const text = input.value.trim();
   if (!text) return;
 
-  // optimistic UI (temporary id)
-  const tempId = `temp-${Date.now()}`;
-
-  const msgEl = document.createElement('div');
-  msgEl.dataset.id = tempId;
-  msgEl.className = `chat-message mine`;
-  msgEl.innerHTML = `<div class="bubble">${text}</div>`;
-
-  messagesBox.appendChild(msgEl);
-  messagesBox.scrollTop = messagesBox.scrollHeight;
-
   input.value = '';
 
-  const { error } = await supabase
-    .from('0con_messages')
-    .insert({
-      match_id: card.id,
-      sender_id: viewerId,
-      content: text
-    });
+const { error } = await supabase
+  .from('0con_messages')
+  .insert({
+    sender_id: viewerId,
+    content: text,
+
+    ...(isCommunity
+      ? {
+          community_id: card.id,
+          sender_name: appState.profile.name,
+          sender_photo_url: appState.profile.profile_photo_url,
+          is_community: true
+        }
+      : {
+          match_id: card.id
+        })
+  });
 
   if (error) {
     console.error('send message error:', error);
     return;
   }
 
-  // OPTIONAL: update last message in matches table
-  await supabase
-    .from('0con_matches')
-    .update({
-      last_message: text,
-      last_sender_id: viewerId
-    })
-    .eq('id', card.id);
+  // ✅ keep your existing logic (ONLY for matches)
+  if (!isCommunity) {
+    await supabase
+      .from('0con_matches')
+      .update({
+        last_message: text,
+        last_sender_id: viewerId
+      })
+      .eq('id', card.id);
+  }
+
+  // ✅ NEW: update community preview
+  if (isCommunity) {
+    await supabase
+      .from('0con_community_chats')
+      .update({
+        last_message: text,
+        last_sender_id: viewerId,
+        last_sender_name: appState.profile.name
+      })
+      .eq('community_id', card.id);
+  }
 }
 
 button.addEventListener('click', sendMessage);
@@ -2226,145 +2970,53 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendMessage();
 });
 }
+//#endregion
+
+//#region Community chats
+
+async function getCommunityChats(viewerId) {
+  // 1. get communities where user participates
+  const { data: participants, error: pError } = await supabase
+    .from('0con_community_participants')
+    .select('community_id')
+    .eq('user_id', viewerId);
+
+  if (pError) {
+    console.error('participants error:', pError);
+    return [];
+  }
+
+  if (!participants || participants.length === 0) return [];
+
+  const communityIds = participants.map(p => p.community_id);
+
+  // 2. fetch chats
+  const { data: chats, error: cError } = await supabase
+    .from('0con_community_chats')
+    .select(`
+      community_id,
+      community_name,
+      community_photo,
+      last_message,
+      last_sender_id,
+      last_sender_name
+    `)
+    .in('community_id', communityIds);
+
+  if (cError) {
+    console.error('community chats error:', cError);
+    return [];
+  }
+
+  return chats || [];
+}
+
+
+//#endregion
 
 //#endregion
 
 //#region Income Tab
-
-//COMMUNITY TOPBAR
-//COMMUNITY TOPBAR
-//COMMUNITY TOPBAR
-//COMMUNITY TOPBAR
-
-function isPremiumUser() {
-  return !!appState.profile?.is_premium;
-}
-
-function hasCommunity() {
-  return !!appState.profile?.community_id;
-}
-
-// OPEN SURVEY TAB
-function openCommunitySurvey() {
-  document.getElementById("matches").classList.add("hidden");
-  document.getElementById("survey").classList.remove("hidden");
-}
-
-// INFO BUBBLE
-function showInfoBubble() {
-  // remove existing
-  document.querySelector(".info-overlay")?.remove();
-  document.querySelector(".info-bubble")?.remove();
-
-  // overlay
-  const overlay = document.createElement("div");
-  overlay.className = "info-overlay";
-
-  // bubble
-  const bubble = document.createElement("div");
-  bubble.className = "info-bubble";
-
-  bubble.innerHTML = `
-    <button class="info-close">×</button>
-
-    <strong>Create your own community</strong><br><br>
-
-    Bring together people near you who share your values and interests.<br><br>
-
-    Once created, users who match your preferences in your local area will be automatically invited to your community. New users will also be included after registration.<br><br>
-
-    <span class="info-cta" id="upgradeToPremium">
-      Upgrade to Premium →
-    </span>
-  `;
-
-  document.body.appendChild(overlay);
-  document.body.appendChild(bubble);
-
-  // CLOSE ON X
-  bubble.querySelector(".info-close").onclick = closeBubble;
-
-  // CLOSE ON OUTSIDE CLICK
-  overlay.onclick = closeBubble;
-
-  function closeBubble() {
-    overlay.remove();
-    bubble.remove();
-  }
-
-  // CTA click → open premium tab
-  document.getElementById("upgradeToPremium").onclick = (e) => {
-    e.stopPropagation();
-    closeBubble();
-    openPremiumScreen(); 
-  };
-}
-
-// TOPBAR RENDER
-function renderCommunityTopbar() {
-  const topbar = document.getElementById("createCommunityTopbar");
-
-  const premium = isPremiumUser();
-  const hasComm = hasCommunity();
-
-  topbar.onclick = null; // cleanup
-
-  // CASE 1: HAS COMMUNITY
-  if (hasComm) {
-    topbar.classList.remove("locked");
-    topbar.classList.add("unlocked");
-
-    topbar.innerHTML = `<span class="topbar-title">My community</span>`;
-
-    topbar.onclick = () => {
-        console.log("Open community page")
-      // later: openCommunityPage()
-    };
-
-    return;
-  }
-
-  // CASE 2: PREMIUM BUT NO COMMUNITY
-  if (premium) {
-    topbar.classList.remove("locked");
-    topbar.classList.add("unlocked");
-
-    topbar.innerHTML = `<span class="topbar-title">Create community</span>`;
-
-    topbar.onclick = () => openCommunitySurvey();
-
-    return;
-  }
-
-  // CASE 3: BASIC USER
-  topbar.classList.add("locked");
-
-  topbar.innerHTML = `
-    <span class="topbar-title premium-lock">🔒 Create community </span>
-    <button id="communityInfoBtn" class="info-icon">ⓘ</button>
-  `;
-
-  const infoBtn = topbar.querySelector("#communityInfoBtn");
-
-  topbar.onclick = () => showInfoBubble();
-
-  infoBtn.onclick = (e) => {
-    e.stopPropagation();
-    showInfoBubble();
-  };
-}
-
-
-
-
-
-
-
-
-//INVITATIONS
-//INVITATIONS
-//INVITATIONS
-//INVITATIONS
 
 async function createInvitationCards() {
   try {
@@ -2877,11 +3529,6 @@ async function upsertMatch(userId, invitationType) {
   }
 }
 //#endregion
-
-//#region Communities Tab
-
-
-    //#endregion
 
 //#region Profile Tab
 

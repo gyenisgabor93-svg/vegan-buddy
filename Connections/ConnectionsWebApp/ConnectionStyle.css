@@ -1999,3 +1999,171 @@ body.modal-open {
 .primary-btn:hover {
   background: #256428;
 }
+
+
+
+
+/* COMMUNITY */
+/* COMMUNITY */
+/* COMMUNITY */
+/* COMMUNITY */
+.community-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.community-preview-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.community-preview-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.community-preview-count {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* FULL MODAL BACKDROP (make sure you have this) */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 999;
+}
+
+/* MAIN CARD */
+.community-modal-card {
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border-radius: 18px;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+/* HERO */
+.community-hero {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f6f6f6;
+}
+
+.community-hero-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.community-hero-content {
+  padding: 12px;
+}
+
+.community-title {
+  margin: 0;
+  font-size: 18px;
+  color: #111;
+}
+
+.community-desc {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.community-meta {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #777;
+}
+
+/* SECTION */
+.community-section {
+  margin-top: 14px;
+}
+
+.section-title {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+/* MEMBERS */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.member-card {
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.member-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.member-name {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* MESSAGES */
+.community-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.message-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-sender {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.message-avatar-placeholder {
+  width: 28px;
+  height: 28px;
+}
