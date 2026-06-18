@@ -3633,12 +3633,12 @@ async function AcceptTofu(userId, userName, userPhoto) {
   await performActionInvitation(userId, 2, userName, userPhoto);
 }
 
-async function DeclineCommunity(communityId, communityName, communityPhoto) {
-  await performCommunityAction(communityId, communityName, communityPhoto, 0, incomeId);
+async function DeclineCommunity(communityId, communityName, communityPhoto, incomeIdFromDom) {
+  await performCommunityAction(communityId, communityName, communityPhoto, 0, incomeIdFromDom);
 }
 
-async function AcceptCommunity(communityId, communityName, communityPhoto) {
-  await performCommunityAction(communityId, communityName, communityPhoto, 1, incomeId);
+async function AcceptCommunity(communityId, communityName, communityPhoto, incomeIdFromDom) {
+  await performCommunityAction(communityId, communityName, communityPhoto, 1, incomeIdFromDom);
 }
 
 async function performActionInvitation(userId, invitationType, userName, userPhoto) {
