@@ -1368,27 +1368,80 @@ function closeProfilePopup() {
 }
 
 async function addToSeenProfiles(userId) {
-  const user = appState.user;
+  const currentUserId = appState.user.id;
 
-  const seen = user.seen_profiles || [];
+  // 1. fetch fresh value from DB
+  const { data, error } = await supabase
+    .from("0con_profilesdata")
+    .select("seen_profiles")
+    .eq("id", currentUserId)
+    .single();
 
+  if (error) {
+    console.error("Failed to fetch seen_profiles:", error);
+    return;
+  }
+
+  const seen = data.seen_profiles || [];
+
+  // 2. update safely
   if (!seen.includes(userId)) {
     seen.push(userId);
   }
 
-  const { error } = await supabase
+  const { error: updateError } = await supabase
     .from("0con_profilesdata")
     .update({
       seen_profiles: seen
     })
-    .eq("id", user.id);
+    .eq("id", currentUserId);
+
+  if (updateError) {
+    console.error("Failed to update seen_profiles:", updateError);
+    return;
+  }
+
+  // 3. sync local state
+  appState.user.seen_profiles = seen;
+}
+
+
+async function addToSeenCommunities(communityId) {
+  const currentUserId = appState.user.id;
+
+  // 1. fetch fresh value from DB
+  const { data, error } = await supabase
+    .from("0con_profilesdata")
+    .select("seen_communities")
+    .eq("id", currentUserId)
+    .single();
 
   if (error) {
-    console.error("Failed to update seen_profiles:", error);
-  } else {
-    // keep local state in sync
-    appState.user.seen_profiles = seen;
+    console.error("Failed to fetch seen_profiles:", error);
+    return;
   }
+
+  const seen = data.seen_communities || [];
+
+  // 2. update safely
+  if (!seen.includes(userId)) {
+    seen.push(userId);
+  }
+
+  const { error: updateError } = await supabase
+    .from("0con_profilesdata")
+    .update({
+      seen_communities: seen
+    })
+    .eq("id", currentUserId);
+
+  if (updateError) {
+    console.error("Failed to update seen_communities:", updateError);
+    return;
+  }
+
+  // 3. sync local state
+  appState.user.seen_communities = seen;
 }
 
 function getUserCard(userId) {
@@ -3095,11 +3148,13 @@ function renderInvitationCards(cards) {
   }
 
   cards.forEach(card => {
-  const el = document.createElement('div');
+    const el = document.createElement('div');
 
-  // 👇 dynamic class
-  const typeClass =
-    card.invitation_type === 1 ? 'friend' : 'date';
+    // 👇 dynamic class
+    const typeClass =
+      card.invitation_type === 1 ? 'friend' :
+      card.invitation_type === 2 ? 'date' :
+      'community';
 
     el.dataset.incomeId = card.income_id;
 
@@ -3109,23 +3164,45 @@ function renderInvitationCards(cards) {
       ? `<span class="invitation-meta">Age: ${card.c_age}</span>`
       : '';
 
-    el.innerHTML = `
-      <img src="${card.c_photo}" />
-      
+const isCommunity = card.invitation_type === 3;
+
+el.innerHTML = isCommunity
+  ? `
+    <div class="community-card-preview">
+      <div class="community-placeholder">
+        🥑 Community
+      </div>
       <div class="invitation-content">
         <div class="invitation-top">
-          <span class="invitation-name">${card.c_name}</span>
+          <span class="invitation-name">Community</span>
           <span class="invitation-score">${Math.round(card.score ?? 0)}%</span>
         </div>
-
-        ${ageSection}
       </div>
-    `;
+    </div>
+  `
+  : `
+    <img src="${card.c_photo}" />
+    
+    <div class="invitation-content">
+      <div class="invitation-top">
+        <span class="invitation-name">${card.c_name}</span>
+        <span class="invitation-score">${Math.round(card.score ?? 0)}%</span>
+      </div>
+
+      ${ageSection}
+    </div>
+  `;
 
     // 👇 CLICK HANDLER
     el.addEventListener('click', () => { 
-  openUserInvitationProfile(card);
-});
+
+      if (card.invitation_type === 3) {
+        openCommunityPageWithInvitation(card.sender_id); // community_id
+        return;
+      }
+
+      openUserInvitationProfile(card);
+    });
 
     container.appendChild(el);
   });
@@ -3184,7 +3261,6 @@ function openInvitationProfile(user) {
 
   document.body.classList.add("modal-open");
 }
-
 
 function renderFriendsProfileCardInvitation(user) {  
   return `
@@ -3358,6 +3434,127 @@ const profilePhoto = getProfilePhoto(user);
   `;
 }
 
+async function openCommunityPageWithInvitation(communityId) {
+  const modal = document.getElementById("communityModal");
+  const body = document.getElementById("communityModalBody");
+
+  body.innerHTML = "<p>Loading...</p>";
+  modal.style.display = "block";
+
+  try {
+
+  const { data: invitation, error: inviteError } = await supabase
+  .from("0con_incomes")
+  .select("id")
+  .eq("receiver_id", appState.user.id)
+  .eq("sender_id", communityId)
+  .eq("invitation_type", 3)
+  .single();
+
+if (inviteError) {
+  console.error("Invitation fetch error:", inviteError);
+}
+
+const incomeId = invitation?.id;
+
+    // 1. Get community
+    const { data: community, error } = await supabase
+      .from("0con_communities")
+      .select("id, community_name, community_description, community_photo")
+      .eq("id", communityId)
+      .single();
+
+    if (error) throw error;
+
+    // 2. Get members (with profiles join)
+    const { data: members, error: membersError } = await supabase
+      .from("0con_community_participants")
+      .select(`
+        user_id,
+        0con_profilesdata (
+          name,
+          profile_photo_url
+        )
+      `)
+      .eq("community_id", communityId);
+
+    if (membersError) throw membersError;
+
+    // 3. Render UI
+body.innerHTML = `
+  <div class="community-modal-card">
+
+    <!-- HEADER -->
+    <div class="community-hero">
+      <img src="${community.community_photo}" class="community-hero-img" />
+
+      <div class="community-hero-content">
+        <h2 class="community-title">
+          ${community.community_name}
+        </h2>
+
+        <p class="community-desc">
+          ${community.community_description || "No description yet."}
+        </p>
+
+        <div class="community-meta">
+          👥 ${members.length} members
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBERS -->
+    <div class="community-section">
+      <h3 class="section-title">Members</h3>
+
+      <div class="members-grid">
+        ${members.map(m => `
+          <div class="member-card">
+            <img 
+              src="${m["0con_profilesdata"]?.profile_photo_url || "default.png"}" 
+              class="member-avatar"
+            />
+            <div class="member-name">
+              ${m["0con_profilesdata"]?.name || "Unknown"}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+        <!-- ACTIONS -->
+    <div class="community-actions">
+      <button id="communityDeclineBtn" class="btn-decline">
+        ❌ Decline
+      </button>
+
+      <button id="communityAcceptBtn" class="btn-accept">
+        👥 Accept
+      </button>
+    </div>
+
+  </div>
+`;
+
+  } catch (err) {
+    console.error("Community modal error:", err);
+    body.innerHTML = "<p>Error loading community</p>";
+  }
+
+  // Close handler
+  document.getElementById("closeCommunityModalBtn").onclick = closeCommunityPage;
+
+  // Decline invitation
+  document.getElementById("communityDeclineBtn").onclick = async () => {
+  await DeclineCommunity(community.id, community.community_name, community.community_photo, incomeId);
+};
+
+  // Accept invitation
+document.getElementById("communityAcceptBtn").onclick = async () => {
+  await AcceptCommunity(community.id, community.community_name, community.community_photo, incomeId);
+};
+}
+
 function getProfilePhoto(user) {
   // If it's already a simple string (friends case)
   if (user.photo) return user.photo;
@@ -3398,6 +3595,14 @@ async function AcceptAvocado(userId, userName, userPhoto) {
 
 async function AcceptTofu(userId, userName, userPhoto) {
   await performActionInvitation(userId, 2, userName, userPhoto);
+}
+
+async function DeclineCommunity(communityId, communityName, communityPhoto) {
+  await performCommunityAction(communityId, communityName, communityPhoto, 0, incomeId);
+}
+
+async function AcceptCommunity(communityId, communityName, communityPhoto) {
+  await performCommunityAction(communityId, communityName, communityPhoto, 1, incomeId);
 }
 
 async function performActionInvitation(userId, invitationType, userName, userPhoto) {
@@ -3478,6 +3683,47 @@ deletedRows.forEach(row => {
   }
 
   closeProfilePopup();
+}
+
+async function performCommunityAction(communityId, communityName, communityPhoto, actionType, incomeId) {
+  try {
+    const userId = appState.user.id;
+
+    // 1. ACCEPT → insert membership
+    if (actionType !== 0) {
+      const { error: insertError } = await supabase
+        .from("0con_community_participants")
+        .insert({
+          community_id: communityId,
+          user_id: userId
+        });
+
+      if (insertError) throw insertError;
+    }
+
+    // 2. DELETE invitation (always)
+    const { error: deleteError } = await supabase
+      .from("0con_incomes")
+      .delete()
+      .match({
+        receiver_id: userId,
+        sender_id: communityId,
+        invitation_type: 3
+      });
+
+    if (deleteError) throw deleteError;
+
+    // 3. REMOVE FROM UI (now works properly)
+    removeInvitationCard(incomeId);
+
+    // 4. mark seen
+    await addToSeenCommunities(communityId);
+
+  } catch (err) {
+    console.error("Community action failed:", err);
+  }
+
+  closeCommunityPage();
 }
 
 function removeInvitationCard(incomeId) {
