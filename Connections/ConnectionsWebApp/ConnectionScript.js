@@ -167,10 +167,12 @@ function setupModals() {
   const dateModal = document.getElementById("dateFilterModal");
 
   document.getElementById("friendsFilterBtn").onclick = () => {
+    populateFiltersFromProfile(); 
     friendsModal.style.display = "block";
   };
 
   document.getElementById("dateFilterBtn").onclick = () => {
+    populateFiltersFromProfile(); 
     dateModal.style.display = "block";
   };
 
@@ -640,6 +642,79 @@ const DateData = (() => {
   };
 })();
 
+const dateQuestions = [
+  {
+    id: "gender",
+    label: "Gender",
+    type: "single",
+    options: [
+      { id: 1, label: "Man" },
+      { id: 0, label: "Woman" },
+      { id: 2, label: "Other" }
+    ]
+  },
+
+  {
+    id: "age",
+    label: "Age",
+    type: "number"
+  },
+
+  {
+    id: "height",
+    label: "Height (cm)",
+    type: "number"
+  },
+
+  {
+    id: "looking_for",
+    label: "What are you looking for?",
+    type: "single",
+    options: [
+      { id: "long_term", label: "Long term" },
+      { id: "connection_no_commitment", label: "Connection without commitment" },
+      { id: "ethical_non_monogamy", label: "Ethical non-monogamy" },
+      { id: "casual", label: "Casual" }
+    ]
+  },
+
+  {
+    id: "smoke",
+    label: "Do you smoke?",
+    type: "single",
+    options: [
+      { id: "no", label: "No" },
+      { id: "occasionally", label: "Occasionally" },
+      { id: "yes", label: "Yes" },
+      { id: "trying_to_quit", label: "Trying to quit" }
+    ]
+  },
+
+  {
+    id: "drink",
+    label: "Do you drink alcohol?",
+    type: "single",
+    options: [
+      { id: "no", label: "No" },
+      { id: "occasionally", label: "Occasionally" },
+      { id: "socially", label: "Socially" },
+      { id: "regularly", label: "Regularly" }
+    ]
+  },
+
+  {
+    id: "children",
+    label: "Do you have or want children?",
+    type: "single",
+    options: [
+      { id: "dont_have", label: "Already Have" },
+      { id: "want", label: "Want" },
+      { id: "dont_want", label: "Don't want" },
+      { id: "not_sure", label: "Not sure / depends" }
+    ]
+  }
+];
+
 async function updateLastSeen(userId) {
   const { error } = await supabase
     .from("0con_profilesdata")
@@ -1000,7 +1075,7 @@ async function enableMode(column, type) {
   }
 }
 
-async function openUserProfile(userId, type) {
+async function openUserProfile(userId, type, isMatchContext = false) {
   showLoadingSmall?.();
 
   try { 
@@ -1012,7 +1087,7 @@ async function openUserProfile(userId, type) {
 
     if (error) throw error;
 
-    renderProfilePopup(data);
+    renderProfilePopup(data, isMatchContext);
 
   } catch (err) {
     console.error("Profile fetch error:", err);
@@ -1021,15 +1096,15 @@ async function openUserProfile(userId, type) {
   }
 }
 
-function renderProfilePopup(user) {
+function renderProfilePopup(user, isMatchContext = false) {
   const popup = document.getElementById("profile-popup");
   const container = document.getElementById("profile-data");
   const backdrop = document.getElementById("profile-backdrop");
 
   if (user.type === "friends") {
-    container.innerHTML = renderFriendsProfileCard(user);
+    container.innerHTML = renderFriendsProfileCard(user, isMatchContext);
   } else {
-    container.innerHTML = renderDateProfileCard(user);
+    container.innerHTML = renderDateProfileCard(user, isMatchContext);
   }
 
   // Show popup + backdrop
@@ -1078,80 +1153,79 @@ function renderQuestionBlock(questionId, viewerAnswer, targetAnswer, label) {
   `;
 }
 
-function renderFriendsProfileCard(user) { 
+function renderFriendsProfileCard(user, isMatchContext = false) { 
+  const isPremium = appState.profile.is_premium;
+
   return `
     <img src="${user.photo}" width="100%" />
 
     <h2>${user.name}</h2>
     <p>${user.description || ""}</p>
 
-    <div class="section">
-      <h4>🤝 Things in common</h4>
-      ${
-        user.common === "no_common" ||
-        !user.common ||
-        user.common.length === 0
-          ? "<p>No matching answers</p>"
-          : user.common
-              .map(c =>
-                renderQuestionBlock(
-                  c.questionId,
-                  c.viewerAnswer,
-                  c.targetAnswer,
-                  "Common"
-                )
-              )
-              .join("")
-      }
-    </div>
+${!isPremium ? `
+  <div class="section">
+    <h4>🤝 Things in common</h4>
+    ${
+      !Array.isArray(user.common) || user.common.length === 0
+        ? "<p>No matching answers</p>"
+        : user.common.map(c =>
+            renderQuestionBlock(
+              c.questionId,
+              c.viewerAnswer,
+              c.targetAnswer,
+              "Common"
+            )
+          ).join("")
+    }
+  </div>
 
-    <div class="section">
-      <h4>⚡ Difference</h4>
-      ${
-        !user.difference || user.difference === "no_strong_difference"
-          ? "<p>No differences</p>"
-          : Array.isArray(user.difference)
-              ? user.difference
-                  .map(d =>
-                    renderQuestionBlock(
-                      d.questionId,
-                      d.viewerAnswer,
-                      d.targetAnswer,
-                      "Difference"
-                    )
-                  )
-                  .join("")
-              : user.difference.questionId
-                  ? renderQuestionBlock(
-                      user.difference.questionId,
-                      user.difference.viewerAnswer,
-                      user.difference.targetAnswer,
-                      "Difference"
-                    )
-                  : "<p>No differences</p>"
-      }
+  <div class="section">
+    <h4>⚡ Difference</h4>
+    ${
+      !user.difference || !user.difference.questionId
+        ? "<p>No differences</p>"
+        : renderQuestionBlock(
+            user.difference.questionId,
+            user.difference.viewerAnswer,
+            user.difference.targetAnswer,
+            "Difference"
+          )
+    }
+  </div>
+` : `
+  <div class="section">
+    <h4>📊 Full Compatibility Survey</h4>
+
+    <button id="toggleSurveyBtn">Show / Hide Survey</button>
+
+    <div id="premiumSurvey" style="display:none;">
+      ${renderPremiumSurvey(user.friendsurvey, user.survey)}
     </div>
+  </div>
+`}
 
     <div class="section">
       <h4>🎯 Hobbies</h4>
       <p>${user.hobbies || ""}</p>
     </div>
 
-    <div class="actions">
 
-      <button data-action="hide" data-id="${user.id}">
-        ❌ Hide
-      </button>
+        <div class="actions"  style="${isMatchContext ? 'display:none;' : ''}">
+          <button data-action="hide" data-id="${user.id}">
+            ❌ Hide
+          </button>
 
-      <button data-action="avocado" data-id="${user.id}">
-        🥑 Send avocado
-      </button>
-
-    </div>
-  `;
+          <button data-action="avocado" data-id="${user.id}">
+            🥑 Send avocado
+          </button>
+        </div>
+      `
+  ;
 }
 
-function renderDateProfileCard(user) {
+function renderDateProfileCard(user, isMatchContext = false) {
+  const isPremium = appState.profile.is_premium;
+
   return `
     <div class="photo-gallery">
       ${(user.photos || [])
@@ -1167,53 +1241,47 @@ function renderDateProfileCard(user) {
       <p>${user.hobbies || ""}</p>
     </div>
 
+${!isPremium ? `
+  <div class="section">
+    <h4>🤝 Things in common</h4>
+    ${
+      !Array.isArray(user.common) || user.common.length === 0
+        ? "<p>No matching answers</p>"
+        : user.common.map(c =>
+            renderQuestionBlock(
+              c.questionId,
+              c.viewerAnswer,
+              c.targetAnswer,
+              "Common"
+            )
+          ).join("")
+    }
+  </div>
 
-    <div class="section">
-      <h4>🤝 Things in common</h4>
-      ${
-        user.common === "no_common" ||
-        !user.common ||
-        user.common.length === 0
-          ? "<p>No matching answers</p>"
-          : user.common
-              .map(c =>
-                renderQuestionBlock(
-                  c.questionId,
-                  c.viewerAnswer,
-                  c.targetAnswer,
-                  "Common"
-                )
-              )
-              .join("")
-      }
-    </div>
+  <div class="section">
+    <h4>⚡ Difference</h4>
+    ${
+      !user.difference || !user.difference.questionId
+        ? "<p>No differences</p>"
+        : renderQuestionBlock(
+            user.difference.questionId,
+            user.difference.viewerAnswer,
+            user.difference.targetAnswer,
+            "Difference"
+          )
+    }
+  </div>
+` : `
+  <div class="section">
+    <h4>📊 Full Compatibility Survey</h4>
 
-    <div class="section">
-      <h4>⚡ Difference</h4>
-      ${
-        !user.difference || user.difference === "no_strong_difference"
-          ? "<p>No differences</p>"
-          : Array.isArray(user.difference)
-              ? user.difference
-                  .map(d =>
-                    renderQuestionBlock(
-                      d.questionId,
-                      d.viewerAnswer,
-                      d.targetAnswer,
-                      "Difference"
-                    )
-                  )
-                  .join("")
-              : user.difference.questionId
-                  ? renderQuestionBlock(
-                      user.difference.questionId,
-                      user.difference.viewerAnswer,
-                      user.difference.targetAnswer,
-                      "Difference"
-                    )
-                  : "<p>No differences</p>"
-      }
+    <button id="toggleSurveyBtn">Show / Hide Survey</button>
+
+    <div id="premiumSurvey" style="display:none;">
+      ${renderPremiumSurvey(user.friendsurvey, user.survey)}
     </div>
+  </div>
+`}
 
     <div class="section">
   <h4>💭 Dating profile details</h4>
@@ -1234,19 +1302,98 @@ function renderDateProfileCard(user) {
   }
 </div>
 
-    <div class="actions">
+    
+        <div class="actions"  style="${isMatchContext ? 'display:none;' : ''}">
+          <button data-action="hide" data-id="${user.id}">
+            ❌ Hide
+          </button>
 
-      <button data-action="hide" data-id="${user.id}">
-        ❌ Hide
-      </button>
-
-      <button data-action="tofu" data-id="${user.id}">
+          <button data-action="tofu" data-id="${user.id}">
             🍲 Share your Tofu
-      </button>
-
-    </div>
-  `;
+          </button>
+        </div>
+      `
+    
+  ;
 }
+
+function renderPremiumSurvey(friendsurvey, datesurvey) {
+  const ownsurveyRaw = appState.profile.friends_survey;
+
+  const ownsurvey = Object.entries(ownsurveyRaw).map(
+    ([key, value]) => ({ key, value })
+  );
+
+  const targetMap = new Map(
+    friendsurvey.map(i => [i.key, i.value])
+  );
+
+  // ----------------------------
+  // Determine pronoun from datesurvey
+  // ----------------------------
+let genderValue = datesurvey?.find(
+  d => d.key === "gender"
+)?.value;
+
+const isFemale = Number(genderValue) === 0;
+
+  const pronounSubject = isFemale ? "Her" : "His";
+
+  return ownsurvey.map(item => {
+    const viewerAnswerId = item.value;
+    const targetAnswerId = targetMap.get(item.key);
+
+    const viewerOption = AppData.optionMap[viewerAnswerId];
+    const targetOption = AppData.optionMap[targetAnswerId];
+
+    const viewerText = viewerOption?.text || viewerAnswerId;
+    const targetText = targetOption?.text || targetAnswerId || "—";
+
+    const isMatch = viewerAnswerId === targetAnswerId;
+
+    const questionText =
+      AppData.questionMap[item.key]?.text || item.key;
+
+    return `
+      <div class="survey-row">
+
+        <div class="question">
+          ${questionText}
+        </div>
+
+        <div class="answers">
+
+          ${
+            isMatch
+              ? `
+                <span class="match">
+                  Match: ${viewerText}
+                </span>
+              `
+              : `
+                <span class="viewer">
+                  You: ${viewerText}
+                </span>
+
+                <span class="target">
+                  ${pronounSubject}: ${targetText}
+                </span>
+              `
+          }
+
+        </div>
+
+      </div>
+    `;
+  }).join("");
+}
+
+document.addEventListener("click", (e) => {
+  if (e.target.id === "toggleSurveyBtn") {
+    const el = document.getElementById("premiumSurvey");
+    el.style.display = el.style.display === "none" ? "block" : "none";
+  }
+});
 
 function normalizeValue(value) {
   if (Array.isArray(value)) return value;
@@ -1317,8 +1464,10 @@ async function performAction(userId, invitationType = null) {
 
       if (error) throw error;
 
-      // ✅ ONLY runs if insert succeeded
-      await deductFood(appState.user.id, invitationType);
+      // ✅ ONLY deduct if NOT premium
+      if (!appState.profile?.is_premium) {
+        await deductFood(appState.user.id, invitationType);
+      }
     }
 
     const card = getUserCard(userId);
@@ -1332,6 +1481,7 @@ async function performAction(userId, invitationType = null) {
 }
 
 async function deductFood(userId, type) {
+  if (appState.profile?.is_premium) return; // extra safety
 
   const column = type === 1 ? "avocados" : "tofu";
 
@@ -1480,6 +1630,233 @@ function renderDateProfile(profile) {
   }
 }
 
+
+
+
+// FILTER SETUPS
+// FILTER SETUPS
+// FILTER SETUPS
+
+function milesToKm(mi) {
+  return (mi * 1.60934).toFixed(1);
+}
+
+// FRIENDS
+const friendsThreshold = document.getElementById("friendsthreshold");
+const friendsDistance = document.getElementById("distancefriendfilter");
+
+friendsThreshold?.addEventListener("input", () => {
+  const val = friendsThreshold.value;
+  document.getElementById("friendsThresholdValue").textContent = `${val}%`;
+});
+
+friendsDistance?.addEventListener("input", () => {
+  const mi = friendsDistance.value;
+  const km = milesToKm(mi);
+
+  document.getElementById("distanceFriendValue").textContent =
+    `${mi} mi (${km} km)`;
+});
+
+// DATING
+const dateThreshold = document.getElementById("dateThreshold");
+const dateDistance = document.getElementById("dateDistance");
+const ageMin = document.getElementById("ageMin");
+const ageMax = document.getElementById("ageMax");
+
+dateThreshold?.addEventListener("input", () => {
+  document.getElementById("dateThresholdValue").textContent =
+    `${dateThreshold.value}%`;
+});
+
+dateDistance?.addEventListener("input", () => {
+  const mi = dateDistance.value;
+  const km = milesToKm(mi);
+
+  document.getElementById("dateDistanceValue").textContent =
+    `${mi} mi (${km} km)`;
+});
+
+ageMin?.addEventListener("input", () => {
+  document.getElementById("ageMinValue").textContent = ageMin.value;
+});
+
+ageMax?.addEventListener("input", () => {
+  document.getElementById("ageMaxValue").textContent = ageMax.value;
+});
+
+document.getElementById("saveFriendsFilters")?.addEventListener("click", async () => {
+  const payload = {
+    friend_threshold: Number(document.getElementById("friendsthreshold").value),
+    friend_distance: Number(document.getElementById("distancefriendfilter").value),
+  };
+
+  await supabase
+    .from("0con_profilesdata")
+    .update(payload)
+    .eq("id", appState.user.id);
+
+  await refreshProfile(); // 👈 ADD THIS
+  populateFiltersFromProfile();
+
+  await fetchDiscover("friends");
+  closeFilterModals();
+});
+
+document.getElementById("saveDateFilters")?.addEventListener("click", async () => {
+  const payload = {
+    date_threshold: Number(document.getElementById("dateThreshold").value),
+    date_distance: Number(document.getElementById("dateDistance").value),
+    filter_age: [
+      String(document.getElementById("ageMin").value),
+      String(document.getElementById("ageMax").value),
+    ],
+    interested_in: getSelectedGender()
+  };
+
+  await supabase
+    .from("0con_profilesdata")
+    .update(payload)
+    .eq("id", appState.user.id);
+
+  await refreshProfile(); // 👈 ADD THIS
+  populateFiltersFromProfile();
+
+  await fetchDiscover("dates");
+  closeFilterModals();
+});
+
+async function refreshProfile() {
+  const { data, error } = await supabase
+    .from("0con_profilesdata")
+    .select("*")
+    .eq("id", appState.user.id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  appState.profile = data;
+}
+
+function getSelectedGender() {
+  const selected = document.querySelector('input[name="gender"]:checked')?.value;
+
+  if (!selected || selected === "all") return [0, 1, 2];
+  if (selected === "woman") return [0];
+  if (selected === "man") return [1];
+  if (selected === "other") return [2];
+
+  return [0, 1, 2];
+}
+
+function closeFilterModals() {
+  const friendsModal = document.getElementById("friendsFilterModal");
+  const dateModal = document.getElementById("dateFilterModal");
+
+  friendsModal.style.display = "none";
+  dateModal.style.display = "none";
+}
+
+function populateFiltersFromProfile() {
+  const profile = appState.profile;
+  if (!profile) return;
+
+  // FRIENDS
+  const friendsThreshold = document.getElementById("friendsthreshold");
+  const friendsDistance = document.getElementById("distancefriendfilter");
+
+  const friendsThresholdValue = document.getElementById("friendsThresholdValue");
+  const distanceFriendValue = document.getElementById("distanceFriendValue");
+
+  if (friendsThreshold && profile.friend_threshold != null) {
+    friendsThreshold.value = profile.friend_threshold;
+
+    if (friendsThresholdValue) {
+      friendsThresholdValue.textContent = `${profile.friend_threshold}%`;
+    }
+  }
+
+if (friendsDistance && profile.friend_distance != null) {
+  friendsDistance.value = profile.friend_distance;
+
+  if (distanceFriendValue) {
+    const mi = profile.friend_distance;
+    const km = milesToKm(mi);
+
+    distanceFriendValue.textContent = `${mi} mi (${km} km)`;
+  }
+}
+
+  // DATING
+  const dateThreshold = document.getElementById("dateThreshold");
+  const dateDistance = document.getElementById("dateDistance");
+
+  const dateThresholdValue = document.getElementById("dateThresholdValue");
+  const dateDistanceValue = document.getElementById("dateDistanceValue");
+
+  if (dateThreshold && profile.date_threshold != null) {
+    dateThreshold.value = profile.date_threshold;
+
+    if (dateThresholdValue) {
+      dateThresholdValue.textContent = `${profile.date_threshold}%`;
+    }
+  }
+
+if (dateDistance && profile.date_distance != null) {
+  dateDistance.value = profile.date_distance;
+
+  if (dateDistanceValue) {
+    const mi = profile.date_distance;
+    const km = milesToKm(mi);
+
+    dateDistanceValue.textContent = `${mi} mi (${km} km)`;
+  }
+}
+
+  // AGE RANGE (jsonb ["22","42"])
+  if (profile.filter_age) {
+    const [min, max] = profile.filter_age.map(Number);
+
+    const ageMin = document.getElementById("ageMin");
+    const ageMax = document.getElementById("ageMax");
+
+    const ageMinValue = document.getElementById("ageMinValue");
+    const ageMaxValue = document.getElementById("ageMaxValue");
+
+    if (ageMin) {
+      ageMin.value = min;
+      if (ageMinValue) ageMinValue.textContent = min;
+    }
+
+    if (ageMax) {
+      ageMax.value = max;
+      if (ageMaxValue) ageMaxValue.textContent = max;
+    }
+  }
+
+  // INTERESTED IN (0=women, 1=man, 2=other)
+  if (profile.interested_in) {
+    const values = profile.interested_in.map(Number);
+
+    let selected = "all";
+
+    if (values.length === 1) {
+      if (values.includes(0)) selected = "woman";
+      if (values.includes(1)) selected = "man";
+      if (values.includes(2)) selected = "other";
+    }
+
+    const radio = document.querySelector(
+      `input[name="gender"][value="${selected}"]`
+    );
+
+    if (radio) radio.checked = true;
+  }
+}
+
  //#endregion
 
 
@@ -1620,79 +1997,6 @@ function renderPhotos() {
     grid.appendChild(div);
   });
 }
-
-const dateQuestions = [
-  {
-    id: "gender",
-    label: "Gender",
-    type: "single",
-    options: [
-      { id: 1, label: "Man" },
-      { id: 0, label: "Woman" },
-      { id: 2, label: "Other" }
-    ]
-  },
-
-  {
-    id: "age",
-    label: "Age",
-    type: "number"
-  },
-
-  {
-    id: "height",
-    label: "Height (cm)",
-    type: "number"
-  },
-
-  {
-    id: "looking_for",
-    label: "What are you looking for?",
-    type: "single",
-    options: [
-      { id: "long_term", label: "Long term" },
-      { id: "connection_no_commitment", label: "Connection without commitment" },
-      { id: "ethical_non_monogamy", label: "Ethical non-monogamy" },
-      { id: "casual", label: "Casual" }
-    ]
-  },
-
-  {
-    id: "smoke",
-    label: "Do you smoke?",
-    type: "single",
-    options: [
-      { id: "no", label: "No" },
-      { id: "occasionally", label: "Occasionally" },
-      { id: "yes", label: "Yes" },
-      { id: "trying_to_quit", label: "Trying to quit" }
-    ]
-  },
-
-  {
-    id: "drink",
-    label: "Do you drink alcohol?",
-    type: "single",
-    options: [
-      { id: "no", label: "No" },
-      { id: "occasionally", label: "Occasionally" },
-      { id: "socially", label: "Socially" },
-      { id: "regularly", label: "Regularly" }
-    ]
-  },
-
-  {
-    id: "children",
-    label: "Do you have or want children?",
-    type: "single",
-    options: [
-      { id: "dont_have", label: "Already Have" },
-      { id: "want", label: "Want" },
-      { id: "dont_want", label: "Don't want" },
-      { id: "not_sure", label: "Not sure / depends" }
-    ]
-  }
-];
 
 function renderDateQuestions() {
   const container = document.getElementById("surveyQuestions");
@@ -1871,9 +2175,9 @@ function mapAnswerToId(questionId, value) {
 }
 
 function calculateInterestedIn(gender) {
-  if (gender === 1) return "0"; // man -> interested in women
-  if (gender === 0) return "1"; // woman -> interested in men
-  return "2"; // other
+  if (gender === 1) return [0]; // man -> interested in women
+  if (gender === 0) return [1]; // woman -> interested in men
+  return [2]; // other
 }
 
 function getSurveyValue(survey, questionId) {
@@ -2649,7 +2953,7 @@ const communityCards = communityChats.map(chat => ({
   }
 }
 
-function renderMessageCards(cards) {
+function renderMessageCards(cards) { 
   const container = document.getElementById('messages-list');
   container.innerHTML = '';
 
@@ -2697,7 +3001,7 @@ const finalPreview = card.last_message
 
   <div class="invitation-content">
     <div class="invitation-name">
-      ${card.name || 'Unknown'}
+       ${(card.name || 'Unknown') + (card.name ? ';' : '')}
     </div>
 
     <div class="invitation-meta">
@@ -2731,7 +3035,7 @@ function openChatView() {
   document.querySelector('.bottombar').style.display = 'none';
 }
 
-async function openChat(card) {
+async function openChat(card) { 
 openChatView();
 
   const container = document.getElementById('chat-container');
@@ -2765,12 +3069,35 @@ header.className = 'chat-header';
 header.innerHTML = `
   <button id="back-btn" class="back-btn">←</button>
 
-  <img src="${card.photo || '/default-avatar.png'}" class="chat-avatar" />
-  
-  <div class="chat-title">${card.name || 'Unknown'}</div>
+  <div class="chat-header-clickable">
+    <img src="${card.photo || '/default-avatar.png'}" class="chat-avatar" />
+    <div class="chat-title">${card.name || 'Unknown'}</div>
+  </div>
 `;
 
 container.appendChild(header);
+
+// =========================
+// HEADER CLICK → OPEN PROFILE / COMMUNITY
+// =========================
+const clickableArea = header.querySelector('.chat-header-clickable');
+
+clickableArea.addEventListener('click', () => {
+  if (isCommunity) {
+    openCommunityPage(card.id);
+  } else {
+    // ✅ map type
+    const profileType = card.type === 1 ? "friends" : "dates";
+
+    // ✅ get OTHER user's id
+    const otherUserId =
+      card.user1_id === viewerId
+        ? card.user2_id
+        : card.user1_id;
+
+    openUserProfile(otherUserId, profileType, true);
+  }
+});
 
 header.querySelector('#back-btn').addEventListener('click', () => {
   supabase.removeChannel(channel);
@@ -2784,22 +3111,79 @@ header.querySelector('#back-btn').addEventListener('click', () => {
   messagesBox.className = 'chat-messages';
   container.appendChild(messagesBox);
 
-  // =========================
-  // INPUT BAR
-  // =========================
-  const inputBar = document.createElement('div');
-  inputBar.className = 'chat-input-bar';
+// =========================
+// CHECK COMMUNITY STATUS
+// =========================
+let communityActive = true;
 
+if (isCommunity) {
+  const { data, error } = await supabase
+    .from('0con_communities')
+    .select('is_active')
+    .eq('id', card.id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  communityActive = data?.is_active === true;
+}
+
+
+// =========================
+// INPUT BAR (ALWAYS CREATE)
+// =========================
+
+const inputBar = document.createElement('div');
+inputBar.className = 'chat-input-bar';
+
+container.appendChild(inputBar);
+
+const input = document.createElement('input');
+input.type = "text";
+input.id = "chat-input";
+input.placeholder = "Type a message...";
+
+const button = document.createElement('button');
+button.id = "send-btn";
+button.textContent = "Send";
+
+// =========================
+// LOCK STATE
+// =========================
+
+if (isCommunity && !communityActive) {
+
+  // Replace entire content (cleanest UX)
   inputBar.innerHTML = `
-    <input type="text" id="chat-input" placeholder="Type a message..." />
-    <button id="send-btn">Send</button>
+    <div class="chat-locked-message">
+      🔒 The community owner is no longer a premium member.  
+      This chat has been deactivated.
+    </div>
   `;
 
-  container.appendChild(inputBar);
+} else {
 
+  // Build normal input UI
+  inputBar.appendChild(input);
+  inputBar.appendChild(button);
 
-  renderedMessageIds.clear();
-  chatState.lastSenderId = null;
+  button.addEventListener('click', sendMessage);
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+}
+
+// =========================
+// RESET TRACKERS (always safe)
+// =========================
+
+renderedMessageIds.clear();
+chatState.lastSenderId = null;
+
   // =========================
   // LOAD MESSAGES
   // =========================
@@ -2961,8 +3345,6 @@ await loadMessages();
 // =========================
 // SEND MESSAGE
 // =========================
-const input = inputBar.querySelector('#chat-input');
-const button = inputBar.querySelector('#send-btn');
 
 async function sendMessage() { 
   const text = input.value.trim();
@@ -3755,6 +4137,9 @@ async function performCommunityAction(communityId, communityName, communityPhoto
     // 4. mark seen
     await addToSeenCommunities(communityId);
 
+    // 5. Render chatcards
+    await createMessageCards();
+
   } catch (err) {
     console.error("Community action failed:", err);
   }
@@ -3822,8 +4207,144 @@ function renderFriendsProfile(profile) {
   document.getElementById("profileName").textContent = profile.name;
   document.getElementById("profileDescription").textContent = profile.description;
 
-  const avatar = document.getElementById("profileAvatar");
-  if (avatar) avatar.src = profile.profile_photo_url || "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg";
+  function renderDescription(profile) {
+  const el = document.getElementById("profileDescription");
+
+  if (!profile || !profile.description) {
+    el.textContent = "";
+    return;
+  }
+
+  el.textContent = profile.description;
+}
+
+document.getElementById("editDescriptionBtn").addEventListener("click", () => {
+  const modal = document.getElementById("descriptionModal");
+  const input = document.getElementById("descriptionInput");
+
+  input.value = appState.profile?.description || "";
+
+  modal.classList.remove("hidden");
+});
+
+document.getElementById("closeDescriptionBtn").addEventListener("click", () => {
+  document.getElementById("descriptionModal").classList.add("hidden");
+});
+
+document.getElementById("saveDescriptionBtn").addEventListener("click", async () => {
+  const value = document.getElementById("descriptionInput").value.trim();
+
+  // optional safety limit
+  if (value.length > 300) return;
+
+  // update UI instantly
+  appState.profile.description = value;
+  renderDescription(appState.profile);
+
+  // close modal
+  document.getElementById("descriptionModal").classList.add("hidden");
+
+  // Supabase update (your pattern)
+  const { error } = await supabase
+    .from("0con_profilesdata")
+    .update({ description: value })
+    .eq("id", appState.user.id);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+});
+
+// ✅ INITIAL RENDER (with cache busting)
+const avatar = document.getElementById("profileAvatar");
+
+if (avatar) {
+  const base =
+    profile.profile_photo_url ||
+    "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg";
+
+  avatar.src = base + "?t=" + Date.now();
+}
+
+
+// ✅ STATE
+let selectedProfilePhoto = null;
+
+
+// ✅ OPEN FILE PICKER
+document.getElementById("editPhotoBtn").onclick = () => {
+  document.getElementById("photoInput").click();
+};
+
+
+// ✅ HANDLE FILE + PREVIEW
+document.getElementById("photoInput").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const compressed = await resizeImage(file, 1080, 0.8);
+
+  selectedProfilePhoto = compressed;
+
+  const previewUrl = URL.createObjectURL(compressed);
+
+  document.getElementById("photoPreview").src = previewUrl;
+  document.getElementById("photoModal").classList.remove("hidden");
+});
+
+
+// ✅ CLOSE MODAL
+document.getElementById("closePhotoBtn").onclick = () => {
+  document.getElementById("photoModal").classList.add("hidden");
+  selectedProfilePhoto = null;
+};
+
+
+// ✅ SAVE PHOTO (overwrite + cache bust)
+document.getElementById("savePhotoBtn").onclick = async () => {
+  try {
+    const userId = appState.user.id;
+
+    if (!selectedProfilePhoto) return;
+
+    const path = `${userId}/profile.jpg`;
+
+    // 1. upload (overwrite same file)
+    const { error } = await supabase.storage
+      .from("CONNECTION_PROFILE_PHOTOS")
+      .upload(path, selectedProfilePhoto, {
+        contentType: "image/jpeg",
+        upsert: true
+      });
+
+    if (error) throw error;
+
+    // 2. get public URL
+    const { data } = supabase.storage
+      .from("CONNECTION_PROFILE_PHOTOS")
+      .getPublicUrl(path);
+
+    // 🔥 IMPORTANT: cache-busting
+    const newUrl = data.publicUrl + "?t=" + Date.now();
+
+    // 3. update UI instantly
+    document.getElementById("profileAvatar").src = newUrl;
+
+    if (appState.profile) {
+      appState.profile.profile_photo_url = data.publicUrl; 
+      // store clean URL (without ?t)
+    }
+
+    // 4. close modal
+    document.getElementById("photoModal").classList.add("hidden");
+    selectedProfilePhoto = null;
+
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update photo");
+  }
+};
 
   // PREMIUM / BASIC
   const badge = document.getElementById("profileBadge");
@@ -3834,8 +4355,9 @@ function renderFriendsProfile(profile) {
 
 const count = profile.avocados || 0;
 
-avo.textContent =
-  count === 0
+avo.textContent = profile.is_premium
+  ? "You have unlimited avocados 🥑 due to premium profile"
+  : count === 0
     ? "You have no avocados left today, get unlimited avocados with premium!"
     : `You have ${count} avocado${count > 1 ? "s" : ""} to send today 🥑`;
 
@@ -3870,14 +4392,105 @@ friendToggle.addEventListener("change", async () => {
   }
 });
 
+document.getElementById("editLanguagesBtn").addEventListener("click", () => {
+  openLanguagesModal(appState.profile);
+});
+
   // LANGUAGES
+function renderLanguages(languagespassed) {
   const langBox = document.getElementById("languagesList");
-  langBox.textContent = (profile.languages || [])
-  .map(lang => {
+
+  if (!languagespassed) {
+    langBox.textContent = "";
+    return [];
+  }
+
+  const languages = (languagespassed || []).map(lang => {
     const id = typeof lang === "string" ? lang : lang.id;
-    return AppData.languageMap[id]?.label || id;
-  })
-  .join(", ");
+
+    return {
+      id,
+      label: AppData.languageMap[id]?.label || id
+    };
+  });
+
+  langBox.textContent = languages.map(l => l.label).join(", ");
+
+  return languages;
+}
+
+let editingLanguages = [];
+
+function openLanguagesModal(profile) {
+  editingLanguages = (profile.languages || []).map(l =>
+    typeof l === "string" ? l : l.id
+  );
+
+  const container = document.getElementById("languagesCheckboxList");
+  container.innerHTML = "";
+
+  Object.entries(AppData.languageMap).forEach(([id, data]) => {
+    const isChecked = editingLanguages.includes(id);
+
+    const label = document.createElement("label");
+    label.style.display = "block";
+
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = id;
+    input.checked = isChecked;
+
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(" " + data.label));
+
+    container.appendChild(label);
+  });
+
+  document.getElementById("languagesModal").classList.remove("hidden");
+}
+
+document.getElementById("saveLanguagesBtn").addEventListener("click", async () => {
+  const checkboxes = document.querySelectorAll("#languagesCheckboxList input");
+
+  const selected = [];
+
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      selected.push({
+        id: cb.value,
+        label: AppData.languageMap[cb.value].label
+      });
+    }
+  });
+
+  // 🔥 update global state (correct)
+  appState.profile.languages = selected;
+
+  // re-render UI
+  renderLanguages(selected);
+
+  // close modal
+  document.getElementById("languagesModal").classList.add("hidden");
+
+  // send to backend
+  await updateProfileLanguages(selected);
+});
+
+async function updateProfileLanguages(languages) {
+  const { error: profileError } = await supabase
+    .from("0con_profilesdata")
+    .update({ languages: languages })
+    .eq("id", appState.user.id);
+
+  if (profileError) {
+    console.error(profileError);
+    return;
+  }
+}
+
+document.getElementById("closeLanguagesBtn").addEventListener("click", async () => {
+  document.getElementById("languagesModal").classList.add("hidden");
+});
 
   // CLOSURE BADGE (only if exists)
   const closure = document.getElementById("closureBadge");
@@ -3890,6 +4503,8 @@ friendToggle.addEventListener("change", async () => {
 
   // SURVEY SYSTEM
   renderFriendsSection(profile);
+
+  renderLanguages(appState.profile.languages);
 }
 
 function canEditSurvey(profile) { 
@@ -4021,7 +4636,7 @@ function renderFriendsSection(profile) {
   });
 
   document.getElementById("editSurveyBtn").onclick = () => {
-  openScreen("survey");
+  openEditFriendsModal(profile);
 };
 }
 
@@ -4270,10 +4885,11 @@ photoContainer.innerHTML = photos.length
 
   const tofuCount = profile.tofus || 0;
 
-  tofuBox.textContent =
-    tofuCount === 0
-      ? "You have no tofus left today, upgrade to Premium for unlimited tofu 🍲"
-      : `You have ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} to send today 🍲`;
+tofuBox.textContent = profile.is_premium
+  ? "You have unlimited tofu 🍲 due to Premium Profile"
+  : tofuCount === 0
+    ? "You have no tofus left today, upgrade to Premium for unlimited tofu 🍲"
+    : `You have ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} to send today 🍲`;
 
 // =========================
 // DATE MODE TOGGLE
@@ -4432,10 +5048,19 @@ function renderDateAnswers(profile) {
 //#region Settings
 
 function PremiumBoxHiding() {
-  if (isPremiumUser()) {
-    document.querySelectorAll(".premium-box").forEach(el => {
-      el.style.display = "none";
-    });
+  const isPremium = isPremiumUser();
+
+  const premiumBox = document.getElementById("premiumBox");
+  const unsubscribeBox = document.getElementById("unsubscribeBox");
+
+  if (!premiumBox || !unsubscribeBox) return;
+
+  if (isPremium) {
+    premiumBox.style.display = "none";
+    unsubscribeBox.style.display = "block";
+  } else {
+    premiumBox.style.display = "block";
+    unsubscribeBox.style.display = "none";
   }
 }
 
@@ -4729,6 +5354,7 @@ document.getElementById("exitPremiumBtn").addEventListener("click", () => {
   closePremiumScreen();
 });
 
+
 //#endregion
 
 //#region DOM
@@ -4755,3 +5381,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //#endregion
 
+
+//#region FOR TESTIMNG ONLY
+
+document.getElementById("unsubscribeBtn")?.addEventListener("click", async () => {
+  const { error } = await supabase.rpc("reset_user_to_free", {
+    p_user_id: appState.user.id,
+  });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  appState.profile.is_premium = false;
+  initApp();
+});
+
+document.getElementById("confirmPremiumBtn")?.addEventListener("click", async () => {
+  // 1) restore premium
+  const { error: profileError } = await supabase
+    .from("0con_profilesdata")
+    .update({ is_premium: true })
+    .eq("id", appState.user.id);
+
+  if (profileError) {
+    console.error(profileError);
+    return;
+  }
+
+  // 2) reactivate community
+  const { error: communityError } = await supabase
+    .from("0con_communities")
+    .update({ is_active: true })
+    .eq("owner_id", appState.user.id);
+
+  if (communityError) {
+    console.error(communityError);
+    return;
+  }
+
+  // update local state
+  appState.profile.is_premium = true;
+
+  initApp();
+  document.getElementById('premium').classList.add('hidden');
+  document.getElementById('discover').classList.add('active');
+  document.getElementById('BottomBar').classList.remove('hidden');
+});
+
+
+
+//#endregion 

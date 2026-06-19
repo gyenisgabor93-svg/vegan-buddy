@@ -246,34 +246,6 @@
 
     </div>
 
-<!--
-    <div id="communities" class="tab">
-
-   TOP BAR 
-  <div class="topbar">
-    <div class="logo">👥 Communities</div>
-
-    <div class="mode-toggle">
-        <button id="yourCommunitiesBtn" class="active">Your</button>
-        <button id="searchCommunitiesBtn">Discover</button>
-    </div>
-  </div>
-
-  
-<div id="yourCommunitiesView" class="community-view active">
-  <h3>Your Communities</h3>
-  <div class="communityList"></div>
-</div>
-
-
-<div id="searchCommunitiesView" class="community-view">
-  <h3>Discover Communities</h3>
-  <div class="communityList"></div>
-</div>
-
-    </div>
-
--->
     <div id="profile" class="tab has-topbar">
 
   <!-- TOP BAR -->
@@ -298,11 +270,19 @@
   <!-- FRIENDS PROFILE -->
   <div id="friendsProfile" class="profile-section active">
    
-<div class="profile-header">
+<div class="profile-header" style="position: relative;">
   <img id="profileAvatar" src="" alt="Profile Photo">
+
+  <button id="editPhotoBtn" class="edit-btn">✏️</button>
 </div>
+
 <h2 id="profileName"></h2>
-<p id="profileDescription"></p>
+
+<div id="profileDescriptionWrapper" class="box">
+  <p id="profileDescription"></p>
+
+  <button id="editDescriptionBtn" class="edit-btn">✏️</button>
+</div>
 
 <div id="profileBadge"></div>
 <div id="avocadoCount"></div>
@@ -319,7 +299,13 @@
   <!-- INCÓGNITO (JS will inject if premium) -->
   <div id="FriendsincognitoBox"></div>
 
-<div id="languagesList"></div>
+<div id="languagesListWrapper" class="box">
+  <div id="languagesList"></div>
+
+  <button id="editLanguagesBtn" class="edit-btn" title="Edit languages">
+    ✏️
+  </button>
+</div>
 
 <div id="closureBadge"></div>
 
@@ -368,7 +354,7 @@
   <div id="settingsView" class="hidden">
   
   <!-- PREMIUM UPGRADE -->
-<div class="settings-section premium-box">
+<div class="settings-section premium-box" id="premiumBox">
 
   <h4>🌟 Premium Profile</h4>
 
@@ -380,6 +366,18 @@
     Upgrade to Premium
   </button>
 
+</div>
+
+<!-- UNSUBSCRIBE (only for premium users) -->
+<div class="settings-section premium-box hidden" id="unsubscribeBox">
+
+  <h4>⭐ Premium Active</h4>
+
+  <p>You are currently a Premium user.</p>
+
+  <button id="unsubscribeBtn" class="danger button">
+    Cancel Premium
+  </button>
 
 </div>
   
@@ -474,13 +472,40 @@
 </div>
 
 
- 
+ <!--
+    <div id="communities" class="tab">
+
+   TOP BAR 
+  <div class="topbar">
+    <div class="logo">👥 Communities</div>
+
+    <div class="mode-toggle">
+        <button id="yourCommunitiesBtn" class="active">Your</button>
+        <button id="searchCommunitiesBtn">Discover</button>
+    </div>
+  </div>
+
+  
+<div id="yourCommunitiesView" class="community-view active">
+  <h3>Your Communities</h3>
+  <div class="communityList"></div>
+</div>
+
+
+<div id="searchCommunitiesView" class="community-view">
+  <h3>Discover Communities</h3>
+  <div class="communityList"></div>
+</div>
+
+    </div>
+
+-->
 
 
 
 
   <!-- BOTTOM BAR -->
-  <div class="bottombar">
+  <div class="bottombar" id="BottomBar">
 
     <div class="nav-item active" data-tab="discover">
       <span>🔍</span>Discover
@@ -512,38 +537,27 @@
 
 
 
-  <!-- POPUPS -->
+  <!-- POPUPS --> 
 <div id="friendsFilterModal" class="modal" style="display:none;">
 
   <div class="modalContent">
     <h3>Friends Filters</h3>
 
     <div class="filters">
-      <label>
-        Distance
-        <input type="range">
-      </label>
+<label>
+  Distance: <span id="distanceFriendValue">0 km</span>
+  <input type="range" id="distancefriendfilter" min="0" max="100">
+</label>
 
-      <label>
-        Activities
-        <select>
-          <option>Sports</option>
-          <option>Hiking</option>
-          <option>Chill</option>
-        </select>
-      </label>
-
-      <label>
-        Group size
-        <select>
-          <option>1-2</option>
-          <option>3-5</option>
-          <option>5+</option>
-        </select>
-      </label>
+<label>
+  Match score threshold: <span id="friendsThresholdValue">0%</span>
+  <input type="range" id="friendsthreshold" min="0" max="100">
+</label>
     </div>
 
-    <button class="closeBtn">Close</button>
+  <button class="closeBtn">Close</button>
+  <button class="saveBtn" id="saveFriendsFilters">Save</button>
+
   </div>
 
 </div>
@@ -555,29 +569,43 @@
 
     <div class="filters">
 
-      <label>
-        Age range
-        <input type="range">
-      </label>
+<label>
+  Age range:
+  <div>
+    Min: <span id="ageMinValue">18</span>
+    <input type="range" id="ageMin" min="18" max="100">
+  </div>
+  <div>
+    Max: <span id="ageMaxValue">100</span>
+    <input type="range" id="ageMax" min="18" max="100">
+  </div>
+</label>
 
-      <label>
-        Distance
-        <input type="range">
-      </label>
+<label>
+  Distance: <span id="dateDistanceValue">0 km</span>
+  <input type="range" id="dateDistance" min="0" max="100">
+</label>
 
-      <label>
-        Intent
-        <select>
-          <option>Long-term</option>
-          <option>Short-term</option>
-          <option>Open</option>
-        </select>
-      </label>
+<label>
+  Match score threshold: <span id="dateThresholdValue">0%</span>
+  <input type="range" id="dateThreshold" min="0" max="100">
+</label>
+
+      <label>Show:</label>
+<div>
+  <label><input type="radio" name="gender" value="all" checked> All</label>
+  <label><input type="radio" name="gender" value="man"> Man</label>
+  <label><input type="radio" name="gender" value="woman"> Woman</label>
+  <label><input type="radio" name="gender" value="other"> Other</label>
+</div>
 
     </div>
 
-    <button class="closeBtn">Close</button>
+  <button class="closeBtn">Close</button>
+  <button class="saveBtn" id="saveDateFilters">Save</button>
+
   </div>
+
 
 </div>
 
@@ -648,6 +676,44 @@
   </div>
 </div>
 
+<div id="languagesModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Edit languages</h3>
+
+    <div id="languagesCheckboxList"></div>
+
+    <button id="saveLanguagesBtn">Save</button>
+    <button id="closeLanguagesBtn">Cancel</button>
+  </div>
+</div>
+
+<div id="descriptionModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Edit description</h3>
+
+    <textarea id="descriptionInput" maxlength="300"></textarea>
+
+    <div>
+      <button id="saveDescriptionBtn">Save</button>
+      <button id="closeDescriptionBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="photoModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Replace profile photo</h3>
+
+    <img id="photoPreview" style="width:100%; border-radius:10px;" />
+
+    <input type="file" id="photoInput" accept="image/*">
+
+    <div style="margin-top:10px;">
+      <button id="savePhotoBtn">Save</button>
+      <button id="closePhotoBtn">Cancel</button>
+    </div>
+  </div>
+</div>
 
 
 
