@@ -68,27 +68,18 @@ function setupProfile() {
 const settingsBtn = document.getElementById("settingsBtn");
 const backBtn = document.getElementById("backToProfile");
 
+settingsBtn.onclick = () => {
+  openTab("settings", settingsBtn);
+};
+
+backBtn.onclick = () => {
+  openTab("profile", backBtn);
+};
+
 const profileContent = document.getElementById("profileContent");
 const settingsView = document.getElementById("settingsView");
 const topRight = document.querySelector(".top-right");
 
-settingsBtn.onclick = () => {
-  profileContent.style.display = "none";
-  settingsView.classList.remove("hidden");
-
-  // toggle buttons
-  settingsBtn.style.display = "none";
-  backBtn.classList.remove("hidden");
-};
-
-backBtn.onclick = () => {
-  settingsView.classList.add("hidden");
-  profileContent.style.display = "block";
-
-  // toggle buttons back
-  backBtn.classList.add("hidden");
-  settingsBtn.style.display = "block";
-};
 }
 
 function setupButtons() {
@@ -138,15 +129,37 @@ function setupTabs() {
 }
 
 function openTab(tabId, element) {
+
+  if (appUI.currentTab === tabId) return;
+
+  const tab = document.getElementById(tabId);
+
+  if (!tab) {
+    console.warn("Tab not found:", tabId);
+    return;
+  }
+
+  if (appUI.currentTab) {
+    appUI.tabHistory.push(appUI.currentTab);
+  }
+
+  appUI.currentTab = tabId;
+
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
+  tab.classList.add('active');
 
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  element.classList.add('active');
 
-  // 👇 add this
+  if (element) {
+    element.classList.add('active');
+  }
+
   if (tabId === 'matches') {
-    createInvitationCards();
+    setLastOpened('invites_last_opened');
+  }
+
+  if (tabId === 'messages') {
+    setLastOpened('messages_last_opened');
   }
 }
 
@@ -188,8 +201,1343 @@ function setupModals() {
 
 //#region Multilangiuage
 
-function SetUserLanguage(savedLang) {
- 
+const translations = {
+  en: {
+    backbtn: "← Back",
+    createdateprofile: "Create dating profile",
+    photosmax5: "Photos (max 5)",
+    addphotos: "+ Add photos",
+    firstphotohint: "First photo will be your profile picture",
+
+    description: "Description",
+    writesomethingaboutyourself: "Write something about yourself...",
+    hobbies: "Hobbies",
+    writehobbies: "Write hobbies",
+    aboutyou: "About you",
+    saveprofile: "Save profile",
+
+    premium: "Premium",
+    premiumsubscription: "🌟 Premium Subscription",
+    premiumprice: "€10 / month",
+    unlockeverything: "Unlock everything:",
+    unlimiteddealbreakers: "Unlimited dealbreakers",
+    unlimitedavocados: "Unlimited avocados & tofu",
+    fullsurveyaccess: "Full survey access (see all answers from others)",
+    customizeweights: "Customize question weights for more precise matching",
+    incognitomode: "Incognito modes - discover and invite people without being seen",
+    createowncommunity: "Create your own community",
+    travelmode: "Travel mode (match while traveling)",
+    subscribesupport: "By subscribing, you are also supporting our mission to promote veganism",
+    learnmore: "Learn more about the project →",
+    upgradetopremium: "Upgrade to Premium",
+
+    createcommunity: "Create your community",
+    entercommunityname: "Enter community name",
+    setaphoto: "Set a Photo",
+    addphoto: "+ Add photo",
+    writecommunitydescription: "Write community description",
+    communityvalues: "Community Values",
+    matchrequirements: "Match Requirement",
+    lowthreshold: "Minimum match:",
+    thresholdhint: "Only users above this compatibility will be invited",
+    createcommunitybtn: "Create Community",
+
+    friendstoggle: "Friends",
+    datetoggle: "Date",
+
+    profiletopbar: "👤 Profile",
+
+    premiumprofile: "🌟 Premium Profile",
+    learnmoreaboutusandpremium: "Learn more about our premium features & mission →",
+    premiumactive: "⭐ Premium Active",
+    currentlypremium: "You are currently a Premium user.",
+    cancelpremium: "Cancel Premium",
+
+    langs: "🌍 Language",
+    english: "English",
+    spanish: "Spanish",
+    hungarian: "Hungarian",
+    setlang: "Set Language",
+
+    notifications: "🔔 Notifications",
+    matchnotifs: "Matches",
+    invitenotifs: "Invitations",
+    messagenotifs: "Messages",
+    updatenotifs: "App updates & tips",
+
+    contactus: "📩 Contact us",
+    needhelp: "Need help or have feedback? We’re here for you.",
+    contactsupportbtn: "Contact support",
+
+    account: "⚙️ Account",
+    logout: "Log out",
+    deleteprofile: "Delete profile",
+
+    discover: "Discover",
+    messages: "Messages",
+    invitations: "Invitations",
+    profile: "Profile",
+
+    // Filters
+    friendsfilters: "Friends Filters",
+    datingfilters: "Dating Filters",
+    distance: "Distance:",
+    matchscore: "Match score threshold:",
+    close: "Close",
+    save: "Save",
+    agerange: "Age range:",
+    min: "Min:",
+    max: "Max:",
+    show: "Show:",
+    all: "All",
+    man: "Man",
+    woman: "Woman",
+    other: "Other",
+
+    editpreferences: "Edit Preferences",
+
+    contacttitle: "Contact Us",
+    contactintro: "We’re here to help! Choose a subject and tell us your message.",
+    subject: "Subject:",
+    selectsubject: "-- Select a subject --",
+    reportbug: "Report a Bug",
+    billingissue: "Billing issue",
+    appfeedback: "App Feedback",
+    other: "Other",
+    message: "Message:",
+    sendmessage: "Send Message",
+    send: "Send",
+
+    replacemodal: "Replace profile photo",
+    cancel: "Cancel",
+
+    edithobbies: "Edit hobbies",
+    editdescription: "Edit description",
+    editlanguages: "Edit languages",
+    yourphotosmax5: "Your photos (max 5)",
+
+
+
+    // ----- JS ------
+    // Discover
+
+    createprofilehint: "Create your dating profile to start meeting people",
+    createprofilebtn: "Create profile",
+    visibilityhint: "Turn on your visibility to start discovering people",
+    visibilityturnonbtn: "Turn on visibility",
+    friendsmode: "Friends",
+    datesmode: "Dating",
+    modeturnoff: "mode is turned off",
+    gotosettings:"Go to settings",
+    nousersfound: "No users found",
+    yearsold: "years old",
+
+    commons: "Answers in common:",
+    nomatchinganswers: "No matching answers",
+    common: "Common",
+
+    difference: "A difference:",
+    nodifferences: "No differences",
+
+    fullcompatibilitysurvey: "Full Compatibility Survey",
+    showsurvey: "Show Survey",
+    hidesurvey: "Hide Survey",
+    hobbies: "Hobbies",
+    hide: "Hide",
+    sendavocado: "Send avocado",
+
+    dateprofiledetails: "Dating profile details",
+    nosurveydata: "No survey data",
+    sharetofu: "Share your tofu",
+
+    
+    pronoun_subject_male: "His",
+    pronoun_subject_female: "Her",
+
+    match: "Match:",
+    you: "You:",
+
+    outofavocados: "You ran out of avocados!",
+    outoftofus: "You ran out of tofus!",
+
+// Messages Tab
+
+    createCommunity: "Create community",
+    communityNameRequired: "Please enter a community name",
+    communityNameMax: "Community name must be max 30 characters",
+    addPhotoRequired: "Please add a community photo",
+    descriptionRequired: "Please add a description",
+    answerAllQuestions: "Please answer all questions",
+    communityCreated: "Community created!",
+    communityCreateError: "Error creating community",
+    loading: "Loading...",
+    noDescription: "No description yet.",
+    editCommunity: "Edit community",
+    deleteCommunity: "Delete community",
+    leaveCommunity: "Leave community",
+    removeMember: "Remove member",
+    remove: "Remove",
+    confirmDelete: "Are you sure you want to delete this community? This cannot be undone.",
+    confirmRemoveMember: "Remove this member from the community?",
+    confirmLeave: "Do you really want to leave this community?",
+    errorLoadingCommunity: "Error loading community",
+    errorUpdatingCommunity: "Error updating community",
+    errorDeletingCommunity: "Error deleting community",
+    errorLeavingCommunity: "Error leaving community",
+    errorDeletingMember: "Error removing member",
+    edit: "Edit",
+    communityChatCreated: "Community chat is created",
+    photo: "Photo",
+
+  communitybubbletitle: "Create your own community",
+  communitybubblep1: "Bring together people near you who share your values and interests.",
+  communitybubblep2: "Once created, users who match your preferences in your local area will be automatically invited to your community. New users will also be included after registration.",
+  communitybubbleupgrade: "Upgrade to Premium →",
+
+    nomessagesyet: "No messages yet",
+    mute_chat: "Mute chat",
+    unmute_chat: "Unmute chat",
+    unmatch: "Unmatch",
+    report_user: "Report user",
+    confirm_unmatch: "Are you sure you want to unmatch this chat?",
+
+    report_user_title: "Report user",
+    report_user_placeholder: "Describe your experience...",
+  
+    report_empty_text: "Please write your experience.",
+    report_too_long: "Maximum 300 characters allowed.",
+    report_success: "Report sent successfully.",
+    report_failed: "Failed to send report.",
+  
+    chat_placeholder: "Type a message...",
+
+    chat_locked_message: "The community owner is no longer a premium member. This chat has been deactivated.",
+
+// Income Tab
+    
+    no_invitations: "No invitations yet",
+    age_label: ({ age }) => `Age: ${age}`,
+    community: "Community",
+
+    reject_avocado: "I don't want this avocado",
+    accept_avocado: "Accept avocado",
+
+    reject_tofu: "I don't want that tofu",
+    accept_tofu: "Accept tofu",
+
+    members_lowercase: "members",
+    members_highercase: "Members",
+
+    decline: "Decline",
+    accept: "Accept",
+
+// Profile Tab
+
+    premium_profile: "⭐ Premium Profile",
+    basic_profile: "Basic Profile",
+
+    avocado_unlimited: "You have unlimited avocados 🥑 due to premium profile",
+    avocado_none: "You have no avocados left today, get unlimited avocados with premium!",
+    avocado_some: ({ count }) => 
+      `You have ${count} avocado${count > 1 ? "s" : ""} to send today 🥑`,
+
+    tofu_unlimited: "You have unlimited tofus 🍲 due to premium profile",
+    tofu_none: "You have no tofus left today, get unlimited tofus with premium!",
+    tofu_some: ({ tofuCount }) => 
+      `You have ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} to send today 🍲`,
+
+    visible: "Visible",
+    hidden: "Hidden",
+
+    incognito_mode: "Incognito mode",
+
+    respectful_badge: "⭐ Closes connections respectfully",
+    importance: "Importance",
+
+    friends_preferences: "Friends Preferences",
+    show_preferences: "Show preferences",
+    hide_preferences: "Hide preferences",
+    edit: "Edit",
+    edit_available_in: "You can edit in {days} day(s)",
+
+    show_preferences: "Show preferences",
+    hide_preferences: "Hide preferences",
+
+    edit_preferences: "Edit Preferences",
+
+    noAnswersYet: "No answers yet",
+
+//Languages
+english: "English",
+spanish: "Spanish",
+hungarian: "Hungarian",
+french: "French",
+german: "German",
+italian: "Italian",
+portuguese: "Portuguese",
+dutch: "Dutch",
+romanian: "Romanian",
+russian: "Russian",
+
+
+//FriendSurvey
+vegan_reason: "What are your main reasons for being vegan?",
+reduce_animal_suffering1: "Reduce animal suffering",
+environmental_concerns1: "Environmental concerns",
+health_reasons1: "Health reasons",
+animals_primary1: "Vegan for the animals, while I care about other reasons",
+all_reasons1: "For all the reasons",
+eating_together_animals: "Are you comfortable sitting at a table where others eat animal products?",
+avoid_always2: "Not at all, I avoid situations like that",
+fine_with_it2: "Yes, no problem",
+uncomfortable_but_do_it2: "I feel uncomfortable, but still do it sometimes",
+
+dating_non_vegan: "Would you date someone who is not vegan?",
+no3: "No",
+maybe_open_minded3: "Maybe, if they are open-minded",
+yes3: "Yes",
+
+circle_importance: "How important is it for you to keep your close circles vegan?",
+very_important4: "Very important",
+somewhat_important4: "Somewhat important",
+not_important4: "Not important",
+
+communication_style: "How do you usually communicate with non-vegans about veganism?",
+direct_confrontational5: "Direct and confrontational",
+neutral5: "Neutral - no difference",
+respectful_educational5: "Respectful and educational",
+avoid_topic5: "I avoid the topic",
+
+openness_opinions: "How open are you to discussing opposing views?",
+not_open6: "Not open",
+somewhat_open6: "Somewhat open",
+very_open6: "Very open",
+
+animal_vs_human_rights: "How do you see the relationship between animal rights and human rights?",
+animals_more_important7: "Animal rights are more important",
+humans_more_important7: "Human rights are more important",
+equal7: "Equally important",
+unsure7: "Not sure, too complex",
+
+other_injustices: "How do you approach other injustices?",
+animals_only8: "Focus on animal rights only",
+support_when_possible8: "I stand up against them when it's necessary",
+multiple_causes8: "Actively care about multiple",
+
+politics: "How would you describe your political attitude?",
+left_intolerant9: "Left, I avoid rightists",
+left_open9: "Left, open to dialogue",
+right_open9: "Right, open to dialogue",
+right_intolerant9: "Right, I avoid leftists",
+no_labels9: "I avoid labels, open dialogue is more important",
+dont_care9: "Don't care about politics",
+
+feminism: "What is your perspective on feminism?",
+negative10: "Negative",
+frustrated10: "Frustrated by gender dynamics",
+supportive10: "Supportive without hostility",
+
+lgbtq: "What are your views on LGBTQ+ rights?",
+negative11: "Negative",
+neutral11: "Neutral",
+support11: "Support equality",
+active_support11: "Actively supportive and advocate for awareness",
+
+capitalism: "What is your view on capitalism?",
+against12: "Against it",
+support12: "Support it",
+regulated12: "It could work with proper regulation",
+
+lonely_vegan: "Do you feel like a lonely vegan?",
+yes13: "Yes",
+sometimes13: "Sometimes",
+no13: "No",
+
+pets: "What is your view on keeping pets?",
+vegan_feed_only14: "Only okay if vegan-fed",
+ok_anyway14: "Okay anyway",
+prefer_none14: "Okay, but I prefer not having pets",
+
+injured_pigeon: "You see an injured pigeon on the street, what do you do?",
+help_all_costs15: "I do everything I can to help",
+try_if_possible15: "I check if I can realistically help and do it if possible",
+leave_it15: "Leave it, I can't save every animal",
+
+activism_style: "Which activism style resonates most with you?",
+confrontational16: "Confrontational / disruptive",
+calm16: "Calm and educational",
+storytelling16: "Inspirational / storytelling",
+
+activism: "Do you do activism?",
+active17: "Yes, actively",
+rarely17: "Rarely",
+want_to17: "Not yet, but I want to",
+not_my_thing17: "Not my thing",
+
+conversations: "What conversations do you enjoy most?",
+deep18: "Deep and philosophical",
+light18: "Light and fun",
+mixed18: "Mix of both",
+
+conflict: "How do you handle disagreements?",
+avoid19: "I avoid them",
+calm19: "I stay calm and try to understand the other person",
+emotional19: "I become emotionally involved",
+
+graphic_content_sensitivity: "How sensitive are you to seeing graphic content (animal abuse)?",
+very_sensitive20: "Very sensitive – I avoid it whenever possible",
+somewhat_sensitive20: "Somewhat sensitive – it affects me, but I can handle it",
+not_sensitive20: "Not very sensitive – I can watch it if needed",
+
+material_values: "How important are money, luxury items, and a fancy lifestyle to you?",
+important21: "Important – I value comfort and luxury",
+neutral21: "Neutral – I don't focus much on material things",
+minimalist21: "I am more of a minimalist – simple living is enough for me",
+
+
+// DATE QUUESTIONS 
+
+dateQuestions: {
+    gender: "Gender",
+    age: "Age",
+    height: "Height (cm)",
+    looking_for: "What are you looking for?",
+    smoke: "Do you smoke?",
+    drink: "Do you drink alcohol?",
+    children: "Do you have or want children?"
+  },
+
+  dateOptions: {
+    gender: {
+      "1": "Man",
+      "0": "Woman",
+      "2": "Other"
+    },
+
+    looking_for: {
+      long_term: "Long term",
+      connection_no_commitment: "Connection without commitment",
+      ethical_non_monogamy: "Ethical non-monogamy",
+      casual: "Casual"
+    },
+
+    smoke: {
+      no: "No",
+      occasionally: "Occasionally",
+      yes: "Yes",
+      trying_to_quit: "Trying to quit"
+    },
+
+    drink: {
+      no: "No",
+      occasionally: "Occasionally",
+      socially: "Socially",
+      regularly: "Regularly"
+    },
+
+    children: {
+      dont_have: "Don't have",
+      want: "Want",
+      dont_want: "Don't want",
+      not_sure: "Not sure / depends"
+    }
+  }
+
+  },
+
+  es: {
+    backbtn: "← Atrás",
+    createdateprofile: "Crear perfil de citas",
+    photosmax5: "Fotos (máx 5)",
+    addphotos: "+ Añadir fotos",
+    firstphotohint: "La primera foto será tu foto de perfil",
+
+    description: "Descripción",
+    writesomethingaboutyourself: "Escribe algo sobre ti...",
+    hobbies: "Aficiones",
+    writehobbies: "Escribe tus aficiones",
+    aboutyou: "Sobre ti",
+    saveprofile: "Guardar perfil",
+
+    premium: "Premium",
+    premiumsubscription: "🌟 Suscripción Premium",
+    premiumprice: "€10 / mes",
+    unlockeverything: "Desbloquea todo:",
+    unlimiteddealbreakers: "Dealbreakers ilimitados",
+    unlimitedavocados: "Aguacates y tofu ilimitados",
+    fullsurveyaccess: "Acceso completo a encuestas (ver todas las respuestas de los demás)",
+    customizeweights: "Personaliza el peso de las preguntas",
+    incognitomode: "Modo incógnito - descubre sin ser visto",
+    createowncommunity: "Crea tu propia comunidad",
+    travelmode: "Modo viaje (empareja mientras viajas)",
+    subscribesupport: "Al suscribirte apoyas nuestra misión de promover el veganismo.",
+    learnmore: "Más información sobre nuestro proyecto →",
+    upgradetopremium: "Mejorar a Premium",
+
+    createcommunity: "Crear tu comunidad",
+    entercommunityname: "Nombre de la comunidad",
+    setaphoto: "Establecer foto",
+    addphoto: "+ Añadir foto",
+    writecommunitydescription: "Descripción de la comunidad",
+    communityvalues: "Valores de la comunidad",
+    matchrequirements: "Requisitos de coincidencia",
+    lowthreshold: "Coincidencia mínima:",
+    thresholdhint: "Solo usuarios por encima serán invitados",
+    createcommunitybtn: "Crear comunidad",
+
+    friendstoggle: "Amigos",
+    datetoggle: "Citas",
+
+    profiletopbar: "👤 Perfil",
+
+    premiumprofile: "🌟 Perfil Premium",
+    learnmoreaboutusandpremium: "Más información sobre las funciones premium y nuestra misión →",
+    premiumactive: "⭐ Premium activo",
+    currentlypremium: "Eres usuario Premium.",
+    cancelpremium: "Cancelar Premium",
+
+    langs: "🌍 Idioma",
+    english: "Inglés",
+    spanish: "Español",
+    hungarian: "Húngaro",
+    setlang: "Establecer idioma",
+
+    notifications: "🔔 Notificaciones",
+    matchnotifs: "Matches",
+    invitenotifs: "Invitaciones",
+    messagenotifs: "Mensajes",
+    updatenotifs: "Actualizaciones y tips",
+
+    contactus: "📩 Contáctanos",
+    needhelp: "¿Necesitas ayuda o feedback?",
+    contactsupportbtn: "Contactar soporte",
+
+    account: "⚙️ Cuenta",
+    logout: "Cerrar sesión",
+    deleteprofile: "Eliminar perfil",
+
+    discover: "Descubrir",
+    messages: "Mensajes",
+    invitations: "Invitaciones",
+    profile: "Perfil",
+
+    friendsfilters: "Filtros de amigos",
+    datingfilters: "Filtros de citas",
+    distance: "Distancia:",
+    matchscore: "Nivel de coincidencia:",
+    close: "Cerrar",
+    save: "Guardar",
+    agerange: "Edad:",
+    min: "Mín:",
+    max: "Máx:",
+    show: "Mostrar:",
+    all: "Todos",
+    man: "Hombre",
+    woman: "Mujer",
+    other: "Otro",
+
+    editpreferences: "Editar preferencias",
+    cancel: "Cancelar",
+
+    contacttitle: "Contáctanos",
+    contactintro: "Estamos aquí para ayudarte...",
+    subject: "Asunto:",
+    selectsubject: "-- Selecciona --",
+    reportbug: "Reportar error",
+    billingissue: "Problema de pago",
+    appfeedback: "Feedback",
+    other: "Otro",
+    message: "Mensaje:",
+    sendmessage: "Enviar mensaje",
+    send: "Enviar",
+
+    replacemodal: "Reemplazar foto",
+    edithobbies: "Editar aficiones",
+    editdescription: "Editar descripción",
+    editlanguages: "Editar idiomas",
+    yourphotosmax5: "Tus fotos (máx. 5)",
+
+
+    //JS
+
+createprofilehint: "Crea tu perfil de citas para empezar a conocer personas",
+createprofilebtn: "Crear perfil",
+visibilityhint: "Activa tu visibilidad para empezar a descubrir personas",
+visibilityturnonbtn: "Activar visibilidad",
+friendsmode: "Amigos",
+datesmode: "Citas",
+modeturnoff: "modo desactivado",
+gotosettings: "Ir a ajustes",
+nousersfound: "No se encontraron usuarios",
+yearsold: "años",
+
+commons: "Respuestas en común:",
+nomatchinganswers: "Sin respuestas coincidentes",
+common: "Común",
+
+difference: "Una diferencia:",
+nodifferences: "Sin diferencias",
+
+fullcompatibilitysurvey: "Encuesta completa de compatibilidad",
+showsurvey: "Mostrar encuesta",
+hidesurvey: "Ocultar encuesta",
+hobbies: "Pasatiempos",
+hide: "Ocultar",
+sendavocado: "Enviar aguacate",
+
+dateprofiledetails: "Detalles del perfil de citas",
+nosurveydata: "No hay datos de la encuesta",
+sharetofu: "Compartir tofu",
+
+pronoun_subject_male: "Su",
+pronoun_subject_female: "Su",
+
+match: "Respuesta en común:",
+you: "Tú:",
+
+outofavocados: "¡Te has quedado sin aguacates!",
+outoftofus: "¡Te has quedado sin tofus!",
+
+    createCommunity: "Crear comunidad",
+    communityNameRequired: "Por favor introduce un nombre de comunidad",
+    communityNameMax: "El nombre de la comunidad debe tener máximo 30 caracteres",
+    addPhotoRequired: "Por favor añade una foto de la comunidad",
+    descriptionRequired: "Por favor añade una descripción",
+    answerAllQuestions: "Por favor responde todas las preguntas",
+    communityCreated: "¡Comunidad creada!",
+    communityCreateError: "Error al crear la comunidad",
+    loading: "Cargando...",
+    noDescription: "Sin descripción todavía.",
+    editCommunity: "Editar comunidad",
+    deleteCommunity: "Eliminar comunidad",
+    leaveCommunity: "Salir de la comunidad",
+    removeMember: "Eliminar miembro",
+    remove: "Eliminar",
+    confirmDelete: "¿Seguro que quieres eliminar esta comunidad? No se puede deshacer.",
+    confirmRemoveMember: "¿Eliminar a este miembro de la comunidad?",
+    confirmLeave: "¿Seguro que quieres salir de esta comunidad?",
+    errorLoadingCommunity: "Error al cargar la comunidad",
+    errorUpdatingCommunity: "Error al actualizar la comunidad",
+    errorDeletingCommunity: "Error al eliminar la comunidad",
+    errorLeavingCommunity: "Error al salir de la comunidad",
+    errorDeletingMember: "Error al eliminar al miembro",
+    edit: "Editar",
+    communityChatCreated: "El chat de la comunidad ha sido creado",
+    photo: "Foto",
+
+communitybubbletitle: "Crea tu propia comunidad",
+communitybubblep1: "Reúne a personas cercanas a ti que compartan tus valores e intereses.",
+communitybubblep2: "Una vez creada, los usuarios que coincidan con tus preferencias en tu zona serán invitados automáticamente a tu comunidad. Los nuevos usuarios también se incluirán después del registro.",
+communitybubbleupgrade: "Mejorar a Premium →",
+
+nomessagesyet: "Aún no hay mensajes",
+mute_chat: "Silenciar chat",
+unmute_chat: "Activar sonido del chat",
+unmatch: "Eliminar match",
+report_user: "Reportar usuario",
+confirm_unmatch: "¿Estás seguro de que quieres eliminar esta coincidencia?",
+
+report_user_title: "Reportar usuario",
+report_user_placeholder: "Describe tu experiencia...",
+
+report_empty_text: "Por favor escribe tu experiencia.",
+report_too_long: "Máximo 300 caracteres permitidos.",
+report_success: "Reporte enviado con éxito.",
+report_failed: "Error al enviar el reporte.",
+
+chat_placeholder: "Escribe un mensaje...",
+
+chat_locked_message: "El propietario de la comunidad ya no es miembro premium. Este chat ha sido desactivado.",
+
+no_invitations: "No hay invitaciones aún",
+age_label: ({ age }) => `Edad: ${age}`,
+community: "Comunidad",
+
+reject_avocado: "No quiero este aguacate",
+accept_avocado: "Aceptar aguacate",
+
+reject_tofu: "No quiero este tofu",
+accept_tofu: "Aceptar tofu",
+
+members_lowercase: "miembros",
+members_highercase: "Miembros",
+
+decline: "Rechazar",
+accept: "Aceptar",
+
+premium_profile: "⭐ Perfil premium",
+basic_profile: "Perfil básico",
+
+avocado_unlimited: "Tienes aguacates ilimitados 🥑 gracias al perfil premium",
+avocado_none: "No te quedan aguacates hoy, ¡obtén aguacates ilimitados con premium!",
+avocado_some: ({ count }) =>
+  `Tienes ${count} aguacate${count > 1 ? "s" : ""} para enviar hoy 🥑`,
+
+tofu_unlimited: "Tienes tofu ilimitado 🍲 gracias al perfil premium",
+tofu_none: "No te quedan tofus hoy, ¡obtén tofus ilimitados con premium!",
+tofu_some: ({ tofuCount }) => 
+  `Tienes ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} para enviar hoy 🍲`,
+
+visible: "Visible",
+hidden: "Oculto",
+
+incognito_mode: "Modo incógnito",
+
+respectful_badge: "⭐ Conexiones cerradas con respeto",
+importance: "Importancia",
+
+friends_preferences: "Preferencias de amigos",
+show_preferences: "Mostrar preferencias",
+hide_preferences: "Ocultar preferencias",
+edit: "Editar",
+edit_available_in: "Puedes editar en {days} día(s)",
+
+edit_preferences: "Editar preferencias",
+
+noAnswersYet: "Aún no hay respuestas",
+
+
+//Languages
+english: "Inglés",
+spanish: "Español",
+hungarian: "Húngaro",
+french: "Francés",
+german: "Alemán",
+italian: "Italiano",
+portuguese: "Portugués",
+dutch: "Neerlandés",
+romanian: "Rumano",
+russian: "Ruso",
+
+
+//FriendSurvey
+vegan_reason: "¿Cuáles son tus principales razones para ser vegano/a?",
+reduce_animal_suffering1: "Reducir el sufrimiento animal",
+environmental_concerns1: "Preocupación por el medio ambiente",
+health_reasons1: "Salud",
+animals_primary1: "Vegano/a por los animales, pero también me importan otras razones",
+all_reasons1: "Por todas las razones",
+
+eating_together_animals: "¿Te sientes cómodo/a sentado/a en una mesa donde otros comen productos animales?",
+avoid_always2: "Para nada, evito esas situaciones",
+fine_with_it2: "Sí, no tengo problema",
+uncomfortable_but_do_it2: "Me incomoda, pero a veces lo hago",
+
+dating_non_vegan: "¿Saldrías con alguien que no es vegano/a?",
+no3: "No",
+maybe_open_minded3: "Quizás, si tiene la mente abierta",
+yes3: "Sí",
+
+circle_importance: "¿Qué tan importante es para ti que tu círculo cercano sea vegano?",
+very_important4: "Muy importante",
+somewhat_important4: "Algo importante",
+not_important4: "No es importante",
+
+communication_style: "¿Cómo sueles comunicarte con personas no veganas sobre el veganismo?",
+direct_confrontational5: "Directo/a y confrontativo/a",
+neutral5: "Neutral - no hay diferencia",
+respectful_educational5: "Respetuoso/a y educativo/a",
+avoid_topic5: "Evito el tema",
+
+openness_opinions: "¿Qué tan abierto/a estás a discutir opiniones opuestas?",
+not_open6: "Nada abierto/a",
+somewhat_open6: "Algo abierto/a",
+very_open6: "Muy abierto/a",
+
+animal_vs_human_rights: "¿Cómo ves la relación entre los derechos animales y los derechos humanos?",
+animals_more_important7: "Los derechos animales son más importantes",
+humans_more_important7: "Los derechos humanos son más importantes",
+equal7: "Igualmente importantes",
+unsure7: "No lo sé, es demasiado complejo",
+
+other_injustices: "¿Cómo afrontas otras injusticias?",
+animals_only8: "Me centro solo en los animales",
+support_when_possible8: "Me enfrento a ellos cuando es necesario.",
+multiple_causes8: "Me importa activamente más de una causa",
+
+politics: "¿Cómo describirías tu postura política?",
+left_intolerant9: "Izquierda, evito a los de derecha",
+left_open9: "Izquierda, abierta a diálogo",
+right_open9: "Derecha, abierta a diálogo",
+right_intolerant9: "Derecha, evito a los de izquierda",
+no_labels9: "Evito etiquetas, el diálogo abierto es más importante",
+dont_care9: "No me importa la política",
+
+feminism: "¿Cuál es tu perspectiva sobre el feminismo?",
+negative10: "Negativa",
+frustrated10: "Frustración por las dinámicas de género",
+supportive10: "Apoyo sin hostilidad",
+
+lgbtq: "¿Qué opinas sobre los derechos LGBTQ+?",
+negative11: "Negativa",
+neutral11: "Neutral",
+support11: "Apoyo la igualdad",
+active_support11: "Apoyo activamente y abogo por la concientización",
+
+capitalism: "¿Cuál es tu opinión sobre el capitalismo?",
+against12: "En contra",
+support12: "A favor",
+regulated12: "Podría funcionar con la regulación adecuada",
+
+lonely_vegan: "¿Te sientes un/a vegano/a solitario/a?",
+yes13: "Sí",
+sometimes13: "A veces",
+no13: "No",
+
+pets: "¿Qué opinas sobre tener mascotas?",
+vegan_feed_only14: "Está bien solo si se alimentan vegano",
+ok_anyway14: "Está bien de todas formas",
+prefer_none14: "Está bien, pero prefiero no tener mascotas",
+
+injured_pigeon: "Ves una paloma herida en la calle, ¿qué haces?",
+help_all_costs15: "Hago todo lo posible por ayudar",
+try_help_if_possible15: "Echó un vistazo para ver si puedo ayudar de manera realista y lo hago si es posible",
+leave_it15: "La dejo, no puedo salvar a todos los animales",
+
+activism_style: "¿Qué tipo de activismo conecta más contigo?",
+confrontational16: "Confrontativo / disruptivo",
+calm16: "Tranquilo y educativo",
+storytelling16: "Inspirador / narración de historias",
+
+activism: "¿Haces activismo?",
+active17: "Sí, activamente",
+rarely17: "Rara vez",
+want_to17: "No todavía, pero quiero",
+not_my_thing17: "No es lo mío",
+
+conversations: "¿Qué tipo de conversaciones disfrutas más?",
+deep18: "Profundas y filosóficas",
+light18: "Ligeras y divertidas",
+mixed18: "Una mezcla de ambas",
+
+conflict: "¿Cómo manejas los desacuerdos?",
+avoid19: "Los evito",
+calm19: "Mantengo la calma y trato de entender a la otra persona",
+emotional19: "Me pongo emocional",
+
+graphic_content_sensitivity: "¿Qué tan sensible eres al ver contenido gráfico (maltrato animal)?",
+very_sensitive20: "Muy sensible – lo evito siempre que puedo",
+somewhat_sensitive20: "Algo sensible – me afecta, pero puedo soportarlo",
+not_sensitive20: "Poco sensible – puedo verlo si es necesario",
+
+material_values: "¿Qué tan importantes son el dinero, los artículos de lujo y un estilo de vida sofisticado para ti?",
+important21: "Importante – valoro la comodidad y el lujo",
+neutral21: "Neutral – no me enfoco en lo material",
+minimalist21: "Soy más minimalista – me basta con una vida simple",
+
+// DATE QUUESTIONS
+dateQuestions: {
+    gender: "Género",
+    age: "Edad",
+    height: "Altura (cm)",
+    looking_for: "¿Qué estás buscando?",
+    smoke: "¿Fumas?",
+    drink: "¿Bebes alcohol?",
+    children: "¿Tienes o quieres hijos?"
+  },
+
+  dateOptions: {
+    gender: {
+      "1": "Hombre",
+      "0": "Mujer",
+      "2": "Otro"
+    },
+
+    looking_for: {
+      long_term: "Relación a largo plazo",
+      connection_no_commitment: "Conexión sin compromiso",
+      ethical_non_monogamy: "No monogamia ética",
+      casual: "Casual"
+    },
+
+    smoke: {
+      no: "No",
+      occasionally: "Ocasionalmente",
+      yes: "Sí",
+      trying_to_quit: "Intentando dejarlo"
+    },
+
+    drink: {
+      no: "No",
+      occasionally: "Ocasionalmente",
+      socially: "Socialmente",
+      regularly: "Regularmente"
+    },
+
+    children: {
+      dont_have: "No tengo",
+      want: "Quiero",
+      dont_want: "No quiero",
+      not_sure: "No estoy seguro/a / depende"
+    }
+  }
+
+  },
+
+  hu: {
+    backbtn: "← Vissza",
+    createdateprofile: "Randi profil létrehozása",
+    photosmax5: "Fotók (max 5)",
+    addphotos: "+ Fotók hozzáadása",
+    firstphotohint: "Az első kép lesz a profilképed",
+
+    description: "Leírás",
+    writesomethingaboutyourself: "Írj magadról valamit...",
+    hobbies: "Hobbik",
+    writehobbies: "Írd le a hobbijaid",
+    aboutyou: "Rólad",
+    saveprofile: "Profil mentése",
+
+    premium: "Prémium",
+    premiumsubscription: "🌟 Prémium előfizetés",
+    premiumprice: "€10 / hó",
+    unlockeverything: "Minden feloldása:",
+    unlimiteddealbreakers: "Korlátlan dealbreaker",
+    unlimitedavocados: "Korlátlan avokádó & tofu",
+    fullsurveyaccess: "Teljes kérdőív hozzáférés (lásd mások összes válaszát)",
+    customizeweights: "Kérdések súlyozása",
+    incognitomode: "Inkognitó mód - rejtsd el magad miközben társakat keresel",
+    createowncommunity: "Saját közösség létrehozása",
+    travelmode: "Utazási mód",
+    subscribesupport: "Előfizetéseddel támogatod a projektünket és segítesz terjeszteni a veganizmust.",
+    learnmore: "Tudj meg többet →",
+    upgradetopremium: "Előfizetés Prémiumra",
+
+    createcommunity: "Közösség létrehozása",
+    entercommunityname: "Közösség neve",
+    setaphoto: "Kép beállítása",
+    addphoto: "+ Fotó hozzáadása",
+    writecommunitydescription: "Közösség leírása",
+    communityvalues: "Közösségi értékek",
+    matchrequirements: "Egyezési feltétel",
+    lowthreshold: "Minimum egyezés:",
+    thresholdhint: "Csak a feltételeknek megfelelő felhasználók kapnak meghívást",
+    createcommunitybtn: "Közösség létrehozása",
+
+    friendstoggle: "Barátok",
+    datetoggle: "Randi",
+
+    profiletopbar: "👤 Profil",
+
+    premiumprofile: "🌟 Prémium profil",
+    learnmoreaboutusandpremium: "Prémium funkciók →",
+    premiumactive: "⭐ Prémium aktív",
+    currentlypremium: "Jelenleg Prémium tag vagy.",
+    cancelpremium: "Prémium lemondása",
+
+    langs: "🌍 Nyelv",
+    english: "Angol",
+    spanish: "Spanyol",
+    hungarian: "Magyar",
+    setlang: "Beállítás",
+
+    notifications: "🔔 Értesítések",
+    matchnotifs: "Új párok",
+    invitenotifs: "Meghívók",
+    messagenotifs: "Üzenetek",
+    updatenotifs: "Frissítések",
+
+    contactus: "📩 Kapcsolat",
+    needhelp: "Segítségre van szükséged?",
+    contactsupportbtn: "Kapcsolat",
+
+    account: "⚙️ Fiók",
+    logout: "Kijelentkezés",
+    deleteprofile: "Profil törlése",
+
+    discover: "Felfedezés",
+    messages: "Üzenetek",
+    invitations: "Meghívók",
+    profile: "Profil",
+
+    friendsfilters: "Barát szűrők",
+    datingfilters: "Randi szűrők",
+    distance: "Távolság:",
+    matchscore: "Egyezés:",
+    close: "Bezár",
+    save: "Mentés",
+    agerange: "Kor:",
+    min: "Min:",
+    max: "Max:",
+    show: "Mutatás:",
+    all: "Mind",
+    man: "Férfi",
+    woman: "Nő",
+    other: "Egyéb",
+
+    editpreferences: "Preferenciák szerkesztése",
+    cancel: "Mégse",
+
+    contacttitle: "Kapcsolat",
+    contactintro: "Itt vagyunk, hogy segítsünk...",
+    subject: "Tárgy:",
+    selectsubject: "-- Válassz --",
+    reportbug: "Hiba jelentése",
+    billingissue: "Fizetési probléma",
+    appfeedback: "Visszajelzés",
+    other: "Egyéb",
+    message: "Üzenet:",
+    sendmessage: "Küldés",
+    send: "Küldés",
+
+    replacemodal: "Profilkép csere",
+    edithobbies: "Hobbi szerkesztése",
+    editdescription: "Leírás szerkesztése",
+    editlanguages: "Nyelvek szerkesztése",
+    yourphotosmax5: "Fotóid (max 5)",
+
+    //JS
+
+createprofilehint: "Hozd létre a társkereső profilodat, hogy elkezdj ismerkedni",
+createprofilebtn: "Profil létrehozása",
+visibilityhint: "Kapcsold be a láthatóságodat, hogy elkezdhess embereket felfedezni",
+visibilityturnonbtn: "Láthatóság bekapcsolása",
+friendsmode: "Barátok",
+datesmode: "Randi",
+modeturnoff: "mód ki van kapcsolva",
+gotosettings: "Ugrás a beállításokhoz",
+nousersfound: "Nincs találat",
+yearsold: "éves",
+
+commons: "Azonos válaszok:",
+nomatchinganswers: "Nincsenek egyező válaszok",
+common: "Közös",
+
+difference: "Egy különbség:",
+nodifferences: "Nincsenek különbségek",
+
+fullcompatibilitysurvey: "Teljes kompatibilitási kérdőív",
+showsurvey: "Kérdőív megjelenítése", 
+hidesurvey: "Kérdőív elrejtése", 
+hobbies: "Hobbik",
+hide: "Elrejtés",
+sendavocado: "Avokádó küldése",
+
+dateprofiledetails: "Randi profil részletei",
+nosurveydata: "Nincs kérdőív adat",
+sharetofu: "Tofu megosztása",
+
+    createCommunity: "Közösség létrehozása",
+    communityNameRequired: "Kérlek adj meg egy közösség nevet",
+    communityNameMax: "A közösség neve maximum 30 karakter lehet",
+    addPhotoRequired: "Kérlek adj hozzá közösségi képet",
+    descriptionRequired: "Kérlek adj meg leírást",
+    answerAllQuestions: "Kérlek válaszolj minden kérdésre",
+    communityCreated: "Közösség létrehozva!",
+    communityCreateError: "Hiba a közösség létrehozásakor",
+    loading: "Betöltés...",
+    noDescription: "Még nincs leírás.",
+    editCommunity: "Közösség szerkesztése",
+    deleteCommunity: "Közösség törlése",
+    leaveCommunity: "Kilépés a közösségből",
+    removeMember: "Tag eltávolítása",
+    remove: "Törlés",
+    confirmDelete: "Biztosan törlöd ezt a közösséget? Nem visszavonható.",
+    confirmRemoveMember: "Eltávolítod ezt a tagot a közösségből?",
+    confirmLeave: "Biztosan ki akarsz lépni a közösségből?",
+    errorLoadingCommunity: "Hiba a közösség betöltésekor",
+    errorUpdatingCommunity: "Hiba a közösség frissítésekor",
+    errorDeletingCommunity: "Hiba a közösség törlésekor",
+    errorLeavingCommunity: "Hiba a közösség elhagyásakor",
+    errorDeletingMember: "Hiba a tag eltávolításakor",
+    edit: "Szerkesztés",
+    communityChatCreated: "Közösségi chat létrehozva",
+    photo: "Fotó",
+
+communitybubbletitle: "Hozd létre a saját közösségedet",
+communitybubblep1: "Gyűjtsd össze a hozzád közel élő embereket, akik osztoznak az értékeidben és az érdeklődési köreidben.",
+communitybubblep2: "Létrehozás után a preferenciáidnak megfelelő felhasználók a környékeden automatikusan meghívást kapnak a közösségedbe. Az új felhasználók is bekerülnek a regisztráció után.",
+communitybubbleupgrade: "Frissítés Prémiumra →",
+
+pronoun_subject_male: "Ő",
+pronoun_subject_female: "Ő",
+
+match: "Egyezés:",
+you: "Te:",
+
+outofavocados: "Elfogytak az avokádóid!",
+outoftofus: "Elfogytak a tofuid!",
+
+nomessagesyet: "Még nincsenek üzeneteid",
+mute_chat: "Chat némítása",
+unmute_chat: "Chat némítás feloldása",
+unmatch: "Match törlése",
+report_user: "Felhasználó jelentése",
+confirm_unmatch: "Biztosan törlöd ezt az egyezést?",
+
+report_user_title: "Felhasználó jelentése",
+report_user_placeholder: "Írd le a tapasztalatodat...",
+
+report_empty_text: "Kérlek írd le a tapasztalatodat.",
+report_too_long: "Maximum 300 karakter engedélyezett.",
+report_success: "Jelentés sikeresen elküldve.",
+report_failed: "A jelentés küldése sikertelen.",
+
+chat_placeholder: "Írj egy üzenetet...",
+
+chat_locked_message: "A közösség tulajdonosa már nem prémium tag. Ez a chat deaktiválva lett.",
+
+no_invitations: "Még nincsenek meghívások",
+age_label: ({ age }) => `Életkor: ${age}`,
+community: "Közösség",
+
+reject_avocado: "Nem kérem ezt az avokádót",
+accept_avocado: "Avokádó elfogadása",
+
+reject_tofu: "Nem kérem ezt a tofut",
+accept_tofu: "Tofu elfogadása",
+
+members_lowercase: "tag",
+members_highercase: "Tagok",
+
+decline: "Elutasítás",
+accept: "Elfogadás",
+
+premium_profile: "⭐ Prémium profil",
+basic_profile: "Alap profil",
+
+avocado_unlimited: "Korlátlan avokádód van 🥑 a prémium profilnak köszönhetően",
+avocado_none: "Elfogytak a mai avokádóid, szerezz korlátlan avokádót prémiummal!",
+avocado_some: ({ count }) =>
+  `Ma ${count} avokádót tudsz még küldeni 🥑`,
+
+tofu_unlimited: "Korlátlan tofud van 🍲 a prémium profil miatt",
+tofu_none: "Nincs több tofud mára, szerezz korlátlan tofut a prémiummal!",
+tofu_some: ({ tofuCount }) => 
+  `Ma ${tofuCount} tofud van még 🍲`,
+
+visible: "Látható",
+hidden: "Rejtett",
+
+incognito_mode: "Inkognító mód",
+
+respectful_badge: "⭐ Tisztelettudóan lezárt kapcsolatok",
+importance: "Fontosság",
+
+friends_preferences: "Barát beállítások",
+show_preferences: "Beállítások megjelenítése",
+hide_preferences: "Beállítások elrejtése",
+edit: "Szerkesztés",
+edit_available_in: "{days} nap múlva szerkeszthető",
+
+edit_preferences: "Beállítások szerkesztése",
+
+noAnswersYet: "Még nincsenek válaszok",
+
+
+//Languages
+english: "Angol",
+spanish: "Spanyol",
+hungarian: "Magyar",
+french: "Francia",
+german: "Német",
+italian: "Olasz",
+portuguese: "Portugál",
+dutch: "Holland",
+romanian: "Román",
+russian: "Orosz",
+
+
+//FriendsSurvey
+vegan_reason: "Mi motivál a vegánságra?",
+reduce_animal_suffering1: "Az állatok szenvedésének csökkentése",
+environmental_concerns1: "Környezeti okok",
+health_reasons1: "Egészség",
+animals_primary1: "Vegán az állatokért, de más okok is fontosak",
+all_reasons1: "Mindhárom",
+eating_together_animals: "Leülsz olyan asztalhoz, ahol mások állati termékeket esznek?",
+avoid_always2: "Egyáltalán nem, kerülöm az ilyen helyzeteket",
+fine_with_it2: "Igen, nincs problémám vele",
+uncomfortable_but_do_it2: "Kellemetlen, de néha elviselem",
+
+dating_non_vegan: "Randiznál nem vegán emberrel?",
+no3: "Nem",
+maybe_open_minded3: "Talán, ha nyitott gondolkodású",
+yes3: "Igen",
+
+circle_importance: "Mennyire fontos számodra, hogy a közeli környezeted vegán legyen?",
+very_important4: "Nagyon fontos",
+somewhat_important4: "Kicsit fontos",
+not_important4: "Nem fontos",
+
+communication_style: "Hogyan kommunikálsz általában nem vegánokkal a veganizmusról?",
+direct_confrontational5: "Direkt és konfrontatív módon",
+neutral5: "Semleges, ugyanúgy beszélek mindenkivel",
+respectful_educational5: "Tiszteletteljes és edukatív módon",
+avoid_topic5: "Kerülöm a témát",
+
+openness_opinions: "Mennyire vagy nyitott az ellentétes nézetek megbeszélésére?",
+not_open6: "Nem vagyok nyitott",
+somewhat_open6: "Kicsit nyitott",
+very_open6: "Nagyon nyitott",
+
+animal_vs_human_rights: "Hogyan látod az állati és emberi jogok kapcsolatát?",
+animals_more_important7: "Az állati jogok fontosabbak",
+humans_more_important7: "Az emberi jogok fontosabbak",
+equal7: "Egyformán fontosak",
+unsure7: "Nem tudom, túl összetett kérdés",
+
+other_injustices: "Hogyan állsz más igazságtalanságokhoz?",
+animals_only8: "Csak az állatokra fókuszálok",
+support_when_possible8: "Szükség esetén kiállok ellenük.",
+multiple_causes8: "Több ügy is aktívan érdekel",
+
+politics: "Hogyan írnád le a politikai hozzáállásodat?",
+left_intolerant9: "Baloldali, kerülöm a jobboldaliakat",
+left_open9: "Baloldali, nyitott a párbeszédre",
+right_open9: "Jobboldali, nyitott a párbeszédre",
+right_intolerant9: "Jobboldali, kerülöm a baloldaliakat",
+no_labels9: "Kerülöm a címkéket, a nyitott párbeszéd fontosabb",
+dont_care9: "Nem érdekel a politika",
+
+feminism: "Mi a véleményed a feminizmusról?",
+negative10: "Negatív, nem támogatom",
+frustrated10: "Frusztrál a jelenlegi nemi egyenlőtlenség",
+supportive10: "Támogatom a feminizmust, de nem frusztrál",
+
+lgbtq: "Mi a véleményed az LGBTQ+ jogokról?",
+negative11: "Negatív, nem támogatom",
+neutral11: "Semleges",
+support11: "Támogatom az egyenlőséget",
+active_support11: "Aktívan támogatom és igyekszem növelni a tudatosságot",
+
+capitalism: "Mi a véleményed a kapitalizmusról?",
+against12: "Ellene vagyok",
+support12: "Támogatom",
+regulated12: "Szabályozásra szorul",
+
+lonely_vegan: "Magányos vegánnak érzed magad?",
+yes13: "Igen",
+sometimes13: "Néha",
+no13: "Nem",
+
+pets: "Mi a véleményed a háziállattartásról?",
+vegan_feed_only14: "Rendben van, ha növényi táplálékot kapnak",
+ok_anyway14: "Rendben van, akkor is ha húsos táplálékot kapnak",
+prefer_none14: "Rendben van, de inkább nem tartok állatot",
+
+injured_pigeon: "Látsz egy sérült galambot az utcán. Mit teszel?",
+help_all_costs15: "Mindent megteszek, hogy segítsek",
+try_if_possible15: "Megnézem, hogy mi a baja és ha tudok segíteni, akkor segítek",
+leave_it15: "Otthagyom, nem tudok minden állaton segíteni",
+
+activism_style: "Melyik aktivizmus áll hozzád a legközelebb?",
+confrontational16: "Konfrontatív, provokatív",
+calm16: "Nyugodt és edukáló",
+storytelling16: "Inspiráló és történetmesélős",
+
+activism: "Részt veszel aktivizmusban?",
+active17: "Igen, aktívan",
+rarely17: "Ritkán",
+want_to17: "Nem még, de szeretnék",
+not_my_thing17: "Nem az én világom",
+
+conversations: "Milyen beszélgetéseket élvezel a legjobban?",
+deep18: "Mélyeket és filozofikusakat",
+light18: "Könnyedeket és szórakoztatókat",
+mixed18: "Vegyesen mindkettő",
+
+conflict: "Hogyan kezeled a nézeteltéréseket?",
+avoid19: "Kerülöm őket",
+calm19: "Nyugodt maradok és megpróbálom megérteni a másik embert",
+emotional19: "Érzelmes leszek",
+
+graphic_content_sensitivity: "Mennyire vagy érzékeny grafikus tartalom (állatkínzás) látványára?",
+very_sensitive20: "Nagyon érzékeny vagyok – amennyire lehet, kerülöm",
+somewhat_sensitive20: "Kicsit érzékeny vagyok – zavar, de elviselem",
+not_sensitive20: "Nem igazán vagyok érzékeny – szükség esetén megnézem",
+
+material_values: "Mennyire fontos számodra a pénz, a luxuscikkek és a fényűző életmód?",
+important21: "Fontos – értékelem a kényelmet és a luxust",
+neutral21: "Semleges – nem foglalkozom az anyagi dolgokkal",
+minimalist21: "Minimalista vagyok – az egyszerű élet elég nekem",
+
+// DATE QUESTIONS
+dateQuestions: {
+    gender: "Nem",
+    age: "Kor",
+    height: "Magasság (cm)",
+    looking_for: "Mit keresel?",
+    smoke: "Dohányzol?",
+    drink: "Fogyasztasz alkoholt?",
+    children: "Van vagy szeretnél gyereket?"
+  },
+
+  dateOptions: {
+    gender: {
+      "1": "Férfi",
+      "0": "Nő",
+      "2": "Egyéb"
+    },
+
+    looking_for: {
+      long_term: "Hosszú távú kapcsolat",
+      connection_no_commitment: "Kapcsolat elköteleződés nélkül",
+      ethical_non_monogamy: "Etikus non-monogámia",
+      casual: "Alkalmi"
+    },
+
+    smoke: {
+      no: "Nem",
+      occasionally: "Alkalmanként",
+      yes: "Igen",
+      trying_to_quit: "Leszokóban"
+    },
+
+    drink: {
+      no: "Nem",
+      occasionally: "Alkalmanként",
+      socially: "Társaságban",
+      regularly: "Rendszeresen"
+    },
+
+    children: {
+      dont_have: "Nincs",
+      want: "Szeretnék",
+      dont_want: "Nem szeretnék",
+      not_sure: "Nem biztos / attól függ"
+    }
+  }
+
+  }
+};
+
+let currentLang = "en";
+
+function loadLanguage() {
+  const savedLang = localStorage.getItem("app_language");
+
+  if (savedLang && translations[savedLang]) {
+    currentLang = savedLang;
+  } else {
+    currentLang = "en";
+  }
+
+  applyTranslations();
+}
+
+function t(key, params = {}) {
+  const parts = key.split(".");
+  let value = translations[currentLang];
+
+  for (const part of parts) {
+    value = value?.[part];
+  }
+
+  if (typeof value === "function") {
+    return value(params);
+  }
+
+  return value ?? key;
+}
+
+function applyTranslations() {
+  const elements = document.querySelectorAll("[data-i18n]");
+
+  elements.forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.textContent = t(key);
+  });
 }
 
 //#endregion
@@ -205,6 +1553,15 @@ let appState = {
   isPremium: false,
   error: null,
 };
+
+const appUI = {
+  currentTab: "discover",
+  tabHistory: []
+};
+
+let isChatOpen = false;
+
+
 
 // 🔌 FETCH PROFILES
 async function loadProfile() {
@@ -244,6 +1601,7 @@ async function initApp() {
 // 🎯 UI INIT (safe DOM setup after data is ready)
 function initUI() {
 
+  loadLanguage();
 
   setupButtons();
   setupTabs();
@@ -251,6 +1609,7 @@ function initUI() {
   setupProfile();
  // setupCommunities();
   subscribeToMessageUpdates();
+  subscribeToInvitations();
   renderCommunityTopbar();
   PremiumBoxHiding();
   startHeartbeat();
@@ -262,14 +1621,12 @@ function initUI() {
   renderDateProfile(appState.profile);
 
   createMessageCards();
+  createInvitationCards();
 
   setupDiscoverTab();
 
   initToggleListeners();
 
-  loadSavedLanguage();
-  initLanguageSetting();
-  
 }
 
 //#endregion
@@ -551,69 +1908,38 @@ const AppData = (() => {
 
 const DateData = (() => {
 
-  const answerMap = {
+  const map = {
     gender: {
-      question: "Gender",
-      answers: {
-        "1": "Man",
-        "0": "Woman",
-        "2": "Other"
-      }
+      answers: (v) => t(`dateOptions.gender.${v}`)
     },
 
     age: {
-      question: "Age",
       default: (v) => `${v}`
     },
 
     height: {
-      question: "Height (cm)",
       default: (v) => `${v} cm`
     },
 
     looking_for: {
-      question: "What are you looking for?",
-      answers: {
-        "long_term": "Long term",
-        "connection_no_commitment": "Connection without commitment",
-        "ethical_non_monogamy": "Ethical non-monogamy",
-        "casual": "Casual"
-      }
+      answers: (v) => t(`dateOptions.looking_for.${v}`)
     },
 
     smoke: {
-      question: "Do you smoke?",
-      answers: {
-        "no": "No",
-        "occasionally": "Occasionally",
-        "yes": "Yes",
-        "trying_to_quit": "Trying to quit"
-      }
+      answers: (v) => t(`dateOptions.smoke.${v}`)
     },
 
     drink: {
-      question: "Do you drink alcohol?",
-      answers: {
-        "no": "No",
-        "occasionally": "Occasionally",
-        "socially": "Socially",
-        "regularly": "Regularly"
-      }
+      answers: (v) => t(`dateOptions.drink.${v}`)
     },
 
     children: {
-      question: "Do you have or want children?",
-      answers: {
-        "dont_have": "Don't have",
-        "want": "Want",
-        "dont_want": "Don't want",
-        "not_sure": "Not sure / depends"
-      }
+      answers: (v) => t(`dateOptions.children.${v}`)
     }
   };
 
   function getLabel(questionId, value) {
-    const config = answerMap[questionId];
+    const config = map[questionId];
 
     if (!config) return value ?? "—";
 
@@ -621,8 +1947,8 @@ const DateData = (() => {
       return value.map(v => getLabel(questionId, v)).join(", ");
     }
 
-    if (config.answers && config.answers[value] !== undefined) {
-      return config.answers[value];
+    if (config.answers) {
+      return config.answers(value);
     }
 
     if (config.default) {
@@ -633,7 +1959,7 @@ const DateData = (() => {
   }
 
   function getQuestionLabel(questionId) {
-    return answerMap[questionId]?.question || questionId;
+    return t(`dateQuestions.${questionId}`);
   }
 
   return {
@@ -724,7 +2050,7 @@ async function updateLastSeen(userId) {
     .eq("id", userId);
 
   if (error) {
-    console.error("Failed to update last seen:", error);
+   console.error("Failed to update last seen:", error);
   }
 }
 
@@ -744,6 +2070,44 @@ function hideLoadingSmall() {
   document.getElementById("loading-screenSmall").classList.remove("active");
 }
 
+function getLastOpened(key) {
+  return localStorage.getItem(key);
+}
+
+function setLastOpened(key) {
+  localStorage.setItem(key, new Date().toISOString());
+}
+
+function isNewer(createdAt, lastOpened) {
+  if (!lastOpened) return true;
+  return new Date(createdAt) > new Date(lastOpened);
+}
+
+function handleBackButton() {
+
+  // 🔥 priority: chat state first
+  if (isChatOpen) {
+    openMessagesList();
+    return;
+  }
+
+  // otherwise fall back to your tab system
+  if (appUI.tabHistory.length > 0) {
+    const prevTab = appUI.tabHistory.pop();
+
+    const tab = document.getElementById(prevTab);
+    if (!tab) return;
+
+    appUI.currentTab = prevTab;
+
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    return;
+  }
+
+  // optional fallback (do nothing or exit app)
+}
 //#endregion
 
 //#region Discover Tab
@@ -856,9 +2220,9 @@ function renderSurveyRequired() {
 
   container.innerHTML = `
   <div class="empty-state">
-    <p>💘 Create your dating profile to start meeting people</p>
+    <p>💘 ${t("createprofilehint")}</p>
     <button class="go-survey-btn">
-      Create profile
+     ${t("createprofilebtn")}
     </button>
   </div>
 `;
@@ -884,8 +2248,8 @@ function renderVisibilityOff(type) {
 
   container.innerHTML = `
     <div class="empty-state">
-      <p>👀 Turn on your visibility to start discovering people</p>
-      <button>Turn on visibility</button>
+      <p>👀 ${t("visibilityhint")}</p>
+      <button>${t("visibilityturnonbtn")}</button>
     </div>
   `;
 
@@ -904,8 +2268,8 @@ function renderModeOff(type) {
 
   container.innerHTML = `
     <div class="empty-state">
-      <p>⚙️ ${type === "friends" ? "Friends" : "Dating"} mode is turned off</p>
-      <button onclick="openTab('settings')">Go to settings</button>
+      <p>⚙️ ${t(type === "friends" ? "friendsmode" : "datesmode")} ${t("modeturnoff")}</p>
+      <button onclick="openTab('settings')">${t("gotosettings")}</button>
     </div>
   `;
 }
@@ -976,7 +2340,7 @@ function renderDiscover(type) {
   if (!data || data.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <p>😕 No users found</p>
+        <p>😕 ${t("nousersfound")}</p>
       </div>
     `;
     return;
@@ -1028,7 +2392,7 @@ function createDiscoverCard(user) {
 
         <div class="card-top">
           <div class="card-name">${user.name}</div>
-          ${user.age ? `<div class="card-age">${user.age} years old</div>` : ""}
+          ${user.age ? `<div class="card-age">${user.age} ${t("yearsold")}</div>` : ""}
         </div>
 
         <div class="card-score ${getScoreClass(score)}">
@@ -1125,7 +2489,7 @@ function renderQuestionBlock(questionId, viewerAnswer, targetAnswer, label) {
 
   return `
     <div class="section">
-      <h4>${label}: ${q.text}</h4>
+      <h4>${t(q.id, currentLang)}</h4>
       <ul>
         ${q.options.map(opt => {
 
@@ -1144,7 +2508,7 @@ function renderQuestionBlock(questionId, viewerAnswer, targetAnswer, label) {
 
           return `
             <li style="padding:6px;border-radius:6px;margin-bottom:4px;${style}">
-              ${opt.text}
+              ${t(opt.id, currentLang)}
             </li>
           `;
         }).join("")}
@@ -1162,65 +2526,65 @@ function renderFriendsProfileCard(user, isMatchContext = false) {
     <h2>${user.name}</h2>
     <p>${user.description || ""}</p>
 
+    <div class="section">
+      <h4>🎯 ${t("hobbies")}</h4>
+      <p>${user.hobbies || ""}</p>
+    </div>
+
 ${!isPremium ? `
   <div class="section">
-    <h4>🤝 Things in common</h4>
+    <h4>🤝 ${t("commons")}</h4>
     ${
       !Array.isArray(user.common) || user.common.length === 0
-        ? "<p>No matching answers</p>"
+        ? `<p>${t("nomatchinganswers")}</p>`
         : user.common.map(c =>
             renderQuestionBlock(
               c.questionId,
               c.viewerAnswer,
               c.targetAnswer,
-              "Common"
+              t("common")
             )
           ).join("")
     }
   </div>
 
   <div class="section">
-    <h4>⚡ Difference</h4>
+    <h4>⚡ ${t("differences")}</h4>
     ${
       !user.difference || !user.difference.questionId
-        ? "<p>No differences</p>"
+        ? `<p>${t("nodifference")}</p>`
         : renderQuestionBlock(
             user.difference.questionId,
             user.difference.viewerAnswer,
             user.difference.targetAnswer,
-            "Difference"
+            t("difference")
           )
     }
   </div>
 ` : `
-  <div class="section">
-    <h4>📊 Full Compatibility Survey</h4>
+<div class="section">
+  <h4>📊 ${t("fullcompatibilitysurvey")}</h4>
 
-    <button id="toggleSurveyBtn">Show / Hide Survey</button>
+  <button onclick="toggleSurvey('${user.id}', this)">
+    ${t("showsurvey")}
+  </button>
 
-    <div id="premiumSurvey" style="display:none;">
-      ${renderPremiumSurvey(user.friendsurvey, user.survey)}
-    </div>
+  <div id="premiumSurvey-${user.id}" style="display:none;">
+    ${renderPremiumSurvey(user.friendsurvey, user.survey)}
   </div>
+</div>
 `}
 
-    <div class="section">
-      <h4>🎯 Hobbies</h4>
-      <p>${user.hobbies || ""}</p>
+    <div class="actions" style="${isMatchContext ? 'display:none;' : ''}">
+      <button data-action="hide" data-id="${user.id}">
+        ❌ ${t("hide")}
+      </button>
+
+      <button data-action="avocado" data-id="${user.id}">
+        🥑 ${t("sendavocado")}
+      </button>
     </div>
-
-
-        <div class="actions"  style="${isMatchContext ? 'display:none;' : ''}">
-          <button data-action="hide" data-id="${user.id}">
-            ❌ Hide
-          </button>
-
-          <button data-action="avocado" data-id="${user.id}">
-            🥑 Send avocado
-          </button>
-        </div>
-      `
-  ;
+  `;
 }
 
 function renderDateProfileCard(user, isMatchContext = false) {
@@ -1237,54 +2601,56 @@ function renderDateProfileCard(user, isMatchContext = false) {
     <p>${user.date_description || ""}</p>
 
     <div class="section">
-      <h4>🎯 Hobbies</h4>
+      <h4>🎯 ${t("hobbies")}</h4>
       <p>${user.hobbies || ""}</p>
     </div>
 
 ${!isPremium ? `
   <div class="section">
-    <h4>🤝 Things in common</h4>
+    <h4>🤝 ${t("commons")}</h4>
     ${
       !Array.isArray(user.common) || user.common.length === 0
-        ? "<p>No matching answers</p>"
+        ? `<p>${t("nomatchinganswers")}</p>`
         : user.common.map(c =>
             renderQuestionBlock(
               c.questionId,
               c.viewerAnswer,
               c.targetAnswer,
-              "Common"
+              t("common")
             )
           ).join("")
     }
   </div>
 
   <div class="section">
-    <h4>⚡ Difference</h4>
+    <h4>⚡ ${t("difference")}</h4>
     ${
       !user.difference || !user.difference.questionId
-        ? "<p>No differences</p>"
+        ? `<p>${t("nodifferences")}</p>`
         : renderQuestionBlock(
             user.difference.questionId,
             user.difference.viewerAnswer,
             user.difference.targetAnswer,
-            "Difference"
+            t("difference")
           )
     }
   </div>
 ` : `
-  <div class="section">
-    <h4>📊 Full Compatibility Survey</h4>
+<div class="section">
+  <h4>📊 ${t("fullcompatibilitysurvey")}</h4>
 
-    <button id="toggleSurveyBtn">Show / Hide Survey</button>
+  <button onclick="toggleSurvey('${user.id}', this)">
+    ${t("showsurvey")}
+  </button>
 
-    <div id="premiumSurvey" style="display:none;">
-      ${renderPremiumSurvey(user.friendsurvey, user.survey)}
-    </div>
+  <div id="premiumSurvey-${user.id}" style="display:none;">
+    ${renderPremiumSurvey(user.friendsurvey, user.survey)}
   </div>
+</div>
 `}
 
     <div class="section">
-  <h4>💭 Dating profile details</h4>
+  <h4>💭 ${t("dateprofiledetails")}</h4>
 
   ${
     Array.isArray(user.survey)
@@ -1298,23 +2664,36 @@ ${!isPremium ? `
             `;
           })
           .join("")
-      : "<p>No survey data</p>"
+      : `<p>${t("nosurveydata")}</p>`
   }
 </div>
 
     
         <div class="actions"  style="${isMatchContext ? 'display:none;' : ''}">
           <button data-action="hide" data-id="${user.id}">
-            ❌ Hide
+            ❌ ${t("hide")}
           </button>
 
           <button data-action="tofu" data-id="${user.id}">
-            🍲 Share your Tofu
+            🍲 ${t("sharetofu")}
           </button>
         </div>
       `
     
   ;
+}
+
+window.toggleSurvey = function(userId, btn) {
+  const content = document.getElementById(`premiumSurvey-${userId}`);
+  if (!content) return;
+
+  const isOpen = content.style.display === "block";
+
+  content.style.display = isOpen ? "none" : "block";
+
+  btn.textContent = isOpen
+    ? t("showsurvey")
+    : t("hidesurvey");
 }
 
 function renderPremiumSurvey(friendsurvey, datesurvey) {
@@ -1337,7 +2716,7 @@ let genderValue = datesurvey?.find(
 
 const isFemale = Number(genderValue) === 0;
 
-  const pronounSubject = isFemale ? "Her" : "His";
+  const pronounSubject = t(isFemale ? "pronoun_subject_female" : "pronoun_subject_male");
 
   return ownsurvey.map(item => {
     const viewerAnswerId = item.value;
@@ -1367,12 +2746,12 @@ const isFemale = Number(genderValue) === 0;
             isMatch
               ? `
                 <span class="match">
-                  Match: ${viewerText}
+                  ${t("match")} ${viewerText}
                 </span>
               `
               : `
                 <span class="viewer">
-                  You: ${viewerText}
+                  ${t("you")} ${viewerText}
                 </span>
 
                 <span class="target">
@@ -1431,7 +2810,7 @@ async function sendAvocado(userId) {
   const profile = appState.profile;
 
   if ((profile?.avocados || 0) <= 0) {
-    alert("Not enough avocados!");
+    alert(`${t("outofavocados")}`);
     return;
   }
 
@@ -1442,7 +2821,7 @@ async function sendTofu(userId) {
   const profile = appState.profile;
 
   if ((profile?.tofus || 0) <= 0) {
-    alert("Not enough tofu!");
+    alert(`${t("outoftofus")}`);
     return;
   }
 
@@ -1610,9 +2989,9 @@ function renderDateProfile(profile) {
   if (!profile?.dates_survey_completed) {
     container.innerHTML = `
       <div class="empty-state">
-        <p>💘 Create your dating profile to start meeting people</p>
+        <p>💘 ${t("createprofilehint")}</p>
         <button class="go-survey-btn">
-          Create profile
+          ${t("createprofilebtn")}
         </button>
       </div>
     `;
@@ -1901,10 +3280,10 @@ const surveyState = {
 };
 
 document.getElementById("addPhotoBtn").onclick = () => {
-  document.getElementById("photoInput").click();
+  document.getElementById("surveyPhotoInput").click();
 };
 
-document.getElementById("photoInput").addEventListener("change", async (e) => {
+document.getElementById("surveyPhotoInput").addEventListener("change", async (e) => {
   const files = Array.from(e.target.files);
 
   for (const file of files) {
@@ -1981,18 +3360,50 @@ function renderPhotos() {
   surveyState.photos.forEach((p, index) => {
     const div = document.createElement("div");
     div.className = "photo-item";
+    div.draggable = true;
+    div.dataset.index = index;
 
     div.innerHTML = `
       <img src="${p.url}" />
-      ${index === 0 ? `<span class="badge">Profile</span>` : ""}
+      ${index === 0 ? `<span class="badge">${t("profile")}</span>` : ""}
       <button class="remove">×</button>
     `;
 
+    // REMOVE
     div.querySelector(".remove").onclick = () => {
       surveyState.photos.splice(index, 1);
       syncPhotoFlags();
       renderPhotos();
     };
+
+    // DRAG EVENTS
+    div.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", index);
+      div.classList.add("dragging");
+    });
+
+    div.addEventListener("dragend", () => {
+      div.classList.remove("dragging");
+    });
+
+    div.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    div.addEventListener("drop", (e) => {
+      e.preventDefault();
+
+      const fromIndex = Number(e.dataTransfer.getData("text/plain"));
+      const toIndex = index;
+
+      if (fromIndex === toIndex) return;
+
+      const moved = surveyState.photos.splice(fromIndex, 1)[0];
+      surveyState.photos.splice(toIndex, 0, moved);
+
+      syncPhotoFlags();
+      renderPhotos();
+    });
 
     grid.appendChild(div);
   });
@@ -2009,7 +3420,7 @@ function renderDateQuestions() {
     // NUMBER INPUT
     if (q.type === "number") {
       div.innerHTML = `
-        <label>${q.label}</label>
+        <label>${DateData.getQuestionLabel(q.id)}</label>
         <input type="number" data-id="${q.id}">
       `;
     }
@@ -2017,13 +3428,13 @@ function renderDateQuestions() {
     // SPECIAL CASE: LOOKING FOR (BETTER UI)
     else if (q.id === "looking_for") {
       div.innerHTML = `
-        <label>${q.label}</label>
+        <label>${DateData.getQuestionLabel(q.id)}</label>
         <div class="chip-group" data-id="${q.id}">
           ${q.options.map(opt => `
-  <button type="button" class="chip" data-value="${opt.id}">
-    ${opt.label}
-  </button>
-`).join("")}
+            <button type="button" class="chip" data-value="${opt.id}">
+              ${DateData.getLabel(q.id, opt.id)}
+            </button>
+          `).join("")}
         </div>
       `;
     }
@@ -2031,10 +3442,14 @@ function renderDateQuestions() {
     // DEFAULT SINGLE SELECT
     else {
       div.innerHTML = `
-        <label>${q.label}</label>
+        <label>${DateData.getQuestionLabel(q.id)}</label>
         <select data-id="${q.id}">
-  ${q.options.map(o => `<option value="${o.id}">${o.label}</option>`).join("")}
-</select>
+          ${q.options.map(o => `
+            <option value="${o.id}">
+              ${DateData.getLabel(q.id, o.id)}
+            </option>
+          `).join("")}
+        </select>
       `;
     }
 
@@ -2043,24 +3458,23 @@ function renderDateQuestions() {
 
   // CHIP CLICK LOGIC
   document.querySelectorAll(".chip-group").forEach(group => {
-  group.addEventListener("click", (e) => {
-    const btn = e.target.closest(".chip");
-    if (!btn) return;
+    group.addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
 
-    const value = btn.dataset.value;
+      const value = btn.dataset.value;
 
-    btn.classList.toggle("active");
+      btn.classList.toggle("active");
 
-    // collect ALL active chips
-    const selected = Array.from(group.querySelectorAll(".chip.active"))
-  .map(b => {
-    const v = b.dataset.value;
-    return isNaN(v) ? v : Number(v);
+      const selected = Array.from(group.querySelectorAll(".chip.active"))
+        .map(b => {
+          const v = b.dataset.value;
+          return isNaN(v) ? v : Number(v);
+        });
+
+      group.dataset.selected = JSON.stringify(selected);
+    });
   });
-
-    group.dataset.selected = JSON.stringify(selected);
-  });
-});
 }
 
 function collectSurveyData() {
@@ -2276,14 +3690,14 @@ function showInfoBubble() {
   bubble.innerHTML = `
     <button class="info-close">×</button>
 
-    <strong>Create your own community</strong><br><br>
+    <strong>${t("communitybubbletitle")}</strong><br><br>
 
-    Bring together people near you who share your values and interests.<br><br>
+    ${t("communitybubblep1")}<br><br>
 
-    Once created, users who match your preferences in your local area will be automatically invited to your community. New users will also be included after registration.<br><br>
+    ${t("communitybubblep2")}<br><br>
 
     <span class="info-cta" id="upgradeToPremium">
-      Upgrade to Premium →
+      ${t("communitybubbleupgrade")}
     </span>
   `;
 
@@ -2349,7 +3763,7 @@ async function renderCommunityTopbar() {
             ${community.community_name}
           </div>
           <div class="community-preview-count">
-            ${memberCount ?? 0} members
+            ${memberCount ?? 0} ${t("members_lowercase")}
           </div>
         </div>
       </div>
@@ -2366,7 +3780,7 @@ async function renderCommunityTopbar() {
     topbar.classList.remove("locked");
     topbar.classList.add("unlocked");
 
-    topbar.innerHTML = `<span class="topbar-title">Create community</span>`;
+    topbar.innerHTML = `<span class="topbar-title">${t("createCommunity")}</span>`;
     topbar.onclick = () => openCommunitySurvey();
     return;
   }
@@ -2374,7 +3788,7 @@ async function renderCommunityTopbar() {
   topbar.classList.add("locked");
 
   topbar.innerHTML = `
-    <span class="topbar-title premium-lock">🔒 Create community</span>
+    <span class="topbar-title premium-lock">🔒 ${t("createCommunity")}</span>
     <button id="communityInfoBtn" class="info-icon">ⓘ</button>
   `;
 
@@ -2450,7 +3864,7 @@ function renderCommunityQuestions() {
     block.className = "question-block";
 
     const title = document.createElement("h3");
-    title.innerText = q.text;
+    title.innerText = t(q.id, currentLang);
     block.appendChild(title);
 
     // DEFAULT weight
@@ -2488,7 +3902,7 @@ const weight = Math.round(
 
   // ANSWER BUTTON
   const answerBtn = document.createElement("button");
-  answerBtn.innerText = opt.text;
+  answerBtn.innerText = t(opt.id, currentLang);
   answerBtn.className = "option-btn";
 
   if (isSelected) answerBtn.classList.add("selected-option");
@@ -2548,31 +3962,31 @@ document.getElementById("CommunitysaveSurveyBtn").onclick = async () => {
   const name = document.getElementById("CommunityName").value.trim();
 
 if (!name) {
-  alert("Please enter a community name");
+  alert(t("communityNameRequired"));
   return;
 }
 
 if (name.length > 30) {
-  alert("Community name must be max 30 characters");
+  alert(t("communityNameMax"));
   return;
 }
 
   if (!communityPhoto) {
-    alert("Please add a community photo");
+    alert(t("addPhotoRequired"));
     return;
   }
 
   const description = document.getElementById("CommunityDescription").value.trim();
 
   if (!description) {
-    alert("Please add a description");
+    alert(t("descriptionRequired"));
     return;
   }
 
 const answeredCount = Object.keys(communityState.answers).length;
 
 if (answeredCount !== AppData.questions.length) {
-  alert("Please answer all questions");
+  alert(t("answerAllQuestions"));
   return;
 }
 
@@ -2601,11 +4015,11 @@ const communityData = {
 
     await saveCommunityToDB(communityData);
 
-    alert("Community created!");
+    alert(t("communityCreated"));
 
   } catch (err) {
     console.error(err);
-    alert("Error creating community");
+    alert(t("communityCreateError"));
   }
 };
 
@@ -2681,7 +4095,7 @@ community_photo: communityData.photo,
 community_id: communityId,
 owner_id: appState.user.id,
 
-last_message: "Community chat is created",
+last_message: t("communityChatCreated"),
 last_sender_id: null
   }
 ])
@@ -2739,18 +4153,20 @@ async function openCommunityPage(communityId) {
   const modal = document.getElementById("communityModal");
   const body = document.getElementById("communityModalBody");
 
-  body.innerHTML = "<p>Loading...</p>";
+  body.innerHTML = `<p>${t("loading")}</p>`;
   modal.style.display = "block";
 
   try {
     // 1. Get community
     const { data: community, error } = await supabase
       .from("0con_communities")
-      .select("id, community_name, community_description, community_photo")
+      .select("id, owner_id, community_name, community_description, community_photo")
       .eq("id", communityId)
       .single();
 
     if (error) throw error;
+
+    const isOwner = community.owner_id === appState.user.id;
 
     // 2. Get members (with profiles join)
     const { data: members, error: membersError } = await supabase
@@ -2780,44 +4196,245 @@ body.innerHTML = `
         </h2>
 
         <p class="community-desc">
-          ${community.community_description || "No description yet."}
+          ${community.community_description || t("noDescription")}
         </p>
 
         <div class="community-meta">
-          👥 ${members.length} members
+          👥 ${members.length} ${t("members_lowercase")}
         </div>
       </div>
     </div>
 
-    <!-- MEMBERS -->
-    <div class="community-section">
-      <h3 class="section-title">Members</h3>
+    ${isOwner ? `
+  <div class="owner-actions">
+    <button id="editCommunityBtn" class="action-btn">${t("editCommunity")}</button>
+    <button id="deleteCommunityBtn" class="action-btn danger">${t("deleteCommunity")}</button>
+  </div>
+` : ""}
 
-      <div class="members-grid">
-        ${members.map(m => `
-          <div class="member-card">
-            <img 
-              src="${m["0con_profilesdata"]?.profile_photo_url || "default.png"}" 
-              class="member-avatar"
-            />
-            <div class="member-name">
-              ${m["0con_profilesdata"]?.name || "Unknown"}
-            </div>
-          </div>
-        `).join("")}
+${!isOwner ? `
+  <div class="owner-actions">
+    <button id="leaveCommunityBtn" class="action-btn danger">
+     ${t("leaveCommunity")}
+    </button>
+  </div>
+` : ""}
+
+    <!-- MEMBERS -->
+${members.map(m => {
+  const isSelf = m.user_id === appState.user.id;
+
+  return `
+    <div class="member-card">
+      <img 
+        src="${m["0con_profilesdata"]?.profile_photo_url || "default.png"}" 
+        class="member-avatar"
+      />
+      
+      <div class="member-name">
+        ${m["0con_profilesdata"]?.name || "Unknown"}
       </div>
+
+      ${isOwner && !isSelf ? `
+        <button class="remove-member-btn" data-user="${m.user_id}">
+          ${t("remove")}
+        </button>
+      ` : ""}
     </div>
+  `;
+}).join("")}
+
 
   </div>
 `;
+if (isOwner) {
+  document.getElementById("editCommunityBtn").onclick = () =>
+    openEditCommunityModal(community);
+
+  document.getElementById("deleteCommunityBtn").onclick = () =>
+    deleteCommunity(community.id);
+
+setTimeout(() => {
+  document.querySelectorAll(".remove-member-btn").forEach(btn => {
+    btn.onclick = () => {
+      const userId = btn.dataset.user;
+      removeMember(community.id, userId);
+    };
+  });
+});
+}
+
+if (!isOwner) {
+  document.getElementById("leaveCommunityBtn").onclick = () =>
+    leaveCommunity(community.id);
+}
 
   } catch (err) {
     console.error("Community modal error:", err);
-    body.innerHTML = "<p>Error loading community</p>";
+    body.innerHTML = t("errorLoadingCommunity");
   }
+
+  
 
   // Close handler
   document.getElementById("closeCommunityModalBtn").onclick = closeCommunityPage;
+}
+
+function openEditCommunityModal(community) {
+  const modal = document.createElement("div");
+  modal.className = "popup-overlay";
+
+  modal.innerHTML = `
+    <div class="popup">
+      <h3>${t("editCommunity")}</h3>
+
+      <label>${t("photo")}</label>
+      <input type="file" id="editCommunityPhoto" />
+
+      <label>${t("description")}</label>
+      <textarea id="editCommunityDesc" maxlength="300">${community.community_description || ""}</textarea>
+
+      <div class="popup-actions">
+        <button id="saveCommunityEdit">${t("save")}</button>
+        <button id="cancelEdit">${t("cancel")}</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  document.getElementById("cancelEdit").onclick = () => modal.remove();
+
+  document.getElementById("saveCommunityEdit").onclick = async () => {
+    const file = document.getElementById("editCommunityPhoto").files[0];
+    const desc = document.getElementById("editCommunityDesc").value;
+
+    try {
+      let newPhotoUrl = community.community_photo;
+
+      // 1. Upload new photo if exists
+      if (file) {
+        const filePath = `${appState.user.id}/community.jpg`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("COMMUNITY_PHOTOS")
+          .upload(filePath, file, { upsert: true });
+
+        if (uploadError) throw uploadError;
+
+        const { data } = supabase.storage
+          .from("COMMUNITY_PHOTOS")
+          .getPublicUrl(filePath);
+
+        newPhotoUrl = data.publicUrl + "?t=" + Date.now();
+      }
+
+      // 2. Update communities table
+      const { error: updateError } = await supabase
+        .from("0con_communities")
+        .update({
+          community_description: desc,
+          community_photo: newPhotoUrl
+        })
+        .eq("id", community.id);
+
+      if (updateError) throw updateError;
+
+      // 3. Update chats table
+      const { error: chatError } = await supabase
+        .from("0con_community_chats")
+        .update({
+          community_photo: newPhotoUrl
+        })
+        .eq("community_id", community.id);
+
+      if (chatError) throw chatError;
+
+      modal.remove();
+      openCommunityPage(community.id);
+
+    } catch (err) {
+      console.error(err);
+      alert(t("errorUpdatingCommunity"));
+    }
+  };
+}
+
+async function deleteCommunity(communityId) {
+  const confirmBox = confirm(t("errorDeletingCommunity"));
+
+  if (!confirmBox) return;
+
+  try {
+    await supabase
+      .from("0con_communities")
+      .delete()
+      .eq("id", communityId)
+      .eq("owner_id", appState.user.id);
+
+    await supabase
+      .from("0con_community_chats")
+      .delete()
+      .eq("community_id", communityId);
+
+    await supabase
+      .from("0con_community_participants")
+      .delete()
+      .eq("community_id", communityId);
+
+    document.getElementById("communityModal").style.display = "none";
+    renderCommunityTopbar();
+    openMessagesList();
+
+  } catch (err) {
+    console.error(err);
+    alert(t("errorDeletingCommunity"));
+  }
+}
+
+async function removeMember(communityId, userId) {
+  const ok = confirm(t(confirmRemoveMember));
+  if (!ok) return;
+
+  try {
+    const { error } = await supabase
+      .from("0con_community_participants")
+      .delete()
+      .eq("community_id", communityId)
+      .eq("user_id", userId);
+
+    if (error) throw error;
+
+    openCommunityPage(communityId);
+
+  } catch (err) {
+    console.error(err);
+    alert(t("errorDeletingMember"));
+  }
+}
+
+async function leaveCommunity(communityId) {
+  const ok = confirm(t("confirmLeave"));
+  if (!ok) return;
+
+  try {
+    const { error } = await supabase
+      .from("0con_community_participants")
+      .delete()
+      .eq("community_id", communityId)
+      .eq("user_id", appState.user.id);
+
+    if (error) throw error;
+
+    document.getElementById("communityModal").style.display = "none";
+
+    createMessageCards();
+    openMessagesList();
+
+  } catch (err) {
+    console.error(err);
+    alert(t("errorLeavingCommunity"));
+  }
 }
 
 function closeCommunityPage() {
@@ -2867,7 +4484,8 @@ function subscribeToMessageUpdates() {
             .from('0con_matches')
             .update({
               last_message: msg.content,
-              last_sender_id: msg.sender_id
+              last_sender_id: msg.sender_id,
+              last_message_at: new Date().toISOString()
             })
             .eq('id', msg.match_id);
         }
@@ -2881,7 +4499,8 @@ function subscribeToMessageUpdates() {
             .update({
               last_message: msg.content,
               last_sender_id: msg.sender_id,
-              last_sender_name: msg.sender_name
+              last_sender_name: msg.sender_name,
+              last_message_at: new Date().toISOString()
             })
             .eq('community_id', msg.community_id);
         }
@@ -2906,7 +4525,9 @@ async function createMessageCards() {
         user1_id, user2_id,
         user1_name, user2_name,
         user1_photo, user2_photo,
-        last_message, last_sender_id, type
+        last_message, last_sender_id, last_message_at, 
+        type,
+        is_muted_by_user1 ,is_muted_by_user2
       `)
       .or(`user1_id.eq.${viewerId},user2_id.eq.${viewerId}`);
 
@@ -2938,7 +4559,9 @@ const communityCards = communityChats.map(chat => ({
   last_sender_id: chat.last_sender_id,
   last_sender_name: chat.last_sender_name,
   type: 3,
-  isCommunity: true
+  isCommunity: true,
+  is_muted: chat.is_muted,
+  last_message_at: chat.last_message_at
 }));
 
     // =========================
@@ -2947,6 +4570,7 @@ const communityCards = communityChats.map(chat => ({
     const cards = [...matchCards, ...communityCards];
 
     renderMessageCards(cards);
+    updateMessagesDot(cards);
 
   } catch (err) {
     console.error('createMessageCards failed:', err);
@@ -2958,65 +4582,85 @@ function renderMessageCards(cards) {
   container.innerHTML = '';
 
   if (!cards || cards.length === 0) {
-    container.innerHTML = `<p>No messages yet</p>`;
+    container.innerHTML = `<p>${t("nomessagesyet")}</p>`;
     return;
   }
 
-  cards.forEach(card => {
-    const el = document.createElement('div');
-
-    // 🎨 TYPE CLASS
-    let typeClass = '';
-    if (card.type === 1) typeClass = 'friend';
-    if (card.type === 2) typeClass = 'date';
-    if (card.type === 3) typeClass = 'community';
-
-    el.className = `invitation-card ${typeClass}`;
-
-    // ✂️ SHORT MESSAGE + SENDER LABEL
-let preview = card.last_message
-  ? card.last_message.length > 30
-    ? card.last_message.slice(0, 30) + '...'
-    : card.last_message
-  : 'No messages yet';
-
-// 👇 NEW: who sent last message
-let senderLabel = '';
-
-if (card.last_sender_id) {
-  if (card.last_sender_id === appState.user.id) {
-    senderLabel = 'You:';
-  } else {
-    senderLabel = card.last_sender_name || '';
+  function isCardMuted(card) {
+  // community mute
+  if (card.isCommunity) {
+    return card.is_muted === true; // if you include it in query
   }
+
+  // match mute (your existing logic)
+  const viewerId = appState.user.id;
+
+  const isUser1 = viewerId === card.user1_id;
+  const isUser2 = viewerId === card.user2_id;
+
+  if (isUser1) return card.is_muted_by_user1;
+  if (isUser2) return card.is_muted_by_user2;
+
+  return false;
 }
 
-// combine
-const finalPreview = card.last_message
-  ? `${senderLabel} ${preview}`
-  : 'No messages yet';
+cards.forEach(card => {
+  const el = document.createElement('div');
 
-    el.innerHTML = `
-  <img class="invitation-avatar" src="${card.photo || '/default-avatar.png'}" />
+  let typeClass = '';
+  if (card.type === 1) typeClass = 'friend';
+  if (card.type === 2) typeClass = 'date';
+  if (card.type === 3) typeClass = 'community';
 
-  <div class="invitation-content">
-    <div class="invitation-name">
-       ${(card.name || 'Unknown') + (card.name ? ';' : '')}
-    </div>
+  el.className = `invitation-card ${typeClass}`;
 
-    <div class="invitation-meta">
+  const muted = isCardMuted(card);
+
+  // 👇 slice depends on mute
+  const limit = muted ? 25 : 30;
+
+  let preview = card.last_message
+    ? card.last_message.length > limit
+      ? card.last_message.slice(0, limit) + '...'
+      : card.last_message
+    : 'No messages yet';
+
+  let senderLabel = '';
+
+  if (card.last_sender_id) {
+    if (card.last_sender_id === appState.user.id) {
+      senderLabel = t("you");
+    } else {
+      senderLabel = card.last_sender_name || '';
+    }
+  }
+
+  const finalPreview = card.last_message
+    ? `${senderLabel} ${preview}`
+    : t("nomessagesyet");
+
+  el.innerHTML = `
+    <img class="invitation-avatar" src="${card.photo || '/default-avatar.png'}" />
+
+    <div class="invitation-content">
+      <div class="invitation-name">
+        ${card.name || 'Unknown'}
+      </div>
+
+      <div class="invitation-meta">
         ${finalPreview}
+      </div>
     </div>
-  </div>
-`;
 
-    // 👉 CLICK → open chat
-    el.addEventListener('click', () => {
-      openChat(card);
-    });
+    ${muted ? `<div class="mute-icon">🔕</div>` : ''}
+  `;
 
-    container.appendChild(el);
+  el.addEventListener('click', () => {
+    openChat(card);
   });
+
+  container.appendChild(el);
+});
 }
 
 function openMessagesList() {
@@ -3025,6 +4669,8 @@ function openMessagesList() {
 
   // show bottom bar
   document.querySelector('.bottombar').style.display = 'flex';
+
+  isChatOpen = false;
 }
 
 function openChatView() {
@@ -3033,6 +4679,8 @@ function openChatView() {
 
   // hide bottom bar (full screen chat)
   document.querySelector('.bottombar').style.display = 'none';
+
+  isChatOpen = true;
 }
 
 async function openChat(card) { 
@@ -3049,6 +4697,26 @@ openChatView();
   const chatState = {
   lastSenderId: null
 };
+
+let isUser1 = false;
+let isUser2 = false;
+let isMuted = false;
+
+if (!isCommunity) {
+  isUser1 = viewerId === card.user1_id;
+  isUser2 = viewerId === card.user2_id;
+
+  if (!isUser1 && !isUser2) {
+    console.error("User is not part of this match");
+    return;
+  }
+
+  isMuted = isUser1 
+    ? card.is_muted_by_user1 
+    : card.is_muted_by_user2;
+}
+
+
 
 let isLoadingMessages = true;
 
@@ -3073,9 +4741,273 @@ header.innerHTML = `
     <img src="${card.photo || '/default-avatar.png'}" class="chat-avatar" />
     <div class="chat-title">${card.name || 'Unknown'}</div>
   </div>
+
+  ${
+    isCommunity
+      ? `<button id="community-mute-btn" class="service-btn">🔔</button>`
+      : `<button id="service-btn" class="service-btn">⋯</button>`
+  }
 `;
 
 container.appendChild(header);
+
+let isCommunityMuted = false;
+
+if (isCommunity) {
+  const { data, error } = await supabase
+    .from('0con_community_participants')
+    .select('is_muted')
+    .eq('community_id', card.id)
+    .eq('user_id', viewerId)
+    .single();
+
+  if (error) {
+    console.error('Fetch mute state error:', error);
+  } else {
+    isCommunityMuted = data?.is_muted === true;
+  }
+}
+
+async function updateCommunityMuteUI() {
+  const btn = header.querySelector('#community-mute-btn');
+  if (!btn) return;
+
+  btn.textContent = isCommunityMuted ? '🔕' : '🔔';
+
+  await createMessageCards();
+}
+
+if (isCommunity) {
+  const muteBtn = header.querySelector('#community-mute-btn');
+
+  updateCommunityMuteUI();
+
+  muteBtn.addEventListener('click', async () => {
+    try {
+      const newState = !isCommunityMuted;
+
+      const { error } = await supabase
+        .from('0con_community_participants')
+        .update({ is_muted: newState })
+        .eq('community_id', card.id)
+        .eq('user_id', viewerId);
+
+      if (error) throw error;
+
+      // ✅ update local state
+      isCommunityMuted = newState;
+
+      // ✅ update UI instantly
+      updateCommunityMuteUI();
+
+    } catch (err) {
+      console.error('Community mute error:', err);
+    }
+  });
+}
+
+
+
+if (!isCommunity) {
+  const serviceBtn = header.querySelector('#service-btn');
+
+  const dropdown = document.createElement('div');
+  dropdown.className = 'service-dropdown hidden';
+dropdown.innerHTML = `
+  <div class="dropdown-item" id="mute-btn">${t("mute_chat")}</div>
+  <div class="dropdown-item" id="unmute-btn">${t("unmute_chat")}</div>
+  <div class="dropdown-item" id="unmatch-btn">${t("unmatch")}</div>
+  <div class="dropdown-item" id="report-btn">${t("report_user")}</div>
+`;
+
+  header.appendChild(dropdown);
+
+  serviceBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('hidden');
+  });
+
+  // close when clicking outside
+document.addEventListener('click', () => {
+  dropdown.classList.add('hidden');
+});
+
+const muteBtn = dropdown.querySelector('#mute-btn');
+const unmuteBtn = dropdown.querySelector('#unmute-btn');
+
+// ✅ SINGLE UX CONTROLLER
+async function updateMuteUI(isMuted) {
+    muteBtn.style.display = isMuted ? 'none' : 'block';
+    unmuteBtn.style.display = isMuted ? 'block' : 'none';
+
+    await createMessageCards();
+  }
+
+  // ✅ INITIAL STATE
+  updateMuteUI(isMuted);
+
+  // =========================
+  // MUTE
+  // =========================
+  muteBtn.addEventListener('click', async () => {
+    try {
+      const column = isUser1 ? 'is_muted_by_user1' : 'is_muted_by_user2';
+
+      await supabase
+        .from('0con_matches')
+        .update({ [column]: true })
+        .eq('id', card.id);
+
+      // ✅ update local state
+      if (isUser1) {
+        card.is_muted_by_user1 = true;
+      } else {
+        card.is_muted_by_user2 = true;
+      }
+
+      // ✅ update UX
+      updateMuteUI(true);
+
+    } catch (err) {
+      console.error('Mute error:', err);
+    }
+  });
+
+  // =========================
+  // UNMUTE
+  // =========================
+  unmuteBtn.addEventListener('click', async () => {
+    try {
+      const column = isUser1 ? 'is_muted_by_user1' : 'is_muted_by_user2';
+
+      await supabase
+        .from('0con_matches')
+        .update({ [column]: false })
+        .eq('id', card.id);
+
+      // ✅ update local state
+      if (isUser1) {
+        card.is_muted_by_user1 = false;
+      } else {
+        card.is_muted_by_user2 = false;
+      }
+
+      // ✅ update UX
+      updateMuteUI(false);
+
+    } catch (err) {
+      console.error('Unmute error:', err);
+    }
+  });
+
+
+  dropdown.querySelector('#unmatch-btn').addEventListener('click', async () => {
+    const confirmUnmatch = confirm(t("confirm_unmatch"));
+    if (!confirmUnmatch) return;
+
+    try {
+      await supabase
+        .from('0con_matches')
+        .delete()
+        .eq('id', card.id);
+
+      supabase.removeChannel(channel);
+      openMessagesList();
+
+    } catch (err) {
+      console.error('Unmatch error:', err);
+    }
+  });
+
+  let reportModal = document.getElementById('report-modal');
+
+  if (!reportModal) {
+    reportModal = document.createElement('div');
+    reportModal.id = 'report-modal';
+    reportModal.className = 'report-modal';
+
+reportModal.innerHTML = `
+  <div class="report-box">
+    <h3>${t("report_user_title")}</h3>
+
+    <textarea
+      id="report-text"
+      maxlength="300"
+      placeholder="${t("report_user_placeholder")}"
+    ></textarea>
+
+    <div class="report-actions">
+      <button id="cancel-report">${t("cancel")}</button>
+      <button id="submit-report">${t("send")}</button>
+    </div>
+  </div>
+`;
+
+    document.body.appendChild(reportModal);
+  }
+
+  dropdown.querySelector('#report-btn').addEventListener('click', () => {
+    reportModal.classList.add('active');
+  });
+
+  reportModal.querySelector('#cancel-report').onclick = () => {
+    reportModal.classList.remove('active');
+  };
+
+  async function getLast50Messages() {
+    const { data } = await supabase
+      .from('0con_messages')
+      .select('content')
+      .eq('match_id', card.id) // ✅ removed isCommunity logic
+      .order('created_at', { ascending: false })
+      .limit(50);
+
+    return (data || []).reverse();
+  }
+
+ const submitBtn = reportModal.querySelector('#submit-report');
+
+ submitBtn.onclick = async () => {
+    const text = reportModal.querySelector('#report-text').value.trim();
+
+if (!text) {
+  alert(t("report_empty_text"));
+  return;
+}
+
+if (text.length > 300) {
+  alert(t("report_too_long"));
+  return;
+}
+
+const conversation = await getLast50Messages();
+
+const reportedId =
+  card.user1_id === viewerId ? card.user2_id : card.user1_id;
+
+try {
+  const { error } = await supabase
+    .from('0con_reports')
+    .insert({
+      reporter_id: viewerId,
+      reported_id: reportedId,
+      reporter_experience: text,
+      conversation: conversation
+    });
+
+  if (error) throw error;
+
+  alert(t("report_success"));
+
+  reportModal.classList.remove('active');
+  dropdown.classList.add('hidden');
+
+} catch (err) {
+  console.error('Report error:', err);
+  alert(t("report_failed"));
+}
+  };
+}
 
 // =========================
 // HEADER CLICK → OPEN PROFILE / COMMUNITY
@@ -3144,11 +5076,11 @@ container.appendChild(inputBar);
 const input = document.createElement('input');
 input.type = "text";
 input.id = "chat-input";
-input.placeholder = "Type a message...";
+input.placeholder = t("chat_placeholder");
 
 const button = document.createElement('button');
 button.id = "send-btn";
-button.textContent = "Send";
+button.textContent = t("send");
 
 // =========================
 // LOCK STATE
@@ -3159,8 +5091,7 @@ if (isCommunity && !communityActive) {
   // Replace entire content (cleanest UX)
   inputBar.innerHTML = `
     <div class="chat-locked-message">
-      🔒 The community owner is no longer a premium member.  
-      This chat has been deactivated.
+      🔒 ${t("chat_locked_message")}
     </div>
   `;
 
@@ -3381,7 +5312,8 @@ const { error } = await supabase
       .from('0con_matches')
       .update({
         last_message: text,
-        last_sender_id: viewerId
+        last_sender_id: viewerId,
+        last_message_at: new Date().toISOString()
       })
       .eq('id', card.id);
   }
@@ -3393,7 +5325,8 @@ const { error } = await supabase
       .update({
         last_message: text,
         last_sender_id: viewerId,
-        last_sender_name: appState.profile.name
+        last_sender_name: appState.profile.name,
+        last_message_at: new Date().toISOString()
       })
       .eq('community_id', card.id);
   }
@@ -3413,13 +5346,19 @@ async function getCommunityChats(viewerId) {
   // 1. get communities where user participates
   const { data: participants, error: pError } = await supabase
     .from('0con_community_participants')
-    .select('community_id')
+    .select('community_id, is_muted')
     .eq('user_id', viewerId);
 
   if (pError) {
     console.error('participants error:', pError);
     return [];
   }
+
+  const muteMap = {};
+
+participants.forEach(p => {
+  muteMap[p.community_id] = p.is_muted;
+});
 
   if (!participants || participants.length === 0) return [];
 
@@ -3434,7 +5373,8 @@ async function getCommunityChats(viewerId) {
       community_photo,
       last_message,
       last_sender_id,
-      last_sender_name
+      last_sender_name,
+      last_message_at
     `)
     .in('community_id', communityIds);
 
@@ -3443,7 +5383,10 @@ async function getCommunityChats(viewerId) {
     return [];
   }
 
-  return chats || [];
+  return (chats || []).map(chat => ({
+    ...chat,
+    is_muted: muteMap[chat.community_id] || false
+  }));
 }
 
 
@@ -3453,13 +5396,40 @@ async function getCommunityChats(viewerId) {
 
 //#region Income Tab
 
+function subscribeToInvitations() {
+  const viewerId = appState.user.id;
+
+  supabase
+    .channel('invitation-updates')
+    .on(
+      'postgres_changes',
+      {
+        event: 'INSERT',
+        schema: 'public',
+        table: '0con_incomes'
+      },
+      async (payload) => {
+        const inv = payload.new;
+
+        // 🚨 only care about incoming invites
+        if (inv.receiver_id !== viewerId) return;
+
+        // =========================
+        // REFRESH UI
+        // =========================
+        await createInvitationCards();
+      }
+    )
+    .subscribe();
+}
+
 async function createInvitationCards() {
   try {
     const viewerId = appState.user.id;
 
     const { data: invites, error } = await supabase
       .from('0con_incomes')
-      .select('id, sender_id, receiver_id, invitation_type')
+      .select('id, sender_id, receiver_id, invitation_type, created_at')
       .eq('receiver_id', viewerId);
 
     if (error) {
@@ -3540,6 +5510,7 @@ async function createInvitationCards() {
     const flatCards = cards.flat().filter(Boolean);
 
     renderInvitationCards(flatCards);
+    updateInvitesDot(invites);
 
   } catch (err) {
     console.error('createInvitationCards failed:', err);
@@ -3551,7 +5522,7 @@ function renderInvitationCards(cards) {
   container.innerHTML = '';
 
   if (!cards || cards.length === 0) {
-    container.innerHTML = `<p class="invitation-empty-state">No invitations yet</p>`;
+    container.innerHTML = `<p class="invitation-empty-state">${t("no_invitations")}</p>`;
     return;
   }
 
@@ -3569,7 +5540,7 @@ function renderInvitationCards(cards) {
     el.className = `invitation-card ${typeClass}`;
 
     const ageSection = card.c_age != null
-      ? `<span class="invitation-meta">Age: ${card.c_age}</span>`
+      ? `<span class="invitation-meta">${t("age_label", { age: card.c_age })}</span>`
       : '';
 
 const isCommunity = card.invitation_type === 3;
@@ -3583,7 +5554,7 @@ el.innerHTML = isCommunity
         <span class="invitation-name">${card.c_name}</span>
       </div>
 
-      <span class="invitation-meta">Community</span>
+      <span class="invitation-meta">${t("community")}</span>
     </div>
   `
   : `
@@ -3668,7 +5639,9 @@ function openInvitationProfile(user) {
   document.body.classList.add("modal-open");
 }
 
-function renderFriendsProfileCardInvitation(user) {  
+function renderFriendsProfileCardInvitation(user) { 
+   const isPremium = appState.profile.is_premium;
+
   return `
     <img src="${user.photo}" width="100%" />
 
@@ -3676,65 +5649,62 @@ function renderFriendsProfileCardInvitation(user) {
     <p>${user.description || ""}</p>
 
     <div class="section">
-      <h4>🤝 Things in common</h4>
-      ${
-        user.common === "no_common" ||
-        !user.common ||
-        user.common.length === 0
-          ? "<p>No matching answers</p>"
-          : user.common
-              .map(c =>
-                renderQuestionBlock(
-                  c.questionId,
-                  c.viewerAnswer,
-                  c.targetAnswer,
-                  "Common"
-                )
-              )
-              .join("")
-      }
-    </div>
-
-    <div class="section">
-      <h4>⚡ Difference</h4>
-      ${
-        !user.difference || user.difference === "no_strong_difference"
-          ? "<p>No differences</p>"
-          : Array.isArray(user.difference)
-              ? user.difference
-                  .map(d =>
-                    renderQuestionBlock(
-                      d.questionId,
-                      d.viewerAnswer,
-                      d.targetAnswer,
-                      "Difference"
-                    )
-                  )
-                  .join("")
-              : user.difference.questionId
-                  ? renderQuestionBlock(
-                      user.difference.questionId,
-                      user.difference.viewerAnswer,
-                      user.difference.targetAnswer,
-                      "Difference"
-                    )
-                  : "<p>No differences</p>"
-      }
-    </div>
-
-    <div class="section">
-      <h4>🎯 Hobbies</h4>
+      <h4>🎯 ${t("hobbies")}</h4>
       <p>${user.hobbies || ""}</p>
     </div>
+
+  ${!isPremium ? `
+  <div class="section">
+    <h4>🤝 ${t("commons")}</h4>
+    ${
+      !Array.isArray(user.common) || user.common.length === 0
+        ? `<p>${t("nomatchinganswers")}</p>`
+        : user.common.map(c =>
+            renderQuestionBlock(
+              c.questionId,
+              c.viewerAnswer,
+              c.targetAnswer,
+              t("common")
+            )
+          ).join("")
+    }
+  </div>
+
+  <div class="section">
+    <h4>⚡ ${t("difference")}</h4>
+    ${
+      !user.difference || !user.difference.questionId
+        ? `<p>${t("nodifferences")}</p>`
+        : renderQuestionBlock(
+            user.difference.questionId,
+            user.difference.viewerAnswer,
+            user.difference.targetAnswer,
+            t("difference")
+          )
+    }
+  </div>
+` : `
+<div class="section">
+  <h4>📊 ${t("fullcompatibilitysurvey")}</h4>
+
+  <button onclick="toggleSurvey('${user.id}', this)">
+    ${t("showsurvey")}
+  </button>
+
+  <div id="premiumSurvey-${user.id}" style="display:none;">
+    ${renderPremiumSurvey(user.friendsurvey, user.survey)}
+  </div>
+</div>
+`}
 
     <div class="actions">
 
       <button data-action="Reject" data-id="${user.id}" data-name="${user.name}" data-photo="${user.photo}">
-        ❌ I don't want this avocado
+        ❌ ${t("reject_avocado")}
       </button>
 
       <button data-action="AcceptAvocado" data-id="${user.id}" data-name="${user.name}" data-photo="${user.photo}">
-        🥑 Accept avocado
+        🥑 ${t("accept_avocado")}
       </button>
 
     </div>
@@ -3743,7 +5713,9 @@ function renderFriendsProfileCardInvitation(user) {
 
 function renderDateProfileCardInvitation(user) { 
 
-const profilePhoto = getProfilePhoto(user);
+  const isPremium = appState.profile.is_premium;
+
+  const profilePhoto = getProfilePhoto(user);
 
   return `
     <div class="photo-gallery">
@@ -3756,60 +5728,57 @@ const profilePhoto = getProfilePhoto(user);
     <p>${user.date_description || ""}</p>
 
     <div class="section">
-      <h4>🎯 Hobbies</h4>
+      <h4>🎯 ${t("hobbies")}</h4>
       <p>${user.hobbies || ""}</p>
     </div>
 
 
-    <div class="section">
-      <h4>🤝 Things in common</h4>
-      ${
-        user.common === "no_common" ||
-        !user.common ||
-        user.common.length === 0
-          ? "<p>No matching answers</p>"
-          : user.common
-              .map(c =>
-                renderQuestionBlock(
-                  c.questionId,
-                  c.viewerAnswer,
-                  c.targetAnswer,
-                  "Common"
-                )
-              )
-              .join("")
-      }
-    </div>
+${!isPremium ? `
+  <div class="section">
+    <h4>🤝 ${t("commons")}</h4>
+    ${
+      !Array.isArray(user.common) || user.common.length === 0
+        ? `<p>${t("nomatchinganswers")}</p>`
+        : user.common.map(c =>
+            renderQuestionBlock(
+              c.questionId,
+              c.viewerAnswer,
+              c.targetAnswer,
+              t("common")
+            )
+          ).join("")
+    }
+  </div>
+
+  <div class="section">
+    <h4>⚡ ${t("difference")}</h4>
+    ${
+      !user.difference || !user.difference.questionId
+        ? `<p>${t("nodifferences")}</p>`
+        : renderQuestionBlock(
+            user.difference.questionId,
+            user.difference.viewerAnswer,
+            user.difference.targetAnswer,
+            t("difference")
+          )
+    }
+  </div>
+` : `
+<div class="section">
+  <h4>📊 ${t("fullcompatibilitysurvey")}</h4>
+
+  <button onclick="toggleSurvey('${user.id}', this)">
+    ${t("showsurvey")}
+  </button>
+
+  <div id="premiumSurvey-${user.id}" style="display:none;">
+    ${renderPremiumSurvey(user.friendsurvey, user.survey)}
+  </div>
+</div>
+`}
 
     <div class="section">
-      <h4>⚡ Difference</h4>
-      ${
-        !user.difference || user.difference === "no_strong_difference"
-          ? "<p>No differences</p>"
-          : Array.isArray(user.difference)
-              ? user.difference
-                  .map(d =>
-                    renderQuestionBlock(
-                      d.questionId,
-                      d.viewerAnswer,
-                      d.targetAnswer,
-                      "Difference"
-                    )
-                  )
-                  .join("")
-              : user.difference.questionId
-                  ? renderQuestionBlock(
-                      user.difference.questionId,
-                      user.difference.viewerAnswer,
-                      user.difference.targetAnswer,
-                      "Difference"
-                    )
-                  : "<p>No differences</p>"
-      }
-    </div>
-
-    <div class="section">
-  <h4>💭 Dating profile details</h4>
+  <h4>💭 ${t("dateprofiledetails")}</h4>
 
   ${
     Array.isArray(user.survey)
@@ -3823,17 +5792,17 @@ const profilePhoto = getProfilePhoto(user);
             `;
           })
           .join("")
-      : "<p>No survey data</p>"
+      : `<p>${t("nosurveydata")}</p>`
   }
 </div>
 
     <div class="actions">
       <button data-action="Reject" data-id="${user.id}" data-name="${user.name}" data-photo="${profilePhoto}">
-        ❌ I don't want that tofu
+        ❌ ${t("reject_tofu")}
       </button>
 
       <button data-action="AcceptTofu" data-id="${user.id}" data-name="${user.name}" data-photo="${profilePhoto}">
-        🍲 Accept Tofu
+        🍲 ${t("reject_tofu")}
       </button>
 
     </div>
@@ -3906,13 +5875,13 @@ modal.dataset.incomeId = incomeId;
             </p>
 
             <div class="community-meta">
-              👥 ${members.length} members
+              👥 ${members.length} ${t("members_lowercase")} 
             </div>
           </div>
         </div>
 
         <div class="community-section">
-          <h3 class="section-title">Members</h3>
+          <h3 class="section-title">${t("members_highercase")}</h3>
 
           <div class="members-grid">
             ${members.map(m => `
@@ -3931,11 +5900,11 @@ modal.dataset.incomeId = incomeId;
 
         <div class="community-actions">
           <button id="communityDeclineBtn" class="btn-decline">
-            ❌ Decline
+            ❌ ${t("decline")}
           </button>
 
           <button id="communityAcceptBtn" class="btn-accept">
-            👥 Accept
+            👥 ${t("accept")}
           </button>
         </div>
 
@@ -4061,7 +6030,9 @@ async function performActionInvitation(userId, invitationType, userName, userPho
             user1_photo: viewerPhoto,
             user2_photo: otherPhoto,
             type: finalType,
-            last_message: "Start the conversation! 🌱"
+            last_message: "Start the conversation! 🌱",
+            last_sender_id: user1,
+            last_message_at: new Date().toISOString()
           },
           { onConflict: "user1_id,user2_id" }
         );
@@ -4195,6 +6166,9 @@ async function upsertMatch(userId, invitationType) {
     console.error("upsertMatch failed:", err);
   }
 }
+
+
+
 //#endregion
 
 //#region Profile Tab
@@ -4348,7 +6322,7 @@ document.getElementById("savePhotoBtn").onclick = async () => {
 
   // PREMIUM / BASIC
   const badge = document.getElementById("profileBadge");
-  badge.textContent = profile.is_premium ? "⭐ Premium Profile" : "Basic Profile";
+  badge.textContent = profile.is_premium ? t("premium_profile") : t("basic_profile");
 
   // AVOCADOS
  const avo = document.getElementById("avocadoCount"); 
@@ -4356,17 +6330,17 @@ document.getElementById("savePhotoBtn").onclick = async () => {
 const count = profile.avocados || 0;
 
 avo.textContent = profile.is_premium
-  ? "You have unlimited avocados 🥑 due to premium profile"
+  ? t("avocado_unlimited")
   : count === 0
-    ? "You have no avocados left today, get unlimited avocados with premium!"
-    : `You have ${count} avocado${count > 1 ? "s" : ""} to send today 🥑`;
+    ? t("avocado_none")
+    : t("avocado_some", { count });
 
   // FRIEND MODE
   const friendMode = document.getElementById("friendModeStatus");
   const friendToggle = document.getElementById("friendModeToggle");
 
 // Set initial state
-friendMode.textContent = profile.friends_mode_on ? "Visible" : "Hidden";
+friendMode.textContent = profile.friends_mode_on ? t("visible") : t("hidden");
 friendToggle.checked = profile.friends_mode_on;
 
 friendToggle.addEventListener("change", async () => {
@@ -4382,7 +6356,7 @@ friendToggle.addEventListener("change", async () => {
     if (error) throw error;
 
     // Update UI
-    friendMode.textContent = newValue ? "Visible" : "Hidden";
+    friendMode.textContent = newValue ? t("visible") : t("hidden");
 
   } catch (err) {
     console.error("Error updating friend mode:", err);
@@ -4410,7 +6384,7 @@ function renderLanguages(languagespassed) {
 
     return {
       id,
-      label: AppData.languageMap[id]?.label || id
+      label: t(id)
     };
   });
 
@@ -4441,7 +6415,7 @@ function openLanguagesModal(profile) {
     input.checked = isChecked;
 
     label.appendChild(input);
-    label.appendChild(document.createTextNode(" " + data.label));
+    label.appendChild(document.createTextNode(" " + t(id)));
 
     container.appendChild(label);
   });
@@ -4496,7 +6470,7 @@ document.getElementById("closeLanguagesBtn").addEventListener("click", async () 
   const closure = document.getElementById("closureBadge");
   if (profile.closure_badge === true) {
     closure.style.display = "block";
-    closure.textContent = "⭐ Closes connections respectfully";
+    closure.textContent = t("respectful_badge");
   } else {
     closure.style.display = "none";
   }
@@ -4548,7 +6522,7 @@ function renderFullSurvey(profile) {
       return `
         <div class="${className}">
           ${isDealbreaker ? "🔴 " : isSelected ? "🟢 " : ""}
-          ${opt.text}
+          ${t(opt.id, currentLang)}
         </div>
       `;
     }).join("");
@@ -4562,11 +6536,11 @@ function renderFullSurvey(profile) {
     return `
       <div class="question-block">
 
-        <b>${q.text}</b>
+        <b>${t(q.id, currentLang)}</b>
 
         <!-- WEIGHT BAR -->
         <div class="weight-wrapper">
-          <span class="weight-label">Importance: ${weight}/10</span>
+          <span class="weight-label">${t("importance")}: ${weight}/10</span>
 
           <div class="scale-bar">
             ${scaleBar}
@@ -4596,44 +6570,48 @@ function renderFriendsSection(profile) {
 
   const isOpen = false; // default closed
 
-  container.innerHTML = `
-    <h3>Friends Preferences</h3>
+container.innerHTML = `
+  <h3>${t("friends_preferences")}</h3>
 
-    <button id="toggleFriendsBox" class="toggle-btn">
-      ${isOpen ? "Hide" : "Show"} preferences
-    </button>
-
-    <div id="friendsContent" style="display:none; margin-top:10px;">
-
-      <div class="friends-content">
-
-        <div class="survey-section">
-          ${renderFullSurvey(profile)}
-        </div>
-
-<div class="edit-status">
-  <button ${editable ? "" : "disabled"} id="editSurveyBtn">
-    ${
-      editable
-        ? "Edit"
-        : `You can edit in ${days} day(s)`
-    }
+  <button id="toggleFriendsBox" class="toggle-btn">
+    ${isOpen ? t("hide_preferences") : t("show_preferences")}
   </button>
-</div>
 
+  <div id="friendsContent" style="display:none; margin-top:10px;">
+
+    <div class="friends-content">
+
+      <div class="survey-section">
+        ${renderFullSurvey(profile)}
       </div>
+
+      <div class="edit-status">
+        <button ${editable ? "" : "disabled"} id="editSurveyBtn">
+          ${
+            editable
+              ? t("edit")
+              : t("edit_available_in").replace("{days}", days)
+          }
+        </button>
+      </div>
+
     </div>
-  `;
+  </div>
+`;
 
   // toggle logic
   const btn = document.getElementById("toggleFriendsBox");
   const content = document.getElementById("friendsContent");
 
-  btn.addEventListener("click", () => {
-    const open = content.style.display === "none";
-    content.style.display = open ? "block" : "none";
-    btn.textContent = open ? "Hide preferences" : "Show preferences";
-  });
+btn.addEventListener("click", () => {
+  const open = content.style.display === "none";
+
+  content.style.display = open ? "block" : "none";
+
+  btn.textContent = open
+    ? t("hide_preferences")
+    : t("show_preferences");
+});
 
   document.getElementById("editSurveyBtn").onclick = () => {
   openEditFriendsModal(profile);
@@ -4661,15 +6639,20 @@ function renderModal() {
     modal.style.display = "block";
 
   modal.innerHTML = `
-    <div class="modal-content">
-      <h2>Edit Preferences</h2>
+  <div class="modal-content">
+    <h2>${t("edit_preferences")}</h2>
 
-      <div id="editQuestions"></div>
+    <div id="editQuestions"></div>
 
-      <button id="saveEditBtn">Save</button>
-      <button id="closeEditBtn">Close</button>
-    </div>
-  `;
+    <button id="saveEditBtn">
+      ${t("save")}
+    </button>
+
+    <button id="closeEditBtn">
+      ${t("close")}
+    </button>
+  </div>
+`;
 
   document.getElementById("closeEditBtn").onclick = closeModal;
   document.getElementById("saveEditBtn").onclick = saveChanges;
@@ -4691,7 +6674,7 @@ function renderQuestions() {
 
     // TITLE
     const title = document.createElement("h3");
-    title.innerText = q.text;
+    title.innerText = t(q.id, currentLang);
     block.appendChild(title);
 
     // ✅ WEIGHT SLIDER (correct place)
@@ -4705,9 +6688,9 @@ weightWrapper.className = "weight-editor";
 
 weightWrapper.innerHTML = `
   <label>
-    Importance: 
+    ${t("importance")}
     <span id="weightVal-${q.id}">${weight}</span>/10
-    ${isLocked ? `<span class="premium-lock">🔒 Premium</span>` : ""}
+    ${isLocked ? `<span class="premium-lock">🔒 ${t("premium")}</span>` : ""}
   </label>
 
   <input 
@@ -4733,7 +6716,7 @@ block.appendChild(weightWrapper);
 
       // ANSWER BUTTON
       const answerBtn = document.createElement("button");
-      answerBtn.innerText = opt.text;
+      answerBtn.innerText = t(opt.id, currentLang);
       answerBtn.className = "option-btn";
 
       if (isSelected) answerBtn.classList.add("selected-option");
@@ -4878,7 +6861,7 @@ photoContainer.innerHTML = photos.length
 
   // BADGE
   const badge = document.getElementById("dateBadge");
-  badge.textContent = profile.is_premium ? "⭐ Premium Profile" : "Basic Profile";
+  badge.textContent = profile.is_premium ? t("premium_profile") : t("basic_profile");
 
   // 🍲 TOFU COUNTER (DATE VERSION)
   const tofuBox = document.getElementById("dateTofuCount");
@@ -4886,10 +6869,10 @@ photoContainer.innerHTML = photos.length
   const tofuCount = profile.tofus || 0;
 
 tofuBox.textContent = profile.is_premium
-  ? "You have unlimited tofu 🍲 due to Premium Profile"
+  ? t("tofu_unlimited")
   : tofuCount === 0
-    ? "You have no tofus left today, upgrade to Premium for unlimited tofu 🍲"
-    : `You have ${tofuCount} tofu${tofuCount > 1 ? "s" : ""} to send today 🍲`;
+    ? t("tofu_none")
+    : t("tofu_some", { tofuCount });
 
 // =========================
 // DATE MODE TOGGLE
@@ -4897,7 +6880,7 @@ tofuBox.textContent = profile.is_premium
 const modeText = document.getElementById("dateModeStatus");
 const modeToggle = document.getElementById("dateModeToggle");
 
-modeText.textContent = profile.dates_mode_on ? "Visible" : "Hidden";
+modeText.textContent = profile.dates_mode_on ? t("visible") : t("hidden");
 modeToggle.checked = profile.dates_mode_on;
 
 modeToggle.onchange = async () => {
@@ -4944,14 +6927,14 @@ function addIncognitoToggle(profile) {
   // ---------- FRIENDS ----------
   Friendscontainer.innerHTML = `
     <div class="incognito-container ${!isPremium ? "locked" : ""}">
-      <span>🕶️ Incognito mode</span>
+      <span>🕶️ ${t("incognito_mode")}</span>
 
       <label class="switch">
         <input type="checkbox" id="friendsIncognitoToggle" ${!isPremium ? "disabled" : ""}>
         <span class="slider"></span>
       </label>
 
-      ${!isPremium ? `<div class="lock-overlay">🔒 Premium</div>` : ""}
+      ${!isPremium ? `<div class="lock-overlay">🔒 ${t("premium")}</div>` : ""}
     </div>
   `;
 
@@ -4979,14 +6962,14 @@ function addIncognitoToggle(profile) {
   // ---------- DATES ----------
   Datescontainer.innerHTML = `
     <div class="incognito-container ${!isPremium ? "locked" : ""}">
-      <span>🕶️ Incognito mode</span>
+      <span>🕶️  ${t("incognito_mode")}</span>
 
       <label class="switch">
         <input type="checkbox" id="datesIncognitoToggle" ${!isPremium ? "disabled" : ""}>
         <span class="slider"></span>
       </label>
 
-      ${!isPremium ? `<div class="lock-overlay">🔒 Premium</div>` : ""}
+      ${!isPremium ? `<div class="lock-overlay">🔒  ${t("premium")}</div>` : ""}
     </div>
   `;
 
@@ -5020,7 +7003,7 @@ function renderDateAnswers(profile) {
   if (!container) return;
 
   if (!Array.isArray(answers)) {
-    container.innerHTML = "<p>No answers yet</p>";
+    container.innerHTML = `<p>${t("noAnswersYet")}</p>`;
     return;
   }
 
@@ -5038,9 +7021,356 @@ function renderDateAnswers(profile) {
 
   container.innerHTML = `
     <div class="date-answers-list">
-      ${html || "<p>No answers yet</p>"}
+      ${html || `<p>${t("noAnswersYet")}</p>`}
     </div>
   `;
+}
+
+
+// CHANGE DATE PROFILE
+// CHANGE DATE PROFILE
+// CHANGE DATE PROFILE
+
+document.getElementById("editDateDescriptionBtn").onclick = () => {
+  const modal = document.getElementById("dateDescriptionModal");
+  const input = document.getElementById("dateDescriptionInput");
+
+  input.value = appState.profile?.date_description || "";
+
+  modal.classList.remove("hidden");
+};
+
+document.getElementById("saveDateDescriptionBtn").onclick = async () => {
+  const value = document.getElementById("dateDescriptionInput").value.trim();
+
+  appState.profile.date_description = value;
+  document.getElementById("dateDescriptionView").textContent = value;
+
+  document.getElementById("dateDescriptionModal").classList.add("hidden");
+
+  await supabase
+    .from("0con_profilesdata")
+    .update({ date_description: value })
+    .eq("id", appState.user.id);
+};
+
+document.getElementById("editDateHobbiesBtn").onclick = () => {
+  const modal = document.getElementById("dateHobbiesModal");
+  const input = document.getElementById("dateHobbiesInput");
+
+  input.value = appState.profile?.hobbies || "";
+
+  modal.classList.remove("hidden");
+};
+
+document.getElementById("saveDateHobbiesBtn").onclick = async () => {
+  const value = document.getElementById("dateHobbiesInput").value.trim();
+
+  appState.profile.hobbies = value;
+  document.getElementById("dateHobbies").textContent = value;
+
+  document.getElementById("dateHobbiesModal").classList.add("hidden");
+
+  await supabase
+    .from("0con_profilesdata")
+    .update({ hobbies: value })
+    .eq("id", appState.user.id);
+};
+
+document.getElementById("editDateAnswersBtn").onclick = () => {
+  openDateAnswersModal();
+};
+
+function openDateAnswersModal(existingMap = null) {
+  const modal = document.getElementById("dateAnswersModal");
+  const container = document.getElementById("dateAnswersEditContainer");
+
+  const answers = appState.profile.dating_survey || [];
+
+  let map = existingMap;
+
+  if (!map) {
+    map = {};
+    answers.forEach(a => map[a.questionId] = a.answer);
+  }
+
+  container.innerHTML = "";
+
+  dateQuestions.forEach(q => {
+    const block = document.createElement("div");
+    block.className = "question-block";
+
+    const title = document.createElement("h3");
+    title.textContent = DateData.getQuestionLabel(q.id);
+    block.appendChild(title);
+
+    if (q.type === "number") {
+      const input = document.createElement("input");
+      input.type = "number";
+      input.value = map[q.id] || "";
+
+      input.oninput = () => {
+        map[q.id] = input.value === "" ? null : Number(input.value);
+      };
+
+      block.appendChild(input);
+    }
+
+    if (q.type === "single") {
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = DateData.getLabel(q.id, opt.id);
+
+        if (
+          map[q.id] === opt.id ||
+          (Array.isArray(map[q.id]) && map[q.id].includes(opt.id))
+        ) {
+          btn.classList.add("selected-option");
+        }
+
+        btn.onclick = () => {
+          if (Array.isArray(map[q.id])) {
+            const set = new Set(map[q.id]);
+            set.has(opt.id) ? set.delete(opt.id) : set.add(opt.id);
+            map[q.id] = Array.from(set);
+          } else {
+            map[q.id] = opt.id;
+          }
+
+          openDateAnswersModal(map); // keep UI refresh
+        };
+
+        block.appendChild(btn);
+      });
+    }
+
+    container.appendChild(block);
+  });
+
+  modal.classList.remove("hidden");
+
+  document.getElementById("saveDateAnswersBtn").onclick = () => saveDateAnswers(map);
+}
+
+async function saveDateAnswers(map) {
+  const formatted = Object.keys(map).map(qid => ({
+    questionId: qid,
+    answer: map[qid]
+  }));
+
+  appState.profile.dating_survey = formatted;
+
+  renderDateAnswers(appState.profile);
+
+  document.getElementById("dateAnswersModal").classList.add("hidden");
+
+  await supabase
+    .from("0con_profilesdata")
+    .update({ dating_survey: formatted })
+    .eq("id", appState.user.id);
+}
+
+
+//PHOTOSECTION
+//PHOTOSECTION
+//PHOTOSECTION
+
+document.getElementById("editDatePhotosBtn").onclick = () => {
+  openDatePhotosModal();
+};
+
+let draftPhotos = [];
+let renderToken = 0;
+
+function getTotalCount() {
+  const saved = appState.profile.photos || [];
+  return saved.length + draftPhotos.filter(p => p.temp).length;
+}
+
+function openDatePhotosModal() {
+
+  const modal = document.getElementById("datePhotosModal");
+
+  // cleanup temp URLs
+  draftPhotos
+    .filter(p => p.temp)
+    .forEach(p => URL.revokeObjectURL(p.url));
+
+  renderToken++;
+  const currentToken = renderToken;
+
+  const saved = (appState.profile.photos || []).map(p => ({
+    id: p.url,
+    url: p.url,
+    temp: false
+  }));
+
+  const temp = draftPhotos.filter(p => p.temp);
+
+  draftPhotos = [...saved, ...temp];
+
+  renderPhotosDateEdit(currentToken);
+
+  modal.classList.remove("hidden");
+
+  updateAddButton();
+}
+
+function renderPhotosDateEdit(token) {
+  // ✅ FIX: guard BEFORE rendering loop
+  if (token !== renderToken) {
+    return;
+  }
+
+  const grid = document.getElementById("datePhotosPreview");
+  grid.innerHTML = "";
+
+  const photosSnapshot = [...draftPhotos];
+
+  photosSnapshot.forEach((p, index) => {
+    const div = document.createElement("div");
+    div.className = "photo-item";
+    div.draggable = true;
+    div.dataset.id = p.id;
+
+    div.innerHTML = `
+      <img src="${p.url}" />
+      ${index === 0 ? `<span class="badge">Profile</span>` : ""}
+      <button class="remove">×</button>
+    `;
+
+    // REMOVE
+div.querySelector(".remove").onclick = () => {
+
+  draftPhotos = draftPhotos.filter(x => x.id !== p.id);
+
+  appState.profile.photos = draftPhotos.filter(x => !x.temp); // ✅ FIX
+
+  renderPhotosDateEdit(token);
+  updateAddButton();
+};
+
+    // DRAG START
+    div.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", p.id);
+    });
+
+    div.addEventListener("dragover", (e) => e.preventDefault());
+
+    // DROP (reorder)
+    div.addEventListener("drop", (e) => {
+      e.preventDefault();
+
+      const fromId = e.dataTransfer.getData("text/plain");
+      const toId = p.id;
+
+      const fromIndex = draftPhotos.findIndex(x => x.id === fromId);
+      const toIndex = draftPhotos.findIndex(x => x.id === toId);
+
+      if (fromIndex === -1 || toIndex === -1) return;
+
+      const moved = draftPhotos.splice(fromIndex, 1)[0];
+      draftPhotos.splice(toIndex, 0, moved);
+
+      renderPhotosDateEdit(token);
+      updateAddButton();
+    });
+
+    grid.appendChild(div);
+  });
+
+}
+
+function updateAddButton() {
+  const btn = document.getElementById("addPhotosBtnDateEdit");
+
+  const total = draftPhotos.length;
+
+  btn.style.display = total >= 5 ? "none" : "block";
+}
+
+document.getElementById("datePhotosInput").onchange = (e) => {
+
+  const files = Array.from(e.target.files);
+
+  const existingSaved = draftPhotos.filter(p => !p.temp).length;
+  const currentTemp = draftPhotos.filter(p => p.temp).length;
+
+  const availableSlots = 5 - existingSaved - currentTemp;
+
+  const newFiles = files.slice(0, availableSlots);
+
+  const newTemp = newFiles.map(file => {
+    const url = URL.createObjectURL(file);
+
+    return {
+      id: url,
+      url,
+      temp: true,
+      file
+    };
+  });
+
+  draftPhotos = [...draftPhotos, ...newTemp];
+
+  e.target.value = "";
+
+  renderPhotosDateEdit(renderToken);
+  updateAddButton();
+};
+
+document.getElementById("saveDatePhotosBtn").onclick = async () => {
+
+  const userId = appState.user.id;
+
+  let currentPhotos = draftPhotos.filter(p => !p.temp);
+
+  const filesToUpload = draftPhotos
+    .filter(p => p.temp)
+    .map(p => p.file)
+    .slice(0, 5 - currentPhotos.length);
+
+  for (let file of filesToUpload) {
+    const blob = await resizeImage(file);
+
+    const fileName = `${Date.now()}_${Math.random()}.jpg`;
+    const path = `${userId}/${fileName}`;
+
+    await supabase.storage
+      .from("DATE_PHOTOS")
+      .upload(path, blob);
+
+    const { data } = supabase.storage
+      .from("DATE_PHOTOS")
+      .getPublicUrl(path);
+
+    currentPhotos.push({
+      url: data.publicUrl
+    });
+  }
+
+  currentPhotos = normalizePhotos(currentPhotos);
+
+  appState.profile.photos = currentPhotos;
+
+  await supabase
+    .from("0con_profilesdata")
+    .update({ photos: currentPhotos })
+    .eq("id", userId);
+
+  draftPhotos = [];
+
+  document.getElementById("datePhotosModal").classList.add("hidden");
+
+  renderDateProfileView(appState.profile);
+};
+
+function normalizePhotos(photos) {
+  return photos.map((p, i) => ({
+    ...p,
+    order: i,
+    isProfile: i === 0
+  }));
 }
 
 //#endregion
@@ -5068,17 +7398,9 @@ document.getElementById("redirectToPremium").addEventListener("click", () => {
   openPremiumScreen();
 });
 
-function initLanguageSetting() {
+
   document.getElementById("setLanguageBtn").addEventListener("click", setLanguage);
-}
 
-function loadSavedLanguage() {
-  const savedLang = localStorage.getItem("app_language");
-
-  if (savedLang) {
-    SetUserLanguage(savedLang);
-  }
-}
 
 async function setLanguage() {
   const lang = document.getElementById("languageSelect").value;
@@ -5109,7 +7431,7 @@ async function setLanguage() {
   }
 
   // 🔄 4. Refresh UI
-  initUI();
+  loadLanguage();
 }
 
 
@@ -5348,7 +7670,7 @@ function closePremiumScreen() {
 }
     
 document.getElementById("supportLink").href =
-  "https://instagram.com/";
+  "https://instagram.com/elu.life";
 
 document.getElementById("exitPremiumBtn").addEventListener("click", () => {
   closePremiumScreen();
@@ -5356,6 +7678,91 @@ document.getElementById("exitPremiumBtn").addEventListener("click", () => {
 
 
 //#endregion
+
+//#region NOTIFICATIONS
+
+// DOT
+// DOT
+// DOT
+function updateMessagesDot(cards) {
+  const viewerId = appState.user.id;
+  const lastOpened = getLastOpened('messages_last_opened');
+
+  let hasUnread = false;
+
+  for (const card of cards) {
+
+    const isMine = card.last_sender_id === viewerId;
+    if (isMine) continue;
+
+    if (!card.last_message_at) continue;
+
+    if (new Date(card.last_message_at) <= new Date(lastOpened)) continue;
+
+    if (!card.isCommunity) {
+      const isUser1 = card.user1_id === viewerId;
+
+      const isMuted = isUser1
+        ? card.is_muted_by_user1
+        : card.is_muted_by_user2;
+
+      if (!isMuted) {
+        hasUnread = true;
+        break;
+      }
+      continue;
+    }
+
+    if (!card.is_muted) {
+      hasUnread = true;
+      break;
+    }
+  }
+
+  const dot = document.getElementById("messages-dot");
+  if (!dot) return;
+
+  // 👇 FINAL UI decision here
+  if (appUI.currentTab === 'messages') {
+    dot.classList.add('hidden');
+    return;
+  }
+
+  dot.classList.toggle('hidden', !hasUnread);
+}
+
+function updateInvitesDot(invites) {
+
+  if (appUI.currentTab === 'matches') {
+    return; // 🚫 no dot while inside invites tab
+  }
+
+  const viewerId = appState.user.id;
+
+  const lastOpened = getLastOpened('invites_last_opened');
+
+  let hasUnread = false;
+
+  for (const inv of invites) {
+
+    if (!inv.created_at) continue;
+
+    const inviteTime = new Date(inv.created_at);
+
+    // ❗ only show if newer than last opened
+    if (inviteTime <= lastOpened) continue;
+
+    hasUnread = true;
+    break;
+  }
+
+  const dot = document.getElementById("invites-dot");
+  if (!dot) return;
+
+  dot.classList.toggle("hidden", !hasUnread);
+}
+
+    //#endregion
 
 //#region DOM
 

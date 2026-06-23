@@ -35,9 +35,15 @@
     }
 
     .logo {
-      font-weight: bold;
-      font-size: 18px;
-    }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+}
 
     .top-right {
       display: flex;
@@ -107,15 +113,22 @@
       cursor: pointer;
     }
 
-    .nav-item span {
-      display: block;
-      font-size: 20px;
-    }
+.nav-item span:first-child {
+  display: block;
+  font-size: 20px;
+}
 
     .nav-item.active {
       color: #333;
       font-weight: bold;
     }
+
+    .bottomlabels {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
 
     .discover-view {
   display: none;
@@ -209,6 +222,7 @@
   align-items: center;
   z-index: 9999;
   padding: 20px;
+  margin-top: 50px;
 }
 
 .modal.hidden {
@@ -245,6 +259,7 @@
 }
 
 #friendsFilterModal .modalContent,
+#communityModal .modalContent,
 #dateFilterModal .modalContent {
   background: white;
   padding: 20px;
@@ -684,6 +699,20 @@ input:checked + .slider:before {
   background: #eaf4ff;
 }
 
+.photo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.photo-actions {
+  display: flex;
+  justify-content: flex-end; /* or center */
+}
+
+.photo-actions .edit-btn {
+  position: static; /* IMPORTANT: remove absolute */
+}
 /* =========================
    HEADER TEXT
 ========================= */
@@ -1087,6 +1116,18 @@ textarea:focus {
   overflow: hidden;
   background: #eaf5ea;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.photo-item.dragging {
+  opacity: 0.5;
+}
+
+.photo-item {
+  cursor: grab;
+}
+
+.photo-item:active {
+  cursor: grabbing;
 }
 
 .photo-item img {
@@ -1680,6 +1721,69 @@ body.modal-open {
   font-size: 16px;
 }
 
+.service-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.service-dropdown {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.service-dropdown .dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.service-dropdown .dropdown-item:hover {
+  background: #f2f2f2;
+}
+
+.report-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.report-modal.active {
+  display: flex; /* ✅ only visible when active */
+  z-index: 9999;
+}
+
+.report-box {
+  background: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.report-box textarea {
+  width: 100%;
+  height: 120px;
+  margin-top: 10px;
+}
+
+.report-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
 /* ================= MESSAGES ================= */
 .chat-messages {
   flex: 1;
@@ -1820,6 +1924,67 @@ body.modal-open {
 
 .info-icon:hover {
   color: #1b5e20;
+}
+
+.owner-actions {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.action-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #333;
+  color: white;
+}
+
+.action-btn.danger {
+  background: #d9534f;
+}
+
+.remove-member-btn {
+  margin-top: 6px;
+  font-size: 12px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* popup */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup textarea {
+  resize: none;
+  height: 100px;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* =========================
@@ -2232,4 +2397,23 @@ body.modal-open {
 .match {
   font-weight: bold;
   color: #2f855a;
+}
+
+/* RED DOT */
+/* RED DOT */
+/* RED DOT */
+/* RED DOT */
+
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.notif-dot.hidden {
+  display: none;
 }

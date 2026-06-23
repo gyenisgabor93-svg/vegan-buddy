@@ -15,45 +15,45 @@
   <div class="survey-container">
 
     <div class="survey-header">
-      <button id="exitSurveyBtn">← Back</button>
-      <h2>Create dating profile</h2>
+      <button id="exitSurveyBtn" data-i18n="backbtn">← Back</button>
+      <h2 data-i18n="createdateprofile">Create dating profile</h2>
     </div>
 
     <!-- STEP 1: PHOTOS -->
     <section class="survey-section">
-      <h3>Photos (max 5)</h3>
+      <h3 data-i18n="photosmax5">Photos (max 5)</h3>
 
-      <input type="file" id="photoInput" accept="image/*" multiple hidden />
+      <input type="file" id="surveyPhotoInput" accept="image/*" multiple hidden />
 
-      <button id="addPhotoBtn">+ Add photos</button>
+      <button id="addPhotoBtn" data-i18n="addphotos">+ Add photos</button>
 
       <div id="photoPreviewGrid" class="photo-grid"></div>
 
-      <p class="hint">First photo will be your profile picture</p>
+      <p class="hint" data-i18n="firstphotohint">First photo will be your profile picture</p>
     </section>
 
     <!-- STEP 2: DESCRIPTION -->
     <section class="survey-section">
-      <h3>Description</h3>
+      <h3 data-i18n="description">Description</h3>
       <textarea id="dateDescription" maxlength="300"
-        placeholder="Write something about yourself..."></textarea>
+       data-i18n-placeholder="writesomethingaboutyourself"></textarea>
     </section>
 
     <!-- STEP 3: HOBBIES -->
     <section class="survey-section">
-      <h3>Hobbies</h3>
+      <h3 data-i18n="hobbies">Hobbies</h3>
       <textarea id="hobbies" maxlength="300"
-        placeholder="e.g. climbing, vegan cooking, skating"></textarea>
+         data-i18n-placeholder="writehobbies"></textarea>
     </section>
 
     <!-- STEP 4: QUESTIONS -->
     <section class="survey-section">
-      <h3>About you</h3>
+      <h3 data-i18n="aboutyou">About you</h3>
       <div id="surveyQuestions"></div>
     </section>
 
     <!-- SAVE -->
-    <button id="saveSurveyBtn" class="primary-btn">
+    <button id="saveSurveyBtn" class="primary-btn" data-i18n="saveprofile">
       Save profile
     </button>
 
@@ -67,38 +67,38 @@
   <div class="premium-container">
 
     <div class="premium-header">
-      <button id="exitPremiumBtn">← Back</button>
-      <h2>Premium</h2>
+      <button id="exitPremiumBtn"  data-i18n="backbtn">← Back</button>
+      <h2 data-i18n="premium">Premium</h2>
     </div>
 
     <!-- PREMIUM CARD -->
     <div class="premium-card">
 
-      <h3>🌟 Premium Subscription</h3>
+      <h3 data-i18n="premiumsubscription">🌟 Premium Subscription</h3>
 
-      <p class="price">€10 / month</p>
+      <p class="price" data-i18n="premiumprice">€10 / month</p>
 
-      <p>Unlock everything:</p>
+      <p data-i18n="unlockeverything">Unlock everything:</p>
 
       <ul>
-        <li>Unlimited dealbreakers</li>
-        <li>Unlimited avocados & tofu (likes, swipes, boosts)</li>
-        <li>Full survey access (see all answers from others)</li>
-        <li>Customize question weights for more precise matching</li>
-        <li>Incognito modes - discover and invite people without being seen</li>
-        <li>Create your own community</li>
-        <li>Travel mode (match while traveling)</li>
+        <li data-i18n="unlimiteddealbreakers">Unlimited dealbreakers</li>
+        <li data-i18n="unlimitedavocados">Unlimited avocados & tofu (likes, swipes, boosts)</li>
+        <li data-i18n="fullsurveyaccess">Full survey access (see all answers from others)</li>
+        <li data-i18n="customizeweights">Customize question weights for more precise matching</li>
+        <li data-i18n="incognitomode">Incognito modes - discover and invite people without being seen</li>
+        <li data-i18n="createowncommunity">Create your own community</li>
+        <li data-i18n="travelmode">Travel mode (match while traveling)</li>
       </ul>
 
-<p class="support-note">
+<p class="support-note"  data-i18n="subscribesupport">
   By subscribing, you are also supporting our mission to promote veganism and make our lifestyle easier.
 </p>
 
-<a id="supportLink" class="support-link" href="#">
+<a id="supportLink" class="support-link" href="#"  data-i18n="learnmore">
   Learn more about the project →
 </a>
 
-      <button id="confirmPremiumBtn" class="primary-btn">
+      <button id="confirmPremiumBtn" class="primary-btn"  data-i18n="upgradetopremium">
         Upgrade to Premium
       </button>
 
@@ -114,20 +114,20 @@
   <div class="survey-container">
 
     <div class="survey-header">
-      <button id="exitCommunitySurveyBtn">← Back</button>
-      <h2>Create your community</h2>
+      <button id="exitCommunitySurveyBtn"  data-i18n="backbtn">← Back</button>
+      <h2  data-i18n="createcommunity">Create your community</h2>
     </div>
     
     <!-- STEP 1: NAME -->
-    <input type="text"  id="CommunityName" maxlength="30" placeholder="Enter community name..." class="text-input survey-section"/>
+    <input type="text"  id="CommunityName" maxlength="30"  data-i18n-placeholder="entercommunityname" class="text-input survey-section"/>
 
     <!-- STEP 2: PHOTO -->
     <section class="survey-section">
-      <h3>Set a Photo</h3>
+      <h3 data-i18n="setaphoto">Set a Photo</h3>
 
       <input type="file" id="CommunityphotoInput" accept="image/*" hidden />
 
-      <button id="CommunityaddPhotoBtn">+ Add photo</button>
+      <button id="CommunityaddPhotoBtn" data-i18n="addphoto">+ Add photo</button>
 
       <div id="photoPreviewGridCommunity" class="photo-grid"></div>
 
@@ -135,36 +135,36 @@
 
     <!-- STEP 3: DESCRIPTION -->
     <section class="survey-section">
-      <h3>Description</h3>
+      <h3 data-i18n="description">Description</h3>
       <textarea id="CommunityDescription" maxlength="300"
-        placeholder="Write something about your community..."></textarea>
+         data-i18n-placeholder="writecommunitydescription"></textarea>
     </section>
 
     <!-- STEP 4: VALUES SURVEY -->
     <section class="survey-section">
-  <h3>Community Values</h3>
+  <h3 data-i18n="communityvalues">Community Values</h3>
   <div id="communityQuestions"></div>
 </section>
 
 
   <!-- STEP 5: THRESHOLD -->
 <section class="survey-section">
-  <h3>Match Requirement</h3>
+  <h3 data-i18n="matchrequirements">Match Requirement</h3>
 
-  <label>
+  <label data-i18n="lowthreshold">
     Minimum match: 
     <span id="thresholdValue">40</span>%
   </label>
 
-  <input type="range" id="CommunityThreshold"min="0" max="100" value="40"/>
+  <input type="range" id="CommunityThreshold" min="0" max="100" value="40"/>
 
-  <small>
+  <small  data-i18n="thresholdhint">
     Only users above this compatibility will be invited
   </small>
 </section>
 
     <!-- SAVE -->
-    <button id="CommunitysaveSurveyBtn" class="primary-btn">
+    <button id="CommunitysaveSurveyBtn" class="primary-btn" data-i18n="createcommunitybtn">
       Create Community
     </button>
 
@@ -179,13 +179,13 @@
     <div id="discover" class="tab active has-topbar">
          <!-- TOP BAR -->
   <div class="topbar">
-    <div class="logo">🔗 Connection</div>
+    <div class="logo"> <img src="icons/logo.jpeg" alt="Logo" class="logo-img">Elu Vegan Circle</div>
 
     <div class="top-right">
 
       <div class="toggle">
-        <button id="friendsBtn" class="active">Friends</button>
-        <button id="dateBtn">Date</button>
+        <button id="friendsBtn" class="active" data-i18n="friendstoggle">Friends</button>
+        <button id="dateBtn" data-i18n="datetoggle">Date</button>
       </div>
     </div>
   </div>
@@ -220,7 +220,7 @@
       <!-- TOPBAR CREATE COMMUNITY -->
 <div id="createCommunityTopbar" class="topbar-action locked">
   
-  <span class="topbar-title">
+  <span class="topbar-title"  data-i18n="createowncommunity">
     Create your own community
   </span>
 
@@ -250,21 +250,21 @@
 
   <!-- TOP BAR -->
   <div class="topbar">
-  <div class="logo">👤 Profile</div>
+  <div class="logo" data-i18n="profiletopbar">👤 Profile</div>
 
   <div class="top-right">
     <div id="settingsBtn">⚙️</div>
-    <div id="backToProfile" class="hidden">← Back</div>
   </div>
 
-</div>
+  </div>
+
   <!-- PROFILE CONTENT -->
   <div id="profileContent">
 
   <!-- MODE TOGGLE -->
   <div class="mode-toggle">
-    <button id="profileFriendsBtn" class="active">Friends</button>
-    <button id="profileDateBtn">Date</button>
+    <button id="profileFriendsBtn" class="active" data-i18n="friendstoggle">Friends</button>
+    <button id="profileDateBtn" data-i18n="datetoggle">Date</button>
   </div>
 
   <!-- FRIENDS PROFILE -->
@@ -318,11 +318,25 @@
 <div id="dateProfile" class="profile-section">
 
   <!-- PHOTO CAROUSEL -->
+<div class="photo-section">
+
+  <!-- PHOTO CAROUSEL -->
   <div id="datePhotos" class="photo-carousel"></div>
+
+  <!-- EDIT BUTTON BELOW -->
+  <div class="photo-actions">
+    <button id="editDatePhotosBtn" class="edit-btn">✏️</button>
+  </div>
+
+</div>
 
   <!-- BASIC INFO -->
   <h2 id="dateName"></h2>
+  <!-- DESCRIPTION -->
+<div class="box" style="position:relative;">
   <p id="dateDescriptionView"></p>
+  <button id="editDateDescriptionBtn" class="edit-btn">✏️</button>
+</div>
 
   <div id="dateBadge"></div>
   <div id="dateTofuCount"></div>
@@ -340,30 +354,44 @@
   <!-- INCÓGNITO (JS will inject if premium) -->
   <div id="DatesincognitoBox"></div>
 
-  <!-- HOBBIES -->
+<!-- HOBBIES -->
+<div class="box" style="position:relative;">
   <div id="dateHobbies"></div>
-
-  <!-- SIMPLE ANSWERS -->
-  <div id="dateAnswersBox"></div>
-
+  <button id="editDateHobbiesBtn" class="edit-btn">✏️</button>
 </div>
+
+<!-- ANSWERS -->
+<div class="box" style="position:relative;">
+  <div id="dateAnswersBox"></div>
+  <button id="editDateAnswersBtn" class="edit-btn">✏️</button>
+</div>
+
 
  
 </div>
-<!-- SETTINGS VIEW (hidden by default) -->
-  <div id="settingsView" class="hidden">
+
+</div>
+
+    </div>
+
+    <div id="settings" class="tab has-topbar">
+
+      <div class="topbar">
+  <div class="logo" data-i18n="profiletopbar">👤 Profile</div>
+
+  <div class="top-right">
+    <div id="backToProfile" data-i18n="backbtn">← Back</div>
+  </div>
+
+  </div>
   
   <!-- PREMIUM UPGRADE -->
 <div class="settings-section premium-box" id="premiumBox">
 
-  <h4>🌟 Premium Profile</h4>
+  <h4 data-i18n="premiumprofile">🌟 Premium Profile</h4>
 
-  <a id="learnMoreLink" class="settings-link" href="#">
-    Learn more about our features & mission →
-  </a>
-
-  <button id="redirectToPremium" class="button">
-    Upgrade to Premium
+  <button id="redirectToPremium" class="button" data-i18n="learnmoreaboutusandpremium">
+    Learn more about our premium features & mission →
   </button>
 
 </div>
@@ -371,11 +399,11 @@
 <!-- UNSUBSCRIBE (only for premium users) -->
 <div class="settings-section premium-box hidden" id="unsubscribeBox">
 
-  <h4>⭐ Premium Active</h4>
+  <h4 data-i18n="premiumactive">⭐ Premium Active</h4>
 
-  <p>You are currently a Premium user.</p>
+  <p data-i18n="currentlypremium">You are currently a Premium user.</p>
 
-  <button id="unsubscribeBtn" class="danger button">
+  <button id="unsubscribeBtn" class="danger button" data-i18n="cancelpremium">
     Cancel Premium
   </button>
 
@@ -385,23 +413,23 @@
   <div class="settings-section">
 
     <!-- LANGUAGE -->
-    <h4>🌍 Language</h4>
+    <h4 data-i18n="langs">🌍 Language</h4>
     <select id="languageSelect">
-      <option value="en">English</option>
-      <option value="es">Español</option>
-      <option value="hu">Hungarian</option>
+      <option value="en" data-i18n="english">English</option>
+      <option value="es" data-i18n="spanish">Spanish</option>
+      <option value="hu" data-i18n="hungarian">Hungarian</option>
     </select>
 
-    <button id="setLanguageBtn">Set Language</button>
+    <button id="setLanguageBtn" data-i18n="setlang">Set Language</button>
 
    </div>
 
   
 <div class="settings-section">
-  <h4>🔔 Notifications</h4>
+  <h4 data-i18n="notifications">🔔 Notifications</h4>
 
   <label>
-    Match notifications
+    <span data-i18n="matchnotifs">Match notifications</span>
     <div class="switch">
       <input type="checkbox" id="notifMatches">
       <span class="slider"></span>
@@ -409,7 +437,7 @@
   </label><br>
 
   <label>
-    Invitation notifications
+  <span data-i18n="invitenotifs">Invitation notifications</span>
     <div class="switch">
       <input type="checkbox" id="notifIncomes">
       <span class="slider"></span>
@@ -417,7 +445,7 @@
   </label><br>
 
   <label>
-    Messages
+   <span data-i18n="messagenotifs">Messages</span>
     <div class="switch">
       <input type="checkbox" id="notifMessages">
       <span class="slider"></span>
@@ -425,7 +453,7 @@
   </label><br>
 
   <label>
-    App updates & tips
+    <span data-i18n="updatenotifs">App updates & tips</span>
     <div class="switch">
       <input type="checkbox" id="notifUpdates">
       <span class="slider"></span>
@@ -437,16 +465,11 @@
   <!-- CONTACT SECTION -->
 <div class="settings-section">
 
-  <h4>📩 Contact us</h4>
+  <h4 data-i18n="contactus">📩 Contact us</h4>
 
-  <p>Need help or have feedback? We’re here for you.</p>
+  <p data-i18n="needhelp">Need help or have feedback? We’re here for you.</p>
 
-  <button id="contactSupportBtn" class="button">Contact support</button>
-
-  <!-- Optional: quick email fallback -->
-  <p style="font-size: 12px; opacity: 0.7;">
-    Or email us at: support@yourapp.com
-  </p>
+  <button id="contactSupportBtn" class="button" data-i18n="contactsupportbtn">Contact support</button>
 
 </div>
 
@@ -454,23 +477,16 @@
   <!-- ACCOUNT ACTIONS -->
   <div class="settings-section danger-zone">
 
-    <h4>⚙️ Account</h4>
+    <h4 data-i18n="account">⚙️ Account</h4>
 
-    <button id="logoutBtn" class="button">Log out</button>
-    <button id="deleteAccountBtn" class="danger button">
+    <button id="logoutBtn" class="button" data-i18n="logout">Log out</button>
+    <button id="deleteAccountBtn" class="danger button" data-i18n="deleteprofile">
       Delete profile
     </button>
 
   </div>
   
-</div>
- 
-
     </div>
-
-
-</div>
-
 
  <!--
     <div id="communities" class="tab">
@@ -508,16 +524,21 @@
   <div class="bottombar" id="BottomBar">
 
     <div class="nav-item active" data-tab="discover">
-      <span>🔍</span>Discover
+      <span>🔍</span>
+      <span class="bottomlabels" data-i18n="discover">Discover</span>
     </div>
 
-    <div class="nav-item" data-tab="messages">
-      <span>💬</span>Messages
-    </div>
+<div class="nav-item" data-tab="messages">
+  <span>💬</span>
+  <span class="bottomlabels" data-i18n="messages">Messages</span>
+  <span id="messages-dot" class="notif-dot hidden"></span>
+</div>
 
-    <div class="nav-item" data-tab="matches">
-      <span>📨</span>Invitations
-    </div>
+<div class="nav-item" data-tab="matches">
+  <span>📨</span>
+  <span class="bottomlabels" data-i18n="invitations">Invitations</span>
+  <span id="invites-dot" class="notif-dot hidden"></span>
+</div>
 
 <!-- 
     <div class="nav-item" data-tab="communities">
@@ -526,7 +547,8 @@
 -->
 
     <div class="nav-item" data-tab="profile">
-      <span>👤</span>Profile
+      <span>👤</span>
+      <span class="bottomlabels" data-i18n="profile">Profile</span>
     </div>
 
   </div>
@@ -541,22 +563,22 @@
 <div id="friendsFilterModal" class="modal" style="display:none;">
 
   <div class="modalContent">
-    <h3>Friends Filters</h3>
+    <h3 data-i18n="friendsfilters">Friends Filters</h3>
 
     <div class="filters">
 <label>
-  Distance: <span id="distanceFriendValue">0 km</span>
+ <span data-i18n="distance">Distance:</span> <span id="distanceFriendValue"></span>
   <input type="range" id="distancefriendfilter" min="0" max="100">
 </label>
 
 <label>
-  Match score threshold: <span id="friendsThresholdValue">0%</span>
+  <span data-i18n="matchscore">Match score threshold: </span><span id="friendsThresholdValue">0%</span>
   <input type="range" id="friendsthreshold" min="0" max="100">
 </label>
     </div>
 
-  <button class="closeBtn">Close</button>
-  <button class="saveBtn" id="saveFriendsFilters">Save</button>
+  <button class="closeBtn" data-i18n="close">Close</button>
+  <button class="saveBtn" id="saveFriendsFilters" data-i18n="save">Save</button>
 
   </div>
 
@@ -565,44 +587,44 @@
 <div id="dateFilterModal" class="modal" style="display:none;">
 
   <div class="modalContent">
-    <h3>Dating Filters</h3>
+    <h3 data-i18n="datingfilters">Dating Filters</h3>
 
     <div class="filters">
 
 <label>
-  Age range:
+ <span data-i18n="agerange">Age range:</span> 
   <div>
-    Min: <span id="ageMinValue">18</span>
+  <span data-i18n="min">Min:</span>   <span id="ageMinValue">18</span>
     <input type="range" id="ageMin" min="18" max="100">
   </div>
   <div>
-    Max: <span id="ageMaxValue">100</span>
+  <span data-i18n="max">Max:</span>  <span id="ageMaxValue">100</span>
     <input type="range" id="ageMax" min="18" max="100">
   </div>
 </label>
 
 <label>
-  Distance: <span id="dateDistanceValue">0 km</span>
+<span data-i18n="distance">Distance:</span> <span id="dateDistanceValue">0 km</span>
   <input type="range" id="dateDistance" min="0" max="100">
 </label>
 
 <label>
-  Match score threshold: <span id="dateThresholdValue">0%</span>
+  <span data-i18n="matchscore">Match score threshold: </span> <span id="dateThresholdValue">0%</span>
   <input type="range" id="dateThreshold" min="0" max="100">
 </label>
 
-      <label>Show:</label>
+      <label data-i18n="show">Show:</label>
 <div>
-  <label><input type="radio" name="gender" value="all" checked> All</label>
-  <label><input type="radio" name="gender" value="man"> Man</label>
-  <label><input type="radio" name="gender" value="woman"> Woman</label>
-  <label><input type="radio" name="gender" value="other"> Other</label>
+  <label><input type="radio" name="gender" value="all" checked> <span data-i18n="all">All </span></label>
+  <label><input type="radio" name="gender" value="man"> <span data-i18n="man">Man </span></label>
+  <label><input type="radio" name="gender" value="woman"><span data-i18n="woman">Woman </span></label>
+  <label><input type="radio" name="gender" value="other"> <span data-i18n="other">Other </span></label>
 </div>
 
     </div>
 
-  <button class="closeBtn">Close</button>
-  <button class="saveBtn" id="saveDateFilters">Save</button>
+  <button class="closeBtn" data-i18n="close">Close</button>
+  <button class="saveBtn" id="saveDateFilters" data-i18n="save">Save</button>
 
   </div>
 
@@ -611,13 +633,13 @@
 
 <div id="editFriendsModal" class="modal" style="display:none;">
   <div class="modal-content">
-    <h2>Edit Preferences</h2>
+    <h2 data-i18n="editpreferences">Edit Preferences</h2>
 
     <div id="editQuestions"></div>
 
     <div class="modal-actions">
-      <button id="saveEditBtn">Save</button>
-      <button id="closeEditBtn">Close</button>
+      <button id="saveEditBtn" data-i18n="save">Save</button>
+      <button id="closeEditBtn" data-i18n="close">Close</button>
     </div>
   </div>
 </div>
@@ -625,7 +647,7 @@
 <div id="communityModal" class="modal" style="display:none;">
   <div class="modalContent">
     
-    <button class="closeBtn" id="closeCommunityModalBtn">Close</button>
+    <button class="closeBtn" id="closeCommunityModalBtn" data-i18n="close">Close</button>
 
     <div id="communityModalBody"></div>
 
@@ -647,73 +669,148 @@
 <div id="contactModal" class="modal" style="display:none;">
   <div class="modal-content">
 
-    <h2>Contact Us</h2>
-    <p>We’re here to help! Choose a subject and tell us your message.</p>
+    <h2 data-i18n="contacttitle">Contact Us</h2>
+    <p data-i18n="contactintro">We’re here to help! Choose a subject and tell us your message.</p>
 
     <!-- SUBJECT -->
-    <label>Subject:</label>
+    <label data-i18n="subject">Subject:</label>
     <select id="contactSubject" style="width: 100%; padding: 0.5rem;">
-      <option value="">-- Select a subject --</option>
-      <option value="Report a Bug">Report a Bug</option>
-      <option value="Billing issue">Billing issue</option>
-      <option value="App Feedback">App Feedback</option>
-      <option value="Other">Other</option>
+      <option value="" data-i18n="selectsubject">-- Select a subject --</option>
+      <option value="Report a Bug" data-i18n="reportbug">Report a Bug</option>
+      <option value="Billing issue" data-i18n="billingissue">Billing issue</option>
+      <option value="App Feedback" data-i18n="appfeedback">App Feedback</option>
+      <option value="Other" data-i18n="other">Other</option>
     </select>
 
     <!-- MESSAGE -->
-    <label style="margin-top: 1rem; display:block;">Message:</label>
+    <label style="margin-top: 1rem; display:block;" data-i18n="message">Message:</label>
     <textarea id="contactMessage" rows="6"
       style="width: 100%; padding: 0.5rem;"></textarea>
 
-    <button id="sendContactMessage" style="margin-top: 1rem; width: 100%;">
+    <button id="sendContactMessage" style="margin-top: 1rem; width: 100%;" data-i18n="sendmessage">
       Send Message
     </button>
 
-    <button id="closeContactModal" style="margin-top: 0.5rem; width: 100%;">
+    <button id="closeContactModal" style="margin-top: 0.5rem; width: 100%;" data-i18n="close">
       Close
     </button>
 
   </div>
 </div>
 
+<!-- FRIENDSCHANGE --> 
 <div id="languagesModal" class="modal hidden">
   <div class="modal-content">
-    <h3>Edit languages</h3>
+    <h3 data-i18n="editlanguages">Edit languages</h3>
 
     <div id="languagesCheckboxList"></div>
 
-    <button id="saveLanguagesBtn">Save</button>
-    <button id="closeLanguagesBtn">Cancel</button>
+    <button id="saveLanguagesBtn" data-i18n="save">Save</button>
+    <button id="closeLanguagesBtn" data-i18n="close">Cancel</button>
   </div>
 </div>
 
 <div id="descriptionModal" class="modal hidden">
   <div class="modal-content">
-    <h3>Edit description</h3>
+    <h3 data-i18n="editdescription">Edit description</h3>
 
     <textarea id="descriptionInput" maxlength="300"></textarea>
 
     <div>
-      <button id="saveDescriptionBtn">Save</button>
-      <button id="closeDescriptionBtn">Cancel</button>
+      <button id="saveDescriptionBtn" data-i18n="save">Save</button>
+      <button id="closeDescriptionBtn" data-i18n="close">Cancel</button>
     </div>
   </div>
 </div>
 
 <div id="photoModal" class="modal hidden">
   <div class="modal-content">
-    <h3>Replace profile photo</h3>
+    <h3 data-i18n="replacemodal">Replace profile photo</h3>
 
     <img id="photoPreview" style="width:100%; border-radius:10px;" />
 
     <input type="file" id="photoInput" accept="image/*">
 
     <div style="margin-top:10px;">
-      <button id="savePhotoBtn">Save</button>
-      <button id="closePhotoBtn">Cancel</button>
+      <button id="savePhotoBtn" data-i18n="save">Save</button>
+      <button id="closePhotoBtn" data-i18n="cancel">Cancel</button>
     </div>
   </div>
 </div>
+
+<!-- DATECHANGE --> 
+<div id="dateDescriptionModal" class="modal hidden">
+  <div class="modal-content">
+    <h3 data-i18n="editdescription">Edit description</h3>
+
+    <textarea 
+      id="dateDescriptionInput" 
+      maxlength="300"
+      placeholder="Write something about yourself..."
+    ></textarea>
+
+    <div class="modal-actions">
+      <button onclick="this.closest('.modal').classList.add('hidden')" data-i18n="cancel">Cancel</button>
+      <button id="saveDateDescriptionBtn" class="primary-btn" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="dateHobbiesModal" class="modal hidden">
+  <div class="modal-content">
+    <h3 data-i18n="edithobbies">Edit hobbies</h3>
+
+    <textarea 
+      id="dateHobbiesInput" 
+      maxlength="300"
+      placeholder="e.g. climbing, vegan cooking, skating"
+    ></textarea>
+
+    <div class="modal-actions">
+      <button onclick="this.closest('.modal').classList.add('hidden')" data-i18n="cancel">Cancel</button>
+      <button id="saveDateHobbiesBtn" class="primary-btn" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="dateAnswersModal" class="modal hidden">
+  <div class="modal-content large">
+    <h3 data-i18n="aboutyou">About you</h3>
+
+    <div id="dateAnswersEditContainer"></div>
+
+    <div class="modal-actions">
+      <button onclick="this.closest('.modal').classList.add('hidden')" data-i18n="cancel">Cancel</button>
+      <button id="saveDateAnswersBtn" class="primary-btn" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="datePhotosModal" class="modal hidden">
+  <div class="modal-content large">
+    <h3 data-i18n="yourphotosmax5">Your photos (max 5)</h3>
+
+    <input 
+      type="file" 
+      id="datePhotosInput" 
+      accept="image/*" 
+      multiple 
+      hidden
+    />
+
+    <button id="addPhotosBtnDateEdit" onclick="document.getElementById('datePhotosInput').click()" data-i18n="addphotos">
+      + Add photos
+    </button>
+
+    <div id="datePhotosPreview" class="photo-grid"></div>
+
+    <div class="modal-actions">
+      <button onclick="this.closest('.modal').classList.add('hidden')" data-i18n="cancel">Cancel</button>
+      <button id="saveDatePhotosBtn" class="primary-btn" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
 
 
 
