@@ -43,6 +43,34 @@
   height: auto;
 }
 
+.topbartwo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background: white;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+
+  display: flex;
+
+  /* 👇 THIS is the key change */
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  padding-left: 15px;
+  padding-right: 15px;
+
+  /* safe area + nice spacing */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: 8px;
+
+  height: calc(40px + env(safe-area-inset-top));
+  box-sizing: border-box;
+}
+
     .logo {
   display: flex;
   align-items: center;
