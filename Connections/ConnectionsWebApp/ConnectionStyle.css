@@ -30,7 +30,7 @@
     /* TOP BAR */
     .topbar {
   padding-top: max(12px, env(safe-area-inset-top));
-  height: calc(60px + env(safe-area-inset-top));
+  height: 60px;
   box-sizing: border-box;
       position: fixed;
       top: 0;
@@ -107,7 +107,7 @@
     /* BOTTOM BAR */
     .bottombar {
   padding-bottom: max(12px, env(safe-area-inset-bottom));
-  height: calc(60px + env(safe-area-inset-bottom));
+  height: 60px;
   box-sizing: border-box;
       position: fixed;
       bottom: 0;
