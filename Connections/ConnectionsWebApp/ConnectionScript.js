@@ -2083,7 +2083,7 @@ function isNewer(createdAt, lastOpened) {
   return new Date(createdAt) > new Date(lastOpened);
 }
 
-function handleBackButton() {
+window.handleBackButton = function () {
 
   // 🔥 priority: chat state first
   if (isChatOpen) {

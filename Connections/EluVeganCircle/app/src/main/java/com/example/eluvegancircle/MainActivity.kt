@@ -14,39 +14,57 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.eluvegancircle.ui.theme.EluVeganCircleTheme
+import androidx.activity.OnBackPressedCallback
 
 class MainActivity : ComponentActivity() {
+
+    private var webView: WebView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        // 🔥 FORCE transparent system bars
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
 
-        // ⭐ THIS FIXES THE "white/opacity layer" issue
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
         }
 
         val controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.isAppearanceLightStatusBars = true
-        controller.isAppearanceLightNavigationBars = true // dark icons (important for white page)
+        controller.isAppearanceLightNavigationBars = true
 
         setContent {
             EluVeganCircleTheme {
-                WebViewScreen()
+                WebViewScreen(
+                    onWebViewCreated = { wv ->
+                        webView = wv
+
+                        // 🔥 register back handler ONLY when WebView exists
+                        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+                            override fun handleOnBackPressed() {
+                                wv.evaluateJavascript(
+                                    "typeof handleBackButton === 'function' && handleBackButton();",
+                                    null
+                                )
+                            }
+                        })
+                    }
+                )
             }
         }
     }
+
 }
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebViewScreen() {
+fun WebViewScreen(onWebViewCreated: (WebView) -> Unit) {
+
     AndroidView(
         factory = { context ->
 
@@ -70,9 +88,9 @@ fun WebViewScreen() {
 
                 loadUrl("https://vegan-buddy.vercel.app/Connections/ConnectionsWebApp/index.html")
 
-
-                }
+                // ⭐ SEND WEBVIEW INSTANCE BACK TO ACTIVITY
+                onWebViewCreated(this)
             }
-
+        }
     )
 }
