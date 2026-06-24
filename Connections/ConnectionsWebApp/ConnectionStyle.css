@@ -20,22 +20,28 @@
  }
 
     /* TOP BAR */
-    .topbar {
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background: white;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 15px;
+  padding-right: 15px;
+
+  /* 👇 THIS is the key fix */
   padding-top: env(safe-area-inset-top);
-  height: calc(60px + env(safe-area-inset-top));
-  box-sizing: border-box;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 15px;
-      border-bottom: 1px solid #ddd;
-      z-index: 1000;
-    }
+
+  height: auto;
+}
 
     .logo {
   display: flex;
@@ -82,7 +88,7 @@
     }
 
     .has-topbar {
-      margin-top: 60px;
+      margin-top: calc(60px + env(safe-area-inset-top));
     }
 
     .tab {
@@ -98,9 +104,9 @@
 
     /* BOTTOM BAR */
     .bottombar {
- height: calc(60px + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
-  box-sizing: border-box;
+      height: calc(60px + ((env(safe-area-inset-bottom))/2));
+      padding-bottom: calc((env(safe-area-inset-bottom))/2);
+      box-sizing: border-box;
       position: fixed;
       bottom: 0;
       left: 0;
@@ -148,7 +154,7 @@
 /* Floating filter button */
 .floatingFilter {
   position: fixed;
-  bottom: 90px;
+  bottom: calc(80px + env(safe-area-inset-bottom));
   right: 20px;
   width: 50px;
   height: 50px;
@@ -227,7 +233,7 @@
   align-items: center;
   z-index: 9999;
   margin-top: 50px;
-  padding-top: calc(20px + env(safe-area-inset-bottom));
+  padding-top: calc(20px + env(safe-area-inset-top));
   padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
@@ -274,7 +280,7 @@
   max-width: 400px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   padding-top: calc(20px + env(safe-area-inset-top));
-  padding-bottom: calc(20px + env(safe-area-inset-top));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
 .question-block {
@@ -1480,6 +1486,7 @@ body.modal-open {
 }
 
 .invitation-empty-state {
+  padding-top: calc(env(safe-area-inset-top) + 10px);
   position: absolute;
   top: 30%;              /* 👈 upper area (adjust: 25–40%) */
   left: 50%;
@@ -1808,10 +1815,10 @@ body.modal-open {
   flex-direction: column;
   gap: 8px;
   position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding-bottom: calc(65px + env(safe-area-inset-bottom));
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: calc(65px + env(safe-area-inset-bottom));
 }
 
 /* MESSAGE ROW */
