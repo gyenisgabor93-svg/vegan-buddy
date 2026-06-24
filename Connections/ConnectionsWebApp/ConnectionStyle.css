@@ -29,7 +29,6 @@
 
     /* TOP BAR */
     .topbar {
-  padding-top: max(12px, env(safe-area-inset-top));
   height: 60px;
   box-sizing: border-box;
       position: fixed;
@@ -107,7 +106,8 @@
     /* BOTTOM BAR */
     .bottombar {
   padding-bottom: max(12px, env(safe-area-inset-bottom));
-  height: 60px;
+  margin-top: env(safe-area-inset-top);
+  height: 60px ;
   box-sizing: border-box;
       position: fixed;
       bottom: 0;
