@@ -25,6 +25,10 @@ import android.webkit.ValueCallback
 import android.net.Uri
 import android.content.Intent
 import android.webkit.WebSettings
+import androidx.activity.result.ActivityResultLauncher
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 
 class MainActivity : ComponentActivity() {
 
@@ -182,76 +186,69 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun WebViewScreen(
     onWebViewCreated: (WebView) -> Unit,
-    filePickerLauncher: androidx.activity.result.ActivityResultLauncher<Intent>,
+    filePickerLauncher: ActivityResultLauncher<Intent>,
     setFileCallback: (ValueCallback<Array<Uri>>?) -> Unit
 ) {
+    val context = LocalContext.current
 
-    AndroidView(
-        factory = { context ->
+    val webView = remember {
+        WebView(context).apply {
 
-            var filePathCallback: ValueCallback<Array<Uri>>? = null
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
 
-            WebView(context).apply {
+            setBackgroundColor(Color.WHITE)
 
-                layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                )
+            webViewClient = WebViewClient()
 
-                setBackgroundColor(Color.WHITE)
+            webChromeClient = object : WebChromeClient() {
+                override fun onShowFileChooser(
+                    webView: WebView?,
+                    filePathCallback: ValueCallback<Array<Uri>>?,
+                    fileChooserParams: FileChooserParams?
+                ): Boolean {
+                    setFileCallback(filePathCallback)
 
-                webViewClient = WebViewClient()
+                    return try {
+                        val intent = fileChooserParams?.createIntent()
+                        intent?.type = "*/*"
+                        intent?.addCategory(Intent.CATEGORY_OPENABLE)
 
-                webChromeClient = object : WebChromeClient() {
-
-                    override fun onShowFileChooser(
-                        webView: WebView?,
-                        filePathCallback: ValueCallback<Array<Uri>>?,
-                        fileChooserParams: FileChooserParams?
-                    ): Boolean {
-
-                        setFileCallback(filePathCallback)
-
-                        return try {
-                            val intent = fileChooserParams?.createIntent()
-
-                            if (intent == null) {
-                                setFileCallback(null)
-                                return false
-                            }
-
-                            // 🔥 FORCE CHOOSER TYPE (fixes gallery missing issue)
-                            intent.type = "*/*"
-                            intent.addCategory(Intent.CATEGORY_OPENABLE)
-
-                            filePickerLauncher.launch(intent)
-                            true
-
-                        } catch (e: Exception) {
-                            setFileCallback(null)
-                            false
-                        }
+                        filePickerLauncher.launch(intent!!)
+                        true
+                    } catch (e: Exception) {
+                        setFileCallback(null)
+                        false
                     }
                 }
-
-                settings.apply {
-                    javaScriptEnabled = true
-                    domStorageEnabled = true
-
-                    allowFileAccess = true
-                    allowContentAccess = true
-
-                    useWideViewPort = true
-                    loadWithOverviewMode = true
-
-                    settings.allowFileAccessFromFileURLs = true
-                    settings.allowUniversalAccessFromFileURLs = true
-
-                    mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-                }
-
-                loadUrl("https://vegan-buddy.vercel.app/Connections/ConnectionsWebApp/index.html")
             }
+
+            settings.apply {
+                javaScriptEnabled = true
+                domStorageEnabled = true
+                allowFileAccess = true
+                allowContentAccess = true
+                useWideViewPort = true
+                loadWithOverviewMode = true
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
+                mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            }
+
+            loadUrl("https://vegan-buddy.vercel.app/Connections/ConnectionsWebApp/index.html")
+        }
+    }
+
+    AndroidView(
+        factory = { webView },
+        update = {
+            // DO NOTHING → prevents reload
         }
     )
+
+    LaunchedEffect(Unit) {
+        onWebViewCreated(webView)
+    }
 }

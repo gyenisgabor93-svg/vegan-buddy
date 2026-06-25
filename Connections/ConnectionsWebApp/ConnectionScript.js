@@ -1684,9 +1684,7 @@ function initUI() {
 
   initToggleListeners();
 
-  setTimeout(() => {
-  //maybeHandleBrowserLocation();
-}, 5000);
+  maybeHandleBrowserLocation();
 }
 
 //#endregion
@@ -7923,8 +7921,6 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onLocationReceived = async function(lat, lng) {
   window.__LOCATION_ALREADY_SET__ = true; // 👈 ADD THIS FOR TESTING
 
-  appState.profile.location = (lat,lng)
-
   await appReady; // ⏳ wait until profile exists
 
   await handleIncomingLocation(lat, lng, { isNative: true });
@@ -8103,7 +8099,7 @@ async function askUserForLocationFallback() {
 
 async function maybeHandleBrowserLocation() {
   await appReady; // ensure profile is ready
-
+alert(window.__LOCATION_ALREADY_SET__)
   const profile = appState.profile;
 
   // If native already handled it → skip
