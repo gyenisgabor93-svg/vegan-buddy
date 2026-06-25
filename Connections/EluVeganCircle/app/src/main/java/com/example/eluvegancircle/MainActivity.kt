@@ -76,6 +76,13 @@ class MainActivity : ComponentActivity() {
             window.isNavigationBarContrastEnforced = false
         }
 
+        // 🔥 THIS controls icon/character color
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+
+        // false = dark icons (good for light backgrounds)
+        controller.isAppearanceLightStatusBars = true
+        controller.isAppearanceLightNavigationBars = true
+
         setContent {
             EluVeganCircleTheme {
                 WebViewScreen(

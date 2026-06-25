@@ -7941,23 +7941,19 @@ window.onLocationReceived = async function(lat, lng) {
   await appReady;
 
   await handleIncomingLocation(lat, lng, { isNative: true });
-
 };
 
 
 // 🧠 Main logic
 async function handleIncomingLocation(lat, lng, options = {}) {
   try {
-
     const profile = appState.profile;
 
     if (!profile) {
       return;
     }
 
-
     const { isNative = false } = options;
-
 
     // 🌐 Case 1: NOT native → fallback
     if (!isNative) {
@@ -7968,9 +7964,7 @@ async function handleIncomingLocation(lat, lng, options = {}) {
 
     // If no stored location → save immediately
     if (!profile.location) {
-
       await updateUserLocationCoords(lat, lng);
-
       return;
     }
 
@@ -7978,15 +7972,9 @@ async function handleIncomingLocation(lat, lng, options = {}) {
     // Compare with stored location
     const isSame = isSameLocation(profile.location, lat, lng);
 
-    alert(`📏 isSameLocation = ${isSame}`);
-
     if (isSame) {
-      alert("✅ Location unchanged");
       return;
     }
-
-    alert("🔄 Updating location...");
-
     await updateUserLocationCoords(lat, lng);
 
 
