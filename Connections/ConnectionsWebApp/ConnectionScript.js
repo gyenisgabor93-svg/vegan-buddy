@@ -7921,6 +7921,8 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onLocationReceived = async function(lat, lng) {
   window.__LOCATION_ALREADY_SET__ = true; // 👈 ADD THIS FOR TESTING
 
+  appState.profile.location = (lat,lng)
+
   await appReady; // ⏳ wait until profile exists
 
   await handleIncomingLocation(lat, lng, { isNative: true });
@@ -8084,8 +8086,6 @@ document.getElementById("confirmPremiumBtnInfo")?.addEventListener("click", asyn
 // ❓ Browser fallback (TEMP)
 async function askUserForLocationFallback() {
   return new Promise((resolve) => {
-alert(window.__LOCATION_ALREADY_SET__)
-  if (window.__LOCATION_ALREADY_SET__) return;
 
     const choice = confirm(
       "Choose your location:\n\nOK = Valencia\nCancel = Budapest"
