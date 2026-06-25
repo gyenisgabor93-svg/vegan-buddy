@@ -1685,7 +1685,7 @@ function initUI() {
   initToggleListeners();
 
   setTimeout(() => {
-  maybeHandleBrowserLocation();
+  //maybeHandleBrowserLocation();
 }, 5000);
 }
 
