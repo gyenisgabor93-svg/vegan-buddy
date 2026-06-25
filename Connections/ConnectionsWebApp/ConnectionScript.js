@@ -1684,7 +1684,9 @@ function initUI() {
 
   initToggleListeners();
 
+  setTimeout(() => {
   maybeHandleBrowserLocation();
+}, 5000);
 }
 
 //#endregion
@@ -7915,7 +7917,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //#endregion
 
-//#region CMMUNICATION WITH NATIVES
+//#region COMMUNICATION WITH NATIVES
 
 // 🌍 Called from Android (trusted source)
 window.onLocationReceived = async function(lat, lng) {
@@ -8088,7 +8090,7 @@ async function askUserForLocationFallback() {
   if (window.__LOCATION_ALREADY_SET__) return;
 
     const choice = confirm(
-      "It seems you are using a browser. Choose your location:\n\nOK = Valencia\nCancel = Budapest"
+      "Choose your location:\n\nOK = Valencia\nCancel = Budapest"
     );
 
     const coords = choice
