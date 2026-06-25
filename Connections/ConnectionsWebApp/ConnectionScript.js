@@ -1684,7 +1684,7 @@ function initUI() {
 
   initToggleListeners();
 
-  maybeHandleBrowserLocation();
+//  maybeHandleBrowserLocation();
 }
 
 //#endregion
@@ -7918,68 +7918,113 @@ document.addEventListener("DOMContentLoaded", () => {
 //#region COMMUNICATION WITH NATIVES
 
 // 🌍 Called from Android (trusted source)
+// 🌍 Called from Android (trusted source)
 window.onLocationReceived = async function(lat, lng) {
-  window.__LOCATION_ALREADY_SET__ = true; // 👈 ADD THIS FOR TESTING
+  alert("📍 onLocationReceived CALLED");
 
-  await appReady; // ⏳ wait until profile exists
+  window.__LOCATION_ALREADY_SET__ = true;
+
+  alert("⏳ Waiting for appReady...");
+
+  await appReady;
+
+  alert(`✅ appReady resolved\nlat=${lat}, lng=${lng}`);
 
   await handleIncomingLocation(lat, lng, { isNative: true });
+
+  alert("🏁 handleIncomingLocation FINISHED");
 };
+
 
 // 🧠 Main logic
 async function handleIncomingLocation(lat, lng, options = {}) {
   try {
+    alert("➡️ Entered handleIncomingLocation");
+
     const profile = appState.profile;
-    if (!profile) return;
+
+    if (!profile) {
+      alert("❌ profile is NULL");
+      return;
+    }
+
+    alert("✅ profile exists");
 
     const { isNative = false } = options;
 
-    // 🌐 Case 1: NOT native → always fallback
+    alert(`isNative = ${isNative}`);
+
+    // 🌐 Case 1: NOT native → fallback
     if (!isNative) {
+      alert("⚠️ NOT native → fallback");
       await askUserForLocationFallback();
       return;
     }
 
-    // 📱 Case 2: Native → check + update if needed
+    alert("📱 Native flow");
 
     // If no stored location → save immediately
     if (!profile.location) {
+      alert("📭 No stored location → saving now");
+
       await updateUserLocationCoords(lat, lng);
+
+      alert("✅ Saved (no previous location)");
       return;
     }
+
+    alert("📍 Existing location found");
 
     // Compare with stored location
     const isSame = isSameLocation(profile.location, lat, lng);
 
+    alert(`📏 isSameLocation = ${isSame}`);
+
     if (isSame) {
-      console.log("✅ Location unchanged");
+      alert("✅ Location unchanged");
       return;
     }
 
-    // Update if different
-    console.log("🔄 Updating location from native");
+    alert("🔄 Updating location...");
+
     await updateUserLocationCoords(lat, lng);
 
+    alert("✅ Location updated successfully");
+
   } catch (err) {
+    alert("❌ ERROR in handleIncomingLocation: " + err.message);
     console.error("Location handling failed:", err);
   }
 }
 
-// 📏 Compare locations (simple distance threshold)
+
+// 📏 Compare locations
 function isSameLocation(stored, lat, lng) {
-  if (!stored?.lat || !stored?.lng) return false;
+  alert("📏 Checking distance...");
+
+  if (!stored?.lat || !stored?.lng) {
+    alert("⚠️ stored.lat/lng missing → returning false");
+    return false;
+  }
 
   const distance = Math.sqrt(
     Math.pow(stored.lat - lat, 2) +
     Math.pow(stored.lng - lng, 2)
   );
 
-  return distance < 0.05; // ~5km tolerance (tweak later)
+  alert(`📐 distance = ${distance}`);
+
+  return distance < 0.05;
 }
 
-// 💾 Store coordinates (JSON version)
+
+// 💾 Store coordinates
 async function updateUserLocationCoords(lat, lng) {
-  const point = `POINT(${lng} ${lat})`; // ⚠️ lng FIRST
+  alert("💾 updateUserLocationCoords CALLED");
+
+  const point = `POINT(${lng} ${lat})`;
+
+  alert(`📦 Sending to DB: ${point}`);
 
   const { error } = await supabase
     .from("0con_profilesdata")
@@ -7989,11 +8034,12 @@ async function updateUserLocationCoords(lat, lng) {
     .eq("id", appState.user.id);
 
   if (error) {
+    alert("❌ DB ERROR: " + error.message);
     console.error("❌ Failed to update location:", error);
     return;
   }
 
-  console.log("✅ Location updated:", point);
+  alert("✅ DB update SUCCESS");
 }
 
 
@@ -8099,7 +8145,7 @@ async function askUserForLocationFallback() {
 
 async function maybeHandleBrowserLocation() {
   await appReady; // ensure profile is ready
-alert(window.__LOCATION_ALREADY_SET__)
+
   const profile = appState.profile;
 
   // If native already handled it → skip
