@@ -1,6 +1,8 @@
 package com.example.eluvegancircle
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
@@ -9,20 +11,30 @@ import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.eluvegancircle.ui.theme.EluVeganCircleTheme
-import androidx.activity.OnBackPressedCallback
+import com.google.android.gms.location.LocationServices
 
 class MainActivity : ComponentActivity() {
 
     private var webView: WebView? = null
 
+    // 🔥 Permission launcher
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                sendLocationToWeb()
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -44,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     onWebViewCreated = { wv ->
                         webView = wv
 
-                        // 🔥 register back handler ONLY when WebView exists
+                        // Back handler
                         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
                             override fun handleOnBackPressed() {
                                 wv.evaluateJavascript(
@@ -53,12 +65,48 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         })
+
+                        // 🔥 Request location after WebView is ready
+                        requestLocationPermission()
                     }
                 )
             }
         }
     }
 
+    // ✅ Ask permission
+    private fun requestLocationPermission() {
+        when {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                sendLocationToWeb()
+            }
+
+            else -> {
+                requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            }
+        }
+    }
+
+    // ✅ Get location and send to WebView
+    @SuppressLint("MissingPermission")
+    private fun sendLocationToWeb() {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                val lat = it.latitude
+                val lng = it.longitude
+
+                webView?.evaluateJavascript(
+                    "window.onLocationReceived($lat, $lng);",
+                    null
+                )
+            }
+        }
+    }
 }
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -88,7 +136,6 @@ fun WebViewScreen(onWebViewCreated: (WebView) -> Unit) {
 
                 loadUrl("https://vegan-buddy.vercel.app/Connections/ConnectionsWebApp/index.html")
 
-                // ⭐ SEND WEBVIEW INSTANCE BACK TO ACTIVITY
                 onWebViewCreated(this)
             }
         }

@@ -1590,6 +1590,8 @@ async function initApp() {
     appState.profile = profile;
     appState.isReady = true;
 
+  resolveAppReady(); // TEMPORAL FOR TESTING
+
     initUI();
 
   } catch (err) {
@@ -1627,6 +1629,7 @@ function initUI() {
 
   initToggleListeners();
 
+  maybeHandleBrowserLocation();
 }
 
 //#endregion
@@ -2108,6 +2111,12 @@ window.handleBackButton = function () {
 
   // optional fallback (do nothing or exit app)
 }
+
+let resolveAppReady;
+const appReady = new Promise((resolve) => {
+  resolveAppReady = resolve;
+});
+
 //#endregion
 
 //#region Discover Tab
@@ -7788,6 +7797,91 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //#endregion
 
+//#region CMMUNICATION WITH NATIVES
+
+// 🌍 Called from Android (trusted source)
+window.onLocationReceived = async function(lat, lng) {
+  window.__LOCATION_ALREADY_SET__ = true; // 👈 ADD THIS FOR TESTING
+
+  await appReady; // ⏳ wait until profile exists
+
+  await handleIncomingLocation(lat, lng, { isNative: true });
+};
+
+// 🧠 Main logic
+async function handleIncomingLocation(lat, lng, options = {}) {
+  try {
+    const profile = appState.profile;
+    if (!profile) return;
+
+    const { isNative = false } = options;
+
+    // 🌐 Case 1: NOT native → always fallback
+    if (!isNative) {
+      await askUserForLocationFallback();
+      return;
+    }
+
+    // 📱 Case 2: Native → check + update if needed
+
+    // If no stored location → save immediately
+    if (!profile.location) {
+      await updateUserLocationCoords(lat, lng);
+      return;
+    }
+
+    // Compare with stored location
+    const isSame = isSameLocation(profile.location, lat, lng);
+
+    if (isSame) {
+      console.log("✅ Location unchanged");
+      return;
+    }
+
+    // Update if different
+    console.log("🔄 Updating location from native");
+    await updateUserLocationCoords(lat, lng);
+
+  } catch (err) {
+    console.error("Location handling failed:", err);
+  }
+}
+
+// 📏 Compare locations (simple distance threshold)
+function isSameLocation(stored, lat, lng) {
+  if (!stored?.lat || !stored?.lng) return false;
+
+  const distance = Math.sqrt(
+    Math.pow(stored.lat - lat, 2) +
+    Math.pow(stored.lng - lng, 2)
+  );
+
+  return distance < 0.1; // ~10km tolerance (tweak later)
+}
+
+// 💾 Store coordinates (JSON version)
+async function updateUserLocationCoords(lat, lng) {
+  const point = `POINT(${lng} ${lat})`; // ⚠️ lng FIRST
+
+  const { error } = await supabase
+    .from("0con_profilesdata")
+    .update({
+      location: point
+    })
+    .eq("id", appState.user.id);
+
+  if (error) {
+    console.error("❌ Failed to update location:", error);
+    return;
+  }
+
+  console.log("✅ Location updated:", point);
+}
+
+
+
+    //#endregion
+
 
 //#region FOR TESTIMNG ONLY
 
@@ -7837,6 +7931,40 @@ document.getElementById("confirmPremiumBtn")?.addEventListener("click", async ()
   document.getElementById('BottomBar').classList.remove('hidden');
 });
 
+// ❓ Browser fallback (TEMP)
+async function askUserForLocationFallback() {
+  return new Promise((resolve) => {
 
+    const choice = confirm(
+      "It seems you are using a browser. Choose your location:\n\nOK = Valencia\nCancel = Budapest"
+    );
+
+    const coords = choice
+      ? { lat: 39.4699, lng: -0.3763 } // Valencia
+      : { lat: 47.4979, lng: 19.0402 }; // Budapest
+
+    updateUserLocationCoords(coords.lat, coords.lng).then(resolve);
+  });
+}
+
+async function maybeHandleBrowserLocation() {
+  await appReady; // ensure profile is ready
+
+  const profile = appState.profile;
+
+  // If native already handled it → skip
+  if (window.__LOCATION_ALREADY_SET__) return;
+
+  // If valid location already exists → skip
+  const hasValidLocation =
+    profile?.location &&
+    profile.location.lat != null &&
+    profile.location.lng != null;
+
+  if (hasValidLocation) return;
+
+  // Otherwise → fallback
+  await handleIncomingLocation(null, null, { isNative: false });
+}
 
 //#endregion 
