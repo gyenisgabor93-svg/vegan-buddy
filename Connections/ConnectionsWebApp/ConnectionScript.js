@@ -2117,6 +2117,20 @@ const appReady = new Promise((resolve) => {
   resolveAppReady = resolve;
 });
 
+async function normalizeFile(file) {
+  // already good Blob/File
+  if (file instanceof Blob) return file;
+
+  // Android WebView sometimes passes object-like blobs
+  if (file?.arrayBuffer) {
+    const buffer = await file.arrayBuffer();
+    return new Blob([buffer], { type: "image/jpeg" });
+  }
+
+  // fallback: last resort
+  return new Blob([file], { type: "image/jpeg" });
+}
+
 //#endregion
 
 //#region Discover Tab
@@ -3618,15 +3632,23 @@ async function uploadPhotosToBucket(userId, photos) {
   const results = [];
 
   for (const photo of photos) {
-    const fileName = `${userId}/${Date.now()}_${Math.random()}.jpg`;
+
+    const fileName = `${userId}/${Date.now()}_${Math.random().toString(36).substring(2)}.jpg`;
+
+    // 🔥 ENSURE BLOB IS VALID
+    const fileBlob = await normalizeFile(photo.file);
 
     const { error } = await supabase.storage
       .from("DATE_PHOTOS")
-      .upload(fileName, photo.file, {
-        contentType: "image/jpeg"
+      .upload(fileName, fileBlob, {
+        contentType: fileBlob.type || "image/jpeg",
+        upsert: true
       });
 
-    if (error) throw error;
+    if (error) {
+      console.error("UPLOAD ERROR:", error);
+      throw error;
+    }
 
     const { data } = supabase.storage
       .from("DATE_PHOTOS")
@@ -4037,14 +4059,21 @@ async function uploadCommunityPhoto(file) {
 
   if (!file) throw new Error("No file provided");
 
-  const fileExt = file.name.split(".").pop();
-  const fileName = `${userId}_${Date.now()}.${fileExt}`;
-  const filePath = `${userId}/${Date.now()}.${fileExt}`;
+  // 🔥 normalize file first (IMPORTANT)
+  const safeFile = await normalizeFile(file);
+
+  // 🔥 safe extension fallback
+  const fileExt = getFileExtension(file, safeFile);
+
+  const filePath = `${userId}/${Date.now()}_${Math.random().toString(36).slice(2)}.${fileExt}`;
 
   // 1️⃣ Upload file
   const { error: uploadError } = await supabase.storage
     .from("COMMUNITY_PHOTOS")
-    .upload(filePath, file);
+    .upload(filePath, safeFile, {
+      contentType: safeFile.type || "image/jpeg",
+      upsert: false
+    });
 
   if (uploadError) {
     console.error("Upload error:", uploadError);
@@ -4314,59 +4343,65 @@ function openEditCommunityModal(community) {
 
   document.getElementById("cancelEdit").onclick = () => modal.remove();
 
-  document.getElementById("saveCommunityEdit").onclick = async () => {
-    const file = document.getElementById("editCommunityPhoto").files[0];
-    const desc = document.getElementById("editCommunityDesc").value;
+document.getElementById("saveCommunityEdit").onclick = async () => {
+  const file = document.getElementById("editCommunityPhoto").files[0];
+  const desc = document.getElementById("editCommunityDesc").value;
 
-    try {
-      let newPhotoUrl = community.community_photo;
+  try {
+    let newPhotoUrl = community.community_photo;
 
-      // 1. Upload new photo if exists
-      if (file) {
-        const filePath = `${appState.user.id}/community.jpg`;
+    // 1. Upload new photo if exists
+    if (file) {
 
-        const { error: uploadError } = await supabase.storage
-          .from("COMMUNITY_PHOTOS")
-          .upload(filePath, file, { upsert: true });
+      const safeFile = await normalizeFile(file);
 
-        if (uploadError) throw uploadError;
+      const filePath = `${appState.user.id}/community.jpg`;
 
-        const { data } = supabase.storage
-          .from("COMMUNITY_PHOTOS")
-          .getPublicUrl(filePath);
+      const { error: uploadError } = await supabase.storage
+        .from("COMMUNITY_PHOTOS")
+        .upload(filePath, safeFile, {
+          upsert: true,
+          contentType: safeFile.type || "image/jpeg"
+        });
 
-        newPhotoUrl = data.publicUrl + "?t=" + Date.now();
-      }
+      if (uploadError) throw uploadError;
 
-      // 2. Update communities table
-      const { error: updateError } = await supabase
-        .from("0con_communities")
-        .update({
-          community_description: desc,
-          community_photo: newPhotoUrl
-        })
-        .eq("id", community.id);
+      const { data } = supabase.storage
+        .from("COMMUNITY_PHOTOS")
+        .getPublicUrl(filePath);
 
-      if (updateError) throw updateError;
-
-      // 3. Update chats table
-      const { error: chatError } = await supabase
-        .from("0con_community_chats")
-        .update({
-          community_photo: newPhotoUrl
-        })
-        .eq("community_id", community.id);
-
-      if (chatError) throw chatError;
-
-      modal.remove();
-      openCommunityPage(community.id);
-
-    } catch (err) {
-      console.error(err);
-      alert(t("errorUpdatingCommunity"));
+      newPhotoUrl = data.publicUrl + "?t=" + Date.now();
     }
-  };
+
+    // 2. Update communities table
+    const { error: updateError } = await supabase
+      .from("0con_communities")
+      .update({
+        community_description: desc,
+        community_photo: newPhotoUrl
+      })
+      .eq("id", community.id);
+
+    if (updateError) throw updateError;
+
+    // 3. Update chats table
+    const { error: chatError } = await supabase
+      .from("0con_community_chats")
+      .update({
+        community_photo: newPhotoUrl
+      })
+      .eq("community_id", community.id);
+
+    if (chatError) throw chatError;
+
+    modal.remove();
+    openCommunityPage(community.id);
+
+  } catch (err) {
+    console.error(err);
+    alert(t("errorUpdatingCommunity"));
+  }
+};
 }
 
 async function deleteCommunity(communityId) {
@@ -6293,11 +6328,14 @@ document.getElementById("savePhotoBtn").onclick = async () => {
 
     const path = `${userId}/profile.jpg`;
 
+    // 🔥 normalize (IMPORTANT)
+    const fileBlob = await normalizeFile(selectedProfilePhoto);
+
     // 1. upload (overwrite same file)
     const { error } = await supabase.storage
       .from("CONNECTION_PROFILE_PHOTOS")
-      .upload(path, selectedProfilePhoto, {
-        contentType: "image/jpeg",
+      .upload(path, fileBlob, {
+        contentType: fileBlob.type || "image/jpeg",
         upsert: true
       });
 
@@ -6308,18 +6346,17 @@ document.getElementById("savePhotoBtn").onclick = async () => {
       .from("CONNECTION_PROFILE_PHOTOS")
       .getPublicUrl(path);
 
-    // 🔥 IMPORTANT: cache-busting
+    // 🔥 cache-busting for UI only
     const newUrl = data.publicUrl + "?t=" + Date.now();
 
     // 3. update UI instantly
     document.getElementById("profileAvatar").src = newUrl;
 
     if (appState.profile) {
-      appState.profile.profile_photo_url = data.publicUrl; 
-      // store clean URL (without ?t)
+      appState.profile.profile_photo_url = data.publicUrl;
     }
 
-    // 4. close modal
+    // 4. cleanup
     document.getElementById("photoModal").classList.add("hidden");
     selectedProfilePhoto = null;
 
@@ -7340,32 +7377,59 @@ document.getElementById("saveDatePhotosBtn").onclick = async () => {
     .slice(0, 5 - currentPhotos.length);
 
   for (let file of filesToUpload) {
-    const blob = await resizeImage(file);
 
-    const fileName = `${Date.now()}_${Math.random()}.jpg`;
-    const path = `${userId}/${fileName}`;
+    try {
+      // 🔥 normalize first (VERY IMPORTANT for WebView)
+      const safeFile = await normalizeFile(file);
 
-    await supabase.storage
-      .from("DATE_PHOTOS")
-      .upload(path, blob);
+      const blob = await resizeImage(safeFile);
 
-    const { data } = supabase.storage
-      .from("DATE_PHOTOS")
-      .getPublicUrl(path);
+      if (!blob) throw new Error("Image compression failed");
 
-    currentPhotos.push({
-      url: data.publicUrl
-    });
+      const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.jpg`;
+      const path = `${userId}/${fileName}`;
+
+      const { error } = await supabase.storage
+        .from("DATE_PHOTOS")
+        .upload(path, blob, {
+          contentType: blob.type || "image/jpeg",
+          upsert: false
+        });
+
+      if (error) {
+        console.error("Upload failed:", error);
+        throw error;
+      }
+
+      const { data } = supabase.storage
+        .from("DATE_PHOTOS")
+        .getPublicUrl(path);
+
+      currentPhotos.push({
+        url: data.publicUrl
+      });
+
+    } catch (err) {
+      console.error("Photo upload error:", err);
+      alert("One photo failed to upload");
+      continue;
+    }
   }
 
   currentPhotos = normalizePhotos(currentPhotos);
 
   appState.profile.photos = currentPhotos;
 
-  await supabase
+  const { error: updateError } = await supabase
     .from("0con_profilesdata")
     .update({ photos: currentPhotos })
     .eq("id", userId);
+
+  if (updateError) {
+    console.error(updateError);
+    alert("Failed to save profile photos");
+    return;
+  }
 
   draftPhotos = [];
 
@@ -7958,7 +8022,7 @@ async function maybeHandleBrowserLocation() {
   // If valid location already exists → skip
   const hasValidLocation =
     profile.location != null
-    
+
 console.log(profile.location)
   if (hasValidLocation) return;
 

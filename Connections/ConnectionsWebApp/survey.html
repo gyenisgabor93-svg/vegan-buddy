@@ -901,18 +901,25 @@ const file = fileInput.files[0];
 
 const DEFAULT_PHOTO_URL =
   "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg";
+
 let photoUrl = DEFAULT_PHOTO_URL;
 
 if (file) {
   try {
-    const processedFile = await processImage(file);
+
+    // 🔥 normalize WebView file FIRST
+    const safeFile = await normalizeFile(file);
+
+    const processedFile = await processImage(safeFile);
+
+    if (!processedFile) throw new Error("Image processing failed");
 
     const filePath = `${user.id}/profile.jpg`;
 
     const { error: uploadError } = await supabase.storage
       .from("CONNECTION_PROFILE_PHOTOS")
       .upload(filePath, processedFile, {
-        contentType: "image/jpeg",
+        contentType: processedFile.type || "image/jpeg",
         upsert: true
       });
 
@@ -983,6 +990,18 @@ if (file) {
   }
 };
 
+async function normalizeFile(file) {
+  if (!file) return null;
+
+  if (file instanceof Blob) return file;
+
+  if (file?.arrayBuffer) {
+    const buffer = await file.arrayBuffer();
+    return new Blob([buffer], { type: "image/jpeg" });
+  }
+
+  return new Blob([file], { type: "image/jpeg" });
+}
 
 function validateQuestions() {
   const unanswered = t.questions.some((_, i) => {

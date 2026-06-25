@@ -20,8 +20,57 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.eluvegancircle.ui.theme.EluVeganCircleTheme
 import com.google.android.gms.location.LocationServices
+import android.webkit.WebChromeClient
+import android.webkit.ValueCallback
+import android.net.Uri
+import android.content.Intent
+import android.webkit.WebSettings
 
 class MainActivity : ComponentActivity() {
+
+    private var filePathCallback: ValueCallback<Array<Uri>>? = null
+
+    private val filePickerLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+            val callback = filePathCallback
+            filePathCallback = null
+
+            if (callback == null) return@registerForActivityResult
+
+            val data = result.data
+            val uris = mutableListOf<Uri>()
+
+            // 🔥 SAFER extraction (not only parseResult)
+            if (data?.clipData != null) {
+                val clipData = data.clipData!!
+                for (i in 0 until clipData.itemCount) {
+                    uris.add(clipData.getItemAt(i).uri)
+                }
+            } else if (data?.data != null) {
+                uris.add(data.data!!)
+            }
+
+            if (uris.isEmpty()) {
+                callback.onReceiveValue(null)
+                return@registerForActivityResult
+            }
+
+            // 🔥 Convert URIs into Web-safe accessible ones
+            val safeUris = uris.mapNotNull { uri ->
+                try {
+                    contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                    uri
+                } catch (e: Exception) {
+                    uri
+                }
+            }.toTypedArray()
+
+            callback.onReceiveValue(safeUris)
+        }
 
     private var webView: WebView? = null
 
@@ -68,6 +117,10 @@ class MainActivity : ComponentActivity() {
 
                         // 🔥 Request location after WebView is ready
                         requestLocationPermission()
+                    },
+                    filePickerLauncher = filePickerLauncher,
+                    setFileCallback = { callback ->
+                        filePathCallback = callback
                     }
                 )
             }
@@ -111,10 +164,16 @@ class MainActivity : ComponentActivity() {
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebViewScreen(onWebViewCreated: (WebView) -> Unit) {
+fun WebViewScreen(
+    onWebViewCreated: (WebView) -> Unit,
+    filePickerLauncher: androidx.activity.result.ActivityResultLauncher<Intent>,
+    setFileCallback: (ValueCallback<Array<Uri>>?) -> Unit
+) {
 
     AndroidView(
         factory = { context ->
+
+            var filePathCallback: ValueCallback<Array<Uri>>? = null
 
             WebView(context).apply {
 
@@ -127,26 +186,55 @@ fun WebViewScreen(onWebViewCreated: (WebView) -> Unit) {
 
                 webViewClient = WebViewClient()
 
-                webChromeClient = object : android.webkit.WebChromeClient() {
+                webChromeClient = object : WebChromeClient() {
+
                     override fun onShowFileChooser(
                         webView: WebView?,
-                        filePathCallback: android.webkit.ValueCallback<Array<android.net.Uri>>?,
+                        filePathCallback: ValueCallback<Array<Uri>>?,
                         fileChooserParams: FileChooserParams?
                     ): Boolean {
-                        return super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
+
+                        setFileCallback(filePathCallback)
+
+                        return try {
+                            val intent = fileChooserParams?.createIntent()
+
+                            if (intent == null) {
+                                setFileCallback(null)
+                                return false
+                            }
+
+                            // 🔥 FORCE CHOOSER TYPE (fixes gallery missing issue)
+                            intent.type = "*/*"
+                            intent.addCategory(Intent.CATEGORY_OPENABLE)
+
+                            filePickerLauncher.launch(intent)
+                            true
+
+                        } catch (e: Exception) {
+                            setFileCallback(null)
+                            false
+                        }
                     }
                 }
-                
+
                 settings.apply {
                     javaScriptEnabled = true
                     domStorageEnabled = true
-                    loadWithOverviewMode = true
+
+                    allowFileAccess = true
+                    allowContentAccess = true
+
                     useWideViewPort = true
+                    loadWithOverviewMode = true
+
+                    settings.allowFileAccessFromFileURLs = true
+                    settings.allowUniversalAccessFromFileURLs = true
+
+                    mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
                 }
 
                 loadUrl("https://vegan-buddy.vercel.app/Connections/ConnectionsWebApp/index.html")
-
-                onWebViewCreated(this)
             }
         }
     )
