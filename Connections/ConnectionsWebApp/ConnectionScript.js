@@ -7856,7 +7856,7 @@ function isSameLocation(stored, lat, lng) {
     Math.pow(stored.lng - lng, 2)
   );
 
-  return distance < 0.1; // ~10km tolerance (tweak later)
+  return distance < 0.05; // ~5km tolerance (tweak later)
 }
 
 // 💾 Store coordinates (JSON version)
@@ -7957,10 +7957,9 @@ async function maybeHandleBrowserLocation() {
 
   // If valid location already exists → skip
   const hasValidLocation =
-    profile?.location &&
-    profile.location.lat != null &&
-    profile.location.lng != null;
-
+    profile.location != null
+    
+console.log(profile.location)
   if (hasValidLocation) return;
 
   // Otherwise → fallback

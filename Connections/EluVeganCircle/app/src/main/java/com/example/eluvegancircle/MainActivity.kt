@@ -127,6 +127,16 @@ fun WebViewScreen(onWebViewCreated: (WebView) -> Unit) {
 
                 webViewClient = WebViewClient()
 
+                webChromeClient = object : android.webkit.WebChromeClient() {
+                    override fun onShowFileChooser(
+                        webView: WebView?,
+                        filePathCallback: android.webkit.ValueCallback<Array<android.net.Uri>>?,
+                        fileChooserParams: FileChooserParams?
+                    ): Boolean {
+                        return super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
+                    }
+                }
+                
                 settings.apply {
                     javaScriptEnabled = true
                     domStorageEnabled = true
