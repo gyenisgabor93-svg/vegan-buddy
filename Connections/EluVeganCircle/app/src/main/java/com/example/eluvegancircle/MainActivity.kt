@@ -108,10 +108,26 @@ class MainActivity : ComponentActivity() {
                         // Back handler
                         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
                             override fun handleOnBackPressed() {
-                                wv.evaluateJavascript(
+
+                                val currentWebView = wv
+
+                                if (currentWebView.canGoBack()) {
+                                    currentWebView.goBack()
+                                    return
+                                }
+
+                                // optional JS hook
+                                currentWebView.evaluateJavascript(
                                     "typeof handleBackButton === 'function' && handleBackButton();",
                                     null
                                 )
+
+                                // if you want to PREVENT closing app entirely:
+                                // do nothing here
+
+                                // OR if you want fallback close:
+                                // isEnabled = false
+                                // onBackPressedDispatcher.onBackPressed()
                             }
                         })
 

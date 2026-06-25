@@ -317,6 +317,24 @@ const translations = {
     yourphotosmax5: "Your photos (max 5)",
 
 
+  missiontitle: "What is our mission?",
+  missionintro: "Elu Premium is part of a bigger vision: building a more compassionate vegan world where people feel less alone, more understood, and more aligned with their values.",
+  missionintro2: "We are creating two connected applications that support people at every stage of their journey toward a more conscious and compassionate lifestyle.",
+
+  vegancircletitle: "Elu Vegan Circle",
+  vegancircledesc: "The app you are using right now is designed to help vegans and vegan-curious people find meaningful connections. It reduces the feeling of isolation that often comes with choosing a different lifestyle and replaces it with community, understanding, and shared values.",
+
+  veganmindtitle: "Elu Vegan Mind",
+  veganminddesc: "Our second application focuses on education and motivation. It gently guides people toward veganism while preparing them for real-life challenges in a supportive and engaging way.",
+  veganminddesc2: "Through stories, nutrition guidance, simple recipes, and real experiences from other vegans, it helps both beginners and experienced vegans stay informed, inspired, and confident in their choices.",
+
+  widermissiontitle: "A wider mission",
+  widermissiondesc: "Beyond our apps, we are developing experiences that help people recognize the hidden patterns in today’s society — from environmental damage to animal exploitation and social manipulation.",
+  approachdesc: "We believe change happens through awareness, not pressure. That’s why our approach is always positive, respectful, and uplifting.",
+  activismdesc: "We are also bringing this message into the real world through street activism and visual campaigns. Our goal is not confrontation, but inspiration — helping people reflect through simple, powerful messages.",
+
+  missionsupport: "Elu Premium supports this mission. Every subscription helps us grow these tools, expand education, and bring a more compassionate message into the world.",
+
 
     // ----- JS ------
     // Discover
@@ -757,6 +775,24 @@ dateQuestions: {
     editlanguages: "Editar idiomas",
     yourphotosmax5: "Tus fotos (máx. 5)",
 
+  missiontitle: "¿Cuál es nuestra misión?",
+  missionintro: "Elu Premium forma parte de una visión más grande: construir un mundo vegano más compasivo donde las personas se sientan menos solas, más comprendidas y más alineadas con sus valores.",
+  missionintro2: "Estamos creando dos aplicaciones conectadas que apoyan a las personas en cada etapa de su camino hacia un estilo de vida más consciente y compasivo.",
+
+  vegancircletitle: "Elu Vegan Circle",
+  vegancircledesc: "La aplicación que estás usando está diseñada para ayudar a veganos y personas interesadas en el veganismo a encontrar conexiones significativas. Reduce la sensación de aislamiento que a menudo acompaña a este estilo de vida y la reemplaza con comunidad, comprensión y valores compartidos.",
+
+  veganmindtitle: "Elu Vegan Mind",
+  veganminddesc: "Nuestra segunda aplicación se centra en la educación y la motivación. Guía suavemente a las personas hacia el veganismo mientras las prepara para los desafíos de la vida real de una forma positiva y atractiva.",
+  veganminddesc2: "A través de historias, guías de nutrición, recetas sencillas y experiencias reales de otros veganos, ayuda tanto a principiantes como a veganos experimentados a mantenerse informados, inspirados y seguros en sus decisiones.",
+
+  widermissiontitle: "Una misión más amplia",
+  widermissiondesc: "Más allá de nuestras aplicaciones, estamos desarrollando experiencias que ayudan a las personas a reconocer los patrones ocultos en la sociedad actual — desde el daño ambiental hasta la explotación animal y la manipulación social.",
+  approachdesc: "Creemos que el cambio ocurre a través de la conciencia, no de la presión. Por eso nuestro enfoque siempre es positivo, respetuoso y motivador.",
+  activismdesc: "También estamos llevando este mensaje al mundo real a través del activismo callejero y campañas visuales. Nuestro objetivo no es la confrontación, sino la inspiración — ayudando a las personas a reflexionar con mensajes simples y poderosos.",
+
+  missionsupport: "Elu Premium apoya esta misión. Cada suscripción nos ayuda a hacer crecer estas herramientas, ampliar la educación y llevar un mensaje más compasivo al mundo.",
+
 
     //JS
 
@@ -1185,6 +1221,25 @@ dateQuestions: {
     editdescription: "Leírás szerkesztése",
     editlanguages: "Nyelvek szerkesztése",
     yourphotosmax5: "Fotóid (max 5)",
+
+  missiontitl: "Mi a küldetésünk?",
+  missionintro: "Az Elu Premium egy nagyobb vízió része: egy együttérzőbb vegán világ építése, ahol az emberek kevésbé érzik magukat egyedül, jobban megértik egymást, és jobban összhangban élnek az értékeikkel.",
+  missionintro2: "Két alkalmazást hozunk létre, amelyek az embereket életük minden szakaszában támogatják egy tudatosabb és együttérzőbb élet felé vezető úton.",
+
+  vegancircletitle: "Elu Vegan Circle",
+  vegancircledesc: "Ez az alkalmazás, amit most használsz, arra készült, hogy segítsen a vegánoknak és a vegán iránt érdeklődőknek értékes kapcsolatokat találni. Csökkenti az elszigeteltség érzését, amely gyakran együtt jár ezzel az életmóddal.",
+
+  veganmindtitle: "Elu Vegan Mind",
+  veganminddesc: "A második alkalmazásunk az oktatásra és motivációra fókuszál. Finoman vezeti az embereket a vegán életmód felé, miközben felkészíti őket a való élet kihívásaira egy támogató és élvezetes módon.",
+  veganminddesc2: "Történeteken, táplálkozási útmutatókon, egyszerű recepteken és más vegánok valós tapasztalatain keresztül segít a kezdőknek és a tapasztalt vegánoknak is, hogy tájékozottak, inspiráltak és magabiztosak maradjanak.",
+
+  widermissiontitle: "Szélesebb küldetés",
+  widermissiondesc: "Az alkalmazásainkon túl olyan platformokat fejlesztünk, amelyek segítenek felismerni a mai társadalom rejtett mintáit — a környezeti károktól kezdve az állatok kihasználásán át a társadalmi manipulációig.",
+  approachdesc: "Hiszünk abban, hogy a változás tudatosságból fakad, nem nyomásból. Ezért a megközelítésünk mindig pozitív, tiszteletteljes és felemelő.",
+  activismdesc: "Ezt az üzenetet a valós világba is elvisszük utcai aktivizmus és vizuális kampányok formájában. Célunk nem a konfrontáció, hanem az inspiráció — egyszerű, erőteljes üzenetekkel segítve az embereket.",
+
+  missionsupport: "Az Elu Premium támogatja ezt a küldetést. Minden előfizetés segít nekünk bővíteni ezeket az eszközöket, fejleszteni az oktatást, és egy együttérzőbb üzenetet eljuttatni a világba.",
+
 
     //JS
 
@@ -7698,55 +7753,54 @@ document.getElementById("deleteAccountBtn").addEventListener("click", () => {
 //#region PREMIUMTAB
 
 function openPremiumScreen() {
-  // hide all main tabs
   document.querySelectorAll(".tab").forEach(t => {
     t.classList.remove("active");
   });
 
-  // hide survey
-  const survey = document.getElementById("survey");
-  if (survey) survey.classList.add("hidden");
+  document.getElementById("survey")?.classList.add("hidden");
 
-  // show premium
-  const premium = document.getElementById("premium");
-  if (premium) premium.classList.remove("hidden");
+  document.getElementById("premium")?.classList.remove("hidden");
+  document.getElementById("premiumInfo")?.classList.add("hidden");
 
-  // hide bottom bar if it exists
-  const bottomBar = document.querySelector(".bottombar");
-  bottomBar?.classList.add("hidden");
-
-  // nav state (optional but consistent with your UI)
-  document.querySelectorAll(".nav-item").forEach(i => {
-    i.classList.remove("active");
-  });
-
-  const premiumNav = document.querySelector('[data-tab="premium"]');
-  premiumNav?.classList.add("active");
-}
-
-
-function closePremiumScreen() {
-  const premium = document.getElementById("premium");
-  if (premium) premium.classList.add("hidden");
-
-  document.getElementById("discover")?.classList.add("active");
-
-  const bottomBar = document.querySelector(".bottombar");
-  bottomBar?.classList.remove("hidden");
+  document.querySelector(".bottombar")?.classList.add("hidden");
 
   document.querySelectorAll(".nav-item").forEach(i => {
     i.classList.remove("active");
   });
 
-  const discoverNav = document.querySelector('[data-tab="discover"]');
-  discoverNav?.classList.add("active");
+  document.querySelector('[data-tab="premium"]')?.classList.add("active");
 }
+
+function closePremiumScreen() { 
+  const premium = document.getElementById("premium"); 
+  if (premium) premium.classList.add("hidden"); 
+  document.getElementById("discover")?.classList.add("active"); 
+  
+  const bottomBar = document.querySelector(".bottombar"); 
+  bottomBar?.classList.remove("hidden"); 
+  
+  document.querySelectorAll(".nav-item").forEach(i => { 
+    i.classList.remove("active"); }); 
     
-document.getElementById("supportLink").href =
-  "https://instagram.com/elu.life";
+  const discoverNav = document.querySelector('[data-tab="discover"]'); 
+  discoverNav?.classList.add("active"); 
 
-document.getElementById("exitPremiumBtn").addEventListener("click", () => {
+}
+
+document.getElementById("exitPremiumBtn")?.addEventListener("click", () => {
   closePremiumScreen();
+});
+
+document.getElementById("supportLink")?.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  document.getElementById("premium")?.classList.add("hidden");
+  document.getElementById("premiumInfo")?.classList.remove("hidden");
+});
+
+document.getElementById("backFromPremiumInfo")?.addEventListener("click", () => {
+  document.getElementById("premiumInfo")?.classList.add("hidden");
+  openPremiumScreen();
 });
 
 
@@ -7995,9 +8049,43 @@ document.getElementById("confirmPremiumBtn")?.addEventListener("click", async ()
   document.getElementById('BottomBar').classList.remove('hidden');
 });
 
+document.getElementById("confirmPremiumBtnInfo")?.addEventListener("click", async () => {
+  // 1) restore premium
+  const { error: profileError } = await supabase
+    .from("0con_profilesdata")
+    .update({ is_premium: true })
+    .eq("id", appState.user.id);
+
+  if (profileError) {
+    console.error(profileError);
+    return;
+  }
+
+  // 2) reactivate community
+  const { error: communityError } = await supabase
+    .from("0con_communities")
+    .update({ is_active: true })
+    .eq("owner_id", appState.user.id);
+
+  if (communityError) {
+    console.error(communityError);
+    return;
+  }
+
+  // update local state
+  appState.profile.is_premium = true;
+
+  initApp();
+  document.getElementById('premiumInfo').classList.add('hidden');
+  document.getElementById('discover').classList.add('active');
+  document.getElementById('BottomBar').classList.remove('hidden');
+});
+
 // ❓ Browser fallback (TEMP)
 async function askUserForLocationFallback() {
   return new Promise((resolve) => {
+
+  if (window.__LOCATION_ALREADY_SET__) return;
 
     const choice = confirm(
       "It seems you are using a browser. Choose your location:\n\nOK = Valencia\nCancel = Budapest"
@@ -8023,7 +8111,6 @@ async function maybeHandleBrowserLocation() {
   const hasValidLocation =
     profile.location != null
 
-console.log(profile.location)
   if (hasValidLocation) return;
 
   // Otherwise → fallback
