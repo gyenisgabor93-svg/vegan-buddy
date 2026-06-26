@@ -1164,6 +1164,7 @@ textarea:focus {
   overflow: hidden;
   background: #eaf5ea;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
 }
 
 .photo-item.dragging {
@@ -1397,6 +1398,11 @@ textarea:focus {
 
 .card-age {
   font-size: 13px;
+  opacity: 0.9;
+}
+
+.card-distance {
+  font-size: 12px;
   opacity: 0.9;
 }
 
@@ -2384,6 +2390,13 @@ body.modal-open {
   align-items: center;
   gap: 10px;
   cursor: pointer;
+}
+
+.preview-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+  object-fit: cover;
 }
 
 .community-preview-img {

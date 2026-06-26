@@ -216,6 +216,7 @@ const translations = {
     aboutyou: "About you",
     saveprofile: "Save profile",
 
+
     premium: "Premium",
     premiumsubscription: "🌟 Premium Subscription",
     premiumprice: "€10 / month",
@@ -232,10 +233,15 @@ const translations = {
     upgradetopremium: "Upgrade to Premium",
 
     createcommunity: "Create your community",
+    createcommunityname: "Community name:",
     entercommunityname: "Enter community name",
     setaphoto: "Set a Photo",
     addphoto: "+ Add photo",
     writecommunitydescription: "Write community description",
+    communitylocation: "Community Location",
+    setcoords: "Click on the map to set community location",
+    communityradius: "Community radius",
+    communitydistancehint: "Distance used to match nearby users",
     communityvalues: "Community Values",
     matchrequirements: "Match Requirement",
     lowthreshold: "Minimum match:",
@@ -246,6 +252,8 @@ const translations = {
     datetoggle: "Date",
 
     profiletopbar: "👤 Profile",
+
+    travelmodetoggle: "Travel mode",
 
     premiumprofile: "🌟 Premium Profile",
     learnmoreaboutusandpremium: "Learn more about our premium features & mission →",
@@ -335,6 +343,12 @@ const translations = {
 
   missionsupport: "Elu Premium supports this mission. Every subscription helps us grow these tools, expand education, and bring a more compassionate message into the world.",
 
+  travel_set_location_title: "📍 Set your travel location",
+  travel_confirm: "Confirm",
+  travel_cancel: "Cancel",
+
+  location_error_title: "📍 Error getting your location",
+  location_error_text: "Please set your location manually",
 
     // ----- JS ------
     // Discover
@@ -691,12 +705,17 @@ dateQuestions: {
     subscribesupport: "Al suscribirte apoyas nuestra misión de promover el veganismo.",
     learnmore: "Más información sobre nuestro proyecto →",
     upgradetopremium: "Mejorar a Premium",
-
+    communitylocation: "Ubicación de la comunidad",
+    setcoords: "Haz clic en el mapa para establecer la ubicación de la comunidad",
+    communityradius: "Radio de la comunidad",
+    communitydistancehint: "Distancia utilizada para encontrar usuarios cercanos",
     createcommunity: "Crear tu comunidad",
+    createcommunityname: "Nombre de la comnunidad:",
     entercommunityname: "Nombre de la comunidad",
     setaphoto: "Establecer foto",
     addphoto: "+ Añadir foto",
     writecommunitydescription: "Descripción de la comunidad",
+
     communityvalues: "Valores de la comunidad",
     matchrequirements: "Requisitos de coincidencia",
     lowthreshold: "Coincidencia mínima:",
@@ -707,6 +726,8 @@ dateQuestions: {
     datetoggle: "Citas",
 
     profiletopbar: "👤 Perfil",
+
+    travelmodetoggle: "Modo de viaje",
 
     premiumprofile: "🌟 Perfil Premium",
     learnmoreaboutusandpremium: "Más información sobre las funciones premium y nuestra misión →",
@@ -793,6 +814,12 @@ dateQuestions: {
 
   missionsupport: "Elu Premium apoya esta misión. Cada suscripción nos ayuda a hacer crecer estas herramientas, ampliar la educación y llevar un mensaje más compasivo al mundo.",
 
+  travel_set_location_title: "📍 Establece tu ubicación de viaje",
+  travel_confirm: "Confirmar",
+  travel_cancel: "Cancelar",
+
+  location_error_title: "📍 Error al obtener tu ubicación",
+  location_error_text: "Por favor, establece tu ubicación manualmente",
 
     //JS
 
@@ -1140,10 +1167,15 @@ dateQuestions: {
     upgradetopremium: "Előfizetés Prémiumra",
 
     createcommunity: "Közösség létrehozása",
+    createcommunityname: "Közösség neve:",
     entercommunityname: "Közösség neve",
     setaphoto: "Kép beállítása",
     addphoto: "+ Fotó hozzáadása",
     writecommunitydescription: "Közösség leírása",
+    communitylocation: "Közösség helye",
+    setcoords: "Kattints a térképre a közösség központjának beállításához",
+    communityradius: "Terület nagysága",
+    communitydistancehint: "Felhasználók keresése ezen a területen",
     communityvalues: "Közösségi értékek",
     matchrequirements: "Egyezési feltétel",
     lowthreshold: "Minimum egyezés:",
@@ -1154,6 +1186,8 @@ dateQuestions: {
     datetoggle: "Randi",
 
     profiletopbar: "👤 Profil",
+
+    travelmodetoggle: "Utazási mód",
 
     premiumprofile: "🌟 Prémium profil",
     learnmoreaboutusandpremium: "Prémium funkciók →",
@@ -1240,6 +1274,12 @@ dateQuestions: {
 
   missionsupport: "Az Elu Premium támogatja ezt a küldetést. Minden előfizetés segít nekünk bővíteni ezeket az eszközöket, fejleszteni az oktatást, és egy együttérzőbb üzenetet eljuttatni a világba.",
 
+  travel_set_location_title: "📍 Utazási helyzet beállítása",
+  travel_confirm: "Megerősítés",
+  travel_cancel: "Mégse",
+
+  location_error_title: "📍 Hiba a tartózkodási hely lekérésekor",
+  location_error_text: "Kérlek, állítsd be manuálisan a helyzeted",
 
     //JS
 
@@ -1616,7 +1656,9 @@ const appUI = {
 
 let isChatOpen = false;
 
-
+let communityLatLng = null;
+let communityMap = null;
+let communityMarker = null;
 
 // 🔌 FETCH PROFILES
 async function loadProfile() {
@@ -2216,6 +2258,21 @@ let discoverState = {
     dates: 0
   }
 };
+
+let travelState = {
+  lat: null,
+  lng: null,
+  map: null,
+  marker: null
+};
+
+let fallbackMapState = {
+  map: null,
+  marker: null,
+  selected: null,
+  initialized: false
+};
+
 //#region Friends / Common Functions
 // -----------------------------
 // INIT DISCOVER TAB
@@ -2377,8 +2434,8 @@ async function fetchDiscover(type) {
 
   const rpcName =
     type === "friends"
-      ? "get_friends_users"
-      : "get_dates_users";
+      ? "get_friends_users_with_distance"
+      : "get_dates_users_with_distance";
 
   try {
     const params = {
@@ -2452,7 +2509,28 @@ function normalizeDiscoverUser(user, type) {
     photo: user.c_photo,
     age: type === "dates" ? user.c_age : null,
     score: user.score ?? 0,
+    distance: user.distance_miles ?? null,
   };
+}
+
+function formatDistance(distance) {
+  if (distance == null) return "";
+
+  const lang = appState?.profile?.lang || "en";
+
+  // small distances → always meters
+  if (distance < 1) {
+    const meters = Math.round(distance * 1609.34);
+    return `${meters} m`;
+  }
+
+  const miles = Math.round(distance);
+  const km = Math.round(distance * 1.60934);
+
+  // English → miles, everything else → km
+  return lang === "en"
+    ? `${miles} mi`
+    : `${km} km`;
 }
 
 // -----------------------------
@@ -2471,6 +2549,7 @@ function getScoreClass(score) {
 
 function createDiscoverCard(user) { 
   const score = Math.round(user.score || 0);
+  const distanceText = formatDistance(user.distance);
 
   return `
     <div class="discover-card clickable" data-user-id="${user.id}">
@@ -2487,6 +2566,7 @@ function createDiscoverCard(user) {
         <div class="card-top">
           <div class="card-name">${user.name}</div>
           ${user.age ? `<div class="card-age">${user.age} ${t("yearsold")}</div>` : ""}
+          ${distanceText ? `<div class="card-distance">📍 ${distanceText}</div>` : ""}
         </div>
 
         <div class="card-score ${getScoreClass(score)}">
@@ -3070,6 +3150,152 @@ async function addToSeenCommunities(communityId) {
 function getUserCard(userId) {
   return document.querySelector(`.discover-card[data-user-id="${userId}"]`);
 }
+
+
+
+document.getElementById("travelModeToggle").addEventListener("change", (e) => {
+  const isOn = e.target.checked;
+
+  if (!appState.profile?.is_premium) {
+    e.target.checked = false;
+    return;
+  }
+
+  if (isOn) {
+    openTravelModal();
+  } else {
+    updateTravelMode(false, null, null);
+  }
+});
+
+function openTravelModal() {
+  const modal = document.getElementById("travelModal");
+  modal.classList.remove("hidden");
+
+  if (!travelState.map) {
+
+    const defaultLatLng = communityLatLng || {
+      lat: 39.4699,
+      lng: -0.3763
+    };
+
+    travelState.map = L.map("travelMap").setView(
+      [defaultLatLng.lat, defaultLatLng.lng],
+      12
+    );
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap"
+    }).addTo(travelState.map);
+
+    travelState.map.on("click", (e) => {
+      const { lat, lng } = e.latlng;
+
+      travelState.lat = lat;
+      travelState.lng = lng;
+
+      if (travelState.marker) {
+        travelState.marker.setLatLng([lat, lng]);
+      } else {
+        travelState.marker = L.marker([lat, lng]).addTo(travelState.map);
+      }
+    });
+
+    // optional: pre-place marker on default
+    travelState.marker = L.marker([
+      defaultLatLng.lat,
+      defaultLatLng.lng
+    ]).addTo(travelState.map);
+
+    travelState.lat = defaultLatLng.lat;
+    travelState.lng = defaultLatLng.lng;
+  }
+}
+
+document.getElementById("cancelTravelBtn").onclick = () => {
+  document.getElementById("travelModal").classList.add("hidden");
+
+  document.getElementById("travelModeToggle").checked = false;
+
+  travelState.lat = null;
+  travelState.lng = null;
+};
+
+document.getElementById("confirmTravelBtn").onclick = async () => {
+  if (!travelState.lat || !travelState.lng) {
+    alert("Please select a location on the map");
+    return;
+  }
+
+  await updateTravelMode(true, travelState.lat, travelState.lng);
+
+  document.getElementById("travelModal").classList.add("hidden");
+};
+
+async function updateTravelMode(enabled, lat, lng) {
+  try {
+
+    let finalLat = lat;
+    let finalLng = lng;
+
+    // ---------------------------
+    // TURNING ON
+    // ---------------------------
+    if (enabled) {
+
+      if (!finalLat || !finalLng) {
+        if (communityLatLng) {
+          finalLat = communityLatLng.lat;
+          finalLng = communityLatLng.lng;
+        } else {
+          const fallback = await askUserForLocationFallback();
+          finalLat = fallback.lat;
+          finalLng = fallback.lng;
+        }
+      }
+    }
+
+    // ---------------------------
+    // TURNING OFF
+    // ---------------------------
+    if (!enabled) {
+      if (!communityLatLng) {
+        const fallback = await askUserForLocationFallback();
+        finalLat = fallback.lat;
+        finalLng = fallback.lng;
+      } else {
+        finalLat = communityLatLng.lat;
+        finalLng = communityLatLng.lng;
+      }
+    }
+
+    // ---------------------------
+    // UPDATE SUPABASE (geography column)
+    // ---------------------------
+    const { error } = await supabase
+      .from("0con_profilesdata")
+      .update({
+        travel_mode: enabled,
+        location: `POINT(${finalLng} ${finalLat})`
+      })
+      .eq("id", appState.user.id);
+
+    if (error) throw error;
+
+    // ---------------------------
+    // SYNC LOCAL STATE
+    // ---------------------------
+    appState.profile.travel_mode = enabled;
+    appState.profile.location = {
+      lat: finalLat,
+      lng: finalLng
+    };
+
+  } catch (err) {
+    console.error("Travel mode update failed:", err);
+  }
+}
+
 
 //#endregion
 
@@ -3944,7 +4170,8 @@ function openCommunitySurvey() {
   });
 
   renderCommunityQuestions();
-
+  renderCommunityLanguages();
+  setTimeout(() => {initCommunityMap();}, 200);
   const matchesTab = document.getElementById("messages");
   matchesTab.classList.remove("active");
   document.getElementById("communitycreator").classList.remove("hidden");
@@ -4051,6 +4278,65 @@ const weight = Math.round(
   });
 }
 
+function initCommunityMap() {
+  const mapContainer = document.getElementById("communityMap");
+  if (!mapContainer || communityMap) return;
+
+  // default fallback (Spain)
+  const defaultLat = 39.4699;
+  const defaultLng = -0.3763;
+
+  // use GPS if available
+  const initialLat = communityLatLng?.lat ?? defaultLat;
+  const initialLng = communityLatLng?.lng ?? defaultLng;
+
+  communityMap = L.map("communityMap").setView(
+    [initialLat, initialLng],
+    12
+  );
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(communityMap);
+
+  // if we already have location → show marker
+  if (communityLatLng) {
+    communityMarker = L.marker([
+      communityLatLng.lat,
+      communityLatLng.lng
+    ]).addTo(communityMap);
+
+    document.getElementById("mapCoords").textContent =
+      `📍 ${communityLatLng.lat.toFixed(5)}, ${communityLatLng.lng.toFixed(5)}`;
+  }
+
+  // click to set location
+  communityMap.on("click", (e) => {
+    const { lat, lng } = e.latlng;
+
+    communityLatLng = { lat, lng };
+
+    if (communityMarker) {
+      communityMap.removeLayer(communityMarker);
+    }
+
+    communityMarker = L.marker([lat, lng]).addTo(communityMap);
+
+    document.getElementById("mapCoords").textContent =
+      `📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+  });
+}
+
+const communityRadius = document.getElementById("communityRadius");
+
+communityRadius?.addEventListener("input", () => {
+  const mi = communityRadius.value;
+  const km = (mi * 1.60934).toFixed(1);
+
+  document.getElementById("communityRadiusValue").textContent =
+    `${mi} mi (${km} km)`;
+});
+
 const thresholdSlider = document.getElementById("CommunityThreshold");
 const thresholdLabel = document.getElementById("thresholdValue");
 
@@ -4085,6 +4371,13 @@ if (name.length > 30) {
     return;
   }
 
+  const selectedLanguages = Array.from(
+  document.querySelectorAll("#communityLanguagesList input:checked")
+).map(el => el.value);
+
+const radiusMiles = Number(document.getElementById("communityRadius").value);
+const radiusKm = radiusMiles * 1.60934;
+
 const answeredCount = Object.keys(communityState.answers).length;
 
 if (answeredCount !== AppData.questions.length) {
@@ -4110,6 +4403,14 @@ const communityData = {
   weights: communityState.weights,
   dealbreakers: Array.from(communityState.dealbreakers), // ✅
 
+  community_languages: selectedLanguages,
+
+  community_location: communityLatLng
+  ? `POINT(${communityLatLng.lng} ${communityLatLng.lat})`
+  : null,
+
+  community_distance_threshold: radiusMiles,
+
   threshold, // ✅
 
   created_at: new Date().toISOString()
@@ -4124,6 +4425,30 @@ const communityData = {
     alert(t("communityCreateError"));
   }
 };
+
+function renderCommunityLanguages() {
+  const container = document.getElementById("communityLanguagesList");
+  container.innerHTML = "";
+
+  AppData.languages.forEach(lang => {
+    const label = document.createElement("label");
+
+    label.innerHTML = `
+      <input type="checkbox" value="${lang.id}">
+      ${t(lang.id)}
+    `;
+
+    container.appendChild(label);
+  });
+}
+
+function getFileExtension(file, safeFile) {
+  return (
+    file?.name?.split(".").pop()?.toLowerCase() ||
+    safeFile?.type?.split("/").pop()?.toLowerCase() ||
+    "jpg"
+  );
+}
 
 async function uploadCommunityPhoto(file) {
   const userId = appState.user.id;
@@ -4179,6 +4504,12 @@ async function saveCommunityToDB(communityData) {
         community_values: communityData.values,
         community_weights: communityData.weights,
         community_dealbreakers: communityData.dealbreakers,
+
+
+      community_languages: communityData.community_languages, // ✅ FIX
+      community_location: communityData.community_location,     // ✅ FIX
+      community_distance_threshold: communityData.community_distance_threshold, // ✅ FIX
+
 
         community_threshold: communityData.threshold,
         created_at: communityData.created_at
@@ -4496,6 +4827,16 @@ async function deleteCommunity(communityId) {
       .from("0con_community_participants")
       .delete()
       .eq("community_id", communityId);
+
+    await supabase
+      .from("0con_incomes")
+      .delete()
+      .eq("sender_id", communityId);
+
+    await supabase
+      .from("0con_profilesdata")
+      .update({ community_id: null })
+      .eq("id", appState.user.id)
 
     document.getElementById("communityModal").style.display = "none";
     renderCommunityTopbar();
@@ -7934,13 +8275,14 @@ document.addEventListener("DOMContentLoaded", () => {
 //#region COMMUNICATION WITH NATIVES
 
 // 🌍 Called from Android (trusted source)
-// 🌍 Called from Android (trusted source)
 window.onLocationReceived = async function(lat, lng) {
 
   window.__LOCATION_ALREADY_SET__ = true
+  communityLatLng = { lat, lng };
   await appReady;
 
   await handleIncomingLocation(lat, lng, { isNative: true });
+
 };
 
 
@@ -7989,6 +8331,10 @@ function isSameLocation(stored, lat, lng) {
 
   if (!stored?.lat || !stored?.lng) {
     return false;
+  }
+
+  if (appState.profile.travel_mode){
+    return true;
   }
 
   const distance = Math.sqrt(
@@ -8109,15 +8455,95 @@ document.getElementById("confirmPremiumBtnInfo")?.addEventListener("click", asyn
 async function askUserForLocationFallback() {
   return new Promise((resolve) => {
 
-    const choice = confirm(
-      "Choose your location:\n\nOK = Valencia\nCancel = Budapest"
+    const modal = document.getElementById("fallbackLocationModal");
+    const mapEl = document.getElementById("fallbackMap");
+
+    modal.classList.remove("hidden");
+
+    const defaultLatLng = communityLatLng || {
+      lat: 39.4699,
+      lng: -0.3763
+    };
+
+    // -----------------------------
+    // INIT MAP ONLY ONCE
+    // -----------------------------
+    if (!fallbackMapState.initialized) {
+
+      fallbackMapState.map = L.map(mapEl).setView(
+        [defaultLatLng.lat, defaultLatLng.lng],
+        6
+      );
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap"
+      }).addTo(fallbackMapState.map);
+
+      fallbackMapState.marker = L.marker(
+        [defaultLatLng.lat, defaultLatLng.lng],
+        { draggable: true }
+      ).addTo(fallbackMapState.map);
+
+      fallbackMapState.selected = defaultLatLng;
+
+      fallbackMapState.marker.on("dragend", () => {
+        const pos = fallbackMapState.marker.getLatLng();
+        fallbackMapState.selected = {
+          lat: pos.lat,
+          lng: pos.lng
+        };
+      });
+
+      fallbackMapState.map.on("click", (e) => {
+        const { lat, lng } = e.latlng;
+
+        fallbackMapState.marker.setLatLng([lat, lng]);
+        fallbackMapState.selected = { lat, lng };
+      });
+
+      fallbackMapState.initialized = true;
+    }
+
+    // -----------------------------
+    // RESET POSITION EACH OPEN
+    // -----------------------------
+    fallbackMapState.map.setView(
+      [defaultLatLng.lat, defaultLatLng.lng],
+      6
     );
 
-    const coords = choice
-      ? { lat: 39.4699, lng: -0.3763 } // Valencia
-      : { lat: 47.4979, lng: 19.0402 }; // Budapest
+    fallbackMapState.marker.setLatLng([
+      defaultLatLng.lat,
+      defaultLatLng.lng
+    ]);
 
-    updateUserLocationCoords(coords.lat, coords.lng).then(resolve);
+    fallbackMapState.selected = defaultLatLng;
+
+    // -----------------------------
+    // CONFIRM
+    // -----------------------------
+    document.getElementById("fallbackConfirmBtn").onclick = async () => {
+      modal.classList.add("hidden");
+
+      const final = fallbackMapState.selected;
+
+      if (!final) {
+        resolve(null);
+        return;
+      }
+
+      await updateUserLocationCoords(final.lat, final.lng);
+
+      resolve(final);
+    };
+
+    // -----------------------------
+    // CANCEL
+    // -----------------------------
+    document.getElementById("fallbackCancelBtn").onclick = () => {
+      modal.classList.add("hidden");
+      resolve(null);
+    };
   });
 }
 

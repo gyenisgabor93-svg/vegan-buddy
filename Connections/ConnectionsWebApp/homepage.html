@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Connection Homepage</title>
   <link rel="stylesheet" href="ConnectionStyle.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 </head>
 
 <body>
@@ -189,7 +190,10 @@ Elu Premium supports this mission. Every subscription helps us grow these tools,
     </div>
     
     <!-- STEP 1: NAME -->
+     <section class="survey-section">
+     <h3  data-i18n="createcommunityname">Community Name</h3>
     <input type="text"  id="CommunityName" maxlength="30"  data-i18n-placeholder="entercommunityname" class="text-input survey-section"/>
+    </section>
 
     <!-- STEP 2: PHOTO -->
     <section class="survey-section">
@@ -210,21 +214,58 @@ Elu Premium supports this mission. Every subscription helps us grow these tools,
          data-i18n-placeholder="writecommunitydescription"></textarea>
     </section>
 
-    <!-- STEP 4: VALUES SURVEY -->
+    <!-- STEP 4: LANGUAGES (NEW) -->
+    <section class="survey-section">
+      <h3 data-i18n="langs">Languages</h3>
+
+      <div id="communityLanguagesList"></div>
+    </section>
+
+    <!-- STEP 5: LOCATION MAP (NEW) -->
+    <section class="survey-section">
+      <h3 data-i18n="communitylocation">Community Location</h3>
+
+      <div id="communityMap" style="height: 250px; border-radius: 12px;"></div>
+
+      <small id="mapCoords" data-i18n="setcoords">
+        Click on the map to set community location
+      </small>
+    </section>
+
+    <!-- STEP 6: RADIUS (NEW) -->
+    <section class="survey-section">
+      <h3 data-i18n="communityradius">Community Radius</h3>
+
+      <label>
+        <span id="communityRadiusValue">50 mi (80.1 km)</span>
+      </label>
+
+      <input type="range"
+        id="communityRadius"
+        min="1"
+        max="200"
+        value="50"/>
+
+      <small data-i18n="communitydistancehint">
+        Distance used to match nearby users
+      </small>
+    </section>
+
+    <!-- STEP 7: VALUES SURVEY -->
     <section class="survey-section">
   <h3 data-i18n="communityvalues">Community Values</h3>
   <div id="communityQuestions"></div>
 </section>
 
 
-  <!-- STEP 5: THRESHOLD -->
+  <!-- STEP 8: THRESHOLD -->
 <section class="survey-section">
   <h3 data-i18n="matchrequirements">Match Requirement</h3>
 
   <label data-i18n="lowthreshold">
     Minimum match: 
-    <span id="thresholdValue">40</span>%
-  </label>
+    
+  </label><span id="thresholdValue">40</span>%
 
   <input type="range" id="CommunityThreshold" min="0" max="100" value="40"/>
 
@@ -367,7 +408,16 @@ Elu Premium supports this mission. Every subscription helps us grow these tools,
 </div>
 
   <!-- INCÓGNITO (JS will inject if premium) -->
-  <div id="FriendsincognitoBox"></div>
+<div id="FriendsincognitoBox"></div>
+
+<div class="friend-mode-container">
+  <span id="travelModeStatus" data-i18n="travelmodetoggle">Travel mode</span>
+
+  <label class="switch">
+    <input type="checkbox" id="travelModeToggle">
+    <span class="slider"></span>
+  </label>
+</div>
 
 <div id="languagesListWrapper" class="box">
   <div id="languagesList"></div>
@@ -725,14 +775,41 @@ Elu Premium supports this mission. Every subscription helps us grow these tools,
 </div>
 
 <div id="profile-backdrop" class="hidden">
-
-
 </div>
 
 <div id="profile-popup" class="hidden">
   <div class="popup-content">
     <span id="close-popup">&times;</span>
     <div id="profile-data"></div>
+  </div>
+</div>
+
+<div id="travelModal" class="modal hidden">
+  <div class="modal-content">
+
+    <h3 data-i18n="travel_set_location_title"></h3>
+
+    <div id="travelMap" style="height: 300px; border-radius: 10px;"></div>
+
+    <button id="confirmTravelBtn" data-i18n="travel_confirm"></button>
+    <button id="cancelTravelBtn" data-i18n="travel_cancel"></button>
+
+  </div>
+</div>
+
+<div id="fallbackLocationModal" class="modal hidden">
+  <div class="modal-content">
+
+    <h3 data-i18n="location_error_title"></h3>
+    <p data-i18n="location_error_text"></p>
+
+    <div id="fallbackMap" style="height:300px; border-radius:10px;"></div>
+
+    <div class="modal-actions">
+      <button id="fallbackConfirmBtn" data-i18n="travel_confirm"></button>
+      <button id="fallbackCancelBtn" data-i18n="travel_cancel"></button>
+    </div>
+
   </div>
 </div>
 
@@ -889,7 +966,7 @@ Elu Premium supports this mission. Every subscription helps us grow these tools,
   <div class="spinner"></div>
 </div>
 
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="ConnectionScript.js"></script>
 </body>
 </html>
