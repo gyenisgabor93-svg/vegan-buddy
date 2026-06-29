@@ -23,12 +23,17 @@ import com.example.eluvegancircle.ui.theme.EluVeganCircleTheme
 import com.google.android.gms.location.LocationServices
 import android.os.Build
 
+import com.google.firebase.messaging.FirebaseMessaging
+import android.util.Log
+
 class MainActivity : ComponentActivity() {
 
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
     private var webView: WebView? = null
 
     private var isPageReady = false
+
+    private var latestFcmToken: String? = null
 
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -76,6 +81,10 @@ class MainActivity : ComponentActivity() {
             window.isNavigationBarContrastEnforced = false
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
         // 🔥 THIS controls icon/character color
         val controller = WindowCompat.getInsetsController(window, window.decorView)
 
@@ -83,12 +92,17 @@ class MainActivity : ComponentActivity() {
         controller.isAppearanceLightStatusBars = true
         controller.isAppearanceLightNavigationBars = true
 
+
+
         setContent {
             EluVeganCircleTheme {
                 WebViewScreen(
                     onWebViewCreated = { wv ->
                         webView = wv
                         setupBackHandling(wv)
+
+                        // ✅ FIX: send token if already received before WebView
+                        latestFcmToken?.let { sendTokenToWeb(it) }
                     },
                     onPageReady = {
                         isPageReady = true
@@ -99,6 +113,23 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Log.d("FCM", "Token: $token")
+
+                latestFcmToken = token
+                sendTokenToWeb(token)
+            }
+        }
+    }
+
+    private fun sendTokenToWeb(token: String) {
+        webView?.evaluateJavascript(
+            "window.onAndroidTokenReceived('$token')",
+            null
+        )
     }
 
     // ✅ SAFE BACK HANDLING (no duplicates, stable JS fallback)

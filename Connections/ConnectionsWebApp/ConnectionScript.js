@@ -2526,7 +2526,7 @@ function formatDistance(distance) {
 
   // 👇 under 1 → always "1 km" / "1 mi"
   if (value < 1) {
-    return `1 ${unit}`;
+    return `< 1 ${unit}`;
   }
 
   // 👇 normal formatting
@@ -8369,6 +8369,31 @@ async function updateUserLocationCoords(lat, lng) {
   }
 
 }
+
+window.onAndroidDeviceToken = async (token, deviceType) => {
+  try {
+    const user = appState.user?.id;
+
+    if (!user) return;
+
+    const { error } = await supabase
+      .from("0con_notifications")
+      .upsert({
+        device_token: token,
+        device_type: deviceType
+      })
+      .eq("user_id", user);
+
+    if (error) {
+      console.error("Device update failed:", error);
+    } else {
+      console.log("Device token updated successfully");
+    }
+
+  } catch (err) {
+    console.error("Unexpected error:", err);
+  }
+};
 
 
 
