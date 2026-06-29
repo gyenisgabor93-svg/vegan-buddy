@@ -8386,7 +8386,7 @@ window.onAndroidDeviceToken = async function (token, deviceType) {
         device_type: deviceType,
 
         // 🌍 language column
-        language: currentLang,
+        language: localStorage.getItem("app_language"),
 
         // 🕒 last online timestamp (recommended: server-side time)
         last_online: new Date().toISOString()
