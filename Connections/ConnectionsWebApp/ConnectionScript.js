@@ -8377,7 +8377,7 @@ window.onAndroidDeviceToken = async function (token, deviceType) {
     while (!appState.user) {
       await new Promise(res => setTimeout(res, 300));
     }
-
+alert(currentLang)
     const { error } = await supabase
       .from("0con_notifications")
       .upsert({
@@ -8386,7 +8386,7 @@ window.onAndroidDeviceToken = async function (token, deviceType) {
         device_type: deviceType,
 
         // 🌍 language column
-        language: localStorage.getItem("app_language"),
+        language: currentLang,
 
         // 🕒 last online timestamp (recommended: server-side time)
         last_online: new Date().toISOString()
