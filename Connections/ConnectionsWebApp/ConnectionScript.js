@@ -8371,18 +8371,18 @@ async function updateUserLocationCoords(lat, lng) {
 }
 
 window.onAndroidDeviceToken = async (token, deviceType) => {
-  try { alert(token, deviceType)
+  try { 
     const user = appState.user?.id;
 
     if (!user) return;
 
     const { error } = await supabase
-      .from("0con_notifications")
-      .upsert({
-        device_token: token,
-        device_type: deviceType
-      })
-      .eq("user_id", user);
+  .from("0con_notifications")
+  .upsert({
+    user_id: user,
+    device_token: token,
+    device_type: deviceType
+  });
 
     if (error) {
       console.error("Device update failed:", error);

@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
 
     private fun sendTokenToWeb(token: String) {
         webView?.evaluateJavascript(
-            "window.onAndroidTokenReceived('$token')",
+            "window.onAndroidDeviceToken('$token', 'android')",
             null
         )
     }
