@@ -5894,7 +5894,7 @@ async function createInvitationCards() {
       .from('0con_incomes')
       .select('id, sender_id, receiver_id, invitation_type, created_at')
       .eq('receiver_id', viewerId);
-
+console.log(invites)
     if (error) {
       console.error('fetch invites error:', error);
       return;
