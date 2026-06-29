@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
 
     private var isPageReady = false
 
+    private var isJsReady = false
+
     private var latestFcmToken: String? = null
 
     private val filePickerLauncher =
@@ -100,14 +102,17 @@ class MainActivity : ComponentActivity() {
                     onWebViewCreated = { wv ->
                         webView = wv
                         setupBackHandling(wv)
+                    },
+                        onPageReady = {
+                            isPageReady = true
+                            isJsReady = true
 
-                        // ✅ FIX: send token if already received before WebView
-                        latestFcmToken?.let { sendTokenToWeb(it) }
-                    },
-                    onPageReady = {
-                        isPageReady = true
-                        requestLocationPermission()
-                    },
+                            requestLocationPermission()
+
+                            // ✅ SEND TOKEN HERE (THIS IS THE FIX)
+                            latestFcmToken?.let { sendTokenToWeb(it) }
+                        }
+                    ,
                     filePickerLauncher = filePickerLauncher,
                     setFileCallback = { filePathCallback = it }
                 )
@@ -126,14 +131,17 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun sendTokenToWeb(token: String) {
+
+        if (webView == null || !isJsReady) {
+            Log.d("FCM", "WebView/JS not ready, skipping send")
+            return
+        }
+
         webView?.evaluateJavascript(
             """
-        alert("ANDROID → sending token: $token");
         if (window.onAndroidDeviceToken) {
             window.onAndroidDeviceToken('$token', 'android');
-        } else {
-            alert("JS function NOT FOUND");
-        }
+        } 
         """.trimIndent(),
             null
         )
@@ -153,7 +161,8 @@ class MainActivity : ComponentActivity() {
                     """
                     (function(){
                         if (typeof window.handleBackButton === "function") {
-                            window.handleBackButton();
+                            window.handleBackButton();else {
+            alert("JS function NOT FOUND");
                         }
                     })();
                     """.trimIndent(),
