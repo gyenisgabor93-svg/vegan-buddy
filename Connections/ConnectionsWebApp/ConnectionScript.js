@@ -5516,7 +5516,7 @@ if (isCommunity) {
     .from('0con_communities')
     .select('is_active')
     .eq('id', card.id)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.error(error);
@@ -5952,7 +5952,7 @@ async function createInvitationCards() {
             .from('0con_communities')
             .select('id, community_name, community_photo')
             .eq('id', inv.sender_id)
-            .single();
+            .maybeSingle();
 
           if (error || !data) return null;
 
