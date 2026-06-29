@@ -8372,42 +8372,32 @@ async function updateUserLocationCoords(lat, lng) {
 
 window.onAndroidDeviceToken = async function (token, deviceType) {
   try {
-    alert("1. Function started");
+    alert("1. Token received");
 
-    alert("2. Token received: " + token);
-    alert("3. Device type: " + deviceType);
-
-    const user = appState.user?.id;
-    alert("4. User ID: " + user);
-
-    if (!user) {
-      alert("❌ 5. No user found, exiting");
-      return;
+    // ⏳ WAIT until app is ready
+    while (!appState.user) {
+      alert("Waiting for user...");
+      await new Promise(res => setTimeout(res, 300));
     }
 
-    alert("6. Before Supabase call");
+    alert("User is now available: " + appState.user.id);
 
     const { error } = await supabase
       .from("0con_notifications")
       .upsert({
-        user_id: user,
+        user_id: appState.user.id,
         device_token: token,
         device_type: deviceType
       });
 
-    alert("7. After Supabase call");
-
     if (error) {
-      alert("❌ 8. Supabase error: " + JSON.stringify(error));
-      console.error("Device update failed:", error);
+      alert("Error: " + JSON.stringify(error));
     } else {
-      alert("✅ 9. Device token updated successfully");
-      console.log("Device token updated successfully");
+      alert("Success!");
     }
 
   } catch (err) {
-    alert("🔥 10. Unexpected error: " + err.message);
-    console.error("Unexpected error:", err);
+    alert("Crash: " + err.message);
   }
 };
 
