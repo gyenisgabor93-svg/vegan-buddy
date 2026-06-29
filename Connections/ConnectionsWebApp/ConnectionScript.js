@@ -8377,20 +8377,24 @@ window.onAndroidDeviceToken = async function (token, deviceType) {
     while (!appState.user) {
       await new Promise(res => setTimeout(res, 300));
     }
-alert(currentLang)
-    const { error } = await supabase
-      .from("0con_notifications")
-      .upsert({
-        user_id: appState.user.id,
-        device_token: token,
-        device_type: deviceType,
 
-        // 🌍 language column
-        language: currentLang,
+const { data, error } = await supabase
+  .from("0con_notifications")
+  .upsert(
+    {
+      user_id: appState.user.id,
+      device_token: token,
+      device_type: deviceType,
+      language: currentLang,
+      last_online: new Date().toISOString()
+    },
+    {
+      onConflict: "user_id"
+    }
+  )
+  .select();
 
-        // 🕒 last online timestamp (recommended: server-side time)
-        last_online: new Date().toISOString()
-      });
+  alert(data)
 
     if (error) {
       console.error("Upsert error:", error);
