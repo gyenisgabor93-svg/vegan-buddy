@@ -8370,8 +8370,8 @@ async function updateUserLocationCoords(lat, lng) {
 
 }
 
-window.onAndroidDeviceToken = async (token, deviceType) => {
-  try { 
+window.onAndroidDeviceToken = async function (token, deviceType) {
+  try {  alert("Token received: ",token)
     const user = appState.user?.id;
 
     if (!user) return;

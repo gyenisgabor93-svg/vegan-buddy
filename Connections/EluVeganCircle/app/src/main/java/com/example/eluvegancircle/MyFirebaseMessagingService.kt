@@ -22,7 +22,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         Log.d(TAG, "New FCM token: $token")
 
-        sendTokenToSupabase(token)
+      //  sendTokenToSupabase(token)
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
@@ -93,7 +93,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     // ⚠️ IMPORTANT:
     // FirebaseService cannot access WebView directly.
     // So we just log it OR later you send it to backend (Supabase recommended).
-    private fun sendTokenToSupabase(token: String) {
-        Log.d(TAG, "FCM token ready (send to backend or Activity): $token")
-    }
+  //  private fun sendTokenToSupabase(token: String) {
+   //     Log.d(TAG, "FCM token ready (send to backend or Activity): $token")
+  //  }
 }
