@@ -3043,7 +3043,7 @@ async function performAction(userId, invitationType = null) {
 async function deductFood(userId, type) {
   if (appState.profile?.is_premium) return; // extra safety
 
-  const column = type === 1 ? "avocados" : "tofu";
+  const column = type === 1 ? "avocados" : "tofus";
 
   const currentValue = appState.profile?.[column] || 0;
 
