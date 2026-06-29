@@ -6418,9 +6418,9 @@ async function performActionInvitation(userId, invitationType, userName, userPho
     const user1 = appState.user.id;
     const user2 = userId;
 
-    const viewerName = appState.user.name;
+    const viewerName = appState.profile.name;
     const otherName = userName;
-    const viewerPhoto = getProfilePhoto(appState.user);
+    const viewerPhoto = getProfilePhoto(appState.profile);
     const otherPhoto = userPhoto;
 
     // 1. ONLY create match if NOT reject
