@@ -37,6 +37,8 @@ class MainActivity : ComponentActivity() {
 
     private var latestFcmToken: String? = null
 
+    private var pendingScreen: String? = null
+
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
@@ -94,7 +96,7 @@ class MainActivity : ComponentActivity() {
         controller.isAppearanceLightStatusBars = true
         controller.isAppearanceLightNavigationBars = true
 
-
+        val initialScreen = intent.getStringExtra("screen")
 
         setContent {
             EluVeganCircleTheme {
@@ -111,6 +113,29 @@ class MainActivity : ComponentActivity() {
 
                             // ✅ SEND TOKEN HERE (THIS IS THE FIX)
                             latestFcmToken?.let { sendTokenToWeb(it) }
+
+                            // 🔥 HANDLE DEEPLINK HERE
+                            pendingScreen?.let { screen ->
+                                sendScreenToWeb(screen)
+                                pendingScreen = null
+                            }
+
+                            // 🔥 NOW MARK JS APP AS READY (important)
+                            webView?.evaluateJavascript(
+                                """
+        window.__appReady = true;
+
+        if (window.__deepLinkQueue && window.__deepLinkQueue.length > 0) {
+            while (window.__deepLinkQueue.length > 0) {
+                const screen = window.__deepLinkQueue.shift();
+                if (window.handleDeepLink) {
+                    window.handleDeepLink(screen);
+                }
+            }
+        }
+        """.trimIndent(),
+                                null
+                            )
                         }
                     ,
                     filePickerLauncher = filePickerLauncher,
@@ -143,6 +168,13 @@ class MainActivity : ComponentActivity() {
             window.onAndroidDeviceToken('$token', 'android');
         } 
         """.trimIndent(),
+            null
+        )
+    }
+
+    private fun sendScreenToWeb(screen: String) {
+        webView?.evaluateJavascript(
+            "window.onNativeDeepLink && window.onNativeDeepLink('$screen')",
             null
         )
     }

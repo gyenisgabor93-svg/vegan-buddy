@@ -1660,6 +1660,9 @@ let communityLatLng = null;
 let communityMap = null;
 let communityMarker = null;
 
+window.__deepLinkQueue = [];
+window.__appReady = false;
+
 // 🔌 FETCH PROFILES
 async function loadProfile() {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -6262,7 +6265,7 @@ ${!isPremium ? `
       </button>
 
       <button data-action="AcceptTofu" data-id="${user.id}" data-name="${user.name}" data-photo="${profilePhoto}">
-        🍲 ${t("reject_tofu")}
+        🍲 ${t("accept_tofu")}
       </button>
 
     </div>
@@ -8403,7 +8406,44 @@ const { data, error } = await supabase
   }
 };
 
+window.onNativeDeepLink = function (screen) {
 
+  if (!screen) return;
+
+  // If app is not ready → queue it
+  if (!window.__appReady) {
+    window.__deepLinkQueue.push(screen);
+    return;
+  }
+
+  handleDeepLink(screen);
+};
+
+function handleDeepLink(screen) {
+
+  const tabMap = {
+    messages: "messages",
+    matches: "matches",
+    profile: "profile",
+    discover: "discover",
+    settings: "settings"
+  };
+
+  const tabId = tabMap[screen];
+
+  if (!tabId) {
+    console.warn("Unknown deep link:", screen);
+    return;
+  }
+
+  const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+
+  openTab(tabId, navItem);
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+// 🔥 expose it globally for Android bridge
+window.handleDeepLink = handleDeepLink;
 
     //#endregion
 
