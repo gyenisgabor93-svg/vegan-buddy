@@ -2518,19 +2518,23 @@ function formatDistance(distance) {
 
   const lang = appState?.profile?.lang || "en";
 
-  // small distances → always meters
-  if (distance < 1) {
-    const meters = Math.round(distance * 1609.34);
-    return `${meters} m`;
+  const value = lang === "en"
+    ? distance
+    : distance * 1.60934;
+
+  const unit = lang === "en" ? "mi" : "km";
+
+  // 👇 under 1 → always "1 km" / "1 mi"
+  if (value < 1) {
+    return `1 ${unit}`;
   }
 
-  const miles = Math.round(distance);
-  const km = Math.round(distance * 1.60934);
+  // 👇 normal formatting
+  if (value < 10) {
+    return `${value.toFixed(1)} ${unit}`;
+  }
 
-  // English → miles, everything else → km
-  return lang === "en"
-    ? `${miles} mi`
-    : `${km} km`;
+  return `${Math.round(value)} ${unit}`;
 }
 
 // -----------------------------

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "258514183162",
+    "project_id": "elunify-35ab2",
+    "storage_bucket": "elunify-35ab2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258514183162:android:6a0d057b6497e1c9a4fa43",
+        "android_client_info": {
+          "package_name": "com.example.elunify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60qao7j319EEkGXaH-kRd7etYCuhUrl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258514183162:android:09995d10ca2a89dea4fa43",
+        "android_client_info": {
+          "package_name": "com.example.eluvegancircle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC60qao7j319EEkGXaH-kRd7etYCuhUrl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

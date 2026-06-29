@@ -1,6 +1,13 @@
 plugins {
+
+  //  id("com.android.application")
+
+ //   id("com.google.gms.google-services")
+
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+
+
 }
 
 android {
@@ -56,4 +63,8 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+ //   implementation(platform("com.google.firebase:firebase-bom:34.15.0"))
+
+ //   implementation("com.google.firebase:firebase-analytics")
 }
