@@ -6364,16 +6364,25 @@ document.getElementById("communityAcceptBtn").onclick = async () => {
 }
 
 function getProfilePhoto(user) {
-  // If it's already a simple string (friends case)
-  if (user.photo) return user.photo;
+  if (user.profile_photo_url) return user.profile_photo_url;
 
-  // If it's the date JSONB array
-  if (Array.isArray(user.photos)) {
+  let photos = user.photos;
+
+  // 🔥 FIX: parse if needed
+  if (typeof photos === "string") {
+    try {
+      photos = JSON.parse(photos);
+    } catch {
+      photos = [];
+    }
+  }
+
+  if (Array.isArray(photos)) {
     const profilePic =
-      user.photos.find(p => p.isProfile) ||
-      user.photos.find(p => p.order === 0);
+      photos.find(p => p.isProfile) ||
+      photos.find(p => p.order === 0);
 
-    return profilePic ? profilePic.url : "";
+    return profilePic?.url || "";
   }
 
   return "";
