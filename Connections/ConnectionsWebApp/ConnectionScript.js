@@ -4077,7 +4077,7 @@ async function renderCommunityTopbar() {
       .from("0con_communities")
       .select("id, community_name, community_photo")
       .eq("id", communityId)
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error("Community fetch error:", error);
@@ -4609,7 +4609,7 @@ async function openCommunityPage(communityId) {
       .from("0con_communities")
       .select("id, owner_id, community_name, community_description, community_photo")
       .eq("id", communityId)
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
 
@@ -6303,7 +6303,7 @@ modal.dataset.incomeId = incomeId;
       .from("0con_communities")
       .select("id, community_name, community_description, community_photo")
       .eq("id", communityId)
-      .single();
+      .maybeSingle();
 
     if (error) throw error;
 
