@@ -4908,10 +4908,14 @@ function closeCommunityPage() {
 
 //#region MESSAGES
 
-function subscribeToMessageUpdates() {
-  const viewerId = appState.user.id;
+let messagesChannel = null;
 
-  supabase
+function subscribeToMessageUpdates() {
+  if (messagesChannel) {
+    supabase.removeChannel(messagesChannel);
+  }
+
+  messagesChannel = supabase
     .channel('messages-list-updates')
     .on(
       'postgres_changes',
@@ -4923,54 +4927,8 @@ function subscribeToMessageUpdates() {
       async payload => {
         const msg = payload.new;
 
-        // ignore unrelated rows
         if (!msg.match_id && !msg.community_id) return;
 
-        // =========================
-        // MATCH MESSAGE
-        // =========================
-        if (msg.match_id) {
-          const { data: match } = await supabase
-            .from('0con_matches')
-            .select('id, user1_id, user2_id')
-            .eq('id', msg.match_id)
-            .single();
-
-          if (!match) return;
-
-          if (
-            match.user1_id !== viewerId &&
-            match.user2_id !== viewerId
-          ) return;
-
-          await supabase
-            .from('0con_matches')
-            .update({
-              last_message: msg.content,
-              last_sender_id: msg.sender_id,
-              last_message_at: new Date().toISOString()
-            })
-            .eq('id', msg.match_id);
-        }
-
-        // =========================
-        // COMMUNITY MESSAGE
-        // =========================
-        if (msg.community_id) {
-          await supabase
-            .from('0con_community_chats')
-            .update({
-              last_message: msg.content,
-              last_sender_id: msg.sender_id,
-              last_sender_name: msg.sender_name,
-              last_message_at: new Date().toISOString()
-            })
-            .eq('community_id', msg.community_id);
-        }
-
-        // =========================
-        // REFRESH UI
-        // =========================
         await createMessageCards();
       }
     )
@@ -5894,7 +5852,7 @@ async function createInvitationCards() {
       .from('0con_incomes')
       .select('id, sender_id, receiver_id, invitation_type, created_at')
       .eq('receiver_id', viewerId);
-console.log(invites)
+
     if (error) {
       console.error('fetch invites error:', error);
       return;
