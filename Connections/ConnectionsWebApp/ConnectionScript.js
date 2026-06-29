@@ -8394,8 +8394,6 @@ const { data, error } = await supabase
   )
   .select();
 
-  alert(data)
-
     if (error) {
       console.error("Upsert error:", error);
     }
