@@ -8371,7 +8371,7 @@ async function updateUserLocationCoords(lat, lng) {
 }
 
 window.onAndroidDeviceToken = async (token, deviceType) => {
-  try {
+  try { alert(token, deviceType)
     const user = appState.user?.id;
 
     if (!user) return;
