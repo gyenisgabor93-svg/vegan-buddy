@@ -2298,7 +2298,7 @@ async function normalizeFile(file) {
   return new Blob([file], { type: "image/jpeg" });
 }
 
-function updateCrossFlag() {
+async function updateCrossFlag() {
 
     const { error: profileError } = await supabase
       .from("profiles")

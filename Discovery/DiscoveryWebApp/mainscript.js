@@ -2467,7 +2467,7 @@ async function fetchAllData() {
       is_pro, diet_preference, last_lesson, health_progress, extra_lesson,
       completed_health_issues, lesson_progress, achievements, title,
       bought_items, xp_today, friend_code, survey_completed, name, completed_lessons, 
-      pending_streak_action, vegan_days, connection_survey_completed`)
+      pending_streak_action, vegan_days, has_circles_app`)
     .eq("id", user.id)
     .single();
 
@@ -2477,7 +2477,7 @@ async function fetchAllData() {
   // 🌱 Conditional probability fetch
 if (
   profile?.diet_preference === "Vegan" &&
-  profile?.connection_survey_completed === false
+  profile?.has_circles_app === false
 ) { 
   const { data: probData, error: probError } = await supabase
     .from("A_global_probabilities")
