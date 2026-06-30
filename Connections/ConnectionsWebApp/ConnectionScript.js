@@ -1660,7 +1660,6 @@ let communityLatLng = null;
 let communityMap = null;
 let communityMarker = null;
 
-window.__deepLinkQueue = [];
 window.__appReady = false;
 
 // 🔌 FETCH PROFILES
@@ -8373,12 +8372,16 @@ const { data, error } = await supabase
   }
 };
 
-window.onNativeDeepLink = function (screen) { alert("DeepLink Runs")
+window.__deepLinkQueue = window.__deepLinkQueue || [];
+
+window.onNativeDeepLink = function (screen) {
+  console.log("🔥 DeepLink received:", screen);
+  alert("DeepLink: " + screen);
 
   if (!screen) return;
 
-  // If app is not ready → queue it
   if (!window.__appReady) {
+    console.log("⏳ App not ready, queueing:", screen);
     window.__deepLinkQueue.push(screen);
     return;
   }
@@ -8387,6 +8390,9 @@ window.onNativeDeepLink = function (screen) { alert("DeepLink Runs")
 };
 
 function handleDeepLink(screen) {
+
+  console.log("🎯 handleDeepLink:", screen);
+  alert("Handling: " + screen);
 
   const tabMap = {
     messages: "messages",
@@ -8399,17 +8405,27 @@ function handleDeepLink(screen) {
   const tabId = tabMap[screen];
 
   if (!tabId) {
-    console.warn("Unknown deep link:", screen);
+    console.warn("❌ Unknown screen:", screen);
     return;
   }
 
   const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
 
-  openTab(tabId, navItem);
+  if (!navItem) {
+    alert("❌ navItem not found: " + tabId);
+    console.log(document.querySelectorAll(".nav-item"));
+    return;
+  }
+
+  console.log("✅ Clicking tab:", tabId);
+
+  // 🔥 IMPORTANT: use click instead of openTab
+  navItem.click();
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-// 🔥 expose it globally for Android bridge
+
+// expose
 window.handleDeepLink = handleDeepLink;
 
     //#endregion

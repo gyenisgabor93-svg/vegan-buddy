@@ -37,6 +37,8 @@ class MainActivity : ComponentActivity() {
 
     private var latestFcmToken: String? = null
 
+    private var pendingDeepLink: String? = null
+
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
@@ -70,8 +72,16 @@ class MainActivity : ComponentActivity() {
             if (granted) sendLocationToWeb()
         }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        Log.d("TRACE", "onCreate called")
+
+        webView?.evaluateJavascript("""alert("TRACE: onCreate")""", null)
+
+        handleIntent(intent)
 
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -111,6 +121,11 @@ class MainActivity : ComponentActivity() {
 
                             // ✅ SEND TOKEN HERE (THIS IS THE FIX)
                             latestFcmToken?.let { sendTokenToWeb(it) }
+
+                            pendingDeepLink?.let {
+                                sendDeepLinkToWeb(it)
+                                pendingDeepLink = null
+                            }
                         }
                     ,
                     filePickerLauncher = filePickerLauncher,
@@ -118,6 +133,8 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+
+
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -127,6 +144,21 @@ class MainActivity : ComponentActivity() {
                 latestFcmToken = token
                 sendTokenToWeb(token)
             }
+        }
+    }
+
+    private fun handleIntent(intent: Intent?) {
+
+        val screen = intent?.getStringExtra("screen")
+
+        webView?.evaluateJavascript(
+            """alert("TRACE: handleIntent = $screen")""",
+            null
+        )
+
+        if (screen != null) {
+            if (isJsReady) sendDeepLinkToWeb(screen)
+            else pendingDeepLink = screen
         }
     }
 
@@ -159,13 +191,14 @@ class MainActivity : ComponentActivity() {
 
                 wv.evaluateJavascript(
                     """
-                    (function(){
-                        if (typeof window.handleBackButton === "function") {
-                            window.handleBackButton();else {
-            alert("JS function NOT FOUND");
-                        }
-                    })();
-                    """.trimIndent(),
+(function(){
+    if (typeof window.handleBackButton === "function") {
+        window.handleBackButton();
+    } else {
+        alert("JS function NOT FOUND");
+    }
+})();
+""".trimIndent(),
                     null
                 )
             }
@@ -218,7 +251,43 @@ class MainActivity : ComponentActivity() {
             )
         }
     }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+
+        val screen = intent.getStringExtra("screen")
+
+        webView?.evaluateJavascript(
+            """alert("TRACE: onNewIntent screen = $screen")""",
+            null
+        )
+
+        handleIntent(intent)
+    }
+
+    private fun sendDeepLinkToWeb(screen: String) {
+
+        webView?.evaluateJavascript(
+            """ alert("TRACE: sendDeepLinkToWeb -> ${'$'}screen");
+        (function () {
+            alert("🔥 ANDROID CALLED JS WITH: $screen");
+
+            console.log("🔥 DeepLink received:", "$screen");
+
+            if (window.onNativeDeepLink) {
+                console.log("✅ function exists");
+                window.onNativeDeepLink("$screen");
+            } else {
+                console.log("❌ function missing");
+                alert("❌ onNativeDeepLink NOT FOUND");
+            }
+        })();
+        """.trimIndent(),
+            null
+        )
+    }
 }
+
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
