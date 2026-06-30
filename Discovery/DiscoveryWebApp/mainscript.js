@@ -13635,7 +13635,7 @@ setupExternalLinkHandler();
 if (currentUser?.id) {
   try {
     const { error } = await supabase
-      .from('"0con_profilesdata"') // ⚠️ quoted because of leading number
+      .from("0con_profilesdata") // ⚠️ quoted because of leading number
       .update({ has_education_app: true })
       .eq("id", currentUser.id);
 
