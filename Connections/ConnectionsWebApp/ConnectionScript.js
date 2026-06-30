@@ -1660,6 +1660,11 @@ let communityLatLng = null;
 let communityMap = null;
 let communityMarker = null;
 
+window.__appReady = false;
+
+window.__nativeState = window.__nativeState || {
+  startScreen: "discover"
+};
 
 // 🔌 FETCH PROFILES
 async function loadProfile() {
@@ -1684,13 +1689,22 @@ async function initApp() {
 
     const { user, profile } = await loadProfile();
 
-    appState.user = user;       // 👈 STORE USER GLOBALLY
+    appState.user = user;
     appState.profile = profile;
     appState.isReady = true;
 
-  resolveAppReady(); // TEMPORAL FOR TESTING
+    // 🔥 READ NATIVE START STATE HERE
+    const startScreen = window.__nativeState?.startScreen || "discover";
+
+    console.log("Start screen from native:", startScreen);
+    alert("Start screen: " + startScreen);
 
     initUI();
+
+    // IMPORTANT: run navigation AFTER UI exists
+    openTab(startScreen);
+
+    resolveAppReady();
 
   } catch (err) {
     console.error("Init failed:", err);
@@ -8371,16 +8385,53 @@ const { data, error } = await supabase
   }
 };
 
-window.__appReady = true;
+window.__deepLinkQueue = window.__deepLinkQueue || [];
 
-if (window.__deepLinkQueue.length > 0) {
-  alert("PROCESSING QUEUE: " + window.__deepLinkQueue.length);
+window.onNativeDeepLink = function (screen) {
+  alert("JS RECEIVED: " + screen);
 
-  while (window.__deepLinkQueue.length > 0) {
-    const screen = window.__deepLinkQueue.shift();
-    window.handleDeepLink(screen);
+  console.log("DEEPLINK:", screen);
+
+  if (!window.__appReady) {
+    window.__deepLinkQueue.push(screen);
+    return;
   }
-}
+
+  handleDeepLink(screen);
+};
+
+window.handleDeepLink = function (screen) {
+  alert("HANDLE: " + screen);
+
+  const tabMap = {
+    messages: "messages",
+    matches: "matches",
+    profile: "profile",
+    discover: "discover",
+    settings: "settings"
+  };
+
+  const tabId = tabMap[screen];
+
+  if (!tabId) return;
+
+  const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+
+  if (!navItem) {
+    alert("NAV ITEM NOT FOUND");
+    return;
+  }
+
+  openTab(tabId, navItem);
+};
+
+Object.defineProperty(window, "onNativeDeepLink", {
+  configurable: false,
+  writable: false
+});
+
+// expose
+window.handleDeepLink = handleDeepLink;
 
     //#endregion
 

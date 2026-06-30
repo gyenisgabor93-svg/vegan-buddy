@@ -39,6 +39,8 @@ class MainActivity : ComponentActivity() {
 
     private var pendingDeepLink: String? = null
 
+    private var pendingScreen: String? = null
+
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
@@ -72,6 +74,12 @@ class MainActivity : ComponentActivity() {
             if (granted) sendLocationToWeb()
         }
 
+
+    fun getPendingScreen(): String? {
+        val value = pendingScreen
+        pendingScreen = null
+        return value
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -255,14 +263,9 @@ class MainActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
-        val screen = intent.getStringExtra("screen")
+        val screen = intent.getStringExtra("screen") ?: return
 
-        webView?.evaluateJavascript(
-            """alert("TRACE: onNewIntent screen = $screen")""",
-            null
-        )
-
-        handleIntent(intent)
+        pendingScreen = screen
     }
 
     private fun sendDeepLinkToWeb(screen: String) {
@@ -309,20 +312,27 @@ fun WebViewScreen(
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 
-                    // ✅ CRITICAL FIX: JS is ONLY safe AFTER this point
-                    evaluateJavascript(
-                        """
-                        (function(){
-                            window.__WEBVIEW_READY__ = true;
+                    val screen = (context as? MainActivity)?.getPendingScreen()
 
-                            // Optional hook your JS can use
-                            if (typeof window.onWebViewReady === "function") {
-                                window.onWebViewReady();
-                            }
-                        })();
-                        """.trimIndent(),
-                        null
-                    )
+                    if (screen != null) {
+                        evaluateJavascript(
+                            """
+            window.__nativeState = {
+                startScreen: "$screen"
+            };
+            """.trimIndent(),
+                            null
+                        )
+                    } else {
+                        evaluateJavascript(
+                            """
+            window.__nativeState = {
+                startScreen: "discover"
+            };
+            """.trimIndent(),
+                            null
+                        )
+                    }
 
                     (context as? MainActivity)?.runOnUiThread {
                         onPageReady()
