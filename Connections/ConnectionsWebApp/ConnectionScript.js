@@ -1696,9 +1696,6 @@ async function initApp() {
     // 🔥 READ NATIVE START STATE HERE
     const startScreen = window.__nativeState?.startScreen || "discover";
 
-    console.log("Start screen from native:", startScreen);
-    alert("Start screen: " + startScreen);
-
     initUI();
 
     // IMPORTANT: run navigation AFTER UI exists
@@ -2198,7 +2195,7 @@ function isNewer(createdAt, lastOpened) {
   return new Date(createdAt) > new Date(lastOpened);
 }
 
-window.handleBackButton = function () { alert("backbuttonruns")
+window.handleBackButton = function () { 
 
   // 🔥 PREMIUM INFO -> go back to PREMIUM
   const premiumInfo = document.getElementById("premiumInfo");
@@ -8261,7 +8258,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //#region COMMUNICATION WITH NATIVES
 
 // 🌍 Called from Android (trusted source)
-window.onLocationReceived = async function(lat, lng) { alert("Location Received")
+window.onLocationReceived = async function(lat, lng) { 
 
   window.__LOCATION_ALREADY_SET__ = true
   communityLatLng = { lat, lng };
@@ -8352,7 +8349,7 @@ async function updateUserLocationCoords(lat, lng) {
 
 }
 
-window.onAndroidDeviceToken = async function (token, deviceType) { alert("Token received")
+window.onAndroidDeviceToken = async function (token, deviceType) {
   try {
 
     // ⏳ WAIT until app is ready
