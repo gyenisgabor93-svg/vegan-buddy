@@ -8375,11 +8375,20 @@ const { data, error } = await supabase
 
 window.onNativeDeepLink = function (screen) {
 
-  if (!screen) return;
+  alert("JS RECEIVED: " + screen);
+  console.log("📥 JS RECEIVED:", screen);
 
-  // If app is not ready → queue it
+  if (!screen) {
+    alert("❌ EMPTY SCREEN");
+    return;
+  }
+
   if (!window.__appReady) {
+    alert("⏳ App NOT ready → queueing");
+
+    window.__deepLinkQueue = window.__deepLinkQueue || [];
     window.__deepLinkQueue.push(screen);
+
     return;
   }
 
@@ -8387,6 +8396,9 @@ window.onNativeDeepLink = function (screen) {
 };
 
 function handleDeepLink(screen) {
+
+  alert("🎯 handleDeepLink(): " + screen);
+  console.log("🎯 Handling:", screen);
 
   const tabMap = {
     messages: "messages",
@@ -8399,11 +8411,19 @@ function handleDeepLink(screen) {
   const tabId = tabMap[screen];
 
   if (!tabId) {
+    alert("❌ Unknown screen: " + screen);
     console.warn("Unknown deep link:", screen);
     return;
   }
 
   const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+
+  if (!navItem) {
+    alert("❌ navItem NOT FOUND for: " + tabId);
+    return;
+  }
+
+  alert("✅ Opening tab: " + tabId);
 
   openTab(tabId, navItem);
 

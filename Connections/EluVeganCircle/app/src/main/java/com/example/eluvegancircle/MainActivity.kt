@@ -72,6 +72,11 @@ class MainActivity : ComponentActivity() {
             if (granted) sendLocationToWeb()
         }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -96,7 +101,8 @@ class MainActivity : ComponentActivity() {
         controller.isAppearanceLightStatusBars = true
         controller.isAppearanceLightNavigationBars = true
 
-        val initialScreen = intent.getStringExtra("screen")
+        handleIntent(intent)
+
 
         setContent {
             EluVeganCircleTheme {
@@ -123,19 +129,33 @@ class MainActivity : ComponentActivity() {
                             // 🔥 NOW MARK JS APP AS READY (important)
                             webView?.evaluateJavascript(
                                 """
-        window.__appReady = true;
+    alert("🔥 Setting __appReady = true");
 
-        if (window.__deepLinkQueue && window.__deepLinkQueue.length > 0) {
-            while (window.__deepLinkQueue.length > 0) {
-                const screen = window.__deepLinkQueue.shift();
-                if (window.handleDeepLink) {
-                    window.handleDeepLink(screen);
-                }
+    window.__appReady = true;
+
+    if (window.__deepLinkQueue && window.__deepLinkQueue.length > 0) {
+        alert("📦 Processing queued deep links: " + window.__deepLinkQueue.length);
+
+        while (window.__deepLinkQueue.length > 0) {
+            const screen = window.__deepLinkQueue.shift();
+
+            alert("➡️ Processing queued: " + screen);
+
+            if (window.handleDeepLink) {
+                window.handleDeepLink(screen);
+            } else {
+                alert("❌ handleDeepLink NOT FOUND");
             }
         }
-        """.trimIndent(),
+    }
+    """.trimIndent(),
                                 null
                             )
+                            
+                                webView?.evaluateJavascript(
+                                    """alert("✅ WebView Page Ready");""",
+                                    null
+                                )
                         }
                     ,
                     filePickerLauncher = filePickerLauncher,
@@ -151,6 +171,20 @@ class MainActivity : ComponentActivity() {
 
                 latestFcmToken = token
                 sendTokenToWeb(token)
+            }
+        }
+    }
+
+    private fun handleIntent(intent: Intent?) {
+        val screen = intent?.getStringExtra("screen")
+
+        Log.d("DEEPLINK", "handleIntent screen: $screen")
+
+        if (screen != null) {
+            if (isJsReady) {
+                sendScreenToWeb(screen)
+            } else {
+                pendingScreen = screen
             }
         }
     }
@@ -173,8 +207,24 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun sendScreenToWeb(screen: String) {
+
+        Log.d("DEEPLINK", "🚀 Sending to JS: $screen")
+
         webView?.evaluateJavascript(
-            "window.onNativeDeepLink && window.onNativeDeepLink('$screen')",
+            """
+        (function() {
+            alert("ANDROID → JS: $screen");
+
+            if (window.onNativeDeepLink) {
+                window.onNativeDeepLink('$screen');
+            } else {
+                alert("❌ onNativeDeepLink NOT FOUND");
+
+                window.__deepLinkQueue = window.__deepLinkQueue || [];
+                window.__deepLinkQueue.push('$screen');
+            }
+        })();
+        """.trimIndent(),
             null
         )
     }
