@@ -12463,7 +12463,8 @@ const systemSettingsTranslations = {
     logoutError: "Something went wrong while logging out.",
     updateLangError: "Failed to update language. Please try again.",
     deleteFailed: "❌ Failed to delete account. Please try again.",
-    deleteUnexpected: "❌ Unexpected error while deleting account."
+    deleteUnexpected: "❌ Unexpected error while deleting account.",
+    deletePartialWarning: "Your account still exists in the Elu Vegan Circle app."
   },
 
   es: {
@@ -12482,7 +12483,8 @@ const systemSettingsTranslations = {
     logoutError: "Algo salió mal al cerrar sesión.",
     updateLangError: "No se pudo actualizar el idioma. Inténtalo de nuevo.",
     deleteFailed: "❌ No se pudo eliminar la cuenta. Inténtalo de nuevo.",
-    deleteUnexpected: "❌ Error inesperado al eliminar la cuenta."
+    deleteUnexpected: "❌ Error inesperado al eliminar la cuenta.",
+    deletePartialWarning: "Tu cuenta aún existe en la aplicación Elu Vegan Circle."
   },
 
   hu: {
@@ -12501,7 +12503,8 @@ const systemSettingsTranslations = {
     logoutError: "Hiba történt kijelentkezéskor.",
     updateLangError: "Nem sikerült frissíteni a nyelvet.",
     deleteFailed: "❌ Nem sikerült törölni a fiókot.",
-    deleteUnexpected: "❌ Váratlan hiba történt a törlés során."
+    deleteUnexpected: "❌ Váratlan hiba történt a törlés során.",
+    deletePartialWarning: "A fiókod még létezik az Elu Vegan Circle alkalmazásban."
   }
 };
 
@@ -12735,7 +12738,7 @@ deleteProfileBtn.addEventListener("click", async () => {
   deleteProfileBtn.textContent = tSystem("deletingAccount");
 
   try {
-    const { error } = await supabase.functions.invoke("delete-user");
+    const { data, error } = await supabase.functions.invoke("delete-user");
 
     if (error) {
       console.error("Delete error:", error);
@@ -12743,6 +12746,10 @@ deleteProfileBtn.addEventListener("click", async () => {
       deleteProfileBtn.disabled = false;
       deleteProfileBtn.textContent = tSystem("deleteProfileBtn");
       return;
+    }
+
+    if (data?.mode === "education_app_removed_only") {
+      alert(tSystem("deletePartialWarning"));
     }
 
      // Preserve preferred language
@@ -13619,6 +13626,26 @@ requestIdle(async () => {
        ========================= */
 
 setupExternalLinkHandler();
+
+
+ /* =========================
+   PHASE 18 — UPDATE CROSS-APP FLAG
+========================= */
+
+if (currentUser?.id) {
+  try {
+    const { error } = await supabase
+      .from('"0con_profilesdata"') // ⚠️ quoted because of leading number
+      .update({ has_education_app: true })
+      .eq("user_id", currentUser.id);
+
+    if (error) {
+      console.error("Failed to update has_education_app:", error);
+    }
+  } catch (err) {
+    console.error("Unexpected error updating education flag:", err);
+  }
+}      
 
 });
 

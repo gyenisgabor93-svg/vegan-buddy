@@ -967,19 +967,6 @@ if (file) {
       return;
     }
 
-    const { error: profileError } = await supabase
-      .from("profiles")
-      .update({
-        connection_survey_completed: true
-      })
-      .eq("id", user.id);
-
-    if (profileError) {
-      hideLoading();
-      alert("Profile flag update failed");
-      return;
-    }
-
     // SUCCESS → keep loading, then redirect
     window.location.href = "homepage.html";
 

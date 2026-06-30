@@ -499,6 +499,20 @@ const translations = {
 
     noAnswersYet: "No answers yet",
 
+auth: {
+      logoutConfirm: "Are you sure you want to log out?",
+      logoutError: "Logout failed. Please try again."
+    },
+    delete: {
+      confirm1: "Are you sure you want to delete your account?",
+      confirm2: "This action is permanent. Do you really want to continue?",
+      deleting: "Deleting account...",
+      failed: "Account deletion failed. Please try again.",
+      unexpected: "Something went wrong. Please try again.",
+      button: "🗑️ Delete Account",
+      partialWarning: "Your account still exists in the Elu Vegan Mind app."
+    },    
+
 //Languages
 english: "English",
 spanish: "Spanish",
@@ -959,6 +973,19 @@ edit_preferences: "Editar preferencias",
 
 noAnswersYet: "Aún no hay respuestas",
 
+auth: {
+    logoutConfirm: "¿Estás seguro de que quieres cerrar sesión?",
+    logoutError: "Error al cerrar sesión. Por favor, inténtalo de nuevo."
+  },
+  delete: {
+    confirm1: "¿Estás seguro de que quieres eliminar tu cuenta?",
+    confirm2: "Esta acción es permanente. ¿Seguro que quieres continuar?",
+    deleting: "Eliminando cuenta...",
+    failed: "Error al eliminar la cuenta. Por favor, inténtalo de nuevo.",
+    unexpected: "Algo salió mal. Por favor, inténtalo de nuevo.",
+    button: "🗑️ Eliminar cuenta",
+    partialWarning: "Tu cuenta aún existe en la aplicación Elu Vegan Mind."
+  },
 
 //Languages
 english: "Inglés",
@@ -1419,6 +1446,19 @@ edit_preferences: "Beállítások szerkesztése",
 
 noAnswersYet: "Még nincsenek válaszok",
 
+auth: {
+    logoutConfirm: "Biztosan ki szeretnél jelentkezni?",
+    logoutError: "A kijelentkezés sikertelen. Kérlek, próbáld újra."
+  },
+  delete: {
+    confirm1: "Biztosan törölni szeretnéd a fiókodat?",
+    confirm2: "Ez a művelet végleges. Biztosan folytatni szeretnéd?",
+    deleting: "Fiók törlése...",
+    failed: "A fiók törlése sikertelen. Kérlek, próbáld újra.",
+    unexpected: "Hiba történt. Kérlek, próbáld újra.",
+    button: "🗑️ Fiók törlése",
+    partialWarning: "A fiókod még létezik az Elu Vegan Mind alkalmazásban."
+  },
 
 //Languages
 english: "Angol",
@@ -1737,6 +1777,8 @@ function initUI() {
   setupDiscoverTab();
 
   initToggleListeners();
+
+  updateCrossFlag();
 
 //  maybeHandleBrowserLocation();
 }
@@ -2254,6 +2296,22 @@ async function normalizeFile(file) {
 
   // fallback: last resort
   return new Blob([file], { type: "image/jpeg" });
+}
+
+function updateCrossFlag() {
+
+    const { error: profileError } = await supabase
+      .from("profiles")
+      .update({
+        has_circles_app: true
+      })
+      .eq("id", appState.user.id);
+
+    if (profileError) {
+      hideLoading();
+      alert("Profile flag update failed");
+      return;
+    }
 }
 
 //#endregion
@@ -8040,51 +8098,100 @@ async function sendContactMessage() {
 
 
 
+//--------------------------
+// LOGOUT
+//--------------------------
 document.getElementById("logoutBtn").addEventListener("click", async () => {
-  if (confirm("Are you sure you want to log out?")) {
+  if (confirm(t("auth.logoutConfirm"))) {
     await logoutUser();
   }
 });
 
 async function logoutUser() {
-
   const userId = appState?.user?.id;
 
   try {
-    // Remove the token for this user using global currentUser
     if (userId) {
       const { error: tokenError } = await supabase
-        .from("0con_notifications")
+        .from('"0con_notifications"')
         .delete()
         .eq("user_id", userId);
 
-      if (tokenError) console.error("Failed to remove user token:", tokenError);
+      if (tokenError) {
+        console.error("Token removal failed:", tokenError);
+      }
     }
   } catch (err) {
     console.error("Error removing token:", err);
   }
 
-  // Sign out
   const { error } = await supabase.auth.signOut();
+
   if (error) {
     console.error("Logout failed:", error.message);
-    alert("logoutError");
+    alert(t("auth.logoutError"));
     return;
   }
 
-  // 🔥 Clear app state
   const preferredLang = localStorage.getItem("app_language") || "en";
+
   localStorage.clear();
   sessionStorage.clear();
   localStorage.setItem("app_language", preferredLang);
 
-  // Optional: hard reload to reset JS state
   window.location.href = "login.html";
 }
 
-document.getElementById("deleteAccountBtn").addEventListener("click", () => {
-  console.log("Delete account button");
+
+//--------------------------
+// DELETE ACCOUNT
+//--------------------------
+const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+
+deleteAccountBtn.addEventListener("click", async () => {
+
+  if (!confirm(t("delete.confirm1"))) return;
+  if (!confirm(t("delete.confirm2"))) return;
+
+  deleteAccountBtn.disabled = true;
+  deleteAccountBtn.textContent = t("delete.deleting");
+
+  try {
+    const { data, error } = await supabase.functions.invoke("delete-user-circle");
+
+    if (error) {
+      console.error("Delete error:", error);
+      alert(t("delete.failed"));
+
+      deleteAccountBtn.disabled = false;
+      deleteAccountBtn.textContent = t("delete.button");
+      return;
+    }
+
+    if (data?.mode === "circles_app_removed_only") {
+      alert(t("delete.partialWarning"));
+    }
+
+    const preferredLang = localStorage.getItem("app_language") || "en";
+
+    await supabase.auth.signOut();
+
+    localStorage.clear();
+    sessionStorage.clear();
+    localStorage.setItem("app_language", preferredLang);
+
+    window.location.href = "login.html";
+
+  } catch (err) {
+    console.error(err);
+    alert(t("delete.unexpected"));
+
+    deleteAccountBtn.disabled = false;
+    deleteAccountBtn.textContent = t("delete.button");
+  }
 });
+
+
 
 //#endregion
 
