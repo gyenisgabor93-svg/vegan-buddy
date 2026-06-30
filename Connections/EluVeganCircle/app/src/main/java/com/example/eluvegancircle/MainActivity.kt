@@ -33,11 +33,13 @@ class MainActivity : ComponentActivity() {
 
     private var isPageReady = false
 
-    private var isJsReady = false
+     var isJsReady = false
 
     private var latestFcmToken: String? = null
 
-    private var pendingScreen: String? = null
+    var pendingScreen: String? = null
+
+
 
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -151,7 +153,7 @@ class MainActivity : ComponentActivity() {
     """.trimIndent(),
                                 null
                             )
-                            
+
                                 webView?.evaluateJavascript(
                                     """alert("✅ WebView Page Ready");""",
                                     null
@@ -206,7 +208,7 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    private fun sendScreenToWeb(screen: String) {
+    fun sendScreenToWeb(screen: String) {
 
         Log.d("DEEPLINK", "🚀 Sending to JS: $screen")
 
@@ -315,6 +317,26 @@ fun WebViewScreen(
 
     val webView = remember {
         WebView(context).apply {
+
+            addJavascriptInterface(object {
+
+                @android.webkit.JavascriptInterface
+                fun onReady() {
+                    (context as? MainActivity)?.runOnUiThread {
+
+                        Log.d("JS_READY", "✅ JS confirmed ready")
+
+                        val activity = context as MainActivity
+                        activity.isJsReady = true
+
+                        activity.pendingScreen?.let {
+                            activity.sendScreenToWeb(it)
+                            activity.pendingScreen = null
+                        }
+                    }
+                }
+
+            }, "AndroidBridge")
 
             layoutParams = android.view.ViewGroup.LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
