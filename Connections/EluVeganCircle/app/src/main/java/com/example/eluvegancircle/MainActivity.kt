@@ -115,7 +115,6 @@ class MainActivity : ComponentActivity() {
                     },
                         onPageReady = {
                             isPageReady = true
-                            isJsReady = true
 
                             requestLocationPermission()
 
@@ -214,21 +213,32 @@ class MainActivity : ComponentActivity() {
 
         webView?.evaluateJavascript(
             """
-        (function() {
-            alert("ANDROID → JS: $screen");
+(function() {
 
-            if (window.onNativeDeepLink) {
-                window.onNativeDeepLink('$screen');
-            } else {
-                alert("❌ onNativeDeepLink NOT FOUND");
+    function trySend(retries) {
 
-                window.__deepLinkQueue = window.__deepLinkQueue || [];
-                window.__deepLinkQueue.push('$screen');
-            }
-        })();
-        """.trimIndent(),
-            null
-        )
+        if (window.onNativeDeepLink) {
+            alert("✅ JS READY - sending screen");
+            window.onNativeDeepLink('$screen');
+            return;
+        }
+
+        if (retries > 0) {
+            alert("⏳ Waiting for JS... retries left: " + retries);
+
+            setTimeout(function() {
+                trySend(retries - 1);
+            }, 300);
+
+        } else {
+            alert("❌ JS NEVER BECAME READY");
+        }
+    }
+
+    trySend(10);
+
+})();
+""", null)
     }
 
     // ✅ SAFE BACK HANDLING (no duplicates, stable JS fallback)

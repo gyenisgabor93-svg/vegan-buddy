@@ -1660,7 +1660,7 @@ let communityLatLng = null;
 let communityMap = null;
 let communityMarker = null;
 
-window.__deepLinkQueue = [];
+window.__deepLinkQueue = window.__deepLinkQueue || [];
 window.__appReady = false;
 
 // 🔌 FETCH PROFILES
