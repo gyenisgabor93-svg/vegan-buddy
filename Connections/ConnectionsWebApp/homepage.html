@@ -966,6 +966,63 @@ Elu Premium supports this mission. Every subscription helps us grow these tools,
   <div class="spinner"></div>
 </div>
 
+<script>
+
+window.__deepLinkQueue = window.__deepLinkQueue || [];
+window.__appReady = false;
+
+window.onNativeDeepLink = function (screen) {
+  alert("JS RECEIVED: " + screen);
+
+  if (!screen) return;
+
+  if (!window.__appReady) {
+    alert("QUEUED: " + screen);
+    window.__deepLinkQueue.push(screen);
+    return;
+  }
+
+  handleDeepLink(screen);
+};
+
+window.handleDeepLink = function (screen) {
+  alert("HANDLE: " + screen);
+
+  const tabMap = {
+    messages: "messages",
+    matches: "matches",
+    profile: "profile",
+    discover: "discover",
+    settings: "settings"
+  };
+
+  const tabId = tabMap[screen];
+
+  if (!tabId) {
+    alert("UNKNOWN TAB: " + screen);
+    return;
+  }
+
+  const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+
+  if (!navItem) {
+    alert("NAV ITEM NOT FOUND: " + tabId);
+    return;
+  }
+
+  openTab(tabId, navItem);
+};
+
+
+// expose
+window.handleDeepLink = handleDeepLink;
+
+
+
+</script>
+
+
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="ConnectionScript.js"></script>
 </body>

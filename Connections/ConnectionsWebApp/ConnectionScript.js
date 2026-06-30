@@ -1660,7 +1660,6 @@ let communityLatLng = null;
 let communityMap = null;
 let communityMarker = null;
 
-window.__appReady = false;
 
 // 🔌 FETCH PROFILES
 async function loadProfile() {
@@ -8372,61 +8371,16 @@ const { data, error } = await supabase
   }
 };
 
-window.__deepLinkQueue = window.__deepLinkQueue || [];
+window.__appReady = true;
 
-window.onNativeDeepLink = function (screen) {
-  console.log("🔥 DeepLink received:", screen);
-  alert("DeepLink: " + screen);
+if (window.__deepLinkQueue.length > 0) {
+  alert("PROCESSING QUEUE: " + window.__deepLinkQueue.length);
 
-  if (!screen) return;
-
-  if (!window.__appReady) {
-    console.log("⏳ App not ready, queueing:", screen);
-    window.__deepLinkQueue.push(screen);
-    return;
+  while (window.__deepLinkQueue.length > 0) {
+    const screen = window.__deepLinkQueue.shift();
+    window.handleDeepLink(screen);
   }
-
-  handleDeepLink(screen);
-};
-
-function handleDeepLink(screen) {
-
-  console.log("🎯 handleDeepLink:", screen);
-  alert("Handling: " + screen);
-
-  const tabMap = {
-    messages: "messages",
-    matches: "matches",
-    profile: "profile",
-    discover: "discover",
-    settings: "settings"
-  };
-
-  const tabId = tabMap[screen];
-
-  if (!tabId) {
-    console.warn("❌ Unknown screen:", screen);
-    return;
-  }
-
-  const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
-
-  if (!navItem) {
-    alert("❌ navItem not found: " + tabId);
-    console.log(document.querySelectorAll(".nav-item"));
-    return;
-  }
-
-  console.log("✅ Clicking tab:", tabId);
-
-  // 🔥 IMPORTANT: use click instead of openTab
-  navItem.click();
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-// expose
-window.handleDeepLink = handleDeepLink;
 
     //#endregion
 
