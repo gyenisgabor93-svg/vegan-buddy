@@ -2186,7 +2186,7 @@ function isNewer(createdAt, lastOpened) {
   return new Date(createdAt) > new Date(lastOpened);
 }
 
-window.handleBackButton = function () {
+window.handleBackButton = function () { alert("backbuttonruns")
 
   // 🔥 PREMIUM INFO -> go back to PREMIUM
   const premiumInfo = document.getElementById("premiumInfo");
@@ -8249,7 +8249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //#region COMMUNICATION WITH NATIVES
 
 // 🌍 Called from Android (trusted source)
-window.onLocationReceived = async function(lat, lng) {
+window.onLocationReceived = async function(lat, lng) { alert("Location Received")
 
   window.__LOCATION_ALREADY_SET__ = true
   communityLatLng = { lat, lng };
@@ -8340,7 +8340,7 @@ async function updateUserLocationCoords(lat, lng) {
 
 }
 
-window.onAndroidDeviceToken = async function (token, deviceType) {
+window.onAndroidDeviceToken = async function (token, deviceType) { alert("Token received")
   try {
 
     // ⏳ WAIT until app is ready
@@ -8373,7 +8373,7 @@ const { data, error } = await supabase
   }
 };
 
-window.onNativeDeepLink = function (screen) {
+window.onNativeDeepLink = function (screen) { alert("DeepLink Runs")
 
   if (!screen) return;
 
