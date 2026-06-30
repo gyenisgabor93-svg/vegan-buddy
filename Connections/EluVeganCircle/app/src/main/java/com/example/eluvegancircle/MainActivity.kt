@@ -33,13 +33,9 @@ class MainActivity : ComponentActivity() {
 
     private var isPageReady = false
 
-    private var isJsReady = false
-
     private var latestFcmToken: String? = null
 
-    private var pendingDeepLink: String? = null
-
-    private var pendingScreen: String? = null
+    var nativeStartScreen: String = "discover"
 
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -74,22 +70,12 @@ class MainActivity : ComponentActivity() {
             if (granted) sendLocationToWeb()
         }
 
-
-    fun getPendingScreen(): String? {
-        val value = pendingScreen
-        pendingScreen = null
-        return value
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        Log.d("TRACE", "onCreate called")
-
-        webView?.evaluateJavascript("""alert("TRACE: onCreate")""", null)
-
-        handleIntent(intent)
+        intent?.getStringExtra("screen")?.let {
+            nativeStartScreen = it
+        }
 
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -123,17 +109,11 @@ class MainActivity : ComponentActivity() {
                     },
                         onPageReady = {
                             isPageReady = true
-                            isJsReady = true
 
                             requestLocationPermission()
 
                             // ✅ SEND TOKEN HERE (THIS IS THE FIX)
                             latestFcmToken?.let { sendTokenToWeb(it) }
-
-                            pendingDeepLink?.let {
-                                sendDeepLinkToWeb(it)
-                                pendingDeepLink = null
-                            }
                         }
                     ,
                     filePickerLauncher = filePickerLauncher,
@@ -155,24 +135,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun handleIntent(intent: Intent?) {
-
-        val screen = intent?.getStringExtra("screen")
-
-        webView?.evaluateJavascript(
-            """alert("TRACE: handleIntent = $screen")""",
-            null
-        )
-
-        if (screen != null) {
-            if (isJsReady) sendDeepLinkToWeb(screen)
-            else pendingDeepLink = screen
-        }
-    }
-
     private fun sendTokenToWeb(token: String) {
 
-        if (webView == null || !isJsReady) {
+        if (webView == null) {
             Log.d("FCM", "WebView/JS not ready, skipping send")
             return
         }
@@ -264,24 +229,7 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
 
         val screen = intent.getStringExtra("screen") ?: return
-
-        pendingScreen = screen
-    }
-
-    private fun sendDeepLinkToWeb(screen: String) {
-
-        webView?.evaluateJavascript(
-            """
-        alert("ANDROID SENDING: $screen");
-
-        if (typeof window.onNativeDeepLink === "function") {
-            window.onNativeDeepLink("$screen");
-        } else {
-            alert("❌ onNativeDeepLink STILL NOT AVAILABLE");
-        }
-        """.trimIndent(),
-            null
-        )
+        nativeStartScreen = screen
     }
 }
 
@@ -312,29 +260,18 @@ fun WebViewScreen(
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
 
-                    val screen = (context as? MainActivity)?.getPendingScreen()
+                    val activity = context as? MainActivity ?: return
 
-                    if (screen != null) {
-                        evaluateJavascript(
-                            """
-            window.__nativeState = {
-                startScreen: "$screen"
-            };
-            """.trimIndent(),
-                            null
-                        )
-                    } else {
-                        evaluateJavascript(
-                            """
-            window.__nativeState = {
-                startScreen: "discover"
-            };
-            """.trimIndent(),
-                            null
-                        )
-                    }
+                    view?.evaluateJavascript(
+                        """
+        window.__nativeState = {
+            startScreen: "${activity.nativeStartScreen}"
+        };
+        """.trimIndent(),
+                        null
+                    )
 
-                    (context as? MainActivity)?.runOnUiThread {
+                    activity.runOnUiThread {
                         onPageReady()
                     }
                 }
