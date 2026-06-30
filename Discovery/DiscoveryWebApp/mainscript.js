@@ -13637,7 +13637,7 @@ if (currentUser?.id) {
     const { error } = await supabase
       .from('"0con_profilesdata"') // ⚠️ quoted because of leading number
       .update({ has_education_app: true })
-      .eq("user_id", currentUser.id);
+      .eq("id", currentUser.id);
 
     if (error) {
       console.error("Failed to update has_education_app:", error);
