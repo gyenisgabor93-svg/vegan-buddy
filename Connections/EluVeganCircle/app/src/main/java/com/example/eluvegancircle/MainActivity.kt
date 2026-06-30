@@ -33,13 +33,9 @@ class MainActivity : ComponentActivity() {
 
     private var isPageReady = false
 
-     var isJsReady = false
+    private var isJsReady = false
 
     private var latestFcmToken: String? = null
-
-    var pendingScreen: String? = null
-
-
 
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -74,11 +70,6 @@ class MainActivity : ComponentActivity() {
             if (granted) sendLocationToWeb()
         }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        handleIntent(intent)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -103,7 +94,6 @@ class MainActivity : ComponentActivity() {
         controller.isAppearanceLightStatusBars = true
         controller.isAppearanceLightNavigationBars = true
 
-        handleIntent(intent)
 
 
         setContent {
@@ -115,48 +105,12 @@ class MainActivity : ComponentActivity() {
                     },
                         onPageReady = {
                             isPageReady = true
+                            isJsReady = true
 
                             requestLocationPermission()
 
                             // ✅ SEND TOKEN HERE (THIS IS THE FIX)
                             latestFcmToken?.let { sendTokenToWeb(it) }
-
-                            // 🔥 HANDLE DEEPLINK HERE
-                            pendingScreen?.let { screen ->
-                                sendScreenToWeb(screen)
-                                pendingScreen = null
-                            }
-
-                            // 🔥 NOW MARK JS APP AS READY (important)
-                            webView?.evaluateJavascript(
-                                """
-    alert("🔥 Setting __appReady = true");
-
-    window.__appReady = true;
-
-    if (window.__deepLinkQueue && window.__deepLinkQueue.length > 0) {
-        alert("📦 Processing queued deep links: " + window.__deepLinkQueue.length);
-
-        while (window.__deepLinkQueue.length > 0) {
-            const screen = window.__deepLinkQueue.shift();
-
-            alert("➡️ Processing queued: " + screen);
-
-            if (window.handleDeepLink) {
-                window.handleDeepLink(screen);
-            } else {
-                alert("❌ handleDeepLink NOT FOUND");
-            }
-        }
-    }
-    """.trimIndent(),
-                                null
-                            )
-
-                                webView?.evaluateJavascript(
-                                    """alert("✅ WebView Page Ready");""",
-                                    null
-                                )
                         }
                     ,
                     filePickerLauncher = filePickerLauncher,
@@ -176,20 +130,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun handleIntent(intent: Intent?) {
-        val screen = intent?.getStringExtra("screen")
-
-        Log.d("DEEPLINK", "handleIntent screen: $screen")
-
-        if (screen != null) {
-            if (isJsReady) {
-                sendScreenToWeb(screen)
-            } else {
-                pendingScreen = screen
-            }
-        }
-    }
-
     private fun sendTokenToWeb(token: String) {
 
         if (webView == null || !isJsReady) {
@@ -205,40 +145,6 @@ class MainActivity : ComponentActivity() {
         """.trimIndent(),
             null
         )
-    }
-
-    fun sendScreenToWeb(screen: String) {
-
-        Log.d("DEEPLINK", "🚀 Sending to JS: $screen")
-
-        webView?.evaluateJavascript(
-            """
-(function() {
-
-    function trySend(retries) {
-
-        if (window.onNativeDeepLink) {
-            alert("✅ JS READY - sending screen");
-            window.onNativeDeepLink('$screen');
-            return;
-        }
-
-        if (retries > 0) {
-            alert("⏳ Waiting for JS... retries left: " + retries);
-
-            setTimeout(function() {
-                trySend(retries - 1);
-            }, 300);
-
-        } else {
-            alert("❌ JS NEVER BECAME READY");
-        }
-    }
-
-    trySend(10);
-
-})();
-""", null)
     }
 
     // ✅ SAFE BACK HANDLING (no duplicates, stable JS fallback)
@@ -327,26 +233,6 @@ fun WebViewScreen(
 
     val webView = remember {
         WebView(context).apply {
-
-            addJavascriptInterface(object {
-
-                @android.webkit.JavascriptInterface
-                fun onReady() {
-                    (context as? MainActivity)?.runOnUiThread {
-
-                        Log.d("JS_READY", "✅ JS confirmed ready")
-
-                        val activity = context as MainActivity
-                        activity.isJsReady = true
-
-                        activity.pendingScreen?.let {
-                            activity.sendScreenToWeb(it)
-                            activity.pendingScreen = null
-                        }
-                    }
-                }
-
-            }, "AndroidBridge")
 
             layoutParams = android.view.ViewGroup.LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,

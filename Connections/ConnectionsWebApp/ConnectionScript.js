@@ -1660,7 +1660,7 @@ let communityLatLng = null;
 let communityMap = null;
 let communityMarker = null;
 
-window.__deepLinkQueue = window.__deepLinkQueue || [];
+window.__deepLinkQueue = [];
 window.__appReady = false;
 
 // 🔌 FETCH PROFILES
@@ -8375,20 +8375,11 @@ const { data, error } = await supabase
 
 window.onNativeDeepLink = function (screen) {
 
-  alert("JS RECEIVED: " + screen);
-  console.log("📥 JS RECEIVED:", screen);
+  if (!screen) return;
 
-  if (!screen) {
-    alert("❌ EMPTY SCREEN");
-    return;
-  }
-
+  // If app is not ready → queue it
   if (!window.__appReady) {
-    alert("⏳ App NOT ready → queueing");
-
-    window.__deepLinkQueue = window.__deepLinkQueue || [];
     window.__deepLinkQueue.push(screen);
-
     return;
   }
 
@@ -8396,9 +8387,6 @@ window.onNativeDeepLink = function (screen) {
 };
 
 function handleDeepLink(screen) {
-
-  alert("🎯 handleDeepLink(): " + screen);
-  console.log("🎯 Handling:", screen);
 
   const tabMap = {
     messages: "messages",
@@ -8411,19 +8399,11 @@ function handleDeepLink(screen) {
   const tabId = tabMap[screen];
 
   if (!tabId) {
-    alert("❌ Unknown screen: " + screen);
     console.warn("Unknown deep link:", screen);
     return;
   }
 
   const navItem = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
-
-  if (!navItem) {
-    alert("❌ navItem NOT FOUND for: " + tabId);
-    return;
-  }
-
-  alert("✅ Opening tab: " + tabId);
 
   openTab(tabId, navItem);
 
@@ -8431,20 +8411,6 @@ function handleDeepLink(screen) {
 }
 // 🔥 expose it globally for Android bridge
 window.handleDeepLink = handleDeepLink;
-
-window.isAppFullyReady = true;
-
-if (window.AndroidReady) {
-  window.AndroidReady();
-}
-
-window.AndroidReady = function () {
-  if (window.AndroidBridge && window.AndroidBridge.onReady) {
-    window.AndroidBridge.onReady();
-  }
-};
-
-
 
     //#endregion
 
