@@ -8432,6 +8432,20 @@ function handleDeepLink(screen) {
 // 🔥 expose it globally for Android bridge
 window.handleDeepLink = handleDeepLink;
 
+window.isAppFullyReady = true;
+
+if (window.AndroidReady) {
+  window.AndroidReady();
+}
+
+window.AndroidReady = function () {
+  if (window.AndroidBridge && window.AndroidBridge.onReady) {
+    window.AndroidBridge.onReady();
+  }
+};
+
+
+
     //#endregion
 
 
