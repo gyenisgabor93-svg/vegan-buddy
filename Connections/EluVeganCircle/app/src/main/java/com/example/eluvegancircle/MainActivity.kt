@@ -268,20 +268,14 @@ class MainActivity : ComponentActivity() {
     private fun sendDeepLinkToWeb(screen: String) {
 
         webView?.evaluateJavascript(
-            """ alert("TRACE: sendDeepLinkToWeb -> ${'$'}screen");
-        (function () {
-            alert("🔥 ANDROID CALLED JS WITH: $screen");
+            """
+        alert("ANDROID SENDING: $screen");
 
-            console.log("🔥 DeepLink received:", "$screen");
-
-            if (window.onNativeDeepLink) {
-                console.log("✅ function exists");
-                window.onNativeDeepLink("$screen");
-            } else {
-                console.log("❌ function missing");
-                alert("❌ onNativeDeepLink NOT FOUND");
-            }
-        })();
+        if (typeof window.onNativeDeepLink === "function") {
+            window.onNativeDeepLink("$screen");
+        } else {
+            alert("❌ onNativeDeepLink STILL NOT AVAILABLE");
+        }
         """.trimIndent(),
             null
         )
