@@ -1040,6 +1040,15 @@ textarea {
   color: #888;
 }
 
+.discover-card.invited {
+  opacity: 0.6;
+}
+
+.discover-card.invited button {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 /* ===== Date Survey ===== */
 /* ===== Date Survey ===== */
 /* ===== Date Survey ===== */

@@ -392,6 +392,8 @@ const translations = {
     outofavocados: "You ran out of avocados!",
     outoftofus: "You ran out of tofus!",
 
+    invitationSent: "Invitation sent",
+
 // Messages Tab
 
     createCommunity: "Create community",
@@ -875,6 +877,8 @@ you: "Tú:",
 outofavocados: "¡Te has quedado sin aguacates!",
 outoftofus: "¡Te has quedado sin tofus!",
 
+invitationSent: "Invitación enviada",
+
     createCommunity: "Crear comunidad",
     communityNameRequired: "Por favor introduce un nombre de comunidad",
     communityNameMax: "El nombre de la comunidad debe tener máximo 30 caracteres",
@@ -1335,7 +1339,9 @@ hobbies: "Hobbik",
 hide: "Elrejtés",
 sendavocado: "Avokádó küldése",
 
-dateprofiledetails: "Randi profil részletei",
+invitationSent: "Meghívás elküldve",
+
+dateprofiledetails: "Randi profil",
 nosurveydata: "Nincs kérdőív adat",
 sharetofu: "Tofu megosztása",
 
@@ -3040,14 +3046,24 @@ function normalizeValue(value) {
 
 document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-action]");
-  if (!btn) return;
+  if (!btn || btn.disabled) return;
+
+  // 🔒 prevent double clicks instantly
+  btn.disabled = true;
+  btn.classList.add("loading");
 
   const id = btn.dataset.id;
   const action = btn.dataset.action;
 
-  if (action === "tofu") sendTofu(id);
-  if (action === "avocado") sendAvocado(id);
-  if (action === "hide") hideUser(id);
+  try {
+    if (action === "tofu") await sendTofu(id);
+    if (action === "avocado") await sendAvocado(id);
+    if (action === "hide") await hideUser(id);
+  } catch (err) {
+    // ❌ re-enable if something fails
+    btn.disabled = false;
+    btn.classList.remove("loading");
+  }
 });
 
 async function hideUser(userId) {
@@ -3078,6 +3094,19 @@ async function sendTofu(userId) {
 
 async function performAction(userId, invitationType = null) {
   try {
+
+    const { data: existing } = await supabase
+  .from("0con_incomes")
+  .select("id")
+  .eq("receiver_id", userId)
+  .eq("sender_id", appState.user.id)
+  .maybeSingle();
+
+if (existing) {
+  markCardAsInvited(userId);
+  return;
+}
+
     await addToSeenProfiles(userId);
 
     if (invitationType !== null) {
@@ -3095,6 +3124,9 @@ async function performAction(userId, invitationType = null) {
       if (!appState.profile?.is_premium) {
         await deductFood(appState.user.id, invitationType);
       }
+
+      // ✅ mark as invited locally
+      markCardAsInvited(userId);
     }
 
     const card = getUserCard(userId);
@@ -3105,6 +3137,20 @@ async function performAction(userId, invitationType = null) {
   }
 
   closeProfilePopup();
+}
+
+function markCardAsInvited(userId) {
+  const card = getUserCard(userId);
+  if (!card) return;
+
+  card.classList.add("invited");
+
+  // disable all action buttons inside card
+  const buttons = card.querySelectorAll("[data-action]");
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    btn.textContent = t("invitationSent") || "Invitation sent";
+  });
 }
 
 async function deductFood(userId, type) {
@@ -4058,8 +4104,20 @@ function closeSurvey() {
 }
 document.getElementById("exitSurveyBtn").onclick = closeSurvey;
 
-document.getElementById("saveSurveyBtn").addEventListener("click", () => {
-  saveDatingProfile();
+const saveBtn = document.getElementById("saveSurveyBtn");
+
+saveBtn.addEventListener("click", async () => {
+  if (saveBtn.disabled) return;
+
+  saveBtn.disabled = true;
+  saveBtn.classList.add("loading");
+
+  try {
+    await saveDatingProfile();
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.classList.remove("loading");
+  }
 });
 
 //#endregion
@@ -4418,77 +4476,85 @@ thresholdSlider.oninput = () => {
   thresholdLabel.innerText = thresholdSlider.value;
 };
 
-document.getElementById("CommunitysaveSurveyBtn").onclick = async () => {
-  // BASIC VALIDATION
+const communityBtn = document.getElementById("CommunitysaveSurveyBtn");
 
-  const name = document.getElementById("CommunityName").value.trim();
+communityBtn.onclick = async () => {
+  if (communityBtn.disabled) return;
 
-if (!name) {
-  alert(t("communityNameRequired"));
-  return;
-}
+  // 🔒 lock button immediately
+  communityBtn.disabled = true;
+  communityBtn.classList.add("loading");
 
-if (name.length > 30) {
-  alert(t("communityNameMax"));
-  return;
-}
-
-  if (!communityPhoto) {
-    alert(t("addPhotoRequired"));
-    return;
-  }
-
-  const description = document.getElementById("CommunityDescription").value.trim();
-
-  if (!description) {
-    alert(t("descriptionRequired"));
-    return;
-  }
-
-  const selectedLanguages = Array.from(
-  document.querySelectorAll("#communityLanguagesList input:checked")
-).map(el => el.value);
-
-const radiusMiles = Number(document.getElementById("communityRadius").value);
-const radiusKm = radiusMiles * 1.60934;
-
-const answeredCount = Object.keys(communityState.answers).length;
-
-if (answeredCount !== AppData.questions.length) {
-  alert(t("answerAllQuestions"));
-  return;
-}
-
+  const originalText = communityBtn.textContent;
+  communityBtn.textContent = t("creating") || "Creating...";
 
   try {
-    // 🔥 Upload photo first (example)
+    // BASIC VALIDATION
+
+    const name = document.getElementById("CommunityName").value.trim();
+
+    if (!name) {
+      alert(t("communityNameRequired"));
+      return;
+    }
+
+    if (name.length > 30) {
+      alert(t("communityNameMax"));
+      return;
+    }
+
+    if (!communityPhoto) {
+      alert(t("addPhotoRequired"));
+      return;
+    }
+
+    const description = document.getElementById("CommunityDescription").value.trim();
+
+    if (!description) {
+      alert(t("descriptionRequired"));
+      return;
+    }
+
+    const selectedLanguages = Array.from(
+      document.querySelectorAll("#communityLanguagesList input:checked")
+    ).map(el => el.value);
+
+    const radiusMiles = Number(document.getElementById("communityRadius").value);
+    const radiusKm = radiusMiles * 1.60934;
+
+    const answeredCount = Object.keys(communityState.answers).length;
+
+    if (answeredCount !== AppData.questions.length) {
+      alert(t("answerAllQuestions"));
+      return;
+    }
+
     const photoUrl = await uploadCommunityPhoto(communityPhoto);
 
     const threshold = parseInt(
-  document.getElementById("CommunityThreshold").value
-);
+      document.getElementById("CommunityThreshold").value
+    );
 
-const communityData = {
-  name, // ✅ add this
-  description,
-  photo: photoUrl,
+    const communityData = {
+      name,
+      description,
+      photo: photoUrl,
 
-  values: communityState.answers,
-  weights: communityState.weights,
-  dealbreakers: Array.from(communityState.dealbreakers), // ✅
+      values: communityState.answers,
+      weights: communityState.weights,
+      dealbreakers: Array.from(communityState.dealbreakers),
 
-  community_languages: selectedLanguages,
+      community_languages: selectedLanguages,
 
-  community_location: communityLatLng
-  ? `POINT(${communityLatLng.lng} ${communityLatLng.lat})`
-  : null,
+      community_location: communityLatLng
+        ? `POINT(${communityLatLng.lng} ${communityLatLng.lat})`
+        : null,
 
-  community_distance_threshold: radiusMiles,
+      community_distance_threshold: radiusMiles,
 
-  threshold, // ✅
-
-  created_at: new Date().toISOString()
-};
+      threshold,
+      created_at: new Date().toISOString()
+    };
 
     await saveCommunityToDB(communityData);
 
@@ -4497,6 +4563,11 @@ const communityData = {
   } catch (err) {
     console.error(err);
     alert(t("communityCreateError"));
+  } finally {
+    // 🔓 always unlock button
+    communityBtn.disabled = false;
+    communityBtn.classList.remove("loading");
+    communityBtn.textContent = originalText;
   }
 };
 
@@ -4819,16 +4890,26 @@ function openEditCommunityModal(community) {
 
   document.getElementById("cancelEdit").onclick = () => modal.remove();
 
-document.getElementById("saveCommunityEdit").onclick = async () => {
+const editCommunityBtn = document.getElementById("saveCommunityEdit");
+
+editCommunityBtn.onclick = async () => {
+  if (editCommunityBtn.disabled) return;
+
   const file = document.getElementById("editCommunityPhoto").files[0];
   const desc = document.getElementById("editCommunityDesc").value;
+
+  // 🔒 lock button
+  editCommunityBtn.disabled = true;
+  editCommunityBtn.classList.add("loading");
+
+  const originalText = editCommunityBtn.textContent;
+  editCommunityBtn.textContent = t("saving") || "Saving...";
 
   try {
     let newPhotoUrl = community.community_photo;
 
     // 1. Upload new photo if exists
     if (file) {
-
       const safeFile = await normalizeFile(file);
 
       const filePath = `${appState.user.id}/community.jpg`;
@@ -4876,6 +4957,11 @@ document.getElementById("saveCommunityEdit").onclick = async () => {
   } catch (err) {
     console.error(err);
     alert(t("errorUpdatingCommunity"));
+  } finally {
+    // 🔓 always unlock (in case modal didn't close)
+    editCommunityBtn.disabled = false;
+    editCommunityBtn.classList.remove("loading");
+    editCommunityBtn.textContent = originalText;
   }
 };
 }
@@ -5765,58 +5851,81 @@ await loadMessages();
 // SEND MESSAGE
 // =========================
 
+let isSending = false;
+
 async function sendMessage() { 
+  if (isSending) return;
+
   const text = input.value.trim();
   if (!text) return;
 
+  isSending = true;
+
+  // 🔒 lock UI
+  button.disabled = true;
+  input.disabled = true;
+
+  const messageText = text;
   input.value = '';
 
-const { error } = await supabase
-  .from('0con_messages')
-  .insert({
-    sender_id: viewerId,
-    content: text,
+  try {
+    const { error } = await supabase
+      .from('0con_messages')
+      .insert({
+        sender_id: viewerId,
+        content: messageText,
 
-    ...(isCommunity
-      ? {
-          community_id: card.id,
-          sender_name: appState.profile.name,
-          sender_photo_url: appState.profile.profile_photo_url,
-          is_community: true
-        }
-      : {
-          match_id: card.id
+        ...(isCommunity
+          ? {
+              community_id: card.id,
+              sender_name: appState.profile.name,
+              sender_photo_url: appState.profile.profile_photo_url,
+              is_community: true
+            }
+          : {
+              match_id: card.id
+            })
+      });
+
+    if (error) throw error;
+
+    // ✅ matches
+    if (!isCommunity) {
+      await supabase
+        .from('0con_matches')
+        .update({
+          last_message: messageText,
+          last_sender_id: viewerId,
+          last_message_at: new Date().toISOString()
         })
-  });
+        .eq('id', card.id);
+    }
 
-  if (error) {
-    console.error('send message error:', error);
-    return;
-  }
+    // ✅ communities
+    if (isCommunity) {
+      await supabase
+        .from('0con_community_chats')
+        .update({
+          last_message: messageText,
+          last_sender_id: viewerId,
+          last_sender_name: appState.profile.name,
+          last_message_at: new Date().toISOString()
+        })
+        .eq('community_id', card.id);
+    }
 
-  // ✅ keep your existing logic (ONLY for matches)
-  if (!isCommunity) {
-    await supabase
-      .from('0con_matches')
-      .update({
-        last_message: text,
-        last_sender_id: viewerId,
-        last_message_at: new Date().toISOString()
-      })
-      .eq('id', card.id);
-  }
+  } catch (err) {
+    console.error('send message error:', err);
 
-  // ✅ NEW: update community preview
-  if (isCommunity) {
-    await supabase
-      .from('0con_community_chats')
-      .update({
-        last_message: text,
-        last_sender_id: viewerId,
-        last_sender_name: appState.profile.name,
-        last_message_at: new Date().toISOString()
-      })
-      .eq('community_id', card.id);
+    // ❌ restore text if failed (important UX)
+    input.value = messageText;
+  } finally {
+    // 🔓 unlock UI
+    isSending = false;
+    button.disabled = false;
+    input.disabled = false;
+
+    input.focus(); // nice UX
   }
 }
 
@@ -6459,14 +6568,26 @@ document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-action]");
   if (!btn) return;
 
+  // 🚨 prevent double clicks
+  if (btn.disabled) return;
+
+  // disable ALL buttons in the popup
+  const allButtons = document.querySelectorAll("[data-action]");
+  allButtons.forEach(b => b.disabled = true);
+
   const id = btn.dataset.id;
   const action = btn.dataset.action;
   const name = btn.dataset.name;
   const photo = btn.dataset.photo;
 
-  if (action === "AcceptTofu") await AcceptTofu(id, name, photo);
-  if (action === "AcceptAvocado") await AcceptAvocado(id, name, photo);
-  if (action === "Reject") await DeleteUser(id, name, photo);
+  try {
+    if (action === "AcceptTofu") await AcceptTofu(id, name, photo);
+    if (action === "AcceptAvocado") await AcceptAvocado(id, name, photo);
+    if (action === "Reject") await DeleteUser(id, name, photo);
+  } finally {
+    // optional: re-enable if popup stays open
+    allButtons.forEach(b => b.disabled = false);
+  }
 });
 
 async function DeleteUser(userId, userName, userPhoto) {
@@ -6620,6 +6741,13 @@ function removeInvitationCard(incomeId) {
 
   const card = container.querySelector(`[data-income-id="${incomeId}"]`);
   if (card) card.remove();
+
+  // ✅ check if empty AFTER removal
+  const remainingCards = container.querySelectorAll(".invitation-card");
+
+  if (remainingCards.length === 0) {
+    container.innerHTML = `<p class="invitation-empty-state">${t("no_invitations")}</p>`;
+  }
 }
 
 async function upsertMatch(userId, invitationType) {
@@ -6981,6 +7109,9 @@ document.getElementById("closeLanguagesBtn").addEventListener("click", async () 
 }
 
 function canEditSurvey(profile) { 
+
+    if (profile.is_premium) return true;
+
     if (!profile.friends_updated_at) 
         return true; 
     

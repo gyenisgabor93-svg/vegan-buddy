@@ -879,8 +879,18 @@ document.getElementById("nextBtn").onclick = () => {
 };
 
 
-document.getElementById("finishBtn").onclick = async () => {
-  if (!validateQuestions()) return;
+document.getElementById("finishBtn").onclick = async (e) => {
+  const btn = e.currentTarget;
+
+  // 🚨 prevent double click
+  if (btn.disabled) return;
+
+  btn.disabled = true;
+
+  if (!validateQuestions()) {
+    btn.disabled = false;
+    return;
+  }
 
   showLoading();
 
@@ -893,54 +903,52 @@ document.getElementById("finishBtn").onclick = async () => {
     if (!user) {
       hideLoading();
       alert("User not found");
+
+      btn.disabled = false;
       return;
     }
 
-const fileInput = document.getElementById("photo");
-const file = fileInput.files[0];
+    const fileInput = document.getElementById("photo");
+    const file = fileInput.files[0];
 
-const DEFAULT_PHOTO_URL =
-  "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg";
+    const DEFAULT_PHOTO_URL =
+      "https://pqrgvelzxmtdqrofxujx.supabase.co/storage/v1/object/public/profile_photos/default.jpg";
 
-let photoUrl = DEFAULT_PHOTO_URL;
+    let photoUrl = DEFAULT_PHOTO_URL;
 
-if (file) {
-  try {
+    if (file) {
+      try {
+        const safeFile = await normalizeFile(file);
+        const processedFile = await processImage(safeFile);
 
-    // 🔥 normalize WebView file FIRST
-    const safeFile = await normalizeFile(file);
+        if (!processedFile) throw new Error("Image processing failed");
 
-    const processedFile = await processImage(safeFile);
+        const filePath = `${user.id}/profile.jpg`;
 
-    if (!processedFile) throw new Error("Image processing failed");
+        const { error: uploadError } = await supabase.storage
+          .from("CONNECTION_PROFILE_PHOTOS")
+          .upload(filePath, processedFile, {
+            contentType: processedFile.type || "image/jpeg",
+            upsert: true
+          });
 
-    const filePath = `${user.id}/profile.jpg`;
+        if (uploadError) throw uploadError;
 
-    const { error: uploadError } = await supabase.storage
-      .from("CONNECTION_PROFILE_PHOTOS")
-      .upload(filePath, processedFile, {
-        contentType: processedFile.type || "image/jpeg",
-        upsert: true
-      });
+        const { data: publicData } = supabase.storage
+          .from("CONNECTION_PROFILE_PHOTOS")
+          .getPublicUrl(filePath);
 
-    if (uploadError) {
-      hideLoading();
-      alert("Photo upload failed");
-      return;
+        photoUrl = publicData.publicUrl;
+
+      } catch (err) {
+        hideLoading();
+        alert(err.message || "Image processing failed");
+
+        btn.disabled = false;
+        btn.innerText = "Finish";
+        return;
+      }
     }
-
-    const { data: publicData } = supabase.storage
-      .from("CONNECTION_PROFILE_PHOTOS")
-      .getPublicUrl(filePath);
-
-    photoUrl = publicData.publicUrl;
-
-  } catch (err) {
-    hideLoading();
-    alert(err.message || "Image processing failed");
-    return;
-  }
-}
 
     const now = new Date().toISOString();
 
@@ -964,16 +972,20 @@ if (file) {
     if (error) {
       hideLoading();
       alert("Error saving data");
+
+      btn.disabled = false;
       return;
     }
 
-    // SUCCESS → keep loading, then redirect
+    // ✅ success → no need to re-enable (redirect)
     window.location.href = "homepage.html";
 
   } catch (err) {
     hideLoading();
     console.error(err);
     alert("Unexpected error occurred");
+
+    btn.disabled = false;
   }
 };
 
